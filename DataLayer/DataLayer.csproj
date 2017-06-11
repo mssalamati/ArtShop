@@ -58,7 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enitities\Category.cs" />
+    <Compile Include="Enitities\Language.cs" />
+    <Compile Include="Enitities\Product.cs" />
+    <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Interfaces\ITranslation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
