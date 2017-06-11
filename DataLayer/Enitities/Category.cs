@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer
+namespace DataLayer.Enitities
 {
-    public class Class1
+    public class Category
     {
+
     }
 }

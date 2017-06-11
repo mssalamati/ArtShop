@@ -2,30 +2,44 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="sa-hero video-hero">
+    <ul class="orbit-ul">
+        <li class="orbit-item orbit-item-1">
+            <div class="cover flexcontainer" style="background-image: url('/Content/Images/aa-hero-6-2.jpg')">
+                <h1 class="sa-hero-title">The World’s Leading Online Art Gallery</h1>
+                <h2 class="sa-hero-subtitle">Free Art Advisory</h2>
+                <a class="button semitransparent" href="artadvisory.html">Get Started</a>
+                <div class="sa-hero-subtitle-2">Find the Perfect Works with the Help of a Curator</div>
+                <script>
+                        $('.orbit-item').click(function () {
+                            window.location = $(this).find('a').attr('href');
+                            return false;
+                        });
+                </script>
+            </div>
+        </li>
+    </ul>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="row-layout">
+    <div id='div-gpt-ad-1352935184042-0' class="align-center">
+        <script type='text/javascript'>
+                googletag.display('div-gpt-ad-1352935184042-0');
+        </script>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+</div>
+
+<div class="row-layout content">
+  
+    
+    @Html.Partial("_SelectedCurators")
+    @Html.Partial("_SalebyPrice")
+    @Html.Partial("_StoriesCanvas")
+    @Html.Partial("_RecentlySold")
+    @Html.Partial("_SalebyStyle")
+    @Html.Partial("_SalebyCategory")
+    <script type="text/javascript">
+            Saatchi.Favorite.init();
+    </script>
+    <div class="clearfix"></div>
 </div>

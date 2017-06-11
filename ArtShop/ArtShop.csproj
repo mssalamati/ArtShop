@@ -210,6 +210,41 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\250x143.jpg" />
+    <Content Include="Content\Images\300x300.jpg" />
+    <Content Include="Content\Images\660x300.jpg" />
+    <Content Include="Content\Images\aa-hero-6-2.jpg" />
+    <Content Include="Content\Images\caret-left.svg" />
+    <Content Include="Content\Images\caret-right.svg" />
+    <Content Include="Content\Images\iran.svg" />
+    <Content Include="Content\Images\leaf.png" />
+    <Content Include="Content\Images\mag-glass.svg" />
+    <Content Include="Content\Images\sa-logo.svg" />
+    <Content Include="Content\Images\saatchi-logo-grayscale.svg" />
+    <Content Include="Content\Images\toaf-logo-grayscale.svg" />
+    <Content Include="Content\Images\united-states.svg" />
+    <Content Include="Content\js\dist\core-1497066375653.min.js" />
+    <Content Include="Content\js\dist\foundation\foundation5-5.min4baf.js" />
+    <Content Include="Content\main-1497066374081.css" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.10.3\jquery-ui.min.js" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\jquery-ui.css" />
+    <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jquery\2.1.1\jquery.min.js" />
+    <Content Include="Content\Vendor\cdn.optimizely.com\js\2220741194.js" />
+    <Content Include="Content\Vendor\code.jquery.com\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Content\Vendor\maxcdn.bootstrapcdn.com\font-awesome\4.3.0\css\font-awesome.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -219,6 +254,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Vendor\maxcdn.bootstrapcdn.com\font-awesome\4.6.3\css\font-awesome.min.css.tmp" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,6 +301,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_SelectedCurators.cshtml" />
+    <Content Include="Views\Shared\_SalebyPrice.cshtml" />
+    <Content Include="Views\Shared\_StoriesCanvas.cshtml" />
+    <Content Include="Views\Shared\_RecentlySold.cshtml" />
+    <Content Include="Views\Shared\_SalebyStyle.cshtml" />
+    <Content Include="Views\Shared\_SalebyCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
