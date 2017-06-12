@@ -59,10 +59,15 @@
   <ItemGroup>
     <Compile Include="Enitities\Category.cs" />
     <Compile Include="Enitities\Language.cs" />
+    <Compile Include="Enitities\Material.cs" />
+    <Compile Include="Enitities\Medium.cs" />
     <Compile Include="Enitities\Product.cs" />
+    <Compile Include="Enitities\Style.cs" />
+    <Compile Include="Enitities\Subject.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Interfaces\ITranslation.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using DataLayer.Enitities;
 
 namespace DataLayer
 {
@@ -27,5 +28,19 @@ namespace DataLayer
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductTranslation> ProductTranslations { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<SubjectTranslation> SubjectTranslations { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
+        public DbSet<Medium> Mediums { get; set; }
+        public DbSet<MediumTranslation> MediumTranslations { get; set; }
+        public DbSet<Material> Materials { get; set; }
+        public DbSet<MaterialTranslation> MaterialTranslations { get; set; }
+        public DbSet<Style> Styles { get; set; }
+        public DbSet<StyleTranslation> StyleTranslations { get; set; }
+        public DbSet<Language> Languages { get; set; }
     }
 }
