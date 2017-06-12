@@ -2,43 +2,92 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>@ViewBag.Title سامانه </title>
+    @Styles.Render("~/Content/default")
     @Scripts.Render("~/bundles/modernizr")
 
+    @RenderSection("angular", required: false)
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+
+<body class="page-loading">
+    <!-- page loading spinner -->
+    <div class="pageload">
+        <div class="pageload-inner">
+            <div class="sk-rotating-plane"></div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <!-- /page loading spinner -->
+
+    <div class="app layout-fixed-header layout-right-sidebar">
+        <!-- sidebar panel -->
+        @Html.Partial("_MenuBarAdmin")
+        <!-- /sidebar panel -->
+        <!-- content panel -->
+        <div class="main-panel">
+            <!-- top header -->
+            <div class="header navbar">
+                <div class="brand visible-xs">
+                    <!-- toggle offscreen menu -->
+                    <div class="toggle-offscreen">
+                        <a href="javascript:;" class="hamburger-icon visible-xs" data-toggle="offscreen" data-move="rtl">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </div>
+                    <!-- /toggle offscreen menu -->
+                    <!-- logo -->
+                    <a class="brand-logo">
+                        <span>REACTOR</span>
+                    </a>
+                    <!-- /logo -->
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li>
+                        <a href="javascript:;" class="small-sidebar-toggle ripple" data-toggle="layout-small-menu">
+                            <i class="icon-toggle-sidebar"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        @Html.Partial("_LoginPartial")
+                    </li>
+
+                    <li>
+                        <a style="cursor:default">
+                            @DateTime.Now.ToPersian().ToString_Complete()
+                        </a>
+
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /top header -->
+            <!-- main area -->
+            <div class="main-content">
+                @RenderBody()
+            </div>
+            <!-- /main area -->
+        </div>
+        <!-- /content panel -->
+        <!-- bottom footer -->
+        @Html.Partial("_Footer")
+        <!-- /bottom footer -->
+
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/Content/Admin/scripts/helpers/modernizr.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery/dist/jquery.js")
+    @Scripts.Render("~/Content/Admin/vendor/bootstrap/dist/js/bootstrap.js")
+    @Scripts.Render("~/Content/Admin/vendor/fastclick/lib/fastclick.js")
+    @Scripts.Render("~/Content/Admin/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js")
+    @Scripts.Render("~/Content/Admin/scripts/helpers/smartresize.js")
+    @Scripts.Render("~/Content/Admin/scripts/constants.js")
+    @Scripts.Render("~/Content/Admin/scripts/main.js")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
