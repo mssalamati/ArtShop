@@ -22,6 +22,7 @@ namespace DataLayer.Enitities
         [ForeignKey("language")]
         public string languageId { get; set; }
         public Language language { get; set; }
+        [ForeignKey("subject")]
         [Key, Column(Order = 1)]
         public virtual int subjectId { get; set; }
         public virtual Subject subject { get; set; }

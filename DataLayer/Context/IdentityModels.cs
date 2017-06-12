@@ -46,5 +46,6 @@ namespace DataLayer
         public DbSet<SiteParam> SiteParams { get; set; }
         public DbSet<SiteParamTranslation> SiteParamTranslations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }
