@@ -62,6 +62,7 @@
     <Compile Include="Enitities\Material.cs" />
     <Compile Include="Enitities\Medium.cs" />
     <Compile Include="Enitities\Product.cs" />
+    <Compile Include="Enitities\SiteParam.cs" />
     <Compile Include="Enitities\Style.cs" />
     <Compile Include="Enitities\Subject.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />

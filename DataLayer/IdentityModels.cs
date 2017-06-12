@@ -41,6 +41,8 @@ namespace DataLayer
         public DbSet<MaterialTranslation> MaterialTranslations { get; set; }
         public DbSet<Style> Styles { get; set; }
         public DbSet<StyleTranslation> StyleTranslations { get; set; }
+        public DbSet<SiteParam> SiteParams { get; set; }
+        public DbSet<SiteParamTranslation> SiteParamTranslations { get; set; }
         public DbSet<Language> Languages { get; set; }
     }
 }
