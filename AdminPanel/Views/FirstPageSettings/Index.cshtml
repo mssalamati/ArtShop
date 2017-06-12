@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model IEnumerable<SiteParam>
+
+@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+<div class="page-title">
+    <div class="title"> پارامتر های صفحه اصلی</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">پارامتر های صفحه اصلی</a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+@if (Model.Count() == 0)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning ">
+                هیچ پارامتری در سیستم ثبت نشده
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <div class="card bg-white m-b">
+        <div class="card-header">کاربران </div>
+        <div class="card-block p-a-0">
+            <div class="table-responsive">
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><i class="fa fa-book"></i></th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @foreach (var lang in item.Translations)
+                                {
+                                   <img width="20" src='~/Content/Images/@(lang.language.Code+".svg")' />
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.Name }, new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
+}

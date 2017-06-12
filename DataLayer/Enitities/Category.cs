@@ -22,7 +22,7 @@ namespace DataLayer.Enitities
         [Key, Column(Order = 0)]
         [ForeignKey("language")]
         public string languageId { get; set; }
-        public Language language { get; set; }
+        public virtual Language language { get; set; }
         [Key, Column(Order = 1)]
         [ForeignKey("category")]
         public virtual int categoryId { get; set; }

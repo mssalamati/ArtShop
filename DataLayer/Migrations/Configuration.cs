@@ -14,18 +14,16 @@ namespace DataLayer.Migrations
 
         protected override void Seed(DataLayer.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.SiteParams.AddOrUpdate(x => x.Name,
+                new Enitities.SiteParam() { Name = "slider H1" },
+                new Enitities.SiteParam() { Name = "slider H2" },
+                new Enitities.SiteParam() { Name = "slider Button Text" },
+                new Enitities.SiteParam() { Name = "slider P" },
+                new Enitities.SiteParam() { Name = "slider Button Url" },
+                new Enitities.SiteParam() { Name = "slider image", siteParamType = Enitities.SiteParamType.param_picture },
+                new Enitities.SiteParam() { Name = "Selected Art 1" },
+                new Enitities.SiteParam() { Name = "Selected Art 2" },
+                new Enitities.SiteParam() { Name = "Selected Art 3" });
         }
     }
 }

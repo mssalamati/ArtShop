@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
-    public class FirstPageSettingsController : Controller
+    public class FirstPageSettingsController : BaseController
     {
         public ActionResult Index()
-        {
-            return View();
+        {     
+            return View(db.SiteParams.ToList());
         }
     }
 }

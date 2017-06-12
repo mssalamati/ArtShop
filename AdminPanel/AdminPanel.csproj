@@ -3266,6 +3266,8 @@
     <Content Include="Content\Admin\vendor\wysihtml5x\parser_rules\advanced_unwrap.js" />
     <Content Include="Content\Admin\vendor\wysihtml5x\parser_rules\simple.js" />
     <Content Include="Content\bg.JPG" />
+    <Content Include="Content\Images\en.svg" />
+    <Content Include="Content\Images\fa.svg" />
     <Content Include="Content\jvector\jquery-jvectormap-2.0.3.css" />
     <Content Include="Content\jvector\jquery-jvectormap-2.0.3.min.js" />
     <Content Include="Content\kendoui\css\Default\editor.png" />
@@ -5354,6 +5356,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_MenuBarAdmin.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\FirstPageSettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5374,7 +5377,6 @@
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Categories\" />
-    <Folder Include="Views\FirstPageSettings\" />
     <Folder Include="Views\Products\" />
     <Folder Include="Views\ProductTypes\" />
   </ItemGroup>
