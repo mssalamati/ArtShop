@@ -31,6 +31,21 @@ namespace DataLayer
             return new ApplicationDbContext();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasRequired(c => c.photo)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Category>()
+                .HasRequired(s => s.photo)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<Subject> Subjects { get; set; }
@@ -47,5 +62,12 @@ namespace DataLayer
         public DbSet<SiteParamTranslation> SiteParamTranslations { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<SiteObjectParam> SiteObjectParams { get; set; }
+        public DbSet<NavigationCategory> NavigationCategories { get; set; }
+        public DbSet<NavigationCategoryFavStyle> NavigationCategoryFavStyles { get; set; }
+        public DbSet<NavigationCategoryFavMedium> NavigationCategoryFavMediums { get; set; }
+        public DbSet<NavigationCategorySubject> NavigationCategorySubjects { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+
     }
 }

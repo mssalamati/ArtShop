@@ -14,15 +14,17 @@ namespace DataLayer.Enitities
         public virtual int Id { get; set; }
         public virtual ICollection<ProductTranslation> Translations { get; set; }
         public int Price { get; set; }
-        public string Image { get; set; }
+        [ForeignKey("photo")]
+        public int photoId { get; set; }
+        public virtual Photo photo { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ArtCreatedDate { get; set; }
         public bool ISOrginal { get; set; }
         public bool IsPrintAvaibled { get; set; }
-        public Category category { get; set; }
+        public virtual Category category { get; set; }
         [ForeignKey("category")]
         public int categoryId { get; set; }
-        public Subject subject { get; set; }
+        public virtual Subject subject { get; set; }
         [ForeignKey("subject")]
         public int subjectId { get; set; }
         public string Keywords { get; set; }

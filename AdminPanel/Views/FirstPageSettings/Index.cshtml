@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Index";
+    IEnumerable<SiteParam> siteparams = ViewBag.SiteParams;
+    SiteObjectParam SiteObjectParams = ViewBag.SiteObjectParams;
 }
-@model IEnumerable<SiteParam>
 
 @Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
 
@@ -19,10 +20,86 @@
 
 <div class="clearfix"></div>
 
-@if (Model.Count() == 0)
+<div class="card bg-white m-b">
+    <div class="card-header"> Defaults  </div>
+    <div class="card-block p-a-0">
+        <table class="table m-b-0">
+            <tr>
+                <th>
+                    تصویر اسلایدر
+                </th>
+                <th>
+                  <img style="height:50px;" src="@SiteObjectParams.SliderImage"/>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    نام سایت
+                </th>
+                <th>
+                    @SiteObjectParams.SiteName
+                </th>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<div class="card bg-white m-b">
+    <div class="card-header"> Header Fav Category  <button class="pull-left btn btn-default btn-xs">ثبت دسته جدید</button> </div>
+    <div class="card-block p-a-0">
+        <div class="table-responsive">
+            @if (SiteObjectParams != null && SiteObjectParams.Navigations.Count != 0)
+            {
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            Name
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in SiteObjectParams.Navigations.Take(3))
+                    {
+                        <tr>
+                            <th><i class="fa fa-book"></i></th>
+                            <td>
+                                @if (item.category.Translations.Count == 0)
+                                {
+                                    <span>No Name</span>
+                                }
+                                @foreach (var trans in item.category.Translations)
+                                {
+                                    <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.Id }, new { @class = "text-primary" }) |
+                                @Html.ActionLink("حذف", "EditUser", new { id = item.Id }, new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning ">
+                    هیچ دسته بندی ای در Header ثبت نشده
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@if (siteparams.Count() == 0)
 {
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="card bg-white m-b">
+        <div class="card-header">پارامتر ها  </div>
+        <div class="card-block p-a-0">
             <div class="alert alert-warning ">
                 هیچ پارامتری در سیستم ثبت نشده
             </div>
@@ -33,14 +110,14 @@
 else
 {
     <div class="card bg-white m-b">
-        <div class="card-header">کاربران </div>
+        <div class="card-header">پارامتر ها  </div>
         <div class="card-block p-a-0">
             <div class="table-responsive">
                 <table class="table m-b-0">
                     <tr>
                         <th></th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Name)
+                            Name
                         </th>
                         <th>
 
@@ -48,7 +125,7 @@ else
                         <th></th>
                     </tr>
 
-                    @foreach (var item in Model)
+                    @foreach (var item in siteparams)
                     {
                         <tr>
                             <th><i class="fa fa-book"></i></th>
@@ -58,11 +135,11 @@ else
                             <td>
                                 @foreach (var lang in item.Translations)
                                 {
-                                   <img width="20" src='~/Content/Images/@(lang.language.Code+".svg")' />
+                                    <img width="20" src='~/Content/Images/@(lang.language.Code+".svg")' />
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.Name }, new { @class = "text-danger" })
+                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.Name }, new { @class = "text-primary" })
                             </td>
                         </tr>
                     }

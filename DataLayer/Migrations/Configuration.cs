@@ -20,7 +20,6 @@ namespace DataLayer.Migrations
                 new Enitities.SiteParam() { Name = "slider Button Text" },
                 new Enitities.SiteParam() { Name = "slider P" },
                 new Enitities.SiteParam() { Name = "slider Button Url" },
-                new Enitities.SiteParam() { Name = "slider image", siteParamType = Enitities.SiteParamType.param_picture },
                 new Enitities.SiteParam() { Name = "Selected Art 1" },
                 new Enitities.SiteParam() { Name = "Selected Art 2" },
                 new Enitities.SiteParam() { Name = "Selected Art 3" });

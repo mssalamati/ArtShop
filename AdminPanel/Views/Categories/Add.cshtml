@@ -1,0 +1,68 @@
+﻿@model CategoryViewModel
+
+
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+    <h4 class="modal-title">دسته جدید</h4>
+</div>
+@using (Ajax.BeginForm("add", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "add_segment",
+    LoadingElementId = "submit_spin",
+    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');"
+}))
+{
+    <div class="modal-body" style="padding:20px;">
+        <p>بعد از اضافه کردن کاربر به قسمت جزئیات رفته و اطلاعات آن را تکمیل کنید</p>
+        @Html.AntiForgeryToken()
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label style="padding:5px" class="col-sm-2 control-label">تصویر اصلی</label>
+                    <div class="col-sm-10">
+                        <div class="uploader blue">
+                            <input type="button" name="file" class="button" value="انتخاب.." />
+                            <input type="text" class="filename" readonly="readonly" />
+                            <input type="file" id="Image" name="Image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <hr />
+        <div class="row">
+            @foreach (Language item in (List<Language>)ViewBag.language)
+                {
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                        <input name="" type="text" class="form-control" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+            <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                <i class="fa fa-spinner fa-spin"></i>
+            </span>&nbsp;  ثبت  &nbsp;
+        </button>
+    </div>
+}
+
+<script>
+    initinputcss();
+    inituserpageforms();
+</script>

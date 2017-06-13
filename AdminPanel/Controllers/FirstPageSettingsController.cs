@@ -9,8 +9,10 @@ namespace AdminPanel.Controllers
     public class FirstPageSettingsController : BaseController
     {
         public ActionResult Index()
-        {     
-            return View(db.SiteParams.ToList());
+        {
+            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
+            ViewBag.SiteParams = db.SiteParams.ToList();
+            return View();
         }
     }
 }

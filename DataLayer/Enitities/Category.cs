@@ -15,8 +15,11 @@ namespace DataLayer.Enitities
         public int Id { get; set; }
         public virtual ICollection<CategoryTranslation> Translations { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-        public string Image { get; set; }
+        [ForeignKey("photo")]
+        public int photoId { get; set; }
+        public virtual Photo photo { get; set; }
     }
+
     public class CategoryTranslation : ITranslation<Category>
     {      
         [Key, Column(Order = 0)]

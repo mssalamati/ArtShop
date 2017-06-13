@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+
+
+<div class="card bg-white m-b">
+    <div class="card-header"> Header Fav Category  <button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت دسته جدید</button> </div>
+    <div class="card-block p-a-0">
+        <div class="table-responsive">
+            @if (Model.Count() != 0)
+            {
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Products
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <th><i class="fa fa-book"></i></th>
+                        <td>
+                            @if (item.Translations.Count() == 0)
+                                {
+                                <span>No Name</span>
+                                }
+
+                            @foreach (var trans in item.Translations)
+                                {
+                                <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name
+                                }
+                        </td>
+                        <th>
+                            @item.Products.Count
+                        </th>
+                        <td>
+                            @Html.ActionLink("ویرایش", "EditUser", new { id = item.Id }, new { @class = "text-primary" }) |
+                            @Html.ActionLink("حذف", "EditUser", new { id = item.Id }, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning ">
+                    هیچ دسته بندی ای  ثبت نشده
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="dform">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+                <h4 class="modal-title">...</h4>
+            </div>
+            <div class="modal-body" style="padding:20px;text-align:center">
+                <p style="text-align:center">در حال بارگذاری</p>
+                <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
+    <script>
+        function inituserpageforms() {
+            $('.to-labelauty').labelauty({
+                minimum_width: '155px',
+                class: 'labelauty btn-block'
+            });
+
+            $('.to-labelauty-icon').labelauty({
+                label: false
+            });
+
+            $.get("/Value/GetProvience", function (data) {
+                $.each(data, function (key, value) {
+                    $("#proselect").append($("<option></option>").val(value.id).html(value.name));
+                });
+            });
+        }
+        function changepro() {
+            $('#cityselect option').remove();
+            $('#cityselect').prop('disabled', true);
+            var iid = $("#proselect").val();
+            $.get("/Value/GetCity?provienceID=" + iid, function (data) {
+                $('#cityselect').prop('disabled', false);
+                $.each(data, function (key, value) {
+                    $("#cityselect").append($("<option></option>").val(value.id).html(value.name));
+                });
+            });
+        }
+        inituserpageforms();
+    </script>
+
+    <script>
+        function showAdd() {
+            $('#modal-basic').modal('show');
+            $("#dform").load("/Categories/add");
+        }
+    </script>
+
+    <script type="text/javascript">
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
+    </script>
+}
