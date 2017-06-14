@@ -1,5 +1,6 @@
 namespace DataLayer.Migrations
 {
+    using Enitities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -23,6 +24,12 @@ namespace DataLayer.Migrations
                 new Enitities.SiteParam() { Name = "Selected Art 1" },
                 new Enitities.SiteParam() { Name = "Selected Art 2" },
                 new Enitities.SiteParam() { Name = "Selected Art 3" });
+
+            var obj = context.SiteObjectParams.FirstOrDefault();
+            if (obj == null)
+            {
+                context.SiteObjectParams.Add(new SiteObjectParam() { SiteName = "ARTSHOP" });
+            }
         }
     }
 }

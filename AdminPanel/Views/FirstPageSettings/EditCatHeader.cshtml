@@ -1,0 +1,89 @@
+﻿@model NavigationCategory
+
+
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+    <h4 class="modal-title">دسته جدید</h4>
+</div>
+@using (Ajax.BeginForm("", "FirstPageSettings", null, new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "dform",
+    LoadingElementId = "submit_spin",
+    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');"
+}, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal-body" style="padding:20px;" ng-app="myApp" ng-controller="homeiconCtrl">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
+
+        @Html.HiddenFor(x => x.Id)
+
+        <hr />
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-12 control-label">  Styles </label>
+                    <div class="col-sm-12">
+                        <select name="nets"
+                                data-placeholder="Styles"
+                                multiple
+                                class="form-control chosen"
+                                style="width:100%"
+                                ng-model="netModel">
+                            <option ng-repeat="option in networks" value="{{option.id}}">{{option.name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+            <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                <i class="fa fa-spinner fa-spin"></i>
+            </span>&nbsp;  ثبت  &nbsp;
+        </button>
+    </div>
+}
+
+@{  string selectedNets = (string.Format("\'{0}\'", String.Join("\',\'", Model.FavStyles.Select(x => x.Id))));  }
+
+<script>
+
+    var app = angular.module('myApp', []);
+    app.controller('homeiconCtrl', function ($scope, $http) {
+
+        $scope.netModel = [ @Html.Raw(selectedNets)];
+        //get networks
+        $http.get("/Value/GetStyles")
+           .then(function (response) {
+               $scope.networks = response;
+               setTimeout(function () {
+                   $scope.$apply(function () {
+                       $('.chosen').chosen({
+                           width: '100%'
+                       });
+                   });
+               }, 100);
+           });
+    });
+
+    $.get("/Value/GetCategories", function (data) {
+        $('#catselect').prop('disabled', false);
+        $.each(data, function (key, value) {
+            $("#catselect").append($("<option></option>").val(value.id).html(value.name));
+        });
+    });
+</script>

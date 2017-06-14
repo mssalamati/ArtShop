@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\ValueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5364,6 +5365,7 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\_successWindow.cshtml" />
     <Content Include="Views\languages\Index.cshtml" />
+    <Content Include="Views\FirstPageSettings\EditCatHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5385,6 +5387,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Products\" />
     <Folder Include="Views\ProductTypes\" />
+    <Folder Include="Views\Value\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

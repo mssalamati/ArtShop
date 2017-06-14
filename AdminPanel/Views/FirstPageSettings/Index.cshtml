@@ -6,6 +6,8 @@
 
 @Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
 
+@Styles.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.css")
+
 <div class="page-title">
     <div class="title"> پارامتر های صفحه اصلی</div>
     <ol class="breadcrumb no-bg pl0">
@@ -29,7 +31,7 @@
                     تصویر اسلایدر
                 </th>
                 <th>
-                  <img style="height:50px;" src="@SiteObjectParams.SliderImage"/>
+                    <img style="height:50px;" src="@SiteObjectParams.SliderImage" />
                 </th>
             </tr>
             <tr>
@@ -46,7 +48,13 @@
 </div>
 
 <div class="card bg-white m-b">
-    <div class="card-header"> Header Fav Category  <button class="pull-left btn btn-default btn-xs">ثبت دسته جدید</button> </div>
+    <div class="card-header">
+        <form action="/FirstPageSettings/AddCategoryToHeader" method="post">
+            <p style="padding-top: 8px !important;margin-bottom: 0; float:right"> Header Fav Category</p>
+            <button type="submit" class="pull-left btn btn-default">ثبت دسته جدید</button>
+            <select id="catselect" name="id" class="pull-left form-control"></select>
+        </form>
+    </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
             @if (SiteObjectParams != null && SiteObjectParams.Navigations.Count != 0)
@@ -74,8 +82,9 @@
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.Id }, new { @class = "text-primary" }) |
-                                @Html.ActionLink("حذف", "EditUser", new { id = item.Id }, new { @class = "text-danger" })
+                                <button class="btn btn-primary btn-sm" onclick="showEditCatHead(@item.Id)">ویرایش</button>
+                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/FirstPageSettings/DeleteCatHeader/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
                         </tr>
                     }
@@ -87,12 +96,9 @@
                     هیچ دسته بندی ای در Header ثبت نشده
                 </div>
             }
-
-
         </div>
     </div>
 </div>
-
 
 
 @if (siteparams.Count() == 0)
@@ -150,9 +156,44 @@ else
     </div>
 }
 
+<div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="dform">
+
+        </div>
+    </div>
+</div>
 
 @section scripts{
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
     @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+    @Scripts.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.jquery.min.js")
+
+    <script>
+        $('#catselect').prop('true', false);
+        $.get("/Value/GetCategories", function (data) {
+            $('#catselect').prop('disabled', false);
+            $.each(data, function (key, value) {
+                $("#catselect").append($("<option></option>").val(value.id).html(value.name));
+            });
+        });
+    </script>
+
+    <script>
+        var loading =
+                '<div class="modal-header bg-primary">' +
+                '   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>' +
+                '   <h4 class="modal-title">...</h4>' +
+                '</div>' +
+                '<div class="modal-body" style="padding:20px;text-align:center">' +
+                '   <p style="text-align:center">در حال بارگذاری</p>' +
+                '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+                '</div>';
+        function showEditCatHead(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/FirstPageSettings/EditCatHeader/" + id);
+        }
+    </script>
 
 }
