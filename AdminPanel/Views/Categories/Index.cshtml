@@ -22,33 +22,47 @@
                             Name
                         </th>
                         <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
                             Products
                         </th>
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <th><i class="fa fa-book"></i></th>
-                        <td>
-                            @if (item.Translations.Count() == 0)
-                                {
-                                <span>No Name</span>
-                                }
+                        <tr>
+                            <th><i class="fa fa-book"></i></th>
 
-                            @foreach (var trans in item.Translations)
+                            @if (item.Translations.Count() == 0)
+                            {
+                                <td colspan="3"><span>No Name</span></td>
+                            }
+                            else
+                            {
+                                foreach (var trans in item.Translations.Take(3))
                                 {
-                                <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name
+                                    <td>
+                                        <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name   <span>&nbsp;</span>
+                                    </td>
                                 }
-                        </td>
-                        <th>
-                            @item.Products.Count
-                        </th>
-                        <td>
-                            @Html.ActionLink("ویرایش", "EditUser", new { id = item.Id }, new { @class = "text-primary" }) |
-                            @Html.ActionLink("حذف", "EditUser", new { id = item.Id }, new { @class = "text-danger" })
-                        </td>
-                    </tr>
+                                for (int i = 0; i < 3 - item.Translations.Take(3).Count(); i++)
+                                {
+                                    <td></td>
+                                }
+                            }
+                            <th>
+                                @item.Products.Count
+                            </th>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
+                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/Categories/Delete/@item.Id">آیا مطمئن هستید؟</a>
+                            </td>
+                        </tr>
                     }
                 </table>
             }
@@ -65,14 +79,7 @@
 <div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="dform">
-            <div class="modal-header bg-primary">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
-                <h4 class="modal-title">...</h4>
-            </div>
-            <div class="modal-body" style="padding:20px;text-align:center">
-                <p style="text-align:center">در حال بارگذاری</p>
-                <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>
-            </div>
+           
         </div>
     </div>
 </div>
@@ -83,40 +90,25 @@
     @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
 
     <script>
-        function inituserpageforms() {
-            $('.to-labelauty').labelauty({
-                minimum_width: '155px',
-                class: 'labelauty btn-block'
-            });
+        var loading =
+            '<div class="modal-header bg-primary">' +
+            '   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>' +
+            '   <h4 class="modal-title">...</h4>' +
+            '</div>' +
+            '<div class="modal-body" style="padding:20px;text-align:center">' +
+            '   <p style="text-align:center">در حال بارگذاری</p>' +
+            '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+            '</div>';
 
-            $('.to-labelauty-icon').labelauty({
-                label: false
-            });
-
-            $.get("/Value/GetProvience", function (data) {
-                $.each(data, function (key, value) {
-                    $("#proselect").append($("<option></option>").val(value.id).html(value.name));
-                });
-            });
-        }
-        function changepro() {
-            $('#cityselect option').remove();
-            $('#cityselect').prop('disabled', true);
-            var iid = $("#proselect").val();
-            $.get("/Value/GetCity?provienceID=" + iid, function (data) {
-                $('#cityselect').prop('disabled', false);
-                $.each(data, function (key, value) {
-                    $("#cityselect").append($("<option></option>").val(value.id).html(value.name));
-                });
-            });
-        }
-        inituserpageforms();
-    </script>
-
-    <script>
         function showAdd() {
             $('#modal-basic').modal('show');
+            $("#dform").html(loading);
             $("#dform").load("/Categories/add");
+        }
+        function showEdit(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/Categories/edit/" + id);
         }
     </script>
 
