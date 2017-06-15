@@ -5382,6 +5382,7 @@
     <Content Include="Views\ProductTypes\addMaterial.cshtml" />
     <Content Include="Views\ProductTypes\editMaterial.cshtml" />
     <Content Include="Views\FirstPageSettings\editParams.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5401,7 +5402,6 @@
     <Folder Include="Content\Admin\vendor\prism\examples\" />
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Products\" />
     <Folder Include="Views\Value\" />
   </ItemGroup>
   <ItemGroup>

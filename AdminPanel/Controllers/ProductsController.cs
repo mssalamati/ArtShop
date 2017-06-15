@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
-        // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, string search = "")
         {
-            return View();
+            var data = db.Products;
+            return View(data.ToList());
         }
     }
 }
