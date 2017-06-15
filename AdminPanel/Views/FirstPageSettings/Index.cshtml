@@ -4,6 +4,9 @@
     SiteObjectParam SiteObjectParams = ViewBag.SiteObjectParams;
 }
 
+
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+
 @Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
 
 @Styles.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.css")
@@ -25,6 +28,16 @@
 <div class="card bg-white m-b">
     <div class="card-header"> Defaults  </div>
     <div class="card-block p-a-0">
+        @if (!string.IsNullOrEmpty(ViewBag.alert))
+        {
+            <div class="alert alert-info">
+                @ViewBag.alert
+            </div>
+        }
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
         <table class="table m-b-0">
             <tr>
                 <th>
@@ -33,6 +46,21 @@
                 <th>
                     <img style="height:50px;" src="@SiteObjectParams.SliderImage" />
                 </th>
+                <td>
+                    @using (Html.BeginForm("index", "FirstPageSettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success col-sm-2"><i class="fa fa-upload"></i></button>
+                            <div class="col-sm-10">
+                                <div class="uploader blue">
+                                    <input type="button" name="file" class="button" value="انتخاب.." />
+                                    <input type="text" class="filename" readonly="readonly" />
+                                    <input type="file" id="Image" name="Image" />
+                                </div>
+                            </div>
+                        </div>        
+                    }
+                </td>
             </tr>
             <tr>
                 <th>
@@ -41,6 +69,7 @@
                 <th>
                     @SiteObjectParams.SiteName
                 </th>
+                <td></td>
             </tr>
         </table>
 
@@ -200,6 +229,18 @@ else
             $("#dform").html(loading);
             $("#dform").load("/FirstPageSettings/editParams/" + id);
         }
+    </script>
+
+    <script>
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
     </script>
 
 }

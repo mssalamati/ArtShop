@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Utilities;
 
 namespace AdminPanel.Controllers
 {
@@ -102,7 +103,7 @@ namespace AdminPanel.Controllers
                 if (curr != null)
                     curr.Value = item.Value;
                 else
-                    finder.Translations.Add(new SiteParamTranslation  { languageId = item.languageId, Value = item.Value });
+                    finder.Translations.Add(new SiteParamTranslation { languageId = item.languageId, Value = item.Value });
             }
 
             try
@@ -117,6 +118,30 @@ namespace AdminPanel.Controllers
 
             ViewBag.language = db.Languages.ToList();
             return PartialView(finder);
+        }
+
+        [HttpPost]
+        public ActionResult Index(object obj)
+        {
+            var file = Request.Files[0];
+            string tempFolderName = "Upload/Slider_Images";
+            var result = ImageHelper.Saveimage(Server, file, tempFolderName, ImageHelper.saveImageMode.wide);
+            if (!result.ResultStatus)
+            {
+                ViewBag.language = db.Languages.ToList();
+                ModelState.AddModelError(string.Empty, result.Error);
+                ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
+                ViewBag.SiteParams = db.SiteParams.ToList();
+                return View();
+            }
+
+            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
+            ViewBag.SiteParams = db.SiteParams.ToList();
+            var site = db.SiteObjectParams.FirstOrDefault();
+            site.SliderImage = result.FullPath;
+            db.SaveChanges();
+            ViewBag.alert = "با موفقیت انجام شد";
+            return View();
         }
     }
 }
