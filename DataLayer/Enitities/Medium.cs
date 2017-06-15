@@ -16,6 +16,11 @@ namespace DataLayer.Enitities
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<MediumTranslation> Translations { get; set; }
         public bool AddedByAdmin { get; set; }
+        public DateTime insertDate { get; set; }
+        public Medium()
+        {
+            insertDate = DateTime.Now;
+        }
     }
 
     public class MediumTranslation : ITranslation<Medium>

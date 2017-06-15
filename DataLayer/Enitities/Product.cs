@@ -34,6 +34,11 @@ namespace DataLayer.Enitities
         public virtual ICollection<Style> Styles { get; set; }
         public virtual ICollection<Material> Materials { get; set; }
         public virtual ICollection<Medium> Mediums { get; set; }
+
+        public Product()
+        {
+            CreateDate = DateTime.Now;
+        }
     }
 
     public class ProductTranslation : ITranslation<Product>

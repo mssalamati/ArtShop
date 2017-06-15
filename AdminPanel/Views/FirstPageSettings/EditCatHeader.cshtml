@@ -14,7 +14,7 @@
     OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');"
 }, new { enctype = "multipart/form-data" }))
 {
-    <div class="modal-body" style="padding:20px;" ng-app="myApp" ng-controller="homeiconCtrl">
+    <div class="modal-body" style="padding:20px;">
 
         @if (!ViewData.ModelState.IsValid)
         {
@@ -23,6 +23,7 @@
 
         @Html.HiddenFor(x => x.Id)
 
+        @Model.category.ToString()
         <hr />
         <div class="row">
 
@@ -33,15 +34,34 @@
                         <select name="nets"
                                 data-placeholder="Styles"
                                 multiple
+                                id="styleselect"
                                 class="form-control chosen"
-                                style="width:100%"
-                                ng-model="netModel">
-                            <option ng-repeat="option in networks" value="{{option.id}}">{{option.name}}</option>
-
+                                style="width:100%">
                         </select>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="col-sm-12 control-label">  Medums </label>
+                    <div class="col-sm-12">
+                        <select name="nets"
+                                data-placeholder="Medums"
+                                multiple
+                                id="medumsselect"
+                                class="form-control chosen"
+                                style="width:100%"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-12 control-label">  Subjects </label>
+                    <div class="col-sm-12">
+                        <select name="nets"
+                                data-placeholder="Subjects"
+                                multiple
+                                id="subjectsselect"
+                                class="form-control chosen"
+                                style="width:100%"></select>
+                    </div>
+                </div>
 
             </div>
 
@@ -62,28 +82,38 @@
 
 <script>
 
-    var app = angular.module('myApp', []);
-    app.controller('homeiconCtrl', function ($scope, $http) {
-
-        $scope.netModel = [ @Html.Raw(selectedNets)];
-        //get networks
-        $http.get("/Value/GetStyles")
-           .then(function (response) {
-               $scope.networks = response;
-               setTimeout(function () {
-                   $scope.$apply(function () {
-                       $('.chosen').chosen({
-                           width: '100%'
-                       });
-                   });
-               }, 100);
-           });
-    });
-
-    $.get("/Value/GetCategories", function (data) {
-        $('#catselect').prop('disabled', false);
+    $.get("/Value/GetStyles", function (data) {
+        $('#styleselect').prop('disabled', false);
         $.each(data, function (key, value) {
-            $("#catselect").append($("<option></option>").val(value.id).html(value.name));
+            $("#styleselect").append($("<option></option>").val(value.id).html(value.name));
         });
+        setTimeout(function () {
+            $('.chosen').chosen({
+                width: '100%'
+            });
+        }, 100);
     });
+    $.get("/Value/GetMediums", function (data) {
+        $('#medumsselect').prop('disabled', false);
+        $.each(data, function (key, value) {
+            $("#medumsselect").append($("<option></option>").val(value.id).html(value.name));
+        });
+        setTimeout(function () {
+            $('.chosen').chosen({
+                width: '100%'
+            });
+        }, 100);
+    });
+    $.get("/Value/GetSubjects", function (data) {
+        $('#subjectsselect').prop('disabled', false);
+        $.each(data, function (key, value) {
+            $("#subjectsselect").append($("<option></option>").val(value.id).html(value.name));
+        });
+        setTimeout(function () {
+            $('.chosen').chosen({
+                width: '100%'
+            });
+        }, 100);
+    });
+
 </script>

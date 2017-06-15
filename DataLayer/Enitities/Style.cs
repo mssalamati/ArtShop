@@ -16,6 +16,11 @@ namespace DataLayer.Enitities
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<StyleTranslation> Translations { get; set; }
         public bool AddedByAdmin { get; set; }
+        public DateTime insertDate { get; set; }
+        public Style()
+        {
+            insertDate = DateTime.Now;
+        }
     }
 
     public class StyleTranslation : ITranslation<Style>

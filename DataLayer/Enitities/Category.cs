@@ -18,10 +18,19 @@ namespace DataLayer.Enitities
         [ForeignKey("photo")]
         public int photoId { get; set; }
         public virtual Photo photo { get; set; }
+        public DateTime insertDate { get; set; }
+        public Category()
+        {
+            insertDate = DateTime.Now;
+        }
+        public override string ToString()
+        {
+            return string.Join(",", Translations.Select(x => x.Name));
+        }
     }
 
     public class CategoryTranslation : ITranslation<Category>
-    {      
+    {
         [Key, Column(Order = 0)]
         [ForeignKey("language")]
         public string languageId { get; set; }

@@ -211,6 +211,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProductTypeViewModel.cs" />
     <Compile Include="Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -5366,6 +5367,19 @@
     <Content Include="Views\Categories\_successWindow.cshtml" />
     <Content Include="Views\languages\Index.cshtml" />
     <Content Include="Views\FirstPageSettings\EditCatHeader.cshtml" />
+    <Content Include="Views\ProductTypes\IndexStyles.cshtml" />
+    <Content Include="Views\ProductTypes\_successWindow.cshtml" />
+    <Content Include="Views\ProductTypes\IndexMediums.cshtml" />
+    <Content Include="Views\ProductTypes\IndexSubjects.cshtml" />
+    <Content Include="Views\ProductTypes\IndexMaterials.cshtml" />
+    <Content Include="Views\ProductTypes\addStyle.cshtml" />
+    <Content Include="Views\ProductTypes\editStyle.cshtml" />
+    <Content Include="Views\ProductTypes\addMediums.cshtml" />
+    <Content Include="Views\ProductTypes\editMediums.cshtml" />
+    <Content Include="Views\ProductTypes\addSubject.cshtml" />
+    <Content Include="Views\ProductTypes\editSubject.cshtml" />
+    <Content Include="Views\ProductTypes\addMaterial.cshtml" />
+    <Content Include="Views\ProductTypes\editMaterial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5386,7 +5400,6 @@
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Products\" />
-    <Folder Include="Views\ProductTypes\" />
     <Folder Include="Views\Value\" />
   </ItemGroup>
   <ItemGroup>

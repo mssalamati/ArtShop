@@ -14,6 +14,11 @@ namespace DataLayer.Enitities
         public virtual int Id { get; set; }
         public virtual ICollection<SubjectTranslation> Translations { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+        public DateTime insertDate { get; set; }
+        public Subject()
+        {
+            insertDate = DateTime.Now;
+        }
     }
 
     public class SubjectTranslation : ITranslation<Subject>
