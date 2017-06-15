@@ -13,6 +13,15 @@ namespace AdminPanel.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.product = db.Products.Count();
+            ViewBag.Materials = db.Materials.Count();
+            ViewBag.Subjects = db.Subjects.Count();
+            ViewBag.Mediums = db.Mediums.Count();
+            ViewBag.Styles = db.Styles.Count();
+            ViewBag.Users = db.Users.Count();
+            ViewBag.artist = db.UserProfiles.Count();
+            ViewBag.coolector = db.UserProfiles.Count();
+
             return View();
         }
 

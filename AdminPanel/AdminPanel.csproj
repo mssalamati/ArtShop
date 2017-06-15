@@ -211,6 +211,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\NavigationCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductTypeViewModel.cs" />
     <Compile Include="Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -5380,6 +5381,7 @@
     <Content Include="Views\ProductTypes\editSubject.cshtml" />
     <Content Include="Views\ProductTypes\addMaterial.cshtml" />
     <Content Include="Views\ProductTypes\editMaterial.cshtml" />
+    <Content Include="Views\FirstPageSettings\editParams.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

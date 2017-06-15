@@ -5,7 +5,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
     <h4 class="modal-title">دسته جدید</h4>
 </div>
-@using (Ajax.BeginForm("", "FirstPageSettings", null, new AjaxOptions()
+@using (Ajax.BeginForm("EditCatHeader", "FirstPageSettings", null, new AjaxOptions()
 {
     HttpMethod = "POST",
     UpdateTargetId = "dform",
@@ -24,6 +24,13 @@
         @Html.HiddenFor(x => x.Id)
 
         @Model.category.ToString()
+
+        @if (!string.IsNullOrEmpty(ViewBag.alert))
+        {
+            <div class="alert alert-info">
+                @ViewBag.alert
+            </div>
+        }
         <hr />
         <div class="row">
 
@@ -31,19 +38,18 @@
                 <div class="form-group">
                     <label class="col-sm-12 control-label">  Styles </label>
                     <div class="col-sm-12">
-                        <select name="nets"
+                        <select name="FavStyles"
                                 data-placeholder="Styles"
                                 multiple
                                 id="styleselect"
                                 class="form-control chosen"
-                                style="width:100%">
-                        </select>
+                                style="width:100%"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-12 control-label">  Medums </label>
                     <div class="col-sm-12">
-                        <select name="nets"
+                        <select name="FavMediums"
                                 data-placeholder="Medums"
                                 multiple
                                 id="medumsselect"
@@ -54,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-sm-12 control-label">  Subjects </label>
                     <div class="col-sm-12">
-                        <select name="nets"
+                        <select name="FavSubjects"
                                 data-placeholder="Subjects"
                                 multiple
                                 id="subjectsselect"
@@ -78,42 +84,46 @@
     </div>
 }
 
-@{  string selectedNets = (string.Format("\'{0}\'", String.Join("\',\'", Model.FavStyles.Select(x => x.Id))));  }
-
+@{
+    string FavStyles = (string.Format("{0}", String.Join(",", Model.FavStyles.Select(x => x.styleId))));
+    string FavMediums = (string.Format("{0}", String.Join(",", Model.FavMediums.Select(x => x.mediumId))));
+    string FavSubjects = (string.Format("{0}", String.Join(",", Model.FavSubjects.Select(x => x.subjectId))));
+}
 <script>
+    var FavStyles = [@FavStyles];
+    var FavMediums = [@FavMediums];
+    var FavSubjects = [@FavSubjects];
 
     $.get("/Value/GetStyles", function (data) {
         $('#styleselect').prop('disabled', false);
         $.each(data, function (key, value) {
-            $("#styleselect").append($("<option></option>").val(value.id).html(value.name));
+            if ($.inArray(value.id, FavStyles) != -1)
+                $("#styleselect").append($("<option selected></option>").val(value.id).html(value.name));
+            else
+                $("#styleselect").append($("<option></option>").val(value.id).html(value.name));
         });
-        setTimeout(function () {
-            $('.chosen').chosen({
-                width: '100%'
+        $.get("/Value/GetMediums", function (data) {
+            $('#medumsselect').prop('disabled', false);
+            $.each(data, function (key, value) {
+                if ($.inArray(value.id, FavMediums) != -1)
+                    $("#medumsselect").append($("<option selected></option>").val(value.id).html(value.name));
+                else
+                    $("#medumsselect").append($("<option></option>").val(value.id).html(value.name));
             });
-        }, 100);
-    });
-    $.get("/Value/GetMediums", function (data) {
-        $('#medumsselect').prop('disabled', false);
-        $.each(data, function (key, value) {
-            $("#medumsselect").append($("<option></option>").val(value.id).html(value.name));
+            $.get("/Value/GetSubjects", function (data) {
+                $('#subjectsselect').prop('disabled', false);
+                $.each(data, function (key, value) {
+                    if ($.inArray(value.id, FavSubjects) != -1)
+                        $("#subjectsselect").append($("<option selected></option>").val(value.id).html(value.name));
+                    else
+                        $("#subjectsselect").append($("<option></option>").val(value.id).html(value.name));
+                });
+                setTimeout(function () {
+                    $('.chosen').chosen({
+                        width: '100%'
+                    });
+                }, 100);
+            });
         });
-        setTimeout(function () {
-            $('.chosen').chosen({
-                width: '100%'
-            });
-        }, 100);
     });
-    $.get("/Value/GetSubjects", function (data) {
-        $('#subjectsselect').prop('disabled', false);
-        $.each(data, function (key, value) {
-            $("#subjectsselect").append($("<option></option>").val(value.id).html(value.name));
-        });
-        setTimeout(function () {
-            $('.chosen').chosen({
-                width: '100%'
-            });
-        }, 100);
-    });
-
 </script>

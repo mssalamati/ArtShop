@@ -145,7 +145,7 @@ else
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.Name }, new { @class = "text-primary" })
+                                <button class="btn btn-primary btn-xs" onclick="showEditparam('@item.Name.Replace(" ","%20")')">ویرایش</button>
                             </td>
                         </tr>
                     }
@@ -193,6 +193,12 @@ else
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
             $("#dform").load("/FirstPageSettings/EditCatHeader/" + id);
+        }
+        '</div>';
+        function showEditparam(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/FirstPageSettings/editParams/" + id);
         }
     </script>
 
