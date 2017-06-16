@@ -15,7 +15,8 @@ namespace DataLayer.Extentions
             where TTranslation : class, ITranslation<TTranslatable>
             where TTranslatable : class, ITranslatable<TTranslatable, TTranslation>
         {
-            string currentCultureName = CultureInfo.DefaultThreadCurrentUICulture.Name;
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
+            if (translatable.Translations == null) return null;
             return translatable.Translations.SingleOrDefault(t => t.language.Code == currentCultureName);
         }
     }

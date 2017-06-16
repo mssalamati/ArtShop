@@ -1,21 +1,15 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@model HomeIndexViewModel
 <div class="sa-hero video-hero">
     <ul class="orbit-ul">
         <li class="orbit-item orbit-item-1">
             <div class="cover flexcontainer" style="background-image: url('/Content/Images/aa-hero-6-2.jpg')">
-                <h1 class="sa-hero-title">The World’s Leading Online Art Gallery</h1>
-                <h2 class="sa-hero-subtitle">Free Art Advisory</h2>
-                <a class="button semitransparent" href="artadvisory.html">Get Started</a>
-                <div class="sa-hero-subtitle-2">Find the Perfect Works with the Help of a Curator</div>
-                <script>
-                        $('.orbit-item').click(function () {
-                            window.location = $(this).find('a').attr('href');
-                            return false;
-                        });
-                </script>
+                <h1 class="sa-hero-title">@Model.slider_H1</h1>
+                <h2 class="sa-hero-subtitle">@Model.slider_H2</h2>
+                <a class="button semitransparent" href="@Model.slider_Button_Url">@Model.slider_Button_Text</a>
+                <div class="sa-hero-subtitle-2">@Model.slider_P</div>
             </div>
         </li>
     </ul>
@@ -32,12 +26,12 @@
 <div class="row-layout content">
   
     
-    @Html.Partial("_SelectedCurators")
+    @*@Html.Partial("_SelectedCurators")
     @Html.Partial("_SalebyPrice")
     @Html.Partial("_StoriesCanvas")
     @Html.Partial("_RecentlySold")
     @Html.Partial("_SalebyStyle")
-    @Html.Partial("_SalebyCategory")
+    @Html.Partial("_SalebyCategory")*@
     <script type="text/javascript">
             Saatchi.Favorite.init();
     </script>
