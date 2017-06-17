@@ -1,16 +1,29 @@
 ﻿@model HomeIndexViewModel
 
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+@helper selected(string c, string culture)
+{
+if (c == culture)
+{
+        @:desktop-navigation__context-link--active
+}
+}
+
+
 <header>
     <div class="desktop-navigation desktop-navigation--saatchiart">
         <div class="desktop-navigation__context-bar">
             <div class="desktop-navigation__context-bar__inner">
-                <div class="desktop-navigation__context-bar__left">
+                <div class="desktop-navigation__context-bar__left">              
                     <div class="desktop-navigation__context-links">
-                        <a data-gtm-event="nav header" class="desktop-navigation__context-link desktop-navigation__context-link--active" href="index.html">
-                            <img class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                        <a data-gtm-event="nav header" class="desktop-navigation__context-link @selected("en-us", culture)" href="/Home/SetCulture?culture=en-us">
+                            <img style="width:auto" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
                         </a>
-                        <a data-gtm-event="nav header" class="desktop-navigation__context-link " href="theotherartfair.html">
-                            <img class="desktop-navigation__context-logo desktop-navigation__context-logo--toaf" src="~/Content/Images/iran.svg">
+                        <a data-gtm-event="nav header" class="desktop-navigation__context-link @selected("fa", culture)" href="/Home/SetCulture?culture=fa">
+                            <img style="width:auto" class="desktop-navigation__context-logo desktop-navigation__context-logo--toaf" src="~/Content/Images/iran.svg">
                         </a>
                     </div>
                 </div>
@@ -55,7 +68,7 @@
                         <div data-index="7" class="desktop-navigation__site-link">
                             <div class="desktop-navigation__site-link__title">
                                 <a data-gtm-event="nav header"
-                                   href="http://canvas.saatchiart.com/"
+                                   href="/"
                                    class="desktop-navigation__site-link__title__link">
                                     Blog
                                 </a>
@@ -64,7 +77,7 @@
                         <div data-index="8" class="desktop-navigation__site-link">
                             <div class="desktop-navigation__site-link__title">
                                 <a data-gtm-event="nav header"
-                                   href="artadvisory.html"
+                                   href="/"
                                    class="desktop-navigation__site-link__title__link">
                                     Art Advisory
                                 </a>
@@ -80,7 +93,7 @@
                                         <a data-gtm-event="nav header"
                                            href="art-collection/Painting/Featured-Paintings/685448/191300/view.html"
                                            class="desktop-navigation__dropdown__image"
-                                           style="background-image: url(/Content/Images/300x300.jpg)">
+                                           style="background-image: url(@Model.Navigation[i].Photo)">
                                             <div class="desktop-navigation__dropdown__image__title">
                                                 Featured @Model.Navigation[i].Name
                                             </div>
@@ -131,7 +144,7 @@
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
                                                        href="paintings/oil.html">
-                                                        @item.FavMediums
+                                                        @item.Name
                                                     </a>
                                                 }
                                             </div>
@@ -197,7 +210,7 @@
                                 <a data-gtm-event="nav header"
                                    data-index="2"
                                    class="mobile-navigation__site-link">
-                                    Paintings
+                                    @item.Name
                                     <img class="mobile-navigation__site-link__arrow-indicator" src="~/Content/Images/caret-right.svg" />
                                 </a>
                                 <div data-index="2" class="mobile-navigation__menu__panel">
@@ -207,7 +220,7 @@
                                         <a data-gtm-event="nav header"
                                            class="mobile-navigation__menu__panel__header__title"
                                            href="paintings.html">
-                                            Paintings
+                                            @item.Name
                                         </a>
                                     </div>
                                     <div class="mobile-navigation__menu__panel__image-container">
@@ -216,7 +229,7 @@
                                            class="mobile-navigation__menu__panel__image"
                                            style="background-image: url(/Content/Images/300x300.jpg)">
                                             <div class="mobile-navigation__menu__panel__image__title">
-                                                Featured Paintings
+                                                Featured @item.Name
                                             </div>
                                         </a>
                                     </div>
@@ -227,31 +240,14 @@
                                             Style
                                         </a>
 
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/fine-art.html"
-                                           class="mobile-navigation__site-link">
-                                            Fine Art
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/abstract.html"
-                                           class="mobile-navigation__site-link">
-                                            Abstract
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/modern.html"
-                                           class="mobile-navigation__site-link">
-                                            Modern
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/street-art.html"
-                                           class="mobile-navigation__site-link">
-                                            Street Art
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/pop-art.html"
-                                           class="mobile-navigation__site-link">
-                                            Pop Art
-                                        </a>
+                                        @foreach (var style in item.FavStyles)
+                                        {
+                                            <a data-gtm-event="nav header"
+                                               href="paintings/fine-art.html"
+                                               class="mobile-navigation__site-link">
+                                               @style.Name
+                                            </a>
+                                        }
                                     </div>
                                     <div>
                                         <a data-gtm-event="nav header"
@@ -259,31 +255,14 @@
                                             Subject
                                         </a>
 
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/portrait.html"
-                                           class="mobile-navigation__site-link">
-                                            Portrait
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/landscape.html"
-                                           class="mobile-navigation__site-link">
-                                            Landscape
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/still-life.html"
-                                           class="mobile-navigation__site-link">
-                                            Still Life
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/nature.html"
-                                           class="mobile-navigation__site-link">
-                                            Nature
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/beach.html"
-                                           class="mobile-navigation__site-link">
-                                            Beach
-                                        </a>
+                                        @foreach (var subject in item.FavStyles)
+                                        {
+                                            <a data-gtm-event="nav header"
+                                               href="paintings/portrait.html"
+                                               class="mobile-navigation__site-link">
+                                                @subject.Name
+                                            </a>
+                                        }
                                     </div>
                                     <div>
                                         <a data-gtm-event="nav header"
@@ -291,43 +270,19 @@
                                             Medium
                                         </a>
 
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/oil.html"
-                                           class="mobile-navigation__site-link">
-                                            Oil
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/watercolor.html"
-                                           class="mobile-navigation__site-link">
-                                            Watercolor
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/acrylic.html"
-                                           class="mobile-navigation__site-link">
-                                            Acrylic
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/airbrush.html"
-                                           class="mobile-navigation__site-link">
-                                            Airbrush
-                                        </a>
-                                        <a data-gtm-event="nav header"
-                                           href="paintings/digital.html"
-                                           class="mobile-navigation__site-link">
-                                            Digital
-                                        </a>
+                                        @foreach (var medium in item.FavStyles)
+                                        {
+                                            <a data-gtm-event="nav header"
+                                               href="paintings/oil.html"
+                                               class="mobile-navigation__site-link">
+                                                @medium.Name
+                                            </a>
+                                        }
                                     </div>
 
                                 </div>
                             </div>
                         }
-
-                    </div>
-                    <div class="mobile-navigation__context-links">
-                        <a data-gtm-event="nav header" href="theotherartfair.html">
-                            <img class="mobile-navigation__context-link mobile-navigation__context-link--toaf"
-                                 src="~/Content/Images/toaf-logo-grayscale.svg" />
-                        </a>
                     </div>
                 </div>
             </div>

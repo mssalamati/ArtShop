@@ -7,6 +7,7 @@ using DataLayer.Extentions;
 using ArtShop.Models;
 using ArtShop.Helper;
 using System.Globalization;
+using System.Configuration;
 
 namespace ArtShop.Controllers
 {
@@ -42,6 +43,7 @@ namespace ArtShop.Controllers
             {
                 Id = x.categoryId,
                 Name = x.category.Current().Name,
+                Photo = ConfigurationManager.AppSettings["FileUrl"] + x.category.photo.Path,
                 FavMediums = x.FavMediums.Select(fm => new IdNameViewModel() { Id = fm.mediumId, Name = fm.medium.Current().Name }).ToList(),
                 FavStyles = x.FavStyles.Select(fm => new IdNameViewModel() { Id = fm.styleId, Name = fm.style.Current().Name }).ToList(),
                 FavSubjects = x.FavSubjects.Select(fm => new IdNameViewModel() { Id = fm.subjectId, Name = fm.subject.Current().Name }).ToList()
