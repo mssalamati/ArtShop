@@ -5313,6 +5313,7 @@
     <Content Include="Content\Admin\vendor\wysihtml5x\LICENSE" />
     <Content Include="Content\Admin\vendor\wysihtml5x\package.json" />
     <Content Include="Content\Admin\vendor\wysihtml5x\README.markdown" />
+    <None Include="Properties\PublishProfiles\arad.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

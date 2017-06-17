@@ -5,6 +5,8 @@ namespace DataLayer.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataLayer.ApplicationDbContext>
     {
@@ -15,6 +17,12 @@ namespace DataLayer.Migrations
 
         protected override void Seed(DataLayer.ApplicationDbContext context)
         {
+            var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var store = new UserStore<ApplicationUser>(context);
+            var manager = new UserManager<ApplicationUser>(store);
+            var user = new ApplicationUser { UserName = "superadmin", Email = "ms.salamati@gmail.com", PhoneNumber = "9374641231", userDetail = new UserProfile() };
+            manager.Create(user, "Art123");
+
             context.SiteParams.AddOrUpdate(x => x.Name,
                 new Enitities.SiteParam() { Name = "slider H1" },
                 new Enitities.SiteParam() { Name = "slider H2" },

@@ -82,7 +82,7 @@
                                            class="desktop-navigation__dropdown__image"
                                            style="background-image: url(/Content/Images/300x300.jpg)">
                                             <div class="desktop-navigation__dropdown__image__title">
-                                                Featured Paintings
+                                                Featured @Model.Navigation[i].Name
                                             </div>
                                         </a>
                                     </div>
@@ -94,31 +94,14 @@
                                             </div>
 
                                             <div class="desktop-navigation__dropdown__section-links">
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/fine-art.html">
-                                                    Fine Art
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/abstract.html">
-                                                    Abstract
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/modern.html">
-                                                    Modern
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/street-art.html">
-                                                    Street Art
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/pop-art.html">
-                                                    Pop Art
-                                                </a>
+                                                @foreach (var item in Model.Navigation[i].FavStyles)
+                                                {
+                                                    <a data-gtm-event="nav header"
+                                                       class="desktop-navigation__dropdown__section-link"
+                                                       href="paintings/fine-art.html">
+                                                        @item.Name
+                                                    </a>
+                                                }
                                             </div>
                                         </div>
                                         <div class="desktop-navigation__dropdown__section">
@@ -127,31 +110,14 @@
                                             </div>
 
                                             <div class="desktop-navigation__dropdown__section-links">
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/portrait.html">
-                                                    Portrait
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/landscape.html">
-                                                    Landscape
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/still-life.html">
-                                                    Still Life
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/nature.html">
-                                                    Nature
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/beach.html">
-                                                    Beach
-                                                </a>
+                                                @foreach (var item in Model.Navigation[i].FavSubjects)
+                                                {
+                                                    <a data-gtm-event="nav header"
+                                                       class="desktop-navigation__dropdown__section-link"
+                                                       href="paintings/portrait.html">
+                                                        @item.Name
+                                                    </a>
+                                                }
                                             </div>
                                         </div>
                                         <div class="desktop-navigation__dropdown__section">
@@ -160,31 +126,14 @@
                                             </div>
 
                                             <div class="desktop-navigation__dropdown__section-links">
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/oil.html">
-                                                    Oil
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/watercolor.html">
-                                                    Watercolor
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/acrylic.html">
-                                                    Acrylic
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/airbrush.html">
-                                                    Airbrush
-                                                </a>
-                                                <a data-gtm-event="nav header"
-                                                   class="desktop-navigation__dropdown__section-link"
-                                                   href="paintings/digital.html">
-                                                    Digital
-                                                </a>
+                                                @foreach (var item in Model.Navigation[i].FavMediums)
+                                                {
+                                                    <a data-gtm-event="nav header"
+                                                       class="desktop-navigation__dropdown__section-link"
+                                                       href="paintings/oil.html">
+                                                        @item.FavMediums
+                                                    </a>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -372,12 +321,12 @@
                                 </div>
                             </div>
                         }
-                 
+
                     </div>
                     <div class="mobile-navigation__context-links">
                         <a data-gtm-event="nav header" href="theotherartfair.html">
                             <img class="mobile-navigation__context-link mobile-navigation__context-link--toaf"
-                                  src="~/Content/Images/toaf-logo-grayscale.svg" />
+                                 src="~/Content/Images/toaf-logo-grayscale.svg" />
                         </a>
                     </div>
                 </div>

@@ -40,8 +40,11 @@ namespace ArtShop.Controllers
             HomeIndexViewModel model = new HomeIndexViewModel();
             model.Navigation = navigation.Select(x => new IdNameViewModel()
             {
-                Id = x.Id,
-                Name = x.category.Current().Name
+                Id = x.categoryId,
+                Name = x.category.Current().Name,
+                FavMediums = x.FavMediums.Select(fm => new IdNameViewModel() { Id = fm.mediumId, Name = fm.medium.Current().Name }).ToList(),
+                FavStyles = x.FavStyles.Select(fm => new IdNameViewModel() { Id = fm.styleId, Name = fm.style.Current().Name }).ToList(),
+                FavSubjects = x.FavSubjects.Select(fm => new IdNameViewModel() { Id = fm.subjectId, Name = fm.subject.Current().Name }).ToList()
             }).ToList();
             return PartialView("_Header", model);
         }

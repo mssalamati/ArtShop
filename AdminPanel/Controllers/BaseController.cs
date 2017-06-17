@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Users = "superadmin")]
     public class BaseController : Controller
     {
         protected ApplicationDbContext db = new ApplicationDbContext();
