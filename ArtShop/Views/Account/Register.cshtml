@@ -1,41 +1,164 @@
 ﻿@model ArtShop.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Log in";
+    Layout = null;
 }
 
-<h2>@ViewBag.Title.</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Art Shopping Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Saatchi Art is the best place to buy artwork online. Find the perfect original paintings, fine art photographs and more from the largest selection of original art in the world." />
+    <meta name="keywords" content="affordable art, art dealers, art for sale, art original,art websites, buy art, buy art online, buy original art, buy paintings,buy paintings online, canvas wall art, contemporary abstract art,contemporary art, contemporary arts, contemporary oil paintings, fine art,fine art photography, fine art photography for sale, framed art,home decor wall art, modern art, modern art paintings, office interior design,online art, online art gallery, original art, original art for sale, original painting,collage, drawings, pencil drawings, printmaking for sale, london artists, la artists, nyc artists, australia artists, uk artists, german artists,interior design help, nude photography, nude art, abstract art" />
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Crimson+Text:400,600,400italic,600italic" />
+    <link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
 
-@section Scripts {
+    <link rel="stylesheet" href="https://www.saatchiart.com/build/css/app-99c5613a7fbb0f5f16e645bc204d000d.css" />
+
+    <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Content/Vendor/cdn.optimizely.com/js/2220741194.js"></script>
+
+    <script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body class="saatchi index bgcolor signed-out">
+    <script>
+        if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
+            document.body.className += ' safari';
+        }
+        else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!navigator.userAgent.match(/Trident\/7\./)) {
+            document.body.className += ' ie';
+        }
+        function isSafari5() {
+            return !!navigator.userAgent.match('Safari/index.html') && !navigator.userAgent.match('Chrome') && !!navigator.userAgent.match(' Version/5.');
+        };
+        if (isSafari5() === true) {
+            $('#unsupportedSafari').show();
+        }
+    </script>
+
+    <div id="authentication-app-container">
+        <div data-reactroot="" class="authentication">
+            <!-- react-empty: 2 -->
+            <header class="authentication__header animate-group-0-0">
+                <a href="/">
+                    <img alt="Saatchi Art Logo" src="//d3t95n9c6zzriw.cloudfront.net/common/saatchiart-logo@2x.png">
+                </a>
+            </header>
+            <div class="authentication__content">
+                <div>
+                    <!-- react-empty: 8 -->
+                    <div>
+                        <div class="authentication__content__section">
+                            <div class="authentication__section-title animate-group-0-0">Register</div>
+                            <h1 class="animate-group-0-4">Welcome!</h1>
+                            <form class="animate-group-1-5 authentication__content__inner">
+                                <button type="button" class="btn btn-googleplus btn--block">
+                                    <span class="fa fa-google-plus"></span>
+                                    <!-- react-text: 16 --> Sign in with Google<!-- /react-text -->
+                                </button>
+                                <br>
+                                <div class="authentication__or">
+                                    <strong>or</strong>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <div class="input-with-placeholder">
+                                        <label for="input-with-place-holder-0" class="input-with-placeholder__label">First Name</label>
+                                        <input type="text" placeholder="" name="firstName" value="" class="input-with-placeholder__input " id="input-with-place-holder-0">
+                                    </div>
+                                    <div class="input-with-placeholder">
+                                        <label for="input-with-place-holder-1" class="input-with-placeholder__label">Last Name</label>
+                                        <input type="text" placeholder="" name="lastName" value="" class="input-with-placeholder__input " id="input-with-place-holder-1">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-with-placeholder input-with-placeholder--has-value">
+                                        <label for="input-with-place-holder-2" class="input-with-placeholder__label">Email Address</label>
+                                        <input type="email" placeholder="" name="email" value="" class="input-with-placeholder__input " id="input-with-place-holder-2">
+                                    </div>
+                                </div><div class="input-group">
+                                    <div class="input-with-placeholder input-with-placeholder--has-value">
+                                        <label for="input-with-place-holder-3" class="input-with-placeholder__label">Password</label>
+                                        <input type="password" placeholder="" name="password" value="" minlength="6" maxlength="100" class="input-with-placeholder__input " id="input-with-place-holder-3">
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn--green btn--block">Next</button>
+                                <br>
+                                <strong>
+                                    <!-- react-text: 40 -->Already have an account? <!-- /react-text -->
+                                    <a href="/authentication">Sign In</a>
+                                </strong>
+                            </form>
+                            <div class="authentication__section-footer animate-group-1-12 authentication__section-footer--light"><!-- react-text: 43 -->By signing up, you agree to our <!-- /react-text --><a href="/terms">Terms of Use</a><!-- react-text: 45 --> and&nbsp;<!-- /react-text --><a href="/privacy">Privacy Policy</a><!-- react-text: 47 -->. You'll receive weekly updates on recently added artworks, new curated collections, featured artists, and more.<!-- /react-text --></div><div class="authentication__loader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>var Modernizr = false;</script>
+    <script src="~/Content/js/dist/foundation/foundation5-5.min4baf.js?version=1468284677"></script>
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+        Saatchi.NewDesktopNavigation.init();
+        Saatchi.NewMobileNavigation.init();
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+</body>
+</html>
+
+
+
+
+@*<h2>@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
