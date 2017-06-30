@@ -1,0 +1,361 @@
+﻿@model ProfileIndexViewModel
+    <div class="limited-filters-mobile__dimmer"></div>
+    <div role="main" class="row row-layout profile-content">
+        <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/profile/994144" style="display: block;">
+            <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144&amp;text=View+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144&amp;media=http:&amp;description=adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
+                <i class="fa fa-pinterest"></i>
+            </a>
+            <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/profile/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;adib dehghan&quot;}">
+                <i class="fa fa-envelope"></i>
+            </a>
+            <div id="totalShares" class="total-share"><span>0</span></div>
+        </div>
+
+        <script>
+            Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
+            Saatchi.EmailToFriend.modalUrl = 'index.html';
+            Saatchi.EmailToFriend.modalTitle = 'Share this page';
+            Saatchi.EmailToFriend.init();
+        </script>
+        <article class="profile">
+            <header>
+                <div class="small-5 medium-6 large-4 columns">
+                    <h1 class="ellipsis">
+                        <i class="icn-artist-location flag-ir so-quick-tip" oldtitle="Iran"></i>
+                        <span itemprop="name">@Model.fullName</span>
+                    </h1>
+                </div>
+                <div class="small-7 medium-6 large-8 columns">
+                    <div class="artist-manage-artworks">
+                        <a href="/account/manage-art" class="" title="Manage Artworks" itemprop="url">Manage Artworks</a>
+                        <span class="profie-link-upload-divider"> | </span>
+                        <a href="/upload" class="">Upload Art</a>
+                    </div>
+                </div>
+            </header>
+
+            <style>
+                #loading-indicator {
+                    margin: 5px 0 0 5px;
+                }
+            </style>
+
+            <div class="profile-about small-12 medium-6 large-4 columns" itemscope="" itemtype="http://schema.org/Person">
+                <div class="profile-pic">
+                    <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_medium_square.jpg" alt="adib dehghan's Profile" itemprop="image">
+                    <a href="/upload/avatar" class="btn-add-profile-image"><i class="fa fa-plus"></i> Add Profile Image </a>
+                    <a href="/upload/avatar" class="btn-round btn-edit" title="Edit"><i class="fa fa-pencil"></i></a>
+                </div>
+
+                <h3>
+                    <span itemprop="name">adib dehghan</span>
+                    <a href="/accounts/edit-about" class="btn-round btn-edit" title="Edit"><i class="fa fa-pencil"></i></a>
+                </h3>
+                <p class="user-location" itemprop="nationality">
+                    tehran, tehran, Iran
+                </p>
+
+                <div class="profile-links nav">
+                    <ul></ul>
+                </div>
+
+                <div class="about-follow-nav">
+                    <a href="/account/following/994144" rel="nofollow">
+                        <span>1</span> Following
+                    </a>
+                    <a href="/account/followers/994144">
+                        <span>0</span> Followers
+                    </a>
+                </div>
+
+
+
+
+                <div class="clearfix"></div>
+
+            </div>
+            <aside role="complementary" class="aside-portfolio small-12 medium-6 large-8 columns">
+                <div id="hero-image-mask" class="small-12 medium-12 large-10 columns editable fast-fade portfolio-hero" style="background-image: url(//saimg-a.akamaihd.net/saatchi/994144/art/3863434/2933317-ZUVOOYMZ-7.jpg)" itemscope="" itemtype="http://schema.org/CreativeWork">
+                    <img id="hero-image-container" src="" width="100%" height="100%" itemprop="image" class="hidden">
+                    <a href="/account/artworks/994144" title="Link to Artwork" itemprop="url">
+                        <img id="hero-image-crop" class="" src="https://dfcdths9j2gip.cloudfront.net/media/images/blank.gif" width="100%" height="100%" itemprop="image">
+                    </a>
+
+                    <a href="#" id="hero-image-edit-pencil" class="btn-round btn-edit" title="Edit Hero Image"><i class="fa fa-pencil"></i></a>
+                    <div id="heroOptionsMenu" style="display: none;">
+                        <a href="#" id="hero-edit-close" class="btn-round btn-close" title="Edit Hero Close"><span>x</span></a>
+                        <ul id="hero-options-list">
+                            <li><a href="#" onclick="Saatchi.Profile.enableHeroReposition();return false;">Reposition</a></li>
+                            <li><a href="#" onclick="Saatchi.Profile.chooseArtDialog();return false;">Choose From Your Art</a></li>
+                        </ul>
+                    </div>
+                    <div id="btn-DragEnable" style="display: none;"><i class="fa fa-arrows fa-lg"></i> <span>Drag Image to Reposition</span></div>
+                </div>
+                <div class="small-12 medium-12 large-2 columns">
+                    <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                        <a href="/account/artworks/994144" title="Link to Artwork" itemprop="url">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
+                        </a>
+                    </div>
+                    <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                        <a href="/account/artworks/994144" title="Link to Artwork" itemprop="url">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
+                        </a>
+                    </div>
+                    <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                        <a href="/account/artworks/994144" title="Link to Artwork" itemprop="url">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
+                        </a>
+                    </div>
+                </div>            <h5>
+                    <a href="/account/artworks/994144" title="Link to Artwork">
+                        <i class="fa fa-suitcase"></i> Artwork <span>(1)</span>
+                    </a>
+                </h5>
+                <a href="/account/manage-art" class="artist-manage-artworks-btn btn-round">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <div class="heroSaveCancel" style="display:none;">
+                    <a href="#" class="btn-info" onclick="Saatchi.Profile.heroPositionSave();return false;">
+                        Save
+                        <img id="loading-indicator" class="loading" src="/media/images/status/loading/button.gif" style="display: none;">
+                    </a>
+                    <a href="#" class="btn-cancel" onclick="Saatchi.Profile.heroPositionCancel();return false;">Cancel</a>
+                </div>
+            </aside>
+
+            <div class="small-12 medium-6 large-8 columns buckets">
+
+                <aside role="complementary" class="row aside-collections ">
+                    <h5 class="editable fast-fade"><a href="/account/collection/994144" title="Link to Collections"><i class="fa fa-th"></i> Collections <span>(1)</span></a></h5>
+                </aside>
+
+                <aside role="complementary" class="row aside-favorites">
+                    <h5 class="editable fast-fade"><a href="/account/favorite/994144" title="Link to Favorites"><i class="fa fa-heart"></i> Favorites <span>(1)</span></a></h5>
+
+                </aside>
+
+            </div>
+
+
+            <!-- start Activity Feed -->
+            <div class="small-12 medium-6 large-8 columns activity-feed">
+                <h2>Recent Activity</h2>
+                <div class="row sub-nav-two">
+                    <div class="small-6 columns">
+                        <a id="privateViewBtn" href="#" class="active" title="" rel="nofollow">Your View</a>
+                    </div>
+                    <div class="small-6 columns">
+                        <a id="publicViewBtn" href="#" title="" rel="nofollow">Public View</a>
+                    </div>
+                </div>
+                <div id="privateView">
+                    <section class="small-12 columns" itemscope="" itemtype="http://schema.org/CreativeWork">
+                        <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                            <a href="/account/profile/994144" title="adib dehghan" itemprop="url">
+                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="adib dehghan" class="avatar" itemprop="image">
+                                <span itemprop="name">adib dehghan</span>
+                            </a>
+                        </span>
+                        <span>added a new artwork</span>
+                        <span itemprop="datePublished">23 hours ago</span>
+                        <h6 itemprop="title">photo - Limited Edition 1 of 1</h6>
+                        By
+                        <!--a href="/account/profile/994144" title="adib dehghan" itemprop="url" -->
+                        <span itemprop="author">adib dehghan</span>
+                        <!--/a-->
+                        <div class="add-to-favorites fast-fade">
+                            <a href="/art/Photography-photo-Limited-Edition-1-of-1/994144/3672399/view" title="photo - Limited Edition 1 of 1" itemprop="url">
+                                <img src="//saimg-a.akamaihd.net/saatchi/994144/art/3863434/2933317-ZUVOOYMZ-7.jpg" alt="photo - Limited Edition 1 of 1" itemprop="image">
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="small-12 columns" itemscope="" itemtype="http://schema.org/CreativeWork">
+                        <a href="/account/profile/994144" title="adib dehghan">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="adib dehghan" class="avatar">
+                            <span>adib dehghan</span>
+                        </a>
+                        <span itemprop="comment">liked this artwork</span>
+                        <span itemprop="dateCreated">3 weeks ago</span>
+                        <h6 itemprop="title">Veiled boy</h6>
+                        By
+                        <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                            <a href="/account/profile/700733" title="Marija Mikulic Bosnjak" itemprop="url">
+                                <span itemprop="name">Marija Mikulic Bosnjak</span>
+                            </a>
+                        </span>
+                        <div class="add-to-favorites fast-fade">
+                            <a href="/art/Painting-Veiled-boy/700733/2443260/view" title="/art/Painting-Veiled-boy/700733/2443260/view" itemprop="url">
+                                <img src="//saimg-a.akamaihd.net/saatchi/700733/art/2633376/1703269-TDUQJESP-7.jpg" alt="Veiled boy" itemprop="image">
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="small-12 columns">
+                        <a href="/account/profile/994144" title="adib dehghan">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="adib dehghan" class="avatar">
+                            <span itemprop="name">adib dehghan</span>
+                        </a>
+                        <span itemprop="comment">
+                            is now following
+                            <a href="/Curator" title="SAATCHI ART homepage" itemprop="url">
+                                SAATCHI ART
+                            </a>
+                        </span>
+                        <span itemprop="dateCreated">3 weeks ago</span>
+                    </section>
+                </div>
+                <div id="publicView" style="display: none;"></div>
+            </div>
+
+            <script type="text/x-tmpl" id="tmpl-follow-by">
+                <section class="small-12 columns">
+                    <a href="{%=o.target_url%}" title="{%=o.target_name%} homepage">
+                        <img src="{%=o.target_profile_pic%}" alt="{%=o.target_name%}" class="avatar" />
+                        <span>{%=o.target_name%}</span>
+                    </a>
+                    <span itemprop="comment">is now following {%=o.name%}</span>
+                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
+                </section>
+            </script>
+
+            <script type="text/x-tmpl" id="tmpl-follow">
+                <section class="small-12 columns">
+                    <a href="{%=o.url%}" title="{%=o.name%}">
+                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" />
+                        <span itemprop="name">{%=o.name%}</span>
+                    </a>
+                    <span itemprop="comment">
+                        is now following
+                        <a href="{%=o.target_url%}" title="{%=o.target_name%} homepage" itemprop="url">
+                            {%=o.target_name%}
+                        </a>
+                    </span>
+                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
+                </section>
+            </script>
+
+            <script type="text/x-tmpl" id="tmpl-favorite">
+                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                    <a href="{%=o.url%}" title="{%=o.name%}">
+                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" />
+                        <span>{%=o.name%}</span>
+                    </a>
+                    <span itemprop="comment">liked this artwork</span>
+                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
+                    <h6 itemprop="title">{%=o.art_title%}</h6>
+                    By
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                            <span itemprop="name">{%=o.artist_name%}</span>
+                        </a>
+                    </span>
+                    <div class="add-to-favorites fast-fade">
+                        <a href="{%=o.art_url%}" title="{%=o.art_url%}" itemprop="url">
+                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                        </a>
+                    </div>
+                </section>
+            </script>
+
+            <script type="text/x-tmpl" id="tmpl-art-favorite">
+                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                    <a href="{%=o.url%}" title="{%=o.name%}" itemprop="url">
+                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" itemprop="image">
+                        <span itemprop="name">{%=o.name%}</span>
+                    </a>
+                    <span itemprop="comment">liked this artwork</span>
+                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
+                    <h6 itemprop="title">{%=o.art_title%}</h6>
+                    By
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                            <span itemprop="name">{%=o.artist_name%}</span>
+                        </a>
+                    </span>
+                    <div class="add-to-favorites fast-fade">
+                        <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
+                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                        </a>
+                    </div>
+                </section>
+            </script>
+
+            <script type="text/x-tmpl" id="tmpl-upload">
+                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <a href="{%=o.url%}" title="{%=o.name%}" itemprop="url">
+                            <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" itemprop="image">
+                            <span itemprop="name">{%=o.name%}</span>
+                        </a>
+                    </span>
+                    <span>added a new artwork</span>
+                    <span itemprop="datePublished">{%=o.activity_time%}</span>
+                    <h6 itemprop="title">{%=o.art_title%}</h6>
+                    By
+                    <!--a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url" -->
+                    <span itemprop="author">{%=o.artist_name%}</span>
+                    <!--/a-->
+                    <div class="add-to-favorites fast-fade">
+                        <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
+                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                        </a>
+                    </div>
+                </section>
+            </script>
+
+            <script type="text/x-tmpl" id="tmpl-artist-upload">
+                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                            <img src="{%=o.artist_profile_pic%}" alt="{%=o.artist_name%}" class="avatar" itemprop="image">
+                            <span itemprop="name">{%=o.artist_name%}</span>
+                        </a>
+                    </span>
+                    <span>added a new artwork</span>
+                    <span itemprop="datePublished">{%=o.activity_time%}</span>
+                    <h6 itemprop="title">{%=o.art_title%}</h6>
+                    By
+                    <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                        <span itemprop="creator">{%=o.artist_name%}</span>
+                    </a>
+                    <div class="add-to-favorites fast-fade">
+                        <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
+                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                        </a>
+                    </div>
+                </section>
+            </script>
+
+            <script type="text/x-tmpl" id="tmpl-empty-feed">
+                <section class="small-12 columns">
+                    <p>You currently have no activity that can be seen by the public.</p>
+                </section>
+            </script>
+            <script type="text/x-tmpl" id="tmpl-art-hero">
+                <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item-small">
+                    <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
+                        <a href="#" itemprop="url" onclick="Saatchi.Profile.getSelectedImage( $(this) ); return false;">
+                            <img src="{%=o.artwork_image_url%}23.jpg" data-medium="{%=o.artwork_image_url%}7.jpg" alt="{%=o.art_title%}" itemprop="contentURL">
+                            <input class="hero-hover-button" type="button" value="Select" style="display:none;" />
+                        </a>
+                    </div>
+                    <div class="list-art-meta">
+                        <h4 class="list-art-title left ellipsis" itemprop="name">
+                            <a href="{%=o.artwork_url%}">{%=o.art_title%}</a>
+                        </h4>
+                        <small class="art-category clear left">{%=o.art_category%}</small>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </script>
+        </article>
+        <div class="clearfix"></div>
+    </div>

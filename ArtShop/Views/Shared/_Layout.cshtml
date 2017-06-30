@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Art Shopping Application</title>
+    <title> Artiscovery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Saatchi Art is the best place to buy artwork online. Find the perfect original paintings, fine art photographs and more from the largest selection of original art in the world." />
     <meta name="keywords" content="affordable art, art dealers, art for sale, art original,art websites, buy art, buy art online, buy original art, buy paintings,buy paintings online, canvas wall art, contemporary abstract art,contemporary art, contemporary arts, contemporary oil paintings, fine art,fine art photography, fine art photography for sale, framed art,home decor wall art, modern art, modern art paintings, office interior design,online art, online art gallery, original art, original art for sale, original painting,collage, drawings, pencil drawings, printmaking for sale, london artists, la artists, nyc artists, australia artists, uk artists, german artists,interior design help, nude photography, nude art, abstract art" />
@@ -17,17 +17,31 @@
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="~/Content/Vendor/cdn.optimizely.com/js/2220741194.js"></script>
-
     <script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>
+    <script type="text/javascript" src="js/dist/core-1497066375653.min.js"></script>
+    <script type="text/javascript" src="media/js/lib/tmpl.min.js"></script>
 
     @{var IsRighToLeft = CultureHelper.IsRighToLeft();}
 
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body class="saatchi index bgcolor signed-out">
+
+@{
+
+    var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
+    if (c == "profile")
+    {
+        c = "profile";
+    }
+    else
+    {
+        c = "index";
+    }
+}
+<body class="saatchi @c bgcolor signed-out">
     <script>
-        if (navigator.userAgent.match(/AppleWebKit/) && ! navigator.userAgent.match(/Chrome/)) {
+        if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
             document.body.className += ' safari';
         }
         else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!navigator.userAgent.match(/Trident\/7\./)) {

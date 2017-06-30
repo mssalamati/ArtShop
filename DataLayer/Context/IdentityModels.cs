@@ -68,6 +68,10 @@ namespace DataLayer
         public DbSet<NavigationCategoryFavMedium> NavigationCategoryFavMediums { get; set; }
         public DbSet<NavigationCategorySubject> NavigationCategorySubjects { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Collection> Collections { get; set; }
+        public DbSet<CollectionProduct> CollectionProduct { get; set; }
+        public DbSet<PersonalInformation> PersonalInformations { get; set; }
+        public DbSet<UserLink> UserLinks { get; set; }
 
     }
 }

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,10 +207,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProfileIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\CashManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app-99c5613a7fbb0f5f16e645bc204d000d.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\250x143.jpg" />
@@ -225,8 +229,11 @@
     <Content Include="Content\Images\saatchi-logo-grayscale.svg" />
     <Content Include="Content\Images\toaf-logo-grayscale.svg" />
     <Content Include="Content\Images\united-states.svg" />
+    <Content Include="Content\js\dist\authentication-a8d44a3b2cd84d4b45f9.js" />
+    <Content Include="Content\js\dist\commons-b9e9ed3b8b77df9e315c.js" />
     <Content Include="Content\js\dist\core-1497066375653.min.js" />
     <Content Include="Content\js\dist\foundation\foundation5-5.min4baf.js" />
+    <Content Include="Content\js\dist\tmpl.min.js" />
     <Content Include="Content\main-1497066374081.css" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.10.3\jquery-ui.min.js" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -256,7 +263,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Vendor\maxcdn.bootstrapcdn.com\font-awesome\4.6.3\css\font-awesome.min.css.tmp" />
     <None Include="Properties\PublishProfiles\ARAD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -310,9 +316,11 @@
     <Content Include="Views\Shared\_RecentlySold.cshtml" />
     <Content Include="Views\Shared\_SalebyStyle.cshtml" />
     <Content Include="Views\Shared\_SalebyCategory.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Vendor\maxcdn.bootstrapcdn.com\font-awesome\4.6.3\css\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -355,7 +363,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>42912</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:42912/</IISUrl>
+          <IISUrl>https://localhost:44375/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

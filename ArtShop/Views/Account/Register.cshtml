@@ -18,17 +18,15 @@
     <link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="https://www.saatchiart.com/build/css/app-99c5613a7fbb0f5f16e645bc204d000d.css" />
+    <link rel="stylesheet" href="~/Content/app-99c5613a7fbb0f5f16e645bc204d000d.css" />
 
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="~/Content/Vendor/cdn.optimizely.com/js/2220741194.js"></script>
 
-    <script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>
 
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/modernizr")*@
 
 </head>
 
@@ -53,7 +51,7 @@
             <!-- react-empty: 2 -->
             <header class="authentication__header animate-group-0-0">
                 <a href="/">
-                    <img alt="Saatchi Art Logo" src="//d3t95n9c6zzriw.cloudfront.net/common/saatchiart-logo@2x.png">
+                    <img alt="Saatchi Art Logo" src="~/Content/Images/sa-logo.svg">
                 </a>
             </header>
             <div class="authentication__content">
@@ -63,45 +61,65 @@
                         <div class="authentication__content__section">
                             <div class="authentication__section-title animate-group-0-0">Register</div>
                             <h1 class="animate-group-0-4">Welcome!</h1>
-                            <form class="animate-group-1-5 authentication__content__inner">
-                                <button type="button" class="btn btn-googleplus btn--block">
-                                    <span class="fa fa-google-plus"></span>
-                                    <!-- react-text: 16 --> Sign in with Google<!-- /react-text -->
-                                </button>
-                                <br>
-                                <div class="authentication__or">
-                                    <strong>or</strong>
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <div class="input-with-placeholder">
-                                        <label for="input-with-place-holder-0" class="input-with-placeholder__label">First Name</label>
-                                        <input type="text" placeholder="" name="firstName" value="" class="input-with-placeholder__input " id="input-with-place-holder-0">
+                            <div class="animate-group-1-5 authentication__content__inner">
+
+                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <br>
+                                    <div class="authentication__or">
+                                        <strong>or</strong>
                                     </div>
-                                    <div class="input-with-placeholder">
-                                        <label for="input-with-place-holder-1" class="input-with-placeholder__label">Last Name</label>
-                                        <input type="text" placeholder="" name="lastName" value="" class="input-with-placeholder__input " id="input-with-place-holder-1">
+                                    <br>
+                                    <div class="input-group">
+                                        <div class="input-with-placeholder input-with-placeholder--has-value">
+                                            @Html.LabelFor(m => m.FirstName, new { @class = "input-with-placeholder__label" })
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "input-with-placeholder__input ", id = "input-with-place-holder-0", name = "firstName" })
+                                        </div>
+                                        <div class="input-with-placeholder input-with-placeholder--has-value">
+                                            @Html.LabelFor(m => m.LastName, new { @class = "input-with-placeholder__label" })
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "input-with-placeholder__input ", id = "input-with-place-holder-1", name = "lastName" })
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="input-group">
-                                    <div class="input-with-placeholder input-with-placeholder--has-value">
-                                        <label for="input-with-place-holder-2" class="input-with-placeholder__label">Email Address</label>
-                                        <input type="email" placeholder="" name="email" value="" class="input-with-placeholder__input " id="input-with-place-holder-2">
+                                    <div class="input-group">
+                                        <div class="input-with-placeholder input-with-placeholder--has-value">
+                                            @Html.LabelFor(m => m.Email, new { @class = "input-with-placeholder__label" })
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "input-with-placeholder__input ", id = "input-with-place-holder-2", name = "email" })
+                                        </div>
+                                    </div><div class="input-group">
+                                        <div class="input-with-placeholder input-with-placeholder--has-value">
+                                            @Html.LabelFor(m => m.Password, new { @class = "input-with-placeholder__label" })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "input-with-placeholder__input ", id = "input-with-place-holder-3", name = "password" })
+
+                                        </div>
                                     </div>
-                                </div><div class="input-group">
-                                    <div class="input-with-placeholder input-with-placeholder--has-value">
-                                        <label for="input-with-place-holder-3" class="input-with-placeholder__label">Password</label>
-                                        <input type="password" placeholder="" name="password" value="" minlength="6" maxlength="100" class="input-with-placeholder__input " id="input-with-place-holder-3">
+
+                                    <div style="margin-top:10px"><strong>Select your profile type</strong></div>
+                                    <div style="margin-bottom:10px"><small>You’ll be able to change this later</small></div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input id="IsArtist" type="hidden" />
+                                            <button type="button" id="collectorButton" onclick="ChangeState(1)" class="btn btn--block">I am a collector</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button" id="artistButton" onclick="ChangeState(2)" class="btn btn--block">I am an artist</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <button class="btn btn--green btn--block">Next</button>
-                                <br>
-                                <strong>
-                                    <!-- react-text: 40 -->Already have an account? <!-- /react-text -->
-                                    <a href="/authentication">Sign In</a>
-                                </strong>
-                            </form>
+
+                                    <br>
+                                    <button type="submit" class="btn btn--green btn--block">Register</button>
+                                    <br>
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    <strong>
+                                        <!-- react-text: 40 -->Already have an account? <!-- /react-text -->
+                                        <a href="/Account/Login">Sign In</a>
+                                    </strong>
+
+                                }
+                            </div>
+
                             <div class="authentication__section-footer animate-group-1-12 authentication__section-footer--light"><!-- react-text: 43 -->By signing up, you agree to our <!-- /react-text --><a href="/terms">Terms of Use</a><!-- react-text: 45 --> and&nbsp;<!-- /react-text --><a href="/privacy">Privacy Policy</a><!-- react-text: 47 -->. You'll receive weekly updates on recently added artworks, new curated collections, featured artists, and more.<!-- /react-text --></div><div class="authentication__loader"></div>
                         </div>
                     </div>
@@ -110,15 +128,41 @@
         </div>
     </div>
 
-    <script>var Modernizr = false;</script>
-    <script src="~/Content/js/dist/foundation/foundation5-5.min4baf.js?version=1468284677"></script>
-    <div id="fb-root"></div>
-    <script type="text/javascript">
-        Saatchi.NewDesktopNavigation.init();
-        Saatchi.NewMobileNavigation.init();
-    </script>
-    @Scripts.Render("~/bundles/jqueryval")
+    @*<script>var Modernizr = false;</script>*@
 
+    @*    <script src="~/Content/js/dist/foundation/foundation5-5.min4baf.js?version=1468284677"></script>*@
+
+    @*<script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>*@
+
+    @* <div id="fb-root"></div>*@
+    @*<script type="text/javascript">
+            Saatchi.NewDesktopNavigation.init();
+            Saatchi.NewMobileNavigation.init();
+        </script>*@
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script src="~/Content/js/dist/commons-b9e9ed3b8b77df9e315c.js"></script>
+    @*<script src="~/Content/js/dist/authentication-a8d44a3b2cd84d4b45f9.js"></script>*@
+
+    <script>
+
+        function ChangeState(id) {
+            if (id == 1) {
+                $('#artistButton').removeClass('btn--selected');
+                if (!$('#collectorButton').hasClass('btn--selected'))
+                    $('#collectorButton').addClass('btn--selected');
+
+                $('#isArtist').val = 1;
+
+            }
+            else {
+                $('#collectorButton').removeClass('btn--selected');
+                if (!$('#artistButton').hasClass('btn--selected'))
+                    $('#artistButton').addClass('btn--selected');
+
+                $('#isArtist').val = 0;
+            }
+        }
+    </script>
 
 </body>
 </html>
