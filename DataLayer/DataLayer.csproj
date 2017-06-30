@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enitities\Category.cs" />
+    <Compile Include="Enitities\Collection.cs" />
+    <Compile Include="Enitities\PersonalInformation.cs" />
     <Compile Include="Enitities\Photo.cs" />
     <Compile Include="Enitities\Language.cs" />
     <Compile Include="Enitities\Material.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Enitities\SiteParam.cs" />
     <Compile Include="Enitities\Style.cs" />
     <Compile Include="Enitities\Subject.cs" />
+    <Compile Include="Enitities\UserLink.cs" />
     <Compile Include="Enitities\UserProfile.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Context\IdentityModels.cs" />

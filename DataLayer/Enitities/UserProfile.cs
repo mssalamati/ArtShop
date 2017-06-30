@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enitities
 {
+    public enum ProfileType{Artist,Collector}
     public class UserProfile
     {
         [Key, ForeignKey("ApplicationUserDetail")]
@@ -15,6 +16,13 @@ namespace DataLayer.Enitities
         public virtual ApplicationUser ApplicationUserDetail { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
+        public virtual string Country { get; set; }
+        public virtual string City { get; set; }
+        public virtual string Region { get; set; }
+        public virtual string ZipCode { get; set; }
+        public virtual PersonalInformation personalInformation { get; set; }
+        public virtual UserLink userLinks { get; set; }
+        public virtual ProfileType profileType { get; set; }
         public virtual DateTime RegisterDate { get; set; }
 
         public UserProfile()

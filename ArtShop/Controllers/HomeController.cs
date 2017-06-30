@@ -8,6 +8,10 @@ using ArtShop.Models;
 using ArtShop.Helper;
 using System.Globalization;
 using System.Configuration;
+using DataLayer.Enitities;
+using DataLayer;
+using Microsoft.AspNet.Identity;
+using ArtShop.Util;
 
 namespace ArtShop.Controllers
 {
@@ -34,21 +38,23 @@ namespace ArtShop.Controllers
             return View(model);
         }
 
+        
         public ActionResult Header(string culture)
         {
-            var SiteObjectParams = db.SiteObjectParams.AsQueryable().FirstOrDefault();
-            var navigation = SiteObjectParams.Navigations.ToList();
-            HomeIndexViewModel model = new HomeIndexViewModel();
-            model.Navigation = navigation.Select(x => new IdNameViewModel()
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
+            if (userProfile != null && !string.IsNullOrEmpty(userProfile.FirstName + userProfile.LastName))
             {
-                Id = x.categoryId,
-                Name = x.category.Current().Name,
-                Photo = ConfigurationManager.AppSettings["FileUrl"] + x.category.photo.Path,
-                FavMediums = x.FavMediums.Select(fm => new IdNameViewModel() { Id = fm.mediumId, Name = fm.medium.Current().Name }).ToList(),
-                FavStyles = x.FavStyles.Select(fm => new IdNameViewModel() { Id = fm.styleId, Name = fm.style.Current().Name }).ToList(),
-                FavSubjects = x.FavSubjects.Select(fm => new IdNameViewModel() { Id = fm.subjectId, Name = fm.subject.Current().Name }).ToList()
-            }).ToList();
-            return PartialView("_Header", model);
+                ViewBag.fullName = userProfile.FirstName + " " + userProfile.LastName;
+                ViewBag.Title = userProfile.FirstName + " " + userProfile.LastName;
+            }
+            else
+            {
+                ViewBag.fullName = User.Identity.GetUserName();
+                ViewBag.Title = User.Identity.GetUserName();
+            }
+            return PartialView("_Header", CashManager.Instance.Header);
         }
 
         public ActionResult SetCulture(string culture)

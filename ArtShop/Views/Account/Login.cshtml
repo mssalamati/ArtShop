@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="https://www.saatchiart.com/build/css/app-99c5613a7fbb0f5f16e645bc204d000d.css" />
-    
+    <link rel="stylesheet" href="~/Content/app-99c5613a7fbb0f5f16e645bc204d000d.css" />
+
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -35,7 +35,7 @@
 
 <body class="saatchi index bgcolor signed-out">
     <script>
-        if (navigator.userAgent.match(/AppleWebKit/) && ! navigator.userAgent.match(/Chrome/)) {
+        if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
             document.body.className += ' safari';
         }
         else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!navigator.userAgent.match(/Trident\/7\./)) {
@@ -54,7 +54,7 @@
             <!-- react-empty: 2 -->
             <header class="authentication__header animate-group-0-0">
                 <a href="/">
-                    <img alt="Saatchi Art Logo" src="//d3t95n9c6zzriw.cloudfront.net/common/saatchiart-logo@2x.png">
+                    <img alt="Saatchi Art Logo" src="~/Content/Images/sa-logo.svg">
                 </a>
             </header>
             <div class="authentication__content">
@@ -64,37 +64,48 @@
                         <div class="authentication__content__section">
                             <div class="authentication__section-title animate-group-0-0">Sign in</div>
                             <h1 class="animate-group-0-4">Welcome back!</h1>
-                            <form class="animate-group-1-5 authentication__content__inner">
-                                <button type="button" class="btn btn-googleplus btn--block">
-                                    <span class="fa fa-google-plus"></span>
-                                    <!-- react-text: 16 -->
-                                    Sign in with Goolge<!-- /react-text -->
-                                </button>
-                                <br>
-                                <div class="authentication__or">
-                                    <strong>or</strong>
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <div class="input-with-placeholder input-with-placeholder--has-value">
-                                        <label for="input-with-place-holder-0" class="input-with-placeholder__label">Email / Username</label>
-                                        <input type="text" name="email" placeholder="" value="ms.salamati@gmail.com" class="input-with-placeholder__input " id="input-with-place-holder-0">
+                            
+                            <div class="animate-group-1-5 authentication__content__inner">
+
+                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
+                                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <br>
+
+                                    <div class="authentication__or">
+                                        <strong>or</strong>
                                     </div>
-                                </div>
-                                <div class="input-group">
-                                    <div class="input-with-placeholder input-with-placeholder--has-value">
-                                        <label for="input-with-place-holder-1" class="input-with-placeholder__label">Password</label>
-                                        <input type="password" name="password" placeholder="" value="newlife1A" class="input-with-placeholder__input " id="input-with-place-holder-1">
+                                    <br>
+                                    <div class="input-group">
+                                        <div class="input-with-placeholder input-with-placeholder--has-value">
+                                            @Html.LabelFor(m => m.Email, new { @class = "input-with-placeholder__label" })
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "input-with-placeholder__input ", id = "input-with-place-holder-0", name = "email" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
-                                </div>
-                                <a class="authentication__sign-in__forgot" href="/authentication/reset-password">Forgot your password?</a><br>
-                                <button class="btn btn--green btn--block" type="submit">Sign In</button>
-                            </form>
+                                    <div class="input-group">
+                                        <div class="input-with-placeholder input-with-placeholder--has-value">
+                                            @Html.LabelFor(m => m.Password, new { @class = "input-with-placeholder__label" })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "input-with-placeholder__input ", id = "input-with-place-holder-1", name = "password" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <a class="authentication__sign-in__forgot" href="/Account/ForgotPassword">Forgot your password?</a><br>
+                                    <button class="btn btn--green btn--block" type="submit">Sign In</button>
+                                    <br />
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    @*</form>*@
+                                }
+                            </div>
+
+
                             <div class="authentication__section-footer animate-group-1-12">
                                 <!-- react-text: 33 -->
-                                New to Saatchi Art?
+                                New to Artiscovery?
                                 <!-- /react-text -->
-                                <a href="/authentication/register">Register now</a>
+                                <a href="/Account/register">Register now</a>
                             </div><div class="authentication__loader"></div>
                         </div>
                     </div>
@@ -115,60 +126,6 @@
 
 </body>
 </html>
-
-
-@*<div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                  //Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
-                }
-            </section>
-        </div>
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
-    </div>*@
 
 
 
