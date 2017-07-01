@@ -16,7 +16,7 @@ namespace DataLayer.Enitities
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsPrivate { get; set; }
-        public ProfileType Type { get; set; }
+        public CollectionType Type { get; set; }
         public ICollection<CollectionProduct> Artworks { get; set; }
     }
 

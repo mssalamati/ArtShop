@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Collection";
+}
+
+<div role="main" class="row row-layout profile-content">
+
+
+    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/collection/994144" style="display: block;">
+        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fcollection%2F994144" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fcollection%2F994144&amp;text=View+Collections+by+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fcollection%2F994144&amp;media=http:&amp;description=Collections+by+adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
+            <i class="fa fa-pinterest"></i>
+        </a>
+        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/collection/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;Collections by adib dehghan&quot;}">
+            <i class="fa fa-envelope"></i>
+        </a>
+        <div id="totalShares" class="total-share"><span>0</span></div>
+    </div>
+
+
+    <script>
+        Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
+        Saatchi.EmailToFriend.modalUrl = '/social/email/page';
+        Saatchi.EmailToFriend.modalTitle = 'Share this page';
+        Saatchi.EmailToFriend.init();
+    </script>        <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+
+        <a href="/profile" title="adib dehghan's profile" itemprop="url">
+            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            <h1 class="profile-subpage-name ellipsis" itemprop="name">adib dehghan</h1>
+            <i class="fa fa-caret-left"></i> Back to Profile
+        </a>
+
+    </header>
+
+    <div class="profile-nav large-12 columns">
+        <a href="/account/artworks/994144" class="" title="link to artwork">
+            <i class="fa fa-suitcase"></i> Artwork <span>(1)</span>
+        </a>
+        <a href="/account/collection/994144" class="active" title="link to Collections">
+            <i class="fa fa-th"></i> Collections <span>(1)</span>
+        </a>
+        <a href="/account/favorite/994144" class="" title="link to Favorites">
+            <i class="fa fa-heart"></i> Favorites <span>(2)</span>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <ul id="infinite" class="item-list">
+            <li class="list-item collection create-collection">
+                <a href="/profile/NewCollection" title="Create a New Collection" class="profile-new-collection">
+                    <i class="fa fa-plus icn-bg" style="display:inline-table"></i>
+                    <span style="display:table-caption">Create a New Collection</span>
+                </a>
+            </li>
+            <li class="list-item collection">
+                <div class="small-12 columns">
+                    <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
+                        <img src="//saimg-a.akamaihd.net/saatchi/655665/art/2164185/1223474-VTUWDLCP-24.jpg" alt="Collection by adib dehghan on Saatchi Art: “test collection”">
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="small-4 columns">
+                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
+                            <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-22.jpg" alt="test collection item" nopin="nopin">
+                        </a>
+                    </div>
+                    <div class="small-4 columns">
+                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
+                        </a>
+                    </div>
+                    <div class="small-4 columns">
+                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
+                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
+                        </a>
+                    </div>
+                </div>
+                <div class="row collection-meta">
+                    <h4 class="collection-title">
+                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
+                            <span class="ellipsis">test collection</span> <span class="count">(2)</span>
+                        </a>
+                    </h4>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div id="pageNav" class="hidden">
+            <a href="/account/collection/id/994144/format/json/page/2"></a>
+        </div>
+        <div id="pageLoading"></div>
+    </div>
+    <script type="text/javascript">
+        Saatchi.Loader.load('profile', { js: true }, function () {
+            Saatchi.Profile.init();
+        });
+        Saatchi.Loader.load('infinitescroll');
+        Saatchi.Loader.load('pagination', { js: true }, function () {
+            Saatchi.Pagination.type = 'collection';
+            Saatchi.Pagination.init();
+        });
+    </script>
+    <script type="text/x-tmpl" id="tmpl-collection">
+        <li class="list-item collection">
+            <div class="small-12 columns">
+                <a href="{%=o.url%}" title="{%=o.title%}">
+                    {% if (o.artwork_image_url_prefixes[0]) { %}
+                    <img src="{%=o.artwork_image_url_prefixes[0]%}24.jpg" alt="{%=o.title%} item" />
+                    {% } else { %}
+                    <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" style="width:300px;height:197px;" alt="" />
+                    {% } %}
+                </a>
+            </div>
+
+            <div class="row">
+                {% for (var i=1; i<4; i++) { %}
+            <div class="small-4 columns">
+                <a href="{%=o.url%}" title="{%=o.title%}">
+                    {% if (o.artwork_image_url_prefixes[i]) { %}
+                    <img src="{%=o.artwork_image_url_prefixes[i]%}22.jpg" alt="{%=o.title%} item" />
+                    {% } else { %}
+                    <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" />
+                    {% } %}
+                </a>
+            </div>
+        {% } %}
+            </div>
+
+            <div class="row collection-meta">
+                <h4 class="collection-title">
+                    <a href="{%=o.url%}"><span class="ellipsis">{%=o.title%}</span> <span class="count">({%=o.item_count%})</span></a>
+                </h4>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </script>
+    <div class="clearfix"></div>
+</div>

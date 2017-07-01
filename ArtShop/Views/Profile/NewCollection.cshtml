@@ -1,0 +1,145 @@
+﻿@model NewCollectionViewModel
+
+@{
+    ViewBag.Title = "NewCollection";
+}
+
+<div class="row-layout content">
+    <header>
+        <nav class="row">
+            <div class="small-12 medium-6 columns">
+                <ul class="breadcrumbs">
+                    <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">Collections</a></li>
+                    <li><a class="so-quick-tip" href="/account/collection/994144" oldtitle="My collections">My Collections</a></li>
+                </ul>
+                <!--<ul class="breadcrumbs">
+                    <li><a href=""><i class="fa fa-caret-left"></i> Back to Profile</a></li>
+                    <li><a href="/account/collection/">Collections</a></li>
+                    <li></li>
+                </ul>-->
+            </div>
+            <div class="small-12 medium-6 columns">
+                <ul class="breadcrumbs pull-right">
+                    <li>Create a Collection</li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>Create a Collection</h1>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+
+        <div class="small-12 columns collection-edit bgtext">
+                @using (Html.BeginForm("NewCollection", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="collection" value="" id="collection">
+
+                    <input type="hidden" name="owner" value="994144" id="owner">
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="control-group">
+                        
+                        @*<label for="title" class="control-label required">Collection Title</label>*@
+                        @Html.LabelFor(m => m.CollectionTitle, new { @class = "control-label required" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.CollectionTitle, new { @class = "input-xlarge" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.CollectionDescription, new { @class = "control-label optional" })
+                        <div class="controls">
+                            @Html.TextAreaFor(m => m.CollectionDescription, new { @class = "input-xlarge", cols = "80", rows = "4" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="collection_type_id" class="control-label required">Type</label>
+                        <br />
+                        <div class="controls">
+
+                            @Html.RadioButtonFor(m => m.CollectionType, "Community", new { @style = "display:none" })
+                            <input type="radio" value="Community" checked="checked" onclick="TypeEvent(1)" style="display:inline-block;" /> Community
+                            <br />
+                            <input type="radio" value="Portfolio" onclick="TypeEvent(2)" style="display:inline-block;" /> Portfolio
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            @Html.CheckBoxFor(m => m.IsPrivate, new { @style = "display:inline-block" })
+                            @Html.DisplayNameFor(m => m.IsPrivate)
+                        </div>
+
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" name="create" class="button btn-info">
+                        </div>
+                    </div>
+        
+                }
+
+                <script>
+                    $('#so-collection-create-add-cancel').on('click', function (e) {
+                        $("#so-doc").qtip('hide');
+                        return false;
+                    });
+                </script>
+
+                <!-- Extra form fields for AA Selection -->
+
+                <script>
+                    (function () {
+
+                        var $form = $("#so-collection-create-form, #so-collection-edit-form");
+                        var $template = $("#aaselection-template");
+                        var $checkbox = $("#collection_type_id-17");
+                        var checked = $checkbox.prop('checked');
+                        // Form control group which contains the 'create collection' button
+                        var $lastControlGroup = $form.find('.control-group').last();
+                        renderAASelectionFields();
+
+                        $checkbox.change(function () {
+                            checked = $checkbox.prop('checked');
+                            renderAASelectionFields();
+                        });
+
+                        function renderAASelectionFields() {
+                            if (!checked) {
+                                // If AA Selection is not checked, remove the extra form fields
+                                // from the DOM. Note: This means the extra form fields wont be
+                                // passed along to the request.
+                                $template.detach();
+                            } else {
+                                // Otherwise, add the extra fields to the DOM right before the
+                                // submit button's control group
+                                $lastControlGroup.before($template);
+                            }
+                        }
+                    }());
+
+                </script>
+
+                <script>
+
+                    function TypeEvent(id) {
+
+                        if (id == "1") {
+
+                            $("CollectionType").val = "Community";
+                        }
+                        else {
+                            $("CollectionType").val = "Portfolio";
+                        }
+                    }
+
+                </script>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+    </div>

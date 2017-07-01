@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/Content/main-1497066374081.css" />
-
+    
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -28,11 +28,18 @@
 </head>
 
 @{
-
+    var a = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString().ToLower();
     var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
     if (c == "profile")
     {
-        c = "profile";
+        if (a==null)
+        {
+            c = "profile";
+        }
+        else if (a == "newcollection")
+        {
+            c = "collections create";
+        }
     }
     else
     {
