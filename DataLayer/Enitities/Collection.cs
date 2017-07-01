@@ -13,6 +13,10 @@ namespace DataLayer.Enitities
     {
         [Key]
         public int Id { get; set; }
+        [ForeignKey("user")]
+        public virtual String user_id { get; set; }
+        [Display(Name = "کاربر")]
+        public virtual UserProfile user { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsPrivate { get; set; }
