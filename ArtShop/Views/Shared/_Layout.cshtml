@@ -32,14 +32,18 @@
     var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
     if (c == "profile")
     {
-        c = "profile";
+        c = "profile bgcolor signed-out";
+    }
+    else if (c == "upload")
+    {
+        c = "signed-in";
     }
     else
     {
-        c = "index";
+        c = "index bgcolor signed-out";
     }
 }
-<body class="saatchi @c bgcolor signed-out">
+<body class="saatchi @c">
     <script>
         if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
             document.body.className += ' safari';

@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +217,7 @@
     <Content Include="Content\app-99c5613a7fbb0f5f16e645bc204d000d.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cropper.js" />
     <Content Include="Content\Images\250x143.jpg" />
     <Content Include="Content\Images\300x300.jpg" />
     <Content Include="Content\Images\660x300.jpg" />
@@ -235,6 +237,57 @@
     <Content Include="Content\js\dist\foundation\foundation5-5.min4baf.js" />
     <Content Include="Content\js\dist\tmpl.min.js" />
     <Content Include="Content\main-1497066374081.css" />
+    <Content Include="Content\main-1498861409026.css" />
+    <Content Include="Content\select2\css\select2.css" />
+    <Content Include="Content\select2\css\select2.min.css" />
+    <Content Include="Content\select2\css\select2-flat-theme.css" />
+    <Content Include="Content\select2\js\i18n\az.js" />
+    <Content Include="Content\select2\js\i18n\bg.js" />
+    <Content Include="Content\select2\js\i18n\ca.js" />
+    <Content Include="Content\select2\js\i18n\cs.js" />
+    <Content Include="Content\select2\js\i18n\da.js" />
+    <Content Include="Content\select2\js\i18n\de.js" />
+    <Content Include="Content\select2\js\i18n\en.js" />
+    <Content Include="Content\select2\js\i18n\es.js" />
+    <Content Include="Content\select2\js\i18n\et.js" />
+    <Content Include="Content\select2\js\i18n\eu.js" />
+    <Content Include="Content\select2\js\i18n\fa.js" />
+    <Content Include="Content\select2\js\i18n\fi.js" />
+    <Content Include="Content\select2\js\i18n\fr.js" />
+    <Content Include="Content\select2\js\i18n\gl.js" />
+    <Content Include="Content\select2\js\i18n\he.js" />
+    <Content Include="Content\select2\js\i18n\hi.js" />
+    <Content Include="Content\select2\js\i18n\hr.js" />
+    <Content Include="Content\select2\js\i18n\hu.js" />
+    <Content Include="Content\select2\js\i18n\id.js" />
+    <Content Include="Content\select2\js\i18n\is.js" />
+    <Content Include="Content\select2\js\i18n\it.js" />
+    <Content Include="Content\select2\js\i18n\ko.js" />
+    <Content Include="Content\select2\js\i18n\lt.js" />
+    <Content Include="Content\select2\js\i18n\lv.js" />
+    <Content Include="Content\select2\js\i18n\mk.js" />
+    <Content Include="Content\select2\js\i18n\nb.js" />
+    <Content Include="Content\select2\js\i18n\nl.js" />
+    <Content Include="Content\select2\js\i18n\pl.js" />
+    <Content Include="Content\select2\js\i18n\pt-BR.js" />
+    <Content Include="Content\select2\js\i18n\pt.js" />
+    <Content Include="Content\select2\js\i18n\ro.js" />
+    <Content Include="Content\select2\js\i18n\ru.js" />
+    <Content Include="Content\select2\js\i18n\sk.js" />
+    <Content Include="Content\select2\js\i18n\sr.js" />
+    <Content Include="Content\select2\js\i18n\sv.js" />
+    <Content Include="Content\select2\js\i18n\th.js" />
+    <Content Include="Content\select2\js\i18n\tr.js" />
+    <Content Include="Content\select2\js\i18n\uk.js" />
+    <Content Include="Content\select2\js\i18n\vi.js" />
+    <Content Include="Content\select2\js\i18n\zh-CN.js" />
+    <Content Include="Content\select2\js\i18n\zh-TW.js" />
+    <Content Include="Content\select2\js\select2.full.js" />
+    <Content Include="Content\select2\js\select2.full.min.js" />
+    <Content Include="Content\select2\js\select2.js" />
+    <Content Include="Content\select2\js\select2.min.js" />
+    <Content Include="Content\select2\select2.png" />
+    <Content Include="Content\upload-213e60b8a463e6181d4d.js" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.10.3\jquery-ui.min.js" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -317,6 +370,17 @@
     <Content Include="Views\Shared\_SalebyStyle.cshtml" />
     <Content Include="Views\Shared\_SalebyCategory.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\Upload\Setep1.cshtml" />
+    <Content Include="Views\Upload\Setep2.cshtml" />
+    <Content Include="Views\Upload\Setep3.cshtml" />
+    <Content Include="Views\Upload\Setep4.cshtml" />
+    <Content Include="Views\Upload\Setep5.cshtml" />
+    <Content Include="Views\Upload\Setep6.cshtml" />
+    <Content Include="Views\Upload\Setep7.cshtml" />
+    <Content Include="Views\Upload\Setep8.cshtml" />
+    <Content Include="Views\Upload\Setep9.cshtml" />
+    <Content Include="Views\Upload\Setep10.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,7 +427,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>42912</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44375/</IISUrl>
+          <IISUrl>http://localhost:44375/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

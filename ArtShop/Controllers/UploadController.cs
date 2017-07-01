@@ -34,6 +34,28 @@ namespace ArtShop.Controllers
         {
             return PartialView();
         }
+        public ActionResult Setep6()
+        {
+            return PartialView();
+        }
+        public ActionResult Setep7()
+        {
+            return PartialView();
+        }
+        public ActionResult Setep8()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Setep9()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Setep10()
+        {
+            return PartialView();
+        }
 
         protected override void Dispose(bool disposing)
         {
