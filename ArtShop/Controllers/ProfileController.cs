@@ -23,6 +23,8 @@ namespace ArtShop.Controllers
 
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
 
+            model.collectionsCount = userProfile.Collections.Count;
+
             return View(model);
         }
 
@@ -30,13 +32,22 @@ namespace ArtShop.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.profileFullName = userProfile.FirstName + " " + userProfile.LastName;
+            List<CollectionViewModel> collectionViewModel = new List<CollectionViewModel>();
 
-            ProfileIndexViewModel model = new ProfileIndexViewModel();
+            foreach (Collection item in userProfile.Collections)
+            {
+                CollectionViewModel model = new CollectionViewModel();
+                model.CollectionId = item.Id;
+                model.CollectionName = item.Title;
+                model.collectionProduct = item.Artworks;
+                collectionViewModel.Add(model);
+            }
 
-            model.fullName = userProfile.FirstName + " " + userProfile.LastName;
+            
 
-            return View(model);
+            return View(collectionViewModel);
         }
 
         public ActionResult NewCollection()
@@ -62,7 +73,6 @@ namespace ArtShop.Controllers
                 collection.Description = model.CollectionDescription;
                 collection.IsPrivate = model.IsPrivate;
                 collection.Type = model.CollectionType;
-
                 var userId = User.Identity.GetUserId();
 
                 var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
@@ -78,6 +88,90 @@ namespace ArtShop.Controllers
             }
              
             return RedirectToAction("Collection");
+        }
+
+        public ActionResult CollectionView(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+
+            var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
+
+            CollectionViewModel model = new CollectionViewModel();
+            model.CollectionId = collection.Id;
+            model.CollectionName = collection.Title;
+            model.collectionProduct = collection.Artworks;
+           
+
+            return View(model);
+        }
+
+        public ActionResult DeleteCollection(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+
+            var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
+
+            userProfile.Collections.Remove(collection);
+            db.SaveChanges();
+
+            return RedirectToAction("Collection");
+        }
+
+        public ActionResult EditCollection(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+
+            var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
+
+            NewCollectionViewModel model = new NewCollectionViewModel();
+            model.CollectionId = collection.Id;
+            model.CollectionTitle = collection.Title;
+            model.collectionProduct = collection.Artworks;
+            model.CollectionDescription = collection.Description;
+            model.IsPrivate = collection.IsPrivate;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCollection(NewCollectionViewModel model)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+
+            var collection = userProfile.Collections.FirstOrDefault(x => x.Id == model.CollectionId);
+
+            collection.Title = model.CollectionTitle;
+            collection.Description = model.CollectionDescription;
+            collection.IsPrivate = model.IsPrivate;
+            collection.Type = model.CollectionType;
+                        
+            db.SaveChanges();
+
+            return RedirectToAction("Collection");
+        }
+
+        public ActionResult Favorites()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+
+            
+            return View();
         }
     }
 }

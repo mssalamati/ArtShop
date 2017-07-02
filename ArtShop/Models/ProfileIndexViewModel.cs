@@ -9,10 +9,10 @@ namespace ArtShop.Models
     {
         public string fullName { get; set; }
         public int followingCount { get; set; }
-        public string followersCount { get; set; }
-        public string collectionsCount { get; set; }
-        public string artworkCount { get; set; }
-        public string favoritesCount { get; set; }
+        public int followersCount { get; set; }
+        public int collectionsCount { get; set; }
+        public int artworkCount { get; set; }
+        public int favoritesCount { get; set; }
         public string countryFlag { get; set; }
         public string address { get; set; }
 

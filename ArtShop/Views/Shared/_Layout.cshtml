@@ -32,13 +32,21 @@
     var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
     if (c == "profile")
     {
-        if (a==null)
+        if (a==null || c == "favorites")
         {
             c = "profile";
         }
         else if (a == "newcollection")
         {
             c = "collections create";
+        }
+        else if (a == "collectionview")
+        {
+            c = "art-collection";
+        }
+        else if (a == "editcollection")
+        {
+            c = "";
         }
     }
     else

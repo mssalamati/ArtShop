@@ -1,0 +1,240 @@
+﻿@model CollectionViewModel
+@{
+    ViewBag.Title = "CollectionView";
+}
+
+<div class="row-layout content">
+
+    <!--<div style="max-height: 400px;overflow-x: none; overflow-y: auto;">
+        <table class="table table-striped" style="width:97%;">
+                    <tr>
+                <td><img src="" width="50" height="50"></td>
+                <td class="vertical-middle"></td>
+                <td class="vertical-middle">
+                    <a class="btn btn-small"
+                       href="/collections/share/user//collection/"
+                       onclick="Saatchi.Collect.share($(this)); return false;">
+                        Share
+                    </a>
+                </td>
+            </tr>
+                </table>
+    </div>
+    -->
+
+
+    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/art-collection/Painting-Printmaking/test-collection/994144/192521/view" style="display: block;">
+        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview&amp;text=Check+out+this+collection+of+art+curated+by+adib+dehghan+%40SaatchiArt" target="_blank">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview&amp;media=%2F%2Fsaimg-a.akamaihd.net%2Fsaatchi%2F655665%2Fart%2F2164185%2F1223474-VTUWDLCP-6.jpg&amp;description=Check+out+this+collection+of+art+curated+by+adib+dehghan+at+Saatchi+Art+%23art" target="_blank">
+            <i class="fa fa-pinterest"></i>
+        </a>
+        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/art-collection/Painting-Printmaking/test-collection/994144/192521/view&quot;,&quot;shareImage&quot;:&quot;//d3t95n9c6zzriw.cloudfront.net/email/share-page/eaf_default.jpg&quot;,&quot;pageTitle&quot;:&quot;this collection of art curated by adib dehghan&quot;}">
+            <i class="fa fa-envelope"></i>
+        </a>
+        <div id="totalShares" class="total-share"><span>0</span></div>
+    </div>
+
+
+    <script>
+    Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
+    Saatchi.EmailToFriend.modalUrl = '/social/email/page';
+    Saatchi.EmailToFriend.modalTitle = 'Share this page';
+    Saatchi.EmailToFriend.init();
+    </script>
+    <header>
+        <nav class="row ">
+            <div class="small-12 medium-6 columns">
+                <ul class="breadcrumbs ">
+                    <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">Collections</a></li>
+                    <li><a class="so-quick-tip" href="/account/collection/994144" oldtitle="My collections">My Collections</a></li>
+                    <li>@Model.CollectionName</li>
+                </ul>
+                
+            </div>
+            <div class="small-12 medium-6 columns hide-for-medium-down">
+                <ul class="breadcrumbs pull-right text-right">
+                    <li><a href="/profile/editcollection?id=@Model.CollectionId" class="so-quick-tip" oldtitle="Edit Collection Details">Edit</a></li>
+                    <li>@*<a href="/collections/reorder/owner/994144/collection/192521" class="so-quick-tip" oldtitle="Reorder Images in Collection">Reorder</a>*@</li>
+                    <li>@*<a class="so-quick-tip" href="/collections/duplicate/994144/192521" oldtitle="Create your own collection from this one">Duplicate</a>*@</li>
+                    <li>@*<a class="so-quick-tip" href="#so-comment-message" oldtitle="Comment on this collection">Comment</a>*@</li>
+                    <li><a class="so-quick-tip" href="/profile/newCollection" oldtitle="Create a new collection">Create a Collection</a></li>
+
+                    <li><a onclick="return confirm('Are you sure you want to delete this collection? This cannot be undone.')" href="/profile/DeleteCollection?id=@Model.CollectionId" class="delete so-quick-tip" oldtitle="Delete Collection">Delete</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row ">
+            <div class="small-12 columns ">
+                <h1>@Model.CollectionName</h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="small-12 medium-8 columns ">
+                <a href="/account/profile/994144"><img class="avatar" src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="@ViewBag.ProfileFullName"></a>
+                <span class="collection-info">
+                    @Model.collectionProduct.Count Artworks curated by
+                    <a href="/profile">@ViewBag.ProfileFullName</a>
+
+                </span>
+            </div>
+            <div class="small-12 medium-4 columns view-options">
+               @* <div>View:</div>*@
+                @*<button data-view="fullView" class="view-option btn-round btn-masonry so-quick-tip active" oldtitle="View multiple items"></button>
+                <button data-view="pageWidthView" class="view-option btn-round btn-fullscroll so-quick-tip" oldtitle="View full-width, scrolling"><i class="fa fa-stop"></i></button>
+                <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>*@
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="small-12 columns">
+
+            <ul class="item-list masonry " style="position: relative; height: 453.688px;">
+                <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 0px; top: 0px;" bxtracked="true">
+                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                        <div class="list-art-image-wrapper">
+                            <a href="/art/Painting-Sticking-together/655665/1974334/view" itemprop="url">
+                                <img src="//saimg-a.akamaihd.net/saatchi/655665/art/2164185/1223474-VTUWDLCP-6.jpg" alt="Saatchi Art Artist Jacqueline van der Plaat; Painting, “Sticking together” #art" itemprop="contentURL">
+                            </a>
+
+                        </div>
+                        <div class="item-controls" data-id="2164185" data-artist="655665" data-art="1974334">
+                            <a href="/cart/add/P1-U655665-A1974334" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U655665-A1974334" data-title="Sticking together" data-price="5210" data-category="Painting" data-artist-id="655665" data-art-id="1974334">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Add to Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                            <a href="#" data-collection-owner="655665" data-art-id="1974334" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="list-art-meta">
+                            <h4 class="list-art-title left ellipsis" itemprop="name">
+                                <a href="/art/Painting-Sticking-together/655665/1974334/view">Sticking together</a>
+                            </h4>
+                            <small class="art-category clear left">Painting, <span>145  H</span> x <span> 145  W</span> x <span> 3 </span> cm</small>
+
+                            <div class="list-author clear left">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                    <a href="/jacquelineplaat" class="artist-card" title="Profile page for Jacqueline van der Plaat" itemprop="url">Jacqueline van der Plaat</a>
+                                </h5>
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">Netherlands</h5>
+                            </div>
+
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $5,210
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 359px; top: 0px;">
+                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                        <div class="list-art-image-wrapper">
+                            <a href="/art/Printmaking-Infinity-Diptych-Limited-Edition-50/955468/3561261/view" itemprop="url">
+                                <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-6.jpg" alt="Saatchi Art Artist Lisa Hunt; Printmaking, “Infinity Diptych - Limited Edition 50” #art" itemprop="contentURL">
+                            </a>
+
+                        </div>
+                        <div class="item-controls" data-id="3752244" data-artist="955468" data-art="3561261">
+                            <a href="/cart/add/P1-U955468-A3561261" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U955468-A3561261" data-title="Infinity Diptych - Limited Edition 50" data-price="1920" data-category="Printmaking" data-artist-id="955468" data-art-id="3561261">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Add to Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                            <a href="#" data-collection-owner="955468" data-art-id="3561261" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="list-art-meta">
+                            <h4 class="list-art-title left ellipsis" itemprop="name">
+                                <a href="/art/Printmaking-Infinity-Diptych-Limited-Edition-50/955468/3561261/view">Infinity Diptych - Limited Edition 50</a>
+                            </h4>
+                            <small class="art-category clear left">Printmaking, <span>76.2  H</span> x <span> 66  W</span> x <span> 0.3 </span> cm</small>
+
+                            <div class="list-author clear left">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                    <a href="/lisahunt" class="artist-card" title="Profile page for Lisa Hunt" itemprop="url">Lisa Hunt</a>
+                                </h5>
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">United States</h5>
+                            </div>
+
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $1,920
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+
+        </div>
+    </div>
+    <div id="so-comments" class="row comments-section" style="display:none">
+        <div class="small-12 columns bd bgtext">
+            <ol>
+                <li class="no-comments">Be the first to leave a comment.</li>
+                <li class="new">
+                    <h3>Leave a Comment </h3>
+
+                    <form action="/comment/collection" method="post" id="so-comment-form">
+                        <fieldset class="comment">
+                            <legend>Enter your comment below</legend>
+                            <div class="avatar">
+                                <a href="/account/profile/994144"><img class="avatar" src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt=""></a>
+                            </div><textarea name="comment" id="so-comment-message" rows="5" maxlength="500" cols="80"></textarea>        <input type="hidden" name="collection" value="192521" id="so-collection-comment-collection">        <input type="hidden" name="owner" value="994144" id="so-collection-comment-owner">
+                        </fieldset>
+                        <fieldset class="submit">
+                            <legend>Click to submit your comment</legend>
+                            <input type="submit" name="" value="Post" class="button btn-info pull-right" id="so-comment-button">
+                            <input type="reset" value="Cancel" class="button btn-cancel pull-right">
+                            <em class="so-form-loader"></em>
+                        </fieldset>
+
+                    </form>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+    Saatchi.Loader.load('fullview', {js:true}, function() {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('favorite', {js:true}, function() {
+        Saatchi.Favorite.init();
+    });
+    Saatchi.Loader.load('comment', {'js': true}, function () {
+        Saatchi.Comment.validator = '/comment/collection-validate';
+        Saatchi.Comment.init();
+    });
+    Saatchi.Loader.load('truncate', {js: true}, function () {
+        $('.expandable').truncate({
+            slicePoint: 450,
+            expandText: '[more]',
+            userCollapseText: '[less]'
+        });
+    });
+
+
+        $('.title-company:empty').remove();
+
+        $('.joyride-tip-guide').delay(4000).fadeOut('slow');
+
+    </script>
+    <div class="clearfix"></div>
+</div>

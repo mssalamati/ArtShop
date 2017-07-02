@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CollectionViewModel>
 @{
     ViewBag.Title = "Collection";
 }
@@ -32,7 +32,7 @@
 
         <a href="/profile" title="adib dehghan's profile" itemprop="url">
             <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
-            <h1 class="profile-subpage-name ellipsis" itemprop="name">adib dehghan</h1>
+            <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.profileFullName</h1>
             <i class="fa fa-caret-left"></i> Back to Profile
         </a>
 
@@ -43,9 +43,9 @@
             <i class="fa fa-suitcase"></i> Artwork <span>(1)</span>
         </a>
         <a href="/account/collection/994144" class="active" title="link to Collections">
-            <i class="fa fa-th"></i> Collections <span>(1)</span>
+            <i class="fa fa-th"></i> Collections <span>(@Model.Count)</span>
         </a>
-        <a href="/account/favorite/994144" class="" title="link to Favorites">
+        <a href="/profile/favorites" class="" title="link to Favorites">
             <i class="fa fa-heart"></i> Favorites <span>(2)</span>
         </a>
     </div>
@@ -58,38 +58,43 @@
                     <span style="display:table-caption">Create a New Collection</span>
                 </a>
             </li>
-            <li class="list-item collection">
-                <div class="small-12 columns">
-                    <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
-                        <img src="//saimg-a.akamaihd.net/saatchi/655665/art/2164185/1223474-VTUWDLCP-24.jpg" alt="Collection by adib dehghan on Saatchi Art: “test collection”">
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="small-4 columns">
-                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
-                            <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-22.jpg" alt="test collection item" nopin="nopin">
+
+            @foreach (CollectionViewModel item in Model)
+            {
+                <li class="list-item collection">
+                    <div class="small-12 columns">
+                        <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                            <img src="//saimg-a.akamaihd.net/saatchi/655665/art/2164185/1223474-VTUWDLCP-24.jpg" alt="">
                         </a>
                     </div>
-                    <div class="small-4 columns">
-                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
-                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
-                        </a>
+                    <div class="row">
+                        <div class="small-4 columns">
+                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-22.jpg" alt="test collection item" nopin="nopin">
+                            </a>
+                        </div>
+                        <div class="small-4 columns">
+                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
+                            </a>
+                        </div>
+                        <div class="small-4 columns">
+                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
+                            </a>
+                        </div>
                     </div>
-                    <div class="small-4 columns">
-                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
-                            <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
-                        </a>
+                    <div class="row collection-meta">
+                        <h4 class="collection-title">
+                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                <span class="ellipsis">@item.CollectionName</span> <span class="count">(@item.collectionProduct.Count)</span>
+                            </a>
+                        </h4>
+                        <div class="clearfix"></div>
                     </div>
-                </div>
-                <div class="row collection-meta">
-                    <h4 class="collection-title">
-                        <a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view" title="test collection">
-                            <span class="ellipsis">test collection</span> <span class="count">(2)</span>
-                        </a>
-                    </h4>
-                    <div class="clearfix"></div>
-                </div>
-            </li>
+                </li>
+            }
+
         </ul>
         <div class="clearfix"></div>
         <div id="pageNav" class="hidden">

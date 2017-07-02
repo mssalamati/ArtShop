@@ -1,0 +1,262 @@
+﻿@model NewCollectionViewModel
+@{
+    ViewBag.Title = "Edit Collection";
+}
+
+<div class="row-layout content">
+    <header>
+        <nav class="row ">
+            <div class="small-12 medium-6 columns">
+                <ul class="breadcrumbs ">
+                    <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections">Collections</a></li>
+                    <li><a href="/art-collection/Painting-Printmaking/test-collection/994144/192521/view">@Model.CollectionTitle</a></li>
+                </ul>
+                <!--<ul class="breadcrumbs">
+                        <li><a href=""><i class="fa fa-caret-left"></i> Back to Profile</a></li>
+                        <li><a href="/account/collection/">Collections</a></li>
+                        <li></li>
+                    </ul>-->
+            </div>
+            <div class="small-12 medium-6 columns hide-for-medium-down">
+                <ul class="breadcrumbs pull-right text-right">
+                    <li>@*<a class="so-quick-tip" href="/collections/duplicate/994144/192521" oldtitle="Create your own collection from this one">Duplicate</a>*@</li>
+                    @*<li><a class="so-quick-tip" href="#so-comment-message" oldtitle="Comment on this collection">Comment</a></li>*@
+                    <li><a class="so-quick-tip" href="/profile/newcollection" oldtitle="Create a new collection">Create a Collection</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>@Model.CollectionTitle</h1>
+            </div>
+        </div>
+        <div class="row bgtext collection-edit">
+            <div class="small-12 columns">
+
+                @using (Html.BeginForm("editcollection", "Profile", FormMethod.Post, new { @class = "", role = "form" }))
+                {
+                    @Html.AntiForgeryToken();
+                    <input id="CollectionId" name="CollectionId" type="hidden" value="@Model.CollectionId"/>
+                    @*<div class="control-group">
+                            <label for="title" class="control-label required">Collection Title</label>
+                            <div class="controls">
+                                <input type="text" name="title" id="title" value="@Model.CollectionTitle" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="description" class="control-label optional">Collection Description</label>
+                            <div class="controls">
+                                <textarea name="description" id="description" rows="4" class="input-xlarge" cols="80">no description</textarea>
+                            </div>
+                        </div>*@
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="control-group">
+
+                        @*<label for="title" class="control-label required">Collection Title</label>*@
+                        @Html.LabelFor(m => m.CollectionTitle, new { @class = "control-label required" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.CollectionTitle, new { @class = "input-xlarge" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.CollectionDescription, new { @class = "control-label optional" })
+                        <div class="controls">
+                            @Html.TextAreaFor(m => m.CollectionDescription, new { @class = "input-xlarge", cols = "80", rows = "4" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="padding-left: 19px;">
+                        <label for="collection_type_id" class="control-label required">Type</label>
+                        <br />
+                        <div class="controls">
+                            <input type="radio" value="Community" name="CollectionType" style="display:inline-block;" /> Community
+                            <br />
+                            <input type="radio" value="Portfolio" name="CollectionType" style="display:inline-block;" /> Portfolio
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="padding-left: 19px;>
+                        <div class=" controls">
+                        @{var privacy = ""; }
+                        @if (Model.IsPrivate)
+                        { privacy = "checked"; }
+
+                        @Html.CheckBoxFor(m => m.IsPrivate, new { @style = "display:inline-block", @checked = @privacy })
+                        @Html.DisplayNameFor(m => m.IsPrivate)
+                    </div>
+
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" name="Submit" id="Submit" value="Save" class="button btn-info">
+                        </div>
+                    </div>
+                            }
+                <!-- Extra form fields for AA Selection -->
+
+                <script>
+                    (function () {
+                        var $form = $("#so-collection-create-form, #so-collection-edit-form");
+                        var $template = $("#aaselection-template");
+                        var $checkbox = $("#collection_type_id-17");
+                        var checked = $checkbox.prop('checked');
+                        // Form control group which contains the 'create collection' button
+                        var $lastControlGroup = $form.find('.control-group').last();
+                        renderAASelectionFields();
+
+                        $checkbox.change(function () {
+                            checked = $checkbox.prop('checked');
+                            renderAASelectionFields();
+                        });
+
+                        function renderAASelectionFields() {
+                            if (!checked) {
+                                // If AA Selection is not checked, remove the extra form fields
+                                // from the DOM. Note: This means the extra form fields wont be
+                                // passed along to the request.
+                                $template.detach();
+                            } else {
+                                // Otherwise, add the extra fields to the DOM right before the
+                                // submit button's control group
+                                $lastControlGroup.before($template);
+                            }
+                        }
+                    }());
+
+                </script>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="small-12 columns">
+            <ul class="item-list masonry" style="position: relative; height: 453.688px;">
+                <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 0px; top: 0px;">
+                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                        <div class="list-art-image-wrapper">
+                            <a href="/art/Painting-Sticking-together/655665/1974334/view" itemprop="url">
+                                <img src="//saimg-a.akamaihd.net/saatchi/655665/art/2164185/1223474-VTUWDLCP-6.jpg" alt="Saatchi Art Artist Jacqueline van der Plaat; Painting, “Sticking together” #art" itemprop="contentURL">
+                            </a>
+
+                        </div>
+                        <div class="item-controls" data-id="2164185" data-artist="655665" data-art="1974334">
+                            <a href="/cart/add/P1-U655665-A1974334" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U655665-A1974334" data-title="Sticking together" data-price="5210" data-category="Painting" data-artist-id="655665" data-art-id="1974334">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Add to Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                            <a href="#" data-collection-owner="655665" data-art-id="1974334" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="list-art-meta">
+                            <h4 class="list-art-title left ellipsis" itemprop="name">
+                                <a href="/art/Painting-Sticking-together/655665/1974334/view">Sticking together</a>
+                            </h4>
+                            <small class="art-category clear left">Painting, <span>145  H</span> x <span> 145  W</span> x <span> 3 </span> cm</small>
+
+                            <div class="list-author clear left">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                    <a href="/jacquelineplaat" class="artist-card" title="Profile page for Jacqueline van der Plaat" itemprop="url">Jacqueline van der Plaat</a>
+                                </h5>
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">Netherlands</h5>
+                            </div>
+
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $5,210
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="so-collection-art-remove btn btn-danger btn-mini so-quick-tip" style="color:#fff;" href="#" oldtitle="Remove from Collection" aria-describedby="ui-tooltip-4">x</a>
+                </li>
+                <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 359px; top: 0px;">
+                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                        <div class="list-art-image-wrapper">
+                            <a href="/art/Printmaking-Infinity-Diptych-Limited-Edition-50/955468/3561261/view" itemprop="url">
+                                <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-6.jpg" alt="Saatchi Art Artist Lisa Hunt; Printmaking, “Infinity Diptych - Limited Edition 50” #art" itemprop="contentURL">
+                            </a>
+
+                        </div>
+                        <div class="item-controls" data-id="3752244" data-artist="955468" data-art="3561261">
+                            <a href="/cart/add/P1-U955468-A3561261" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U955468-A3561261" data-title="Infinity Diptych - Limited Edition 50" data-price="1920" data-category="Printmaking" data-artist-id="955468" data-art-id="3561261">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Add to Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                            <a href="#" data-collection-owner="955468" data-art-id="3561261" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="list-art-meta">
+                            <h4 class="list-art-title left ellipsis" itemprop="name">
+                                <a href="/art/Printmaking-Infinity-Diptych-Limited-Edition-50/955468/3561261/view">Infinity Diptych - Limited Edition 50</a>
+                            </h4>
+                            <small class="art-category clear left">Printmaking, <span>76.2  H</span> x <span> 66  W</span> x <span> 0.3 </span> cm</small>
+
+                            <div class="list-author clear left">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                    <a href="/lisahunt" class="artist-card" title="Profile page for Lisa Hunt" itemprop="url">Lisa Hunt</a>
+                                </h5>
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">United States</h5>
+                            </div>
+
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $1,920
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="so-collection-art-remove btn btn-danger btn-mini so-quick-tip" style="color:#fff;" href="#" oldtitle="Remove from Collection" aria-describedby="ui-tooltip-5">x</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+
+        Saatchi.Loader.load('fullview', { js: true }, function () {
+            Saatchi.Fullview.init();
+        });
+        Saatchi.Loader.load('favorite', { js: true }, function () {
+            Saatchi.Favorite.init();
+        });
+
+        $(document).ready(
+            function () {
+                $('.art-item').append('<a title="Remove from Collection" class="so-collection-art-remove btn btn-danger btn-mini so-quick-tip" style="color:#fff;" href="#">x</a>');
+                $('a.so-collection-art-remove').on('click', function (e) {
+                    e.preventDefault();
+                    removeFromCollection($(this));
+                });
+                Saatchi.Collect.isPrivateSelected($('#privacy'));
+            }
+        );
+
+        function removeFromCollection(element) {
+            var data = element.parent().find('.item-controls').data();
+            data.collection = 192521;
+            data.owner = 994144;
+            if (confirm("Are you sure you want to remove that image?")) {
+                var artItem = element.closest('.art-item');
+                artItem.css('opacity', .45);
+                $.get('/collections/remove-art/collection/' + data.collection + '/art_id/' + data.art + '/art_owner/' + data.artist + '/collection_owner/' + data.owner,
+                    function (response) {
+                        if (response.result) {
+                            Saatchi.Dialog.success('This item has been removed from the collection');
+                            artItem.remove();
+                            Saatchi.Fullview.init();
+                        }
+                        else {
+                            Saatchi.Dialog.error('There was an error removing this art from the collection');
+                        }
+                    }
+                );
+            }
+        }
+
+    </script>
+    <div class="clearfix"></div>
+</div>
