@@ -3976,8 +3976,8 @@
 
     @Html.Partial("_Footer")
 
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
 
-    @*<script src="~/Content/upload-213e60b8a463e6181d4d.js"></script>*@
     <script type="text/javascript">
         Saatchi.NewDesktopNavigation.init();
         Saatchi.NewMobileNavigation.init();
@@ -3985,93 +3985,5 @@
 
     <script src="~/Content/cropper.js"></script>
 
-    <script>
-        var image = document.getElementById('wideimg');
-        var cropper = new Cropper(image, {
-            aspectRatio: 1.5,
-            viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
-            crop: function (e) {
-                console.log(e.detail.x);
-                console.log(e.detail.y);
-                console.log(e.detail.width);
-                console.log(e.detail.height);
-                console.log(e.detail.rotate);
-                console.log(e.detail.scaleX);
-                console.log(e.detail.scaleY);
-            }
-        });
-
-        var image = document.getElementById('sqrimg');
-        var cropper = new Cropper(image, {
-            aspectRatio: 1,
-            viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
-            crop: function (e) {
-                console.log(e.detail.x);
-                console.log(e.detail.y);
-                console.log(e.detail.width);
-                console.log(e.detail.height);
-                console.log(e.detail.rotate);
-                console.log(e.detail.scaleX);
-                console.log(e.detail.scaleY);
-            }
-        });
-    </script>
-
-    <script>
-        $(".s2").select2({
-            allowClear: true,
-        });
-        $(".tag").select2({
-            allowClear: true,
-            tags: true
-        });
-
-    </script>
-
-
-    <script>
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-        var p = 10;
-        var maxR = 250;
-        var w = maxR;
-        var h = maxR;
-        var width = c.width - 2 * p;
-        var height = c.height - 2 * p;
-        var x = (width - w) / 2;
-        var y = (height - h) / 2;
-        ctx.rect(x, y, w, h);
-        ctx.stroke();
-        ctx.fillText("0 in", x - 40, y + (h / 2));
-        ctx.fillText("0 in", x + (w / 2), y - 20);
-
-        function redraw(new_w, new_h) {
-            if (new_w > new_h) {
-                w = maxR;
-                h = maxR * (new_h / new_w);
-            } else {
-                h = maxR;
-                w = maxR * (new_w / new_h);
-            }
-        
-            var x = (width - w) / 2;
-            var y = (height - h) / 2;
-            ctx.clearRect(0, 0, c.width, c.height);
-            ctx.strokeRect(x, y, w, h);
-            ctx.fillText(new_h + " in", x - 40, y + (h / 2));
-            ctx.fillText(new_w + " in", x + (w / 2), y - 20);
-        }
-
-        $(".h_num").change(function () {
-            var neww = parseInt($(".w_num").val());
-            var newh = parseInt( $(".h_num").val());
-            redraw(neww, newh);
-        });
-        $(".w_num").change(function () {
-            var neww = parseInt($(".w_num").val());
-            var newh = parseInt($(".h_num").val());
-            redraw(neww, newh);
-        });
-    </script>
 </body>
 </html>

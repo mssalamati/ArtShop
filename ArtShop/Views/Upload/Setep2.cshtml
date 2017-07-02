@@ -5,103 +5,117 @@
                 <div class="container artwork__container">
                     <span></span>
                     <div class="new-page">
-                        <span></span>
-                        <div class="new-page__content pane pane--padded pane--centered pane--full">
-                            <div class="progress-component wizard-progress">
-                                <div class="progress-component__inner" style="transform: translateX(82.2222px);"></div>
-                            </div>
-                            <div class="category">
-                                <div class="form-group">
-                                    <h1 class="animate-group-0-0">Subject</h1>
-
-                                    <select class="animate-group-0-1 category__subject rw-combobox rw-widget">
-                                        <option>asdad</option>
-                                        <option>asdssad</option>
-                                    </select>
-
+                        @using (Ajax.BeginForm("Setep2", "Upload", null, new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = "updatediv",
+                            LoadingElementId = "submit_spin",
+                            OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                            OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                        }, new { enctype = "multipart/form-data" }))
+                        {
+                            <span></span>
+                            <div class="new-page__content pane pane--padded pane--centered pane--full">
+                                <div class="progress-component wizard-progress">
+                                    <div class="progress-component__inner" style="transform: translateX(82.2222px);"></div>
                                 </div>
-                                <h1 class="animate-group-0-3">Category</h1>
-                                <p class="descriptor animate-group-0-4">Select a category and subject to help collectors find your work</p>
-                                <div class="grid-image-select">
-                                    <select style="display: none;">
-                                        <option value="164">Painting</option>
-                                        <option value="165">Photography</option>
-                                        <option value="166">Drawing</option>
-                                        <option value="167">Sculpture</option>
-                                        <option value="168">Collage</option>
-                                        <option value="169">Printmaking</option>
-                                        <option value="170">Installation</option>
-                                        <option value="171">New Media</option>
-                                        <option value="172">Video</option>
-                                    </select>
-                                    <div class="grid-image-select__container animate-group-1-0 grid-image-select__container--selected">
-                                        <div class="grid-image-select__container__background-container">
-                                            <div class="grid-image-select__container__background" style="background-image: url(&quot;//saimg-a.akamaihd.net/saatchi/324746/art/2235979/1311217-6.jpg&quot;);"></div>
-                                        </div>
-                                        <div class="grid-image-select__container__copy">Painting</div>
-                                        <div class="react-tooltip" style="bottom: 230px;">
-                                            <div class="react-tooltip__title">Painting</div>
-                                            <div class="react-tooltip__text">Select this option if your work is an original, one-of-a-kind work that contains paint such as oil, acrylic, or watercolor on a flat surface such as canvas or paper.</div>
-                                        </div>
+                                <div class="category">
+                                    <div class="form-group">
+                                        <h1 class="animate-group-0-0">Subject</h1>
+
+                                        <select class="animate-group-0-1 category__subject rw-combobox rw-widget">
+                                            <option>asdad</option>
+                                            <option>asdssad</option>
+                                        </select>
+
                                     </div>
-                                    @for (int i = 1; i < 9; i++)
-                                    {
-                                        <div class="grid-image-select__container animate-group-1-@i ">
+                                    <h1 class="animate-group-0-3">Category</h1>
+                                    <p class="descriptor animate-group-0-4">Select a category and subject to help collectors find your work</p>
+                                    <div class="grid-image-select">
+                                        <select style="display: none;">
+                                            <option value="164">Painting</option>
+                                            <option value="165">Photography</option>
+                                            <option value="166">Drawing</option>
+                                            <option value="167">Sculpture</option>
+                                            <option value="168">Collage</option>
+                                            <option value="169">Printmaking</option>
+                                            <option value="170">Installation</option>
+                                            <option value="171">New Media</option>
+                                            <option value="172">Video</option>
+                                        </select>
+                                        <div class="grid-image-select__container animate-group-1-0 grid-image-select__container--selected">
                                             <div class="grid-image-select__container__background-container">
-                                                <div class="grid-image-select__container__background" style="background-image: url(&quot;//saimg-a.akamaihd.net/saatchi/344378/art/1832243/974787-6.jpg&quot;);"></div>
+                                                <div class="grid-image-select__container__background" style="background-image: url(&quot;//saimg-a.akamaihd.net/saatchi/324746/art/2235979/1311217-6.jpg&quot;);"></div>
                                             </div>
-                                            <div class="grid-image-select__container__copy">Photography</div>
+                                            <div class="grid-image-select__container__copy">Painting</div>
                                             <div class="react-tooltip" style="bottom: 230px;">
-                                                <div class="react-tooltip__title">Photography</div>
-                                                <div class="react-tooltip__text">Select this option if your limited or open edition photograph is an image captured using a camera and has been developed in a darkroom or manipulated digitally.</div>
+                                                <div class="react-tooltip__title">Painting</div>
+                                                <div class="react-tooltip__text">Select this option if your work is an original, one-of-a-kind work that contains paint such as oil, acrylic, or watercolor on a flat surface such as canvas or paper.</div>
                                             </div>
                                         </div>
-                                    }
-                                  
+                                        @for (int i = 1; i < 9; i++)
+                                        {
+                                            <div class="grid-image-select__container animate-group-1-@i ">
+                                                <div class="grid-image-select__container__background-container">
+                                                    <div class="grid-image-select__container__background" style="background-image: url(&quot;//saimg-a.akamaihd.net/saatchi/344378/art/1832243/974787-6.jpg&quot;);"></div>
+                                                </div>
+                                                <div class="grid-image-select__container__copy">Photography</div>
+                                                <div class="react-tooltip" style="bottom: 230px;">
+                                                    <div class="react-tooltip__title">Photography</div>
+                                                    <div class="react-tooltip__text">Select this option if your limited or open edition photograph is an image captured using a camera and has been developed in a darkroom or manipulated digitally.</div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="wizard-button wizard-button--left">
-                                <i class="wizard-button__icon">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg>
-                                </i><div class="wizard-button__text"><span>Upload</span></div>
-                            </div>
-                            <div class="wizard-button wizard-button--right"><div class="wizard-button__text"><span>Artwork Status</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div><div class="mobile-status-bar">
-                                <span><button class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
-                                <span><button class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
-                            </div>
-                            <div class="mobile-status-bar">
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
+                                <div class="wizard-button wizard-button--left">
+                                    <i class="wizard-button__icon">
+                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg>
+                                    </i><div class="wizard-button__text"><span>Upload</span></div>
+                                </div>
+                                <button type="submit" hidden id="submit"></button>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
+                                    <div class="wizard-button__text"><span>Artwork Status</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                </div>
+                                <div class="mobile-status-bar">
+                                    <span><button class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                </div>
+                                <div class="mobile-status-bar">
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
+                                            <i>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
+                                                <g>
+                                                <g>
+                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
                                        </g>
                                     </g>
                                  </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
+                                            </i>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
+                                            <i>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
+                                                <g>
+                                                <g>
+                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
                                        </g>
                                     </g>
                                  </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <div class="progress-component mobile-status-bar__progress">
-                                    <div class="progress-component__inner" style="transform: translateX(0px);"></div>
+                                            </i>
+                                        </button>
+                                    </span>
+                                    <div class="progress-component mobile-status-bar__progress">
+                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
+                                    </div>
+                                    <span></span>
                                 </div>
-                                <span></span>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>

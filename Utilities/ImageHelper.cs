@@ -87,8 +87,9 @@ namespace Utilities
                 {
                     try
                     {
-                        file.SaveAs(Path.Combine(tempFolderPath, file.FileName));
-                        string filePath = string.Concat("/", path, "/", file.FileName);
+                        string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        file.SaveAs(Path.Combine(tempFolderPath, filename));
+                        string filePath = string.Concat("/", path, "/", filename);
                         return new SaveImageResult() { Error = "", FullPath = filePath, ResultStatus = true, Width = img.Width, Height = img.Height };
                     }
                     catch (Exception ex)

@@ -5,78 +5,123 @@
                 <div class="container artwork__container">
                     <span></span>
                     <div class="new-page">
-                        <span></span>
-                        <div class="new-page__content pane pane--padded pane--centered pane--full">
-                            <div class="progress-component wizard-progress">
-                                <div class="progress-component__inner" style="transform: translateX(246.667px);"></div>
-                            </div>
-                            <div class="wizard-step">
-                                <div class="crops">
-                                    <div class="image-upload-dragover">
-                                        <div class="image-upload-dragover__message"></div>
-                                    </div>
-                                    <h1 class="animate-group-0-0">Artwork Image</h1>
-                                    <p class="descriptor animate-group-0-1">Modify your image to adjust how you want your artwork to display across the site.</p>
-                                    <div class="crops__web">
-                                        <div class="crops__web-rect animate-group-0-2" data="[object Object]">
-                                            <div class="cropper-container cropper-bg" style="width: 405px; height: 270px;">
-                                                <div class="cropper-wrap-box">
-                                                    <div class="cropper-canvas">
-                                                        <img id="wideimg" src="~/Content/Images/660x300.jpg" style="width: 360.32px; height: 270px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
+                        @using (Ajax.BeginForm("Setep4", "Upload", null, new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = "updatediv",
+                            LoadingElementId = "submit_spin",
+                            OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                            OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                        }, new { enctype = "multipart/form-data" }))
+                        {
+                            <span></span>
+                            <div class="new-page__content pane pane--padded pane--centered pane--full">
+                                <div class="progress-component wizard-progress">
+                                    <div class="progress-component__inner" style="transform: translateX(246.667px);"></div>
+                                </div>
+                                <div class="wizard-step">
+                                    <div class="crops">
+                                        <div class="image-upload-dragover">
+                                            <div class="image-upload-dragover__message"></div>
+                                        </div>
+                                        <h1 class="animate-group-0-0">Artwork Image</h1>
+                                        <p class="descriptor animate-group-0-1">Modify your image to adjust how you want your artwork to display across the site.</p>
+                                        <div class="crops__web">
+                                            <div class="crops__web-rect animate-group-0-2" data="[object Object]">
+                                                <div class="cropper-container cropper-bg" style="width: 405px; height: 270px;">
+                                                    <div class="cropper-wrap-box">
+                                                        <div class="cropper-canvas">
+                                                            <img id="wideimg" src="~/Content/Images/660x300.jpg" style="width: 360.32px; height: 270px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="crops__web-square animate-group-0-3" data="[object Object]">
-                                            <div class="cropper-container cropper-bg" style="width: 200px; height: 200px;">
-                                                <div class="cropper-wrap-box">
-                                                    <div  class="cropper-canvas">
-                                                        <img  id="sqrimg" src="~/Content/Images/660x300.jpg" style="width: 200px; height: 149.867px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
+                                            <div class="crops__web-square animate-group-0-3" data="[object Object]">
+                                                <div class="cropper-container cropper-bg" style="width: 200px; height: 200px;">
+                                                    <div class="cropper-wrap-box">
+                                                        <div class="cropper-canvas">
+                                                            <img id="sqrimg" src="~/Content/Images/660x300.jpg" style="width: 200px; height: 149.867px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Status</span></div></div>
-                            <div class="wizard-button wizard-button--right"><div class="wizard-button__text"><span>Mediums, Materials, &amp; Styles</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
-                            <div class="mobile-status-bar">
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <div class="progress-component mobile-status-bar__progress">
-                                    <div class="progress-component__inner" style="transform: translateX(0px);"></div>
+                                <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Status</span></div></div>
+                                <button type="submit" hidden id="submit"></button>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
+                                    <div class="wizard-button__text"><span>Mediums, Materials, &amp; Styles</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
-                                <span></span>
+                                <div class="mobile-status-bar">
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
+                                            <i>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
+                                                <g>
+                                                <g>
+                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
+                                       </g>
+                                    </g>
+                                 </svg>
+                                            </i>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
+                                            <i>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
+                                                <g>
+                                                <g>
+                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
+                                       </g>
+                                    </g>
+                                 </svg>
+                                            </i>
+                                        </button>
+                                    </span>
+                                    <div class="progress-component mobile-status-bar__progress">
+                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
+                                    </div>
+                                    <span></span>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    var image = document.getElementById('wideimg');
+    var cropper = new Cropper(image, {
+        aspectRatio: 1.5,
+        viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
+        crop: function (e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+            console.log(e.detail.width);
+            console.log(e.detail.height);
+            console.log(e.detail.rotate);
+            console.log(e.detail.scaleX);
+            console.log(e.detail.scaleY);
+        }
+    });
+
+    var image = document.getElementById('sqrimg');
+    var cropper = new Cropper(image, {
+        aspectRatio: 1,
+        viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
+        crop: function (e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+            console.log(e.detail.width);
+            console.log(e.detail.height);
+            console.log(e.detail.rotate);
+            console.log(e.detail.scaleX);
+            console.log(e.detail.scaleY);
+        }
+    });
+</script>

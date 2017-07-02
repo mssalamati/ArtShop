@@ -17,6 +17,9 @@ namespace DataLayer.Enitities
         [ForeignKey("photo")]
         public int photoId { get; set; }
         public virtual Photo photo { get; set; }
+        [ForeignKey("Sqphoto")]
+        public int SqphotoId { get; set; }
+        public virtual Photo Sqphoto { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ArtCreatedDate { get; set; }
         public bool ISOrginal { get; set; }
