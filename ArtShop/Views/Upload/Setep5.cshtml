@@ -5,90 +5,114 @@
                 <div class="container artwork__container">
                     <span></span>
                     <div class="new-page">
-                        <span></span>
-                        <div class="new-page__content pane pane--padded pane--centered pane--full">
-                            <div class="progress-component wizard-progress">
-                                <div class="progress-component__inner" style="transform: translateX(328.889px);"></div>
-                            </div>
-                            <div class="mediums">
-                                <h1 class="animate-group-0-0">Mediums, Materials &amp; Styles</h1>
-                                <p class="descriptor animate-group-0-1">Tell us more about your artwork</p>
-                                <div>
-                                    <div class="form-group form-group--block z-index-fix-0">
-                                        <div class="input-container z-index-fix-0 text-left animate-group-0-2">
-                                            <label>Select 1-5 Mediums</label>
-                                            <select  class="s2" multiple="multiple">
-                                                <option>asdsad</option>
-                                                <option>wqecasd</option>
-                                                <option>hjrytj</option>
-                                            </select>
-                                        </div>
-                                        <div class="input-container z-index-fix-1 text-left animate-group-0-3">
-                                            <label>Select 1-5 Materials</label>
-                                            <select class="s2" multiple="multiple">
-                                                <option>asdsad</option>
-                                                <option>wqecasd</option>
-                                                <option>hjrytj</option>
-                                            </select>
-                                        </div>
-                                        <div class="input-container z-index-fix-2 text-left animate-group-0-4">
-                                            <label>Select 1-5 Styles</label>
-                                            <select class="s2" multiple="multiple">
-                                                <option>asdsad</option>
-                                                <option>wqecasd</option>
-                                                <option>hjrytj</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-group--block animate-group-0-4 mediums__keywords-container">
-                                        <h1>Keywords</h1>
-                                        <p class="descriptor">Tagging your artwork with keywords allows collectors to find your artwork more easily. It’s best to enter simple, descriptive words that describe the key visual elements of the work, such as color, subject matter, and artistic style.</p>
-                                        <div class="input-container text-left">
-                                            <label>Enter 5-12 Keywords</label>
-                                           <input type="text" class="tag"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-group--block mediums__thumbnail animate-group-0-5"><img src="https://upload.saatchiart.com?img=2c12244a10b508cab490567b1e25821d.jpg"></div>
+                        @using (Ajax.BeginForm("Setep5", "Upload", null, new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = "updatediv",
+                            LoadingElementId = "submit_spin",
+                            OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                            OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                        }, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <span></span>
+                            <div class="new-page__content pane pane--padded pane--centered pane--full">
+                                <div class="progress-component wizard-progress">
+                                    <div class="progress-component__inner" style="transform: translateX(328.889px);"></div>
                                 </div>
-                            </div>
-                            <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Image</span></div></div>
-                            <div class="wizard-button wizard-button--right"><div class="wizard-button__text"><span>Dimensions</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
-                            <div class="mobile-status-bar">
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
+                                <div class="mediums">
+                                    <h1 class="animate-group-0-0">Mediums, Materials &amp; Styles</h1>
+                                    <p class="descriptor animate-group-0-1">Tell us more about your artwork</p>
+                                    <div>
+                                        <div class="form-group form-group--block z-index-fix-0">
+                                            <div class="input-container z-index-fix-0 text-left animate-group-0-2">
+                                                <label>Select 1-5 Mediums</label>
+                                                <select class="s2" multiple="multiple">
+                                                    <option>asdsad</option>
+                                                    <option>wqecasd</option>
+                                                    <option>hjrytj</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-container z-index-fix-1 text-left animate-group-0-3">
+                                                <label>Select 1-5 Materials</label>
+                                                <select class="s2" multiple="multiple">
+                                                    <option>asdsad</option>
+                                                    <option>wqecasd</option>
+                                                    <option>hjrytj</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-container z-index-fix-2 text-left animate-group-0-4">
+                                                <label>Select 1-5 Styles</label>
+                                                <select class="s2" multiple="multiple">
+                                                    <option>asdsad</option>
+                                                    <option>wqecasd</option>
+                                                    <option>hjrytj</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group--block animate-group-0-4 mediums__keywords-container">
+                                            <h1>Keywords</h1>
+                                            <p class="descriptor">Tagging your artwork with keywords allows collectors to find your artwork more easily. It’s best to enter simple, descriptive words that describe the key visual elements of the work, such as color, subject matter, and artistic style.</p>
+                                            <div class="input-container text-left">
+                                                <label>Enter 5-12 Keywords</label>
+                                                <input type="text" class="tag" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group--block mediums__thumbnail animate-group-0-5"><img src="https://upload.saatchiart.com?img=2c12244a10b508cab490567b1e25821d.jpg"></div>
+                                    </div>
+                                </div>
+                                <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Image</span></div></div>
+                                <button type="submit" hidden id="submit"></button>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
+                                    <div class="wizard-button__text"><span>Dimensions</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                </div>
+                                <div class="mobile-status-bar">
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
+                                            <i>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
+                                                <g>
+                                                <g>
+                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
                                        </g>
                                     </g>
                                  </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
+                                            </i>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
+                                            <i>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
+                                                <g>
+                                                <g>
+                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
                                        </g>
                                     </g>
                                  </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <div class="progress-component mobile-status-bar__progress">
-                                    <div class="progress-component__inner" style="transform: translateX(0px);"></div>
+                                            </i>
+                                        </button>
+                                    </span>
+                                    <div class="progress-component mobile-status-bar__progress">
+                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
+                                    </div>
+                                    <span></span>
                                 </div>
-                                <span></span>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+        $(".s2").select2({
+            allowClear: true,
+        });
+        $(".tag").select2({
+            allowClear: true,
+            tags: true
+        });
+</script>

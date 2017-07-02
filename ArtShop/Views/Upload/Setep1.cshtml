@@ -6,74 +6,124 @@
                     <span>
                     </span>
                     <div class="new-page">
-                        <div class="wizard__errors">
-                            <div class="wizard__errors__error">Image cannot be empty</div>
-                        </div>
-                        <div class="new-page__content pane pane--padded pane--centered pane--full">
-                            <div class="progress-component wizard-progress">
-                                <div class="progress-component__inner" style="transform: translateX(0px);">
-
-                                </div>
-                            </div><div class="upload-component">
-                                <div class="image-upload-dragover">
-                                    <div class="image-upload-dragover__message">
-                                    </div>
-                                </div>
-                                <h1 class="animate-group-0-0">Upload</h1>
-                                <p class="animate-group-0-1 descriptor">
-                                    <!-- react-text: 601 -->
-                                    Upload an image file which is at least 1200 x 1500 pixels and less than 50MB.
-                                    <!-- /react-text -->
-                                    <a target="_blank" href="https://support.saatchiart.com/hc/en-us/articles/206523297-What-are-the-image-file-requirements-">
-                                        More info
-                                    </a>
-                                    <!-- react-text: 603 -->.<!-- /react-text -->
-                                </p>
-                                <div class="animate-group-0-2">
-                                    <div class="upload-component__select-container upload-component__select-container--empty">
-                                        <img class="upload-component__loading-indicator" alt="loading" src="/media/images/status/loading/large.gif" style="opacity: 0;">
-                                    </div>
-                                </div>
-                                <div class="animate-group-0-3">
-                                    <div class="upload-button">
-                                        <button class="button button--blue">
-                                            <span>
-                                                <i class="upload-button__icon">
-                                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
-                                                    <path class="path" d="M15,5v5h-5v5H5v-5H0V5h5V0h5v5H15z"> </path>
-                                                     </svg>
-                                                </i><!-- react-text: 613 -->Select Image<!-- /react-text -->
-                                            </span>
-                                        </button><input type="file" style="display: none;">
-                                    </div>
-                                </div>
+                        @using (Ajax.BeginForm("Setep1", "Upload", null, new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = "updatediv",
+                            LoadingElementId = "submit_spin",
+                            OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                            OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                        }, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="wizard__errors">
+                                <div class="wizard__errors__error">Image cannot be empty</div>
                             </div>
-                            <div class="wizard-button wizard-button--right">
-                                <div class="wizard-button__text">
-                                    <span>Category &amp; Subject</span>
-                                </div>
-                                <i class="wizard-button__icon">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg>
-                                </i>
-                            </div><div class="mobile-status-bar">
-                                <span></span>
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                        <i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i>
-                                    </button>
-                                </span>
-                                <div class="progress-component mobile-status-bar__progress">
+                            <div class="new-page__content pane pane--padded pane--centered pane--full">
+                                <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(0px);">
+
+                                    </div>
+                                </div><div class="upload-component">
+                                    <div class="image-upload-dragover">
+                                        <div class="image-upload-dragover__message">
+                                        </div>
+                                    </div>
+                                    <h1 class="animate-group-0-0">Upload</h1>
+                                    <p class="animate-group-0-1 descriptor">
+                                        Upload an image file which is at least 1200 x 1500 pixels and less than 50MB.
+                                        <a target="_blank" href="https://support.saatchiart.com/hc/en-us/articles/206523297-What-are-the-image-file-requirements-">
+                                            More info
+                                        </a>
+                                    </p>
+
+                                    <div class="animate-group-0-2">
+                                        <div id="rpl" class="upload-component__select-container upload-component__select-container--empty">
+                                            <img id="upedimg" class="upload-component__thumbnail" alt="Artwork preview" hidden style="opacity: 1;">
+                                            <img id="loadingimg" class="upload-component__loading-indicator" hidden alt="loading" src="~/Content/large.gif">
+                                        </div>
+                                    </div>
+                                    <div class="animate-group-0-3">
+                                        <div class="upload-button">
+                                            <button type="button" class="button button--blue" onclick="$('#file').click()">
+                                                <span>
+                                                    <i class="upload-button__icon">
+                                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+                                                        <path class="path" d="M15,5v5h-5v5H5v-5H0V5h5V0h5v5H15z"> </path>
+                                                     </svg>
+                                                    </i>
+                                                    <span id="sititle">Select Image</span>
+                                                </span>
+                                            </button>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <span>
+                                <button type="submit" hidden id="submit"></button>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
+                                    <div class="wizard-button__text">
+                                        <span>Category &amp; Subject</span>
+                                    </div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                </div>
+                                <div class="mobile-status-bar">
+                                    <span></span>
+                                    <span>
+                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
+                                            <i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i>
+                                        </button>
+                                    </span>
+                                    <div class="progress-component mobile-status-bar__progress">
+                                        <div class="progress-component__inner" style="transform: translateX(0px);">
+                                        </div>
+                                    </div>
+                                    <span>
 
-                                </span>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<form id="imageUploadForm" style="display:none" enctype="multipart/form-data" method="post">
+    <input type="file" id="file" name="file" style="display: none;">
+</form>
+
+
+<script>
+    $('#imageUploadForm').on('submit', (function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            type: 'POST',
+            url: '/upload/upload',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#rpl').removeClass('upload-component__select-container--empty');
+                $('#upedimg').attr('src', data.data);
+                $('#upedimg').show();
+                $('#sititle').html('Select Image');
+                $('#loadingimg').hide();
+            },
+            error: function (data) {
+                alert("Error: " + data);
+
+                $('#sititle').html('Select Image');
+                $('#loadingimg').hide();
+            }
+        });
+    }));
+
+    $('#file').live('change', function () {
+        $('#sititle').html('Uploading...');
+        $('#loadingimg').show();
+        $("#imageUploadForm").submit();
+    });
+</script>

@@ -211,6 +211,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NewCollectionViewModel.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
+    <Compile Include="Models\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\CashManager.cs" />
@@ -238,6 +239,7 @@
     <Content Include="Content\js\dist\core-1497066375653.min.js" />
     <Content Include="Content\js\dist\foundation\foundation5-5.min4baf.js" />
     <Content Include="Content\js\dist\tmpl.min.js" />
+    <Content Include="Content\large.gif" />
     <Content Include="Content\main-1497066374081.css" />
     <Content Include="Content\main-1498861409026.css" />
     <Content Include="Content\select2\css\select2.css" />
@@ -323,6 +325,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
