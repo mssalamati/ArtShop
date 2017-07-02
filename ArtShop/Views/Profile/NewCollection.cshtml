@@ -60,10 +60,11 @@
                         <br />
                         <div class="controls">
 
-                            @Html.RadioButtonFor(m => m.CollectionType, "Community", new { @style = "display:none" })
-                            <input type="radio" value="Community" checked="checked" onclick="TypeEvent(1)" style="display:inline-block;" /> Community
+                            @*@Html.LabelFor(m => m.CollectionType, "Community", new { @style = "display:none",name= "CollectionType" })*@
+                           
+                            <input type="radio" value="Community" name="CollectionType" checked="checked" onclick="TypeEvent(1)" style="display:inline-block;" /> Community
                             <br />
-                            <input type="radio" value="Portfolio" onclick="TypeEvent(2)" style="display:inline-block;" /> Portfolio
+                            <input type="radio" value="Portfolio" name="CollectionType" onclick="TypeEvent(2)" style="display:inline-block;" /> Portfolio
                         </div>
                     </div>
 
@@ -127,9 +128,9 @@
                 <script>
 
                     function TypeEvent(id) {
-
+                        
                         if (id == "1") {
-
+                            
                             $("CollectionType").val = "Community";
                         }
                         else {

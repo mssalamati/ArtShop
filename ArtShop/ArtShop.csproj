@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CollectionViewModel.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NewCollectionViewModel.cs" />
@@ -384,6 +385,8 @@
     <Content Include="Views\Upload\Setep10.cshtml" />
     <Content Include="Views\Profile\Collection.cshtml" />
     <Content Include="Views\Profile\NewCollection.cshtml" />
+    <Content Include="Views\Profile\CollectionView.cshtml" />
+    <Content Include="Views\Profile\EditCollection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

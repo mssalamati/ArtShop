@@ -9,11 +9,13 @@ namespace ArtShop.Models
 {
     public class NewCollectionViewModel
     {
+        public int CollectionId { get; set; }
         [Display(Name = "Collection Title")]
         public string CollectionTitle { get; set; }
 
         [Display(Name = "Collection Description")]
         public string CollectionDescription { get; set; }
+        public ICollection<CollectionProduct> collectionProduct { get; set; }
         public CollectionType CollectionType { get; set; }
         [Display(Name = "Private")]
         public bool IsPrivate { get; set; }
