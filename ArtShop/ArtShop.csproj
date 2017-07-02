@@ -390,6 +390,7 @@
     <Content Include="Views\Profile\NewCollection.cshtml" />
     <Content Include="Views\Profile\CollectionView.cshtml" />
     <Content Include="Views\Profile\EditCollection.cshtml" />
+    <Content Include="Views\Profile\Favorites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

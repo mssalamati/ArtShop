@@ -23,6 +23,8 @@ namespace ArtShop.Controllers
 
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
 
+            model.collectionsCount = userProfile.Collections.Count;
+
             return View(model);
         }
 
@@ -134,6 +136,7 @@ namespace ArtShop.Controllers
             model.CollectionId = collection.Id;
             model.CollectionTitle = collection.Title;
             model.collectionProduct = collection.Artworks;
+            model.CollectionDescription = collection.Description;
             model.IsPrivate = collection.IsPrivate;
 
             return View(model);
@@ -141,7 +144,7 @@ namespace ArtShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCollection(CollectionViewModel model)
+        public ActionResult EditCollection(NewCollectionViewModel model)
         {
             var userId = User.Identity.GetUserId();
 
@@ -150,10 +153,25 @@ namespace ArtShop.Controllers
 
             var collection = userProfile.Collections.FirstOrDefault(x => x.Id == model.CollectionId);
 
-            
+            collection.Title = model.CollectionTitle;
+            collection.Description = model.CollectionDescription;
+            collection.IsPrivate = model.IsPrivate;
+            collection.Type = model.CollectionType;
+                        
             db.SaveChanges();
 
             return RedirectToAction("Collection");
+        }
+
+        public ActionResult Favorites()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+
+            
+            return View();
         }
     }
 }

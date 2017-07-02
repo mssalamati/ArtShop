@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "Favorites";
+}
+
+<div role="main" class="row row-layout profile-content">
+
+
+    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/favorite/994144" style="display: block;">
+        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;text=View+Favorites+by+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;media=http:&amp;description=Favorites+by+adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
+            <i class="fa fa-pinterest"></i>
+        </a>
+        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/favorite/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;Favorites by adib dehghan&quot;}">
+            <i class="fa fa-envelope"></i>
+        </a>
+        <div id="totalShares" class="total-share"><span>0</span></div>
+    </div>
+
+
+    <script>
+    Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
+    Saatchi.EmailToFriend.modalUrl = '/social/email/page';
+    Saatchi.EmailToFriend.modalTitle = 'Share this page';
+    Saatchi.EmailToFriend.init();
+    </script>        <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+
+        <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
+            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
+            <i class="fa fa-caret-left"></i> Back to Profile
+        </a>
+
+    </header>
+
+    <div class="profile-nav large-12 columns">
+        <a href="/account/artworks/994144" class="" title="link to artwork">
+            <i class="fa fa-suitcase"></i> Artwork <span>(1)</span>
+        </a>
+        <a href="/profile/collection" class="" title="link to Collections">
+            <i class="fa fa-th"></i> Collections <span>(1)</span>
+        </a>
+        <a href="/account/favorite/994144" class="active" title="link to Favorites">
+            <i class="fa fa-heart"></i> Favorites <span>(2)</span>
+        </a>
+    </div>
+    <div class="row sort">
+        <div id="listSort" class="favorites-sort small-12 medium-6 columns">
+        </div>
+        <div class="small-12 medium-6 columns view-options mt1" style="display:none">
+            <div>View:</div> <button data-view="fullView" class="view-option btn-round btn-masonry so-quick-tip active" oldtitle="View multiple items"></button>
+            <button data-view="pageWidthView" class="view-option btn-round btn-fullscroll so-quick-tip" oldtitle="View full-width, scrolling"><i class="fa fa-stop"></i></button>
+            <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>
+        </div>
+    </div>
+    <script>
+        // [art.id_user_art, art.id_user_art, art.id_user_art]
+    Saatchi.Favorite.users = [2633376,3752244];
+    </script>
+    <div class="row">
+
+        <ul id="infinite" class="item-list masonry" style="position: relative; height: 372.891px;">
+            <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 0px; top: 0px;">
+                <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                    <div class="list-art-image-wrapper">
+                        <a href="/art/Printmaking-Infinity-Diptych-Limited-Edition-50/955468/3561261/view" itemprop="url">
+                            <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-6.jpg" alt="Saatchi Art Artist Lisa Hunt; Printmaking, “Infinity Diptych - Limited Edition 50” #art" itemprop="contentURL">
+                        </a>
+
+                    </div>
+                    <div class="item-controls" data-id="3752244" data-artist="955468" data-art="3561261">
+                        <a href="/cart/add/P1-U955468-A3561261" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U955468-A3561261" data-title="Infinity Diptych - Limited Edition 50" data-price="1920" data-category="Printmaking" data-artist-id="955468" data-art-id="3561261">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite is-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                        <a href="#" data-collection-owner="955468" data-art-id="3561261" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="list-art-meta">
+                        <h4 class="list-art-title left ellipsis" itemprop="name">
+                            <a href="/art/Printmaking-Infinity-Diptych-Limited-Edition-50/955468/3561261/view">Infinity Diptych - Limited Edition 50</a>
+                        </h4>
+                        <small class="art-category clear left">Printmaking, <span>76.2  H</span> x <span> 66  W</span> x <span> 0.3 </span> cm</small>
+
+                        <div class="list-author clear left">
+                            <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                <a href="/lisahunt" class="artist-card" title="Profile page for Lisa Hunt" itemprop="url">Lisa Hunt</a>
+                            </h5>
+                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">United States</h5>
+                        </div>
+
+                        <div class="list-art-price">
+                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
+                                <div itemprop="price">
+                                    $1,920
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 359px; top: 0px;">
+                <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                    <div class="list-art-image-wrapper">
+                        <a href="/art/Painting-Veiled-boy/700733/2443260/view" itemprop="url">
+                            <img src="//saimg-a.akamaihd.net/saatchi/700733/art/2633376/1703269-TDUQJESP-6.jpg" alt="Saatchi Art Artist Marija Mikulic Bosnjak; Painting, “Veiled boy” #art" itemprop="contentURL">
+                        </a>
+
+                    </div>
+                    <div class="item-controls" data-id="2633376" data-artist="700733" data-art="2443260">
+                        <a href="/cart/add/P1-U700733-A2443260" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U700733-A2443260" data-title="Veiled boy" data-price="3685" data-category="Painting" data-artist-id="700733" data-art-id="2443260">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite is-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                        <a href="#" data-collection-owner="700733" data-art-id="2443260" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="list-art-meta">
+                        <h4 class="list-art-title left ellipsis" itemprop="name">
+                            <a href="/art/Painting-Veiled-boy/700733/2443260/view">Veiled boy</a>
+                        </h4>
+                        <small class="art-category clear left">Painting, <span>100  H</span> x <span> 140  W</span> x <span> 5 </span> cm</small>
+
+                        <div class="list-author clear left">
+                            <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                <a href="/account/profile/700733" class="artist-card" title="Profile page for Marija Mikulic Bosnjak" itemprop="url">Marija Mikulic Bosnjak</a>
+                            </h5>
+                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">Croatia</h5>
+                        </div>
+
+                        <div class="list-art-price">
+                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
+                                <div itemprop="price">
+                                    $3,685
+                                </div>
+                            </div>
+                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
+                                <div class="sample-print-price" itemprop="price">
+                                    Prints from $95
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div id="pageNav" class="hidden">
+            <a href="/account/favorite/id/994144/format/json/page/2">2</a>
+        </div>
+        <div id="pageLoading"></div>
+    </div>
+
+    <script type="text/javascript">
+    Saatchi.Loader.load('profile', {js:true}, function() {
+        Saatchi.Profile.init();
+    });
+    Saatchi.Loader.load('favorite', {js:true}, function() {
+        Saatchi.Favorite.init();
+    });
+    Saatchi.Loader.load('fullview', {js:true}, function() {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('infinitescroll');
+    Saatchi.Loader.load('pagination', {js:true}, function() {
+        Saatchi.Pagination.type = 'art';
+        Saatchi.Pagination.init();
+    });
+
+            $('body').bind('contextmenu', function(e) {
+        $('body').trigger( "click" );
+        return false;
+    });
+
+        $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+    </script>
+    <script type="text/x-tmpl" id="tmpl-art">
+        <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade" data-page="{%=o.page%}">
+            <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
+                <div class="list-art-image-wrapper">
+                    <a href="{%=o.artwork_url%}" itemprop="url">
+                        <img src="{%=o.artwork_image_url%}7.jpg" alt="{%=o.art_title%}" itemprop="contentURL">
+                    </a>
+                </div>
+                <div class="item-controls" data-id="{%=o.user_art_id%}">
+                    {% if (o.original_sale_status === 'avail') { %}
+                    <a href="/cart/add/{%=o.original_sku%}" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>
+                    {% } %}
+                    {% if ('994144' != o.artist_id) { %}
+                    <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
+                    {% } %}
+                    <a href="#" data-collection-owner="{%=o.artist_id%}" data-art-id="{%=o.art_id%}" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection" rel="nofollow"><i class="fa fa-plus"></i></a>
+                    {% if ('994144' == o.artist_id) { %}
+                    <a href="{%=o.artwork_edit_url%}" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>
+                    {% } %}
+                </div>
+                <div class="list-art-meta">
+                    <h4 class="list-art-title left ellipsis" itemprop="name">
+                        <a href="{%=o.artwork_url%}">{%=o.art_title%}</a>
+                    </h4>
+                    <small class="art-category clear left">{%=o.art_category%}, {%#o.art_dimensions_string%}</small>
+                    {% if (o.original_sale_status === 'sold') { %}
+                    <div class="right sold" itemprop="availability">sold</div>
+                    {% } else if (o.original_sale_status === 'reserved') { %}
+                    <div class="right reserved" itemprop="availability">reserved</div>
+                    {% }  %}
+
+                    <div class="list-author clear left">
+                        <h5 class="artist-name ellipsis left" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+                            <a href="{%=o.artist_url%}" class="artist-card" title="{%=o.artist_name%}'s homepage" itemprop="url">{%=o.artist_name%}</a>
+                        </h5>
+                        <h5 class="user-location ellipsis clear" itemprop="contentLocation">{%=o.artist_country%}</h5>
+                    </div>
+
+                    <div class="list-art-price">
+                        {% if (o.original_sale_status === 'avail' || o.original_sale_status === 'sold') { %}
+                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <div itemprop="price">
+                                {%=o.aisp_price%}
+                            </div>
+                        </div>
+                        {% }  %}
+                        {% if (o.lowest_print_price) { %}
+                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <div class="sample-print-price" itemprop="price">
+                                Prints from {%=o.lowest_print_price%}
+                            </div>
+                        </div>
+                        {% }  %}
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </li>
+    </script>
+    <div class="clearfix"></div>
+</div>
