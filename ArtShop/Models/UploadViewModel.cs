@@ -36,10 +36,10 @@ namespace ArtShop.Models
         }
         public class step5
         {
-            public string[] Mediums { get; set; }
+            public string Mediums { get; set; }
             public int[] Materials { get; set; }
-            public int[] Styles { get; set; }
-            public string[] Keywords { get; set; }
+            public string Styles { get; set; }
+            public string Keywords { get; set; }
         }
         public class step6
         {

@@ -15,9 +15,13 @@
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
                         {
-                            <div class="wizard__errors">
-                                <div class="wizard__errors__error">Image cannot be empty</div>
-                            </div>
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
+
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(0px);">
@@ -80,7 +84,7 @@
                                     </span>
                                 </div>
                             </div>
-
+                            <input type="hidden" id="img" name="img" />
                         }
                     </div>
                 </div>
@@ -92,6 +96,20 @@
 <form id="imageUploadForm" style="display:none" enctype="multipart/form-data" method="post">
     <input type="file" id="file" name="file" style="display: none;">
 </form>
+
+
+@if (!string.IsNullOrEmpty(ViewBag.lastpic))
+{
+    <script>
+        var img = '@ViewBag.lastpic';
+        $('#img').val(img);
+        $('#rpl').removeClass('upload-component__select-container--empty');
+        $('#upedimg').attr('src', img);
+        $('#upedimg').show();
+        $('#sititle').html('Select Image');
+        $('#loadingimg').hide();
+    </script>
+}
 
 
 <script>
@@ -106,6 +124,7 @@
             contentType: false,
             processData: false,
             success: function (data) {
+                $('#img').val(data.data);
                 $('#rpl').removeClass('upload-component__select-container--empty');
                 $('#upedimg').attr('src', data.data);
                 $('#upedimg').show();
@@ -114,7 +133,6 @@
             },
             error: function (data) {
                 alert("Error: " + data);
-
                 $('#sititle').html('Select Image');
                 $('#loadingimg').hide();
             }

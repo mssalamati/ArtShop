@@ -45,14 +45,14 @@
                                     </div>
                                     <div class="animate-group-0-5 form-group">
                                         <div class="description-input__description-container">
-                                            <div class="description-input__prop-aggregate">Photography: Full spectrum on Aluminium</div>
-                                            <textarea class="description-input__description" placeholder="Write here ...">asdadsad</textarea>
+                                            <div class="description-input__prop-aggregate">Photography: @ViewBag.firstmedium on @ViewBag.firstmaterial</div>
+                                            <textarea class="description-input__description" placeholder="Write here ..."></textarea>
                                             <div class="description__word-count">8</div>
-                                            <div class="description-input__prop-aggregate">Keywords: asdasdas, dsad, asdasdasdas, aaaaa, sssss, ddddd</div>
+                                            <div class="description-input__prop-aggregate">Keywords: @ViewBag.Keywords</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Dimensions</span></div></div>
+                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Dimensions</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
                                     <div class="wizard-button__text"><span>Packaging</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
@@ -97,3 +97,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    function callbackpage() {
+        $.ajax({
+            type: 'get',
+            url: '/upload/Setep6',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#updatediv').html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+</script>

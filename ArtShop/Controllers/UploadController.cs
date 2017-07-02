@@ -6,6 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Utilities;
+using DataLayer.Extentions;
+using System.Configuration;
+using ArtShop.Util;
 
 namespace ArtShop.Controllers
 {
@@ -37,16 +40,25 @@ namespace ArtShop.Controllers
         public ActionResult Setep1(UploadViewModel.step1 model)
         {
             Session["imageAddress"] = model.img;
+            if (string.IsNullOrEmpty(model.img) || !System.IO.File.Exists(HttpContext.Server.MapPath(model.img)))
+            {
+                ViewBag.Error = "Image cannot be empty";
+                return PartialView();
+            }
             return RedirectToAction("Setep2");
         }
 
         public ActionResult Setep2()
         {
+            ViewBag.subjects = CashManager.Instance.Subjects;
+            ViewBag.category = CashManager.Instance.Categories;
             return PartialView();
         }
         [HttpPost]
         public ActionResult Setep2(UploadViewModel.step2 model)
         {
+            Session["category"] = model.category;
+            Session["subject"] = model.subject;
             return RedirectToAction("Setep3");
         }
 
@@ -57,6 +69,10 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep3(UploadViewModel.step3 model)
         {
+            Session["copyright"] = model.copyright;
+            Session["createYear"] = model.createYear;
+            Session["isOrginal"] = model.isOrginal;
+            Session["printAvable"] = model.printAvable;
             return RedirectToAction("Setep4");
         }
 
@@ -72,11 +88,28 @@ namespace ArtShop.Controllers
 
         public ActionResult Setep5()
         {
+            ViewBag.lastpic = Session["imageAddress"];
+            ViewBag.Mediums = CashManager.Instance.Mediums;
+            ViewBag.Materials = CashManager.Instance.Materials;
+            ViewBag.Styles = CashManager.Instance.Styles;
+
             return PartialView();
         }
         [HttpPost]
         public ActionResult Setep5(UploadViewModel.step5 model)
         {
+            if (string.IsNullOrEmpty(model.Keywords) || model.Materials.Length == 0 || string.IsNullOrEmpty(model.Mediums) || string.IsNullOrEmpty(model.Styles))
+            {
+                ViewBag.lastpic = Session["imageAddress"];
+                ViewBag.Mediums = CashManager.Instance.Mediums;
+                ViewBag.Materials = CashManager.Instance.Materials;
+                ViewBag.Styles = CashManager.Instance.Styles;
+                return PartialView();
+            }
+               
+            Session["Keywords"] = model.Keywords;
+            Session["firstmedium"] = model.Mediums.Split(',').First();
+            Session["firstmaterial"] = CashManager.Instance.Materials.SingleOrDefault(x => x.Key == model.Materials.First()).Value;
             return RedirectToAction("Setep6");
         }
 
@@ -92,11 +125,15 @@ namespace ArtShop.Controllers
 
         public ActionResult Setep7()
         {
+            ViewBag.Keywords = Session["Keywords"];
+            ViewBag.firstmedium = Session["firstmedium"];
+            ViewBag.firstmaterial = Session["firstmaterial"];
             return PartialView();
         }
         [HttpPost]
         public ActionResult Setep7(UploadViewModel.step7 model)
         {
+           
             return RedirectToAction("Setep8");
         }
 

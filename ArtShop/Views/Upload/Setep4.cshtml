@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Status</span></div></div>
+                                <div class="wizard-button wizard-button--left" onclick="callbackpage()"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Status</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
                                     <div class="wizard-button__text"><span>Mediums, Materials, &amp; Styles</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
@@ -86,6 +86,15 @@
                                     <span></span>
                                 </div>
                             </div>
+
+                            <input id="square_x" type="hidden" name="square_x" value=""/>
+                            <input id="square_y" type="hidden" name="square_y" value="" />
+                            <input id="square_width" type="hidden" name="square_width" value="" />
+                            <input id="square_height" type="hidden" name="square_height" value="" />
+                            <input id="wide_x" type="hidden" name="wide_x" value="" />
+                            <input id="wide_y" type="hidden" name="wide_y" value="" />
+                            <input id="wide_width" type="hidden" name="wide_width" value="" />
+                            <input id="wide_height" type="hidden" name="wide_height" value="" />
                         }
                     </div>
                 </div>
@@ -100,13 +109,10 @@
         aspectRatio: 1.5,
         viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
         crop: function (e) {
-            console.log(e.detail.x);
-            console.log(e.detail.y);
-            console.log(e.detail.width);
-            console.log(e.detail.height);
-            console.log(e.detail.rotate);
-            console.log(e.detail.scaleX);
-            console.log(e.detail.scaleY);
+            $('#square_x').val(e.detail.x);
+            $('#square_y').val(e.detail.y);
+            $('#square_width').val(e.detail.width);
+            $('#square_height').val(e.detail.height);
         }
     });
 
@@ -115,13 +121,28 @@
         aspectRatio: 1,
         viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
         crop: function (e) {
-            console.log(e.detail.x);
-            console.log(e.detail.y);
-            console.log(e.detail.width);
-            console.log(e.detail.height);
-            console.log(e.detail.rotate);
-            console.log(e.detail.scaleX);
-            console.log(e.detail.scaleY);
+            $('#wide_x').val(e.detail.x);
+            $('#wide_y').val(e.detail.y);
+            $('#wide_width').val(e.detail.width);
+            $('#wide_height').val(e.detail.height);
         }
     });
+</script>
+
+<script>
+    function callbackpage() {
+        $.ajax({
+            type: 'get',
+            url: '/upload/Setep3',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#updatediv').html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
 </script>

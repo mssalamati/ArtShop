@@ -27,27 +27,21 @@
                                         <div class="form-group form-group--block z-index-fix-0">
                                             <div class="input-container z-index-fix-0 text-left animate-group-0-2">
                                                 <label>Select 1-5 Mediums</label>
-                                                <select class="s2" multiple="multiple">
-                                                    <option>asdsad</option>
-                                                    <option>wqecasd</option>
-                                                    <option>hjrytj</option>
-                                                </select>
+                                                <input name="Mediums" type="text" style="max-width:none" class="sMediums" />
                                             </div>
                                             <div class="input-container z-index-fix-1 text-left animate-group-0-3">
                                                 <label>Select 1-5 Materials</label>
-                                                <select class="s2" multiple="multiple">
-                                                    <option>asdsad</option>
-                                                    <option>wqecasd</option>
-                                                    <option>hjrytj</option>
+                                                <select name="Materials" class="sMaterials" multiple="multiple">
+                                                    @foreach (var item in (Dictionary<int, string>)ViewBag.Materials)
+                                                    {
+                                                        <option value="@item.Key">@item.Value</option>
+                                                    }
                                                 </select>
                                             </div>
                                             <div class="input-container z-index-fix-2 text-left animate-group-0-4">
                                                 <label>Select 1-5 Styles</label>
-                                                <select class="s2" multiple="multiple">
-                                                    <option>asdsad</option>
-                                                    <option>wqecasd</option>
-                                                    <option>hjrytj</option>
-                                                </select>
+                                                <input name="Styles" type="text" style="max-width:none" class="sStyles" />
+
                                             </div>
                                         </div>
                                         <div class="form-group form-group--block animate-group-0-4 mediums__keywords-container">
@@ -55,13 +49,15 @@
                                             <p class="descriptor">Tagging your artwork with keywords allows collectors to find your artwork more easily. It’s best to enter simple, descriptive words that describe the key visual elements of the work, such as color, subject matter, and artistic style.</p>
                                             <div class="input-container text-left">
                                                 <label>Enter 5-12 Keywords</label>
-                                                <input type="text" class="tag" />
+                                                <input name="Keywords" type="text" class="tag" />
                                             </div>
                                         </div>
-                                        <div class="form-group form-group--block mediums__thumbnail animate-group-0-5"><img src="https://upload.saatchiart.com?img=2c12244a10b508cab490567b1e25821d.jpg"></div>
+                                        <div class="form-group form-group--block mediums__thumbnail animate-group-0-5">
+                                            <img width="200" src="@ViewBag.lastpic">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Image</span></div></div>
+                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Artwork Image</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
                                     <div class="wizard-button__text"><span>Dimensions</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
@@ -108,11 +104,36 @@
 </div>
 
 <script>
-        $(".s2").select2({
-            allowClear: true,
+    $(".sMediums").select2({
+        tags: [@(Html.Raw(string.Join(",", ((Dictionary<int, string>)ViewBag.Mediums).Select(x =>("'" + x.Value + "'")))))]
+    });
+    $(".sMaterials").select2({
+        allowClear: true,
+    });
+    $(".sStyles").select2({
+        tags: [@(Html.Raw(string.Join(",", ((Dictionary<int, string>)ViewBag.Styles).Select(x =>("'" + x.Value + "'")))))]
+    });
+    $(".tag").select2({
+        allowClear: true,
+        tags: true
+    });
+</script>
+
+
+<script>
+    function callbackpage() {
+        $.ajax({
+            type: 'get',
+            url: '/upload/Setep4',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#updatediv').html(data);
+            },
+            error: function (data) {
+
+            }
         });
-        $(".tag").select2({
-            allowClear: true,
-            tags: true
-        });
+    }
 </script>
