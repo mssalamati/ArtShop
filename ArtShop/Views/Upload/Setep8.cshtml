@@ -35,7 +35,8 @@
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <div class="image-radio__item image-radio__item--active">
+                                                    <input id="packing" type="hidden" name="Packaging" value="Crate" />
+                                                    <div class="image-radio__item image-radio__item--active" id="packing_crate" onclick="change_pack(1);">
                                                         <div class="image-radio__item__image">
                                                             <div class="image-radio__item__image__elem">
                                                                 <i>
@@ -53,7 +54,7 @@
                                                         </div>
                                                         <div class="image-radio__item__name">Crate</div>
                                                     </div>
-                                                    <div class="image-radio__item">
+                                                    <div class="image-radio__item"  id="packing_box" onclick="change_pack(2);">
                                                         <div class="image-radio__item__image">
                                                             <div class="image-radio__item__image__elem">
                                                                 <i>
@@ -70,7 +71,7 @@
                                                         </div>
                                                         <div class="image-radio__item__name">Box</div>
                                                     </div>
-                                                    <div class="image-radio__item">
+                                                    <div class="image-radio__item"  id="packing_tube" onclick="change_pack(3);">
                                                         <div class="image-radio__item__image">
                                                             <div class="image-radio__item__image__elem">
                                                                 <i>
@@ -95,19 +96,27 @@
                                             <h3>Is the artwork framed?</h3>
                                             <div class="input-container">
                                                 <div class="button-radio">
-                                                    <div class="button-radio__button-container"><button class="button-radio__button button" type="button">Yes</button><button class="button-radio__button button" type="button">No</button></div>
+                                                    <div class="button-radio__button-container">
+                                                        <input id="frame" type="hidden" name="framed" value="true" />
+                                                        <button id="frame_yes" onclick="change_framedBtn(1);" class="button-radio__button button" type="button">Yes</button>
+                                                        <button id="frame_no" onclick="change_framedBtn(0);" class="button-radio__button button" type="button">No</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group animate-group-0-5">
                                             <h3>Is the artwork multi-paneled?</h3>
                                             <div class="button-radio">
-                                                <div class="button-radio__button-container"><button class="button-radio__button button" type="button">Yes</button><button class="button-radio__button button" type="button">No</button></div>
+                                                <div class="button-radio__button-container">
+                                                    <input id="multipanel" type="hidden" name="multi_paneled" value="true" />
+                                                    <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">Yes</button>
+                                                    <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">No</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Description</span></div></div>
+                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Description</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
                                     <div class="wizard-button__text"><span>Shipping</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
@@ -152,3 +161,70 @@
         </div>
     </div>
 </div>
+
+<script>
+    function callbackpage() {
+        $.ajax({
+            type: 'get',
+            url: '/upload/Setep7',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#updatediv').html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+
+    function change_framedBtn(val) {
+        var inp = $('#frame');
+        var btnyes = $('#frame_yes');
+        var btnno = $('#frame_no');
+        if (val == 1) {
+            inp.val('true');
+            btnyes.addClass('button--active');
+            btnno.removeClass('button--active');
+        } else {
+            inp.val('false');
+            btnno.addClass('button--active');
+            btnyes.removeClass('button--active');
+        }
+    }
+    function change_multipanel(val) {
+        var inp = $('#multipanel');
+        var btnyes = $('#multipanel_yes');
+        var btnno = $('#multipanel_no');
+        if (val == 1) {
+            inp.val('true');
+            btnyes.addClass('button--active');
+            btnno.removeClass('button--active');
+        } else {
+            inp.val('false');
+            btnno.addClass('button--active');
+            btnyes.removeClass('button--active');
+        }
+    }
+    function change_pack(val) {
+        var inp = $('#packing');
+        var packing_crate = $('#packing_crate');
+        var packing_box = $('#packing_box');
+        var packing_tube = $('#packing_tube');
+
+        packing_crate.removeClass('image-radio__item--active');
+        packing_box.removeClass('image-radio__item--active');
+        packing_tube.removeClass('image-radio__item--active');
+        if (val == 1) {
+            inp.val('Crate');
+            packing_crate.addClass('image-radio__item--active');
+        } else if (val == 2) {
+            inp.val('Box');
+            packing_box.addClass('image-radio__item--active');
+        } else {
+            inp.val('Tube');
+            packing_tube.addClass('image-radio__item--active');
+        }
+    }
+</script>

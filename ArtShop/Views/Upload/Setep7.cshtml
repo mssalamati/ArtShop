@@ -24,12 +24,17 @@
                                         <h1>Title</h1>
                                         <div class="title-input title-input--limited-edition">
                                             <div class="title-input__title-wrapper">
-                                                <input type="text" value="sadasd">
+                                                <input type="text"  name="Title"  value="">
                                                 <div class="title-input__title-wrapper__extra">
-                                                    <!-- react-text: 56 -->— Limited Edition <!-- /react-text --><!-- react-text: 57 --> of <!-- /react-text -->
+                                                    @*<!-- react-text: 56 -->— Limited Edition <!-- /react-text --><!-- react-text: 57 --> of <!-- /react-text -->*@
                                                 </div>
                                             </div>
-                                            <div class="title-input__limited-edition"><strong>Limited Edition</strong><input type="text" maxlength="3" class=""><strong>of</strong><input type="text" maxlength="3" class=""></div>
+                                            <div class="title-input__limited-edition">
+                                                <strong>Limited Edition</strong>
+                                                <input type="text" name="avaible" maxlength="3" class="">
+                                                <strong>of</strong>
+                                                <input type="text" name="AllEntity"  maxlength="3" class="">
+                                            </div>
                                         </div>
                                     </div>
                                     <h1 class="animate-group-0-3">Description</h1>
@@ -46,8 +51,8 @@
                                     <div class="animate-group-0-5 form-group">
                                         <div class="description-input__description-container">
                                             <div class="description-input__prop-aggregate">Photography: @ViewBag.firstmedium on @ViewBag.firstmaterial</div>
-                                            <textarea class="description-input__description" placeholder="Write here ..."></textarea>
-                                            <div class="description__word-count">8</div>
+                                            <textarea  name="Description"  class="description-input__description" placeholder="Write here ..."></textarea>
+                                            <div class="description__word-count"></div>
                                             <div class="description-input__prop-aggregate">Keywords: @ViewBag.Keywords</div>
                                         </div>
                                     </div>
@@ -114,4 +119,6 @@
             }
         });
     }
+
+
 </script>

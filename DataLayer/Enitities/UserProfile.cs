@@ -25,6 +25,7 @@ namespace DataLayer.Enitities
         public virtual ProfileType profileType { get; set; }
         public virtual DateTime RegisterDate { get; set; }
         public virtual ICollection<Collection> Collections { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
 
         public UserProfile()
         {

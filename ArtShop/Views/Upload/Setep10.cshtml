@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Shipping</span></div></div>
+                            <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Shipping</span></div></div>
                             <div class="wizard-button wizard-button--right"><div class="wizard-button__text"><span>Finish</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
                             <div class="mobile-status-bar">
                                 <span>
@@ -80,3 +80,24 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+        function callbackpage() {
+        $.ajax({
+            type: 'get',
+            url: '/upload/Setep9',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#updatediv').html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+
+</script>

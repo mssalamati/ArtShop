@@ -31,7 +31,7 @@
                                                 <div class="cropper-container cropper-bg" style="width: 405px; height: 270px;">
                                                     <div class="cropper-wrap-box">
                                                         <div class="cropper-canvas">
-                                                            <img id="wideimg" src="~/Content/Images/660x300.jpg" style="width: 360.32px; height: 270px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
+                                                            <img id="wideimg" src="@ViewBag.img" style="width: 360.32px; height: 270px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -40,7 +40,7 @@
                                                 <div class="cropper-container cropper-bg" style="width: 200px; height: 200px;">
                                                     <div class="cropper-wrap-box">
                                                         <div class="cropper-canvas">
-                                                            <img id="sqrimg" src="~/Content/Images/660x300.jpg" style="width: 200px; height: 149.867px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
+                                                            <img id="sqrimg" src="@ViewBag.img" style="width: 200px; height: 149.867px; margin-left: 0px; margin-top: 0px; transform: rotate(0deg);">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,10 +109,10 @@
         aspectRatio: 1.5,
         viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
         crop: function (e) {
-            $('#square_x').val(e.detail.x);
-            $('#square_y').val(e.detail.y);
-            $('#square_width').val(e.detail.width);
-            $('#square_height').val(e.detail.height);
+            $('#wide_x').val(e.detail.x);
+            $('#wide_y').val(e.detail.y);
+            $('#wide_width').val(e.detail.width);
+            $('#wide_height').val(e.detail.height);
         }
     });
 
@@ -121,10 +121,10 @@
         aspectRatio: 1,
         viewMode: 1, autoCropArea: 1, scalable: !1, zoomable: !1, dragable: !1,
         crop: function (e) {
-            $('#wide_x').val(e.detail.x);
-            $('#wide_y').val(e.detail.y);
-            $('#wide_width').val(e.detail.width);
-            $('#wide_height').val(e.detail.height);
+            $('#square_x').val(e.detail.x);
+            $('#square_y').val(e.detail.y);
+            $('#square_width').val(e.detail.width);
+            $('#square_height').val(e.detail.height);
         }
     });
 </script>
