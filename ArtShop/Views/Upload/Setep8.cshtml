@@ -10,30 +10,28 @@
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
-                            LoadingElementId = "submit_spin",
+                            LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
                         {
 
-                            <span></span>
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(575.556px);"></div>
                                 </div>
                                 <div class="wizard-step">
                                     <div class="packaging">
-                                        <h1 class="animate-group-0-0">Packaging</h1>
-                                        <p class="descriptor animate-group-0-1">Tell us how you'd like to package your artwork</p>
+                                        <h1 class="animate-group-0-0">@UploadRes.Packaging</h1>
+                                        <p class="descriptor animate-group-0-1">@UploadRes.step8_description</p>
                                         <div class="form-group form-group--block">
                                             <div class="image-radio animate-group-0-2 packaging__shipping-type">
-                                                <div style="display: none;">
-                                                    <select>
-                                                        <option name="shippingType" value="flat_crate">flat_crate</option>
-                                                        <option name="shippingType" value="flat_cardboard">flat_cardboard</option>
-                                                        <option name="shippingType" value="rolled">rolled</option>
-                                                    </select>
-                                                </div>
                                                 <div>
                                                     <input id="packing" type="hidden" name="Packaging" value="Crate" />
                                                     <div class="image-radio__item image-radio__item--active" id="packing_crate" onclick="change_pack(1);">
@@ -52,7 +50,7 @@
                                                                 </i>
                                                             </div>
                                                         </div>
-                                                        <div class="image-radio__item__name">Crate</div>
+                                                        <div class="image-radio__item__name">@UploadRes.Crate</div>
                                                     </div>
                                                     <div class="image-radio__item"  id="packing_box" onclick="change_pack(2);">
                                                         <div class="image-radio__item__image">
@@ -69,7 +67,7 @@
                                                                 </i>
                                                             </div>
                                                         </div>
-                                                        <div class="image-radio__item__name">Box</div>
+                                                        <div class="image-radio__item__name">@UploadRes.Box</div>
                                                     </div>
                                                     <div class="image-radio__item"  id="packing_tube" onclick="change_pack(3);">
                                                         <div class="image-radio__item__image">
@@ -87,71 +85,46 @@
                                                                 </i>
                                                             </div>
                                                         </div>
-                                                        <div class="image-radio__item__name">Tube</div>
+                                                        <div class="image-radio__item__name">@UploadRes.Tube</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group animate-group-0-3">
-                                            <h3>Is the artwork framed?</h3>
+                                            <h3>@UploadRes.step8_ask1</h3>
                                             <div class="input-container">
                                                 <div class="button-radio">
                                                     <div class="button-radio__button-container">
                                                         <input id="frame" type="hidden" name="framed" value="true" />
-                                                        <button id="frame_yes" onclick="change_framedBtn(1);" class="button-radio__button button" type="button">Yes</button>
-                                                        <button id="frame_no" onclick="change_framedBtn(0);" class="button-radio__button button" type="button">No</button>
+                                                        <button id="frame_yes" onclick="change_framedBtn(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                        <button id="frame_no" onclick="change_framedBtn(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group animate-group-0-5">
-                                            <h3>Is the artwork multi-paneled?</h3>
+                                            <h3>@UploadRes.step8_ask2</h3>
                                             <div class="button-radio">
                                                 <div class="button-radio__button-container">
                                                     <input id="multipanel" type="hidden" name="multi_paneled" value="true" />
-                                                    <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">Yes</button>
-                                                    <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">No</button>
+                                                    <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                    <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Description</span></div></div>
+                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>@UploadRes.step8_pre_click</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
-                                    <div class="wizard-button__text"><span>Shipping</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                    <div class="wizard-button__text"><span>@UploadRes.step8_next_click</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
                                 <div class="mobile-status-bar">
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <div class="progress-component mobile-status-bar__progress">
-                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
-                                    </div>
-                                    <span></span>
+                                    <span><button type="button" onclick="callbackpage();" class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button type="button" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');" class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                </div>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
                         }

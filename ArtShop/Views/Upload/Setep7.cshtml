@@ -9,90 +9,69 @@
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
-                            LoadingElementId = "submit_spin",
+                            LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
                         {
-                            <span></span>
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(493.333px);"></div>
                                 </div>
                                 <div class="description">
                                     <div class="form-group animate-group-0-1">
-                                        <h1>Title</h1>
+                                        <h1>@UploadRes.step7_title</h1>
                                         <div class="title-input title-input--limited-edition">
                                             <div class="title-input__title-wrapper">
                                                 <input type="text"  name="Title"  value="">
                                                 <div class="title-input__title-wrapper__extra">
-                                                    @*<!-- react-text: 56 -->— Limited Edition <!-- /react-text --><!-- react-text: 57 --> of <!-- /react-text -->*@
                                                 </div>
                                             </div>
                                             <div class="title-input__limited-edition">
-                                                <strong>Limited Edition</strong>
+                                                <strong>@UploadRes.Limited_Edition</strong>
                                                 <input type="text" name="avaible" maxlength="3" class="">
-                                                <strong>of</strong>
+                                                <strong>@UploadRes.of</strong>
                                                 <input type="text" name="AllEntity"  maxlength="3" class="">
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="animate-group-0-3">Description</h1>
+                                    <h1 class="animate-group-0-3">@UploadRes.description</h1>
                                     <div class="descriptor text-left animate-group-0-3">
-                                        <p>Collectors tend to appreciate works more if they know the “story” behind them, so be sure to write informative artwork descriptions. Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:</p>
+                                        <p>@UploadRes.step7_description</p>
                                     </div>
                                     <div class="descriptor text-left animate-group-0-4">
                                         <strong>
-                                            <p>What/who inspired the work?</p>
-                                            <p>What do you hope its viewers will feel/think?</p>
-                                            <p>Why did you choose the medium, subject matter, style?</p>
+                                            <p>@UploadRes.step7_ask_1</p>
+                                            <p>@UploadRes.step7_ask_2</p>
+                                            <p>@UploadRes.step7_ask_3</p>
                                         </strong>
                                     </div>
                                     <div class="animate-group-0-5 form-group">
                                         <div class="description-input__description-container">
-                                            <div class="description-input__prop-aggregate">Photography: @ViewBag.firstmedium on @ViewBag.firstmaterial</div>
-                                            <textarea  name="Description"  class="description-input__description" placeholder="Write here ..."></textarea>
+                                            <div class="description-input__prop-aggregate">@UploadRes.Photography: @ViewBag.firstmedium on @ViewBag.firstmaterial</div>
+                                            <textarea  name="Description"  class="description-input__description" placeholder="@UploadRes.Writehere"></textarea>
                                             <div class="description__word-count"></div>
                                             <div class="description-input__prop-aggregate">Keywords: @ViewBag.Keywords</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Dimensions</span></div></div>
+                                <div onclick="callbackpage()" class="wizard-button wizard-button--left"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>@UploadRes.step7_pre_click</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
-                                    <div class="wizard-button__text"><span>Packaging</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                    <div class="wizard-button__text"><span>@UploadRes.step7_next_click</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
                                 <div class="mobile-status-bar">
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <div class="progress-component mobile-status-bar__progress">
-                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
-                                    </div>
-                                    <span></span>
+                                    <span><button type="button" onclick="callbackpage();" class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button type="button" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');" class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                </div>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
                         }

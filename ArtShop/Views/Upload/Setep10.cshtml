@@ -7,76 +7,63 @@
                     <span></span>
                     <div class="new-page">
                         <span></span>
-                        @using (Html.BeginForm("Setep10", "Upload"))
-                        {                     
-                        <div class="new-page__content pane pane--padded pane--centered pane--full">
-                            <div class="progress-component wizard-progress">
-                                <div class="progress-component__inner" style="transform: translateX(740px);"></div>
-                            </div>
-                            <div class="wizard-step">
-                                <div class="pricing">
-                                    <h1 class="animate-group-0-0">Pricing</h1>
-                                    <p class="descriptor animate-group-0-1">
-                                    <p>Price your artwork and see the all-in price collectors will see.</p>
-                                    <a target="_blank" href="https://support.saatchiart.com/hc/en-us/articles/206523267" class="small-link block">See tips for pricing</a></p>
-                                    <div class="animate-group-0-2 z-index-fix-0 form-group form-group--inline">
-                                        <label for="price">
-                                            <!-- react-text: 449 -->Price of artwork<!-- /react-text -->
-                                        </label>
-                                        <div class="price__price-input-container">
-                                            <input type="number" class="" step="any" id="price">
-                                            <div class="pricing__price-cta">Press enter to confirm.</div>
+                      @using (Ajax.BeginForm("Setep10", "Upload", null, new AjaxOptions()
+                      {
+                          HttpMethod = "POST",
+                          UpdateTargetId = "updatediv",
+                          LoadingElementId = "loadingel",
+                          OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                          OnSuccess = "OnAjaxComplete(data)",
+                      }, new { enctype = "multipart/form-data" }))
+                      {
+                          if (!string.IsNullOrEmpty(ViewBag.Error))
+                          {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
+                            <div class="new-page__content pane pane--padded pane--centered pane--full">
+                                <div class="progress-component wizard-progress">
+                                    <div class="progress-component__inner" style="transform: translateX(740px);"></div>
+                                </div>
+                                <div class="wizard-step">
+                                    <div class="pricing">
+                                        <h1 class="animate-group-0-0">@UploadRes.Pricing</h1>
+                                        <p class="descriptor animate-group-0-1">
+                                        <p>@UploadRes.step10_description</p>                             
+                                        <div class="animate-group-0-2 z-index-fix-0 form-group form-group--inline">
+                                            <label for="price">
+                                                @UploadRes.step10_l1
+                                            </label>
+                                            <div class="price__price-input-container">
+                                                <input type="number" class="" step="any" id="price">
+                                                <div class="pricing__price-cta"></div>
+                                            </div>
+                                        </div>
+                                        <div class="animate-group-0-3 form-group form-group--inline pricing__profit">
+                                            <label for="profit">
+                                              @UploadRes.step10_l2
+                                            </label>
+                                            <input type="text" value="$ --" readonly="" id="profit">
+                                        </div>
+                                        <div>
+                                            <div class="animate-group-0-4 form-group form-group--inline"><label for="shipping-cost">@UploadRes.step10_l3</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>
+                                            <div class="animate-group-0-5 pricing__separator"></div>
+                                            <div class="animate-group-0-6 form-group form-group--inline"><label for="allin">@UploadRes.step10_l4</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
                                         </div>
                                     </div>
-                                    <div class="animate-group-0-3 form-group form-group--inline pricing__profit">
-                                        <label for="profit">
-                                            <!-- react-text: 455 -->Your Profit (<!-- /react-text --><!-- react-text: 456 -->65<!-- /react-text --><!-- react-text: 457 -->%)<!-- /react-text -->
-                                        </label>
-                                        <input type="text" value="$ --" readonly="" id="profit">
-                                    </div>
-                                    <div>
-                                        <div class="animate-group-0-4 form-group form-group--inline"><label for="shipping-cost">Shipping &amp; handling paid by collector</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>
-                                        <div class="animate-group-0-5 pricing__separator"></div>
-                                        <div class="animate-group-0-6 form-group form-group--inline"><label for="allin">Price the collector will&nbsp;see</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
-                                    </div>
+                                </div>
+                                <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>@UploadRes.step10_pre_click</span></div></div>
+                                <button type="submit" hidden id="submit"></button>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();"><div class="wizard-button__text"><span>@UploadRes.step10_next_click</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
+                                <div class="mobile-status-bar">
+                                    <span><button type="button" onclick="callbackpage();" class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button type="button" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');" class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                </div>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
-                            <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Shipping</span></div></div>
-                            <button type="submit" hidden id="submit"></button>
-                            <div class="wizard-button wizard-button--right" onclick="$('#submit').click();"><div class="wizard-button__text"><span>Finish</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
-                            <div class="mobile-status-bar">
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <span>
-                                    <button class="mobile-status-bar__nav mobile-status-bar__nav--finish mobile-status-bar__nav--right">
-                                        <i>
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                            <g>
-                                            <g>
-                                            <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                        </i>
-                                    </button>
-                                </span>
-                                <div class="progress-component mobile-status-bar__progress">
-                                    <div class="progress-component__inner" style="transform: translateX(0px);"></div>
-                                </div>
-                                <span></span>
-                            </div>
-                        </div>
                         }
                     </div>
                 </div>
@@ -104,4 +91,5 @@
         });
     }
 
+    function OnAjaxComplete(arg) { if (arg.result == 1313) { location.href = '/Products/single/' + arg.id; } }
 </script>

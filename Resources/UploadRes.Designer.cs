@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address 2.
+        /// </summary>
+        public static string Address_2 {
+            get {
+                return ResourceManager.GetString("Address_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artwork Image.
         /// </summary>
         public static string Artwork_Image {
@@ -79,11 +88,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Limited Edition is wrong.
+        /// </summary>
+        public static string avaibleEntity_error {
+            get {
+                return ResourceManager.GetString("avaibleEntity_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box.
+        /// </summary>
+        public static string Box {
+            get {
+                return ResourceManager.GetString("Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
             }
         }
         
@@ -97,11 +133,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crate.
+        /// </summary>
+        public static string Crate {
+            get {
+                return ResourceManager.GetString("Crate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depth.
+        /// </summary>
+        public static string Depth {
+            get {
+                return ResourceManager.GetString("Depth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description can not be empty.
+        /// </summary>
+        public static string descriptionnull_error {
+            get {
+                return ResourceManager.GetString("descriptionnull_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value Cannot be Empty.
         /// </summary>
         public static string Empty_Error {
             get {
                 return ResourceManager.GetString("Empty_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        public static string Height {
+            get {
+                return ResourceManager.GetString("Height", resourceCulture);
             }
         }
         
@@ -115,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to inches.
+        /// </summary>
+        public static string inches {
+            get {
+                return ResourceManager.GetString("inches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter 5-12 Keywords.
         /// </summary>
         public static string keyword_lenght_error {
@@ -124,11 +223,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Limited Edition.
+        /// </summary>
+        public static string Limited_Edition {
+            get {
+                return ResourceManager.GetString("Limited_Edition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        public static string of {
+            get {
+                return ResourceManager.GetString("of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Packaging.
+        /// </summary>
+        public static string Packaging {
+            get {
+                return ResourceManager.GetString("Packaging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photography.
+        /// </summary>
+        public static string Photography {
+            get {
+                return ResourceManager.GetString("Photography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pounds.
+        /// </summary>
+        public static string pounds {
+            get {
+                return ResourceManager.GetString("pounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing.
+        /// </summary>
+        public static string Pricing {
+            get {
+                return ResourceManager.GetString("Pricing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        public static string Region {
+            get {
+                return ResourceManager.GetString("Region", resourceCulture);
             }
         }
         
@@ -169,7 +340,52 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Price your artwork and see the all-in price collectors will see..
+        /// </summary>
+        public static string step10_description {
+            get {
+                return ResourceManager.GetString("step10_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price of artwork.
+        /// </summary>
+        public static string step10_l1 {
+            get {
+                return ResourceManager.GetString("step10_l1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Profit (65%).
+        /// </summary>
+        public static string step10_l2 {
+            get {
+                return ResourceManager.GetString("step10_l2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping &amp; handling paid by collector.
+        /// </summary>
+        public static string step10_l3 {
+            get {
+                return ResourceManager.GetString("step10_l3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price the collector will see.
+        /// </summary>
+        public static string step10_l4 {
+            get {
+                return ResourceManager.GetString("step10_l4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
         /// </summary>
         public static string step10_next_click {
             get {
@@ -178,7 +394,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Shipping.
         /// </summary>
         public static string step10_pre_click {
             get {
@@ -385,7 +601,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to It’s very important that you provide accurate dimensions as collectors and trade clients need to know the exact size of an artwork before purchasing it. For flat artworks, such as photographs and other works on paper, we suggest that you enter a depth of 0.1..
+        /// </summary>
+        public static string step6_description {
+            get {
+                return ResourceManager.GetString("step6_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string step6_next_click {
             get {
@@ -394,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mediums, Materials, &amp; Styles.
         /// </summary>
         public static string step6_pre_click {
             get {
@@ -403,7 +628,52 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Dimensions.
+        /// </summary>
+        public static string step6_title {
+            get {
+                return ResourceManager.GetString("step6_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What/who inspired the work?.
+        /// </summary>
+        public static string step7_ask_1 {
+            get {
+                return ResourceManager.GetString("step7_ask_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What do you hope its viewers will feel/think?.
+        /// </summary>
+        public static string step7_ask_2 {
+            get {
+                return ResourceManager.GetString("step7_ask_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why did you choose the medium, subject matter, style?.
+        /// </summary>
+        public static string step7_ask_3 {
+            get {
+                return ResourceManager.GetString("step7_ask_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collectors tend to appreciate works more if they know the “story” behind them, so be sure to write informative artwork descriptions. Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:.
+        /// </summary>
+        public static string step7_description {
+            get {
+                return ResourceManager.GetString("step7_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Packaging.
         /// </summary>
         public static string step7_next_click {
             get {
@@ -412,7 +682,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Dimensions.
         /// </summary>
         public static string step7_pre_click {
             get {
@@ -421,7 +691,43 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string step7_title {
+            get {
+                return ResourceManager.GetString("step7_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is the artwork framed?.
+        /// </summary>
+        public static string step8_ask1 {
+            get {
+                return ResourceManager.GetString("step8_ask1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is the artwork multi-paneled?.
+        /// </summary>
+        public static string step8_ask2 {
+            get {
+                return ResourceManager.GetString("step8_ask2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tell us how you&apos;d like to package your artwork.
+        /// </summary>
+        public static string step8_description {
+            get {
+                return ResourceManager.GetString("step8_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping.
         /// </summary>
         public static string step8_next_click {
             get {
@@ -430,7 +736,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string step8_pre_click {
             get {
@@ -439,7 +745,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Enter the shipping weight of your artwork.
+        /// </summary>
+        public static string step9_description {
+            get {
+                return ResourceManager.GetString("step9_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tell us where your artwork will be picked up.
+        /// </summary>
+        public static string step9_description2 {
+            get {
+                return ResourceManager.GetString("step9_description2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing.
         /// </summary>
         public static string step9_next_click {
             get {
@@ -448,11 +772,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Packaging.
         /// </summary>
         public static string step9_pre_click {
             get {
                 return ResourceManager.GetString("step9_pre_click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Address.
+        /// </summary>
+        public static string step9_tilte2 {
+            get {
+                return ResourceManager.GetString("step9_tilte2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping.
+        /// </summary>
+        public static string step9_title {
+            get {
+                return ResourceManager.GetString("step9_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street Address.
+        /// </summary>
+        public static string Street_Address {
+            get {
+                return ResourceManager.GetString("Street_Address", resourceCulture);
             }
         }
         
@@ -462,6 +813,24 @@ namespace Resources {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title can not be empty.
+        /// </summary>
+        public static string titleNull_error {
+            get {
+                return ResourceManager.GetString("titleNull_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tube.
+        /// </summary>
+        public static string Tube {
+            get {
+                return ResourceManager.GetString("Tube", resourceCulture);
             }
         }
         
@@ -484,11 +853,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        public static string Width {
+            get {
+                return ResourceManager.GetString("Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write here ....
+        /// </summary>
+        public static string Writehere {
+            get {
+                return ResourceManager.GetString("Writehere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depth can not be zero.
+        /// </summary>
+        public static string zeroDepth_error {
+            get {
+                return ResourceManager.GetString("zeroDepth_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height can not be zero.
+        /// </summary>
+        public static string zeroHeight_error {
+            get {
+                return ResourceManager.GetString("zeroHeight_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width can not be zero.
+        /// </summary>
+        public static string zeroWidth_error {
+            get {
+                return ResourceManager.GetString("zeroWidth_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip/Postal Code.
+        /// </summary>
+        public static string ZipCode {
+            get {
+                return ResourceManager.GetString("ZipCode", resourceCulture);
             }
         }
     }

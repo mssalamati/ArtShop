@@ -117,10 +117,289 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Upload" xml:space="preserve">
+  <data name="Address_2" xml:space="preserve">
+    <value>آدرس 2</value>
+  </data>
+  <data name="Artwork_Image" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
+  <data name="Artwork_Status" xml:space="preserve">
+    <value>Artwork Status</value>
+  </data>
+  <data name="avaibleEntity_error" xml:space="preserve">
+    <value>Limited Edition is wrong</value>
+  </data>
+  <data name="Box" xml:space="preserve">
+    <value>جعبه</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>دسته</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="copyright_error" xml:space="preserve">
+    <value>You must be the copyright owner to post an artwork</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="Crate" xml:space="preserve">
+    <value>Crate</value>
+  </data>
+  <data name="Depth" xml:space="preserve">
+    <value>عمق</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="descriptionnull_error" xml:space="preserve">
+    <value>توضیحات نمی تواند خالی باشد</value>
+  </data>
+  <data name="Empty_Error" xml:space="preserve">
+    <value>مقدار نمیتواند خالی باشد</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="Image_cannot_be_empty" xml:space="preserve">
+    <value>تصویر خالی است</value>
+  </data>
+  <data name="inches" xml:space="preserve">
+    <value>اینچ</value>
+  </data>
+  <data name="keyword_lenght_error" xml:space="preserve">
+    <value>Enter 5-12 Keywords</value>
+  </data>
+  <data name="Limited_Edition" xml:space="preserve">
+    <value>Limited Edition</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>خیر</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>از</value>
+  </data>
+  <data name="Packaging" xml:space="preserve">
+    <value>Packaging</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
+  <data name="Photography" xml:space="preserve">
+    <value>Photography</value>
+  </data>
+  <data name="pounds" xml:space="preserve">
+    <value>pounds</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>منطقه</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>Select Image</value>
+  </data>
+  <data name="select_category_str" xml:space="preserve">
+    <value>Select a category and subject to help collectors find your work</value>
+  </data>
+  <data name="select_subject" xml:space="preserve">
+    <value>select subject and category</value>
+  </data>
+  <data name="step10_description" xml:space="preserve">
+    <value>Price your artwork and see the all-in price collectors will see.</value>
+  </data>
+  <data name="step10_l1" xml:space="preserve">
+    <value>Price of artwork</value>
+  </data>
+  <data name="step10_l2" xml:space="preserve">
+    <value>Your Profit (65%)</value>
+  </data>
+  <data name="step10_l3" xml:space="preserve">
+    <value>Shipping &amp; handling paid by collector</value>
+  </data>
+  <data name="step10_l4" xml:space="preserve">
+    <value>Price the collector will see</value>
+  </data>
+  <data name="step10_next_click" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="step10_pre_click" xml:space="preserve">
+    <value>Shipping</value>
+  </data>
+  <data name="step1_next_click" xml:space="preserve">
+    <value>Category &amp; Subject</value>
+  </data>
+  <data name="step2_next_click" xml:space="preserve">
+    <value>Artwork Status</value>
+  </data>
+  <data name="step2_pre_click" xml:space="preserve">
     <value>Upload</value>
+  </data>
+  <data name="step3_copyright_string" xml:space="preserve">
+    <value>Are you the copyright owner of this artwork?</value>
+  </data>
+  <data name="step3_detail" xml:space="preserve">
+    <value>Let us know how you'd like to sell your artwork</value>
+  </data>
+  <data name="step3_forsale_string" xml:space="preserve">
+    <value>Is the original artwork for sale?</value>
+  </data>
+  <data name="step3_next_click" xml:space="preserve">
+    <value>Artwork Image</value>
+  </data>
+  <data name="step3_pre_click" xml:space="preserve">
+    <value>Category  &amp; Subject</value>
+  </data>
+  <data name="step3_print_avaible_string" xml:space="preserve">
+    <value>Would you like to make it available for prints?</value>
+  </data>
+  <data name="step3_year_string" xml:space="preserve">
+    <value>Which year did you create this artwork?</value>
+  </data>
+  <data name="step4_detail" xml:space="preserve">
+    <value>Modify your image to adjust how you want your artwork to display across the site.</value>
+  </data>
+  <data name="step4_next_click" xml:space="preserve">
+    <value>Mediums, Materials, &amp; Styles</value>
+  </data>
+  <data name="step4_pre_click" xml:space="preserve">
+    <value>Artwork Status</value>
+  </data>
+  <data name="step5_description" xml:space="preserve">
+    <value>Tell us more about your artwork</value>
+  </data>
+  <data name="step5_keywords" xml:space="preserve">
+    <value>Keywords</value>
+  </data>
+  <data name="step5_keywords_detail" xml:space="preserve">
+    <value>Tagging your artwork with keywords allows collectors to find your artwork more easily. It’s best to enter simple, descriptive words that describe the key visual elements of the work, such as color, subject matter, and artistic style.</value>
+  </data>
+  <data name="step5_keywords_lable" xml:space="preserve">
+    <value>Enter 5-12 Keywords</value>
+  </data>
+  <data name="step5_materials" xml:space="preserve">
+    <value>Select 1-5 Materials</value>
+  </data>
+  <data name="step5_mediums" xml:space="preserve">
+    <value>Select 1-5 Mediums</value>
+  </data>
+  <data name="step5_next_click" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="step5_pre_click" xml:space="preserve">
+    <value>Artwork Image</value>
+  </data>
+  <data name="step5_styles" xml:space="preserve">
+    <value>Select 1-5 Styles</value>
+  </data>
+  <data name="step5_title" xml:space="preserve">
+    <value>Mediums, Materials &amp; Styles</value>
+  </data>
+  <data name="step6_description" xml:space="preserve">
+    <value>It’s very important that you provide accurate dimensions as collectors and trade clients need to know the exact size of an artwork before purchasing it. For flat artworks, such as photographs and other works on paper, we suggest that you enter a depth of 0.1.</value>
+  </data>
+  <data name="step6_next_click" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="step6_pre_click" xml:space="preserve">
+    <value>Mediums, Materials, &amp; Styles</value>
+  </data>
+  <data name="step6_title" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="step7_ask_1" xml:space="preserve">
+    <value>What/who inspired the work?</value>
+  </data>
+  <data name="step7_ask_2" xml:space="preserve">
+    <value>What do you hope its viewers will feel/think?</value>
+  </data>
+  <data name="step7_ask_3" xml:space="preserve">
+    <value>Why did you choose the medium, subject matter, style?</value>
+  </data>
+  <data name="step7_description" xml:space="preserve">
+    <value>Collectors tend to appreciate works more if they know the “story” behind them, so be sure to write informative artwork descriptions. Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:</value>
+  </data>
+  <data name="step7_next_click" xml:space="preserve">
+    <value>Packaging</value>
+  </data>
+  <data name="step7_pre_click" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="step7_title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="step8_ask1" xml:space="preserve">
+    <value>Is the artwork framed?</value>
+  </data>
+  <data name="step8_ask2" xml:space="preserve">
+    <value>Is the artwork multi-paneled?</value>
+  </data>
+  <data name="step8_description" xml:space="preserve">
+    <value>Tell us how you'd like to package your artwork</value>
+  </data>
+  <data name="step8_next_click" xml:space="preserve">
+    <value>Shipping</value>
+  </data>
+  <data name="step8_pre_click" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="step9_description" xml:space="preserve">
+    <value>Enter the shipping weight of your artwork</value>
+  </data>
+  <data name="step9_description2" xml:space="preserve">
+    <value>Tell us where your artwork will be picked up</value>
+  </data>
+  <data name="step9_next_click" xml:space="preserve">
+    <value>Pricing</value>
+  </data>
+  <data name="step9_pre_click" xml:space="preserve">
+    <value>Packaging</value>
+  </data>
+  <data name="step9_tilte2" xml:space="preserve">
+    <value>Shipping Address</value>
+  </data>
+  <data name="step9_title" xml:space="preserve">
+    <value>Shipping</value>
+  </data>
+  <data name="Street_Address" xml:space="preserve">
+    <value>Street Address</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="titleNull_error" xml:space="preserve">
+    <value>Title can not be empty</value>
+  </data>
+  <data name="Tube" xml:space="preserve">
+    <value>Tube</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>آپلود</value>
   </data>
   <data name="upload_string" xml:space="preserve">
     <value>Upload an image file which is at least 1200 x 1500 pixels and less than 50MB.</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Writehere" xml:space="preserve">
+    <value>Write here ...</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="zeroDepth_error" xml:space="preserve">
+    <value>Depth can not be zero</value>
+  </data>
+  <data name="zeroHeight_error" xml:space="preserve">
+    <value>Height can not be zero</value>
+  </data>
+  <data name="zeroWidth_error" xml:space="preserve">
+    <value>Width can not be zero</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip/Postal Code</value>
   </data>
 </root>

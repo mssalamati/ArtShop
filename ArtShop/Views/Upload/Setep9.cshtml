@@ -10,42 +10,47 @@
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
-                            LoadingElementId = "submit_spin",
+                            LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
                         {
 
-                            <span></span>
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(657.778px);"></div>
                                 </div>
                                 <div class="wizard-step">
                                     <div class="shipping">
-                                        <h1 class="animate-group-0-0">Shipping</h1>
+                                        <h1 class="animate-group-0-0">@UploadRes.step9_title</h1>
                                         <p class="descriptor animate-group-0-1">
-                                            <!-- react-text: 140 -->Enter the shipping weight of your artwork<!-- /react-text --><a href="https://support.saatchiart.com/hc/en-us/articles/205797498" class="small-link block" target="_blank">See FAQ for instructions</a>
+                                         @UploadRes.step9_description
                                         </p>
                                         <div class="form-group shipping__artwork-weight animate-group-0-2 shipping__artwork-weight--artwork-only">
                                             <div class="shipping__artwork-weight__weight label-under-group">
-                                                <input type="number" class="" id="art_weight" min="0">
+                                                <input type="number" class="" name="weight" id="art_weight" min="0">
                                                 <div class="react-tooltip" style="bottom: 60px;">
                                                     <div class="react-tooltip__text">For an artwork your size, the shipping weight may be between 5 and 10 pounds. Please adjust up or down as needed for your artwork.</div>
                                                 </div>
-                                                <label for="art_weight" class="">pounds</label>
+                                                <label for="art_weight" class="">@UploadRes.pounds</label>
                                             </div>
                                         </div>
-                                        <h1 class="animate-group-1-0">Shipping Address</h1>
-                                        <p class="descriptor animate-group-1-1">Tell us where your artwork will&nbsp;be&nbsp;picked&nbsp;up</p>
+                                        <h1 class="animate-group-1-0">@UploadRes.step9_tilte2</h1>
+                                        <p class="descriptor animate-group-1-1">@UploadRes.step9_description2</p>
                                         <div class="form-group form-group--block">
                                             <div>
-                                                <div class="input-container text-left animate-group-1-1"><label class="block">Street Address</label><input type="text" value="" maxlength="35" class=""></div>
-                                                <div class="input-container text-left animate-group-1-2"><label class="block">Address 2</label><input type="text" value="" maxlength="35" class=""></div>
-                                                <div class="input-container text-left animate-group-1-3"><label class="block">City</label><input type="text" value="" class=""></div>
+                                                <div class="input-container text-left animate-group-1-1"><label class="block">@UploadRes.Street_Address</label><input type="text" value="" name="Street_Address" maxlength="35" class=""></div>
+                                                <div class="input-container text-left animate-group-1-2"><label class="block">@UploadRes.Address_2</label><input type="text" value="" name="Address_2" maxlength="35" class=""></div>
+                                                <div class="input-container text-left animate-group-1-3"><label class="block">@UploadRes.City</label><input type="text" value="" name="City" class=""></div>
                                                 <div class="input-container text-left animate-group-1-4 z-index-fix-0">
-                                                    <label class="block">Country</label>
-                                                    <select class="animate-group-0-1 category__subject rw-combobox rw-widget">
+                                                    <label class="block">@UploadRes.Country</label>
+                                                    <select  name="Country" class="animate-group-0-1 category__subject rw-combobox rw-widget">
                                                         <option>United States</option>
                                                         <option>Afghanistan</option>
                                                         <option>Aland Islands</option>
@@ -299,49 +304,24 @@
                                                         <option>Zimbabwe</option>
                                                     </select>
                                                 </div>
-                                                <div class="input-container text-left animate-group-1-5"><label class="block">Region</label><input type="text" value="" class=""></div>
-                                                <div class="input-container text-left animate-group-1-6"><label class="block">Zip/Postal Code</label><input type="text" value="" class=""></div>
-                                                <div class="input-container text-left animate-group-1-7"><label class="block">Phone Number</label><input type="text" class=""></div>
+                                                <div class="input-container text-left animate-group-1-5"><label class="block">@UploadRes.Region</label><input type="text" value="" name="Region" class=""></div>
+                                                <div class="input-container text-left animate-group-1-6"><label class="block">@UploadRes.ZipCode</label><input type="text" value="" name="Zip_code" class=""></div>
+                                                <div class="input-container text-left animate-group-1-7"><label class="block">@UploadRes.PhoneNumber</label><input type="text" name="phoneNumber" class=""></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Packaging</span></div></div>
+                                <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>@UploadRes.step9_pre_click</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
                                 <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
-                                    <div class="wizard-button__text"><span>Pricing</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                    <div class="wizard-button__text"><span>@UploadRes.step9_next_click</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
                                 <div class="mobile-status-bar">
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <div class="progress-component mobile-status-bar__progress">
-                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
-                                    </div>
-                                    <span></span>
+                                    <span><button type="button" onclick="callbackpage();" class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button type="button" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');" class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                </div>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
                         }

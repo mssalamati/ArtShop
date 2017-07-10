@@ -169,6 +169,26 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep6(UploadViewModel.step6 model)
         {
+            if (model.Height == 0)
+            {
+                ViewBag.error = Resources.UploadRes.zeroHeight_error;
+                return PartialView();
+            }
+            if (model.Width == 0)
+            {
+                ViewBag.error = Resources.UploadRes.zeroWidth_error;
+                return PartialView();
+            }
+            if (model.Depth == 0)
+            {
+                ViewBag.error = Resources.UploadRes.zeroDepth_error;
+                return PartialView();
+            }
+
+            Session["Height"] = model.Height;
+            Session["Width"] = model.Width;
+            Session["Depth"] = model.Depth;
+
             return RedirectToAction("Setep7");
         }
 
@@ -183,10 +203,29 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep7(UploadViewModel.step7 model)
         {
-
+            if (string.IsNullOrEmpty(model.Title))
+            {
+                ViewBag.error = Resources.UploadRes.titleNull_error;
+                return PartialView();
+            }
+            if (string.IsNullOrEmpty(model.Description))
+            {
+                ViewBag.error = Resources.UploadRes.descriptionnull_error;
+                return PartialView();
+            }
+            if (model.AllEntity < model.avaible)
+            {
+                ViewBag.error = Resources.UploadRes.avaibleEntity_error;
+                return PartialView();
+            }
+            Session["Title"] = model.Title;
+            Session["avaible"] = model.avaible;
+            Session["Description"] = model.Description;
+            Session["AllEntity"] = model.AllEntity;
             return RedirectToAction("Setep8");
         }
 
+        //Packaging and frame
         public ActionResult Setep8()
         {
             return PartialView();
@@ -194,6 +233,9 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep8(UploadViewModel.step8 model)
         {
+            Session["Packaging"] = model.Packaging;
+            Session["framed"] = model.framed;
+            Session["multi_paneled"] = model.multi_paneled;
             return RedirectToAction("Setep9");
         }
 
@@ -204,6 +246,24 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep9(UploadViewModel.step9 model)
         {
+
+            if (string.IsNullOrEmpty(model.Street_Address) || string.IsNullOrEmpty(model.Address_2) || string.IsNullOrEmpty(model.City)
+                || string.IsNullOrEmpty(model.Country) || string.IsNullOrEmpty(model.Region) || string.IsNullOrEmpty(model.Zip_code) ||
+                string.IsNullOrEmpty(model.phoneNumber))
+            {
+                ViewBag.error = Resources.UploadRes.Empty_Error;
+                return PartialView();
+            }
+
+            Session["weight"] = model.weight;
+            Session["Street_Address"] = model.Street_Address;
+            Session["Address_2"] = model.Address_2;
+            Session["City"] = model.City;
+            Session["Country"] = model.Country;
+            Session["Region"] = model.Region;
+            Session["Zip_code"] = model.Zip_code;
+            Session["phoneNumber"] = model.phoneNumber;
+
             return RedirectToAction("Setep10");
         }
 
@@ -214,37 +274,47 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep10(UploadViewModel.step10 model)
         {
+
+
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-
-            var widepath = (string)Session["WideFullPath"];
-            var sqpath = (string)Session["SqureFullPath"];
-            var categoryId = (int)Session["category"];
-            var subjectId = (int)Session["subject"];
-            var product = new Product()
+            int id = 0;
+            try
             {
-                photo = new Photo() { Path = widepath },
-                Sqphoto = new Photo() { Path = sqpath },
-                Title = "",
-                Description = "",
-                Price = 0,
-                ISOrginalForSale = false,
-                AllEntity = 0,
-                ArtCreatedYear = 1111,
-                avaible = 0,
-                Depth = 0,
-                Height = 0,
-                IsPrintAvaibled = false,
-                Keywords = "",
-                categoryId = categoryId,
-                subjectId = subjectId
-            };
-
-            profile.Products.Add(product);
-            db.SaveChanges();
-
-            return RedirectToAction("single", "Products", product.Id);
+                var widepath = (string)Session["WideFullPath"];
+                var sqpath = (string)Session["SqureFullPath"];
+                var categoryId = (int)Session["category"];
+                var subjectId = (int)Session["subject"];
+                var product = new Product()
+                {
+                    photo = new Photo() { Path = widepath },
+                    Sqphoto = new Photo() { Path = sqpath },
+                    Title = (string)Session["Title"],
+                    Description = (string)Session["Description"],
+                    Price = (int)model.Price,
+                    ISOrginalForSale = (bool)Session["isOrginal"],
+                    AllEntity = (int)Session["AllEntity"],
+                    ArtCreatedYear = (int)Session["createYear"],
+                    avaible = (int)Session["avaible"],
+                    Depth = (float)Session["Depth"],
+                    Height = (float)Session["Height"],
+                    Width = (float)Session["Width"],
+                    IsPrintAvaibled = false,
+                    Keywords = (string)Session["Keywords"],
+                    categoryId = categoryId,
+                    subjectId = subjectId
+                };
+                profile.Products.Add(product);
+                db.SaveChanges();
+                id = product.Id;
+            }
+            catch
+            {
+                ViewBag.error = Resources.UploadRes.Image_cannot_be_empty;
+                return PartialView();
+            }
+            return Json(new { result = 1313, id = id }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

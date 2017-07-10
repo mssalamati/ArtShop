@@ -151,10 +151,10 @@
     <value>select subject and category</value>
   </data>
   <data name="step10_next_click" xml:space="preserve">
-    <value />
+    <value>Finish</value>
   </data>
   <data name="step10_pre_click" xml:space="preserve">
-    <value />
+    <value>Shipping</value>
   </data>
   <data name="step1_next_click" xml:space="preserve">
     <value>Category &amp; Subject</value>
@@ -202,28 +202,28 @@
     <value>Artwork Image</value>
   </data>
   <data name="step6_next_click" xml:space="preserve">
-    <value />
+    <value>Description</value>
   </data>
   <data name="step6_pre_click" xml:space="preserve">
-    <value />
+    <value>Mediums, Materials, &amp; Styles</value>
   </data>
   <data name="step7_next_click" xml:space="preserve">
-    <value />
+    <value>Packaging</value>
   </data>
   <data name="step7_pre_click" xml:space="preserve">
-    <value />
+    <value>Dimensions</value>
   </data>
   <data name="step8_next_click" xml:space="preserve">
-    <value />
+    <value>Shipping</value>
   </data>
   <data name="step8_pre_click" xml:space="preserve">
-    <value />
+    <value>Description</value>
   </data>
   <data name="step9_next_click" xml:space="preserve">
-    <value />
+    <value>Pricing</value>
   </data>
   <data name="step9_pre_click" xml:space="preserve">
-    <value />
+    <value>Packaging</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>
@@ -236,6 +236,27 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="Depth" xml:space="preserve">
+    <value>Depth</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="inches" xml:space="preserve">
+    <value>inches</value>
+  </data>
+  <data name="Limited_Edition" xml:space="preserve">
+    <value>Limited Edition</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Photography" xml:space="preserve">
+    <value>Photography</value>
   </data>
   <data name="step5_description" xml:space="preserve">
     <value>Tell us more about your artwork</value>
@@ -260,5 +281,125 @@
   </data>
   <data name="step5_title" xml:space="preserve">
     <value>Mediums, Materials &amp; Styles</value>
+  </data>
+  <data name="step6_description" xml:space="preserve">
+    <value>It’s very important that you provide accurate dimensions as collectors and trade clients need to know the exact size of an artwork before purchasing it. For flat artworks, such as photographs and other works on paper, we suggest that you enter a depth of 0.1.</value>
+  </data>
+  <data name="step6_title" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="step7_ask_1" xml:space="preserve">
+    <value>What/who inspired the work?</value>
+  </data>
+  <data name="step7_ask_2" xml:space="preserve">
+    <value>What do you hope its viewers will feel/think?</value>
+  </data>
+  <data name="step7_ask_3" xml:space="preserve">
+    <value>Why did you choose the medium, subject matter, style?</value>
+  </data>
+  <data name="step7_description" xml:space="preserve">
+    <value>Collectors tend to appreciate works more if they know the “story” behind them, so be sure to write informative artwork descriptions. Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:</value>
+  </data>
+  <data name="step7_title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Writehere" xml:space="preserve">
+    <value>Write here ...</value>
+  </data>
+  <data name="zeroDepth_error" xml:space="preserve">
+    <value>Depth can not be zero</value>
+  </data>
+  <data name="zeroHeight_error" xml:space="preserve">
+    <value>Height can not be zero</value>
+  </data>
+  <data name="zeroWidth_error" xml:space="preserve">
+    <value>Width can not be zero</value>
+  </data>
+  <data name="avaibleEntity_error" xml:space="preserve">
+    <value>Limited Edition is wrong</value>
+  </data>
+  <data name="descriptionnull_error" xml:space="preserve">
+    <value>Description can not be empty</value>
+  </data>
+  <data name="titleNull_error" xml:space="preserve">
+    <value>Title can not be empty</value>
+  </data>
+  <data name="Box" xml:space="preserve">
+    <value>Box</value>
+  </data>
+  <data name="Crate" xml:space="preserve">
+    <value>Crate</value>
+  </data>
+  <data name="Packaging" xml:space="preserve">
+    <value>Packaging</value>
+  </data>
+  <data name="step8_ask1" xml:space="preserve">
+    <value>Is the artwork framed?</value>
+  </data>
+  <data name="step8_ask2" xml:space="preserve">
+    <value>Is the artwork multi-paneled?</value>
+  </data>
+  <data name="step8_description" xml:space="preserve">
+    <value>Tell us how you'd like to package your artwork</value>
+  </data>
+  <data name="Tube" xml:space="preserve">
+    <value>Tube</value>
+  </data>
+  <data name="Address_2" xml:space="preserve">
+    <value>Address 2</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="pounds" xml:space="preserve">
+    <value>pounds</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="step9_description" xml:space="preserve">
+    <value>Enter the shipping weight of your artwork</value>
+  </data>
+  <data name="step9_description2" xml:space="preserve">
+    <value>Tell us where your artwork will be picked up</value>
+  </data>
+  <data name="step9_tilte2" xml:space="preserve">
+    <value>Shipping Address</value>
+  </data>
+  <data name="step9_title" xml:space="preserve">
+    <value>Shipping</value>
+  </data>
+  <data name="Street_Address" xml:space="preserve">
+    <value>Street Address</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip/Postal Code</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>Pricing</value>
+  </data>
+  <data name="step10_description" xml:space="preserve">
+    <value>Price your artwork and see the all-in price collectors will see.</value>
+  </data>
+  <data name="step10_l1" xml:space="preserve">
+    <value>Price of artwork</value>
+  </data>
+  <data name="step10_l2" xml:space="preserve">
+    <value>Your Profit (65%)</value>
+  </data>
+  <data name="step10_l3" xml:space="preserve">
+    <value>Shipping &amp; handling paid by collector</value>
+  </data>
+  <data name="step10_l4" xml:space="preserve">
+    <value>Price the collector will see</value>
   </data>
 </root>
