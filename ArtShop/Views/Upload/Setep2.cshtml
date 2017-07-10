@@ -9,19 +9,24 @@
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
-                            LoadingElementId = "submit_spin",
+                            LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
                         {
-                            <span></span>
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(82.2222px);"></div>
                                 </div>
                                 <div class="category">
                                     <div class="form-group">
-                                        <h1 class="animate-group-0-0">Subject</h1>
+                                        <h1 class="animate-group-0-0">@UploadRes.Subject</h1>
 
                                         <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget">
                                             @foreach (var item in (Dictionary<int, string>)ViewBag.subjects)
@@ -32,8 +37,8 @@
                                         </select>
 
                                     </div>
-                                    <h1 class="animate-group-0-3">Category</h1>
-                                    <p class="descriptor animate-group-0-4">Select a category and subject to help collectors find your work</p>
+                                    <h1 class="animate-group-0-3">@UploadRes.Category</h1>
+                                    <p class="descriptor animate-group-0-4">@UploadRes.select_category_str</p>
                                     <div class="grid-image-select">
                                         @{ var cats = (List<CategoryViewModel>)ViewBag.category;}
                                         <select id="catselect" name="category" style="display: none;">
@@ -73,50 +78,21 @@
                                 <div onclick="callbackpage();" class="wizard-button wizard-button--left">
                                     <i class="wizard-button__icon">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg>
-                                    </i><div class="wizard-button__text"><span>Upload</span></div>
+                                    </i><div class="wizard-button__text"><span>@UploadRes.step2_pre_click</span></div>
                                 </div>
                                 <button type="submit" hidden id="submit"></button>
-                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
-                                    <div class="wizard-button__text"><span>Artwork Status</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');">
+                                    <div class="wizard-button__text"><span>@UploadRes.step2_next_click</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
                                 <div class="mobile-status-bar">
-                                    <span><button class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
-                                    <span><button class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                    <span><button type="button" onclick="callbackpage();" class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button  type="button" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');"   class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
                                 </div>
-                                <div class="mobile-status-bar">
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <div class="progress-component mobile-status-bar__progress">
-                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
-                                    </div>
-                                    <span></span>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
-                                            }
+                       }
                     </div>
                 </div>
             </div>

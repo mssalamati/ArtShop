@@ -14,7 +14,8 @@ using DataLayer.Enitities;
 
 namespace ArtShop.Controllers
 {
-    public class UploadController : Controller
+    [Authorize]
+    public class UploadController : BaseController
     {
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
@@ -36,7 +37,7 @@ namespace ArtShop.Controllers
         //upload picture
         public ActionResult Setep1()
         {
-            ViewBag.lastpic = Session["imageAddress"];
+            ViewBag.lastpic = (string)Session["imageAddress"];
             return PartialView();
         }
         [HttpPost]
@@ -45,12 +46,13 @@ namespace ArtShop.Controllers
             Session["imageAddress"] = model.img;
             if (string.IsNullOrEmpty(model.img) || !System.IO.File.Exists(HttpContext.Server.MapPath(model.img)))
             {
-                ViewBag.Error = "Image cannot be empty";
+                ViewBag.Error = Resources.UploadRes.Image_cannot_be_empty;
                 return PartialView();
             }
             return RedirectToAction("Setep2");
         }
 
+        // category and subject
         public ActionResult Setep2()
         {
             ViewBag.subjects = CashManager.Instance.Subjects;
@@ -60,11 +62,17 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep2(UploadViewModel.step2 model)
         {
+            if (model.category == 0 || model.subject == 0)
+            {
+                ViewBag.Error = Resources.UploadRes.select_subject;
+                return PartialView();
+            }
             Session["category"] = model.category;
             Session["subject"] = model.subject;
             return RedirectToAction("Setep3");
         }
 
+        //year,forsale,print and copyright
         public ActionResult Setep3()
         {
             return PartialView();
@@ -72,6 +80,14 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep3(UploadViewModel.step3 model)
         {
+            if (model.copyright == false)
+            {
+                ViewBag.Error = Resources.UploadRes.copyright_error;
+                return PartialView();
+            }
+            if (Session["imageAddress"] == null)
+                return RedirectToAction("Setep1");
+
             Session["copyright"] = model.copyright;
             Session["createYear"] = model.createYear;
             Session["isOrginal"] = model.isOrginal;
@@ -82,6 +98,7 @@ namespace ArtShop.Controllers
         //RESIZE PICTURE
         public ActionResult Setep4()
         {
+
             ViewBag.img = (string)Session["imageAddress"];
             return PartialView();
         }
@@ -105,6 +122,7 @@ namespace ArtShop.Controllers
             return RedirectToAction("Setep5");
         }
 
+        //medum,material,style and keywords
         public ActionResult Setep5()
         {
             ViewBag.lastpic = Session["WideFullPath"];
@@ -123,11 +141,21 @@ namespace ArtShop.Controllers
                 ViewBag.Mediums = CashManager.Instance.Mediums;
                 ViewBag.Materials = CashManager.Instance.Materials;
                 ViewBag.Styles = CashManager.Instance.Styles;
-                ViewBag.error = "Value Cannot be Empty";
+                ViewBag.error = Resources.UploadRes.Empty_Error;
                 return PartialView();
             }
 
+            if (model.Keywords.Split(',').Count() < 5)
+            {
+                ViewBag.error = Resources.UploadRes.keyword_lenght_error;
+                return PartialView();
+            }
+
+            Session["Mediums"] = model.Mediums;
+            Session["Materials"] = model.Materials;
+            Session["Styles"] = model.Styles;
             Session["Keywords"] = model.Keywords;
+
             Session["firstmedium"] = model.Mediums.Split(',').First();
             Session["firstmaterial"] = CashManager.Instance.Materials.SingleOrDefault(x => x.Key == model.Materials.First()).Value;
             return RedirectToAction("Setep6");
@@ -192,7 +220,8 @@ namespace ArtShop.Controllers
 
             var widepath = (string)Session["WideFullPath"];
             var sqpath = (string)Session["SqureFullPath"];
-
+            var categoryId = (int)Session["category"];
+            var subjectId = (int)Session["subject"];
             var product = new Product()
             {
                 photo = new Photo() { Path = widepath },
@@ -208,6 +237,8 @@ namespace ArtShop.Controllers
                 Height = 0,
                 IsPrintAvaibled = false,
                 Keywords = "",
+                categoryId = categoryId,
+                subjectId = subjectId
             };
 
             profile.Products.Add(product);

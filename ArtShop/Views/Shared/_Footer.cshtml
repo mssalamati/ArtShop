@@ -94,32 +94,6 @@
     </div>
 
     <script>
-            $(function () {
-                $('.so-ft-extras a').on('mousedown', function () {
-                    Saatchi.GoogleTracking.trackEvent('footer', $(this).data('link').topic, $(this).data('link').label);
-                });
-            });
-
-            document.addEventListener("DOMContentLoaded", function (event) {
-                dataLayer.push({
-                    'gtm_vars': tc_vars,
-                    'event': 'get_gtm_vars',
-                    'var_page_name': tc_vars.page_cat1
-                });
-            });
-            Saatchi.Loader.load('currency-toggle', { 'js': true }, function () {
-                if (window.INTERNATIONALIZATION_TEST) {
-                    Saatchi.CurrencyToggle.init();
-                    window.currency_code = Saatchi.Cookie.read('currency') || '';
-                    window.currency_rate = Saatchi.Cookie.read('currency_rate') || '';
-                    window.currency_symbol = Saatchi.Cookie.read('currency_symbol') || '';
-                } else {
-                    Saatchi.Cookie.erase('currency');
-                    Saatchi.Cookie.erase('currency_rate');
-                    Saatchi.Cookie.erase('currency_symbol');
-                    Saatchi.Cookie.erase('returnTestUser');
-                    Saatchi.Cookie.erase('updatedCurrency');
-                }
-            });
+           
     </script>
 </footer>

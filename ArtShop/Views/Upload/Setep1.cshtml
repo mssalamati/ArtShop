@@ -6,11 +6,13 @@
                     <span>
                     </span>
                     <div class="new-page">
+
+
                         @using (Ajax.BeginForm("Setep1", "Upload", null, new AjaxOptions()
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
-                            LoadingElementId = "submit_spin",
+                            LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
@@ -32,12 +34,9 @@
                                         <div class="image-upload-dragover__message">
                                         </div>
                                     </div>
-                                    <h1 class="animate-group-0-0">Upload</h1>
+                                    <h1 class="animate-group-0-0">@UploadRes.Upload</h1>
                                     <p class="animate-group-0-1 descriptor">
-                                        Upload an image file which is at least 1200 x 1500 pixels and less than 50MB.
-                                        <a target="_blank" href="https://support.saatchiart.com/hc/en-us/articles/206523297-What-are-the-image-file-requirements-">
-                                            More info
-                                        </a>
+                                        @UploadRes.upload_string
                                     </p>
 
                                     <div class="animate-group-0-2">
@@ -55,7 +54,7 @@
                                                         <path class="path" d="M15,5v5h-5v5H5v-5H0V5h5V0h5v5H15z"> </path>
                                                      </svg>
                                                     </i>
-                                                    <span id="sititle">Select Image</span>
+                                                    <span id="sititle">@UploadRes.SelectImage</span>
                                                 </span>
                                             </button>
 
@@ -63,15 +62,15 @@
                                     </div>
                                 </div>
                                 <button type="submit" hidden id="submit"></button>
-                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click(); $('#submit').attr('id','dontwork');">
                                     <div class="wizard-button__text">
-                                        <span>Category &amp; Subject</span>
+                                        <span>@UploadRes.step1_next_click</span>
                                     </div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
                                 <div class="mobile-status-bar">
                                     <span></span>
                                     <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
+                                        <button type="button" onclick="$('#submit').click(); $('#submit').attr('id','dontwork');" class="mobile-status-bar__nav mobile-status-bar__nav--right">
                                             <i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i>
                                         </button>
                                     </span>
@@ -82,6 +81,9 @@
                                     <span>
 
                                     </span>
+                                </div>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
                             <input type="hidden" id="img" name="img" />

@@ -9,23 +9,28 @@
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
-                            LoadingElementId = "submit_spin",
+                            LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                         }, new { enctype = "multipart/form-data" }))
                         {
-                            <span></span>
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="wizard__errors">
+                                    <div class="wizard__errors__error">@ViewBag.Error</div>
+                                </div>
+                            }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
                                     <div class="progress-component__inner" style="transform: translateX(164.444px);"></div>
                                 </div>
                                 <div class="artwork-status">
-                                    <h1 class="animate-group-0-0">Artwork Status</h1>
-                                    <p class="descriptor animate-group-0-1">Let us know how you'd like to sell your artwork</p>
+                                    <h1 class="animate-group-0-0">@UploadRes.Artwork_Status</h1>
+                                    <p class="descriptor animate-group-0-1">@UploadRes.step3_detail</p>
                                     <br>
                                     <div>
                                         <div class="form-group animate-group-0-2 z-index-fix">
-                                            <h3>Which year did you create this artwork?</h3>
+                                            <h3>@UploadRes.step3_year_string</h3>
                                             <select name="createYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget">
                                                 @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 100; i--)
                                                 {
@@ -34,73 +39,48 @@
                                             </select>
                                         </div>
                                         <div class="form-group animate-group-0-3">
-                                            <h3>Is the original artwork for sale?</h3>
+                                            <h3>@UploadRes.step3_forsale_string</h3>
                                             <div class="button-radio">
                                                 <div class="button-radio__button-container">
                                                     <input id="isOrginal" type="hidden" name="isOrginal" value="true" />
-                                                    <button onclick="change_orginalBtn(1)" id="isOrginal_yes" class="button-radio__button button button--active" type="button">Yes</button>
-                                                    <button onclick="change_orginalBtn(0)" id="isOrginal_no" class="button-radio__button button" type="button">No</button>
+                                                    <button onclick="change_orginalBtn(1)" id="isOrginal_yes" class="button-radio__button button button--active" type="button">@UploadRes.Yes</button>
+                                                    <button onclick="change_orginalBtn(0)" id="isOrginal_no" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group animate-group-0-4">
-                                            <h3>Would you like to make it available for prints?</h3>
+                                            <h3>@UploadRes.step3_print_avaible_string</h3>
                                             <div class="button-radio">
                                                 <div class="button-radio__button-container">
                                                     <input id="printAvable" type="hidden" name="printAvable" value="false" />
-                                                    <button onclick="change_prints(1)" id="printAvable_yes" class="button-radio__button button" type="button">Yes</button>
-                                                    <button onclick="change_prints(0)" id="printAvable_no" class="button-radio__button button button--active" type="button">No</button>
+                                                    <button onclick="change_prints(1)" id="printAvable_yes" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                    <button onclick="change_prints(0)" id="printAvable_no" class="button-radio__button button button--active" type="button">@UploadRes.No</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group animate-group-0-5">
-                                            <h3>Are you the copyright owner of this artwork?</h3>
+                                            <h3>@UploadRes.step3_copyright_string</h3>
                                             <div class="button-radio">
                                                 <div class="button-radio__button-container">
                                                     <input id="copyright" type="hidden" name="copyright" value="true" />
-                                                    <button onclick="change_copyright(1)" id="copyright_yes" class="button-radio__button button button--active" type="button">Yes</button>
-                                                    <button onclick="change_copyright(0)" id="copyright_no" class="button-radio__button button" type="button">No</button>
+                                                    <button onclick="change_copyright(1)" id="copyright_yes" class="button-radio__button button button--active" type="button">@UploadRes.Yes</button>
+                                                    <button onclick="change_copyright(0)" id="copyright_no" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Category &amp; Subject</span></div></div>
+                                <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>@UploadRes.step3_pre_click</span></div></div>
                                 <button type="submit" hidden id="submit"></button>
-                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click();">
-                                    <div class="wizard-button__text"><span>Artwork Image</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
+                                <div class="wizard-button wizard-button--right" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');">
+                                    <div class="wizard-button__text"><span>@UploadRes.step3_next_click</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i>
                                 </div>
                                 <div class="mobile-status-bar">
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button class="mobile-status-bar__nav mobile-status-bar__nav--right">
-                                            <i>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve">
-                                                <g>
-                                                <g>
-                                                <polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon>
-                                       </g>
-                                    </g>
-                                 </svg>
-                                            </i>
-                                        </button>
-                                    </span>
-                                    <div class="progress-component mobile-status-bar__progress">
-                                        <div class="progress-component__inner" style="transform: translateX(0px);"></div>
-                                    </div>
-                                    <span></span>
+                                    <span><button type="button" onclick="callbackpage();" class="mobile-status-bar__nav mobile-status-bar__nav--left"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></button></span>
+                                    <span><button type="button" onclick="$('#submit').click(); $('#submit').attr('id', 'dontwork');" class="mobile-status-bar__nav mobile-status-bar__nav--right"><i><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" enable-background="new 0 0 215 370.8" xml:space="preserve"><g><g><polygon points="0,346 24.1,370.8 215,185.4 24.1,0 0,24.9 165.3,185.4 "></polygon></g></g></svg></i></button></span><div class="progress-component mobile-status-bar__progress"><div class="progress-component__inner" style="transform: translateX(0px);"></div></div><span></span>
+                                </div>
+                                <div id="loadingel" hidden style="background:rgba(255, 255, 255, 0.8);position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
+                                    <i class="fa fa-spinner fa-spin" style="position:absolute;top:45%;left:47%;font-size:40px"></i>
                                 </div>
                             </div>
                         }

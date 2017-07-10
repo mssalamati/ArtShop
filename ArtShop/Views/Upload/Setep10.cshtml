@@ -7,6 +7,8 @@
                     <span></span>
                     <div class="new-page">
                         <span></span>
+                        @using (Html.BeginForm("Setep10", "Upload"))
+                        {                     
                         <div class="new-page__content pane pane--padded pane--centered pane--full">
                             <div class="progress-component wizard-progress">
                                 <div class="progress-component__inner" style="transform: translateX(740px);"></div>
@@ -40,7 +42,8 @@
                                 </div>
                             </div>
                             <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>Shipping</span></div></div>
-                            <div class="wizard-button wizard-button--right"><div class="wizard-button__text"><span>Finish</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
+                            <button type="submit" hidden id="submit"></button>
+                            <div class="wizard-button wizard-button--right" onclick="$('#submit').click();"><div class="wizard-button__text"><span>Finish</span></div><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i></div>
                             <div class="mobile-status-bar">
                                 <span>
                                     <button class="mobile-status-bar__nav mobile-status-bar__nav--left">
@@ -74,6 +77,7 @@
                                 <span></span>
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -84,7 +88,7 @@
 
 
 <script>
-        function callbackpage() {
+    function callbackpage() {
         $.ajax({
             type: 'get',
             url: '/upload/Setep9',
