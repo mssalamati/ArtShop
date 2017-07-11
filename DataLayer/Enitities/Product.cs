@@ -19,11 +19,14 @@ namespace DataLayer.Enitities
         public virtual ICollection<ProductTranslation> Translations { get; set; }
         public int Price { get; set; }
         [ForeignKey("photo")]
-        public int photoId { get; set; }
+        public int? photoId { get; set; }
         public virtual Photo photo { get; set; }
         [ForeignKey("Sqphoto")]
-        public int SqphotoId { get; set; }
+        public int? SqphotoId { get; set; }
         public virtual Photo Sqphoto { get; set; }
+        [ForeignKey("Widephoto")]
+        public int? WidephotoId { get; set; }
+        public virtual Photo Widephoto { get; set; }
         public DateTime CreateDate { get; set; }
         public int ArtCreatedYear { get; set; }
         public bool ISOrginalForSale { get; set; }

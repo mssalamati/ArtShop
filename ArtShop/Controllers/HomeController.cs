@@ -70,7 +70,8 @@ namespace ArtShop.Controllers
                 cookie.Expires = DateTime.Now.AddYears(1);
             }
             Response.Cookies.Add(cookie);
-            return RedirectToAction("Index");
+            string url = this.Request.UrlReferrer.AbsolutePath;
+            return Redirect(url);
         }
     }
 }

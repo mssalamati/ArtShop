@@ -10,6 +10,7 @@ namespace DataLayer.Interfaces
     public interface ITranslation<TEntity> where TEntity : class
     {
         Language language { get; set; }
+        string languageId { get; set; }
     }
 
     public interface ITranslatable<TEntity, TTranslation>

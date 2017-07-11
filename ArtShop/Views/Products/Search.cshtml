@@ -1,0 +1,844 @@
+﻿
+@{
+
+}
+
+@model  List<Product>
+
+<div role="main" class="row row-layout browse-content">
+    <header class="small-12 columns" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="small-12 columns breadcrumbs">
+                <a href="../index.html">Home</a><a href="../paintings.html">Paintings</a><span>Fine Art</span>
+            </div>
+        </div>
+    </header>
+    <div class="clear"></div>
+    <div class="row filters-main" style="padding: 20px 20px 0;margin-bottom:10px">
+        <div class="small-6 medium-2 columns">
+            <select name="category" id="selectCategory" class="filter-options">
+                <option value="all">All Categories</option>
+                <option value="Collage">
+                    Collage
+                </option>
+                <option value="Drawing">
+                    Drawings
+                </option>
+                <option value="Installation">
+                    Installation
+                </option>
+                <option value="New Media">
+                    New Media
+                </option>
+                <option value="Painting" selected>
+                    Paintings
+                </option>
+                <option value="Photography">
+                    Photography
+                </option>
+                <option value="Printmaking">
+                    Printmaking
+                </option>
+                <option value="Sculpture">
+                    Sculpture
+                </option>
+                <option value="Video">
+                    Video
+                </option>
+            </select>
+        </div>
+        <div class="small-6 medium-2 columns">
+            <select name="style" id="selectStyle" class="filter-options">
+                <option value="">All Styles</option>
+                <option value="Abstract">
+                    Abstract
+                </option>
+                <option value="Abstract Expressionism">
+                    Abstract Expressionism
+                </option>
+                <option value="Art Deco">
+                    Art Deco
+                </option>
+                <option value="Conceptual">
+                    Conceptual
+                </option>
+                <option value="Cubism">
+                    Cubism
+                </option>
+                <option value="Dada">
+                    Dada
+                </option>
+                <option value="Documentary">
+                    Documentary
+                </option>
+                <option value="Expressionism">
+                    Expressionism
+                </option>
+                <option value="Figurative">
+                    Figurative
+                </option>
+                <option value="Fine Art" selected>
+                    Fine Art
+                </option>
+                <option value="Folk">
+                    Folk
+                </option>
+                <option value="Illustration">
+                    Illustration
+                </option>
+                <option value="Impressionism">
+                    Impressionism
+                </option>
+                <option value="Minimalism">
+                    Minimalism
+                </option>
+                <option value="Modern">
+                    Modern
+                </option>
+                <option value="Photorealism">
+                    Photorealism
+                </option>
+                <option value="Pop Art">
+                    Pop Art
+                </option>
+                <option value="Portraiture">
+                    Portraiture
+                </option>
+                <option value="Realism">
+                    Realism
+                </option>
+                <option value="Street Art">
+                    Street Art
+                </option>
+                <option value="Surrealism">
+                    Surrealism
+                </option>
+            </select>
+        </div>
+        <div class="small-6 medium-2 columns">
+            <select name="subject" id="selectSubject" class="filter-options">
+                <option value="">All Subjects</option>
+                <option value="Abstract">
+                    Abstract
+                </option>
+                <option value="Aerial">
+                    Aerial
+                </option>
+                <option value="Aeroplane">
+                    Aeroplane
+                </option>
+                <option value="Airplane">
+                    Airplane
+                </option>
+                <option value="Animal">
+                    Animal
+                </option>
+                <option value="Architecture">
+                    Architecture
+                </option>
+                <option value="Automobile">
+                    Automobile
+                </option>
+                <option value="Beach">
+                    Beach
+                </option>
+                <option value="Bicycle">
+                    Bicycle
+                </option>
+                <option value="Bike">
+                    Bike
+                </option>
+                <option value="Boat">
+                    Boat
+                </option>
+                <option value="Body">
+                    Body
+                </option>
+                <option value="Botanic">
+                    Botanic
+                </option>
+                <option value="Business">
+                    Business
+                </option>
+                <option value="Calligraphy">
+                    Calligraphy
+                </option>
+                <option value="Car">
+                    Car
+                </option>
+                <option value="Cartoon">
+                    Cartoon
+                </option>
+                <option value="Cats">
+                    Cats
+                </option>
+                <option value="Celebrity">
+                    Celebrity
+                </option>
+                <option value="Children">
+                    Children
+                </option>
+                <option value="Cinema">
+                    Cinema
+                </option>
+                <option value="Cities">
+                    Cities
+                </option>
+                <option value="Classical mythology">
+                    Classical mythology
+                </option>
+                <option value="Comics">
+                    Comics
+                </option>
+                <option value="Cows">
+                    Cows
+                </option>
+                <option value="Cuisine">
+                    Cuisine
+                </option>
+                <option value="Culture">
+                    Culture
+                </option>
+                <option value="Dogs">
+                    Dogs
+                </option>
+                <option value="Education">
+                    Education
+                </option>
+                <option value="Erotic">
+                    Erotic
+                </option>
+                <option value="Family">
+                    Family
+                </option>
+                <option value="Fantasy">
+                    Fantasy
+                </option>
+                <option value="Fashion">
+                    Fashion
+                </option>
+                <option value="Fish">
+                    Fish
+                </option>
+                <option value="Floral">
+                    Floral
+                </option>
+                <option value="Food">
+                    Food
+                </option>
+                <option value="Food & Drink">
+                    Food & Drink
+                </option>
+                <option value="Garden">
+                    Garden
+                </option>
+                <option value="Geometric">
+                    Geometric
+                </option>
+                <option value="Graffiti">
+                    Graffiti
+                </option>
+                <option value="Health & Beauty">
+                    Health & Beauty
+                </option>
+                <option value="Home">
+                    Home
+                </option>
+                <option value="Horse">
+                    Horse
+                </option>
+                <option value="Humor">
+                    Humor
+                </option>
+                <option value="Interiors">
+                    Interiors
+                </option>
+                <option value="Kids">
+                    Kids
+                </option>
+                <option value="Kitchen">
+                    Kitchen
+                </option>
+                <option value="Landscape">
+                    Landscape
+                </option>
+                <option value="Language">
+                    Language
+                </option>
+                <option value="Light">
+                    Light
+                </option>
+                <option value="Love">
+                    Love
+                </option>
+                <option value="Men">
+                    Men
+                </option>
+                <option value="Mortality">
+                    Mortality
+                </option>
+                <option value="Motor">
+                    Motor
+                </option>
+                <option value="Motorbike">
+                    Motorbike
+                </option>
+                <option value="Motorcycle">
+                    Motorcycle
+                </option>
+                <option value="Music">
+                    Music
+                </option>
+                <option value="Nature">
+                    Nature
+                </option>
+                <option value="Nude">
+                    Nude
+                </option>
+                <option value="Outer Space">
+                    Outer Space
+                </option>
+                <option value="Patterns">
+                    Patterns
+                </option>
+                <option value="People">
+                    People
+                </option>
+                <option value="Performing Arts">
+                    Performing Arts
+                </option>
+                <option value="Places">
+                    Places
+                </option>
+                <option value="Political">
+                    Political
+                </option>
+                <option value="Politics">
+                    Politics
+                </option>
+                <option value="Pop Culture/Celebrity">
+                    Pop Culture/Celebrity
+                </option>
+                <option value="Popular culture">
+                    Popular culture
+                </option>
+                <option value="Portrait">
+                    Portrait
+                </option>
+                <option value="Religion">
+                    Religion
+                </option>
+                <option value="Religious">
+                    Religious
+                </option>
+                <option value="Rural life">
+                    Rural life
+                </option>
+                <option value="Sailboat">
+                    Sailboat
+                </option>
+                <option value="Science">
+                    Science
+                </option>
+                <option value="Science/Technology">
+                    Science/Technology
+                </option>
+                <option value="Seascape">
+                    Seascape
+                </option>
+                <option value="Seasons">
+                    Seasons
+                </option>
+                <option value="Ship">
+                    Ship
+                </option>
+                <option value="Sport">
+                    Sport
+                </option>
+                <option value="Sports">
+                    Sports
+                </option>
+                <option value="Still Life">
+                    Still Life
+                </option>
+                <option value="Technology">
+                    Technology
+                </option>
+                <option value="Time">
+                    Time
+                </option>
+                <option value="Train">
+                    Train
+                </option>
+                <option value="Transportation">
+                    Transportation
+                </option>
+                <option value="Travel">
+                    Travel
+                </option>
+                <option value="Tree">
+                    Tree
+                </option>
+                <option value="Typography">
+                    Typography
+                </option>
+                <option value="Wall">
+                    Wall
+                </option>
+                <option value="Water">
+                    Water
+                </option>
+                <option value="Women">
+                    Women
+                </option>
+                <option value="World Culture">
+                    World Culture
+                </option>
+                <option value="Yacht">
+                    Yacht
+                </option>
+            </select>
+        </div>
+        <div class="small-6 medium-2 columns">
+            <select name="medium" id="selectMedium" class="filter-options">
+                <option value="">All Mediums</option>
+                <option value="3D Sculpting">
+                    3D Sculpting
+                </option>
+                <option value="Acrylic">
+                    Acrylic
+                </option>
+                <option value="Airbrush">
+                    Airbrush
+                </option>
+                <option value="Algorithmic Art">
+                    Algorithmic Art
+                </option>
+                <option value="Aquatint">
+                    Aquatint
+                </option>
+                <option value="Ballpoint Pen">
+                    Ballpoint Pen
+                </option>
+                <option value="Black & White">
+                    Black & White
+                </option>
+                <option value="Bronze">
+                    Bronze
+                </option>
+                <option value="C-type">
+                    C-type
+                </option>
+                <option value="Ceramic">
+                    Ceramic
+                </option>
+                <option value="Chalk">
+                    Chalk
+                </option>
+                <option value="Charcoal">
+                    Charcoal
+                </option>
+                <option value="Clay">
+                    Clay
+                </option>
+                <option value="Color">
+                    Color
+                </option>
+                <option value="Conte">
+                    Conte
+                </option>
+                <option value="Crayon">
+                    Crayon
+                </option>
+                <option value="Decoupage">
+                    Decoupage
+                </option>
+                <option value="Digital">
+                    Digital
+                </option>
+                <option value="Drypoint">
+                    Drypoint
+                </option>
+                <option value="Dye Transfer">
+                    Dye Transfer
+                </option>
+                <option value="Enamel">
+                    Enamel
+                </option>
+                <option value="Encaustic">
+                    Encaustic
+                </option>
+                <option value="Engraving">
+                    Engraving
+                </option>
+                <option value="Environmental">
+                    Environmental
+                </option>
+                <option value="Etching">
+                    Etching
+                </option>
+                <option value="Fabric">
+                    Fabric
+                </option>
+                <option value="Fiber">
+                    Fiber
+                </option>
+                <option value="Fiberglass">
+                    Fiberglass
+                </option>
+                <option value="Found Objects">
+                    Found Objects
+                </option>
+                <option value="Fractal">
+                    Fractal
+                </option>
+                <option value="Full spectrum">
+                    Full spectrum
+                </option>
+                <option value="Gelatin">
+                    Gelatin
+                </option>
+                <option value="Gesso">
+                    Gesso
+                </option>
+                <option value="Giclée">
+                    Giclée
+                </option>
+                <option value="Glass">
+                    Glass
+                </option>
+                <option value="Gouache">
+                    Gouache
+                </option>
+                <option value="Granite">
+                    Granite
+                </option>
+                <option value="Graphite">
+                    Graphite
+                </option>
+                <option value="Household">
+                    Household
+                </option>
+                <option value="Ink">
+                    Ink
+                </option>
+                <option value="Interactive">
+                    Interactive
+                </option>
+                <option value="Kinetic">
+                    Kinetic
+                </option>
+                <option value="LED">
+                    LED
+                </option>
+                <option value="Latex">
+                    Latex
+                </option>
+                <option value="Leather">
+                    Leather
+                </option>
+                <option value="Lenticular">
+                    Lenticular
+                </option>
+                <option value="Lights">
+                    Lights
+                </option>
+                <option value="Linocuts">
+                    Linocuts
+                </option>
+                <option value="Lithograph">
+                    Lithograph
+                </option>
+                <option value="Manipulated">
+                    Manipulated
+                </option>
+                <option value="Marble">
+                    Marble
+                </option>
+                <option value="Marker">
+                    Marker
+                </option>
+                <option value="Metal">
+                    Metal
+                </option>
+                <option value="Mezzotint">
+                    Mezzotint
+                </option>
+                <option value="Monotype">
+                    Monotype
+                </option>
+                <option value="Mosaic">
+                    Mosaic
+                </option>
+                <option value="Neon">
+                    Neon
+                </option>
+                <option value="New Media">
+                    New Media
+                </option>
+                <option value="Oil">
+                    Oil
+                </option>
+                <option value="Paint">
+                    Paint
+                </option>
+                <option value="Paper">
+                    Paper
+                </option>
+                <option value="Paper mache">
+                    Paper mache
+                </option>
+                <option value="Pastel">
+                    Pastel
+                </option>
+                <option value="Pen and Ink">
+                    Pen and Ink
+                </option>
+                <option value="Pencil">
+                    Pencil
+                </option>
+                <option value="Photo">
+                    Photo
+                </option>
+                <option value="Photogram">
+                    Photogram
+                </option>
+                <option value="Photography">
+                    Photography
+                </option>
+                <option value="Pinhole">
+                    Pinhole
+                </option>
+                <option value="Plaster">
+                    Plaster
+                </option>
+                <option value="Plastic">
+                    Plastic
+                </option>
+                <option value="Platinum">
+                    Platinum
+                </option>
+                <option value="Polaroid">
+                    Polaroid
+                </option>
+                <option value="Pottery">
+                    Pottery
+                </option>
+                <option value="Precious Materials">
+                    Precious Materials
+                </option>
+                <option value="Resin">
+                    Resin
+                </option>
+                <option value="Robotics">
+                    Robotics
+                </option>
+                <option value="Rubber">
+                    Rubber
+                </option>
+                <option value="Screenprinting">
+                    Screenprinting
+                </option>
+                <option value="Silverpoint">
+                    Silverpoint
+                </option>
+                <option value="Sound">
+                    Sound
+                </option>
+                <option value="Spray Paint">
+                    Spray Paint
+                </option>
+                <option value="Steel">
+                    Steel
+                </option>
+                <option value="Stencil">
+                    Stencil
+                </option>
+                <option value="Stone">
+                    Stone
+                </option>
+                <option value="Taxidermy">
+                    Taxidermy
+                </option>
+                <option value="Tempera">
+                    Tempera
+                </option>
+                <option value="Textile">
+                    Textile
+                </option>
+                <option value="Timber">
+                    Timber
+                </option>
+                <option value="Vector">
+                    Vector
+                </option>
+                <option value="Video">
+                    Video
+                </option>
+                <option value="Watercolor">
+                    Watercolor
+                </option>
+                <option value="Wax">
+                    Wax
+                </option>
+                <option value="Wood">
+                    Wood
+                </option>
+                <option value="Woodcut">
+                    Woodcut
+                </option>
+            </select>
+        </div>
+        <div class="small-6 medium-2 columns">
+            <select name="price" id="selectPrice" class="filter-options">
+                <option value="">All Prices</option>
+                <!-- internationalization test included -->
+                <option value="0-500">
+                    Up to $500
+                </option>
+                <option value="500-1000">
+                    $500                -
+                    $1,000
+                </option>
+                <option value="1000-2000">
+                    $1,000                -
+                    $2,000
+                </option>
+                <option value="2000-5000">
+                    $2,000                -
+                    $5,000
+                </option>
+                <option value="5000-10000">
+                    $5,000                -
+                    $10,000
+                <option value="10000-max">
+                    Over $10,000
+                </option>
+            </select>
+        </div>
+        <div class="small-6 medium-2 columns">
+            @*<button id="showFilters" class="button">See All Filters <i class="fa fa-angle-down"></i></button>*@
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <ul class="item-list masonry">
+        @for (int i = 0; i < 5; i++)
+        {
+            foreach (var item in Model)
+            {
+                <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+                    <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
+                        <div class="list-art-image-wrapper">
+                            <a href="/" itemprop="url">
+                                <img src="@item.photo.Path">
+                            </a>
+
+                        </div>
+                        <div class="item-controls">
+                            <a href="/" class="btn-round btn-add-to-cart" title="Add to Cart">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn-round btn-favorite" title="Add to Favorites">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                            <a href="#" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="list-art-meta">
+                            <h4 class="list-art-title left ellipsis" itemprop="name">
+                                <a href="#">@item.Title</a>
+                            </h4>
+                            <small class="art-category clear left">Painting, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> in</small>
+
+                            <div class="list-author clear left">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+                                    <a href="#" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
+                                </h5>
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">United States</h5>
+                            </div>
+
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $@item.Price
+                                    </div>
+                                </div>
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div class="sample-print-price" itemprop="price">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            }
+        }
+
+    </ul>
+    <div class="clearfix"></div>
+
+    <div class="so-pagination">
+        <div class="pagination">
+            <ul class="pull-right">
+                <li class="active"><a href="javascript: void(0);">1</a></li>
+                <li>
+                    <a href="">2</a>
+                </li>
+                <li>
+                    <a href="">3</a>
+                </li>
+                <li>
+                    <a href="">4</a>
+                </li>
+                <li>
+                    <a href="">5</a>
+                </li>
+                <li>
+                    <a href="">6</a>
+                </li>
+                <li><a href=""><i class="fa fa-angle-right"></i></a></li>
+
+                <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+            </ul>
+            <div class="so-pagination-count pull-right">
+                <small>Showing 1 - 24   of 153305  </small>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<script src="~/Content/fullview.js"></script>
+
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
+    });
+    Saatchi.Loader.load('fullview', { js: true }, function () {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('favorite', { js: true }, function () {
+        Saatchi.Favorite.init();
+    });
+
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+
+    var observer;
+    // stop observing
+    if (observer) {
+        observer.disconnect();
+    }
+
+</script>

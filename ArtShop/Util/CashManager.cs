@@ -19,10 +19,10 @@ namespace ArtShop.Util
 
 
         private HomeIndexViewModel _Header = null;
-        private Dictionary<int, string> _Subjects = null;
-        private Dictionary<int, string> _Mediums = null;
-        private Dictionary<int, string> _Materials = null;
-        private Dictionary<int, string> _Styles = null;
+        private List<Subject> _Subjects = null;
+        private List<Medium> _Mediums = null;
+        private List<Material> _Materials = null;
+        private List<Style> _Styles = null;
         private List<CategoryViewModel> _Categories = null;
         private static CashManager _Instance;
         private List<NavigationCategory> cats;
@@ -35,10 +35,10 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _Subjects = db.Subjects.Include("Translations").ToList().ToDictionary(x => x.Id, y => y.Current().Name);
+                        _Subjects = db.Subjects.Include("Translations").ToList();
                     }
                 }
-                return _Subjects;
+                return _Subjects.ToDictionary(x => x.Id, y => y.Current().Name);
             }
         }
 
@@ -50,10 +50,10 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _Mediums = db.Mediums.Where(x => x.AddedByAdmin).Include("Translations").ToList().ToDictionary(x => x.Id, y => y.Current().Name);
+                        _Mediums = db.Mediums.Where(x => x.AddedByAdmin).Include("Translations").ToList();
                     }
                 }
-                return _Mediums;
+                return _Mediums.ToDictionary(x => x.Id, y => y.Current().Name);
             }
         }
 
@@ -65,10 +65,10 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _Materials = db.Materials.Where(x => x.AddedByAdmin).Include("Translations").ToList().ToDictionary(x => x.Id, y => y.Current().Name);
+                        _Materials = db.Materials.Where(x => x.AddedByAdmin).Include("Translations").ToList();
                     }
                 }
-                return _Materials;
+                return _Materials.ToDictionary(x => x.Id, y => y.Current().Name);
             }
         }
 
@@ -80,10 +80,10 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _Styles = db.Styles.Where(x => x.AddedByAdmin).Include("Translations").ToList().ToDictionary(x => x.Id, y => y.Current().Name);
+                        _Styles = db.Styles.Where(x => x.AddedByAdmin).Include("Translations").ToList();
                     }
                 }
-                return _Styles;
+                return _Styles.ToDictionary(x => x.Id, y => y.Current().Name);
             }
         }
 

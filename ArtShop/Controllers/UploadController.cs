@@ -26,7 +26,7 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult upload(HttpPostedFileBase file)
         {
-            string tempFolderName = "Upload/products/temps";
+            string tempFolderName = "Upload/products/Product";
             var result = ImageHelper.Saveimage(Server, file, tempFolderName, ImageHelper.saveImageMode.Not);
             if (!result.ResultStatus)
                 return Json(new { result = false, data = result.Error });
@@ -105,6 +105,17 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep4(UploadViewModel.step4 model)
         {
+            model = model.square_width == 0 && model.wide_width == 0 ? new UploadViewModel.step4()
+            {
+                wide_x = float.Parse(Request["wide_x"].Replace(".","/")),
+                wide_height = float.Parse(Request["wide_height"].Replace(".", "/")),
+                wide_width = float.Parse(Request["wide_width"].Replace(".", "/")),
+                wide_y = float.Parse(Request["wide_y"].Replace(".", "/")),
+                square_height = float.Parse(Request["square_height"].Replace(".", "/")),
+                square_width = float.Parse(Request["square_width"].Replace(".", "/")),
+                square_x = float.Parse(Request["square_x"].Replace(".", "/")),
+                square_y = float.Parse(Request["square_y"].Replace(".", "/")),
+            } : model;
             string image = (string)Session["imageAddress"];
             var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
 
@@ -116,6 +127,7 @@ namespace ArtShop.Controllers
             else
             {
                 ViewBag.img = (string)Session["imageAddress"];
+                ViewBag.error = result.Error;
                 return PartialView();
             }
 
@@ -284,11 +296,13 @@ namespace ArtShop.Controllers
             {
                 var widepath = (string)Session["WideFullPath"];
                 var sqpath = (string)Session["SqureFullPath"];
+                var orginalpic = (string)Session["imageAddress"];
                 var categoryId = (int)Session["category"];
                 var subjectId = (int)Session["subject"];
                 var product = new Product()
                 {
-                    photo = new Photo() { Path = widepath },
+                    photo = new Photo() { Path = orginalpic },
+                    Widephoto = new Photo() { Path = widepath },
                     Sqphoto = new Photo() { Path = sqpath },
                     Title = (string)Session["Title"],
                     Description = (string)Session["Description"],
