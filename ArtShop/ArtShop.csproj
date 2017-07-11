@@ -219,10 +219,12 @@
     <Compile Include="Util\CashManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\2220741194.js" />
     <Content Include="Content\app-99c5613a7fbb0f5f16e645bc204d000d.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cropper.js" />
+    <Content Include="Content\dropzone.js" />
     <Content Include="Content\fullview.js" />
     <Content Include="Content\Images\250x143.jpg" />
     <Content Include="Content\Images\300x300.jpg" />
@@ -235,6 +237,7 @@
     <Content Include="Content\Images\mag-glass.svg" />
     <Content Include="Content\Images\sa-logo.svg" />
     <Content Include="Content\Images\saatchi-logo-grayscale.svg" />
+    <Content Include="Content\Images\sprite_v5.42.3.png" />
     <Content Include="Content\Images\toaf-logo-grayscale.svg" />
     <Content Include="Content\Images\united-states.svg" />
     <Content Include="Content\js\dist\authentication-a8d44a3b2cd84d4b45f9.js" />
@@ -294,6 +297,8 @@
     <Content Include="Content\select2\js\select2.js" />
     <Content Include="Content\select2\js\select2.min.js" />
     <Content Include="Content\select2\select2.png" />
+    <Content Include="Content\singleproduct2.js" />
+    <Content Include="Content\Sortable.js" />
     <Content Include="Content\upload-213e60b8a463e6181d4d.js" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.10.3\jquery-ui.min.js" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.8.6\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -314,6 +319,8 @@
     <Content Include="Content\Vendor\cdn.optimizely.com\js\2220741194.js" />
     <Content Include="Content\Vendor\code.jquery.com\jquery-migrate-1.2.1.min.js" />
     <Content Include="Content\Vendor\maxcdn.bootstrapcdn.com\font-awesome\4.3.0\css\font-awesome.min.css" />
+    <Content Include="Content\view_in_room_couch_plant.jpg" />
+    <Content Include="Content\view_in_room_plant.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

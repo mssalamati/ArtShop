@@ -286,8 +286,6 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep10(UploadViewModel.step10 model)
         {
-
-
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
