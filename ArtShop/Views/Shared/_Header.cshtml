@@ -17,7 +17,7 @@ if (c == culture)
     <div class="desktop-navigation desktop-navigation--saatchiart">
         <div class="desktop-navigation__context-bar">
             <div class="desktop-navigation__context-bar__inner">
-                <div class="desktop-navigation__context-bar__left">              
+                <div class="desktop-navigation__context-bar__left">
                     <div class="desktop-navigation__context-links">
                         <a data-gtm-event="nav header" class="desktop-navigation__context-link @selected("en-us", culture)" href="/Home/SetCulture?culture=en-us">
                             <img style="width:auto" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
@@ -84,7 +84,7 @@ if (c == culture)
                                 <div data-index="@i" class="desktop-navigation__dropdown__inner">
                                     <div class="desktop-navigation__dropdown__image-container">
                                         <a data-gtm-event="nav header"
-                                           href="art-collection/Painting/Featured-Paintings/685448/191300/view.html"
+                                           href="/search/@Model.Navigation[i].Id"
                                            class="desktop-navigation__dropdown__image"
                                            style="background-image: url(@Model.Navigation[i].Photo)">
                                             <div class="desktop-navigation__dropdown__image__title">
@@ -104,7 +104,7 @@ if (c == culture)
                                                 {
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
-                                                       href="paintings/fine-art.html">
+                                                       href="/search/@Model.Navigation[i].Id/style/@item.Id">
                                                         @item.Name
                                                     </a>
                                                 }
@@ -120,7 +120,7 @@ if (c == culture)
                                                 {
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
-                                                       href="paintings/portrait.html">
+                                                       href="/search/@Model.Navigation[i].Id/subject/@item.Id">
                                                         @item.Name
                                                     </a>
                                                 }
@@ -136,7 +136,7 @@ if (c == culture)
                                                 {
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
-                                                       href="paintings/oil.html">
+                                                       href="/search/@Model.Navigation[i].Id/medium/@item.Id">
                                                         @item.Name
                                                     </a>
                                                 }
@@ -212,15 +212,15 @@ if (c == culture)
                                              class="mobile-navigation__menu__panel__back" />
                                         <a data-gtm-event="nav header"
                                            class="mobile-navigation__menu__panel__header__title"
-                                           href="paintings.html">
+                                           href="/search/@item.Id">
                                             @item.Name
                                         </a>
                                     </div>
                                     <div class="mobile-navigation__menu__panel__image-container">
                                         <a data-gtm-event="nav header"
-                                           href="art-collection/Painting/Featured-Paintings/685448/191300/view.html"
+                                           href="/search/@item.Id"
                                            class="mobile-navigation__menu__panel__image"
-                                           style="background-image: url(/Content/Images/300x300.jpg)">
+                                           style="background-image: url(@item.Photo)">
                                             <div class="mobile-navigation__menu__panel__image__title">
                                                 Featured @item.Name
                                             </div>
@@ -236,9 +236,9 @@ if (c == culture)
                                         @foreach (var style in item.FavStyles)
                                         {
                                             <a data-gtm-event="nav header"
-                                               href="paintings/fine-art.html"
+                                               href="/search/@item.Id/style/@style.Id"
                                                class="mobile-navigation__site-link">
-                                               @style.Name
+                                                @style.Name
                                             </a>
                                         }
                                     </div>
@@ -251,7 +251,7 @@ if (c == culture)
                                         @foreach (var subject in item.FavStyles)
                                         {
                                             <a data-gtm-event="nav header"
-                                               href="paintings/portrait.html"
+                                                 href="/search/@item.Id/subject/@subject.Id"
                                                class="mobile-navigation__site-link">
                                                 @subject.Name
                                             </a>
@@ -266,7 +266,7 @@ if (c == culture)
                                         @foreach (var medium in item.FavStyles)
                                         {
                                             <a data-gtm-event="nav header"
-                                               href="paintings/oil.html"
+                                                href="/search/@item.Id/medium/@medium.Id"
                                                class="mobile-navigation__site-link">
                                                 @medium.Name
                                             </a>

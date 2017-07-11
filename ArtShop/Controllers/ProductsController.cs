@@ -11,8 +11,11 @@ namespace ArtShop.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Search()
+        [Route("search/{category}/{type?}/{selected?}")]
+        public ActionResult Search(int category, string type = null, int selected = 0)
         {
+            type = (type ?? "none").ToLower(); //style,subject,medium,none
+
             var p = db.Products.ToList();
             return View(p);
         }
