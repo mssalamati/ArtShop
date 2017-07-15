@@ -34,6 +34,8 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileFullName = userProfile.FirstName + " " + userProfile.LastName;
+            ViewBag.artworksCount = userProfile.Products.Count;
+
             List<CollectionViewModel> collectionViewModel = new List<CollectionViewModel>();
 
             foreach (Collection item in userProfile.Collections)
@@ -167,7 +169,8 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-
+            ViewBag.collectionCount = userProfile.Collections.Count;
+            ViewBag.artworkCount = userProfile.Products.Count;
             
             return View();
         }
@@ -178,14 +181,11 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-            List<Product> products = new List<Product>();
 
-            foreach (Product item in userProfile.Products)
-            {
-                products.Add(item);
-            }
+            ViewBag.collectionCount = userProfile.Collections.Count;
+            
 
-            return View(products);
+            return View(userProfile.Products);
         }
     }
 }
