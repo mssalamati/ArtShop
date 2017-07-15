@@ -1,11 +1,26 @@
 ﻿
 @model Product
 
-<script src="~/Content/2220741194.js"></script>
+@*<script src="~/Content/2220741194.js"></script>
 
-<script>
-    !function (a) { "use strict"; var b = function (a, c) { var d = /[^\w\-\.:]/.test(a) ? new Function(b.arg + ",tmpl", "var _e=tmpl.encode" + b.helper + ",_s='" + a.replace(b.regexp, b.func) + "';return _s;") : b.cache[a] = b.cache[a] || b(b.load(a)); return c ? d(c, b) : function (a) { return d(a, b) } }; b.cache = {}, b.load = function (a) { return document.getElementById(a).innerHTML }, b.regexp = /([\s'\\])(?!(?:[^{]|\{(?!%))*%\})|(?:\{%(=|#)([\s\S]+?)%\})|(\{%)|(%\})/g, b.func = function (a, b, c, d, e, f) { return b ? { "\n": "\\n", "\r": "\\r", "	": "\\t", " ": " " }[b] || "\\" + b : c ? "=" === c ? "'+_e(" + d + ")+'" : "'+(" + d + "==null?'':" + d + ")+'" : e ? "';" : f ? "_s+='" : void 0 }, b.encReg = /[<>&"'\x00]/g, b.encMap = { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }, b.encode = function (a) { return (null == a ? "" : "" + a).replace(b.encReg, function (a) { return b.encMap[a] || "" }) }, b.arg = "o", b.helper = ",print=function(s,e){_s+=e?(s==null?'':s):_e(s);},include=function(s,d){_s+=tmpl(s,d);}", "function" == typeof define && define.amd ? define(function () { return b }) : a.tmpl = b }(this);
-</script>
+    <script>
+        !function (a) { "use strict"; var b = function (a, c) { var d = /[^\w\-\.:]/.test(a) ? new Function(b.arg + ",tmpl", "var _e=tmpl.encode" + b.helper + ",_s='" + a.replace(b.regexp, b.func) + "';return _s;") : b.cache[a] = b.cache[a] || b(b.load(a)); return c ? d(c, b) : function (a) { return d(a, b) } }; b.cache = {}, b.load = function (a) { return document.getElementById(a).innerHTML }, b.regexp = /([\s'\\])(?!(?:[^{]|\{(?!%))*%\})|(?:\{%(=|#)([\s\S]+?)%\})|(\{%)|(%\})/g, b.func = function (a, b, c, d, e, f) { return b ? { "\n": "\\n", "\r": "\\r", "	": "\\t", " ": " " }[b] || "\\" + b : c ? "=" === c ? "'+_e(" + d + ")+'" : "'+(" + d + "==null?'':" + d + ")+'" : e ? "';" : f ? "_s+='" : void 0 }, b.encReg = /[<>&"'\x00]/g, b.encMap = { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }, b.encode = function (a) { return (null == a ? "" : "" + a).replace(b.encReg, function (a) { return b.encMap[a] || "" }) }, b.arg = "o", b.helper = ",print=function(s,e){_s+=e?(s==null?'':s):_e(s);},include=function(s,d){_s+=tmpl(s,d);}", "function" == typeof define && define.amd ? define(function () { return b }) : a.tmpl = b }(this);
+    </script>*@
+
+
+<style>
+    .artwithpic {
+        background-image: url("/content/view_in_room_plant.jpg");
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+
+    .artwhitprint {
+        background-image: url("/content/view_in_room_couch_plant.jpg");
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+</style>
 
 <div class="row-layout content">
 
@@ -34,7 +49,7 @@
                     </div>
                 </div>
             </header>
-            <div class="row art-detail-body">
+            <div class="row art-detail-body" id="bodmain">
                 <div class="small-12 large-8 columns pr">
                     <ul class="small-12 large-8 columns art-detail-image" data-orbit
                         data-options="animation:fade;
@@ -48,11 +63,11 @@
                       timer:false;
                       variable_height:true;">
                         <li id="theArtwork" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject" class="selector-item" data-orbit-slide="slide-1">
-                            <img src="@Model.photo.Path" itemprop="image">
+                            <img src="@Model.photo.Path" id="mainmage" itemprop="image">
                             <div class="art-image-actions">
-                                <a class="view-in-a-room btn art-image-actions__button" rel="nofollow" href="#" title="View in a Room">
-                                    <i class="icn-view-in-a-room"></i>
-                                    <span>View in a Room</span>
+                                <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="View in a Room">
+                                    <i id="viewroombtnicon" class="icn-view-in-a-room"></i>
+                                    <span id="viewroombtntxt">View in a Room</span>
                                 </a>
 
                                 <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="#" title="View Fullscreen">
@@ -72,11 +87,11 @@
                 <!-- /share module -->
                 <div class="small-12 large-4 columns art-detail-description">
                     <div id="productTabs" class="row tab-two">
-                        <div class="small-6 columns active">
-                            <a href="#original" class="tab-original" title="Original" rel="nofollow">Original</a>
+                        <div id="orginalTabTitle" class="small-6 columns active">
+                            <a onclick="changetab(0);" class="tab-original" title="Original">Original</a>
                         </div>
-                        <div class="small-6 columns">
-                            <a href="#prints" class="tab-prints" title="Prints" rel="nofollow">Prints</a>
+                        <div id="printTabTitle" class="small-6 columns">
+                            <a onclick="changetab(1);" class="tab-prints" title="Prints">Prints</a>
                         </div>
                     </div>
 
@@ -133,18 +148,7 @@
                                 </h4>
                                 <div>
                                     <h5>1. Select a Material</h5>
-                                    <span class="pull-right">
-                                        <a id="materialDetails" href="#" data-color="blue" data-event="click" class="so-more-tip hidden" title="Show Details">Show Details</a>
-                                        <span style="display:none;">
-                                            <ul id="ragProductDetails" class="disc product-details hidden">
-                                                <li>Museum quality 100% cotton fine art paper</li>
-                                                <li>Matte finish</li>
-                                                <li>Has a border of 3 inches</li>
-                                                <li>Ships in 3 - 5 business days</li>
-                                            </ul>
-                                        </span>
-                                    </span>
-                                    <select id="selectMaterial" class="print-options">
+                                    <select id="selectMaterial" class="print-options" style="background:white">
                                         <option value="">Choose from List</option>
                                         <option value="rag_print">Fine Art Paper</option>
                                     </select>
@@ -154,55 +158,11 @@
                                 <div class="rag-print hidden">
                                     <div>
                                         <h5>2. Select a Size</h5>
-                                        <select id="rag-selectSize" class="print-options product-select">
-                                            <option class="select-print-size"
-                                                    data-price="$100.00"
-                                                    data-frame='[{"label":"1 &frac14;\" Wide Black Frame (without mat)","description":"2\" fine art paper border|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"42.12","total_price":142.12,"framing_type_id":"3"},{"label":"1 &frac14;\" Wide Black Frame","description":"2\" buffered 4-ply mat, acid-free surface, core and backing with a pH neutral rating. Bevel cut at a 45-degree angle.|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"55.12","total_price":155.12,"framing_type_id":"1"},{"label":"1 &frac14;\" Wide White Frame (without mat)","description":"2\" fine art paper border|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"42.12","total_price":142.12,"framing_type_id":"4"},{"label":"1 &frac14;\" Wide White Frame","description":"2\" buffered 4-ply mat, acid-free surface, core and backing with a pH neutral rating. Bevel cut at a 45-degree angle.|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"55.12","total_price":155.12,"framing_type_id":"2"}]'
-                                                    data-height="10"
-                                                    data-width="8"
-                                                    data-type="rag"
-                                                    data-wrap="undefined"
-                                                    name="rag-print-size-select"
-                                                    value="P108-U350113-A2562949">
-                                                <label>8 x 10 in</label>
-                                                <i title="Frame Available" class="icon-frame so-quick-tip"></i>
-
-                                                <span class="price-product pull-right">
-                                                    ($100.00)
-                                                </span>
-                                            </option>
-                                            <option class="select-print-size"
-                                                    data-price="$100.00"
-                                                    data-frame='[{"label":"1 &frac14;\" Wide Black Frame (without mat)","description":"2\" fine art paper border|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"57.54","total_price":157.54,"framing_type_id":"3"},{"label":"1 &frac14;\" Wide Black Frame","description":"2\" buffered 4-ply mat, acid-free surface, core and backing with a pH neutral rating. Bevel cut at a 45-degree angle.|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"73.54","total_price":173.54,"framing_type_id":"1"},{"label":"1 &frac14;\" Wide White Frame (without mat)","description":"2\" fine art paper border|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"57.54","total_price":157.54,"framing_type_id":"4"},{"label":"1 &frac14;\" Wide White Frame","description":"2\" buffered 4-ply mat, acid-free surface, core and backing with a pH neutral rating. Bevel cut at a 45-degree angle.|1 &frac14;\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"73.54","total_price":173.54,"framing_type_id":"2"}]'
-                                                    data-height="14"
-                                                    data-width="11"
-                                                    data-type="rag"
-                                                    data-wrap="undefined"
-                                                    name="rag-print-size-select"
-                                                    value="P109-U350113-A2562949">
-                                                <label>11 x 14 in</label>
-                                                <i title="Frame Available" class="icon-frame so-quick-tip"></i>
-
-                                                <span class="price-product pull-right">
-                                                    ($100.00)
-                                                </span>
-                                            </option>
-                                            <option class="select-print-size"
-                                                    data-price="$160.00"
-                                                    data-frame='[{"label":"2\" Wide Black Frame (without mat)","description":"3\" fine art paper border|2\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"86.48","total_price":246.48,"framing_type_id":"7"},{"label":"2\" Wide Black Frame","description":"3\" buffered 4-ply mat, acid-free surface, core and backing with a pH neutral rating. Bevel cut at a 45-degree.|2\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"107.48","total_price":267.48,"framing_type_id":"5"},{"label":"2\" Wide White Frame (without mat)","description":"3\" fine art paper border|2\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"86.48","total_price":246.48,"framing_type_id":"8"},{"label":"2\" Wide White Frame","description":"3\" buffered 4-ply mat, acid-free surface, core and backing with a pH neutral rating. Bevel cut at a 45-degree.|2\" hand made frame|100% renewable, kiln dried, knot free, finger-jointed wood, and shatter proof Plexiglas|Arrives ready to hang with installed hardware","frame_price":"107.48","total_price":267.48,"framing_type_id":"6"}]'
-                                                    data-height="20"
-                                                    data-width="16"
-                                                    data-type="rag"
-                                                    data-wrap="undefined"
-                                                    name="rag-print-size-select"
-                                                    value="P110-U350113-A2562949">
-                                                <label>16 x 20 in</label>
-                                                <i title="Frame Available" class="icon-frame so-quick-tip"></i>
-
-                                                <span class="price-product pull-right">
-                                                    ($160.00)
-                                                </span>
-                                            </option>
+                                        <select id="rag-selectSize" style="background:white" class="print-options product-select">
+                                            <option value="" data-width="" data-height="">Choose from List</option>
+                                            <option value="" data-width="14" data-height="21">14 x 21</option>
+                                            <option value="" data-width="16" data-height="24">16 x 24</option>
+                                            <option value="" data-width="20" data-height="30">20 x 30</option>
                                         </select>
                                     </div>
                                 </div>
@@ -216,14 +176,7 @@
                                 </div>
                                 <div class="select-frame hidden">
                                     <h5>3. Add a Frame</h5>
-                                    <span class="pull-right">
-                                        <a href="#" data-color="blue" data-event="click" class="so-more-tip frame-details hide" title="Show Details">Show Details</a>
-                                        <span style="display:none;">
-                                            <div id="frameDescription"></div>
-                                            <br />Framed prints cannot be refunded nor&nbsp;exchanged
-                                        </span>
-                                    </span>
-                                    <select id="selectFrame" class="print-options">
+                                    <select id="selectFrame" class="print-options" style="background:white">
                                         <option value="">Choose from List</option>
                                     </select>
                                     <div class="clearfix"></div>
@@ -330,9 +283,9 @@
     </article>
 
     <!-- Local scripts -->
-    <script src="~/Content/dropzone.js"></script>
-    <script src="~/Content/Sortable.js"></script>
-    <script src="~/Content/singleproduct2.js"></script>
+    @*<script src="~/Content/dropzone.js"></script>
+        <script src="~/Content/Sortable.js"></script>
+        <script src="~/Content/singleproduct2.js"></script>*@
 
     <script>
         //custom initializer
@@ -379,3 +332,93 @@
 
     <div class="clearfix"></div>
 </div>
+
+<div id="mframe" hidden style="background-color: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 3px; position: absolute; z-index: 1; height: 97px; width: 81px; left: 406.5px; top: 503.563px;"></div>
+
+<script>
+
+    function changetab(tab) {
+        if (tab == 0) {
+            $('#orginalTabTitle').addClass('active');
+            $('#printTabTitle').removeClass('active');
+            $('#original').removeClass('hidden');
+            $('#prints').addClass('hidden');
+
+        } else if (tab == 1) {
+            $('#orginalTabTitle').removeClass('active');
+            $('#printTabTitle').addClass('active');
+            $('#original').addClass('hidden');
+            $('#prints').removeClass('hidden');
+        }
+    }
+
+    var view_in_room_active = false;
+    var fullwith = 0;
+    function view_in_room() {
+        if (fullwith == 0 && view_in_room_active == false)
+            fullwith = $('#mainmage').width();
+        if (view_in_room_active) {
+            $('#bodmain').removeClass('artwithpic');
+            $('.art-detail-description').css('min-height', '943px');
+            $('#viewroombtnicon').addClass('icn-view-in-a-room');
+            $('#viewroombtnicon').removeClass('fa fa-arrow-left');
+            $('#viewroombtntxt').html('View in a Room');
+            $('#mainmage').css('box-shadow', '');
+            $('#mainmage').animate({
+                width: fullwith,
+                marginTop: "0"
+            }, 1500);
+            view_in_room_active = false;
+        } else {
+            $('#bodmain').addClass('artwithpic');
+            $('.art-detail-description').css('min-height', '770px');
+            $('#viewroombtnicon').removeClass('icn-view-in-a-room');
+            $('#viewroombtnicon').addClass('fa fa-arrow-left');
+            $('#viewroombtntxt').html('Back to Artwork');
+            $('#mainmage').css('box-shadow', 'rgba(0, 0, 0, 0.1) 2px 2px 3px');
+            $('#mainmage').animate({
+                width: "314px",
+                marginTop: "144px"
+            }, 1500);
+            view_in_room_active = true;
+        }
+    }
+
+    var paperdiv = $('.rag-print');
+    var framediv = $('.select-frame');
+
+    $('#selectMaterial').change(function () {
+        paperdiv.removeClass('hidden');
+        framediv.removeClass('hidden');
+        var val = this.value;
+    });
+
+    $('#rag-selectSize').change(function () {
+        var val = this.value;
+        var nwidth = $(this).find(':selected').data('width');
+        var nheight = $(this).find(':selected').data('height');
+        print_sate(true, nwidth, nheight);
+    });
+
+    function print_sate(isenable, paper_width, paper_height) {
+        if (fullwith == 0 && isenable == true)
+            fullwith = $('#mainmage').width();
+        if (isenable) {
+            $('#bodmain').removeClass('artwithpic');
+            $('#bodmain').addClass('artwhitprint');
+            $('.art-detail-description').css('min-height', 'auto');
+            $('#mainmage').css('box-shadow', 'rgba(0, 0, 0, 0.1) 2px 2px 3px');
+            $('#mainmage').css('background', 'rgb(255, 255, 255)');
+            $('#mainmage').css('border', '1px solid rgb(235, 235, 235)');
+            $('#mainmage').css('display', 'inline-block');
+            var top = 367 - Math.ceil(paper_height * 8.23);
+            var w = paper_width * 8.23;
+            $('#mainmage').animate({
+                width: w,
+                marginTop: top
+            }, 750);
+        } else {
+
+        }
+    }
+</script>

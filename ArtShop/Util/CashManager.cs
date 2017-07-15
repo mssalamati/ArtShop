@@ -95,7 +95,7 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _Categories = db.Categories.Include("Translations").ToList();
+                        _Categories = db.Categories.Include("Translations").Include("photo").ToList();
                     }
                 }
                 return _Categories.Select(x => new CategoryViewModel
