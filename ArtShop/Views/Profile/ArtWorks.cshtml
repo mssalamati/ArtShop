@@ -66,7 +66,7 @@
     <div class="row">
 
         <ul id="infinite" class="item-list masonry" style="position: relative; height: 359.797px;">
-            <li class="art-item upload-art" style="position: absolute; left: 0px; top: 0px;">
+            <li class="art-item upload-art">
                 <a href="/upload/index" title="Upload Art" class="profile-new-upload-art">
                     <i class="fa fa-upload icn-bg" style="display:inline-table"></i>
                     <span style="display:-webkit-inline-box">Upload Art</span>
@@ -74,11 +74,11 @@
             </li>
             @foreach (Product item in Model)
             {
-                <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item fast-fade " style="position: absolute; left: 359px; top: 0px;" bxtracked="true">
+                <li  class="art-item fast-fade ">
                     <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
                         <div class="list-art-image-wrapper">
                             <a href="product/single/@item.Id" itemprop="url">
-                                <img src="//@item.photo.Path" alt="Saatchi Art Artist adib dehghan; Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
+                                <img src="@item.photo.Path" alt="Saatchi Art Artist adib dehghan; Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
                             </a>
 
                         </div>
@@ -114,95 +114,30 @@
 
 
     </div>
-    <script type="text/javascript">
-    Saatchi.Loader.load('profile', {js:true}, function() {
-        Saatchi.Profile.init();
+ 
+
+<script src="~/Content/fullview.js"></script>
+
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
     });
-    Saatchi.Loader.load('favorite', {js:true}, function() {
-        Saatchi.Favorite.init();
-    });
-    Saatchi.Loader.load('fullview', {js:true}, function() {
+    Saatchi.Loader.load('fullview', { js: true }, function () {
         Saatchi.Fullview.init();
         Saatchi.Fullview.SetView.init();
         Saatchi.Fullview.FullScreen.init();
     });
-    Saatchi.Loader.load('infinitescroll');
-    Saatchi.Loader.load('pagination', {js:true}, function() {
-        Saatchi.Pagination.type = 'art';
-        Saatchi.Pagination.init();
+    Saatchi.Loader.load('favorite', { js: true }, function () {
+        Saatchi.Favorite.init();
     });
 
-    $(document).on('click', '#listSort a', function (e) {
-        e.preventDefault();
-        $('.item-list li').css('opacity',.35);
-        // replicate browse.js functionality where php factories look at cookie
-        // TODO: rewrite all usages of browse.js and php factories to utilizes query string instead
-        Saatchi.Cookie.create('category_sortBy', $(this).data('sort'));
-        location.reload();
-    });
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
 
-        $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+    var observer;
+    // stop observing
+    if (observer) {
+        observer.disconnect();
+    }
 
-    </script>
-    <script type="text/x-tmpl" id="tmpl-art">
-        <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade" data-page="{%=o.page%}">
-            <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
-                <div class="list-art-image-wrapper">
-                    <a href="{%=o.artwork_url%}" itemprop="url">
-                        <img src="{%=o.artwork_image_url%}7.jpg" alt="{%=o.art_title%}" itemprop="contentURL">
-                    </a>
-                </div>
-                <div class="item-controls" data-id="{%=o.user_art_id%}">
-                    {% if (o.original_sale_status === 'avail') { %}
-                    <a href="/cart/add/{%=o.original_sku%}" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>
-                    {% } %}
-                    {% if ('994144' != o.artist_id) { %}
-                    <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
-                    {% } %}
-                    <a href="#" data-collection-owner="{%=o.artist_id%}" data-art-id="{%=o.art_id%}" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection" rel="nofollow"><i class="fa fa-plus"></i></a>
-                    {% if ('994144' == o.artist_id) { %}
-                    <a href="{%=o.artwork_edit_url%}" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>
-                    {% } %}
-                </div>
-                <div class="list-art-meta">
-                    <h4 class="list-art-title left ellipsis" itemprop="name">
-                        <a href="{%=o.artwork_url%}">{%=o.art_title%}</a>
-                    </h4>
-                    <small class="art-category clear left">{%=o.art_category%}, {%#o.art_dimensions_string%}</small>
-                    {% if (o.original_sale_status === 'sold') { %}
-                    <div class="right sold" itemprop="availability">sold</div>
-                    {% } else if (o.original_sale_status === 'reserved') { %}
-                    <div class="right reserved" itemprop="availability">reserved</div>
-                    {% }  %}
-
-                    <div class="list-author clear left">
-                        <h5 class="artist-name ellipsis left" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                            <a href="{%=o.artist_url%}" class="artist-card" title="{%=o.artist_name%}'s homepage" itemprop="url">{%=o.artist_name%}</a>
-                        </h5>
-                        <h5 class="user-location ellipsis clear" itemprop="contentLocation">{%=o.artist_country%}</h5>
-                    </div>
-
-                    <div class="list-art-price">
-                        {% if (o.original_sale_status === 'avail' || o.original_sale_status === 'sold') { %}
-                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <div itemprop="price">
-                                {%=o.aisp_price%}
-                            </div>
-                        </div>
-                        {% }  %}
-                        {% if (o.lowest_print_price) { %}
-                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <div class="sample-print-price" itemprop="price">
-                                Prints from {%=o.lowest_print_price%}
-                            </div>
-                        </div>
-                        {% }  %}
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </li>
-    </script>
-    <div class="clearfix"></div>
-</div>
+</script>
