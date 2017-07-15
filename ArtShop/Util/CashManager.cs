@@ -23,7 +23,7 @@ namespace ArtShop.Util
         private List<Medium> _Mediums = null;
         private List<Material> _Materials = null;
         private List<Style> _Styles = null;
-        private List<CategoryViewModel> _Categories = null;
+        private List<Category> _Categories = null;
         private static CashManager _Instance;
         private List<NavigationCategory> cats;
 
@@ -95,15 +95,15 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _Categories = db.Categories.Include("Translations").ToList().Select(x => new CategoryViewModel
-                        {
-                            id = x.Id,
-                            photo = ConfigurationManager.AppSettings["FileUrl"] + x.photo.Path,
-                            name = x.Current().Name
-                        }).ToList();
+                        _Categories = db.Categories.Include("Translations").ToList();
                     }
                 }
-                return _Categories;
+                return _Categories.Select(x => new CategoryViewModel
+                {
+                    id = x.Id,
+                    photo = ConfigurationManager.AppSettings["FileUrl"] + x.photo.Path,
+                    name = x.Current().Name
+                }).ToList();
             }
         }
 
