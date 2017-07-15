@@ -18,12 +18,29 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
-
+            
             ProfileIndexViewModel model = new ProfileIndexViewModel();
 
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
-
+            model.artworkCount = userProfile.Products.Count;
             model.collectionsCount = userProfile.Collections.Count;
+
+            int counter = 0;
+
+            foreach (var item in userProfile.Products)
+            {
+                model.artworks.Add(item);
+                counter++;
+            }
+
+            if (counter < 3 && counter != 0)
+            {
+                for (int i = 0; i < 3- counter; i++)
+                {
+                    Product p = new Product();
+                    model.artworks.Add(p);
+                }
+            }
 
             return View(model);
         }
@@ -35,7 +52,7 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.artworksCount = userProfile.Products.Count;
-
+            
             List<CollectionViewModel> collectionViewModel = new List<CollectionViewModel>();
 
             foreach (Collection item in userProfile.Collections)

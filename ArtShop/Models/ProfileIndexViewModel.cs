@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Enitities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,7 @@ namespace ArtShop.Models
         public int favoritesCount { get; set; }
         public string countryFlag { get; set; }
         public string address { get; set; }
+        public List<Product> artworks { get; set; }
 
     }
 }
