@@ -44,9 +44,7 @@ namespace ArtShop.Controllers
                 model.collectionProduct = item.Artworks;
                 collectionViewModel.Add(model);
             }
-
             
-
             return View(collectionViewModel);
         }
 
@@ -172,6 +170,22 @@ namespace ArtShop.Controllers
 
             
             return View();
+        }
+
+        public ActionResult ArtWorks()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+            List<Product> products = new List<Product>();
+
+            foreach (Product item in userProfile.Products)
+            {
+                products.Add(item);
+            }
+
+            return View(products);
         }
     }
 }
