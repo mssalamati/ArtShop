@@ -24,7 +24,7 @@ namespace ArtShop.Controllers
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
             model.artworkCount = userProfile.Products.Count;
             model.collectionsCount = userProfile.Collections.Count;
-
+            model.artworks = new List<Product>();
             int counter = 0;
 
             foreach (var item in userProfile.Products)
