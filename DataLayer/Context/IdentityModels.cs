@@ -72,6 +72,8 @@ namespace DataLayer
         public DbSet<CollectionProduct> CollectionProduct { get; set; }
         public DbSet<PersonalInformation> PersonalInformations { get; set; }
         public DbSet<UserLink> UserLinks { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<CountryTranslation> CountryTranslations { get; set; }
 
     }
 }

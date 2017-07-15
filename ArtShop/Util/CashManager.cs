@@ -26,6 +26,7 @@ namespace ArtShop.Util
         private List<Category> _Categories = null;
         private static CashManager _Instance;
         private List<NavigationCategory> cats;
+        private List<Country> _countries = null;
 
         public Dictionary<int, string> Subjects
         {
@@ -104,6 +105,21 @@ namespace ArtShop.Util
                     photo = ConfigurationManager.AppSettings["FileUrl"] + x.photo.Path,
                     name = x.Current().Name
                 }).ToList();
+            }
+        }
+
+        public Dictionary<int, string> Countries
+        {
+            get
+            {
+                if (_countries == null)
+                {
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        _countries = db.Countries.Include("Translations").ToList();
+                    }
+                }
+                return _countries.ToDictionary(x => x.Id, y => y.Current().Name);
             }
         }
 

@@ -16,7 +16,9 @@ namespace DataLayer.Enitities
         public virtual ApplicationUser ApplicationUserDetail { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
-        public virtual string Country { get; set; }
+        [ForeignKey("country")]
+        public int? countryId { get; set; }
+        public virtual Country country { get; set; }
         public virtual string City { get; set; }
         public virtual string Region { get; set; }
         public virtual string ZipCode { get; set; }
