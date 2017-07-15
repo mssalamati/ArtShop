@@ -70,7 +70,8 @@
                             @*<label for="userTypeId" class="form-label optional">Profile Type</label>*@
                             @Html.LabelFor(m => m.profileType, new { @class = "form-label optional" })
                             <div class="form-div">
-                                <label><input type="radio" name="profileType" id="profileType" value="Artist" checked="checked">Artist</label><br><label><input type="radio" name="profileType" id="profileType" value="Collector">Collector</label>
+                                <label><input type="radio" name="profileType" id="profileType" value="Artist" checked="@(Model.profileType==ProfileType.Artist?"checked":"")">Artist</label><br>
+                                <label><input type="radio" name="profileType" id="profileType" value="Collector" checked="@(Model.profileType!=ProfileType.Artist?"checked":"")">Collector</label>
                             </div>
                             @*<label for="measurementSystem" class="form-label optional">Units</label>
                                 <div class="form-div">
