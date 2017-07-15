@@ -1,0 +1,113 @@
+﻿@model AccountInfoViewModel
+@{
+    ViewBag.Title = "Settings | Artiscovery";
+}
+
+
+<div class="row-layout content" style="
+">
+
+    <div class="row">
+        <div class="small-12 large-8 large-push-4 columns bgtext content">
+            <div class="row">
+                <form id="settings" enctype="application/x-www-form-urlencoded" action="/accounts/settings" method="post">
+                    <div class="form">
+                        <div class="small-12 large-9 columns fields">
+                            
+                            @Html.LabelFor(m => m.FirstName, new { @class = "form-label required", requiredprefix = "*" })
+                            <input type="text" name="firstName" id="firstName" value="adib" placeholder="First Name" class="wide" requiredprefix="">
+                            <label for="lastName" class="form-label required" requiredprefix="*">Last Name</label>
+
+                            <input type="text" name="lastName" id="lastName" value="dehghan" placeholder="Last Name" class="wide" requiredprefix="">
+                            <label for="email" class="form-label required" requiredprefix="*">Email Address</label>
+
+                            <input type="text" name="email" id="email" value="adb.dehghan@gmail.com" placeholder="Email Address" class="wide" requiredprefix="">
+                            <label for="settings-new-password" class="form-label optional">New Password</label>
+
+                            <input type="password" name="newPassword" id="settings-new-password" value="" placeholder="New Password" class="wide" autocomplete="off">
+                            <label for="settings-confirm-password" class="form-label optional">Confirm Password</label>
+
+                            <input type="password" name="confirmPassword" id="settings-confirm-password" value="" placeholder="Confirm Password" class="wide" autocomplete="off">
+                            <div class="form-div">
+                                <input type="hidden" name="passwordinfo" value="" id="passwordinfo">
+                                <p class="description"></p><ul class="disc">
+                                    <li>Password should be more than 6 characters.</li>
+                                    <li>Use a combination of characters, numbers and punctuations.</li>
+                                    <li>Passwords are case sensitive.</li>
+                                </ul><p></p>
+                            </div>
+                            @*<label for="username" class="form-label optional" requiredprefix="*">Choose your custom URL and member name.</label>
+
+                            <input type="text" name="username" id="username" value="" placeholder="User Name (alpha-numeric characters only)" class="wide" requiredprefix="">
+                            <div class="form-div">
+                                <input type="hidden" name="usernameinfo" value="" id="usernameinfo">
+                                <p class="description"></p><ul class="disc">
+                                    <li>Your URL will look like this: http://www.saatchiart.com/<em><strong>username</strong></em></li>
+                                </ul><p></p>
+                            </div>*@
+                            <label for="mailing" class="form-label optional">Mailing List</label>
+                            <div class="form-div">
+                                <input type="hidden" name="mailing" value="0"><input type="checkbox" name="mailing" id="mailing" value="1">
+                            </div>
+                            <label for="art_upload_email" class="form-label optional">Receive Art Uploaded Email</label>
+                            <div class="form-div">
+                                <input type="hidden" name="art_upload_email" value="0"><input type="checkbox" name="art_upload_email" id="art_upload_email" value="1">
+                            </div>
+                            <label for="isAdult" class="form-label optional">Allow me to view adult related content.</label>
+                            @*<div class="form-div">
+                                <input type="hidden" name="isAdult" value="0"><input type="checkbox" name="isAdult" id="isAdult" value="1">
+                            </div>*@
+                        </div>
+                        <div class="small-12 large-3 columns fields">
+                            <label for="userTypeId" class="form-label optional">Profile Type</label>
+                            <div class="form-div">
+                                <label><input type="radio" name="userTypeId" id="userTypeId-2" value="2" checked="checked">Artist</label><br><label><input type="radio" name="userTypeId" id="userTypeId-1" value="1">Collector</label>
+                            </div>
+                            @*<label for="measurementSystem" class="form-label optional">Units</label>
+                            <div class="form-div">
+                                <label><input type="radio" name="measurementSystem" id="measurementSystem-CENTIMETER" value="CENTIMETER" checked="checked">Centimeters (cm)</label><br><label><input type="radio" name="measurementSystem" id="measurementSystem-INCH" value="INCH">Inches (in)</label>
+                            </div>*@
+                        </div>
+                        <div class="small-12 columns fields">
+                            <div class="form-div">
+                                <input type="submit" name="Save" id="Save" value="Save" class="button btn-info">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
+
+            <ul class="side-nav">
+                <li class="profile active">
+                    <a href="/accounts/settings">Account Information</a>
+                </li>
+                <li class="profile">
+                    <a href="/accounts/edit-about">
+                        Profile
+                        Information
+                    </a>
+                </li>
+                <li class="billing">
+                    <a href="/accounts/billing">Address and Identification</a>
+                </li>
+                <li class="sold">
+                    <a href="/accounts/items">Sales Dashboard</a>
+                </li>
+                <li>
+                    <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                        Tax
+                        Form
+                    </a>
+                </li>
+                <li class="purchased">
+                    <a href="/accounts/orders">Orders</a>
+                </li>
+                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>        <div class="clearfix"></div>
+</div>

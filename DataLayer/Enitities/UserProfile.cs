@@ -20,6 +20,8 @@ namespace DataLayer.Enitities
         public virtual string City { get; set; }
         public virtual string Region { get; set; }
         public virtual string ZipCode { get; set; }
+        public bool MailingList { get; set; }
+        public bool ReceiveNewArtEmail { get; set; }
         public virtual PersonalInformation personalInformation { get; set; }
         public virtual UserLink userLinks { get; set; }
         public virtual ProfileType profileType { get; set; }
