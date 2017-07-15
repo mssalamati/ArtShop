@@ -111,37 +111,38 @@
                     <div id="btn-DragEnable" style="display: none;"><i class="fa fa-arrows fa-lg"></i> <span>Drag Image to Reposition</span></div>
                 </div>
 
+                <div class="small-12 medium-12 large-2 columns">
 
-
-            for (int i = 1; i < 4; i++)
-            {
-
-                var item = Model.artworks[i].photo.Path;
-
-                if (string.IsNullOrEmpty(item))
+                    @for (int i = 1; i <= 3; i++)
                 {
-                    <div class="small-12 medium-12 large-2 columns">
-                        <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                            <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
-                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
-                            </a>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="small-12 medium-12 large-2 columns">
-                        <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                            <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
-                                <img src="@item" alt="" itemprop="image">
-                            </a>
-                        </div>
-                    </div>
-                }
 
-            }
-            }
+                    var item = Model.artworks[i];
 
+                    if (item.photo == null)
+                    {
+
+                            <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                                <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                                    <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
+                                </a>
+                            </div>
+
+                        }
+                        else
+                        {
+
+                            <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                                <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                                    <img src="@item.photo.Path" alt="" itemprop="image">
+                                </a>
+
+                            </div>
+                        }
+
+                    }
+
+                </div>
+            }
             <h5>
                 <a href="/profile/artworks" title="Link to Artwork">
                     <i class="fa fa-suitcase"></i> Artwork <span>(@Model.artworkCount)</span>

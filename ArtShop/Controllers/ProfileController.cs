@@ -35,7 +35,7 @@ namespace ArtShop.Controllers
 
             if (counter < 3 && counter != 0)
             {
-                for (int i = 0; i < 3- counter; i++)
+                for (int i = 0; i < 4- counter; i++)
                 {
                     Product p = new Product();
                     model.artworks.Add(p);
