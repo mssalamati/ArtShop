@@ -93,7 +93,7 @@
             }
             else
             {
-       
+
                 <div id="hero-image-mask" class="small-12 medium-12 large-10 columns editable fast-fade portfolio-hero" style="background-image: url(@Model.artworks.FirstOrDefault().photo.Path)" itemscope="" itemtype="http://schema.org/CreativeWork">
                     <img id="hero-image-container" src="" width="100%" height="100%" itemprop="image" class="hidden">
                     <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
@@ -110,10 +110,10 @@
                     </div>
                     <div id="btn-DragEnable" style="display: none;"><i class="fa fa-arrows fa-lg"></i> <span>Drag Image to Reposition</span></div>
                 </div>
-      
-            }
 
-            @for (int i = 1; i < 4; i++)
+
+
+            for (int i = 1; i < 4; i++)
             {
 
                 var item = Model.artworks[i].photo.Path;
@@ -139,6 +139,7 @@
                     </div>
                 }
 
+            }
             }
 
             <h5>
