@@ -32,43 +32,28 @@ namespace ArtShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ModifyInfo(AccountInfoViewModel model)
+        public async Task<ActionResult> Index(AccountInfoViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            if (!string.IsNullOrEmpty(model.FirstName) && !string.IsNullOrEmpty(model.LastName) && !string.IsNullOrEmpty(model.Email))
-            {
 
-                var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
-                var userProfile = db.UserProfiles.Find(userId);
+            var userProfile = db.UserProfiles.Find(userId);
 
-                userProfile.FirstName = model.FirstName;
-                userProfile.LastName = model.LastName;
-                userProfile.ApplicationUserDetail.Email = model.Email;
-                userProfile.profileType = model.profileType;
-                userProfile.ReceiveNewArtEmail = model.ReceiveNewArtEmail;
-                userProfile.MailingList = model.MailingList;
+            userProfile.FirstName = model.FirstName;
+            userProfile.LastName = model.LastName;
+            userProfile.ApplicationUserDetail.Email = model.Email;
+            userProfile.profileType = model.profileType;
+            userProfile.ReceiveNewArtEmail = model.ReceiveNewArtEmail;
+            userProfile.MailingList = model.MailingList;
 
-                if (!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.ConfirmPassword) && model.ConfirmPassword == model.Password)
-                {
-                    var token = await UserManager.GeneratePasswordResetTokenAsync(userId);
+            db.SaveChanges();
 
-                    var result = await UserManager.ResetPasswordAsync(userId, token, model.Password);
-                }
-
-                db.SaveChanges();
-            }
-            else
-            {
-                ModelState.AddModelError("", "");
-                return View(model);
-            }
-
-            return RedirectToAction("index","profile");
+            return View(model);
         }
     }
 }

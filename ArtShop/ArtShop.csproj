@@ -407,6 +407,7 @@
     <Content Include="Views\Products\Search.cshtml" />
     <Content Include="Views\Profile\ArtWorks.cshtml" />
     <Content Include="Views\AccountInfo\Index.cshtml" />
+    <Content Include="Views\AccountInfo\ProfileInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
