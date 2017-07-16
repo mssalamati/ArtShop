@@ -19,11 +19,11 @@ namespace ArtShop.Models
         public string Tumblr { get; set; }
         [Display(Name = "Instagram")]
         public string Instagram { get; set; }
-        [Display(Name = "GooglePlus")]
+        [Display(Name = "Google Plus")]
         public string GooglePlus { get; set; }
         [Display(Name = "My Website")]
         public string Website { get; set; }
-        [Display(Name = "AboutMe")]
+        [Display(Name = "About Me")]
         public string AboutMe { get; set; }
         [Display(Name = "Education")]
         public string Education { get; set; }

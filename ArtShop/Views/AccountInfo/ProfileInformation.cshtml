@@ -8,77 +8,77 @@
     <div class="row">
         <div class="small-12 large-8 large-push-4 columns bgtext content">
             <div class="row">
-                <form method="post" action="/accounts/edit-about">
+                @using (Html.BeginForm("profileinformation", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
                     <h3 class="page-title">Links</h3>
                     <p class="mb2">We'll add icons with links to any of the below sites that you provide.</p>
                     <fieldset class="fields">
-                        <label>Facebook</label>
-                        <div>
 
-                            <input type="text" name="facebook" id="facebook" value="" class="wide" placeholder="e.g. https://www.facebook.com/artiscovery">
+                        @Html.LabelFor(m => m.Facebook)
+                        <div>
+                            @Html.TextBoxFor(m => m.Facebook, new { @class = "wide", id = "Facebook", name = "Facebook", placeholder = "e.g. https://www.facebook.com/artiscovery", type = "text" })
                         </div>
-                        <label>Twitter</label>
-                        <div>
 
-                            <input type="text" name="twitter" id="twitter" value="" class="wide" placeholder="e.g. https://twitter.com/artiscovery">
+                        @Html.LabelFor(m => m.Twitter)
+                        <div>
+                            @Html.TextBoxFor(m => m.Twitter, new { @class = "wide", id = "Twitter", name = "Twitter", placeholder = "e.g. https://twitter.com/artiscovery", type = "text" })
+
                         </div>
-                        <label>Pinterest</label>
-                        <div>
 
-                            <input type="text" name="pinterest" id="pinterest" value="" class="wide" placeholder="e.g. https://www.pinterest.com/artiscovery/">
+                        @Html.LabelFor(m => m.Pinterest)
+                        <div>
+                            @Html.TextBoxFor(m => m.Pinterest, new { @class = "wide", id = "Pinterest", name = "Pinterest", placeholder = "e.g. https://www.pinterest.com/artiscovery", type = "text" })
                         </div>
-                        <label>Tumblr</label>
-                        <div>
 
-                            <input type="text" name="tumblr" id="tumblr" value="" class="wide" placeholder="e.g. http://artiscovery.tumblr.com/">
+                        @Html.LabelFor(m => m.Tumblr)
+                        <div>
+                            @Html.TextBoxFor(m => m.Tumblr, new { @class = "wide", id = "Tumblr", name = "Tumblr", placeholder = "e.g. http://artiscovery.tumblr.com/", type = "text" })
                         </div>
-                        <label>Instagram</label>
-                        <div>
 
-                            <input type="text" name="instagram" id="instagram" value="" class="wide" placeholder="e.g. https://instagram.com/artiscovery/">
+                        @Html.LabelFor(m => m.Instagram)
+                        <div>
+                            @Html.TextBoxFor(m => m.Instagram, new { @class = "wide", id = "Instagram", name = "Instagram", placeholder = "e.g. https://instagram.com/artiscovery/", type = "text" })
                         </div>
-                        <label>Google Plus</label>
-                        <div>
 
-                            <input type="text" name="google_plus" id="google_plus" value="" class="wide" placeholder="e.g. https://plus.google.com/+artiscovery">
+                        @Html.LabelFor(m => m.GooglePlus)
+                        <div>
+                            @Html.TextBoxFor(m => m.GooglePlus, new { @class = "wide", id = "GooglePlus", name = "GooglePlus", placeholder = "e.g. https://plus.google.com/+artiscovery", type = "text" })
                         </div>
-                        <label>My Websites</label>
-                        <div>
 
-                            <input type="text" name="website" id="website" value="" class="wide" placeholder="e.g. http://yourwebsite.com">
+                        @Html.LabelFor(m => m.Website)
+                        <div>
+                            @Html.TextBoxFor(m => m.Website, new { @class = "wide", id = "Website", name = "Website", placeholder = "e.g. http://yourwebsite.com", type = "text" })
                         </div>
                     </fieldset>
 
                     <h3 class="page-title mt1">Personal Information</h3>
                     <p>Share with collectors here about who you are, where you've studied, and any upcoming or past events and exhibitions.</p>
                     <fieldset class="fields">
-                        <label>About Me</label>
+                        @Html.LabelFor(m => m.AboutMe)
                         <div>
+                            @Html.TextAreaFor(m => m.AboutMe, new { @class = "wide", id = "AboutMe", name = "AboutMe", maxlength = "4096", rows = "24", cols = "80" })
 
-                            <textarea name="about" id="about" class="wide" maxlength="4096" rows="24" cols="80"></textarea>
                         </div>
-                        <label>Education</label>
+                        @Html.LabelFor(m => m.Education)
                         <div>
-
-                            <textarea name="education" id="education" class="wide" maxlength="4096" rows="24" cols="80"></textarea>
+                            @Html.TextAreaFor(m => m.Education, new { @class = "wide", id = "Education", name = "Education", maxlength = "4096", rows = "24", cols = "80" })
                         </div>
-                        <label>Events</label>
-                        <div>
 
-                            <textarea name="events" id="events" class="wide" maxlength="4096" rows="24" cols="80"></textarea>
+                        @Html.LabelFor(m => m.Events)
+                        <div>
+                            @Html.TextAreaFor(m => m.Events, new { @class = "wide", id = "Events", name = "Events", maxlength = "4096", rows = "24", cols = "80" })
                         </div>
-                        <label>Exhibitions</label>
+                        @Html.LabelFor(m => m.Exhibitions)
                         <div>
-
-                            <textarea name="exhibitions" id="exhibitions" class="wide" maxlength="4096" rows="24" cols="80"></textarea>
+                            @Html.TextAreaFor(m => m.Exhibitions, new { @class = "wide", id = "Exhibitions", name = "Exhibitions", maxlength = "4096", rows = "24", cols = "80" })
                         </div>
                     </fieldset>
 
                     <h3 class="page-title mt1">Profile Address</h3>
                     <fieldset class="fields">
-                        <label>Country</label>
-                        <div id="country-input">
-
+                        @Html.LabelFor(m => m.country)
+                        <div id="country-input">                            
                             <select name="country" id="country">
                                 <option value=""></option>
                                 <option value="United States">United States</option>
@@ -334,13 +334,13 @@
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
                         </div>
-                        <label>City</label>
+                        @Html.LabelFor(m => m.City)
                         <div id="city-input">
-
-                            <input type="text" name="city" id="city" value="tehran" class="wide">
+                            @Html.TextBoxFor(m => m.City, new { @class = "wide", id = "City", name = "City", type = "text" })
+                            
                         </div>
                         <div id="state-section" style="display: none;">
-                            <label>State</label>
+                            @Html.LabelFor(m => m.Region)
                             <div id="state-input">
 
                                 <select name="state" id="state" state="State">
@@ -400,10 +400,9 @@
                             </div>
                         </div>
                         <div id="region-section" style="display: block;">
-                            <label>Region</label>
+                            @Html.LabelFor(m => m.Region)
                             <div id="region-input">
-
-                                <input type="text" name="region" id="region" value="tehran" class="wide">
+                                @Html.TextBoxFor(m => m.Region, new { @class = "wide", id = "Region", name = "Region", type = "text" })
                             </div>
                         </div>
                         <div id="province-section" style="display: none;">
@@ -428,16 +427,16 @@
                                 </select>
                             </div>
                         </div>
-                        <label>Zip/Postal Code</label>
+                        @Html.LabelFor(m => m.ZipCode)
                         <div>
+                            @Html.TextBoxFor(m => m.ZipCode, new { @class = "input-medium", id = "ZipCode", name = "ZipCode", type = "text" })
 
-                            <input type="text" name="zipcode" id="zipcode" value="1464894353" class="input-medium">
                         </div>
                     </fieldset>
                     <fieldset id="so-actions" class="fields mt1">
                         <input type="submit" class="button btn-info mt1" value="Save Changes">
                     </fieldset>
-                </form>
+                }
             </div>
         </div>
         <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
@@ -480,22 +479,21 @@
     </div>
 
     <script type="text/javascript">
-    $('#country').change(updateCityStateRegionBoxes);
-    $(document).ready(function(){
-        updateCityStateRegionBoxes();
-        $(document.location.hash).focus();
-    });
-    function updateCityStateRegionBoxes() {
-        $('#state-section, #region-section, #province-section').css('display', 'none');
-        if ($('#country').val() == 'United States') {
-            $('#state-section').css('display', 'block');
-        } else if ($('#country').val() == 'Canada') {
-            $('#province-section').css('display', 'block');
-        } else {
-            $('#region-section').css('display', 'block');
+        $('#country').change(updateCityStateRegionBoxes);
+        $(document).ready(function () {
+            updateCityStateRegionBoxes();
+            $(document.location.hash).focus();
+        });
+        function updateCityStateRegionBoxes() {
+            $('#state-section, #region-section, #province-section').css('display', 'none');
+            if ($('#country').val() == 'United States') {
+                $('#state-section').css('display', 'block');
+            } else if ($('#country').val() == 'Canada') {
+                $('#province-section').css('display', 'block');
+            } else {
+                $('#region-section').css('display', 'block');
+            }
         }
-    }
     </script>
     <div class="clearfix"></div>
 </div>
-
