@@ -1,13 +1,6 @@
 ﻿
 @model Product
 
-@*<script src="~/Content/2220741194.js"></script>
-
-    <script>
-        !function (a) { "use strict"; var b = function (a, c) { var d = /[^\w\-\.:]/.test(a) ? new Function(b.arg + ",tmpl", "var _e=tmpl.encode" + b.helper + ",_s='" + a.replace(b.regexp, b.func) + "';return _s;") : b.cache[a] = b.cache[a] || b(b.load(a)); return c ? d(c, b) : function (a) { return d(a, b) } }; b.cache = {}, b.load = function (a) { return document.getElementById(a).innerHTML }, b.regexp = /([\s'\\])(?!(?:[^{]|\{(?!%))*%\})|(?:\{%(=|#)([\s\S]+?)%\})|(\{%)|(%\})/g, b.func = function (a, b, c, d, e, f) { return b ? { "\n": "\\n", "\r": "\\r", "	": "\\t", " ": " " }[b] || "\\" + b : c ? "=" === c ? "'+_e(" + d + ")+'" : "'+(" + d + "==null?'':" + d + ")+'" : e ? "';" : f ? "_s+='" : void 0 }, b.encReg = /[<>&"'\x00]/g, b.encMap = { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }, b.encode = function (a) { return (null == a ? "" : "" + a).replace(b.encReg, function (a) { return b.encMap[a] || "" }) }, b.arg = "o", b.helper = ",print=function(s,e){_s+=e?(s==null?'':s):_e(s);},include=function(s,d){_s+=tmpl(s,d);}", "function" == typeof define && define.amd ? define(function () { return b }) : a.tmpl = b }(this);
-    </script>*@
-
-
 <style>
     .artwithpic {
         background-image: url("/content/view_in_room_plant.jpg");
@@ -70,7 +63,7 @@
                                     <span id="viewroombtntxt">View in a Room</span>
                                 </a>
 
-                                <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="#" title="View Fullscreen">
+                                <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="@Model.photo.Path" title="View Fullscreen">
                                     <i class="fa fa-expand"></i>
                                     <span>View Fullscreen</span>
                                 </a>
@@ -160,9 +153,9 @@
                                         <h5>2. Select a Size</h5>
                                         <select id="rag-selectSize" style="background:white" class="print-options product-select">
                                             <option value="" data-width="" data-height="">Choose from List</option>
-                                            <option value="" data-width="14" data-height="21">14 x 21</option>
-                                            <option value="" data-width="16" data-height="24">16 x 24</option>
-                                            <option value="" data-width="20" data-height="30">20 x 30</option>
+                                            <option value="1" data-width="14" data-height="21" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>14 x 21</option>
+                                            <option value="2" data-width="16" data-height="24" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>16 x 24</option>
+                                            <option value="3" data-width="20" data-height="30" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>20 x 30</option>
                                         </select>
                                     </div>
                                 </div>
@@ -282,143 +275,9 @@
         </div>
     </article>
 
-    <!-- Local scripts -->
-    @*<script src="~/Content/dropzone.js"></script>
-        <script src="~/Content/Sortable.js"></script>
-        <script src="~/Content/singleproduct2.js"></script>*@
-
-    <script>
-        //custom initializer
-        Dropzone.options.myDropzone = false;
-        Saatchi.Loader.load('art', { 'js': true }, function () {
-            Saatchi.Art.artist = 350113;
-            Saatchi.Art.art = 2562949;
-            Saatchi.Art.id_user_art = 2753139;
-            Saatchi.Art.imgHostUri = 'saimg-a.akamaihd.net';
-            Saatchi.Art.safe = false;
-            Saatchi.Art.original = true;
-            Saatchi.Art.prints = true;
-            Saatchi.Art.product = { "sku": "P1-U350113-A2562949", "title": "GERMINATION", "price": 6200, "category": "Painting" };
-            var art = $('.art-detail-image img');
-            art.imagesLoaded(function () {
-                art.data({
-                    width: art.width(),
-                    height: art.height()
-                });
-            });
-            Saatchi.Art.ViewRoom.unitOfMeasure = 'INCH';
-            Saatchi.Art.ViewRoom.Original.data = { "height": 60, "width": 48, "img": "\/\/saimg-a.akamaihd.net\/saatchi\/350113\/art\/2753139\/1823032-DRGDCICN-6.jpg", "type": "Painting" };
-            Saatchi.Art.Fullscreen.image = '../../../../../saimg-a.akamaihd.net/saatchi/350113/art/2753139/1823032-DRGDCICN-8.jpg';
-            Saatchi.Art.additionalImages = [];
-            Saatchi.Art.init();
-        });
-
-        Saatchi.Loader.load('sticky-nav', { 'js': true }, function () {
-            if (window.ENABLE_STICKY_NAV) {
-                Saatchi.StickyNav.init();
-            }
-        });
-
-        $('.print-options').select2({
-            minimumResultsForSearch: -1
-        });
-
-
-        $('body').bind('contextmenu', function (e) {
-            $('body').trigger("click");
-            return false;
-        });
-    </script>
-
     <div class="clearfix"></div>
 </div>
 
-<div id="mframe" hidden style="background-color: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 3px; position: absolute; z-index: 1; height: 97px; width: 81px; left: 406.5px; top: 503.563px;"></div>
+<div id="mframe" hidden style="box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 3px; position: absolute; z-index: 1;"></div>
 
-<script>
-
-    function changetab(tab) {
-        if (tab == 0) {
-            $('#orginalTabTitle').addClass('active');
-            $('#printTabTitle').removeClass('active');
-            $('#original').removeClass('hidden');
-            $('#prints').addClass('hidden');
-
-        } else if (tab == 1) {
-            $('#orginalTabTitle').removeClass('active');
-            $('#printTabTitle').addClass('active');
-            $('#original').addClass('hidden');
-            $('#prints').removeClass('hidden');
-        }
-    }
-
-    var view_in_room_active = false;
-    var fullwith = 0;
-    function view_in_room() {
-        if (fullwith == 0 && view_in_room_active == false)
-            fullwith = $('#mainmage').width();
-        if (view_in_room_active) {
-            $('#bodmain').removeClass('artwithpic');
-            $('.art-detail-description').css('min-height', '943px');
-            $('#viewroombtnicon').addClass('icn-view-in-a-room');
-            $('#viewroombtnicon').removeClass('fa fa-arrow-left');
-            $('#viewroombtntxt').html('View in a Room');
-            $('#mainmage').css('box-shadow', '');
-            $('#mainmage').animate({
-                width: fullwith,
-                marginTop: "0"
-            }, 1500);
-            view_in_room_active = false;
-        } else {
-            $('#bodmain').addClass('artwithpic');
-            $('.art-detail-description').css('min-height', '770px');
-            $('#viewroombtnicon').removeClass('icn-view-in-a-room');
-            $('#viewroombtnicon').addClass('fa fa-arrow-left');
-            $('#viewroombtntxt').html('Back to Artwork');
-            $('#mainmage').css('box-shadow', 'rgba(0, 0, 0, 0.1) 2px 2px 3px');
-            $('#mainmage').animate({
-                width: "314px",
-                marginTop: "144px"
-            }, 1500);
-            view_in_room_active = true;
-        }
-    }
-
-    var paperdiv = $('.rag-print');
-    var framediv = $('.select-frame');
-
-    $('#selectMaterial').change(function () {
-        paperdiv.removeClass('hidden');
-        framediv.removeClass('hidden');
-        var val = this.value;
-    });
-
-    $('#rag-selectSize').change(function () {
-        var val = this.value;
-        var nwidth = $(this).find(':selected').data('width');
-        var nheight = $(this).find(':selected').data('height');
-        print_sate(true, nwidth, nheight);
-    });
-
-    function print_sate(isenable, paper_width, paper_height) {
-        if (fullwith == 0 && isenable == true)
-            fullwith = $('#mainmage').width();
-        if (isenable) {
-            $('#bodmain').removeClass('artwithpic');
-            $('#bodmain').addClass('artwhitprint');
-            $('.art-detail-description').css('min-height', 'auto');
-            $('#mainmage').css('box-shadow', 'rgba(0, 0, 0, 0.1) 2px 2px 3px');
-            $('#mainmage').css('background', 'rgb(255, 255, 255)');
-            $('#mainmage').css('border', '1px solid rgb(235, 235, 235)');
-            $('#mainmage').css('display', 'inline-block');
-            var top = 367 - Math.ceil(paper_height * 8.23);
-            var w = paper_width * 8.23;
-            $('#mainmage').animate({
-                width: w,
-                marginTop: top
-            }, 750);
-        } else {
-
-        }
-    }
-</script>
+<script type="text/javascript" src="~/Content/productview.js"></script>

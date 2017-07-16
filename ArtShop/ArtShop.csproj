@@ -299,7 +299,7 @@
     <Content Include="Content\select2\js\select2.js" />
     <Content Include="Content\select2\js\select2.min.js" />
     <Content Include="Content\select2\select2.png" />
-    <Content Include="Content\singleproduct2.js" />
+    <Content Include="Content\productview.js" />
     <Content Include="Content\Sortable.js" />
     <Content Include="Content\upload-213e60b8a463e6181d4d.js" />
     <Content Include="Content\Vendor\ajax.googleapis.com\ajax\libs\jqueryui\1.10.3\jquery-ui.min.js" />
