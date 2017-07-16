@@ -12,11 +12,11 @@ namespace DataLayer.Enitities
         [Key]
         public virtual int Id { get; set; }
         public virtual string Facebook { get; set; }
-        public virtual int Twitter { get; set; }
-        public virtual int Pinterest { get; set; }
-        public virtual int Tumblr { get; set; }
-        public virtual int Instagram { get; set; }
-        public virtual int GooglePlus { get; set; }
-        public virtual int Website { get; set; }
+        public virtual string Twitter { get; set; }
+        public virtual string Pinterest { get; set; }
+        public virtual string Tumblr { get; set; }
+        public virtual string Instagram { get; set; }
+        public virtual string GooglePlus { get; set; }
+        public virtual string Website { get; set; }
     }
 }

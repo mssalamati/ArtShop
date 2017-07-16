@@ -11,30 +11,31 @@
         <div class="small-12 large-8 large-push-4 columns bgtext content">
             <div class="row">
 
-                @using (Html.BeginForm("ModifyInfo", "accountinfo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("Index", "accountinfo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="form">
                         <div class="small-12 large-9 columns fields">
 
+
                             @Html.LabelFor(m => m.FirstName, new { @class = "form-label required", requiredprefix = "*" })
                             @Html.TextBoxFor(m => m.FirstName, new { @class = "wide", id = "firstName", name = "firstName", requiredprefix = "", placeholder = "First Name", type = "text" })
-                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" ,style= "color:red;font-size:small;display: -webkit-inline-box" })
 
                             @Html.LabelFor(m => m.LastName, new { @class = "form-label required", requiredprefix = "*" })
                             @Html.TextBoxFor(m => m.LastName, new { @class = "wide", id = "lastName", name = "lastName", requiredprefix = "", placeholder = "Last Name", type = "text" })
-                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
 
                             @Html.LabelFor(m => m.Email, new { @class = "form-label required", requiredprefix = "*" })
                             @Html.TextBoxFor(m => m.Email, new { @class = "wide", id = "email", name = "email", requiredprefix = "", placeholder = "Email Address", type = "text" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
 
                             @Html.LabelFor(m => m.Password, new { @class = "form-label optional" })
                             @Html.TextBoxFor(m => m.Password, new { @class = "wide", id = "password", name = "password", requiredprefix = "", placeholder = "New Password", autocomplete = "off", type = "password" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label optional" })
                             @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "wide", id = "ConfirmPassword", name = "ConfirmPassword", placeholder = "Confirm Password", autocomplete = "off", type = "password" })
-                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
 
 
                             <div class="form-div">
@@ -78,13 +79,13 @@
                                     <label><input type="radio" name="measurementSystem" id="measurementSystem-CENTIMETER" value="CENTIMETER" checked="checked">Centimeters (cm)</label><br><label><input type="radio" name="measurementSystem" id="measurementSystem-INCH" value="INCH">Inches (in)</label>
                                 </div>*@
                         </div>
-                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.ValidationSummary("", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
                         <div class="small-12 columns fields">
                             <div class="form-div">
                                 <input type="submit" name="Save" id="Save" value="Save" class="button btn-info">
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 }
             </div>
         </div>
@@ -95,7 +96,7 @@
                     <a href="/accountinfo/index">Account Information</a>
                 </li>
                 <li class="profile">
-                    <a href="/accounts/edit-about">
+                    <a href="/accountinfo/profileinformation">
                         Profile
                         Information
                     </a>
