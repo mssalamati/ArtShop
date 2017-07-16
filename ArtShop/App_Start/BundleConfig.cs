@@ -23,8 +23,19 @@ namespace ArtShop
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/singleproduct").Include(
+                   "~/Content/productview.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/layoutscript").Include(
+                   "~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
+                   "~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js",
+                   "~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/scss").Include(
+                      "~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
+                      "~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css",
+                      "~/Content/main-1497066374081.css"));
         }
     }
 }

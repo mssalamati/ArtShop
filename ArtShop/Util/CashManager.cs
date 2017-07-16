@@ -16,17 +16,20 @@ namespace ArtShop.Util
     public class CashManager
     {
         public static CashManager Instance { get { if (_Instance == null) _Instance = new CashManager(); return _Instance; } }
-
-
+        private static CashManager _Instance;
         private HomeIndexViewModel _Header = null;
         private List<Subject> _Subjects = null;
         private List<Medium> _Mediums = null;
         private List<Material> _Materials = null;
         private List<Style> _Styles = null;
         private List<Category> _Categories = null;
-        private static CashManager _Instance;
+        private List<Pricethreshold> _Pricethreshold = null;     
         private List<NavigationCategory> cats;
         private List<Country> _countries = null;
+        public CashManager()
+        {
+            cats = new List<NavigationCategory>();
+        }
 
         public Dictionary<int, string> Subjects
         {
@@ -108,6 +111,27 @@ namespace ArtShop.Util
             }
         }
 
+        public List<Pricethreshold> Pricethresholds
+        {
+            get
+            {
+                if (_Pricethreshold == null)
+                {
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        _Pricethreshold = db.Pricethresholds.Include("Translations").ToList();
+                    }
+                }
+                return _Pricethreshold.Select(x => new Pricethreshold
+                {
+                    Id = x.Id,
+                    Name = x.Current().Name,
+                    min = x.min,
+                    max = x.max,
+                }).ToList();
+            }
+        }
+
         public Dictionary<int, string> Countries
         {
             get
@@ -162,10 +186,6 @@ namespace ArtShop.Util
                 }
             }
         }
-
-        public CashManager()
-        {
-            cats = new List<NavigationCategory>();
-        }
+ 
     }
 }

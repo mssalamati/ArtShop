@@ -60,11 +60,13 @@
     <Compile Include="Enitities\Category.cs" />
     <Compile Include="Enitities\Collection.cs" />
     <Compile Include="Enitities\Country.cs" />
+    <Compile Include="Enitities\Favorit.cs" />
     <Compile Include="Enitities\PersonalInformation.cs" />
     <Compile Include="Enitities\Photo.cs" />
     <Compile Include="Enitities\Language.cs" />
     <Compile Include="Enitities\Material.cs" />
     <Compile Include="Enitities\Medium.cs" />
+    <Compile Include="Enitities\Pricethreshold.cs" />
     <Compile Include="Enitities\Product.cs" />
     <Compile Include="Enitities\SiteObjectParam.cs" />
     <Compile Include="Enitities\SiteParam.cs" />

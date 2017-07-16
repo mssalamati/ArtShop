@@ -74,6 +74,9 @@ namespace DataLayer
         public DbSet<UserLink> UserLinks { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<CountryTranslation> CountryTranslations { get; set; }
+        public DbSet<Pricethreshold> Pricethresholds { get; set; }
+        public DbSet<PricethresholdTranslation> PricethresholdTranslations { get; set; }
+        public DbSet<Favorit> Favorits { get; set; }
 
     }
 }

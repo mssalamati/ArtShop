@@ -9,17 +9,18 @@
     <meta name="keywords" content="affordable art, art dealers, art for sale, art original,art websites, buy art, buy art online, buy original art, buy paintings,buy paintings online, canvas wall art, contemporary abstract art,contemporary art, contemporary arts, contemporary oil paintings, fine art,fine art photography, fine art photography for sale, framed art,home decor wall art, modern art, modern art paintings, office interior design,online art, online art gallery, original art, original art for sale, original painting,collage, drawings, pencil drawings, printmaking for sale, london artists, la artists, nyc artists, australia artists, uk artists, german artists,interior design help, nude photography, nude art, abstract art" />
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Crimson+Text:400,600,400italic,600italic" />
-    <link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-    <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/Content/main-1497066374081.css" />
-    
+    @*<link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="~/Content/main-1497066374081.css" />*@
+
+    @Styles.Render("~/Content/scss")
+
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="~/Content/Vendor/cdn.optimizely.com/js/2220741194.js"></script>
     <script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>
-    @*<script type="text/javascript" src="js/dist/core-1497066375653.min.js"></script>
-    <script type="text/javascript" src="media/js/lib/tmpl.min.js"></script>*@
+
 
     @{var IsRighToLeft = CultureHelper.IsRighToLeft();}
 
@@ -32,7 +33,7 @@
     var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
     if (c == "profile")
     {
-        if (a==null || c == "favorites")
+        if (a == null || c == "favorites")
         {
             c = "profile";
         }
@@ -100,6 +101,26 @@
         </div>
     </div>
 
+    <script>
+        $(".dropdown").click(function () {
+            if ($('.dropdown-content').hasClass('show'))
+                $('.dropdown-content').removeClass('show');
+            else
+                $('.dropdown-content').addClass('show');
+        });
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropdown') && 
+                !event.target.matches('.desktop-navigation__context-link') &&
+                !event.target.matches('.lnsp') &&
+                 !event.target.matches('.pchl')) {
+                var dropdowns = $(".dropdown-content");
+                if (dropdowns.hasClass('show')) {
+                    dropdowns.removeClass('show');
+                }
+            }
+        }
+    </script>
 
     @* @Scripts.Render("~/bundles/jquery") @RenderSection("scripts", required: false)*@
 </body>

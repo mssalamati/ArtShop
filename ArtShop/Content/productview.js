@@ -1,10 +1,20 @@
-//Author : soroosh salamati
+/*Author : soroosh salamati*/
+var fullwith = '100%';
+var view_in_room_active = false;
+var locker = false;
+var paperdiv = $('.rag-print');
+var framediv = $('.select-frame');
+$(document).ready(function () {
+    fullwith = $('#mainmage').width();
+});
+
 function changetab(tab) {
     if (tab == 0) {
         $('#orginalTabTitle').addClass('active');
         $('#printTabTitle').removeClass('active');
         $('#original').removeClass('hidden');
         $('#prints').addClass('hidden');
+        $('.view-in-a-room').show();
         resetprint();
         removeFrame();
 
@@ -13,13 +23,14 @@ function changetab(tab) {
         $('#printTabTitle').addClass('active');
         $('#original').addClass('hidden');
         $('#prints').removeClass('hidden');
+        $('.view-in-a-room').hide();
         resetprint();
         removeFrame();
     }
 }
-var view_in_room_active = false;
-var fullwith = $('#mainmage').width();
 function view_in_room() {
+    if (locker) return;
+    locker = true;
     if (view_in_room_active) {
         $('#bodmain').removeClass('artwithpic');
         $('.art-detail-description').css('min-height', '943px');
@@ -30,7 +41,9 @@ function view_in_room() {
         $('#mainmage').animate({
             width: fullwith,
             marginTop: "0"
-        }, 1500);
+        }, 750, function () {
+            locker = false;
+        });
         view_in_room_active = false;
     } else {
         $('#bodmain').addClass('artwithpic');
@@ -42,12 +55,12 @@ function view_in_room() {
         $('#mainmage').animate({
             width: "314px",
             marginTop: "144px"
-        }, 1500);
+        }, 750, function () {
+            locker = false;
+        });
         view_in_room_active = true;
     }
 }
-var paperdiv = $('.rag-print');
-var framediv = $('.select-frame');
 $('#selectMaterial').change(function () {
     var val = this.value;
     if (val == null || val == '') {
@@ -202,5 +215,4 @@ function initfullscreen () {
         return a.preventDefault(), !1
     });
 }
-
 initfullscreen();

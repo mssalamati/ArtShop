@@ -4,14 +4,63 @@
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 
-@helper selected(string c, string culture)
-{
-if (c == culture)
-{
-        @:desktop-navigation__context-link--active
-}
-}
 
+<style>
+    .dropbtn {
+        padding: 0 !important;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+        }
+
+    .dropdown {
+        float: right;
+        position: relative;
+        display: inline-block;
+        padding: 10px 10px !important;
+        border-right: none;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        left: 0;
+        z-index: 3;
+        top: 42px;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 5px 5px;
+            text-decoration: none;
+            display: block;
+        }
+
+    .dropdown a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .lnsp {
+    }
+
+        .lnsp:hover {
+            text-decoration: none;
+        }
+</style>
 
 <header>
     <div class="desktop-navigation desktop-navigation--saatchiart">
@@ -19,12 +68,31 @@ if (c == culture)
             <div class="desktop-navigation__context-bar__inner">
                 <div class="desktop-navigation__context-bar__left">
                     <div class="desktop-navigation__context-links">
-                        <a data-gtm-event="nav header" class="desktop-navigation__context-link @selected("en-us", culture)" href="/Home/SetCulture?culture=en-us">
-                            <img style="width:auto" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
-                        </a>
-                        <a data-gtm-event="nav header" class="desktop-navigation__context-link @selected("fa", culture)" href="/Home/SetCulture?culture=fa">
-                            <img style="width:auto" class="desktop-navigation__context-logo desktop-navigation__context-logo--toaf" src="~/Content/Images/iran.svg">
-                        </a>
+                        <div class="dropdown dropdownx">
+                            <a class="desktop-navigation__context-link" id="thethingy">
+                                @if (culture == "en-us")
+                                {
+                                    <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                                    <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">English <i class="fa fa-caret-down"></i></span>
+                                }
+                                else
+                                {
+                                    <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                    <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">فارسی</span>
+                                }
+
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="/Home/SetCulture?culture=fa">
+                                    <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                    <span style="padding-left:5px;color:black;font-size:13px">فارسی</span>
+                                </a>
+                                <a href="/Home/SetCulture?culture=en-us">
+                                    <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                                    <span style="padding-left:5px;color:black;font-size:13px">English</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="desktop-navigation__context-bar__right">
@@ -50,7 +118,6 @@ if (c == culture)
                             <div data-index="@i" class="desktop-navigation__site-link">
                                 <div class="desktop-navigation__site-link__title">
                                     <a data-gtm-event="nav header"
-                                       
                                        class="desktop-navigation__site-link__title__link">
                                         @Model.Navigation[i].Name
                                     </a>
@@ -63,16 +130,7 @@ if (c == culture)
                                 <a data-gtm-event="nav header"
                                    href="/"
                                    class="desktop-navigation__site-link__title__link">
-                                    Blog
-                                </a>
-                            </div>
-                        </div>
-                        <div data-index="8" class="desktop-navigation__site-link">
-                            <div class="desktop-navigation__site-link__title">
-                                <a data-gtm-event="nav header"
-                                   href="/"
-                                   class="desktop-navigation__site-link__title__link">
-                                    Art Advisory
+                                    @ShareRes.Blog
                                 </a>
                             </div>
                         </div>
@@ -88,7 +146,7 @@ if (c == culture)
                                            class="desktop-navigation__dropdown__image"
                                            style="background-image: url(@Model.Navigation[i].Photo)">
                                             <div class="desktop-navigation__dropdown__image__title">
-                                                Featured @Model.Navigation[i].Name
+                                                @ShareRes.Featured @Model.Navigation[i].Name
                                             </div>
                                         </a>
                                     </div>
@@ -96,7 +154,7 @@ if (c == culture)
                                     <div class="desktop-navigation__dropdown__sections">
                                         <div class="desktop-navigation__dropdown__section">
                                             <div class="desktop-navigation__dropdown__section-title">
-                                                Style
+                                                @ShareRes.Style
                                             </div>
 
                                             <div class="desktop-navigation__dropdown__section-links">
@@ -104,7 +162,7 @@ if (c == culture)
                                                 {
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
-                                                       href="/search/@Model.Navigation[i].Id/style/@item.Id">
+                                                       href="/search/@Model.Navigation[i].Id/@item.Id/0/0/0">
                                                         @item.Name
                                                     </a>
                                                 }
@@ -112,7 +170,7 @@ if (c == culture)
                                         </div>
                                         <div class="desktop-navigation__dropdown__section">
                                             <div class="desktop-navigation__dropdown__section-title">
-                                                Subject
+                                                @ShareRes.Subject
                                             </div>
 
                                             <div class="desktop-navigation__dropdown__section-links">
@@ -120,7 +178,7 @@ if (c == culture)
                                                 {
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
-                                                       href="/search/@Model.Navigation[i].Id/subject/@item.Id">
+                                                       href="/search/@Model.Navigation[i].Id/0/@item.Id/0/0">
                                                         @item.Name
                                                     </a>
                                                 }
@@ -128,7 +186,7 @@ if (c == culture)
                                         </div>
                                         <div class="desktop-navigation__dropdown__section">
                                             <div class="desktop-navigation__dropdown__section-title">
-                                                Medium
+                                                @ShareRes.Medium
                                             </div>
 
                                             <div class="desktop-navigation__dropdown__section-links">
@@ -136,7 +194,7 @@ if (c == culture)
                                                 {
                                                     <a data-gtm-event="nav header"
                                                        class="desktop-navigation__dropdown__section-link"
-                                                       href="/search/@Model.Navigation[i].Id/medium/@item.Id">
+                                                       href="/search/@Model.Navigation[i].Id/0/0/@item.Id/0">
                                                         @item.Name
                                                     </a>
                                                 }
@@ -155,9 +213,9 @@ if (c == culture)
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8"><g fill="none" fill-rule="evenodd" stroke="#333" stroke-linecap="square"><path d="M1 0l7.071 7.071M8.5 7.5l7-7"></path></g></svg>
                         </div>
                         <div tabindex="0" class="desktop-navigation__search__dropdown dropdown-menu">
-                            <div class="link-standard desktop-navigation__search__dropdown__item--active" data-path="/all">Art</div>
-                            <div class="link-standard" data-path="/search/user">Artist</div>
-                            <div class="link-standard" data-path="/search/collection">Collection</div>
+                            <div class="link-standard desktop-navigation__search__dropdown__item--active" data-path="/all">@ShareRes.Art</div>
+                            <div class="link-standard" data-path="/search/user">@ShareRes.Artist</div>
+                            <div class="link-standard" data-path="/search/collection">@ShareRes.Collection</div>
                         </div>
                     </form>
                 </div>
@@ -175,27 +233,43 @@ if (c == culture)
                 </div>
                 <div class="mobile-navigation__content">
                     <div class="mobile-navigation__menu__logo">
-                        <a data-gtm-event="nav header" href="index.html" class="navigation__logo navigation__logo--saatchiart">
+                        <a data-gtm-event="nav header" href="/" class="navigation__logo navigation__logo--saatchiart">
                             <img src="~/Content/Images/sa-logo.svg" />
                         </a>
                     </div>
                     <div class="mobile-navigation__site-links">
-                        <div>
-                            <a data-gtm-event="nav header"
-                               href="authentication128b.html?redirect_url=%2F"
-                               data-index="0"
-                               class="mobile-navigation__site-link">
-                                Sign In
-                            </a>
-                        </div>
-                        <div>
-                            <a data-gtm-event="nav header"
-                               href="authentication/register128b.html?redirect_url=%2F"
-                               data-index="1"
-                               class="mobile-navigation__site-link">
-                                Register
-                            </a>
-                        </div>
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            <div>
+                                <a data-gtm-event="nav header"
+                                   href="authentication128b.html?redirect_url=%2F"
+                                   data-index="0"
+                                   class="mobile-navigation__site-link">
+                                    @User.Identity.Name
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <a data-gtm-event="nav header"
+                                   href="/account/login"
+                                   data-index="0"
+                                   class="mobile-navigation__site-link">
+                                    @ShareRes.SignIn
+                                </a>
+                            </div>
+                            <div>
+                                <a data-gtm-event="nav header"
+                                   href="/account/register"
+                                   data-index="1"
+                                   class="mobile-navigation__site-link">
+                                    @ShareRes.Register
+                                </a>
+                            </div>
+
+                        }
 
                         @foreach (var item in Model.Navigation)
                         {
@@ -222,7 +296,7 @@ if (c == culture)
                                            class="mobile-navigation__menu__panel__image"
                                            style="background-image: url(@item.Photo)">
                                             <div class="mobile-navigation__menu__panel__image__title">
-                                                Featured @item.Name
+                                                @ShareRes.Featured @item.Name
                                             </div>
                                         </a>
                                     </div>
@@ -230,13 +304,13 @@ if (c == culture)
                                     <div>
                                         <a data-gtm-event="nav header"
                                            class="mobile-navigation__site-link mobile-navigation__site-link--section-header">
-                                            Style
+                                            @ShareRes.Style
                                         </a>
 
                                         @foreach (var style in item.FavStyles)
                                         {
                                             <a data-gtm-event="nav header"
-                                               href="/search/@item.Id/style/@style.Id"
+                                               href="/search/@item.Id/@style.Id/0/0/0"
                                                class="mobile-navigation__site-link">
                                                 @style.Name
                                             </a>
@@ -245,13 +319,13 @@ if (c == culture)
                                     <div>
                                         <a data-gtm-event="nav header"
                                            class="mobile-navigation__site-link mobile-navigation__site-link--section-header">
-                                            Subject
+                                            @ShareRes.Subject
                                         </a>
 
                                         @foreach (var subject in item.FavStyles)
                                         {
                                             <a data-gtm-event="nav header"
-                                                 href="/search/@item.Id/subject/@subject.Id"
+                                               href="/search/@item.Id/0/@subject.Id/0/0"
                                                class="mobile-navigation__site-link">
                                                 @subject.Name
                                             </a>
@@ -260,13 +334,13 @@ if (c == culture)
                                     <div>
                                         <a data-gtm-event="nav header"
                                            class="mobile-navigation__site-link mobile-navigation__site-link--section-header">
-                                            Medium
+                                            @ShareRes.Medium
                                         </a>
 
                                         @foreach (var medium in item.FavStyles)
                                         {
                                             <a data-gtm-event="nav header"
-                                                href="/search/@item.Id/medium/@medium.Id"
+                                               href="/search/@item.Id/0/0/@medium.Id/0"
                                                class="mobile-navigation__site-link">
                                                 @medium.Name
                                             </a>
