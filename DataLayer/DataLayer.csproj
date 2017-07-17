@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enitities\BillingInfo.cs" />
     <Compile Include="Enitities\Category.cs" />
     <Compile Include="Enitities\Collection.cs" />
     <Compile Include="Enitities\Country.cs" />

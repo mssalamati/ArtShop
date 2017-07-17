@@ -77,6 +77,7 @@ namespace DataLayer
         public DbSet<Pricethreshold> Pricethresholds { get; set; }
         public DbSet<PricethresholdTranslation> PricethresholdTranslations { get; set; }
         public DbSet<Favorit> Favorits { get; set; }
+        public DbSet<BillingInfo> BillingInfoes { get; set; }
 
     }
 }
