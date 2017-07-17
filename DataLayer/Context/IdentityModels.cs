@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using DataLayer.Enitities;
+using DataLayer.Configurations;
 
 namespace DataLayer
 {
@@ -43,6 +44,8 @@ namespace DataLayer
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Configurations.Add(new ShoppingCartConfig());
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -78,6 +81,8 @@ namespace DataLayer
         public DbSet<PricethresholdTranslation> PricethresholdTranslations { get; set; }
         public DbSet<Favorit> Favorits { get; set; }
         public DbSet<BillingInfo> BillingInfoes { get; set; }
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
     }
 }
