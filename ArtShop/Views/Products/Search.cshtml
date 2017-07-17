@@ -5,11 +5,38 @@
 
 @model  List<Product>
 
+
+@helper selected(int current, int selected)
+{
+if (current == selected)
+{
+        @:selected
+}
+}
+
 <div role="main" class="row row-layout browse-content">
     <header class="small-12 columns" xmlns="http://www.w3.org/1999/html">
         <div class="row">
             <div class="small-12 columns breadcrumbs">
-                <a href="/">@ShareRes.Home</a><a href="/search/">Paintings</a><span>Fine Art</span>
+                <a href="/">@ShareRes.Home</a><a href="/search/@ViewBag.categoryId">@ViewBag.categoryName</a>
+                <span>
+                    @if (ViewBag.styleId != 0)
+                    {
+                        <text>  @ViewBag.styleName </text>
+                    }
+                    @if (ViewBag.subjectId != 0)
+                    {
+                        <text> @ViewBag.subjectName </text>
+                    }
+                    @if (ViewBag.mediumId != 0)
+                    {
+                        <text>  @ViewBag.mediumName </text>
+                    }
+                    @if (ViewBag.priceId != 0)
+                    {
+                        <text>  @ViewBag.priceName </text>
+                    }
+                </span>
             </div>
         </div>
     </header>
@@ -18,10 +45,10 @@
         <div class="row filters-main" style="padding: 20px 20px 0;margin-bottom:10px">
             <div class="small-6 medium-2 columns">
                 <select name="category" id="selectCategory" class="filter-options">
-                    <option value="all">@SearchRes.All_Categories</option>
+                    <option value="0">@SearchRes.All_Categories</option>
                     @foreach (var item in ArtShop.Util.CashManager.Instance.Categories)
                     {
-                        <option value="@item.id">
+                        <option @selected(item.id, ViewBag.categoryId) value="@item.id">
                             @item.name
                         </option>
                     }
@@ -29,10 +56,10 @@
             </div>
             <div class="small-6 medium-2 columns">
                 <select name="style" id="selectStyle" class="filter-options">
-                    <option value="">@SearchRes.All_Styles</option>
+                    <option value="0">@SearchRes.All_Styles</option>
                     @foreach (var item in ArtShop.Util.CashManager.Instance.Styles)
                     {
-                        <option value="@item.Key">
+                        <option @selected(item.Key, ViewBag.styleId) value="@item.Key">
                             @item.Value
                         </option>
                     }
@@ -40,10 +67,10 @@
             </div>
             <div class="small-6 medium-2 columns">
                 <select name="subject" id="selectSubject" class="filter-options">
-                    <option value="">@SearchRes.All_Subjects</option>
+                    <option value="0">@SearchRes.All_Subjects</option>
                     @foreach (var item in ArtShop.Util.CashManager.Instance.Subjects)
                     {
-                        <option value="@item.Key">
+                        <option @selected(item.Key, ViewBag.subjectId) value="@item.Key">
                             @item.Value
                         </option>
                     }
@@ -51,10 +78,10 @@
             </div>
             <div class="small-6 medium-2 columns">
                 <select name="medium" id="selectMedium" class="filter-options">
-                    <option value="">@SearchRes.All_Mediums</option>
+                    <option value="0">@SearchRes.All_Mediums</option>
                     @foreach (var item in ArtShop.Util.CashManager.Instance.Mediums)
                     {
-                        <option value="@item.Key">
+                        <option @selected(item.Key, ViewBag.mediumId) value="@item.Key">
                             @item.Value
                         </option>
                     }
@@ -62,10 +89,10 @@
             </div>
             <div class="small-6 medium-2 columns">
                 <select name="price" id="selectPrice" class="filter-options">
-                    <option value="">@SearchRes.All_Prices</option>
+                    <option value="0">@SearchRes.All_Prices</option>
                     @foreach (var item in ArtShop.Util.CashManager.Instance.Pricethresholds)
                     {
-                        <option value="@item.Id">
+                        <option @selected(item.Id, ViewBag.priceId) value="@item.Id">
                             @item.Name
                         </option>
                     }
@@ -80,7 +107,7 @@
 
     <ul class="item-list masonry">
         @foreach (var item in Model)
-            {
+        {
             <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
@@ -135,31 +162,53 @@
     </ul>
     <div class="clearfix"></div>
 
+
+    @{
+        int page = ViewBag.page;
+        int count = ViewBag.count;
+        int pageSize = ViewBag.pageSize;
+        bool haveNext = page * pageSize < count;
+        bool havePrev = page != 1;
+        int minpage = 1;
+        int maxpage = (int)Math.Ceiling((float)count / (float)pageSize);
+    }
+
     <div class="so-pagination">
         <div class="pagination">
             <ul class="pull-right">
-                <li class="active"><a href="javascript: void(0);">1</a></li>
-                <li>
-                    <a href="">2</a>
-                </li>
-                <li>
-                    <a href="">3</a>
-                </li>
-                <li>
-                    <a href="">4</a>
-                </li>
-                <li>
-                    <a href="">5</a>
-                </li>
-                <li>
-                    <a href="">6</a>
-                </li>
-                <li><a href=""><i class="fa fa-angle-right"></i></a></li>
+                @if (havePrev)
+                {
+                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                }
 
-                <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+                @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
+                {
+                    <li>
+                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                    </li>
+                }
+
+                <li class="active">
+                    <a>@page</a>
+                </li>
+
+                @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
+                {
+                    <li>
+                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                    </li>
+                }
+
+
+                @if (haveNext)
+                {
+                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                }
+
+                @*<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
             </ul>
             <div class="so-pagination-count pull-right">
-                <small>Showing 1 - 24   of 153305  </small>
+                <small>Showing @(((page - 1) * pageSize) + 1) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) of @count  </small>
             </div>
             <div class="clearfix"></div>
         </div>
