@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "UploadAvatar";
+}
+
+<div class="row-layout content">
+    <div class="row">
+        <div id="so-upload-help" class="small-12 large-8 large-push-4 columns bgtext content">
+            <h3 class="mb1">Update Profile Image</h3>
+            <p class="mb2">Select an image to upload.</p>
+            <link rel="stylesheet" href="/js/upload/css/jquery.fileupload.css">
+            <link rel="stylesheet" href="/js/upload/css/jquery.fileupload-ui.css">
+            <script src="/js/upload/js/vendor/jquery.ui.widget.js"></script>
+            <script src="/js/upload/js/jquery.fileupload.js"></script>
+            <form id="so-upload-form" method="post" enctype="multipart/form-data" action="/upload/avatar">
+                <div class="hidden">
+                    <dt id="so-art-upload-server-label">&nbsp;</dt>
+                    <dd id="so-art-upload-server-element">
+                        <input type="hidden" name="server" value="https://upload.saatchiart.com" id="so-art-upload-server">
+                    </dd>        <dt id="so-art-upload-original-label">&nbsp;</dt>
+                    <dd id="so-art-upload-original-element">
+                        <input type="hidden" name="original" value="" id="so-art-upload-original">
+                    </dd>
+                </div>
+                <span class="btn btn-success fileinput-button">
+                    <span>Select File</span>
+                    <!-- The file input field used as target for the file upload widget -->
+                    <input id="fileupload" type="file" name="file">
+                </span>
+                <br><br>
+                <img id="preview" class="hidden" src="">
+                <!-- The global progress bar -->
+                <div id="progress" class="progress progress-animated hidden">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <input type="hidden" name="avatar" value="1">
+                <div class="clear"></div>
+                <input type="submit" class="button btn-info mt1" value="Submit" disabled=""><a class="btn btn-link" href="#" onclick="history.go(-1)">Cancel</a>
+            </form>
+
+            <script type="text/javascript">
+    Saatchi.Loader.load('upload_avatar', {js:true}, function() {
+        Saatchi.Upload_Avatar.server = 'https://upload.saatchiart.com';
+        Saatchi.Upload_Avatar.init();
+    });
+            </script>
+        </div>
+        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
+
+            <ul class="side-nav">
+                <li class="profile">
+                    <a href="/accountinfo/index">Account Information</a>
+                </li>
+                <li class="profile">
+                    <a href="/accountinfo/profileinformation">
+                        Profile
+                        Information
+                    </a>
+                    <ul class="accordion-list">
+                        <li class="profile active">
+                            <a href="/accountinfo/uploadavatar">Profile Image</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="billing">
+                    <a href="/accountinfo/billing">Address and Identification</a>
+                </li>
+                <li class="sold">
+                    <a href="/accounts/items">Sales Dashboard</a>
+                </li>
+                <li>
+                    <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                        Tax
+                        Form
+                    </a>
+                </li>
+                <li class="purchased">
+                    <a href="/accounts/orders">Orders</a>
+                </li>
+                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

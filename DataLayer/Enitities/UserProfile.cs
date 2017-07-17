@@ -26,6 +26,7 @@ namespace DataLayer.Enitities
         public bool ReceiveNewArtEmail { get; set; }
         public virtual PersonalInformation personalInformation { get; set; }
         public virtual UserLink userLinks { get; set; }
+        public virtual BillingInfo billingInfo { get; set; }
         public virtual ProfileType profileType { get; set; }
         public virtual DateTime RegisterDate { get; set; }
         public virtual ICollection<Collection> Collections { get; set; }

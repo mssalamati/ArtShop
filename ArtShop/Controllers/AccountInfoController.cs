@@ -114,5 +114,29 @@ namespace ArtShop.Controllers
 
             return View(model);
         }
+
+        public ActionResult UploadAvatar()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+
+
+
+
+            return View();
+        }
+
+        public ActionResult Billing()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+
+
+
+
+            return View();
+        }
     }
 }
