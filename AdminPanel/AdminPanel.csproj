@@ -198,9 +198,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\FirstPageSettingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
+    <Compile Include="Controllers\PriceListController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -211,7 +213,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\CountryViewModel.cs" />
     <Compile Include="Models\ViewModel\NavigationCategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\PriceListViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductTypeViewModel.cs" />
     <Compile Include="Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -5384,6 +5388,14 @@
     <Content Include="Views\ProductTypes\editMaterial.cshtml" />
     <Content Include="Views\FirstPageSettings\editParams.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\Countries\add.cshtml" />
+    <Content Include="Views\Countries\edit.cshtml" />
+    <Content Include="Views\Countries\_successWindow.cshtml" />
+    <Content Include="Views\PriceList\Index.cshtml" />
+    <Content Include="Views\PriceList\_successWindow.cshtml" />
+    <Content Include="Views\PriceList\add.cshtml" />
+    <Content Include="Views\PriceList\edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

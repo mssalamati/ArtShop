@@ -27,7 +27,7 @@ namespace ArtShop.Controllers
             var SiteObjectParams = db.SiteObjectParams.AsQueryable().FirstOrDefault();
             var sliderImage = SiteObjectParams.SliderImage;
             HomeIndexViewModel model = new HomeIndexViewModel();
-            model.Slider_Image = sliderImage;
+            model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + sliderImage;
             model.slider_H1 = SiteParams[nameof(model.slider_H1).Replace("_", " ")];
             model.slider_H2 = SiteParams[nameof(model.slider_H2).Replace("_", " ")];
             model.slider_Button_Text = SiteParams[nameof(model.slider_Button_Text).Replace("_", " ")];

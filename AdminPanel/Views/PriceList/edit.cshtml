@@ -1,0 +1,68 @@
+﻿@model PriceListViewModel
+
+
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+    <h4 class="modal-title">Edit Style</h4>
+</div>
+@using (Ajax.BeginForm("edit", "PriceList", null, new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "dform",
+    LoadingElementId = "submit_spin",
+    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');"
+}, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal-body" style="padding:20px;">
+
+        @Html.AntiForgeryToken()
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
+
+        @Html.HiddenFor(x => x.Id)
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">min </label>
+                    <input name="min" value="@(Model==null ? null : Model.min)" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">max </label>
+                    <input name="max" value="@(Model==null ? null : Model.max)" class="form-control" />
+                </div>
+            </div>
+            @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+            {
+                var item = ((List<Language>)ViewBag.language)[i];
+                var current = Model.Translations.SingleOrDefault(x => x.languageId == item.Code);
+                var value = current == null ? "" : current.Name;
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                        <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                        <input name="Translations[@i].Name" value="@value" type="text" class="form-control" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+            <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                <i class="fa fa-spinner fa-spin"></i>
+            </span>&nbsp;  ثبت  &nbsp;
+        </button>
+    </div>
+}
+
+
