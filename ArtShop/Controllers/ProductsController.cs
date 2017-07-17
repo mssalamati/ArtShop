@@ -11,9 +11,11 @@ namespace ArtShop.Controllers
 {
     public class ProductsController : BaseController
     {
-        [Route("search/{category}/{style}/{subject}/{medium}/{price}")]
-        public ActionResult Search(int category = 0, int style = 0, int subject = 0, int medium = 0, int price = 0)
+        [Route("search/{category}/{style}/{subject}/{medium}/{price}/{page?}")]
+        [Route("search")]
+        public ActionResult Search(int category = 0, int style = 0, int subject = 0, int medium = 0, int price = 0, int page = 1)
         {
+            int pageSize = 18;
             var manager = CashManager.Instance;
             var category_cash = manager.Categories.SingleOrDefault(x => x.id == category);
             ViewBag.categoryName = category_cash != null ? category_cash.name : Resources.SearchRes.All_Categories;
@@ -28,10 +30,21 @@ namespace ArtShop.Controllers
             ViewBag.mediumName = medium_cash ? manager.Mediums[medium] : Resources.SearchRes.All_Mediums;
             ViewBag.mediumId = medium;
             var price_cash = manager.Pricethresholds.SingleOrDefault(x => x.Id == price);
+            ViewBag.priceName = price_cash != null ? price_cash.Name : Resources.SearchRes.All_Prices;
             ViewBag.priceId = price;
 
-            var p = db.Products.ToList();
-            return View(p);
+
+            var p = db.Products.OrderBy(x => x.CreateDate).AsQueryable();
+            var count = p.Count();
+            page = Math.Max(1, page);
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            ViewBag.page = page;
+            ViewBag.count = count;
+            ViewBag.pageSize = pageSize;
+
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+
+            return View(p.ToList());
         }
 
         public ActionResult single(int id)
