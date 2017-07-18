@@ -218,6 +218,7 @@
     <Compile Include="Models\ProfileIndexViewModel.cs" />
     <Compile Include="Models\ProfileInformationViewModel.cs" />
     <Compile Include="Models\SearchCollectionViewModel.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -417,12 +418,12 @@
     <Content Include="Views\AccountInfo\UploadAvatar.cshtml" />
     <Content Include="Views\AccountInfo\Billing.cshtml" />
     <Content Include="Views\Products\AddToCollection.cshtml" />
+    <Content Include="Views\Card\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Vendor\maxcdn.bootstrapcdn.com\font-awesome\4.6.3\css\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Card\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

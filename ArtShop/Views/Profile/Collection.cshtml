@@ -102,3 +102,28 @@
 
     <div class="clearfix"></div>
 </div>
+
+<script src="~/Content/fullview.js"></script>
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
+    });
+    Saatchi.Loader.load('fullview', { js: true }, function () {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('favorite', { js: true }, function () {
+        Saatchi.Favorite.init();
+    });
+
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+
+    var observer;
+    // stop observing
+    if (observer) {
+        observer.disconnect();
+    }
+
+</script>
