@@ -64,6 +64,7 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.artworksCount = userProfile.Products.Count;
+            ViewBag.favoritesCount = userProfile.Favorits.Count;
 
             List<CollectionViewModel> collectionViewModel = new List<CollectionViewModel>();
 
@@ -82,7 +83,7 @@ namespace ArtShop.Controllers
                     counter++;
                 }
 
-                if (counter < 3 )
+                if (counter < 3)
                 {
                     for (int i = 0; i < 4 - counter; i++)
                     {
@@ -144,16 +145,15 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-
+            
             var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
+            ViewBag.CollectionName = collection.Title;
+            ViewBag.CollectionId = collection.Id;
 
-            CollectionViewModel model = new CollectionViewModel();
-            model.CollectionId = collection.Id;
-            model.CollectionName = collection.Title;
-            model.collectionProduct = collection.Artworks.ToList();
+            if (collection.Artworks != null)
+                return View(collection.Artworks);
 
-
-            return View(model);
+            return View();
         }
 
         public ActionResult DeleteCollection(int id)
@@ -231,7 +231,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-
+            ViewBag.favoritesCount = userProfile.Favorits.Count;
             ViewBag.collectionCount = userProfile.Collections.Count;
 
 
