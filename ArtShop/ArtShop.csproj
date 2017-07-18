@@ -217,6 +217,7 @@
     <Compile Include="Models\NewCollectionViewModel.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
     <Compile Include="Models\ProfileInformationViewModel.cs" />
+    <Compile Include="Models\SearchCollectionViewModel.cs" />
     <Compile Include="Models\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -245,6 +246,8 @@
     <Content Include="Content\Images\sprite_v5.42.3.png" />
     <Content Include="Content\Images\toaf-logo-grayscale.svg" />
     <Content Include="Content\Images\united-states.svg" />
+    <Content Include="Content\jquery.toast.min.css" />
+    <Content Include="Content\jquery.toast.min.js" />
     <Content Include="Content\js\dist\authentication-a8d44a3b2cd84d4b45f9.js" />
     <Content Include="Content\js\dist\commons-b9e9ed3b8b77df9e315c.js" />
     <Content Include="Content\js\dist\core-1497066375653.min.js" />
@@ -413,6 +416,7 @@
     <Content Include="Views\AccountInfo\ProfileInformation.cshtml" />
     <Content Include="Views\AccountInfo\UploadAvatar.cshtml" />
     <Content Include="Views\AccountInfo\Billing.cshtml" />
+    <Content Include="Views\Products\AddToCollection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using Utilities;
 using ArtShop.Util;
+using Microsoft.AspNet.Identity;
+using ArtShop.Models;
+using DataLayer.Enitities;
 
 namespace ArtShop.Controllers
 {
@@ -33,7 +36,6 @@ namespace ArtShop.Controllers
             ViewBag.priceName = price_cash != null ? price_cash.Name : Resources.SearchRes.All_Prices;
             ViewBag.priceId = price;
 
-
             var p = db.Products.OrderBy(x => x.CreateDate).AsQueryable();
             var count = p.Count();
             page = Math.Max(1, page);
@@ -51,6 +53,68 @@ namespace ArtShop.Controllers
         {
             var p = db.Products.Find(id);
             return View(p);
+        }
+
+        public ActionResult AddOrRemoveFavorit(int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return Json(new { IsAuthenticated = false, isInMyFavList = false }, JsonRequestBehavior.AllowGet);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            if (profile.Favorits.Any(x => x.productId == id))
+                profile.Favorits.Remove(profile.Favorits.First(x => x.productId == id));
+            else
+                profile.Favorits.Add(new DataLayer.Enitities.Favorit() { productId = id });
+            db.SaveChanges();
+            bool isInMylist = profile.Favorits.Any(x => x.productId == id);
+            return Json(new { IsAuthenticated = true, isInMyFavList = isInMylist }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddToCollection(int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return Json(new { IsAuthenticated = false }, JsonRequestBehavior.AllowGet);
+            var p = db.Products.Find(id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            ViewBag.collections = profile.Collections.ToList();
+            ViewBag.productid = id;
+            return PartialView(p);
+        }
+
+        [HttpPost]
+        public ActionResult AddToCollection(SearchCollectionViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return Json(new { result = false }, JsonRequestBehavior.AllowGet);
+            var p = db.Products.Find(model.productId);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            if (model.collectionId == 0)
+            {
+                Collection newCollection = new Collection() { Title = model.collectionName };
+                newCollection.Artworks = new List<CollectionProduct>();
+                newCollection.Artworks.Add(new CollectionProduct() { productId = model.productId });
+                profile.Collections.Add(newCollection);
+            }
+            else
+            {
+                var oldCollection = profile.Collections.SingleOrDefault(x => x.Id == model.collectionId);
+                if (oldCollection != null && !oldCollection.Artworks.Any(x => x.productId == model.productId))
+                    oldCollection.Artworks.Add(new CollectionProduct() { productId = model.productId });
+            }
+            try
+            {
+                db.SaveChanges();
+                return Json(new { result = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { result = false }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

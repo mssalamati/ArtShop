@@ -13,6 +13,8 @@
         <link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="~/Content/main-1497066374081.css" />*@
 
+    <link rel="stylesheet" href="~/Content/jquery.toast.min.css" />
+
     @Styles.Render("~/Content/scss")
 
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -20,6 +22,7 @@
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="~/Content/Vendor/cdn.optimizely.com/js/2220741194.js"></script>
     <script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>
+
 
 
     @{var IsRighToLeft = CultureHelper.IsRighToLeft();}
@@ -126,6 +129,8 @@
             }
         }
     </script>
+
+    <script type="text/javascript" src="~/Content/jquery.toast.min.js"></script>
 
     @RenderSection("scripts", required: false)
 
