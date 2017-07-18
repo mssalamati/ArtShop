@@ -1,0 +1,84 @@
+﻿@model Product
+
+<div class="ui-tooltip-content" id="ui-tooltip-3-content" aria-atomic="true">
+    <div class="so-collections-list" style="width:auto">
+
+        <div id="addcollectiondive" hidden>
+            <div class="so-collection-create-add" style="width:auto;overflow:auto">
+                <div class="hd"></div>
+                <div class="bd">
+                    <img style="width:100px" class="alignLeft" src="@Model.Sqphoto.Path">
+                    <form class="form-horizontal">
+
+                        <input type="hidden" name="collection" value="" id="collection">
+
+                        <input type="hidden" name="owner" value="994373" id="owner">
+                        <div class="control-group">
+                            <label for="title" class="control-label required">Collection Title</label>
+                            <div class="controls">
+                                <input type="text" name="title" id="nctitle" value="" class="input-xlarge">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="button" onclick="doAddTocollection(0,@ViewBag.productid,$('#nctitle').val())" name="create" id="so-collection-create-submit" value="Create Collection" class="button btn-info">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="ft"></div>
+            </div>
+        </div>
+
+        <div id="selectcollectiondiv" >
+            <div class="hd">
+                <h6 class="pull-left">Add to a Collection</h6>
+                <div class="create pull-right">
+                    <a class="so-spr-add btn btn-mini ready" onclick="$('#selectcollectiondiv').hide(); $('#addcollectiondive').show();">
+                        <i class="fa fa-plus"></i>
+                        New Collection
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <hr>
+            <div class="bd">
+                <div class="clearfix"></div>
+                <div class="so-available-collections scroll-visible">
+                    <table id="table-collection-list" class="table table-bordered table-condensed table-striped">
+                        <tbody>
+                            @if (ViewBag.collections == null || ((List<Collection>)ViewBag.collections).Count == 0)
+                            {
+                                <tr>
+                                    <td>
+                                        <p> you have not any collection </p>
+                                    </td>
+                                </tr>
+                            }
+
+                            @foreach (var item in (List<Collection>)ViewBag.collections)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="so-available-collections-item">
+                                            <a onclick="doAddTocollection(@item.Id,@ViewBag.productid,'')" class="add">
+                                                <div class="ellipsis">@item.Title</div>
+                                                <div class="clearfix"></div>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

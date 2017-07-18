@@ -214,7 +214,7 @@ if (current == selected)
                         <a href="#" class="btn-round btn-add-to-cart" title="Add to Cart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
-                        <a href="#" class="btn-round btn-favorite" title="Add to Favorites">
+                        <a onclick="addfav(this,@item.Id)" class="btn-round btn-favorite" title="Add to Favorites">
                             <i class="fa fa-heart"></i>
                         </a>
                         <a onclick="addcollect(@item.Id)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
@@ -231,7 +231,12 @@ if (current == selected)
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
                                 <a href="/products/single/@item.Id" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                             </h5>
-                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">United States</h5>
+                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">
+                                @if (item.user.country != null)
+                                {
+                                    <span>@item.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
+                                }
+                            </h5>
                         </div>
 
                         <div class="list-art-price">
@@ -272,14 +277,14 @@ if (current == selected)
             <ul class="pull-right">
                 @if (havePrev)
                 {
-                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
                 @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
                 {
-                    <li>
-                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
-                    </li>
+                <li>
+                    <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                </li>
                 }
 
                 <li class="active">
@@ -288,15 +293,15 @@ if (current == selected)
 
                 @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                 {
-                    <li>
-                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
-                    </li>
+                <li>
+                    <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                </li>
                 }
 
 
                 @if (haveNext)
                 {
-                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                 }
 
                 @*<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
@@ -314,7 +319,9 @@ if (current == selected)
 <div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
+        <div id="mainmodal" style="margin-top:25px">
+
+        </div>
     </div>
 </div>
 
@@ -347,13 +354,8 @@ if (current == selected)
 @section scripts{
     <script>
 
-        function addcollect(id) {
-            modal.style.display = "block";
-        }
-
         var modal = document.getElementById('myModal');
         var span = document.getElementsByClassName("close")[0];
-
         span.onclick = function () {
             modal.style.display = "none";
         }
@@ -364,4 +366,110 @@ if (current == selected)
         }
     </script>
 
+    <script>
+        var loading =
+           '<div class="modal-body" style="padding:20px;text-align:center">' +
+           '   <p style="text-align:center">@ShareRes.Loading</p>' +
+           '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+           '</div>';
+
+        function addcollect(id) {
+            $('#mainmodal').html(loading);
+            modal.style.display = "block";
+            $.ajax({
+                type: 'Get',
+                url: '/Products/AddToCollection/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/account/login';
+                    } else {
+                        $('#mainmodal').html(data);
+                    }
+                }
+            });
+        }
+
+        function doAddTocollection(xcollectionId, xproductId, xcollectionName) {
+            $('#mainmodal').html(loading);
+            var data0 = { 'collectionId': xcollectionId, 'productId': xproductId, 'collectionName': xcollectionName };
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                url: '/Products/AddToCollection/',
+                data: JSON.stringify(data0),
+                success: function (data) {
+                    if (data.result == true) {
+                        $.toast({
+                            heading: 'Success',
+                            text: 'Item Added to your Collection',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            hideAfter: 7000
+                        })
+                    } else {
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Cant Add to your Collection',
+                            icon: 'error',
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            hideAfter: 7000
+                        })
+                    }
+                    modal.style.display = "none";
+                }
+            });
+        }
+
+
+    </script>
+
+    <script>
+        function addfav(obj, id) {
+            var heart = '<i class="fa fa-heart"></i>';
+            var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
+            $(obj).html(loadingspin);
+            $(obj).removeClass('is-favorite');
+            $.ajax({
+                type: 'Get',
+                url: '/Products/AddOrRemoveFavorit/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/account/login';
+                    } else {
+                        if (data.isInMyFavList) {
+                            $(obj).html(heart);
+                            $(obj).addClass('is-favorite');
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Added to your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        } else {
+                            $(obj).html(heart);
+                            $(obj).removeClass('is-favorite');
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Removed from your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 }
