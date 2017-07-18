@@ -26,7 +26,7 @@
             <i class="fa fa-th"></i> Collections <span>(@ViewBag.collectionCount)</span>
         </a>
         <a href="/profile/favorites" class="" title="link to Favorites">
-            <i class="fa fa-heart"></i> Favorites <span>(2)</span>
+            <i class="fa fa-heart"></i> Favorites <span>(@ViewBag.favoritesCount)</span>
         </a>
     </div>
     <div class="row sort">
@@ -75,7 +75,7 @@
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
                                     <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
                                 </h5>
-                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>
+                                @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>*@
                             </div>
 
                             <div class="list-art-price">
