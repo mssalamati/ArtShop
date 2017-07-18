@@ -27,16 +27,6 @@ namespace ArtShop.Controllers
             model.city = userProfile.City == null ? " ": userProfile.City;
             model.region = userProfile.Region == null ? " " : userProfile.Region;
             model.country = userProfile.country;
-
-            if (userProfile.country != null)
-            {
-                model.country = userProfile.country;
-            }
-            else
-            {
-                model.country = new Country { Code = " " };
-            }
-
             model.artworks = new List<Product>();
             int counter = 0;
 

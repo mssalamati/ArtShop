@@ -100,7 +100,7 @@
                     <li class="art-item fast-fade ">
                         <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
                             <div class="list-art-image-wrapper">
-                                <a href="/products/single/@item.Id" itemprop="url">
+                                <a href="/products/single/@item.productId" itemprop="url">
                                     <img src="@item.product.photo.Path" alt="Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
                                 </a>
 
@@ -114,7 +114,7 @@
                             </div>
                             <div class="list-art-meta">
                                 <h4 class="list-art-title left ellipsis" itemprop="name">
-                                    <a href="/products/single/@item.Id">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
+                                    <a href="/products/single/@item.productId">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
                                 </h4>
                                 <small class="art-category clear left"><span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
 
