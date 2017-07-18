@@ -44,7 +44,7 @@
                         <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
                             @if (item.collectionProduct.First().product != null)
                             {
-                                <img src="@item.collectionProduct.First().product.photo.Path" alt="">
+                                <img src="@item.collectionProduct.First().product.Widephoto.Path" alt="">
                             }
                             else
                             {
@@ -72,7 +72,7 @@
 
                                 <div class="small-4 columns">
                                     <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
-                                        <img src="@art.product.photo.Path" alt="test collection item" nopin="nopin">
+                                        <img src="@art.product.Sqphoto.Path" alt="test collection item" nopin="nopin">
                                     </a>
                                 </div>
                             }
@@ -84,7 +84,7 @@
                     <div class="row collection-meta">
                         <h4 class="collection-title">
                             <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
-                                <span class="ellipsis">@item.CollectionName</span> <span class="count">(@item.collectionProduct.Count)</span>
+                                <span class="ellipsis">@item.CollectionName</span> <span class="count">(@item.CollectionProductCount)</span>
                             </a>
                         </h4>
                         <div class="clearfix"></div>

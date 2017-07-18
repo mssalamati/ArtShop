@@ -11,6 +11,6 @@ namespace ArtShop.Models
         public int CollectionId { get; set; }
         public string CollectionName { get; set; }
         public List<CollectionProduct> collectionProduct { get; set; }
-
+        public int CollectionProductCount { get; set; }
     }
 }

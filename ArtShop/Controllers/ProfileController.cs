@@ -74,6 +74,7 @@ namespace ArtShop.Controllers
                 CollectionViewModel model = new CollectionViewModel();
                 model.CollectionId = item.Id;
                 model.CollectionName = item.Title;
+                model.CollectionProductCount = item.Artworks.Count;
                 model.collectionProduct = new List<CollectionProduct>();
                 foreach (var art in item.Artworks)
                 {
