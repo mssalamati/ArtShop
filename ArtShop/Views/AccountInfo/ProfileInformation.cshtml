@@ -79,9 +79,12 @@
                     <fieldset class="fields">
                         @Html.LabelFor(m => m.country)
                         <div id="country-input">                            
-                            <select name="country" id="country">
-                                <option value=""></option>
-                                <option value="United States">United States</option>
+                            <select name="CountryId" id="CountryId">
+                                @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
+                                {
+                                    <option value="@item.Key">@item.Value</option>
+                                }
+                                @*<option value="United States">United States</option>
                                 <option value="Afghanistan">Afghanistan</option>
                                 <option value="Aland Islands">Aland Islands</option>
                                 <option value="Albania">Albania</option>
@@ -331,7 +334,7 @@
                                 <option value="Western Sahara">Western Sahara</option>
                                 <option value="Yemen">Yemen</option>
                                 <option value="Zambia">Zambia</option>
-                                <option value="Zimbabwe">Zimbabwe</option>
+                                <option value="Zimbabwe">Zimbabwe</option>*@
                             </select>
                         </div>
                         @Html.LabelFor(m => m.City)

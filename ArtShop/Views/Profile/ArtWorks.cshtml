@@ -33,10 +33,10 @@
         <div id="listSort" class="favorites-sort small-12 medium-6 columns">
         </div>
         @*<div class="small-12 medium-6 columns view-options mt1">
-            <div>View:</div> <button data-view="fullView" class="view-option btn-round btn-masonry so-quick-tip active" oldtitle="View multiple items"></button>
-            <button data-view="pageWidthView" class="view-option btn-round btn-fullscroll so-quick-tip" oldtitle="View full-width, scrolling"><i class="fa fa-stop"></i></button>
-            <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>
-        </div>*@
+                <div>View:</div> <button data-view="fullView" class="view-option btn-round btn-masonry so-quick-tip active" oldtitle="View multiple items"></button>
+                <button data-view="pageWidthView" class="view-option btn-round btn-fullscroll so-quick-tip" oldtitle="View full-width, scrolling"><i class="fa fa-stop"></i></button>
+                <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>
+            </div>*@
     </div>
     <script>
         // [art.id_user_art, art.id_user_art, art.id_user_art]
@@ -53,36 +53,36 @@
             </li>
             @foreach (Product item in Model)
             {
-            <li class="art-item fast-fade ">
-                <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                    <div class="list-art-image-wrapper">
-                        <a href="/products/single/@item.Id" itemprop="url">
-                            <img src="@item.photo.Path" alt="Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
-                        </a>
+                <li class="art-item fast-fade ">
+                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                        <div class="list-art-image-wrapper">
+                            <a href="/products/single/@item.Id" itemprop="url">
+                                <img src="@item.photo.Path" alt="Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
+                            </a>
 
-                    </div>
-                    <div class="item-controls" data-id="3863434" data-artist="994144" data-art="3672399">
-                        @*<a href="#" data-collection-owner="994144" data-art-id="3672399" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@
-                        <a href="/upload/edit/art/3672399/artist/994144" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>
-                    </div>
-                    <div class="list-art-meta">
-                        <h4 class="list-art-title left ellipsis" itemprop="name">
-                            <a href="/products/single/@item.Id">@item.Title - Limited Edition @item.avaible of @item.AllEntity</a>
-                        </h4>
-                        <small class="art-category clear left">Photography, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
-
-                        <div class="list-author clear left">
-                            <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
-                            </h5>
-                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>
                         </div>
+                        <div class="item-controls" data-id="3863434" data-artist="994144" data-art="3672399">
+                            @*<a href="#" data-collection-owner="994144" data-art-id="3672399" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@
+                            <a href="/upload/edit/art/3672399/artist/994144" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>
+                        </div>
+                        <div class="list-art-meta">
+                            <h4 class="list-art-title left ellipsis" itemprop="name">
+                                <a href="/products/single/@item.Id">@item.Title - Limited Edition @item.avaible of @item.AllEntity</a>
+                            </h4>
+                            <small class="art-category clear left">Photography, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
-                        <div class="list-art-price">
+                            <div class="list-author clear left">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+                                    <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
+                                </h5>
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>
+                            </div>
+
+                            <div class="list-art-price">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
+                </li>
             }
         </ul>
         <div class="clearfix"></div>

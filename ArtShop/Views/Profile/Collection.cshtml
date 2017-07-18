@@ -6,7 +6,7 @@
 <div role="main" class="row row-layout profile-content">
 
 
-        <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+    <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
 
         <a href="/profile" title="adib dehghan's profile" itemprop="url">
             <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
@@ -42,26 +42,45 @@
                 <li class="list-item collection">
                     <div class="small-12 columns">
                         <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
-                            <img src="//saimg-a.akamaihd.net/saatchi/655665/art/2164185/1223474-VTUWDLCP-24.jpg" alt="">
+                            @if (item.collectionProduct.First().product != null)
+                            {
+                                <img src="@item.collectionProduct.First().product.photo.Path" alt="">
+                            }
+                            else
+                            {
+                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" style="width:300px;height:197px;" alt="" nopin="nopin">
+                            }
+
                         </a>
                     </div>
                     <div class="row">
-                        <div class="small-4 columns">
-                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
-                                <img src="//saimg-a.akamaihd.net/saatchi/955468/art/3752244/2822128-UFHCQRYZ-22.jpg" alt="test collection item" nopin="nopin">
-                            </a>
-                        </div>
-                        <div class="small-4 columns">
-                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
-                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
-                            </a>
-                        </div>
-                        <div class="small-4 columns">
-                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
-                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
-                            </a>
-                        </div>
+                        @for (int i = 1; i <= 3; i++)
+                        {
+
+                            var art = item.collectionProduct[i];
+
+                            if (art.product == null)
+                            {
+                                <div class="small-4 columns">
+                                    <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                        <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="small-4 columns">
+                                    <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                        <img src="@art.product.photo.Path" alt="test collection item" nopin="nopin">
+                                    </a>
+                                </div>
+                            }
+                        }
+
                     </div>
+
+
                     <div class="row collection-meta">
                         <h4 class="collection-title">
                             <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
@@ -80,6 +99,6 @@
         </div>
         <div id="pageLoading"></div>
     </div>
- 
+
     <div class="clearfix"></div>
 </div>

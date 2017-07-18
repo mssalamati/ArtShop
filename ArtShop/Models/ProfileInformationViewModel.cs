@@ -33,6 +33,7 @@ namespace ArtShop.Models
         public string Exhibitions { get; set; }
         [Display(Name = "Country")]
         public virtual Country country { get; set; }
+        public virtual int countryId { get; set; }
         [Display(Name = "City")]
         public virtual string City { get; set; }
         [Display(Name = "Region")]

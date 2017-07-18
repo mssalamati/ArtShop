@@ -14,8 +14,9 @@ namespace ArtShop.Models
         public int collectionsCount { get; set; }
         public int artworkCount { get; set; }
         public int favoritesCount { get; set; }
-        public string countryFlag { get; set; }
-        public string address { get; set; }
+        public Country country { get; set; }
+        public string city { get; set; }
+        public string region { get; set; }
         public List<Product> artworks { get; set; }
 
     }

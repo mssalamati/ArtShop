@@ -61,7 +61,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
-            
+
             ProfileInformationViewModel model = new ProfileInformationViewModel();
             if (userProfile.userLinks != null)
             {
@@ -105,7 +105,7 @@ namespace ArtShop.Controllers
             userProfile.personalInformation.Education = model.Education;
             userProfile.personalInformation.Events = model.Events;
             userProfile.personalInformation.Exhibitions = model.Exhibitions;
-            userProfile.country = model.country;
+            userProfile.countryId = model.countryId;
             userProfile.City = model.City;
             userProfile.Region = model.Region;
             userProfile.ZipCode = model.ZipCode;
@@ -133,10 +133,36 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
 
-
+            if (userProfile.billingInfo != null)
+            {
+                return View(userProfile.billingInfo);
+            }
 
 
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Billing(BillingInfo model)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+
+            userProfile.billingInfo = new BillingInfo();
+            userProfile.billingInfo.CountryId= model.CountryId;
+            userProfile.billingInfo.Street = model.Street;
+            userProfile.billingInfo.Unit = model.Unit;
+            userProfile.billingInfo.City = model.City;
+            userProfile.billingInfo.Region = model.Region;
+            userProfile.billingInfo.ZipCode = model.ZipCode;
+            userProfile.billingInfo.PhoneNumber = model.PhoneNumber;
+            
+            db.SaveChanges();
+
+            return View(model);
+        }
     }
+
 }

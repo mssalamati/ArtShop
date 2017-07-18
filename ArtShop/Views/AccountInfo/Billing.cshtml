@@ -1,4 +1,4 @@
-﻿
+﻿@model BillingInfo
 @{
     ViewBag.Title = "Billing";
 }
@@ -7,24 +7,31 @@
 
     <div class="row">
         <div class="small-12 large-8 large-push-4 columns bgtext content">
-            <form method="post" action="#">
+            @using (Html.BeginForm("Billing", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
                 <h3 class="hd-title">Artwork Pick Up Address</h3>
                 <p class="mb2">When you add a new artwork, we will autofill your address with this information.</p>
                 <fieldset class="fields">
-                    <label>Street Address</label>
+                    @Html.LabelFor(m => m.Street)
                     <div id="shipping-address">
-                        <input type="text" name="ship_address" id="so-shipping-address1" value="pas" class="wide">
+                        @Html.TextBoxFor(m => m.Street, new { @class = "wide", id = "Street", name = "Street", type = "text" })
                     </div>
 
-                    <label>Apt/Suite/Unit</label>
+                    @Html.LabelFor(m => m.Unit)
                     <div id="shipping-address2">
-                        <input type="text" name="ship_address2" id="so-shipping-address2" value="pas" class="wide">
+
+                        @Html.TextBoxFor(m => m.Unit, new { @class = "wide", id = "Unit", name = "Unit", type = "text" })
                     </div>
 
-                    <label>Country</label>
+                    @Html.LabelFor(m => m.country)
                     <div id="shipping-country">
-                        <select name="ship_country_code_iso2" id="so-shipping-country-code-iso2">
-                            <option value=""></option>
+                        <select name="CountryId" id="CountryId">
+                            @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                            @*<option value=""></option>
                             <option value="US">United States</option>
                             <option value="AF">Afghanistan</option>
                             <option value="AX">Aland Islands</option>
@@ -275,13 +282,13 @@
                             <option value="EH">Western Sahara</option>
                             <option value="YE">Yemen</option>
                             <option value="ZM">Zambia</option>
-                            <option value="ZW">Zimbabwe</option>
+                            <option value="ZW">Zimbabwe</option>*@
                         </select>
                     </div>
 
-                    <label>City</label>
+                    @Html.LabelFor(m => m.City)
                     <div id="shipping-city">
-                        <input type="text" name="ship_city" id="so-shipping-city" value="tehran" class="wide">
+                        @Html.TextBoxFor(m => m.City, new { @class = "wide", id = "City", name = "City", type = "text" })
                     </div>
 
                     <div id="shipping-state-section" style="display: none;">
@@ -343,9 +350,9 @@
                     </div>
 
                     <div id="shipping-region-section" style="display: block;">
-                        <label>Region</label>
+                        @Html.LabelFor(m => m.Region)
                         <div id="shipping-region">
-                            <input type="text" name="ship_region" id="so-shipping-region" value="tehran" class="wide">
+                            @Html.TextBoxFor(m => m.Region, new { @class = "wide", id = "Region", name = "Region", type = "text" })
                         </div>
                     </div>
 
@@ -371,18 +378,18 @@
                         </div>
                     </div>
 
-                    <label>Zip/Postal Code</label>
+                    @Html.LabelFor(m => m.ZipCode)
                     <div>
-                        <input type="text" name="ship_postal" id="so-shipping-postal" value="1464894353" class="input-medium">
+                        @Html.TextBoxFor(m => m.ZipCode, new { @class = "wide", id = "ZipCode", name = "ZipCode", type = "text" })
                     </div>
 
-                    <label>Phone Number</label>
+                    @Html.LabelFor(m => m.PhoneNumber)
                     <div>
-                        <input type="text" name="ship_phone" id="so-shipping-phone" value="" class="wide">
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "wide", id = "PhoneNumber", name = "PhoneNumber", type = "text" })
                     </div>
                     <input type="submit" class="button btn-info mt1" value="Save Changes">
                 </fieldset>
-            </form>
+            }
 
             <div id="so-shipping-id">
                 <h3 class="page-title">Government Issued Identification</h3>
@@ -404,16 +411,16 @@
 
             <ul class="side-nav">
                 <li class="profile">
-                    <a href="/accounts/settings">Account Information</a>
+                    <a href="/accountinfo/index">Account Information</a>
                 </li>
                 <li class="profile">
-                    <a href="/accounts/edit-about">
+                    <a href="/accountinfo/profileinformation">
                         Profile
                         Information
                     </a>
                 </li>
                 <li class="billing active">
-                    <a href="/accounts/billing">Address and Identification</a>
+                    <a href="/accountinfo/billing">Address and Identification</a>
                 </li>
                 <li class="sold">
                     <a href="/accounts/items">Sales Dashboard</a>
@@ -436,18 +443,18 @@
 
 
     <script type="text/javascript">
-    $('#so-shipping-country-code-iso2').change(updateCityStateRegionBoxes);
-    $(document).ready(updateCityStateRegionBoxes);
-    function updateCityStateRegionBoxes() {
-        $('#shipping-state-section, #shipping-region-section, #shipping-province-section').css('display', 'none').find('select,input').attr('disabled', true);
-        if ($('#so-shipping-country-code-iso2').val() == 'US') {
-            $('#shipping-state-section').css('display', 'block').find('select').attr('disabled', false);
-        } else if ($('#so-shipping-country-code-iso2').val() == 'CA') {
-            $('#shipping-province-section').css('display', 'block').find('select').attr('disabled', false);
-        } else {
-            $('#shipping-region-section').css('display', 'block').find('input').attr('disabled', false);
+        $('#so-shipping-country-code-iso2').change(updateCityStateRegionBoxes);
+        $(document).ready(updateCityStateRegionBoxes);
+        function updateCityStateRegionBoxes() {
+            $('#shipping-state-section, #shipping-region-section, #shipping-province-section').css('display', 'none').find('select,input').attr('disabled', true);
+            if ($('#so-shipping-country-code-iso2').val() == 'US') {
+                $('#shipping-state-section').css('display', 'block').find('select').attr('disabled', false);
+            } else if ($('#so-shipping-country-code-iso2').val() == 'CA') {
+                $('#shipping-province-section').css('display', 'block').find('select').attr('disabled', false);
+            } else {
+                $('#shipping-region-section').css('display', 'block').find('input').attr('disabled', false);
+            }
         }
-    }
     </script>
     <div class="clearfix"></div>
 </div>
