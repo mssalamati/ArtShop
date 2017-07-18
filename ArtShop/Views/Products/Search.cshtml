@@ -214,7 +214,7 @@ if (current == selected)
                         <a href="#" class="btn-round btn-add-to-cart" title="Add to Cart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
-                        <a href="#" class="btn-round btn-favorite" title="Add to Favorites">
+                        <a onclick="addfav(this,@item.Id)" class="btn-round btn-favorite" title="Add to Favorites">
                             <i class="fa fa-heart"></i>
                         </a>
                         <a onclick="addcollect(@item.Id)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
@@ -277,14 +277,14 @@ if (current == selected)
             <ul class="pull-right">
                 @if (havePrev)
                 {
-                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
                 @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
                 {
-                    <li>
-                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
-                    </li>
+                <li>
+                    <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                </li>
                 }
 
                 <li class="active">
@@ -293,15 +293,15 @@ if (current == selected)
 
                 @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                 {
-                    <li>
-                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
-                    </li>
+                <li>
+                    <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                </li>
                 }
 
 
                 @if (haveNext)
                 {
-                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                 }
 
                 @*<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
@@ -425,7 +425,51 @@ if (current == selected)
             });
         }
 
-       
+
     </script>
 
+    <script>
+        function addfav(obj, id) {
+            var heart = '<i class="fa fa-heart"></i>';
+            var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
+            $(obj).html(loadingspin);
+            $(obj).removeClass('is-favorite');
+            $.ajax({
+                type: 'Get',
+                url: '/Products/AddOrRemoveFavorit/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/account/login';
+                    } else {
+                        if (data.isInMyFavList) {
+                            $(obj).html(heart);
+                            $(obj).addClass('is-favorite');
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Added to your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        } else {
+                            $(obj).html(heart);
+                            $(obj).removeClass('is-favorite');
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Removed from your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 }

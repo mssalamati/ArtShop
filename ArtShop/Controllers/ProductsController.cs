@@ -83,7 +83,6 @@ namespace ArtShop.Controllers
             ViewBag.productid = id;
             return PartialView(p);
         }
-
         [HttpPost]
         public ActionResult AddToCollection(SearchCollectionViewModel model)
         {
