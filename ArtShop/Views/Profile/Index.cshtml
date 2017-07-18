@@ -59,7 +59,7 @@
                 <a href="/accountinfo/profileinformation" class="btn-round btn-edit" title="Edit"><i class="fa fa-pencil"></i></a>
             </h3>
             <p class="user-location" itemprop="nationality">
-                @Model.city, @Model.region, @Model.country.Current().Name
+                @Model.city, @Model.region, @{Model.country == null ? "" : Model.country.Current().Name}  
                 </p>
 
                 <div class="profile-links nav">

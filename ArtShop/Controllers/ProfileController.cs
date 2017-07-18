@@ -24,8 +24,9 @@ namespace ArtShop.Controllers
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
             model.artworkCount = userProfile.Products.Count;
             model.collectionsCount = userProfile.Collections.Count;
-            model.city = userProfile.City;
-            model.region = userProfile.Region;
+            model.city = userProfile.City == null ? " ": userProfile.City;
+            model.region = userProfile.Region == null ? " " : userProfile.Region;
+            model.country = userProfile.country;
 
             if (userProfile.country != null)
             {
