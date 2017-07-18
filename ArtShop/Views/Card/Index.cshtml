@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+@model ShoppingCartViewModel
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,31 +51,35 @@
                                         <div class="cart checkout__content-section">
                                             <h1>Cart</h1>
                                             <div class="cart__items">
-                                                <div class="cart__item cart__item--original">
-                                                    <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo"><img alt="yin yang" src="//saimg-a.akamaihd.net/saatchi/768405/art/2551400/1621340-6.jpg"></a>
-                                                    <div class="cart__item__details">
-                                                        <div class="cart__item__details__row">
-                                                            <div class="cart__item__details__left">
-                                                                <div class="cart__item__title">yin yang</div>
-                                                                <div>Andrey Povarov</div>
-                                                                <div>Israel</div>
+                                                @foreach (var item in Model.CartItems)
+                                                {
+                                                    <div class="cart__item cart__item--original">
+                                                        <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo">
+                                                        <img alt="yin yang" src="@item.Product.photo.Path"></a>
+                                                        <div class="cart__item__details">
+                                                            <div class="cart__item__details__row">
+                                                                <div class="cart__item__details__left">
+                                                                    <div class="cart__item__title">yin yang</div>
+                                                                    <div>Andrey Povarov</div>
+                                                                    <div>Israel</div>
+                                                                </div>
+                                                                <div class="cart__item__details__right"><a href="/cart-api/items/remove/P1-U768405-A2361395">Remove</a></div>
                                                             </div>
-                                                            <div class="cart__item__details__right"><a href="/cart-api/items/remove/P1-U768405-A2361395">Remove</a></div>
                                                         </div>
-                                                    </div>
-                                                    <div class="cart__item__pricing">
-                                                        <div>
-                                                            <div>Original Work</div>
-                                                            <div>$695.00</div>
-                                                        </div>
-                                                        <div class="cart__item__estimated-delivery-time">
+                                                        <div class="cart__item__pricing">
                                                             <div>
-                                                                <!-- react-text: 1175 -->This item usually ships within <!-- /react-text --><!-- react-text: 1176 -->11 - 14<!-- /react-text --><!-- react-text: 1177 --> business days*<!-- /react-text -->
+                                                                <div>Original Work</div>
+                                                                <div>$695.00</div>
+                                                            </div>
+                                                            <div class="cart__item__estimated-delivery-time">
+                                                                <div>
+                                                                    <!-- react-text: 1175 -->This item usually ships within <!-- /react-text --><!-- react-text: 1176 -->11 - 14<!-- /react-text --><!-- react-text: 1177 --> business days*<!-- /react-text -->
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="cart__item cart__item--print">
+                                                }
+                                                @*<div class="cart__item cart__item--print">
                                                     <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo"><img alt="yin yang" src="//saimg-a.akamaihd.net/saatchi/768405/art/2551400/1621340-6.jpg"></a>
                                                     <div class="cart__item__details">
                                                         <div class="cart__item__details__row">
@@ -110,7 +116,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>*@
                                             </div>
                                             <hr>
 
@@ -207,4 +213,3 @@
 
 </body>
 </html>
-

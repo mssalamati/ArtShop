@@ -40,7 +40,7 @@ namespace ArtShop.Controllers
             cart.AddToCart(addedAlbum, type);
 
             // Go back to the main store page for more shopping
-            return RedirectToAction("Index");
+            return Redirect("/checkout");
         }
 
         [HttpPost]

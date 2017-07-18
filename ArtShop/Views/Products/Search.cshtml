@@ -211,7 +211,7 @@ if (current == selected)
 
                     </div>
                     <div class="item-controls">
-                        <a href="#" class="btn-round btn-add-to-cart" title="Add to Cart">
+                        <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" title="Add to Cart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <a onclick="addfav(this,@item.Id)" class="btn-round btn-favorite" title="Add to Favorites">
