@@ -90,6 +90,15 @@
 
     @Html.Partial("_Footer")
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="mainmodal" style="margin-top:25px">
+
+            </div>
+        </div>
+    </div>
+
     <script>var Modernizr = false;</script>
     <script src="~/Content/js/dist/foundation/foundation5-5.min4baf.js?version=1468284677"></script>
     <div id="fb-root"></div>
@@ -132,6 +141,126 @@
 
     <script type="text/javascript" src="~/Content/jquery.toast.min.js"></script>
 
+    <script>
+
+        var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        var loading =
+           '<div class="modal-body" style="padding:20px;text-align:center">' +
+           '   <p style="text-align:center">@ShareRes.Loading</p>' +
+           '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+           '</div>';
+
+        function addcollect(id) {
+            $('#mainmodal').html(loading);
+            modal.style.display = "block";
+            $.ajax({
+                type: 'Get',
+                url: '/Products/AddToCollection/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/account/login';
+                    } else {
+                        $('#mainmodal').html(data);
+                    }
+                }
+            });
+        }
+
+        function doAddTocollection(xcollectionId, xproductId, xcollectionName) {
+            $('#mainmodal').html(loading);
+            var data0 = { 'collectionId': xcollectionId, 'productId': xproductId, 'collectionName': xcollectionName };
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                url: '/Products/AddToCollection/',
+                data: JSON.stringify(data0),
+                success: function (data) {
+                    if (data.result == true) {
+                        $.toast({
+                            heading: 'Success',
+                            text: 'Item Added to your Collection',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            hideAfter: 7000
+                        })
+                    } else {
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Cant Add to your Collection',
+                            icon: 'error',
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            hideAfter: 7000
+                        })
+                    }
+                    modal.style.display = "none";
+                }
+            });
+        }
+
+
+    </script>
+
+    <script>
+        function addfav(obj, id) {
+            var heart = '<i class="fa fa-heart"></i>';
+            var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
+            $(obj).html(loadingspin);
+            $(obj).removeClass('is-favorite');
+            $.ajax({
+                type: 'Get',
+                url: '/Products/AddOrRemoveFavorit/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/account/login';
+                    } else {
+                        if (data.isInMyFavList) {
+                            $(obj).html(heart);
+                            $(obj).addClass('is-favorite');
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Added to your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        } else {
+                            $(obj).html(heart);
+                            $(obj).removeClass('is-favorite');
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Removed from your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        }
+                    }
+                }
+            });
+        }
+    </script>
     @RenderSection("scripts", required: false)
 
     @* @Scripts.Render("~/bundles/jquery") @RenderSection("scripts", required: false)*@

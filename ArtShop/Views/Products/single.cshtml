@@ -20,9 +20,12 @@
     <article class="art-detail">
 
         <div role="main" class="row">
-            <header class="row">
+            <header class="row" style="background-color:rgba(134, 189, 255, 0.18);padding:10px">
                 <div class="small-1 columns">
-                    <i class="icn-artist-location flag-us so-quick-tip" title="United States"></i>
+                    @if (Model.user.country != null)
+                    {
+                        <i class="icn-artist-location flag-@Model.user.country.Code so-quick-tip" title="United States"></i>
+                    }
                 </div>
                 <div class="small-11 columns">
                     <div class="row author-title">
@@ -67,9 +70,9 @@
                                     <i class="fa fa-expand"></i>
                                     <span>View Fullscreen</span>
                                 </a>
-                                <a href="#" rel="nofollow" data-favorite="false" data-user="" data-id="2753139" title="Add to Favorites" class="sa-add-to-favorites btn art-image-actions__button">
-                                    <i class="fa fa-heart"></i>
-                                    <span>Add to Favorites</span>
+
+                                <a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button">
+                                    <i class="fa fa-heart"></i> <span>Add to Favorites</span>
                                 </a>
                             </div>
                         </li>
@@ -111,7 +114,7 @@
                                     <span class="price" itemprop="price">
                                         $@Model.Price
                                     </span>
-                                    <a id="addOriginal" href="#" itemscope="url" class="button" rel="nofollow">Add&nbsp;to&nbsp;Cart</a>
+                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" itemscope="url" class="button" rel="nofollow">Add&nbsp;to&nbsp;Cart</a>
                                 </div>
                             </div>
                             <div class="art-detail__value-props">
@@ -195,7 +198,7 @@
                                                 -
                                             </span>
                                         </span>
-                                        <a class="so-art-buy btn btn-success pull-right disabled" href="#" data-type="" style="color: #fff;">Add To Cart</a>
+                                        <a class="so-art-buy btn btn-success pull-right disabled"  data-type="" style="color: #fff;">Add To Cart</a>
                                     </div>
                                 </div>
                                 <div class="art-detail__value-props">
@@ -281,3 +284,50 @@
 <div id="mframe" hidden style="box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 3px; position: absolute; z-index: 1;"></div>
 
 @Scripts.Render("~/bundles/singleproduct")
+
+@section scripts{
+    <script>
+        function addfavsingle(obj, id) {
+            var heart = '<i class="fa fa-heart"></i> <span>Add to Favorites</span>';
+            var hearted = '<i class="fa fa-heart is-favorite"></i> <span>Add to Favorites</span>';
+            var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
+            $(obj).html(loadingspin);
+            $(obj).removeClass('is-favorite');
+            $.ajax({
+                type: 'Get',
+                url: '/Products/AddOrRemoveFavorit/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/account/login';
+                    } else {
+                        if (data.isInMyFavList) {
+                            $(obj).html(hearted);
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Added to your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        } else {
+                            $(obj).html(heart);
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Removed from your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+    </script>
+}

@@ -51,7 +51,7 @@ namespace ArtShop.Controllers
 
             // Get the name of the album to display confirmation
             string Pname = storeDB.ShoppingCarts
-                .Single(item => item.Id == id).Product.Current().Title;
+                .Single(item => item.Id == id).Product.Title;
 
             // Remove from cart
             decimal itemCount = cart.RemoveAllFromCart(id);

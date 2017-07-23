@@ -42,7 +42,7 @@ namespace ArtShop.Controllers
         public ActionResult Header(string culture)
         {
             var userId = User.Identity.GetUserId();
-
+            var cart = CartManager.GetCart(this.HttpContext);
             var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
             if (userProfile != null && !string.IsNullOrEmpty(userProfile.FirstName + userProfile.LastName))
             {
@@ -54,6 +54,7 @@ namespace ArtShop.Controllers
                 ViewBag.fullName = User.Identity.GetUserName();
                 ViewBag.Title = User.Identity.GetUserName();
             }
+            ViewBag.card = cart.GetCartItems().Count;
             return PartialView("_Header", CashManager.Instance.Header);
         }
 

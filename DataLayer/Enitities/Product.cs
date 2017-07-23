@@ -53,6 +53,32 @@ namespace DataLayer.Enitities
         {
             CreateDate = DateTime.Now;
         }
+
+        public object tojason()
+        {
+            return new
+            {
+                id = Id,
+                allEntity = AllEntity,
+                createdYear = ArtCreatedYear,
+                avaible = avaible,
+                categoryId = categoryId,
+                createDate = CreateDate,
+                depth = Depth,
+                description = Description,
+                height = Height,
+                isForSale = ISOrginalForSale,
+                isPrintAvaibled = IsPrintAvaibled,
+                keywords = Keywords,
+                photo = photo.Path,
+                price = Price,
+                sqphoto = Sqphoto.Path,
+                subjectId = subjectId,
+                widephoto = Widephoto.Path,
+                width = Width,
+                title = Title,
+            };
+        }
     }
 
     public class ProductTranslation : ITranslation<Product>

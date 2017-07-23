@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel", "AdminPanel\Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{889B94A8-B8D2-4B8C-9634-E2EE3A5EA2F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApi", "MobileApi\MobileApi.csproj", "{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{889B94A8-B8D2-4B8C-9634-E2EE3A5EA2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{889B94A8-B8D2-4B8C-9634-E2EE3A5EA2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{889B94A8-B8D2-4B8C-9634-E2EE3A5EA2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

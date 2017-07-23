@@ -3,6 +3,7 @@
 }
 
 @model ShoppingCartViewModel
+@using DataLayer.Extentions
 
 <!DOCTYPE html>
 <html>
@@ -16,8 +17,47 @@
 
 
     <link rel="stylesheet" href="https://www.saatchiart.com/build/css/app-08427801f84143d28530a9b54ddc1a78.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 
+    <script type="text/javascript">
+    $(function () {
+        $(".RemoveLink").click(function () {
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                $.post("/Card/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            //$('#item-count-' + data.DeleteId).val(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        //$('#update-message').text(data.Message);
+                        //$('#update-message').show('slow');
+                        //$('#cart-status').text('Cart (' + data.CartCount + ')');
 
+                    });
+            }
+        });
+
+    });
+
+    function changecnt(id){
+        var val = $('#count-' + id).val();
+        $.post("/Card/changecnt", { "id": id , "cnt" : val },
+             function (data) {
+                 if (data.ItemCount == 0) {
+                     $('#row-' + data.DeleteId).fadeOut('slow');
+                 } else {
+                     $('#item-count-' + data.DeleteId).val(data.ItemCount);
+                 }
+                 $('#cart-total').text(data.CartTotal);
+                 $('#update-message').text(data.Message);
+                 $('#update-message').show('slow');
+                 $('#cart-status').text('Cart (' + data.CartCount + ')');
+             });
+    };
+    </script>
 </head>
 <body>
 
@@ -53,23 +93,33 @@
                                             <div class="cart__items">
                                                 @foreach (var item in Model.CartItems)
                                                 {
-                                                    <div class="cart__item cart__item--original">
+                                                    <div  id="row-@item.Id" class="cart__item cart__item--original">
                                                         <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo">
-                                                        <img alt="yin yang" src="@item.Product.photo.Path"></a>
+                                                            <img alt="yin yang" src="@item.Product.photo.Path">
+                                                        </a>
                                                         <div class="cart__item__details">
                                                             <div class="cart__item__details__row">
                                                                 <div class="cart__item__details__left">
-                                                                    <div class="cart__item__title">yin yang</div>
-                                                                    <div>Andrey Povarov</div>
-                                                                    <div>Israel</div>
+                                                                    <div class="cart__item__title">@item.Product.Title</div>
+                                                                    <div>@item.Product.user.FirstName @item.Product.user.LastName</div>
+                                                                    <div>
+                                                                        @if (item.Product.user.country != null)
+                                                                        {
+                                                                            @item.Product.user.country.Current().Name
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span>Unknown</span>
+                                                                        }
+                                                                    </div>
                                                                 </div>
-                                                                <div class="cart__item__details__right"><a href="/cart-api/items/remove/P1-U768405-A2361395">Remove</a></div>
+                                                                <div class="cart__item__details__right"><a data-id="@item.Id" style="cursor:pointer" class="RemoveLink">Remove</a></div>
                                                             </div>
                                                         </div>
                                                         <div class="cart__item__pricing">
                                                             <div>
                                                                 <div>Original Work</div>
-                                                                <div>$695.00</div>
+                                                                <div>$<span id="cart-total">@item.Product.Price</span></div>
                                                             </div>
                                                             <div class="cart__item__estimated-delivery-time">
                                                                 <div>
@@ -80,43 +130,43 @@
                                                     </div>
                                                 }
                                                 @*<div class="cart__item cart__item--print">
-                                                    <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo"><img alt="yin yang" src="//saimg-a.akamaihd.net/saatchi/768405/art/2551400/1621340-6.jpg"></a>
-                                                    <div class="cart__item__details">
-                                                        <div class="cart__item__details__row">
-                                                            <div class="cart__item__details__left">
-                                                                <div class="cart__item__title">yin yang</div>
-                                                                <div>Andrey Povarov</div>
-                                                                <div>Israel</div>
-                                                            </div>
-                                                            <div class="cart__item__details__right">
-                                                                <div class="cart__item__quantity">
-                                                                    <div>
-                                                                        <span>Qty: </span>
-                                                                        <select></select>
-                                                                    </div>
+                                                        <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo"><img alt="yin yang" src="//saimg-a.akamaihd.net/saatchi/768405/art/2551400/1621340-6.jpg"></a>
+                                                        <div class="cart__item__details">
+                                                            <div class="cart__item__details__row">
+                                                                <div class="cart__item__details__left">
+                                                                    <div class="cart__item__title">yin yang</div>
+                                                                    <div>Andrey Povarov</div>
+                                                                    <div>Israel</div>
                                                                 </div>
-                                                                <a href="/cart-api/items/remove/P58-U768405-A2361395-F3">Remove</a>
+                                                                <div class="cart__item__details__right">
+                                                                    <div class="cart__item__quantity">
+                                                                        <div>
+                                                                            <span>Qty: </span>
+                                                                            <select></select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <a href="/cart-api/items/remove/P58-U768405-A2361395-F3">Remove</a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="cart__item__pricing">
-                                                        <div>
-                                                            <div>8x10 Photo Paper Print</div>
-                                                            <div>$82.12</div>
-                                                        </div>
-                                                        <div class="cart__item__options">
+                                                        <div class="cart__item__pricing">
                                                             <div>
-                                                                <!-- react-text: 2198 -->— <!-- /react-text --><!-- react-text: 2199 -->1 ¼" Wide Black Frame (without mat)<!-- /react-text -->
+                                                                <div>8x10 Photo Paper Print</div>
+                                                                <div>$82.12</div>
                                                             </div>
-                                                            <div></div>
-                                                        </div>
-                                                        <div class="cart__item__estimated-delivery-time">
-                                                            <div>
-                                                                <!-- react-text: 2203 -->This item usually ships within <!-- /react-text --><!-- react-text: 2204 -->5 - 7<!-- /react-text --><!-- react-text: 2205 --> business days*<!-- /react-text -->
+                                                            <div class="cart__item__options">
+                                                                <div>
+                                                                    <!-- react-text: 2198 -->— <!-- /react-text --><!-- react-text: 2199 -->1 ¼" Wide Black Frame (without mat)<!-- /react-text -->
+                                                                </div>
+                                                                <div></div>
+                                                            </div>
+                                                            <div class="cart__item__estimated-delivery-time">
+                                                                <div>
+                                                                    <!-- react-text: 2203 -->This item usually ships within <!-- /react-text --><!-- react-text: 2204 -->5 - 7<!-- /react-text --><!-- react-text: 2205 --> business days*<!-- /react-text -->
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>*@
+                                                    </div>*@
                                             </div>
                                             <hr>
 
@@ -124,7 +174,7 @@
                                                 <div class="cart__total__inner">
                                                     <div class="cart__total__row">
                                                         <div>Subtotal</div>
-                                                        <div>$23,800.00</div>
+                                                        <div>$@Model.CartTotal</div>
                                                     </div>
 
                                                 </div>
