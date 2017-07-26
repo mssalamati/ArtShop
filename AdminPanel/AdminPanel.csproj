@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
     <Compile Include="Controllers\PriceListController.cs" />
+    <Compile Include="Controllers\PrintOptionsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -212,6 +213,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModel\PrintMaterialViewModel.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\CountryViewModel.cs" />
     <Compile Include="Models\ViewModel\NavigationCategoryViewModel.cs" />
@@ -5396,6 +5398,13 @@
     <Content Include="Views\PriceList\_successWindow.cshtml" />
     <Content Include="Views\PriceList\add.cshtml" />
     <Content Include="Views\PriceList\edit.cshtml" />
+    <Content Include="Views\PrintOptions\Index.cshtml" />
+    <Content Include="Views\PrintOptions\add.cshtml" />
+    <Content Include="Views\PrintOptions\_successWindow.cshtml" />
+    <Content Include="Views\PrintOptions\edit.cshtml" />
+    <Content Include="Views\PrintOptions\addSize.cshtml" />
+    <Content Include="Views\PrintOptions\editSize.cshtml" />
+    <Content Include="Views\PrintOptions\addFrame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
