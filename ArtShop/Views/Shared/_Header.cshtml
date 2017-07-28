@@ -34,7 +34,7 @@
         min-width: 160px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        left: 0;
+        right: 0;
         z-index: 3;
         top: 42px;
     }
@@ -62,37 +62,91 @@
         }
 </style>
 
+<style>
+    .desktop-navigation__site-link {
+        line-height: 45px !important;
+        height: auto !important;
+        font-weight: 600;
+    }
+
+    .desktop-navigation__authentication-links {
+        padding: 12px 0px;
+    }
+
+    .desktop-navigation__header-bar__inner {
+        justify-content: center;
+    }
+
+    .desktop-navigation__container {
+        background: #f7f8fa;
+        border-top: 1px solid #eff0f2;
+        border-bottom: 1px solid #e3e4e5;
+        box-shadow: 0 1px 2px rgba(0,0,0,.12);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.12);
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.12);
+        -ms-box-shadow: 0 1px 2px rgba(0,0,0,.12);
+        -o-box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    }
+
+    .desktop-navigation__context-bar__right {
+        padding-right: 0px;
+    }
+
+    .dropdownx {
+        margin-right: 0px;
+    }
+
+    .desktop-navigation__account-nav__header, a.desktop-navigation__account-nav__header {
+        font-weight: normal;
+    }
+
+    .desktop-navigation__authentication-links a {
+        font-weight: normal;
+    }
+</style>
+
+<style>
+    .SearchBox {
+        height: 34px !important;
+        border: 1px solid #c9d1d7 !important;
+        -moz-border-radius: 2px !important;
+        -webkit-border-radius: 2px !important;
+        border-radius: 2px !important;
+        color: #4a4a4a !important;
+        z-index: 10 !important;
+        padding: 0 14px 2px 30px !important;
+        background: #fff !important;
+    }
+
+    .desktop-navigation__search__button {
+        left: 10px !important;
+        right: auto !important;
+    }
+
+    .desktop-navigation__dropdown {
+        padding: inherit;
+    }
+
+    .desktop-navigation__dropdown__inner {
+        padding: 50px;
+    }
+
+    .desktop-navigation__dropdown__image {
+        width: auto;
+        height: auto;
+    }
+
+    .desktop-navigation__dropdown__image__title {
+        color: black;
+    }
+</style>
 <header>
     <div class="desktop-navigation desktop-navigation--saatchiart">
         <div class="desktop-navigation__context-bar">
             <div class="desktop-navigation__context-bar__inner">
                 <div class="desktop-navigation__context-bar__left">
                     <div class="desktop-navigation__context-links">
-                        <div class="dropdown dropdownx">
-                            <a class="desktop-navigation__context-link" id="thethingy">
-                                @if (culture == "en-us")
-                                {
-                                    <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
-                                    <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">English <i class="fa fa-caret-down"></i></span>
-                                }
-                                else
-                                {
-                                    <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
-                                    <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">فارسی</span>
-                                }
-
-                            </a>
-                            <div class="dropdown-content">
-                                <a href="/Home/SetCulture?culture=fa">
-                                    <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
-                                    <span style="padding-left:5px;color:black;font-size:13px">فارسی</span>
-                                </a>
-                                <a href="/Home/SetCulture?culture=en-us">
-                                    <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
-                                    <span style="padding-left:5px;color:black;font-size:13px">English</span>
-                                </a>
-                            </div>
-                        </div>
+                        <a data-gtm-event="nav header" href="/" class="navigation__logo"><img src="~/Content/Images/sa-logo.svg" /></a>
                     </div>
                 </div>
                 <div class="desktop-navigation__context-bar__right">
@@ -104,13 +158,54 @@
                         <div class="navigation__cart-link__count">@ViewBag.card</div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 21"><g fill="none" fill-rule="evenodd" transform="translate(0 1)"><path stroke="#333" stroke-linecap="round" d="M0 .478h4.667l3.734 13.077H23.35l2.804-8.635"></path><circle cx="21.25" cy="17.669" r="1.635" fill="#333"></circle><circle cx="10.232" cy="17.924" r="1.635" fill="#333"></circle></g></svg>
                     </a>
+                    <div class="dropdown dropdownx">
+                        <a class="desktop-navigation__context-link" id="thethingy">
+                            @if (culture == "en-us")
+                            {
+                                <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                                <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">English <i class="fa fa-caret-down"></i></span>
+                            }
+                            else
+                            {
+                                <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">فارسی</span>
+                            }
+
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="/Home/SetCulture?culture=fa">
+                                <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                <span style="padding-left:5px;color:black;font-size:13px">فارسی</span>
+                            </a>
+                            <a href="/Home/SetCulture?culture=en-us">
+                                <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                                <span style="padding-left:5px;color:black;font-size:13px">English</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <br />
+                    <form action="/all/search" class="desktop-navigation__search" style="width:97%">
+                        <button class="desktop-navigation__search__button" type="submit">
+                            <img class="desktop-navigation__search__mag" src="~/Content/Images/mag-glass.svg" />
+                        </button>
+                        <input name="query" type="text" class="SearchBox" placeholder="Art" autocomplete="off" value="">
+                        <div class="desktop-navigation__search__caret">
+                            @*<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8"><g fill="none" fill-rule="evenodd" stroke="#333" stroke-linecap="square"><path d="M1 0l7.071 7.071M8.5 7.5l7-7"></path></g></svg>*@
+                        </div>
+                        <div style="visibility:hidden" tabindex="0" class="desktop-navigation__search__dropdown dropdown-menu">
+                            <div class="link-standard desktop-navigation__search__dropdown__item--active" data-path="/all">@ShareRes.Art</div>
+                            <div class="link-standard" data-path="/search/user">@ShareRes.Artist</div>
+                            <div class="link-standard" data-path="/search/collection">@ShareRes.Collection</div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="desktop-navigation__header-bar">
             <div class="desktop-navigation__container">
                 <div class="desktop-navigation__header-bar__inner">
-                    <a data-gtm-event="nav header" href="/" class="navigation__logo"><img src="~/Content/Images/sa-logo.svg" /></a>
+
                     <div class="desktop-navigation__site-links">
                         <div class="desktop-navigation__site-links__indicator"></div>
                         @for (int i = 0; i < Model.Navigation.Count; i++)
@@ -139,12 +234,11 @@
 
                             @for (int i = 0; i < Model.Navigation.Count; i++)
                             {
-                                <div data-index="@i" class="desktop-navigation__dropdown__inner">
+                                <div data-index="@i" class="desktop-navigation__dropdown__inner" style="background-image: url(@Model.Navigation[i].Photo)">
                                     <div class="desktop-navigation__dropdown__image-container">
                                         <a data-gtm-event="nav header"
                                            href="/search/@Model.Navigation[i].Id/0/0/0/0"
-                                           class="desktop-navigation__dropdown__image"
-                                           style="background-image: url(@Model.Navigation[i].Photo)">
+                                           class="desktop-navigation__dropdown__image">
                                             <div class="desktop-navigation__dropdown__image__title">
                                                 @ShareRes.Featured @Model.Navigation[i].Name
                                             </div>
@@ -206,18 +300,7 @@
 
                         </div>
                     </div>
-                    <form action="/all/search" class="desktop-navigation__search">
-                        <button class="desktop-navigation__search__button" type="submit"><img class="desktop-navigation__search__mag" src="~/Content/Images/mag-glass.svg" /></button>
-                        <input name="query" type="text" class="desktop-navigation__search__input" placeholder="Art" autocomplete="off" value="">
-                        <div class="desktop-navigation__search__caret">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8"><g fill="none" fill-rule="evenodd" stroke="#333" stroke-linecap="square"><path d="M1 0l7.071 7.071M8.5 7.5l7-7"></path></g></svg>
-                        </div>
-                        <div tabindex="0" class="desktop-navigation__search__dropdown dropdown-menu">
-                            <div class="link-standard desktop-navigation__search__dropdown__item--active" data-path="/all">@ShareRes.Art</div>
-                            <div class="link-standard" data-path="/search/user">@ShareRes.Artist</div>
-                            <div class="link-standard" data-path="/search/collection">@ShareRes.Collection</div>
-                        </div>
-                    </form>
+
                 </div>
             </div>
         </div>

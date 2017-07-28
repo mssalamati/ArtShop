@@ -29,6 +29,19 @@
 
     @Scripts.Render("~/bundles/modernizr")
 
+    <style>
+        .footer-container {
+           
+        }
+
+        #footer {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-bottom:0;
+            padding-top:0;
+            background-color:white;
+        }
+    </style>
 </head>
 
 @{
@@ -88,8 +101,6 @@
 
     @RenderBody()
 
-    @Html.Partial("_Footer")
-
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -98,6 +109,8 @@
             </div>
         </div>
     </div>
+
+    @Html.Partial("_Footer")
 
     <script>var Modernizr = false;</script>
     <script src="~/Content/js/dist/foundation/foundation5-5.min4baf.js?version=1468284677"></script>
@@ -127,7 +140,7 @@
         });
 
         window.onclick = function (event) {
-            if (!event.target.matches('.dropdown') && 
+            if (!event.target.matches('.dropdown') &&
                 !event.target.matches('.desktop-navigation__context-link') &&
                 !event.target.matches('.lnsp') &&
                  !event.target.matches('.pchl')) {
