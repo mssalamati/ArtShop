@@ -36,7 +36,7 @@ namespace ArtShop.Controllers
                 counter++;
             }
 
-            if (counter < 3 && counter != 0)
+            if (counter < 4 && counter != 0)
             {
                 for (int i = 0; i < 4 - counter; i++)
                 {
