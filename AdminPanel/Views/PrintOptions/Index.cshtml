@@ -1,0 +1,202 @@
+﻿@model IEnumerable<PrintMaterial>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+<div class="page-title">
+    <div class="title"> زبان و کشور ها</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">زبان و کشور ها </a>
+        </li>
+    </ol>
+</div>
+
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/languages">زبان ها</a>
+    </li>
+    <li>
+        <a href="/Countries/Index">کشور ها</a>
+    </li>
+    <li>
+        <a href="/PriceList/Index">محدوده قیمت</a>
+    </li>
+    <li class="active">
+        <a href="/PrintOptions/Index">پرینت</a>
+    </li>
+</ul>
+
+
+<div class="clearfix"></div>
+
+<div class="card bg-white m-b">
+    <div class="card-header">
+        <button onclick="showAdd()" type="button" class="pull-left btn btn-default">ثبت Material جدید</button>
+    </div>
+    <div class="card-block p-a-0">
+    </div>
+
+</div>
+
+@if (Model.Count() != 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="col-md-6">
+            <div class="card bg-white">
+                <div class="card-header bg-primary text-white">
+                    <div class="pull-left">Material</div>
+                    <div class="card-controls">
+                        <a href="javascript:;" class="card-collapse" data-toggle="card-collapse">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-block">
+                    @if (item.Translations.Count == 0)
+                    {
+                        <span style="color:red">No Name</span>
+                    }
+                    else
+                    {
+                        foreach (var trans in item.Translations.Take(3))
+                        {
+                            <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.title   <span>&nbsp;</span>
+                        }
+                    }
+                    <hr />
+                    <div class="cf nestable-lists">
+                        <div class="dd">
+                            <ol class="dd-list">
+                                @if (item.PrintSizes.Count == 0)
+                                {
+                                    <li style="text-align:center">
+                                        سایزی وارد نشده
+                                    </li>
+                                }
+                                @foreach (var size in item.PrintSizes)
+                                {
+                                    <li data-id="s-@size.Id" class="dd-item">
+                                        <div class="pull-right" style="display:block;position: relative;line-height:2.325rem;padding-right:5px">
+                                            <a class="text-success" onclick="addframe(@size.Id)">فریم جدید</a> | 
+                                            <a class="text-primary" onclick="editsize(@size.Id)">ویرایش</a>
+                                        </div>
+                                        <div class="dd-handle" style="direction:ltr;text-align:left">
+                                            "@size.title" - $@size.price
+                                        </div>
+
+                                        @if (size.PrintFrames.Count != 0)
+                                        {
+                                            <ol class="dd-list">
+                                                @foreach (var frame in size.PrintFrames)
+                                                {
+                                                    <li class="dd-item" data-id="3">
+                                                        <div class="pull-right" style="display:block;position: relative;line-height:2.500rem;font-size:15px;padding-right:10px">
+                                                            <a href="/PrintOptions/DeleteFrame/@frame.Id" class="text-danger  "> <i class="fa fa-trash"></i></a>
+                                                        </div>
+                                                        <div class="dd-handle" style="direction:ltr;text-align:left">
+                                                            "@frame.title" - $@frame.price (total: $@(frame.price + size.price))
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ol>
+                                        }
+                                    </li>
+                                }
+                            </ol>
+                        </div>
+                    </div>
+                    <hr />
+                    <button class="btn btn-success btn-sm" onclick="addsize(@item.Id)">سایز جدید</button>
+                    <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
+                    <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
+                    <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/PrintOptions/Delete/@item.Id">آیا مطمئن هستید؟</a>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        هیچ Material ای ثبت نشده
+    </div>
+}
+
+
+
+<div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="dform">
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
+    <script src="~/Content/Admin/vendor/nestable/jquery.nestable.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            'use strict';
+            $('.dd').each(function () {
+                $(this).nestable({
+                    maxDepth: 1,
+                    noDragClass: 'dd-nodrag',
+                    group: $(this).data('id')
+                }).nestable('collapseAll');
+            });
+        })(jQuery);
+    </script>
+
+    <script>
+        var loading =
+            '<div class="modal-header bg-primary">' +
+            '   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>' +
+            '   <h4 class="modal-title">...</h4>' +
+            '</div>' +
+            '<div class="modal-body" style="padding:20px;text-align:center">' +
+            '   <p style="text-align:center">در حال بارگذاری</p>' +
+            '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+            '</div>';
+
+        function showAdd() {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/PrintOptions/add");
+        }
+        function showEdit(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/PrintOptions/edit/" + id);
+        }
+
+        function addsize(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/PrintOptions/addSize/" + id);
+        }
+        function editsize(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/PrintOptions/editsize/" + id);
+        }
+
+        function addframe(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/PrintOptions/addframe/" + id);
+        }
+    </script>
+}

@@ -114,7 +114,7 @@
 
                     <div class="small-12 medium-12 large-2 columns">
 
-                        @for (int i = 1; i <= 3; i++)
+                        @for (int i = 1; i <= Model.artworks.Count-1; i++)
                 {
 
                     var item = Model.artworks[i];

@@ -1,11 +1,11 @@
 ﻿
-@model PriceListViewModel
+@model PrintMaterialViewModel
 
 <div class="modal-header bg-primary">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
-    <h4 class="modal-title">PriceList جدید</h4>
+    <h4 class="modal-title">size جدید</h4>
 </div>
-@using (Ajax.BeginForm("add", "PriceList", null, new AjaxOptions()
+@using (Ajax.BeginForm("addSize", "PrintOptions", null, new AjaxOptions()
 {
     HttpMethod = "POST",
     UpdateTargetId = "dform",
@@ -26,17 +26,19 @@
             @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
         }
 
+        <input type="hidden" name="parentid" value="@ViewBag.materialid"/>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="form-label">min </label>
-                    <input name="min"  class="form-control" />
+                    <label class="form-label">title </label>
+                    <input name="title" class="form-control" />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="form-label">max </label>
-                    <input name="max"  class="form-control" />
+                    <label class="form-label">price </label>
+                    <input name="price" class="form-control" />
                 </div>
             </div>
 
@@ -47,7 +49,7 @@
                     <div class="form-group">
                         <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
                         <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                        <input name="Translations[@i].Name" type="text" class="form-control" />
+                        <input name="Translations[@i].title" type="text" class="form-control" />
                     </div>
                 </div>
             }
@@ -63,5 +65,7 @@
         </button>
     </div>
 }
+
+
 
 

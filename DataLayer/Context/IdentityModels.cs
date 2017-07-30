@@ -92,5 +92,11 @@ namespace DataLayer
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<PrintMaterial> PrintMaterials { get; set; }
+        public DbSet<PrintSize> PrintSizes { get; set; }
+        public DbSet<PrintFrame> PrintFrames { get; set; }
+        public DbSet<PrintFrameTranslation> PrintFrameTranslations { get; set; }
+        public DbSet<PrintSizeTranslation> PrintSizeTranslations { get; set; }
+        public DbSet<PrintMaterialTranslation> PrintMaterialTranslations { get; set; }
     }
 }

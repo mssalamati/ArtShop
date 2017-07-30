@@ -70,6 +70,7 @@
     <Compile Include="Enitities\Material.cs" />
     <Compile Include="Enitities\Medium.cs" />
     <Compile Include="Enitities\Pricethreshold.cs" />
+    <Compile Include="Enitities\PrintOptions.cs" />
     <Compile Include="Enitities\Product.cs" />
     <Compile Include="Enitities\ShoppingCart.cs" />
     <Compile Include="Enitities\SiteObjectParam.cs" />
