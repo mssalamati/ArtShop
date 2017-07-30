@@ -241,8 +241,10 @@
     <Content Include="Content\Images\caret-right.svg" />
     <Content Include="Content\Images\iran.svg" />
     <Content Include="Content\Images\leaf.png" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\mag-glass.svg" />
     <Content Include="Content\Images\sa-logo.svg" />
+    <Content Include="Content\Images\sa-logo2.svg" />
     <Content Include="Content\Images\saatchi-logo-grayscale.svg" />
     <Content Include="Content\Images\sprite_v5.42.3.png" />
     <Content Include="Content\Images\toaf-logo-grayscale.svg" />
