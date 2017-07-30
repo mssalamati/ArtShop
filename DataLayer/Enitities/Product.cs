@@ -18,6 +18,9 @@ namespace DataLayer.Enitities
         public virtual UserProfile user { get; set; }
         public virtual ICollection<ProductTranslation> Translations { get; set; }
         public int Price { get; set; }
+        [ForeignKey("OrginalPhoto")]
+        public int? OrginalPhotoId { get; set; }
+        public virtual Photo OrginalPhoto { get; set; }
         [ForeignKey("photo")]
         public int? photoId { get; set; }
         public virtual Photo photo { get; set; }

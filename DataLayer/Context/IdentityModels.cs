@@ -98,5 +98,7 @@ namespace DataLayer
         public DbSet<PrintFrameTranslation> PrintFrameTranslations { get; set; }
         public DbSet<PrintSizeTranslation> PrintSizeTranslations { get; set; }
         public DbSet<PrintMaterialTranslation> PrintMaterialTranslations { get; set; }
+        public DbSet<SitePage> SitePages { get; set; }
+        public DbSet<SitePageTranslation> SitePageTranslations { get; set; }
     }
 }

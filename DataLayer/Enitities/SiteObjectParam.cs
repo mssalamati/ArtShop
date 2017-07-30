@@ -15,8 +15,15 @@ namespace DataLayer.Enitities
         public string SiteName { get; set; }
         public string SliderImage { get; set; }
         public virtual ICollection<NavigationCategory> Navigations { get; set; }
+        public virtual ICollection<ImageServer> ImageServers { get; set; }
     }
 
+
+    public class ImageServer
+    {
+        public int Id { get; set; }
+        public string Host { get; set; }
+    }
     public class NavigationCategory
     {
         [Key]
