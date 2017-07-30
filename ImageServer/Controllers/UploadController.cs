@@ -19,7 +19,7 @@ namespace ImageServer.Controllers
             var rootFolder = ConfigurationManager.AppSettings["rootFolder"];
             var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
             var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
-            var maxStoreage = ConfigurationManager.AppSettings["maxStoreage"];
+            var maxStoreage = long.Parse(ConfigurationManager.AppSettings["maxStoreage"]);
             long length = new System.IO.FileInfo(rootFolder).Length;
             return Json(new
             {
@@ -27,6 +27,7 @@ namespace ImageServer.Controllers
                 maxStoreage = maxStoreage,
                 mainDomain = mainDomain,
                 Name = ImageServerName,
+                SSAllowPicture = true || length < maxStoreage,
                 IP = "valid"
             }, JsonRequestBehavior.AllowGet);
         }
