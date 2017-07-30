@@ -180,6 +180,26 @@ namespace Utilities
             return res;
         }
 
+        public static bool saveThumb(string Orginalpath, string thumbPath)
+        {
+            try
+            {
+                using (Image image = Image.FromFile(Orginalpath))
+                {
+                    var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+                    var jpegCodec = GetEncoderInfo("image/jpeg");
+                    var encoderParams = new EncoderParameters(1);
+                    encoderParams.Param[0] = qualityParam;
+                    image.Save(thumbPath, jpegCodec, encoderParams);
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static void SaveJpeg(string path, Image img)
         {
             var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
