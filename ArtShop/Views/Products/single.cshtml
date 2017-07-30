@@ -15,12 +15,69 @@
     }
 </style>
 
+<style>
+    .tab-two .active a {
+        background: rgba(0, 0, 0, 0.00);
+        color: white;
+        border-bottom: 10px solid rgba(0, 0, 0, 0.00);
+    }
+
+        .tab-two .active a:hover {
+            background-color: rgba(0, 0, 0, 0.10);
+            border-bottom: 10px solid rgba(0, 0, 0, 0.00);
+        }
+
+    .art-detail-ribbon:after {
+        content: "";
+        position: absolute;
+        display: none;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.00) transparent transparent #000;
+        border-width: 0px;
+        bottom: 0rem;
+        right: 0;
+    }
+
+    .art-detail-original {
+        padding: 0 0px;
+    }
+
+    .art-detail__value-props {
+        padding: 0 20px;
+    }
+
+    .tab-two div:first-child a {
+        border-left: 0;
+        border-right: 10px solid rgba(255, 255, 255, 0.00);
+    }
+
+    .tab-two div:last-child a {
+        border-left: 10px solid rgba(255, 255, 255, 0.00);
+    }
+
+    .tab-two a {
+        background-color: rgba(245, 245, 245, 0.75);
+        border-bottom: 10px solid rgba(255, 255, 255, 0.00);
+    }
+
+    .tab-two div:first-child.active a {
+        border-left: 0;
+        border-right: 10px solid rgba(255, 255, 255, 0.00);
+        z-index: 9;
+    }
+
+    .tab-two div:last-child.active a {
+        border-left: 10px solid rgba(255, 255, 255, 0.00);
+        margin-right: 0;
+    }
+</style>
+
 <div class="row-layout content">
 
     <article class="art-detail">
 
         <div role="main" class="row">
-            <header class="row" style="background-color:rgba(134, 189, 255, 0.18);padding:10px">
+            <header class="row" style="">
                 <div class="small-1 columns">
                     @if (Model.user.country != null)
                     {
@@ -81,7 +138,7 @@
                 </div>
 
                 <!-- /share module -->
-                <div class="small-12 large-4 columns art-detail-description">
+                <div class="small-12 large-4 columns art-detail-description" style="background: rgba(0, 0, 0, 0.51);color:white;">
                     <div id="productTabs" class="row tab-two">
                         <div id="orginalTabTitle" class="small-6 columns active">
                             <a onclick="changetab(0);" class="tab-original" title="Original">Original</a>
@@ -109,14 +166,7 @@
                     </div>
                     <div id="original" class="row art-detail-original">
                         <div class="small-12 medium-6 large-12 columns">
-                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="art-detail-ribbon">
-                                <div class="clearfix">
-                                    <span class="price" itemprop="price">
-                                        $@Model.Price
-                                    </span>
-                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" itemscope="url" class="button" rel="nofollow">Add&nbsp;to&nbsp;Cart</a>
-                                </div>
-                            </div>
+
                             <div class="art-detail__value-props">
                                 <div><i class="fa fa-check" aria-hidden="true"></i> Shipping included</div>
                                 <div>
@@ -129,6 +179,14 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     Trustpilot Score
+                                </div>
+                            </div>
+                            <div style="width:inherit" class="art-detail-ribbon">
+                                <div class="clearfix">
+                                    <span class="price" itemprop="price">
+                                        $@Model.Price
+                                    </span>
+                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" itemscope="url" class="button" rel="nofollow">Add&nbsp;to&nbsp;Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -177,30 +235,7 @@
                                     </select>
                                     <div class="clearfix"></div>
                                 </div>
-                                <script type="text/x-tmpl" id="tmpl-frameOptions">
-                                    <option class="select-frame"
-                                            data-description="{%=o.description%}"
-                                            data-frame_price="{%=o.frame_price%}"
-                                            data-framing_type_id="{%=o.framing_type_id%}"
-                                            data-label="{%=o.label%}"
-                                            data-total_price="{%=o.total_price%}"
-                                            value="F{%=o.framing_type_id%}">
-                                        <label>{%=o.label%}</label>
-                                        <span class="price-frame pull-right">
-                                            ({%=o.frame_price%})
-                                        </span>
-                                    </option>
-                                </script>
-                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="art-detail-ribbon">
-                                    <div class="clearfix">
-                                        <span class="price" itemprop="price">
-                                            <span class="so-subtotal-price">
-                                                -
-                                            </span>
-                                        </span>
-                                        <a class="so-art-buy btn btn-success pull-right disabled"  data-type="" style="color: #fff;">Add To Cart</a>
-                                    </div>
-                                </div>
+
                                 <div class="art-detail__value-props">
 
                                     <div>
@@ -226,26 +261,37 @@
                                         Trustpilot Score
                                     </div>
                                 </div>
+
+                                <div itemprop="offers" style="width:inherit;margin:0px -20px" class="art-detail-ribbon">
+                                    <div class="clearfix">
+                                        <span class="price" itemprop="price">
+                                            <span class="so-subtotal-price">
+                                                -
+                                            </span>
+                                        </span>
+                                        <a class="so-art-buy btn btn-success pull-right disabled" data-type="" style="color: #fff;">Add To Cart</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row ">
-                        <div class="view-room-fav-stats">
-                            <div class="art-detail-stats">
-                                <ul class="inline-list">
-                                    <li>
-                                        0<br>
-                                        <span>Views</span>
-                                    </li>
-                                    <li>
-                                        <div id="favoriteCount">0</div>
-                                        <span>Favorites</span>
-                                    </li>
-                                </ul>
+                    @*<div class="row ">
+                            <div class="view-room-fav-stats">
+                                <div class="art-detail-stats">
+                                    <ul class="inline-list">
+                                        <li>
+                                            0<br>
+                                            <span>Views</span>
+                                        </li>
+                                        <li>
+                                            <div id="favoriteCount">0</div>
+                                            <span>Favorites</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>*@
 
                 </div>
             </div>

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Reso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApi", "MobileApi\MobileApi.csproj", "{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageServer", "ImageServer\ImageServer.csproj", "{07AF6E18-E174-4948-8416-BD494DF27798}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F217A8F-6EAF-41E3-B316-B5EEAB71A7F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07AF6E18-E174-4948-8416-BD494DF27798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07AF6E18-E174-4948-8416-BD494DF27798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07AF6E18-E174-4948-8416-BD494DF27798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07AF6E18-E174-4948-8416-BD494DF27798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
