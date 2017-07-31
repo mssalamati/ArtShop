@@ -184,15 +184,20 @@ namespace Utilities
         {
             try
             {
-                using (Image image = Image.FromFile(Orginalpath))
+                if (FileHelper.CreateFolderIfNeeded(thumbPath))
                 {
-                    var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
-                    var jpegCodec = GetEncoderInfo("image/jpeg");
-                    var encoderParams = new EncoderParameters(1);
-                    encoderParams.Param[0] = qualityParam;
-                    image.Save(thumbPath, jpegCodec, encoderParams);
-                    return true;
+                    using (Image image = Image.FromFile(Orginalpath))
+                    {
+                        var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+                        var jpegCodec = GetEncoderInfo("image/jpeg");
+                        var encoderParams = new EncoderParameters(1);
+                        encoderParams.Param[0] = qualityParam;
+                        image.Save(thumbPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
+                        return true;
+                    }
                 }
+                else
+                    return false;
             }
             catch
             {

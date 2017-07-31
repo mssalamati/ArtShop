@@ -1,4 +1,9 @@
-﻿@{
+﻿
+@{
+    ViewBag.Title = "parameters";
+}
+
+@{
     ViewBag.Title = "Index";
     IEnumerable<SiteParam> siteparams = ViewBag.SiteParams;
     SiteObjectParam SiteObjectParams = ViewBag.SiteObjectParams;
@@ -25,123 +30,74 @@
 </div>
 
 <ul class="nav nav-tabs">
-    <li class="active">
+    <li>
         <a href="/FirstPageSettings/index"> هدر</a>
     </li>
     <li>
         <a href="/FirstPageSettings/footers"> فوتر</a>
     </li>
-    <li>
+    <li class="active">
         <a href="/FirstPageSettings/parameters">مقادیر </a>
     </li>
 </ul>
 
 <div class="clearfix"></div>
 
-<div class="card bg-white m-b">
-    <div class="card-header"> Defaults  </div>
-    <div class="card-block p-a-0">
-        @if (!string.IsNullOrEmpty(ViewBag.alert))
-        {
-            <div class="alert alert-info">
-                @ViewBag.alert
+
+@if (siteparams.Count() == 0)
+{
+    <div class="card bg-white m-b">
+        <div class="card-header">پارامتر ها  </div>
+        <div class="card-block p-a-0">
+            <div class="alert alert-warning ">
+                هیچ پارامتری در سیستم ثبت نشده
             </div>
-        }
-        @if (!ViewData.ModelState.IsValid)
-        {
-            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
-        }
-        <table class="table m-b-0">
-            <tr>
-                <th>
-                    تصویر اسلایدر
-                </th>
-                <th>
-                    <img style="height:50px;" src="@SiteObjectParams.SliderImage" />
-                </th>
-                <td>
-                    @using (Html.BeginForm("index", "FirstPageSettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success col-sm-2"><i class="fa fa-upload"></i></button>
-                            <div class="col-sm-10">
-                                <div class="uploader blue">
-                                    <input type="button" name="file" class="button" value="انتخاب.." />
-                                    <input type="text" class="filename" readonly="readonly" />
-                                    <input type="file" id="Image" name="Image" />
-                                </div>
-                            </div>
-                        </div>        
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    نام سایت
-                </th>
-                <th>
-                    @SiteObjectParams.SiteName
-                </th>
-                <td></td>
-            </tr>
-        </table>
-
+        </div>
     </div>
-</div>
+}
 
-<div class="card bg-white m-b">
-    <div class="card-header">
-        <form action="/FirstPageSettings/AddCategoryToHeader" method="post">
-            <p style="padding-top: 8px !important;margin-bottom: 0; float:right"> Header Fav Category</p>
-            <button type="submit" class="pull-left btn btn-default">ثبت دسته جدید</button>
-            <select id="catselect" name="id" class="pull-left form-control"></select>
-        </form>
-    </div>
-    <div class="card-block p-a-0">
-        <div class="table-responsive">
-            @if (SiteObjectParams != null && SiteObjectParams.Navigations.Count != 0)
-            {
+else
+{
+    <div class="card bg-white m-b">
+        <div class="card-header">پارامتر ها  </div>
+        <div class="card-block p-a-0">
+            <div class="table-responsive">
                 <table class="table m-b-0">
                     <tr>
                         <th></th>
                         <th>
                             Name
                         </th>
+                        <th>
+
+                        </th>
                         <th></th>
                     </tr>
-                    @foreach (var item in SiteObjectParams.Navigations)
+
+                    @foreach (var item in siteparams)
                     {
                         <tr>
                             <th><i class="fa fa-book"></i></th>
                             <td>
-                                @if (item.category.Translations.Count == 0)
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @foreach (var lang in item.Translations)
                                 {
-                                    <span>No Name</span>
-                                }
-                                @foreach (var trans in item.category.Translations)
-                                {
-                                    <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name
+                                    <img width="20" src='~/Content/Images/@(lang.language.Code+".svg")' />
                                 }
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="showEditCatHead(@item.Id)">ویرایش</button>
-                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
-                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/FirstPageSettings/DeleteCatHeader/@item.Id">آیا مطمئن هستید؟</a>
+                                <button class="btn btn-primary btn-xs" onclick="showEditparam('@item.Name.Replace(" ","%20")')">ویرایش</button>
                             </td>
                         </tr>
                     }
+
                 </table>
-            }
-            else
-            {
-                <div class="alert alert-warning ">
-                    هیچ دسته بندی ای در Header ثبت نشده
-                </div>
-            }
+            </div>
         </div>
     </div>
-</div>
-
+}
 
 <div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -150,6 +106,7 @@
         </div>
     </div>
 </div>
+
 
 @section scripts{
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")

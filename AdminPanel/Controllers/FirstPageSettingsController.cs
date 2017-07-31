@@ -18,6 +18,20 @@ namespace AdminPanel.Controllers
             return View();
         }
 
+        public ActionResult footers()
+        {
+            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
+            ViewBag.SiteParams = db.SiteParams.ToList();
+            return View();
+        }
+
+        public ActionResult parameters()
+        {
+            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
+            ViewBag.SiteParams = db.SiteParams.ToList();
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AddCategoryToHeader(int id)
         {

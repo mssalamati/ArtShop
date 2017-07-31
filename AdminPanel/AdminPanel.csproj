@@ -201,6 +201,7 @@
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\FirstPageSettingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageServersController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
     <Compile Include="Controllers\PriceListController.cs" />
     <Compile Include="Controllers\PrintOptionsController.cs" />
@@ -5405,6 +5406,9 @@
     <Content Include="Views\PrintOptions\addSize.cshtml" />
     <Content Include="Views\PrintOptions\editSize.cshtml" />
     <Content Include="Views\PrintOptions\addFrame.cshtml" />
+    <Content Include="Views\FirstPageSettings\footers.cshtml" />
+    <Content Include="Views\FirstPageSettings\parameters.cshtml" />
+    <Content Include="Views\ImageServers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
