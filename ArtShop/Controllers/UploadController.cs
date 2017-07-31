@@ -11,6 +11,8 @@ using System.Configuration;
 using ArtShop.Util;
 using Microsoft.AspNet.Identity;
 using DataLayer.Enitities;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ArtShop.Controllers
 {
@@ -23,28 +25,51 @@ namespace ArtShop.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult upload(HttpPostedFileBase file)
+        private ImageServer getAvaibleServer()
         {
-            string tempFolderName = "Upload/products/Product";
-            var result = ImageHelper.Saveimage(Server, file, tempFolderName, ImageHelper.saveImageMode.Not);
-            if (!result.ResultStatus)
-                return Json(new { result = false, data = result.Error });
-
-            return Json(new { result = true, data = result.FullPath });
+            return db.ImageServers.FirstOrDefault();
         }
+        private async Task<ISResizeViewModel> resize(UploadViewModel.step4 model)
+        {
+            ISResizeViewModel obj = null;
+            var iserverid = (int)Session["iserver"];
+            var iserver = db.ImageServers.Find(iserverid);
+            obj = await resizeasync(model, "http://" + iserver.Host);
+            return obj;
+        }
+
+        private async Task<ISResizeViewModel> resizeasync(UploadViewModel.step4 model, string uri)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            HttpResponseMessage response = await client.PostAsJsonAsync("upload/resize", model);
+            response.EnsureSuccessStatusCode();
+            var res = await response.Content.ReadAsAsync<ISResizeViewModel>();
+            return res;
+        }
+
 
         //upload picture
         public ActionResult Setep1()
         {
-            ViewBag.lastpic = (string)Session["imageAddress"];
-            return PartialView();
+            var iserver = getAvaibleServer();
+            Session["iserver"] = iserver.Id;
+            if (iserver != null)
+            {
+                ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
+                ViewBag.lastpic = (string)Session["imageAddress"];
+                return PartialView();
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
         [HttpPost]
         public ActionResult Setep1(UploadViewModel.step1 model)
         {
             Session["imageAddress"] = model.img;
-            if (string.IsNullOrEmpty(model.img) || !System.IO.File.Exists(HttpContext.Server.MapPath(model.img)))
+            if (string.IsNullOrEmpty(model.img))
             {
                 ViewBag.Error = Resources.UploadRes.Image_cannot_be_empty;
                 return PartialView();
@@ -103,11 +128,11 @@ namespace ArtShop.Controllers
             return PartialView();
         }
         [HttpPost]
-        public ActionResult Setep4(UploadViewModel.step4 model)
+        public async Task<ActionResult> Setep4(UploadViewModel.step4 model)
         {
             model = model.square_width == 0 && model.wide_width == 0 ? new UploadViewModel.step4()
             {
-                wide_x = float.Parse(Request["wide_x"].Replace(".","/")),
+                wide_x = float.Parse(Request["wide_x"].Replace(".", "/")),
                 wide_height = float.Parse(Request["wide_height"].Replace(".", "/")),
                 wide_width = float.Parse(Request["wide_width"].Replace(".", "/")),
                 wide_y = float.Parse(Request["wide_y"].Replace(".", "/")),
@@ -116,10 +141,12 @@ namespace ArtShop.Controllers
                 square_x = float.Parse(Request["square_x"].Replace(".", "/")),
                 square_y = float.Parse(Request["square_y"].Replace(".", "/")),
             } : model;
-            string image = (string)Session["imageAddress"];
-            var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
 
-            if (result.ResultStatus)
+            model.image = (string)Session["imageAddress"];
+
+            var result = await resize(model);
+
+            if (result.result)
             {
                 Session["WideFullPath"] = result.WideFullPath;
                 Session["SqureFullPath"] = result.SqureFullPath;
@@ -127,7 +154,7 @@ namespace ArtShop.Controllers
             else
             {
                 ViewBag.img = (string)Session["imageAddress"];
-                ViewBag.error = result.Error;
+                ViewBag.error = result.error;
                 return PartialView();
             }
 

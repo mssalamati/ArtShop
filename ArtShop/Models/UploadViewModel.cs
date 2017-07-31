@@ -25,6 +25,7 @@ namespace ArtShop.Models
         }
         public class step4
         {
+            public string image { get; set; }
             public float square_x { get; set; }
             public float square_y { get; set; }
             public float square_width { get; set; }

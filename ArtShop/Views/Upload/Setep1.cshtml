@@ -120,7 +120,7 @@
         var formData = new FormData(this);
         $.ajax({
             type: 'POST',
-            url: '/upload/upload',
+            url: '@ViewBag.iserver',
             data: formData,
             cache: false,
             contentType: false,

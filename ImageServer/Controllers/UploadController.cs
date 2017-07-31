@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,7 +21,8 @@ namespace ImageServer.Controllers
             var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
             var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
             var maxStoreage = long.Parse(ConfigurationManager.AppSettings["maxStoreage"]);
-            long length = new System.IO.FileInfo(rootFolder).Length;
+            var path = Server.MapPath("~" + rootFolder);
+            var length = GetDirectorySize(path);
             return Json(new
             {
                 diskUsage = length,
@@ -30,6 +32,18 @@ namespace ImageServer.Controllers
                 SSAllowPicture = true || length < maxStoreage,
                 IP = "valid"
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public long GetDirectorySize(string p)
+        {
+            string[] a = Directory.GetFiles(p, "*.*");
+            long b = 0;
+            foreach (string name in a)
+            {
+                FileInfo info = new FileInfo(name);
+                b += info.Length;
+            }
+            return b;
         }
 
         //remove on demand
@@ -46,6 +60,13 @@ namespace ImageServer.Controllers
             string ip = Request.UserHostAddress;
 
             return Json("" + ip, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult exist(string path)
+        {
+            string ip = Request.UserHostAddress;
+
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         //resize picture and save
@@ -65,19 +86,31 @@ namespace ImageServer.Controllers
                 square_y = float.Parse(Request["square_y"].Replace(".", "/")),
             } : model;
 
-            var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
-            var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
-            Uri mainuri = new Uri(ImageServerName + "." + mainDomain);
-            Uri imageuri = new Uri(model.image);
-            string image = mainuri.MakeRelativeUri(imageuri).ToString();
-            var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
-            if (result.ResultStatus)
+            try
             {
-                return Json(new { result = true }, JsonRequestBehavior.AllowGet);
+                var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
+                var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
+                Uri mainuri = new Uri(ImageServerName + "." + mainDomain);
+                Uri imageuri = new Uri(model.image);
+                string image = mainuri.MakeRelativeUri(imageuri).ToString();
+                var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
+                if (result.ResultStatus)
+                {
+                    return Json(new
+                    {
+                        result = true,
+                        SqureFullPath = result.SqureFullPath,
+                        WideFullPath = result.WideFullPath
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { result = false, error = result.Error }, JsonRequestBehavior.AllowGet);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Json(new { result = true }, JsonRequestBehavior.AllowGet);
+                return Json(new { result = false, error = ex.ToString() }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -93,13 +126,13 @@ namespace ImageServer.Controllers
             var result = ImageHelper.Saveimage(Server, file, OrginalFolderName, ImageHelper.saveImageMode.Not);
             if (!result.ResultStatus)
                 return Json(new { result = false, data = result.Error });
-            bool saveResult = ImageHelper.saveThumb(result.FullPath, thumbPath);
-            if (!saveResult)
-                return Json(new { result = false, data = "can not save thumb" }, JsonRequestBehavior.AllowGet);
+            var saveResult = ImageHelper.saveThumb(Server, result.FullPath, thumbPath);
+            if (!saveResult.ResultStatus)
+                return Json(new { result = false, data = saveResult.Error }, JsonRequestBehavior.AllowGet);
             return Json(new
             {
                 result = true,
-                data = ImageServerName + "." + mainDomain + result.FullPath
+                data = "http://" + ImageServerName + "." + mainDomain + result.FullPath
             }, JsonRequestBehavior.AllowGet);
         }
     }

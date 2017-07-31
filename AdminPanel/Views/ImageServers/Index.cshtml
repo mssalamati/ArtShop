@@ -36,21 +36,41 @@
                             Host
                         </th>
                         <th>
-                            Detail
+                            Name
                         </th>
+                        <th>
+                            SSAllowPicture
+                        </th>
+                        <th>
+                            Usage
+                        </th>
+                        <th>
+                            mainDomain
+                        </th>
+                      
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th><i class="fa fa-eye"></i></th>
+                            <th><i class="fa fa-server"></i></th>
                             <th>
                                 @item.Host
                             </th>
                             <th>
-                                @item.Host
+                                <span id="name_@item.Id"> </span>
+                            </th>
+                            <th>
+                                <span id="SSAllowPicture_@item.Id"> </span> 
+                            </th>
+                            <th>
+                                <span id="Usage_@item.Id"> </span> 
+                            </th>
+                            <th>
+                                <span id="mainDomain_@item.Id"> </span> 
                             </th>
                             <td>
+                                <button onclick="getsingle(@item.Id)"><i class="fa fa-refresh"></i></button>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/ImageServers/Delete/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
@@ -98,5 +118,27 @@
             $("#dform").html(loading);
             $("#dform").load("/ImageServers/add");
         }
+
+        var load = '<i class="fa fa-spinner fa-spin"></i>';
+        function getsingle(id) {
+            $("#name_" + id).html(load);
+            $("#SSAllowPicture_" + id).html(load);
+            $("#Usage_" + id).html(load);
+            $("#mainDomain_" + id).html(load);
+
+            $.getJSON("/ImageServers/getsingle/" + id, function (obj) {
+                $("#name_" + id).html(obj.Name);
+                $("#SSAllowPicture_" + id).html(obj.SSAllowPicture);
+                $("#Usage_" + id).html(obj.diskUsage+'/'+obj.maxStoreage);
+                $("#mainDomain_" + id).html(obj.mainDomain);
+            });
+        }
+
+        @foreach (var item in Model)
+         {
+            <text>
+        getsingle(@item.Id);
+        </text>
+         }
     </script>
 }

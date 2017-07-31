@@ -140,7 +140,7 @@ namespace Utilities
                     {
                         string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                         file.SaveAs(Path.Combine(tempFolderPath, filename));
-                        string filePath = string.Concat("/", path, "/", filename);
+                        string filePath = string.Concat(path, "/", filename);
                         return new SaveImageResult() { Error = "", FullPath = filePath, ResultStatus = true, Width = img.Width, Height = img.Height };
                     }
                     catch (Exception ex)
@@ -180,28 +180,31 @@ namespace Utilities
             return res;
         }
 
-        public static bool saveThumb(string Orginalpath, string thumbPath)
+        public static SaveImageResult saveThumb(HttpServerUtilityBase server, string Orginalpath, string thumbPath)
         {
+            string tempFolderPath = server.MapPath("~" + thumbPath);
+
+            //return new SaveImageResult() { ResultStatus = false, Error = "errorX" + Orginalpath };
             try
             {
-                if (FileHelper.CreateFolderIfNeeded(thumbPath))
+                if (FileHelper.CreateFolderIfNeeded(tempFolderPath))
                 {
-                    using (Image image = Image.FromFile(Orginalpath))
+                    using (Image image = Image.FromFile(server.MapPath("~" + Orginalpath)))
                     {
                         var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
                         var jpegCodec = GetEncoderInfo("image/jpeg");
                         var encoderParams = new EncoderParameters(1);
                         encoderParams.Param[0] = qualityParam;
-                        image.Save(thumbPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
-                        return true;
+                        image.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
+                        return new SaveImageResult() { ResultStatus = true, };
                     }
                 }
                 else
-                    return false;
+                    return new SaveImageResult() { ResultStatus = false, Error = "can not create folder for thumb" };
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                return new SaveImageResult() { ResultStatus = false, Error = ex.ToString() };
             }
         }
 
