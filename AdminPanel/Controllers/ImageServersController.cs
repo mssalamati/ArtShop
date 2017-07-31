@@ -10,9 +10,35 @@ namespace AdminPanel.Controllers
     {
         public ActionResult Index()
         {
-            var parameters = db.SiteObjectParams.FirstOrDefault();
+            var data = db.ImageServers.ToList();
+            foreach (var item in data)
+            {
 
-            return View();
+            }
+            return View(data);
+        }
+        [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
+        public ActionResult add()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult add(string host)
+        {
+
+
+            db.SaveChanges();
+            return PartialView("_successWindow");
+        }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var finder = db.ImageServers.Find(id);
+            db.ImageServers.Remove(finder);
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

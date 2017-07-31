@@ -74,6 +74,7 @@ namespace DataLayer
         public DbSet<Language> Languages { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<SiteObjectParam> SiteObjectParams { get; set; }
+        public DbSet<ImageServer> ImageServers { get; set; }
         public DbSet<NavigationCategory> NavigationCategories { get; set; }
         public DbSet<NavigationCategoryFavStyle> NavigationCategoryFavStyles { get; set; }
         public DbSet<NavigationCategoryFavMedium> NavigationCategoryFavMediums { get; set; }

@@ -23,6 +23,11 @@ namespace DataLayer.Enitities
     {
         public int Id { get; set; }
         public string Host { get; set; }
+        public bool SSAllowPicture { get; set; }
+        public float diskUsage { get; set; }
+        public float maxStoreage { get; set; }
+        public string mainDomain { get; set; }
+        public string Name { get; set; }
     }
     public class NavigationCategory
     {
