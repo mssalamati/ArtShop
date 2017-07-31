@@ -22,10 +22,13 @@ namespace ImageServer.Controllers
             var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
             var maxStoreage = long.Parse(ConfigurationManager.AppSettings["maxStoreage"]);
             var path = Server.MapPath("~" + rootFolder);
-            var length = GetDirectorySize(path);
+            var length = GetDirectorySize(path + "/Equal");
+            length += GetDirectorySize(path+ "/Orginal");
+            length += GetDirectorySize(path+ "/Squre");
+            length += GetDirectorySize(path + "/Wide");
             return Json(new
             {
-                diskUsage = length,
+                diskUsage = length + 1,
                 maxStoreage = maxStoreage,
                 mainDomain = mainDomain,
                 Name = ImageServerName,
@@ -34,7 +37,8 @@ namespace ImageServer.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public long GetDirectorySize(string p)
+        //get directory size
+        private long GetDirectorySize(string p)
         {
             string[] a = Directory.GetFiles(p, "*.*");
             long b = 0;
@@ -62,6 +66,7 @@ namespace ImageServer.Controllers
             return Json("" + ip, JsonRequestBehavior.AllowGet);
         }
 
+        //check file exist or not
         public JsonResult exist(string path)
         {
             string ip = Request.UserHostAddress;
@@ -90,7 +95,7 @@ namespace ImageServer.Controllers
             {
                 var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
                 var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
-                Uri mainuri = new Uri(ImageServerName + "." + mainDomain);
+                Uri mainuri = new Uri("http://" + ImageServerName + "." + mainDomain);
                 Uri imageuri = new Uri(model.image);
                 string image = mainuri.MakeRelativeUri(imageuri).ToString();
                 var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
@@ -99,8 +104,8 @@ namespace ImageServer.Controllers
                     return Json(new
                     {
                         result = true,
-                        SqureFullPath = result.SqureFullPath,
-                        WideFullPath = result.WideFullPath
+                        SqureFullPath = "http://" + ImageServerName + "." + mainDomain + result.SqureFullPath,
+                        WideFullPath = "http://" + ImageServerName + "." + mainDomain + result.WideFullPath
                     }, JsonRequestBehavior.AllowGet);
                 }
                 else
@@ -132,7 +137,7 @@ namespace ImageServer.Controllers
             return Json(new
             {
                 result = true,
-                data = "http://" + ImageServerName + "." + mainDomain + result.FullPath
+                data = "http://" + ImageServerName + "." + mainDomain + saveResult.FullPath
             }, JsonRequestBehavior.AllowGet);
         }
     }

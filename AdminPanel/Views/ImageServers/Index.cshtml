@@ -70,7 +70,7 @@
                                 <span id="mainDomain_@item.Id"> </span> 
                             </th>
                             <td>
-                                <button onclick="getsingle(@item.Id)"><i class="fa fa-refresh"></i></button>
+                                <button class="btn btn-sm" onclick="getsingle(@item.Id)"><i class="fa fa-refresh"></i></button>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/ImageServers/Delete/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
@@ -119,6 +119,15 @@
             $("#dform").load("/ImageServers/add");
         }
 
+        function formatBytes(bytes, decimals) {
+            if (bytes == 0) return '0 Bytes';
+            var k = 1000,
+                dm = decimals || 2,
+                sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+                i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
         var load = '<i class="fa fa-spinner fa-spin"></i>';
         function getsingle(id) {
             $("#name_" + id).html(load);
@@ -129,7 +138,7 @@
             $.getJSON("/ImageServers/getsingle/" + id, function (obj) {
                 $("#name_" + id).html(obj.Name);
                 $("#SSAllowPicture_" + id).html(obj.SSAllowPicture);
-                $("#Usage_" + id).html(obj.diskUsage+'/'+obj.maxStoreage);
+                $("#Usage_" + id).html('usage: '+formatBytes(obj.diskUsage) + '/' + formatBytes(obj.maxStoreage));
                 $("#mainDomain_" + id).html(obj.mainDomain);
             });
         }

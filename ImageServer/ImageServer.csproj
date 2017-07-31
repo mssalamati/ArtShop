@@ -154,6 +154,7 @@
     <Content Include="Upload\products\Equal\Publisher" />
     <Content Include="Upload\products\Squre\Publisher" />
     <Content Include="Upload\products\Wide\Publisher" />
+    <Content Include="Upload\products\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

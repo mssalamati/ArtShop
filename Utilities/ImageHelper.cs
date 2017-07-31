@@ -184,19 +184,18 @@ namespace Utilities
         {
             string tempFolderPath = server.MapPath("~" + thumbPath);
 
-            //return new SaveImageResult() { ResultStatus = false, Error = "errorX" + Orginalpath };
             try
             {
                 if (FileHelper.CreateFolderIfNeeded(tempFolderPath))
                 {
                     using (Image image = Image.FromFile(server.MapPath("~" + Orginalpath)))
                     {
-                        var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+                        var qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 50L);
                         var jpegCodec = GetEncoderInfo("image/jpeg");
                         var encoderParams = new EncoderParameters(1);
                         encoderParams.Param[0] = qualityParam;
                         image.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
-                        return new SaveImageResult() { ResultStatus = true, };
+                        return new SaveImageResult() { ResultStatus = true, FullPath = thumbPath + "/" + Path.GetFileName(Orginalpath) };
                     }
                 }
                 else

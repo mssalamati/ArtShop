@@ -48,7 +48,6 @@ namespace ArtShop.Controllers
             return res;
         }
 
-
         //upload picture
         public ActionResult Setep1()
         {
