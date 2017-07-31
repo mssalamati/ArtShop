@@ -64,7 +64,12 @@ namespace ImageServer.Controllers
                 square_x = float.Parse(Request["square_x"].Replace(".", "/")),
                 square_y = float.Parse(Request["square_y"].Replace(".", "/")),
             } : model;
-            string image = model.image;
+
+            var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
+            var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
+            Uri mainuri = new Uri(ImageServerName + "." + mainDomain);
+            Uri imageuri = new Uri(model.image);
+            string image = mainuri.MakeRelativeUri(imageuri).ToString();
             var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
             if (result.ResultStatus)
             {
