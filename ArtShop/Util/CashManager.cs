@@ -23,9 +23,10 @@ namespace ArtShop.Util
         private List<Material> _Materials = null;
         private List<Style> _Styles = null;
         private List<Category> _Categories = null;
-        private List<Pricethreshold> _Pricethreshold = null;     
+        private List<Pricethreshold> _Pricethreshold = null;
         private List<NavigationCategory> cats;
         private List<Country> _countries = null;
+        private List<PrintMaterial> _PrintMaterial = null;
         public CashManager()
         {
             cats = new List<NavigationCategory>();
@@ -147,6 +148,34 @@ namespace ArtShop.Util
             }
         }
 
+        public List<PrintMaterial> PrintMaterial
+        {
+            get
+            {
+                if (_PrintMaterial == null)
+                {
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        _PrintMaterial = db.PrintMaterials.Select(x => new PrintMaterial()
+                        {
+                            Translations = x.Translations.ToList(),
+                            PrintSizes = x.PrintSizes.Select(y => new PrintSize()
+                            {
+                                price = y.price,
+                                Translations = y.Translations.ToList(),
+                                PrintFrames = y.PrintFrames.Select(z => new PrintFrame()
+                                {
+                                    Translations = z.Translations.ToList(),
+                                    price = z.price,
+                                }).ToList()
+                            }).ToList()
+                        }).ToList();
+                    }
+                }
+                return _PrintMaterial;
+            }
+        }
+
         public HomeIndexViewModel Header
         {
             get
@@ -186,6 +215,6 @@ namespace ArtShop.Util
                 }
             }
         }
- 
+
     }
 }
