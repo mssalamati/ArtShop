@@ -7441,7 +7441,7 @@ webpackJsonp([5], {
             }, u.default.createElement("a", {
                 href: "/"
             }, u.default.createElement("img", {
-                alt: "Saatchi Art Logo",
+                alt: "Artiscovery Logo",
                 src: "//d3t95n9c6zzriw.cloudfront.net/common/saatchiart-logo@2x.png"
             })))
         }
@@ -7878,7 +7878,7 @@ webpackJsonp([5], {
                             type: "submit"
                         }, "Sign In")), "saatchiart" === s && f.default.createElement("div", {
                             className: "authentication__section-footer animate-group-1-12"
-                        }, "New to Saatchi Art? ", f.default.createElement(d.Link, {
+                        }, "New to Artiscovery? ", f.default.createElement(d.Link, {
                             to: t
                         }, "Register now")), "limited" === s && f.default.createElement("div", {
                             className: "authentication__section-footer animate-group-1-12"
@@ -8500,7 +8500,7 @@ webpackJsonp([5], {
                 className: "authentication"
             }, u.default.createElement(l.default, {
                 title: "Authenticate",
-                titleTemplate: "%s | Saatchi Art"
+                titleTemplate: "%s | Artiscovery"
             }), u.default.createElement(d.default, null), u.default.createElement("div", {
                 className: "authentication__content"
             }, t))

@@ -140,7 +140,7 @@
                             @for (int i = 0; i < Model.Navigation.Count; i++)
                             {
                                 <div data-index="@i" class="desktop-navigation__dropdown__inner">
-                                    <div class="desktop-navigation__dropdown__image-container">
+                                    @*<div class="desktop-navigation__dropdown__image-container">
                                         <a data-gtm-event="nav header"
                                            href="/search/@Model.Navigation[i].Id/0/0/0/0"
                                            class="desktop-navigation__dropdown__image"
@@ -149,7 +149,7 @@
                                                 @ShareRes.Featured @Model.Navigation[i].Name
                                             </div>
                                         </a>
-                                    </div>
+                                    </div>*@
 
                                     <div class="desktop-navigation__dropdown__sections">
                                         <div class="desktop-navigation__dropdown__section">
