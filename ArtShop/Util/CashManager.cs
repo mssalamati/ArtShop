@@ -32,6 +32,11 @@ namespace ArtShop.Util
             cats = new List<NavigationCategory>();
         }
 
+        public static void resete()
+        {
+            _Instance = null;
+        }
+
         public Dictionary<int, string> Subjects
         {
             get

