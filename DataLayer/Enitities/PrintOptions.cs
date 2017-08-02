@@ -6,14 +6,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLayer.Extentions;
 
 namespace DataLayer.Enitities
 {
     public class PrintMaterial : ITranslatable<PrintMaterial, PrintMaterialTranslation>
     {
         public int Id { get; set; }
+        public string title { get; set; }
         public virtual ICollection<PrintSize> PrintSizes { get; set; }
         public virtual ICollection<PrintMaterialTranslation> Translations { get; set; }
+
+        public string toJson()
+        {
+            string json = string.Empty;
+            json += "[";
+            json += string.Join(",", PrintSizes.Select(item => "{" +
+             "\"width\":\"" + item.Width + "\" ,\"height\":\"" + item.Height + "\" ,\"id\":\"" + item.Id + "\" ,\"title\":\"" + item.Current().title + "\",\"price\":\"" + item.price + "\",\"frame\":\""
+                    + "[" + string.Join(",", item.PrintFrames.Select(x => "{\"color\":\"" + x.color + "\",\"size\":\"" + x.size + "\",\"price\":\"" + x.price + "\",\"val\":\"" + x.Id + "\",\"desc\":\"" + x.Current().title + "\"}")) + "]" + "\"" +
+            "}"));
+            json += "]";
+            return json;
+        }
     }
 
     public class PrintSize : ITranslatable<PrintSize, PrintSizeTranslation>
@@ -26,6 +40,8 @@ namespace DataLayer.Enitities
         public virtual ICollection<PrintFrame> PrintFrames { get; set; }
         public string title { get; set; }
         public decimal price { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
     public class PrintFrame : ITranslatable<PrintFrame, PrintFrameTranslation>
@@ -36,6 +52,8 @@ namespace DataLayer.Enitities
         public virtual PrintSize printSize { get; set; }
         public virtual ICollection<PrintFrameTranslation> Translations { get; set; }
         public string title { get; set; }
+        public string color { get; set; }
+        public string size { get; set; }
         public decimal price { get; set; }
     }
 

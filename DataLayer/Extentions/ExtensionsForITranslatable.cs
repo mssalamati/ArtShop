@@ -16,8 +16,12 @@ namespace DataLayer.Extentions
             where TTranslatable : class, ITranslatable<TTranslatable, TTranslation>
         {
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
-            if (translatable.Translations == null) return null;
-            return translatable.Translations.SingleOrDefault(t => t.languageId == currentCultureName);
+            if (translatable.Translations == null)
+                return Activator.CreateInstance<TTranslation>();
+            var result = translatable.Translations.SingleOrDefault(t => t.languageId == currentCultureName);
+            if (result == null)
+                return Activator.CreateInstance<TTranslation>();
+            return result;
         }
     }
 }

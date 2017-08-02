@@ -156,15 +156,34 @@ namespace ArtShop.Util
                 {
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        _PrintMaterial = db.PrintMaterials.Select(x => new PrintMaterial()
+                        _PrintMaterial = db.PrintMaterials.Select(x => new
                         {
+                            id = x.Id,
+                            Translations = x.Translations.ToList(),
+                            PrintSizes = x.PrintSizes.Select(y => new
+                            {
+                                id = y.Id,
+                                price = y.price,
+                                Translations = y.Translations.ToList(),
+                                PrintFrames = y.PrintFrames.Select(z => new
+                                {
+                                    id = z.Id,
+                                    Translations = z.Translations.ToList(),
+                                    price = z.price,
+                                }).ToList()
+                            }).ToList()
+                        }).ToList().Select(x => new PrintMaterial()
+                        {
+                            Id = x.id,
                             Translations = x.Translations.ToList(),
                             PrintSizes = x.PrintSizes.Select(y => new PrintSize()
                             {
+                                Id = y.id,
                                 price = y.price,
                                 Translations = y.Translations.ToList(),
                                 PrintFrames = y.PrintFrames.Select(z => new PrintFrame()
                                 {
+                                    Id = z.id,
                                     Translations = z.Translations.ToList(),
                                     price = z.price,
                                 }).ToList()
