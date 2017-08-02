@@ -1,5 +1,5 @@
 /*Author : soroosh salamati*/
-var fullwith = '100%';
+var fullwith = -1;
 var view_in_room_active = false;
 var locker = false;
 var paperdiv = $('.rag-print');
@@ -29,11 +29,11 @@ function changetab(tab) {
     }
 }
 function view_in_room() {
-    if (locker) return;
+    if (locker || fullwith == -1) return;
     locker = true;
     if (view_in_room_active) {
         $('#bodmain').removeClass('artwithpic');
-        $('.art-detail-description').css('min-height', '943px');
+        $('.art-detail-description').css('min-height', '');
         $('#viewroombtnicon').addClass('icn-view-in-a-room');
         $('#viewroombtnicon').removeClass('fa fa-arrow-left');
         $('#viewroombtntxt').html('View in a Room');
@@ -67,8 +67,17 @@ $('#selectMaterial').change(function () {
         resetprint();
     } else {
         paperdiv.removeClass('hidden');
+        var nsizes = $(this).find(':selected').data('size');
+        selectsizeFill(nsizes);
     }
 });
+function selectsizeFill(data) {
+    $('#rag-selectSize').find('option').remove().end().append('<option value="">Choose from List</option>').val('');
+    if (data != null)
+        $.each((data), function (key, value) {
+            $('#rag-selectSize').append('<option value="' + value.id + '" data-price="' + value.price + '" data-width="' + value.width + '" data-height="' + value.height + '" data-frames=\'' + JSON.stringify(value.frame) + '\'> ' + value.title + ' </option>');
+        });
+}
 $('#rag-selectSize').change(function () {
     var val = this.value;
     removeFrame();
@@ -102,10 +111,11 @@ function resetprint() {
     $('#mainmage').css('border', '');
     $('#mainmage').css('padding', '');
     $('#mainmage').css('display', '');
-    $('#mainmage').animate({
-        width: fullwith,
-        marginTop: 0
-    }, 750);
+    if (fullwith != -1)
+        $('#mainmage').animate({
+            width: fullwith,
+            marginTop: 0
+        }, 750);
 }
 function print_sate(isenable, paper_width, paper_height) {
     if (isenable) {
@@ -159,7 +169,7 @@ function removeFrame() {
     $('#selectFrame').val('');
     $('#mframe').hide();
 }
-function initfullscreen () {
+function initfullscreen() {
     $(window).width() < 450 || $("[data-orbit-slide] img, .fullscreen").each(function (b, c) {
         var d, e = $(this);
         d = "A" == c.tagName ? $(c).attr("href") : $(c).attr("src"), e.qtip({

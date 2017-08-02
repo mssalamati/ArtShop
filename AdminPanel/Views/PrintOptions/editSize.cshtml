@@ -38,6 +38,18 @@
                     <input name="price" value="@(Model==null ? 0 : Model.price)" class="form-control" />
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Width </label>
+                    <input name="Width" value="@(Model==null ? 0 : Model.Width)" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Height </label>
+                    <input name="Height" value="@(Model==null ? 0 : Model.Height)" class="form-control" />
+                </div>
+            </div>
             @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
             {
                 var item = ((List<Language>)ViewBag.language)[i];

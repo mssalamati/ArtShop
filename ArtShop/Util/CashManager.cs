@@ -164,12 +164,16 @@ namespace ArtShop.Util
                             {
                                 id = y.Id,
                                 price = y.price,
+                                Width = y.Width,
+                                Height = y.Height,
                                 Translations = y.Translations.ToList(),
                                 PrintFrames = y.PrintFrames.Select(z => new
                                 {
                                     id = z.Id,
                                     Translations = z.Translations.ToList(),
                                     price = z.price,
+                                    color = z.color,
+                                    size = z.size
                                 }).ToList()
                             }).ToList()
                         }).ToList().Select(x => new PrintMaterial()
@@ -180,12 +184,16 @@ namespace ArtShop.Util
                             {
                                 Id = y.id,
                                 price = y.price,
+                                Width = y.Width,
+                                Height = y.Height,
                                 Translations = y.Translations.ToList(),
                                 PrintFrames = y.PrintFrames.Select(z => new PrintFrame()
                                 {
                                     Id = z.id,
                                     Translations = z.Translations.ToList(),
                                     price = z.price,
+                                    color = z.color,
+                                    size = z.size
                                 }).ToList()
                             }).ToList()
                         }).ToList();

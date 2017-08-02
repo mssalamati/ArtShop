@@ -41,6 +41,18 @@
                     <input name="price" class="form-control" />
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">size </label>
+                    <input name="size" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">color </label>
+                    <input name="color" class="form-control" />
+                </div>
+            </div>
             @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
             {
                 var item = ((List<Language>)ViewBag.language)[i];

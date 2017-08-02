@@ -161,6 +161,8 @@ namespace AdminPanel.Controllers
                 Id = finder.Id,
                 title = finder.title,
                 price = finder.price,
+                Width = finder.Width,
+                Height = finder.Height,
                 Translations = new List<PrintMaterialTranslationViewModel>()
             };
             foreach (var item in finder.Translations)
@@ -174,7 +176,8 @@ namespace AdminPanel.Controllers
             var finder = db.PrintSizes.Find(model.Id);
             finder.title = model.title;
             finder.price = model.price;
-
+            finder.Width = model.Width;
+            finder.Height = model.Height;
             foreach (var item in model.Translations)
             {
                 var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
@@ -228,6 +231,8 @@ namespace AdminPanel.Controllers
             PrintFrame newmodel = new PrintFrame();
             newmodel.title = model.title;
             newmodel.price = model.price;
+            newmodel.color = model.color;
+            newmodel.size = model.size;
             newmodel.printSizeId = model.parentid;
             newmodel.Translations = new List<PrintFrameTranslation>();
             foreach (var item in model.Translations)

@@ -22,8 +22,8 @@ namespace DataLayer.Enitities
             string json = string.Empty;
             json += "[";
             json += string.Join(",", PrintSizes.Select(item => "{" +
-             "\"width\":\"" + item.Width + "\" ,\"height\":\"" + item.Height + "\" ,\"id\":\"" + item.Id + "\" ,\"title\":\"" + item.Current().title + "\",\"price\":\"" + item.price + "\",\"frame\":\""
-                    + "[" + string.Join(",", item.PrintFrames.Select(x => "{\"color\":\"" + x.color + "\",\"size\":\"" + x.size + "\",\"price\":\"" + x.price + "\",\"val\":\"" + x.Id + "\",\"desc\":\"" + x.Current().title + "\"}")) + "]" + "\"" +
+             "\"width\":\"" + item.Width + "\" ,\"height\":\"" + item.Height + "\" ,\"id\":\"" + item.Id + "\" ,\"title\":\"" + item.Current().title + "\",\"price\":\"" + item.price + "\",\"frame\":"
+                    + "[" + string.Join(",", item.PrintFrames.Select(x => "{\"color\":\"" + x.color + "\",\"size\":\"" + x.size + "\",\"price\":\"" + x.price + "\",\"val\":\"" + x.Id + "\",\"desc\":\"" + x.Current().title + "\"}")) + "]" +
             "}"));
             json += "]";
             return json;
