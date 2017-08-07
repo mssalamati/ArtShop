@@ -210,15 +210,15 @@ if (current == selected)
                         </a>
 
                     </div>
-                    <div class="item-controls">
-                        <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" title="Add to Cart">
-                            <i class="fa fa-shopping-cart"></i>
+                    <div class="item-controls" >
+                        <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                            <i class="fa fa-shopping-cart" style="color:white"></i>
                         </a>
-                        <a onclick="addfav(this,@item.Id)" class="btn-round btn-favorite" title="Add to Favorites">
-                            <i class="fa fa-heart"></i>
+                        <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)"  class="btn-round btn-favorite" title="Add to Favorites">
+                            <i class="fa fa-heart" style="color:white"></i>
                         </a>
-                        <a onclick="addcollect(@item.Id)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
-                            <i class="fa fa-plus"></i>
+                        <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)"class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                            <i class="fa fa-plus" style="color:white"></i>
                         </a>
                     </div>
                     <div class="list-art-meta">
