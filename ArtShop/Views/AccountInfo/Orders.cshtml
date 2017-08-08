@@ -1,0 +1,53 @@
+﻿@model AccountInfoViewModel
+@{
+    ViewBag.Title = "Settings | Artiscovery";
+}
+
+
+<div class="row-layout content" style="
+">
+
+    <div class="row">
+        <div class="small-12 large-8 large-push-4 columns bgtext content">
+            You have no orders.
+        </div>
+        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
+
+            <ul class="side-nav">
+                <li class="profile">
+                    <a href="/accountinfo/index">Account Information</a>
+                </li>
+                <li class="profile">
+                    <a href="/accountinfo/profileinformation">
+                        Profile
+                        Information
+                    </a>
+                </li>
+                @if (ViewBag.profileType == ProfileType.Artist)
+                {
+                    <li class="billing">
+                        <a href="/accountinfo/billing">Address and Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/accountinfo/items">Sales Dashboard</a>
+                    </li>
+                    <li>
+                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                            Tax
+                            Form
+                        </a>
+                    </li>
+                }
+                <li class="purchased active">
+                    <a href="/accountinfo/orders">Orders</a>
+                </li>
+
+
+                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>        <div class="clearfix"></div>
+</div>
