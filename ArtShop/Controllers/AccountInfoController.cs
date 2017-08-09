@@ -61,7 +61,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
-
+            ViewBag.profileType = userProfile.profileType;
             ProfileInformationViewModel model = new ProfileInformationViewModel();
             if (userProfile.userLinks != null)
             {
@@ -132,7 +132,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
-
+            ViewBag.profileType = userProfile.profileType;
             if (userProfile.billingInfo != null)
             {
                 return View(userProfile.billingInfo);
@@ -162,6 +162,16 @@ namespace ArtShop.Controllers
             db.SaveChanges();
 
             return View(model);
+        }
+
+        public ActionResult Orders()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.profileType = userProfile.profileType;
+       
+            return View();
         }
     }
 

@@ -20,7 +20,7 @@
 
                             @Html.LabelFor(m => m.FirstName, new { @class = "form-label required", requiredprefix = "*" })
                             @Html.TextBoxFor(m => m.FirstName, new { @class = "wide", id = "firstName", name = "firstName", requiredprefix = "", placeholder = "First Name", type = "text" })
-                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" ,style= "color:red;font-size:small;display: -webkit-inline-box" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
 
                             @Html.LabelFor(m => m.LastName, new { @class = "form-label required", requiredprefix = "*" })
                             @Html.TextBoxFor(m => m.LastName, new { @class = "wide", id = "lastName", name = "lastName", requiredprefix = "", placeholder = "Last Name", type = "text" })
@@ -71,8 +71,8 @@
                             @*<label for="userTypeId" class="form-label optional">Profile Type</label>*@
                             @Html.LabelFor(m => m.profileType, new { @class = "form-label optional" })
                             <div class="form-div">
-                                <label><input type="radio" name="profileType" id="profileType" value="Artist" @(Model.profileType==ProfileType.Artist?"checked":"")>Artist</label><br>
-                                <label><input type="radio" name="profileType" id="profileType" value="Collector" @(Model.profileType==ProfileType.Collector?"checked":"") >Collector</label>
+                                <label><input type="radio" name="profileType" id="profileType" value="Artist" @(Model.profileType == ProfileType.Artist ? "checked" : "")>Artist</label><br>
+                                <label><input type="radio" name="profileType" id="profileType" value="Collector" @(Model.profileType == ProfileType.Collector ? "checked" : "")>Collector</label>
                             </div>
                             @*<label for="measurementSystem" class="form-label optional">Units</label>
                                 <div class="form-div">
@@ -101,21 +101,27 @@
                         Information
                     </a>
                 </li>
-                <li class="billing">
-                    <a href="/accountinfo/billing">Address and Identification</a>
-                </li>
-                <li class="sold">
-                    <a href="/accounts/items">Sales Dashboard</a>
-                </li>
-                <li>
-                    <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                        Tax
-                        Form
-                    </a>
-                </li>
+                @if (Model.profileType == ProfileType.Artist)
+                {
+                    <li class="billing">
+                        <a href="/accountinfo/billing">Address and Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/accountinfo/items">Sales Dashboard</a>
+                    </li>
+                    <li>
+                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                            Tax
+                            Form
+                        </a>
+                    </li>
+                }
                 <li class="purchased">
-                    <a href="/accounts/orders">Orders</a>
+                    <a href="/accountinfo/orders">Orders</a>
                 </li>
+
+
                 <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
             </ul>
 
