@@ -73,7 +73,6 @@ namespace DataLayer
         public DbSet<SiteParamTranslation> SiteParamTranslations { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<SiteObjectParam> SiteObjectParams { get; set; }
         public DbSet<ImageServer> ImageServers { get; set; }
         public DbSet<NavigationCategory> NavigationCategories { get; set; }
         public DbSet<NavigationCategoryFavStyle> NavigationCategoryFavStyles { get; set; }
@@ -101,5 +100,11 @@ namespace DataLayer
         public DbSet<PrintMaterialTranslation> PrintMaterialTranslations { get; set; }
         public DbSet<SitePage> SitePages { get; set; }
         public DbSet<SitePageTranslation> SitePageTranslations { get; set; }
+        public DbSet<sliderImage> sliderImages { get; set; }
+        public DbSet<footerCell> footerCells { get; set; }
+        public DbSet<footerCellTranslation> footerCellTranslations { get; set; }
+        public DbSet<footercellRow> footercellRows { get; set; }
+        public DbSet<sliderImageTranslation> sliderImageTranslations { get; set; }
+        public DbSet<FirstPageSection> FirstPageSections { get; set; }        
     }
 }

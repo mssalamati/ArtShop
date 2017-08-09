@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "slider";
+}
+
+@model IQueryable<sliderImage>
+
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+
+@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+@Styles.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.css")
+
+
+<div class="page-title">
+    <div class="title">   صفحه اصلی</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">  صفحه اصلی</a>
+        </li>
+    </ol>
+</div>
+
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/FirstPageSettings/Header"> هدر</a>
+    </li>
+    <li class="active">
+        <a href="/FirstPageSettings/slider"> اسلایدر</a>
+    </li>
+    <li>
+        <a href="/FirstPageSettings/maincontent">محتوا </a>
+    </li>
+    <li>
+        <a href="/FirstPageSettings/footers">فوتر </a>
+    </li>
+</ul>
+
+
+<div class="clearfix"></div>
+
+<div class="card bg-white m-b">
+    <div class="card-header">
+        <p style="padding-top: 8px !important;margin-bottom: 0; float:right"> اسلایدری موجود در هدر سایت</p>
+        <a href="/FirstPageSettings/Addslider" class="pull-left btn btn-default"> اسلایدر جدید </a>
+    </div>
+    <div class="card-block p-a-0">
+
+        <div class="table-responsive">
+            @if (Model.Count() != 0)
+            {
+                <table class="table m-b-0">
+                    <tr>
+                        <td>  تصویر اسلایدر</td>
+                        <td>  توضیحات </td>
+                        <td>  حذف </td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><img style="height:50px;" src="/@item.path" /></th>
+                            <td>
+                                @if (item.Translations.Count == 0)
+                                {
+                                    <span>No Name</span>
+                                }
+                                @foreach (var trans in item.Translations)
+                                {
+                                    <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.H1
+                                }
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="">ویرایش</button>
+                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/FirstPageSettings/DeleteSlider/@item.Id">آیا مطمئن هستید؟</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning ">
+                    هیچ اسلایدری در سایت ثبت نشده
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="dform">
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+    @Scripts.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.jquery.min.js")
+
+    <script>
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
+    </script>
+}

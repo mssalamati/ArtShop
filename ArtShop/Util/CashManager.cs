@@ -27,6 +27,8 @@ namespace ArtShop.Util
         private List<NavigationCategory> cats;
         private List<Country> _countries = null;
         private List<PrintMaterial> _PrintMaterial = null;
+        private List<footerCell> _footer = null;
+
         public CashManager()
         {
             cats = new List<NavigationCategory>();
@@ -216,8 +218,7 @@ namespace ArtShop.Util
                 {
                     if (_Header == null)
                     {
-                        var SiteObjectParams = db.SiteObjectParams.AsQueryable().FirstOrDefault();
-                        cats = SiteObjectParams.Navigations.ToList();
+                        cats = db.NavigationCategories.ToList();
                     }
 
                     string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
@@ -248,5 +249,19 @@ namespace ArtShop.Util
             }
         }
 
+        public List<footerCell> Footer
+        {
+            get
+            {
+                if (_footer == null)
+                {
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        _footer = db.footerCells.Include("Translations").ToList();
+                    }
+                }
+                return _footer.ToList();
+            }
+        }
     }
 }

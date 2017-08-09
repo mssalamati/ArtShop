@@ -5415,6 +5415,10 @@
     <Content Include="Views\ImageServers\Index.cshtml" />
     <Content Include="Views\ImageServers\_successWindow.cshtml" />
     <Content Include="Views\ImageServers\add.cshtml" />
+    <Content Include="Views\FirstPageSettings\maincontent.cshtml" />
+    <Content Include="Views\FirstPageSettings\slider.cshtml" />
+    <Content Include="Views\FirstPageSettings\Header.cshtml" />
+    <Content Include="Views\FirstPageSettings\Addslider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
