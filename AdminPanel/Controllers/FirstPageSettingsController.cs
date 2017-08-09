@@ -15,11 +15,11 @@ namespace AdminPanel.Controllers
     {
         protected ApplicationDbContext db = new ApplicationDbContext();
 
+
         public ActionResult Header()
         {
             return View(db.NavigationCategories.Include("category"));
         }
-
         [HttpPost]
         public ActionResult Header(int id)
         {
@@ -37,13 +37,11 @@ namespace AdminPanel.Controllers
             db.SaveChanges();
             return View(db.NavigationCategories.Include("category"));
         }
-
         public ActionResult EditCatHeader(int id)
         {
             var finder = db.NavigationCategories.Find(id);
             return PartialView(finder);
         }
-
         [HttpPost]
         public ActionResult EditCatHeader(NavigationCategoryViewModel model)
         {
@@ -82,7 +80,6 @@ namespace AdminPanel.Controllers
 
             return PartialView(finder);
         }
-
         public ActionResult DeleteCatHeader(int id)
         {
             var finder = db.NavigationCategories.Find(id);
@@ -90,7 +87,6 @@ namespace AdminPanel.Controllers
             db.SaveChanges();
             return RedirectToAction("Header");
         }
-
 
 
         public ActionResult slider()
@@ -125,7 +121,6 @@ namespace AdminPanel.Controllers
             db.SaveChanges();
             return RedirectToAction("slider", db.sliderImages.Include("Translations"));
         }
-
         public ActionResult DeleteSlider(int id)
         {
             var finder = db.sliderImages.Find(id);
@@ -139,12 +134,72 @@ namespace AdminPanel.Controllers
         {
             return View(db.FirstPageSections);
         }
+        public ActionResult Addmaincontent()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Addmaincontent(FirstPageSection model)
+        {
+            db.FirstPageSections.Add(model);
+            db.SaveChanges();
+            return PartialView("_successWindow");
+        }
+        public ActionResult Deletesection(int id)
+        {
+            var finder = db.FirstPageSections.Find(id);
+            db.FirstPageSections.Remove(finder);
+            db.SaveChanges();
+            return RedirectToAction("maincontent", db.FirstPageSections);
+        }
+
 
         public ActionResult footers()
         {
             return View(db.footerCells.Include("Translations"));
         }
+        [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
+        public ActionResult addfooter()
+        {
+            ViewBag.language = db.Languages.ToList();
+            return PartialView();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult addfooter(footerCell model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.language = db.Languages.ToList();
+                return PartialView(model);
+            }
 
+            footerCell newmodel = new footerCell() {  };
+            newmodel.Translations = new List<footerCellTranslation>();
+            foreach (var item in model.Translations)
+                newmodel.Translations.Add(new footerCellTranslation() { languageId = item.languageId, Header = item.Header });
+            db.footerCells.Add(newmodel);
+
+            try
+            {
+                db.SaveChanges();
+                return PartialView("_successWindow");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.language = db.Languages.ToList();
+                ModelState.AddModelError(string.Empty, ex.ToString());
+                return PartialView(model);
+            }
+        }
+        public ActionResult deletefooter(int id)
+        {
+            var finder = db.footerCells.Find(id);
+            db.footerCells.Remove(finder);
+            db.SaveChanges();
+            return RedirectToAction("footers", db.footerCells.Include("Translations"));
+        }
+        
 
         public ActionResult editParams(string id)
         {
@@ -153,7 +208,6 @@ namespace AdminPanel.Controllers
 
             return PartialView(finder);
         }
-
         [HttpPost]
         public ActionResult editParams(SiteParam model)
         {
@@ -181,6 +235,7 @@ namespace AdminPanel.Controllers
             ViewBag.language = db.Languages.ToList();
             return PartialView(finder);
         }
+
 
         protected override void Dispose(bool disposing)
         {

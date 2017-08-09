@@ -5419,6 +5419,9 @@
     <Content Include="Views\FirstPageSettings\slider.cshtml" />
     <Content Include="Views\FirstPageSettings\Header.cshtml" />
     <Content Include="Views\FirstPageSettings\Addslider.cshtml" />
+    <Content Include="Views\FirstPageSettings\_successWindow.cshtml" />
+    <Content Include="Views\FirstPageSettings\addfooter.cshtml" />
+    <Content Include="Views\FirstPageSettings\Addmaincontent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

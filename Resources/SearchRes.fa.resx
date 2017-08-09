@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="All_Categories" xml:space="preserve">
-    <value>همه دسته بندی ها</value>
+    <value>دسته بندی ها</value>
   </data>
   <data name="All_Mediums" xml:space="preserve">
-    <value>همه مدیوم ها</value>
+    <value>مدیا </value>
   </data>
   <data name="All_Prices" xml:space="preserve">
-    <value>هر مبلغی</value>
+    <value>تمام مبالغ</value>
   </data>
   <data name="All_Styles" xml:space="preserve">
-    <value>همه استایل ها</value>
+    <value>استایل ها</value>
   </data>
   <data name="All_Subjects" xml:space="preserve">
-    <value>همه سابجکت ها</value>
+    <value>سابجکت ها</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>

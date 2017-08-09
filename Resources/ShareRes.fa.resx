@@ -127,22 +127,22 @@
     <value>هنرمند</value>
   </data>
   <data name="Artworks" xml:space="preserve">
-    <value>کارهنری</value>
+    <value>اثر هنری</value>
   </data>
   <data name="Blog" xml:space="preserve">
     <value>بلاگ</value>
   </data>
   <data name="Collection" xml:space="preserve">
-    <value>کالکشن</value>
+    <value>مجموعه</value>
   </data>
   <data name="Collections" xml:space="preserve">
-    <value>کالکشن</value>
+    <value>مجموعه ها</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>علاقه مندی ها</value>
   </data>
   <data name="Featured" xml:space="preserve">
-    <value>ویژه</value>
+    <value>ویژگی</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>صفحه اصلی</value>
@@ -154,7 +154,7 @@
     <value>خروج</value>
   </data>
   <data name="Medium" xml:space="preserve">
-    <value>مدیوم</value>
+    <value>مدیا</value>
   </data>
   <data name="Orders" xml:space="preserve">
     <value>سفارشات</value>
@@ -172,10 +172,10 @@
     <value>ورود</value>
   </data>
   <data name="Style" xml:space="preserve">
-    <value>استایل</value>
+    <value>سبک</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value>سابجکت</value>
+    <value>موضوع</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>آپلود</value>
