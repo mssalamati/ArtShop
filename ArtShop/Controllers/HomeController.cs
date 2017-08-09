@@ -20,26 +20,26 @@ namespace ArtShop.Controllers
         public ActionResult Index()
         {
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
-            var SiteParams = db.SiteParams.Include("Translations").ToList()
-                .ToDictionary(x => x.Name,
-                y => y.Translations.FirstOrDefault(t => t.languageId == currentCultureName) == null ? string.Empty
-                : y.Translations.FirstOrDefault(t => t.languageId == currentCultureName).Value);
-            var SiteObjectParams = db.SiteObjectParams.AsQueryable().FirstOrDefault();
-            var sliderImage = SiteObjectParams.SliderImage;
+            //var SiteParams = db.SiteParams.Include("Translations").ToList()
+            //    .ToDictionary(x => x.Name,
+            //    y => y.Translations.FirstOrDefault(t => t.languageId == currentCultureName) == null ? string.Empty
+            //    : y.Translations.FirstOrDefault(t => t.languageId == currentCultureName).Value);
+
             HomeIndexViewModel model = new HomeIndexViewModel();
-            model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + sliderImage;
-            model.slider_H1 = SiteParams[nameof(model.slider_H1).Replace("_", " ")];
-            model.slider_H2 = SiteParams[nameof(model.slider_H2).Replace("_", " ")];
-            model.slider_Button_Text = SiteParams[nameof(model.slider_Button_Text).Replace("_", " ")];
-            model.slider_Button_Url = SiteParams[nameof(model.slider_Button_Url).Replace("_", " ")];
-            model.Selected_Art_1 = SiteParams[nameof(model.Selected_Art_1).Replace("_", " ")];
-            model.Selected_Art_2 = SiteParams[nameof(model.Selected_Art_2).Replace("_", " ")];
-            model.Selected_Art_3 = SiteParams[nameof(model.Selected_Art_3).Replace("_", " ")];
+            // var sliderImage = db.sliderImages.FirstOrDefault().path;
+            //model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + sliderImage;
+            //model.slider_H1 = SiteParams[nameof(model.slider_H1).Replace("_", " ")];
+            //model.slider_H2 = SiteParams[nameof(model.slider_H2).Replace("_", " ")];
+            //model.slider_Button_Text = SiteParams[nameof(model.slider_Button_Text).Replace("_", " ")];
+            //model.slider_Button_Url = SiteParams[nameof(model.slider_Button_Url).Replace("_", " ")];
+            //model.Selected_Art_1 = SiteParams[nameof(model.Selected_Art_1).Replace("_", " ")];
+            //model.Selected_Art_2 = SiteParams[nameof(model.Selected_Art_2).Replace("_", " ")];
+            //model.Selected_Art_3 = SiteParams[nameof(model.Selected_Art_3).Replace("_", " ")];
             return View(model);
         }
 
 
-        public ActionResult Header(string culture)
+        public ActionResult Header()
         {
             var userId = User.Identity.GetUserId();
             var cart = CartManager.GetCart(this.HttpContext);
@@ -56,6 +56,11 @@ namespace ArtShop.Controllers
             }
             ViewBag.card = cart.GetCartItems().Count;
             return PartialView("_Header", CashManager.Instance.Header);
+        }
+
+        public ActionResult Footer()
+        {
+            return PartialView("_footer", CashManager.Instance.Footer);
         }
 
         public ActionResult SetCulture(string culture)

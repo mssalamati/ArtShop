@@ -717,7 +717,7 @@
                 }
                 this.picker.css({
                     top: offset.top + element.outerHeight(),
-                    left: offset.left
+                    right: offset.left
                 });
             },
             show: function(e) {

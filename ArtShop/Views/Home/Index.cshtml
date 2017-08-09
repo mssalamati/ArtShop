@@ -6,10 +6,10 @@
         <ul class="orbit-ul">
             <li class="orbit-item orbit-item-1">
                 <div class="cover flexcontainer" style="background-image: url('@Model.Slider_Image')">
-                    <h1 class="sa-hero-title" style="font-size: 50px;">@Model.slider_H1</h1>
+                    @*<h1 class="sa-hero-title" style="font-size: 50px;">@Model.slider_H1</h1>
                     <h2 class="sa-hero-subtitle">@Model.slider_H2</h2>
                     <a class="button semitransparent" href="@Model.slider_Button_Url">@Model.slider_Button_Text</a>
-                    <div class="sa-hero-subtitle-2">@Model.slider_P</div>
+                    <div class="sa-hero-subtitle-2">@Model.slider_P</div>*@
                 </div>
             </li>
         </ul>
@@ -25,9 +25,8 @@
 
 <div class="row-layout content">
 
-    @Html.Partial("_SelectedCurators")
+        @Html.Partial("_SelectedCurators")
         @Html.Partial("_SalebyPrice")
-        @Html.Partial("_StoriesCanvas")
         @Html.Partial("_RecentlySold")
         @Html.Partial("_SalebyStyle")
         @Html.Partial("_SalebyCategory")

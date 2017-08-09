@@ -1,4 +1,5 @@
 ﻿using AdminPanel.Models.ViewModel;
+using DataLayer;
 using DataLayer.Enitities;
 using System;
 using System.Collections.Generic;
@@ -9,39 +10,32 @@ using Utilities;
 
 namespace AdminPanel.Controllers
 {
-    public class FirstPageSettingsController : BaseController
+    [Authorize(Users = "superadmin")]
+    public class FirstPageSettingsController : Controller
     {
-        public ActionResult Index()
-        {
-            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
-            ViewBag.SiteParams = db.SiteParams.ToList();
-            return View();
-        }
+        protected ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult footers()
+        public ActionResult Header()
         {
-            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
-            ViewBag.SiteParams = db.SiteParams.ToList();
-            return View();
-        }
-
-        public ActionResult parameters()
-        {
-            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
-            ViewBag.SiteParams = db.SiteParams.ToList();
-            return View();
+            return View(db.NavigationCategories.Include("category"));
         }
 
         [HttpPost]
-        public ActionResult AddCategoryToHeader(int id)
+        public ActionResult Header(int id)
         {
-            var obj = db.SiteObjectParams.Single();
-            obj.Navigations.Add(new DataLayer.Enitities.NavigationCategory()
+            if (db.NavigationCategories.Any(x => x.categoryId == id))
+            {
+                ViewBag.error = "این دسته بندی تکراری است";
+                return View(db.NavigationCategories.Include("category"));
+            }
+
+            db.NavigationCategories.Add(new NavigationCategory()
             {
                 categoryId = id
             });
+            ViewBag.success = "ثبت شد";
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(db.NavigationCategories.Include("category"));
         }
 
         public ActionResult EditCatHeader(int id)
@@ -94,7 +88,61 @@ namespace AdminPanel.Controllers
             var finder = db.NavigationCategories.Find(id);
             db.NavigationCategories.Remove(finder);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Header");
+        }
+
+
+
+        public ActionResult slider()
+        {
+            return View(db.sliderImages.Include("Translations"));
+        }
+        public ActionResult Addslider()
+        {
+            ViewBag.language = db.Languages.ToList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Addslider(sliderImage slider)
+        {
+            var file = Request.Files[0];
+            string tempFolderName = "Upload/Slider_Images";
+            var result = ImageHelper.Saveimage(Server, file, tempFolderName, ImageHelper.saveImageMode.wide);
+            if (!result.ResultStatus)
+            {
+                ViewBag.language = db.Languages.ToList();
+                ModelState.AddModelError(string.Empty, result.Error);
+                ViewBag.SiteParams = db.SiteParams.ToList();
+                return View();
+            }
+            var site = db.sliderImages.Add(new sliderImage()
+            {
+                path = result.FullPath,
+                ButtonURL = slider.ButtonURL,
+                TextColor = slider.TextColor,
+                Translations = slider.Translations
+            });
+            db.SaveChanges();
+            return RedirectToAction("slider", db.sliderImages.Include("Translations"));
+        }
+
+        public ActionResult DeleteSlider(int id)
+        {
+            var finder = db.sliderImages.Find(id);
+            db.sliderImages.Remove(finder);
+            db.SaveChanges();
+            return RedirectToAction("slider", db.sliderImages.Include("Translations"));
+        }
+
+
+        public ActionResult maincontent()
+        {
+            return View(db.FirstPageSections);
+        }
+
+        public ActionResult footers()
+        {
+            return View(db.footerCells.Include("Translations"));
         }
 
 
@@ -134,28 +182,10 @@ namespace AdminPanel.Controllers
             return PartialView(finder);
         }
 
-        [HttpPost]
-        public ActionResult Index(object obj)
+        protected override void Dispose(bool disposing)
         {
-            var file = Request.Files[0];
-            string tempFolderName = "Upload/Slider_Images";
-            var result = ImageHelper.Saveimage(Server, file, tempFolderName, ImageHelper.saveImageMode.wide);
-            if (!result.ResultStatus)
-            {
-                ViewBag.language = db.Languages.ToList();
-                ModelState.AddModelError(string.Empty, result.Error);
-                ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
-                ViewBag.SiteParams = db.SiteParams.ToList();
-                return View();
-            }
-
-            ViewBag.SiteObjectParams = db.SiteObjectParams.FirstOrDefault();
-            ViewBag.SiteParams = db.SiteParams.ToList();
-            var site = db.SiteObjectParams.FirstOrDefault();
-            site.SliderImage = result.FullPath;
-            db.SaveChanges();
-            ViewBag.alert = "با موفقیت انجام شد";
-            return View();
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
