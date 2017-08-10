@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Mediums.
+        ///   Looks up a localized string similar to All Media.
         /// </summary>
         public static string All_Mediums {
             get {

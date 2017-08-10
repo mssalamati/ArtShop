@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address 2.
+        ///   Looks up a localized string similar to Address 2 ???.
         /// </summary>
         public static string Address_2 {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Limited Edition is wrong.
+        ///   Looks up a localized string similar to Limited Edition is wrong ????.
         /// </summary>
         public static string avaibleEntity_error {
             get {
@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description can not be empty.
+        ///   Looks up a localized string similar to Description can not be left blank.
         /// </summary>
         public static string descriptionnull_error {
             get {
@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value Cannot be Empty.
+        ///   Looks up a localized string similar to  value can not be left blank.
         /// </summary>
         public static string Empty_Error {
             get {
@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a category and subject to help collectors find your work.
+        ///   Looks up a localized string similar to Select a category and subject to help collectors to find your work easily.
         /// </summary>
         public static string select_category_str {
             get {
@@ -313,7 +313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select subject and category.
+        ///   Looks up a localized string similar to select subject /category.
         /// </summary>
         public static string select_subject {
             get {
@@ -376,7 +376,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Price the collector will see.
+        ///   Looks up a localized string similar to Price that collector will see.
         /// </summary>
         public static string step10_l4 {
             get {
@@ -457,7 +457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category  &amp; Subject.
+        ///   Looks up a localized string similar to Category  &amp; Subject.
         /// </summary>
         public static string step3_pre_click {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modify your image to adjust how you want your artwork to display across the site..
+        ///   Looks up a localized string similar to Modify your image to adjust your artwork to display across the site..
         /// </summary>
         public static string step4_detail {
             get {
@@ -592,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mediums, Materials &amp; Styles.
+        ///   Looks up a localized string similar to Mediums, Materials, Styles.
         /// </summary>
         public static string step5_title {
             get {
@@ -619,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mediums, Materials, &amp; Styles.
+        ///   Looks up a localized string similar to Mediums, Materials, Styles.
         /// </summary>
         public static string step6_pre_click {
             get {
@@ -646,7 +646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What do you hope its viewers will feel/think?.
+        ///   Looks up a localized string similar to What do you hope its viewers will feel?.
         /// </summary>
         public static string step7_ask_2 {
             get {
@@ -655,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why did you choose the medium, subject matter, style?.
+        ///   Looks up a localized string similar to why did you choose the medium,subject matter and style?.
         /// </summary>
         public static string step7_ask_3 {
             get {
@@ -664,7 +664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collectors tend to appreciate works more if they know the “story” behind them, so be sure to write informative artwork descriptions. Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:.
+        ///   Looks up a localized string similar to Collectors tend to appreciate works more if they know the “story” behind them, so we recommend that write informative artwork descriptions. Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:.
         /// </summary>
         public static string step7_description {
             get {
@@ -817,7 +817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title can not be empty.
+        ///   Looks up a localized string similar to Title can not be left blank.
         /// </summary>
         public static string titleNull_error {
             get {
@@ -826,7 +826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tube.
+        ///   Looks up a localized string similar to  tube.
         /// </summary>
         public static string Tube {
             get {
@@ -844,7 +844,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload an image file which is at least 1200 x 1500 pixels and less than 50MB..
+        ///   Looks up a localized string similar to Upload an image file should be at least 1200 x 1500 pixels and less than 50MB..
         /// </summary>
         public static string upload_string {
             get {
