@@ -26,15 +26,17 @@ namespace ArtShop.Controllers
             //    : y.Translations.FirstOrDefault(t => t.languageId == currentCultureName).Value);
 
             HomeIndexViewModel model = new HomeIndexViewModel();
-            // var sliderImage = db.sliderImages.FirstOrDefault().path;
-            //model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + sliderImage;
-            //model.slider_H1 = SiteParams[nameof(model.slider_H1).Replace("_", " ")];
-            //model.slider_H2 = SiteParams[nameof(model.slider_H2).Replace("_", " ")];
-            //model.slider_Button_Text = SiteParams[nameof(model.slider_Button_Text).Replace("_", " ")];
-            //model.slider_Button_Url = SiteParams[nameof(model.slider_Button_Url).Replace("_", " ")];
-            //model.Selected_Art_1 = SiteParams[nameof(model.Selected_Art_1).Replace("_", " ")];
-            //model.Selected_Art_2 = SiteParams[nameof(model.Selected_Art_2).Replace("_", " ")];
-            //model.Selected_Art_3 = SiteParams[nameof(model.Selected_Art_3).Replace("_", " ")];
+            if (db.sliderImages.Count() != 0)
+            {
+                var sl = db.sliderImages.Include("Translations").FirstOrDefault();
+                model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + "/" + sl.path;
+                model.slider_H1 = sl.Current().H1;
+                model.slider_H2 = sl.Current().H2;
+                model.slider_Button_Text = sl.Current().ButtonText;
+                model.slider_Button_Url = sl.ButtonURL;
+                model.slider_text_color = sl.TextColor;
+            }
+
             return View(model);
         }
 
