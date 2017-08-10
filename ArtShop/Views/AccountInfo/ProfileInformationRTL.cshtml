@@ -1,20 +1,73 @@
-﻿@model ProfileInformationViewModel
+﻿
+@model ProfileInformationViewModel
 @{
     ViewBag.Title = "Profile Information";
 }
-@{var IsRighToLeft = CultureHelper.IsRighToLeft();}
-
-@if (IsRighToLeft)
-{
-    @Html.Partial("ProfileInformationRTL");
-}
-else
-{
+<style>
+    .fields label {
+        clear: right;
+        float: right;
+        text-align: right;
+    }
+    textarea.wide {
+        padding-right:0.75rem;
+        text-align:right
+    }
+    .page-title {
+        text-align:right
+    }
+    .mb2 {
+        text-align:right
+    }
+  
+</style>
 
 <div class="row-layout content">
 
     <div class="row">
-        <div class="small-12 large-8 large-push-4 columns bgtext content">
+        <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="margin-left:20px;text-align:right">
+
+            <ul class="side-nav">
+                <li class="profile">
+                    <a href="/accountinfo/index">Account Information</a>
+                </li>
+                <li class="profile active">
+                    <a href="/accountinfo/profileinformation">
+                        Profile
+                        Information
+                    </a>
+                    <ul class="accordion-list">
+                        <li class="profile">
+                            <a href="/accountinfo/uploadavatar">Profile Image</a>
+                        </li>
+                    </ul>
+                </li>
+                @if (ViewBag.profileType == ProfileType.Artist)
+                {
+                    <li class="billing">
+                        <a href="/accountinfo/billing">Address and Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/accountinfo/items">Sales Dashboard</a>
+                    </li>
+                    <li>
+                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                            Tax
+                            Form
+                        </a>
+                    </li>
+                }
+                <li class="purchased">
+                    <a href="/accountinfo/orders">Orders</a>
+                </li>
+
+                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="small-12 large-8 large-pull-4 columns bgtext content">
             <div class="row">
                 @using (Html.BeginForm("profileinformation", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
                 {
@@ -61,7 +114,7 @@ else
                     </fieldset>
 
                     <h3 class="page-title mt1">Personal Information</h3>
-                    <p>Share with collectors here about who you are, where you've studied, and any upcoming or past events and exhibitions.</p>
+                    <p class="mb2">Share with collectors here about who you are, where you've studied, and any upcoming or past events and exhibitions.</p>
                     <fieldset class="fields">
                         @Html.LabelFor(m => m.AboutMe)
                         <div>
@@ -450,48 +503,7 @@ else
                 }
             </div>
         </div>
-        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
-
-            <ul class="side-nav">
-                <li class="profile">
-                    <a href="/accountinfo/index">Account Information</a>
-                </li>
-                <li class="profile active">
-                    <a href="/accountinfo/profileinformation">
-                        Profile
-                        Information
-                    </a>
-                    <ul class="accordion-list">
-                        <li class="profile">
-                            <a href="/accountinfo/uploadavatar">Profile Image</a>
-                        </li>
-                    </ul>
-                </li>
-                @if (ViewBag.profileType == ProfileType.Artist)
-                {
-                    <li class="billing">
-                        <a href="/accountinfo/billing">Address and Identification</a>
-                    </li>
-
-                    <li class="sold">
-                        <a href="/accountinfo/items">Sales Dashboard</a>
-                    </li>
-                    <li>
-                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                            Tax
-                            Form
-                        </a>
-                    </li>
-                }
-                <li class="purchased">
-                    <a href="/accountinfo/orders">Orders</a>
-                </li>
-
-                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
-            </ul>
-
-            <div class="clearfix"></div>
-        </div>
+        
     </div>
 
     <script type="text/javascript">
@@ -513,4 +525,3 @@ else
     </script>
     <div class="clearfix"></div>
 </div>
-}

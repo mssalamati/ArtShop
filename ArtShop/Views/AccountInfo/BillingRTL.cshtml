@@ -1,21 +1,73 @@
-﻿@model BillingInfo
+﻿
+@model BillingInfo
 @{
     ViewBag.Title = "Billing";
 }
+<style>
+    .fields label {
+        clear: right;
+        float: right;
+        text-align: right;
+    }
 
-@{var IsRighToLeft = CultureHelper.IsRighToLeft();}
+    textarea.wide {
+        padding-right: 0.75rem;
+        text-align: right;
+    }
 
-@if (IsRighToLeft)
-{
-    @Html.Partial("BillingRTL");
-}
-else
-{
+    .page-title {
+        text-align: right;
+    }
+
+    .mb2 {
+        text-align: right;
+    }
+      .hd-title {
+        text-align: right;
+    }
+</style>
 
 <div class="row-layout content">
 
     <div class="row">
-        <div class="small-12 large-8 large-push-4 columns bgtext content">
+        <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="margin-left:20px;text-align:right">
+
+            <ul class="side-nav">
+                <li class="profile">
+                    <a href="/accountinfo/index">Account Information</a>
+                </li>
+                <li class="profile">
+                    <a href="/accountinfo/profileinformation">
+                        Profile
+                        Information
+                    </a>
+                </li>
+                @if (ViewBag.profileType == ProfileType.Artist)
+                {
+                    <li class="billing active">
+                        <a href="/accountinfo/billing">Address and Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/accountinfo/items">Sales Dashboard</a>
+                    </li>
+                    <li>
+                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                            Tax
+                            Form
+                        </a>
+                    </li>
+                }
+                <li class="purchased">
+                    <a href="/accountinfo/orders">Orders</a>
+                </li>
+
+                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="small-12 large-8 large-pull-4 columns bgtext content">
             @using (Html.BeginForm("Billing", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -406,7 +458,7 @@ else
                 <fieldset id="so-name-fieldset" class="fields">
                     <legend>Seller Account</legend>
                     <div id="upload-government-id" class="settings-inputs">
-                        <p>
+                        <p class="mb2">
                             In order to pay you for art sales we need a digital copy of your government issued
                             identification. This will help us ensure that your commissions are paid out in a timely
                             manner.
@@ -416,43 +468,7 @@ else
                 </fieldset>
             </div>
         </div>
-        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
-
-            <ul class="side-nav">
-                <li class="profile">
-                    <a href="/accountinfo/index">Account Information</a>
-                </li>
-                <li class="profile">
-                    <a href="/accountinfo/profileinformation">
-                        Profile
-                        Information
-                    </a>
-                </li>
-                @if (ViewBag.profileType == ProfileType.Artist)
-                {
-                    <li class="billing active">
-                        <a href="/accountinfo/billing">Address and Identification</a>
-                    </li>
-
-                    <li class="sold">
-                        <a href="/accountinfo/items">Sales Dashboard</a>
-                    </li>
-                    <li>
-                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                            Tax
-                            Form
-                        </a>
-                    </li>
-                }
-                <li class="purchased">
-                    <a href="/accountinfo/orders">Orders</a>
-                </li>
-
-                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
-            </ul>
-
-            <div class="clearfix"></div>
-        </div>
+        
     </div>
 
 
@@ -472,4 +488,3 @@ else
     </script>
     <div class="clearfix"></div>
 </div>
-}

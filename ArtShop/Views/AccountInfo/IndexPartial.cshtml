@@ -1,9 +1,16 @@
 ﻿@model AccountInfoViewModel
+<style>
+    .fields label {
+        clear:right;
+        float:right;
+        text-align:right;
+    }
+</style>
 
 <div class="row-layout content" style="">
 
     <div class="row">
-        <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="margin-left:20px">
+        <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="margin-left:20px;text-align:right">
 
             <ul class="side-nav">
                 <li class="profile active">
@@ -48,7 +55,19 @@
                 {
                     @Html.AntiForgeryToken()
                     <div class="form">
-                        <div class="small-12 large-9 columns fields">
+                        <div class="small-12 large-3 columns fields">
+                            @*<label for="userTypeId" class="form-label optional">Profile Type</label>*@
+                            @Html.LabelFor(m => m.profileType, new { @class = "form-label optional",@style = "margin-right:15px" })
+                            <div class="form-div" style="padding:0">
+                                <label><input type="radio" name="profileType" id="profileType" value="Artist" @(Model.profileType == ProfileType.Artist ? "checked" : "")>Artist</label><br>
+                                <label><input type="radio" name="profileType" id="profileType" value="Collector" @(Model.profileType == ProfileType.Collector ? "checked" : "")>Collector</label>
+                            </div>
+                            @*<label for="measurementSystem" class="form-label optional">Units</label>
+                                <div class="form-div">
+                                    <label><input type="radio" name="measurementSystem" id="measurementSystem-CENTIMETER" value="CENTIMETER" checked="checked">Centimeters (cm)</label><br><label><input type="radio" name="measurementSystem" id="measurementSystem-INCH" value="INCH">Inches (in)</label>
+                                </div>*@
+                        </div>
+                        <div class="small-12 large-9 columns fields" style="">
 
 
                             @Html.LabelFor(m => m.FirstName, new { @class = "form-label required", requiredprefix = "*" })
@@ -71,7 +90,7 @@
                             @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
 
 
-                            <div class="form-div">
+                            <div class="form-div" style="direction:rtl;margin-right:20px">
                                 <input type="hidden" name="passwordinfo" value="" id="passwordinfo">
                                 <p class="description"></p><ul class="disc">
                                     <li>Password should be more than 6 characters.</li>
@@ -90,28 +109,17 @@
                                 </div>*@
 
                             @Html.LabelFor(m => m.MailingList, new { @class = "form-label optional" })
-                            <div class="form-div">
+                            <div class="form-div" style="float:right">
                                 @Html.CheckBoxFor(m => m.MailingList, new { @style = "display:inline-block" })
                             </div>
                             @*<label for="art_upload_email" class="form-label optional">Receive Art Uploaded Email</label>*@
                             @Html.LabelFor(m => m.ReceiveNewArtEmail, new { @class = "form-label optional", style = "line-height: 1rem !important;padding-top: 20px" })
-                            <div class="form-div">
+                            <div class="form-div" style="float:right">
                                 @Html.CheckBoxFor(m => m.ReceiveNewArtEmail, new { @style = "display:inline-block" })
                             </div>
                         </div>
 
-                        <div class="small-12 large-3 columns fields">
-                            @*<label for="userTypeId" class="form-label optional">Profile Type</label>*@
-                            @Html.LabelFor(m => m.profileType, new { @class = "form-label optional" })
-                            <div class="form-div">
-                                <label><input type="radio" name="profileType" id="profileType" value="Artist" @(Model.profileType == ProfileType.Artist ? "checked" : "")>Artist</label><br>
-                                <label><input type="radio" name="profileType" id="profileType" value="Collector" @(Model.profileType == ProfileType.Collector ? "checked" : "")>Collector</label>
-                            </div>
-                            @*<label for="measurementSystem" class="form-label optional">Units</label>
-                                <div class="form-div">
-                                    <label><input type="radio" name="measurementSystem" id="measurementSystem-CENTIMETER" value="CENTIMETER" checked="checked">Centimeters (cm)</label><br><label><input type="radio" name="measurementSystem" id="measurementSystem-INCH" value="INCH">Inches (in)</label>
-                                </div>*@
-                        </div>
+
                         @Html.ValidationSummary("", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
                         <div class="small-12 columns fields">
                             <div class="form-div">
@@ -122,7 +130,7 @@
                 }
             </div>
         </div>
-        
+
     </div>        <div class="clearfix"></div>
 </div>
 
