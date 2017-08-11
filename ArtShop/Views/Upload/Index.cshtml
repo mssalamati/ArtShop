@@ -3958,6 +3958,11 @@
     <script src="~/Content/select2/js/select2.min.js"></script>
 </head>
 
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+}
+
 <body class="saatchi  signed-in">
     <script>
         if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
@@ -3976,7 +3981,7 @@
 
     @Html.Action("Header", "Home", null)
 
-    <div id="updatediv">
+    <div id="updatediv" style="">
         @Html.Action("Setep1", "Upload", null)
     </div>
 

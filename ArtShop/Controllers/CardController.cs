@@ -8,39 +8,138 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer.Extentions;
+using Microsoft.AspNet.Identity;
 
 namespace ArtShop.Controllers
 {
     public class CardController : Controller
     {
-        ApplicationDbContext storeDB = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         [Route("checkout")]
         public ActionResult Index()
         {
             var cart = CartManager.GetCart(this.HttpContext);
-
             var viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),
                 CartTotal = cart.GetTotal()
             };
-
             return View(viewModel);
         }
 
         public ActionResult AddToCart(int id, Ordertype type)
         {
-            // Retrieve the album from the database
-            var addedAlbum = storeDB.Products.Find(id);
-
-            // Add it to the shopping cart
+            var addedAlbum = db.Products.Find(id);
             var cart = CartManager.GetCart(this.HttpContext);
-
             cart.AddToCart(addedAlbum, type);
-
-            // Go back to the main store page for more shopping
             return Redirect("/checkout");
+        }
+
+        [Authorize]
+        public ActionResult Pay()
+        {
+            // 1. save order from card to user orders with payment false
+            // 2. in verify you can set payment flag true and order status and save transaction code and detail
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var cart = CartManager.GetCart(this.HttpContext);
+            int amount = (int)cart.GetTotal() * 4000;
+
+            System.Net.ServicePointManager.Expect100Continue = false;
+            ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
+            string Authority;
+            int Status = zp.PaymentRequest("test",
+                amount,
+                profile.FirstName + " " + profile.LastName,
+                user.Email,
+                user.PhoneNumber,
+                "http://artiscovery.com/card/Verify",
+                out Authority);
+
+            long longAuth = 0;
+            long.TryParse(Authority, out longAuth);
+            //Transaction t = new Transaction(amount, TransactionType.IncreaseCredit, longAuth);
+            //profile.Transactions.Add(t);
+            db.SaveChanges();
+
+            if (Status == 100)
+            {
+                Response.Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
+                return View();
+            }
+            else
+            {
+                return Content("error: " + Status);
+            }
+        }
+
+        public ActionResult verify()
+        {
+            //if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
+            //{
+            //    if (Request.QueryString["Status"].ToString().Equals("OK"))
+            //    {
+            //        long longAuth = 0;
+            //        long.TryParse(Request.QueryString["Authority"], out longAuth);
+            //        var tran = db.Transactions.FirstOrDefault(x => x.Authority == longAuth);
+            //        if (tran != null)
+            //        {
+            //            int Amount = (int)tran.Amount;
+            //            long RefID;
+
+            //            System.Net.ServicePointManager.Expect100Continue = false;
+            //            ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp =
+            //                new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
+
+            //            int Status = zp.PaymentVerification("e21e6fde-e5f6-11e6-bdac-000c295eb8fc", Request.QueryString["Authority"].ToString(), Amount, out RefID);
+
+            //            tran.RefID = RefID.ToString();
+            //            tran.Status = Status.ToString();
+            //            if (Status == 100)
+            //            {
+            //                tran.Confirmed = true;
+            //                tran.profile.Account += Amount;
+            //                db.SaveChanges();
+
+            //                ViewBag.text = "پرداخت با موفقیت انجام شد";
+            //                ViewBag.refid = RefID.ToString();
+            //                return View();
+            //            }
+            //            else
+            //            {
+            //                db.SaveChanges();
+            //                ViewBag.text = "پرداخت نا موفق";
+            //                ViewBag.refid = RefID.ToString();
+            //                return View();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            ViewBag.text = "پرداخت نا موفق";
+            //            return View();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        long longAuth = 0;
+            //        long.TryParse(Request.QueryString["Authority"], out longAuth);
+            //        var tran = db.Transactions.FirstOrDefault(x => x.Authority == longAuth);
+            //        if (tran != null)
+            //        {
+            //            tran.Status = Request.QueryString["Status"].ToString();
+            //            db.SaveChanges();
+            //        }
+            //        ViewBag.text = "پرداخت نا موفق";
+            //        return View();
+            //    }
+            //}
+            //else
+            //{
+            ViewBag.text = "پرداخت نا موفق";
+            return RedirectToAction("orders", "accounts", new { });
+            //}
         }
 
         [HttpPost]
@@ -50,7 +149,7 @@ namespace ArtShop.Controllers
             var cart = CartManager.GetCart(this.HttpContext);
 
             // Get the name of the album to display confirmation
-            string Pname = storeDB.ShoppingCarts
+            string Pname = db.ShoppingCarts
                 .Single(item => item.Id == id).Product.Title;
 
             // Remove from cart
@@ -76,7 +175,7 @@ namespace ArtShop.Controllers
             var cart = CartManager.GetCart(this.HttpContext);
 
             // Get the name of the album to display confirmation
-            string Pname = storeDB.ShoppingCarts
+            string Pname = db.ShoppingCarts
                 .Single(item => item.Id == id).Product.Current().Title;
 
             // Remove from cart
