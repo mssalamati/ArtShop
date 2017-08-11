@@ -323,6 +323,14 @@ namespace ArtShop.Controllers
                 var orginalpic = (string)Session["imageAddress"];
                 var categoryId = (int)Session["category"];
                 var subjectId = (int)Session["subject"];
+
+                string Mediums = (string)Session["Mediums"];
+                int[] Materials = (int[])Session["Materials"];
+                string Styles = (string)Session["Styles"];
+
+                var medumsList = Mediums.Split(',');
+                var stylelist = Styles.Split(',');
+
                 var product = new Product()
                 {
                     photo = new Photo() { Path = orginalpic },
@@ -343,11 +351,31 @@ namespace ArtShop.Controllers
                     categoryId = categoryId,
                     subjectId = subjectId
                 };
+                product.Materials = new List<Material>();
+                product.Styles = new List<Style>();
+                product.Mediums = new List<Medium>();
+                foreach (var item in Materials)
+                    product.Materials.Add(db.Materials.FirstOrDefault(x => item == x.Id));
+                foreach (var item in stylelist)
+                {
+                    var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
+                    if (temp != null)
+                        product.Styles.Add(temp.style);
+                }
+
+                foreach (var item in medumsList)
+                {
+                    var temp = db.MediumTranslations.FirstOrDefault(x => x.Name == item);
+                    if (temp != null)
+                        product.Mediums.Add(temp.medium);
+                }
+
                 profile.Products.Add(product);
+
                 db.SaveChanges();
                 id = product.Id;
             }
-            catch
+            catch (Exception ex)
             {
                 ViewBag.error = Resources.UploadRes.Image_cannot_be_empty;
                 return PartialView();

@@ -37,16 +37,26 @@ namespace ArtShop.Controllers
             ViewBag.priceId = price;
 
             var p = db.Products.OrderBy(x => x.CreateDate).AsQueryable();
+            p = p.Where(x => category == 0 || x.categoryId == category).AsQueryable();
+            p = p.Where(x => style == 0 || x.Styles.FirstOrDefault(y => y.Id == style) != null);
+            p = p.Where(x => subject == 0 || x.subjectId == subject).AsQueryable();
+            p = p.Where(x => medium == 0 || x.Mediums.FirstOrDefault(y => y.Id == medium) != null);
+            if (price_cash != null && price_cash.max.HasValue)
+                p = p.Where(x => x.Price < price_cash.max.Value);
+            if (price_cash != null && price_cash.min.HasValue)
+                p = p.Where(x => x.Price > price_cash.min.Value);
+
             var count = p.Count();
-            page = Math.Max(1, page);
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
             ViewBag.page = page;
             ViewBag.count = count;
             ViewBag.pageSize = pageSize;
 
             p = p.Skip((page - 1) * pageSize).Take(pageSize);
 
-            return View(p.ToList());
+            var res = p.ToList();
+            return View(res);
         }
 
         public ActionResult single(int id)
