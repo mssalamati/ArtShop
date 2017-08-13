@@ -26,9 +26,12 @@ namespace ArtShop.Controllers
             //    : y.Translations.FirstOrDefault(t => t.languageId == currentCultureName).Value);
 
             HomeIndexViewModel model = new HomeIndexViewModel();
-            if (db.sliderImages.Count() != 0)
+            var count = db.sliderImages.Count();
+            if (count != 0)
             {
-                var sl = db.sliderImages.Include("Translations").FirstOrDefault();
+                var randomNumber = new Random().Next(0,count);
+
+                var sl = db.sliderImages.Include("Translations").ToList().Skip(randomNumber).Take(1).FirstOrDefault();
                 model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + "/" + sl.path;
                 model.slider_H1 = sl.Current().H1;
                 model.slider_H2 = sl.Current().H2;

@@ -129,6 +129,63 @@ namespace AdminPanel.Controllers
             return RedirectToAction("slider", db.sliderImages.Include("Translations"));
         }
 
+        public ActionResult EditSlider(int id)
+        {
+            var finder = db.sliderImages.Find(id);
+            ViewBag.language = db.Languages.ToList();
+            return View(finder);
+        }
+
+        [HttpPost]
+        public ActionResult EditSlider(sliderImage slider)
+        {
+            var finder = db.sliderImages.Find(slider.Id);
+            string fullPath = "";
+            string tempFolderName = "Upload/Slider_Images";
+            if (Request.Files.Count != 0)
+            {
+                var file = Request.Files[0];
+                if (file.ContentLength > 0)
+                {
+                    var result = ImageHelper.Saveimage(Server, file, tempFolderName, ImageHelper.saveImageMode.wide);
+                    if (!result.ResultStatus)
+                    {
+                        ViewBag.language = db.Languages.ToList();
+                        ModelState.AddModelError(string.Empty, result.Error);
+                        ViewBag.SiteParams = db.SiteParams.ToList();
+                        return View();
+                    }
+
+                    fullPath = result.FullPath;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(fullPath))
+                finder.path = fullPath;
+
+            finder.ButtonURL = slider.ButtonURL;
+            finder.TextColor = slider.TextColor;
+
+            foreach (var item in slider.Translations)
+            {
+                var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
+                if (curr != null)
+                {
+                    curr.ButtonText = item.ButtonText;
+                    curr.H1 = item.H1;
+                    curr.H2 = item.H2;
+                    curr.P1 = item.P1;
+                }
+                else
+                {
+                    finder.Translations.Add(new sliderImageTranslation() { languageId = item.languageId, H1 = item.H1, H2 = item.H2, P1 = item.P1, ButtonText = item.ButtonText });
+                }
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("slider", db.sliderImages.Include("Translations"));
+        }
 
         public ActionResult maincontent()
         {
@@ -174,7 +231,7 @@ namespace AdminPanel.Controllers
                 return PartialView(model);
             }
 
-            footerCell newmodel = new footerCell() {  };
+            footerCell newmodel = new footerCell() { };
             newmodel.Translations = new List<footerCellTranslation>();
             foreach (var item in model.Translations)
                 newmodel.Translations.Add(new footerCellTranslation() { languageId = item.languageId, Header = item.Header });
@@ -199,7 +256,46 @@ namespace AdminPanel.Controllers
             db.SaveChanges();
             return RedirectToAction("footers", db.footerCells.Include("Translations"));
         }
-        
+
+        public ActionResult Editfooter(int id)
+        {
+            ViewBag.language = db.Languages.ToList();
+            var finder = db.footerCells.Find(id);
+            return PartialView(finder);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editfooter(footerCell model)
+        {
+            var finder = db.footerCells.Find(model.Id);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.language = db.Languages.ToList();
+                return PartialView(model);
+            }
+            
+            foreach (var item in model.Translations)
+            {
+                var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
+                if (curr != null)
+                {
+                    curr.Header = item.Header;
+                }
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return PartialView("_successWindow");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.language = db.Languages.ToList();
+                ModelState.AddModelError(string.Empty, ex.ToString());
+                return PartialView(model);
+            }
+        }
+
 
         public ActionResult editParams(string id)
         {

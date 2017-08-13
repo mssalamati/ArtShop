@@ -80,7 +80,7 @@
                                 }
                             }
                             <td>
-                                <button class="btn btn-primary btn-sm" >ویرایش</button>
+                                <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/FirstPageSettings/deletefooter/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
@@ -128,6 +128,12 @@
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
             $("#dform").load("/FirstPageSettings/addfooter");
+        }
+
+        function showEdit(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/FirstPageSettings/EditFooter?id="+id);
         }
     </script>
 }

@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Addslider";
+}
+
+
+@model sliderImage
+
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+
+@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+@Styles.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.css")
+
+<link rel="stylesheet" href="~/Content/Admin/vendor/clockpicker/dist/bootstrap-clockpicker.min.css">
+<link rel="stylesheet" href="~/Content/Admin/vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+
+<div class="page-title">
+    <div class="title">   صفحه اصلی</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">  صفحه اصلی</a>
+        </li>
+        <li>
+            <a href="javascript:;">  اسلایدر </a>
+        </li>
+    </ol>
+</div>
+
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/FirstPageSettings/Header"> هدر</a>
+    </li>
+    <li class="active">
+        <a href="/FirstPageSettings/slider"> اسلایدر</a>
+    </li>
+    <li>
+        <a href="/FirstPageSettings/maincontent">محتوا </a>
+    </li>
+    <li>
+        <a href="/FirstPageSettings/footers">فوتر </a>
+    </li>
+</ul>
+
+
+<div class="clearfix"></div>
+
+
+<div class="card bg-white">
+    <div class="card-header">
+        <p style="padding-top: 8px !important;margin-bottom: 0; float:right"> اسلایدری موجود در هدر سایت</p>
+    </div>
+    <div class="card-block">
+
+        @if (!string.IsNullOrEmpty(ViewBag.alert))
+        {
+            <div class="alert alert-info">
+                @ViewBag.alert
+            </div>
+        }
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
+
+        @using (Html.BeginForm("EditSlider", "FirstPageSettings", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            <input type="hidden" name="id" id="id" value="@Model.Id" />
+            <div class="form-group">
+                <label style="padding:5px" class="col-sm-2 control-label">تصویر اصلی</label>
+                <div class="col-sm-10">
+                    <div class="uploader blue">
+                        <input type="button" name="file" class="button" value="انتخاب.." />
+                        <input type="text" class="filename" readonly="readonly" />
+                        <input type="file" id="Image" name="Image" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label style="padding:5px" class="col-sm-2 control-label">لینک کلید </label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.ButtonURL, new { @class = "form-control", id = "ButtonURL", name = "ButtonURL", type = "text" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label style="padding:5px" class="col-sm-2 control-label">رنگ نوشته ها </label>
+                <div class="col-sm-10">
+                    <div class="input-group color-picker2 w200">
+                        @Html.TextBoxFor(m => m.TextColor, new { @class = "form-control", id = "TextColor", name = "TextColor", type = "text" })
+                        
+                        <span class="input-group-addon no-bg"><i></i></span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+
+                @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+                {
+                    var item = ((List<Language>)ViewBag.language)[i];
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                            <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                            <input name="Translations[@i].ButtonText" placeholder="ButtonText" value="@Model.Translations.ToList()[i].ButtonText" type="text" class="form-control" />
+                            <input name="Translations[@i].P1" placeholder="P1" value="@Model.Translations.ToList()[i].P1" type="text" class="form-control" />
+                            @*<input name="Translations[@i].P2" placeholder="P2" value="" type="text" class="form-control" />*@
+                            <input name="Translations[@i].H1" placeholder="H1" value="@Model.Translations.ToList()[i].H1" type="text" class="form-control" />
+                            <input name="Translations[@i].H2" placeholder="H2" value="@Model.Translations.ToList()[i].H2" type="text" class="form-control" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <p></p>
+
+            <button type="submit" class="btn btn-success"> ثبت </button>
+
+        }
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+    @Scripts.Render("~/Content/Admin/vendor/chosen_v1.4.0/chosen.jquery.min.js")
+
+    <script src="~/Content/Admin/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
+    <script>
+
+        $('.color-picker').colorpicker();
+        $('.color-picker2').colorpicker({
+            horizontal: true
+        });
+
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
+    </script>
+}

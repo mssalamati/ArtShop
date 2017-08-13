@@ -40,7 +40,16 @@
         foreach (var item in Model)
         {
             <div class="card m-t m-b-0 bg-white">
-                <img class="card-img-top img-responsive" alt="Project 0" src="http://artiscovery.com/@item.Sqphoto.Path">
+                @if (item.Sqphoto.Path.Contains("artiscovery.com"))
+                {
+                    <img class="card-img-top img-responsive" alt="Project 0" src="@item.Sqphoto.Path">
+
+                }
+                else
+                {
+                    <img class="card-img-top img-responsive" alt="Project 0" src="http://artiscovery.com/@item.Sqphoto.Path">
+                }
+
                 <div class="card-block">
                     <div>@item.user.FirstName @item.user.LastName </div>
                 </div>

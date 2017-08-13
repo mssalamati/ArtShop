@@ -5422,6 +5422,8 @@
     <Content Include="Views\FirstPageSettings\_successWindow.cshtml" />
     <Content Include="Views\FirstPageSettings\addfooter.cshtml" />
     <Content Include="Views\FirstPageSettings\Addmaincontent.cshtml" />
+    <Content Include="Views\FirstPageSettings\EditSlider.cshtml" />
+    <Content Include="Views\FirstPageSettings\EditFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5475,7 +5477,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>43113</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

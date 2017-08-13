@@ -73,7 +73,9 @@
                                 }
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="">ویرایش</button>
+                                <a href="editslider?id=@item.Id">
+                                    <span  class="btn btn-primary btn-sm" type="submit">ویرایش</span>
+                                </a>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/FirstPageSettings/DeleteSlider/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
