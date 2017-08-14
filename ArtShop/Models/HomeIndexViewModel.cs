@@ -16,6 +16,7 @@ namespace ArtShop.Models
         public string slider_Button_color { get; set; }
         public string Slider_Image { get; set; }
         public string slider_text_color { get; set; }
+        public string slider_Button_text_color { get; set; }
         public List<IdNameViewModel> Navigation { get; set; }
     }
 

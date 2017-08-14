@@ -1,101 +1,291 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
-		Microsoft ResX Schema
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-		Version 1.3
-
-		The primary goals of this format is to allow a simple XML format 
-		that is mostly human readable. The generation and parsing of the 
-		various data types are done through the TypeConverter classes 
-		associated with the data types.
-
-		Example:
-
-		... ado.net/XML headers & schema ...
-		<resheader name="resmimetype">text/microsoft-resx</resheader>
-		<resheader name="version">1.3</resheader>
-		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-		<data name="Name1">this is my long string</data>
-		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-			[base64 mime encoded serialized .NET Framework object]
-		</data>
-		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-			[base64 mime encoded string representing a byte array form of the .NET Framework object]
-		</data>
-
-		There are any number of "resheader" rows that contain simple 
-		name/value pairs.
-
-		Each data row contains a name, and value. The row also contains a 
-		type or mimetype. Type corresponds to a .NET class that support 
-		text/value conversion through the TypeConverter architecture. 
-		Classes that don't support this are serialized and stored with the 
-		mimetype set.
-
-		The mimetype is used for serialized objects, and tells the 
-		ResXResourceReader how to depersist the object. This is currently not 
-		extensible. For a given mimetype the value must be set accordingly:
-
-		Note - application/x-microsoft.net.object.binary.base64 is the format 
-		that the ResXResourceWriter will generate, however the reader can 
-		read any of the formats listed below.
-
-		mimetype: application/x-microsoft.net.object.binary.base64
-		value   : The object must be serialized with 
-			: System.Serialization.Formatters.Binary.BinaryFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.soap.base64
-		value   : The object must be serialized with 
-			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.bytearray.base64
-		value   : The object must be serialized into a byte array 
-			: using a System.ComponentModel.TypeConverter
-			: and then encoded with base64 encoding.
-	-->
-	
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_me" xml:space="preserve">
+    <value>درباره من</value>
+  </data>
+  <data name="Account_info" xml:space="preserve">
+    <value>حساب کاربری</value>
+  </data>
+  <data name="Address_Identification" xml:space="preserve">
+    <value>نشانی و هویت</value>
+  </data>
+  <data name="Artist" xml:space="preserve">
+    <value>هنرمند</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="Collector" xml:space="preserve">
+    <value>مجموعه دار</value>
+  </data>
+  <data name="Confirm_password" xml:space="preserve">
+    <value>تایید کلمه عبور</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>تحصیلات</value>
+  </data>
+  <data name="Email_address" xml:space="preserve">
+    <value>پست الکترونیک</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>رویدادها</value>
+  </data>
+  <data name="Exhibitions" xml:space="preserve">
+    <value>نمایشگاه ها</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>فیسبوک</value>
+  </data>
+  <data name="First_Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="Google_plus" xml:space="preserve">
+    <value>گوگل پلاس</value>
+  </data>
+  <data name="Identification_header" xml:space="preserve">
+    <value>نشانی/ محل اثر انتخاب شده</value>
+  </data>
+  <data name="Identification_header2" xml:space="preserve">
+    <value>کارت شناسایی</value>
+  </data>
+  <data name="Identification_p" xml:space="preserve">
+    <value>.زمانی که شما اثر جدید اضافه می کنید آدرس شما با این آدرس تکمیل می شود </value>
+  </data>
+  <data name="Identification_p2" xml:space="preserve">
+    <value>.برای تائید هویت، نیاز به تصویر کارت ملی شما می باشد</value>
+  </data>
+  <data name="Instagram" xml:space="preserve">
+    <value>اینستاگرام</value>
+  </data>
+  <data name="Last_name" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="Mailing_list" xml:space="preserve">
+    <value>ارسال اخبار سایت</value>
+  </data>
+  <data name="My_website" xml:space="preserve">
+    <value>وبسایت من</value>
+  </data>
+  <data name="New_password" xml:space="preserve">
+    <value>کلمه عبور جدید</value>
+  </data>
+  <data name="No_file_chosen" xml:space="preserve">
+    <value>تصویری انتخاب نشده</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>سفارشات</value>
+  </data>
+  <data name="Password_desc_1" xml:space="preserve">
+    <value>رمز عبور باید بیش از 6 کاراکتر باشد.</value>
+  </data>
+  <data name="Password_desc_2" xml:space="preserve">
+    <value>پسور باید پیچیده باشد (ترکیبی از اعداد، نمادها و حروف بزرگ و کوچک)</value>
+  </data>
+  <data name="Password_desc_3" xml:space="preserve">
+    <value>رمز عبور، به حروف کوچک و بزرگ حساس است.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>تلفن همراه</value>
+  </data>
+  <data name="Pinterest" xml:space="preserve">
+    <value>پینترست</value>
+  </data>
+  <data name="ProfileInfo_header" xml:space="preserve">
+    <value>پیوندها</value>
+  </data>
+  <data name="ProfileInfo_p1" xml:space="preserve">
+    <value>.مخاطبان می توانند از طریق لینک های زیر با شما ارتباط برقرار کنند</value>
+  </data>
+  <data name="ProfileInfo_p2" xml:space="preserve">
+    <value>با مخاطبان، بیوگرافی خود و فعالیت های اجتماعی مانند رویدادهایی که برگزار کردید و یا نمایشگاه ها را به اشتراک بگذارید.</value>
+  </data>
+  <data name="Profile_address" xml:space="preserve">
+    <value>آدرس شخصی</value>
+  </data>
+  <data name="Profile_header2" xml:space="preserve">
+    <value>اطلاعات شخصی</value>
+  </data>
+  <data name="Profile_image" xml:space="preserve">
+    <value>عکس کاربری</value>
+  </data>
+  <data name="Profile_information" xml:space="preserve">
+    <value>اطلاعات کاربری</value>
+  </data>
+  <data name="Profile_type" xml:space="preserve">
+    <value>نوع کاربری</value>
+  </data>
+  <data name="Receive_Art_Uploaded_Email" xml:space="preserve">
+    <value>ارسال خبرنامه هنری از طریق ایمیل</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>ناحیه</value>
+  </data>
+  <data name="Sales_Dashboard" xml:space="preserve">
+    <value>داشبورد فروش</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="Save_changes" xml:space="preserve">
+    <value>ذخیره تغییرات</value>
+  </data>
+  <data name="Select_file" xml:space="preserve">
+    <value>انتخاب تصویر</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>خیابان</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="Tax_form" xml:space="preserve">
+    <value>فرم مالیات</value>
+  </data>
+  <data name="Tumblr" xml:space="preserve">
+    <value>تامبلر</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>توییتر</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>واحد</value>
+  </data>
+  <data name="Upload_id" xml:space="preserve">
+    <value>بارگزاری تصویر</value>
+  </data>
+  <data name="Upload_photo_header" xml:space="preserve">
+    <value>بروزرسانی عکس حساب کاربری</value>
+  </data>
+  <data name="Upload_photo_p" xml:space="preserve">
+    <value>برای بارگزاری یک تصویر انتخاب کنید</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>کدپستی</value>
+  </data>
 </root>

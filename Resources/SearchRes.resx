@@ -132,6 +132,21 @@
   <data name="All_Subjects" xml:space="preserve">
     <value>All Subjects</value>
   </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="Art_description" xml:space="preserve">
+    <value>Art Description</value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>,</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Keywords</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>on</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>

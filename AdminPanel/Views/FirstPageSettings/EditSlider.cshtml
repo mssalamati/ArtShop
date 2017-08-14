@@ -107,6 +107,16 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label style="padding:5px" class="col-sm-2 control-label">رنگ نوشته کلید </label>
+                <div class="col-sm-10">
+                    <div class="input-group color-picker2 w200">
+                        @Html.TextBoxFor(m => m.ButtonTextColor, new { @class = "form-control", id = "ButtonTextColor", name = "ButtonTextColor", type = "text" })
+
+                        <span class="input-group-addon no-bg"><i></i></span>
+                    </div>
+                </div>
+            </div>
 
             <hr />
 
@@ -120,7 +130,7 @@
                             <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
                             <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
                             <input name="Translations[@i].ButtonText" placeholder="ButtonText" value="@Model.Translations.ToList()[i].ButtonText" type="text" class="form-control" />
-                            <input name="Translations[@i].P1" placeholder="P1" value="@Model.Translations.ToList()[i].P1" type="text" class="form-control" />
+                            <input name="Translations[@i].P1" placeholder="Description" value="@Model.Translations.ToList()[i].P1" type="text" class="form-control" />
                             @*<input name="Translations[@i].P2" placeholder="P2" value="" type="text" class="form-control" />*@
                             <input name="Translations[@i].H1" placeholder="H1" value="@Model.Translations.ToList()[i].H1" type="text" class="form-control" />
                             <input name="Translations[@i].H2" placeholder="H2" value="@Model.Translations.ToList()[i].H2" type="text" class="form-control" />

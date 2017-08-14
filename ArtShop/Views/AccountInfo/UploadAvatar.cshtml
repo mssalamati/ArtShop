@@ -14,10 +14,10 @@ else
 <div class="row-layout content">
     <div class="row">
         <div id="so-upload-help" class="small-12 large-8 large-push-4 columns bgtext content">
-            <h3 class="mb1">Update Profile Image</h3>
-            <p class="mb2">Select an image to upload.</p>
-            <link rel="stylesheet" href="/js/upload/css/jquery.fileupload.css">
-            <link rel="stylesheet" href="/js/upload/css/jquery.fileupload-ui.css">
+            <h3 class="mb1">@ProfileRes.Upload_photo_header</h3>
+            <p class="mb2">@ProfileRes.Upload_photo_p</p>
+            <link rel="stylesheet" href="~/Content/js/upload/css/jquery.fileupload-ui.css">
+            <link rel="stylesheet" href="~/Content/js/upload/css/jquery.fileupload.css">
             <script src="/js/upload/js/vendor/jquery.ui.widget.js"></script>
             <script src="/js/upload/js/jquery.fileupload.js"></script>
             <form id="so-upload-form" method="post" enctype="multipart/form-data" action="/upload/avatar">
@@ -31,7 +31,7 @@ else
                     </dd>
                 </div>
                 <span class="btn btn-success fileinput-button">
-                    <span>Select File</span>
+                    <span>@ProfileRes.Select_file</span>
                     <!-- The file input field used as target for the file upload widget -->
                     <input id="fileupload" type="file" name="file">
                 </span>
@@ -43,7 +43,7 @@ else
                 </div>
                 <input type="hidden" name="avatar" value="1">
                 <div class="clear"></div>
-                <input type="submit" class="button btn-info mt1" value="Submit" disabled=""><a class="btn btn-link" href="#" onclick="history.go(-1)">Cancel</a>
+                <input type="submit" class="button btn-info mt1" value="@ProfileRes.Submit" disabled=""><a class="btn btn-link" href="#" onclick="history.go(-1)">@ProfileRes.Cancel</a>
             </form>
 
             <script type="text/javascript">
@@ -55,37 +55,43 @@ else
         </div>
         <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
 
+
             <ul class="side-nav">
-                <li class="profile">
-                    <a href="/accountinfo/index">Account Information</a>
+                <li class="profile ">
+                    <a href="/accountinfo/index">@ProfileRes.Account_info</a>
                 </li>
-                <li class="profile">
+                <li class="profile ">
                     <a href="/accountinfo/profileinformation">
-                        Profile
-                        Information
+                        @ProfileRes.Profile_information
                     </a>
                     <ul class="accordion-list">
                         <li class="profile active">
-                            <a href="/accountinfo/uploadavatar">Profile Image</a>
+                            <a href="/accountinfo/uploadavatar">@ProfileRes.Profile_image</a>
                         </li>
                     </ul>
                 </li>
-                <li class="billing">
-                    <a href="/accountinfo/billing">Address and Identification</a>
-                </li>
-                <li class="sold">
-                    <a href="/accountinfo/items">Sales Dashboard</a>
-                </li>
-                <li>
-                    <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                        Tax
-                        Form
-                    </a>
-                </li>
+                @if (ViewBag.profileType == ProfileType.Artist)
+                {
+                    <li class="billing">
+                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
+                    </li>
+                        @*<li>
+                            <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                                Tax
+                                Form
+                            </a>
+                        </li>*@
+                }
                 <li class="purchased">
-                    <a href="/accountinfo/orders">Orders</a>
+                    <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                 </li>
-                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+
+
+                <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>
             </ul>
 
             <div class="clearfix"></div>

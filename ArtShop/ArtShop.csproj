@@ -269,6 +269,8 @@
     <Content Include="Content\js\dist\core-1497066375653.min.js" />
     <Content Include="Content\js\dist\foundation\foundation5-5.min4baf.js" />
     <Content Include="Content\js\dist\tmpl.min.js" />
+    <Content Include="Content\js\upload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\js\upload\css\jquery.fileupload.css" />
     <Content Include="Content\large.gif" />
     <Content Include="Content\main-1497066374081.css" />
     <Content Include="Content\main-1498861409026.css" />

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using ArtShop.Models;
 using System.Threading.Tasks;
 using DataLayer.Enitities;
+using Utilities;
 
 namespace ArtShop.Controllers
 {
@@ -120,11 +121,27 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
-
-
-
+            ViewBag.profileType = userProfile.profileType;
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadAvatar(HttpPostedFileBase Image)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.profileType = userProfile.profileType;
+
+            string tempFolderName = "Upload/profile_Images";
+            var result = ImageHelper.Saveimage(Server, Image, tempFolderName, ImageHelper.saveImageMode.Not);
+            if (result.ResultStatus)
+            {
+                userProfile.PhotoPath = result.FullPath;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index","profile");
         }
 
         public ActionResult Billing()

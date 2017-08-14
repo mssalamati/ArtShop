@@ -117,6 +117,7 @@ namespace AdminPanel.Controllers
                 ButtonURL = slider.ButtonURL,
                 TextColor = slider.TextColor,
                 ButtonColor = slider.ButtonColor,
+                ButtonTextColor = slider.ButtonTextColor,
                 Translations = slider.Translations
             });
             db.SaveChanges();
@@ -167,6 +168,7 @@ namespace AdminPanel.Controllers
             finder.ButtonURL = slider.ButtonURL;
             finder.TextColor = slider.TextColor;
             finder.ButtonColor = slider.ButtonColor;
+            finder.ButtonTextColor = slider.ButtonTextColor;
 
             foreach (var item in slider.Translations)
             {

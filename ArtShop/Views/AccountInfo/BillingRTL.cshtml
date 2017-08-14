@@ -33,36 +33,36 @@
         <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="margin-left:20px;text-align:right">
 
             <ul class="side-nav">
-                <li class="profile">
-                    <a href="/accountinfo/index">Account Information</a>
+                <li class="profile ">
+                    <a href="/accountinfo/index">@ProfileRes.Account_info</a>
                 </li>
-                <li class="profile">
+                <li class="profile ">
                     <a href="/accountinfo/profileinformation">
-                        Profile
-                        Information
+                        @ProfileRes.Profile_information
                     </a>
                 </li>
                 @if (ViewBag.profileType == ProfileType.Artist)
                 {
                     <li class="billing active">
-                        <a href="/accountinfo/billing">Address and Identification</a>
+                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
                     </li>
 
                     <li class="sold">
-                        <a href="/accountinfo/items">Sales Dashboard</a>
+                        <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
                     </li>
-                    <li>
+                    @*<li>
                         <a style="padding-left:20px;" href="/accounts/upload-tax-form">
                             Tax
                             Form
                         </a>
-                    </li>
+                    </li>*@
                 }
                 <li class="purchased">
-                    <a href="/accountinfo/orders">Orders</a>
+                    <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                 </li>
 
-                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+
+                <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>
             </ul>
 
             <div class="clearfix"></div>
@@ -71,8 +71,8 @@
             @using (Html.BeginForm("Billing", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h3 class="hd-title">Artwork Pick Up Address</h3>
-                <p class="mb2">When you add a new artwork, we will autofill your address with this information.</p>
+                <h3 class="hd-title">@ProfileRes.Identification_header</h3>
+                <p class="mb2">@ProfileRes.Identification_p</p>
                 <fieldset class="fields">
                     @Html.LabelFor(m => m.Street)
                     <div id="shipping-address">
@@ -448,22 +448,20 @@
                     <div>
                         @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "wide", id = "PhoneNumber", name = "PhoneNumber", type = "text" })
                     </div>
-                    <input type="submit" class="button btn-info mt1" value="Save Changes">
+                    <input type="submit" class="button btn-info mt1" value="@ProfileRes.Save_changes">
                 </fieldset>
             }
 
             <div id="so-shipping-id">
-                <h3 class="page-title">Government Issued Identification</h3>
+                <h3 class="page-title">@ProfileRes.Identification_header2</h3>
 
                 <fieldset id="so-name-fieldset" class="fields">
                     <legend>Seller Account</legend>
                     <div id="upload-government-id" class="settings-inputs">
                         <p class="mb2">
-                            In order to pay you for art sales we need a digital copy of your government issued
-                            identification. This will help us ensure that your commissions are paid out in a timely
-                            manner.
+                           @ProfileRes.Identification_p2
                         </p>
-                        <a class="button btn-info" href="/accounts/upload-id">Upload ID</a>
+                        <a class="button btn-info" href="/accounts/upload-id">@ProfileRes.Upload_id</a>
                     </div>
                 </fieldset>
             </div>

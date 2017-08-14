@@ -174,14 +174,14 @@
                                 <div>
                                     <i class="fa fa-check" aria-hidden="true"></i> 7-day money back guarantee
                                 </div>
-                                <div>
+                                @*<div>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     Trustpilot Score
-                                </div>
+                                </div>*@
                             </div>
                             <div style="width:inherit" class="art-detail-ribbon">
                                 <div class="clearfix">
@@ -257,14 +257,14 @@
                                             </span>
                                         </span>
                                     </div>
-                                    <div>
+                                    @*<div>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         Trustpilot Score
-                                    </div>
+                                    </div>*@
                                 </div>
 
                                 <div itemprop="offers" style="width:inherit;margin:0px -20px" class="art-detail-ribbon">
@@ -303,7 +303,7 @@
             <section itemprop="description" class="description">
                 <div class="row">
                     <div class="small-12 columns">
-                        <h3 class="section-title">Art Description</h3>
+                        <h3 class="section-title">@SearchRes.Art_description</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -311,30 +311,44 @@
                         <p>
                             @Model.category.Current().Name:
                             <span>
-                                @{bool first = true; }
+                                @{bool first = true;int count = 0; }
                                 @foreach (var item in Model.Mediums)
                                 {
+                                    count++;
                                     if (!first)
                                     {
-                                        <a>,</a>
+                                        if (count == Model.Mediums.Count )
+                                        {
+                                            <span>@SearchRes.And</span>
+                                        }
+                                        else
+                                        {
+                                        <span>@SearchRes.Comma</span>
+                                        }
                                     }
 
                                     first = false;
-
+                                    
                                     @item.Current().Name
                                 }
                             </span>
-                            on
+                            <span>@SearchRes.On</span>
                             <span>
-                            @{first = true;}
+                            @{first = true; count = 0;}
 
                             @foreach (var item in Model.Materials)
                             {
-                                
+                                count++;
                                 if (!first)
                                 {
-                                    <a>,</a>
-
+                                    if (count == Model.Materials.Count )
+                                    {
+                                        <span>@SearchRes.And</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@SearchRes.Comma</span>
+                                    }
                                 }
                                 first = false;
 
@@ -346,7 +360,7 @@
                             @Model.Description
                         </p>
                         <p>
-                            Keywords: @Model.Keywords
+                            @SearchRes.Keywords: @Model.Keywords
                         </p>
 
                     </div>

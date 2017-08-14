@@ -132,6 +132,21 @@
   <data name="All_Subjects" xml:space="preserve">
     <value>سابجکت ها</value>
   </data>
+  <data name="And" xml:space="preserve">
+    <value>و</value>
+  </data>
+  <data name="Art_description" xml:space="preserve">
+    <value>توضیحات اثر</value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>،</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>کلمات کلیدی</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>روی</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
   </data>

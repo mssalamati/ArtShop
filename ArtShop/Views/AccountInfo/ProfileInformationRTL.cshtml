@@ -28,41 +28,41 @@
         <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="margin-left:20px;text-align:right">
 
             <ul class="side-nav">
-                <li class="profile">
-                    <a href="/accountinfo/index">Account Information</a>
+                <li class="profile ">
+                    <a href="/accountinfo/index">@ProfileRes.Account_info</a>
                 </li>
                 <li class="profile active">
                     <a href="/accountinfo/profileinformation">
-                        Profile
-                        Information
+                        @ProfileRes.Profile_information
                     </a>
                     <ul class="accordion-list">
                         <li class="profile">
-                            <a href="/accountinfo/uploadavatar">Profile Image</a>
+                            <a href="/accountinfo/uploadavatar">@ProfileRes.Profile_image</a>
                         </li>
                     </ul>
                 </li>
                 @if (ViewBag.profileType == ProfileType.Artist)
                 {
                     <li class="billing">
-                        <a href="/accountinfo/billing">Address and Identification</a>
+                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
                     </li>
 
                     <li class="sold">
-                        <a href="/accountinfo/items">Sales Dashboard</a>
+                        <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
                     </li>
-                    <li>
-                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                            Tax
-                            Form
-                        </a>
-                    </li>
+                        @*<li>
+                            <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                                Tax
+                                Form
+                            </a>
+                        </li>*@
                 }
                 <li class="purchased">
-                    <a href="/accountinfo/orders">Orders</a>
+                    <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                 </li>
 
-                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+
+                <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>
             </ul>
 
             <div class="clearfix"></div>
@@ -72,8 +72,8 @@
                 @using (Html.BeginForm("profileinformation", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h3 class="page-title">Links</h3>
-                    <p class="mb2">We'll add icons with links to any of the below sites that you provide.</p>
+                    <h3 class="page-title">@ProfileRes.ProfileInfo_header</h3>
+                    <p class="mb2">@ProfileRes.ProfileInfo_p1</p>
                     <fieldset class="fields">
 
                         @Html.LabelFor(m => m.Facebook)
@@ -113,8 +113,8 @@
                         </div>
                     </fieldset>
 
-                    <h3 class="page-title mt1">Personal Information</h3>
-                    <p class="mb2">Share with collectors here about who you are, where you've studied, and any upcoming or past events and exhibitions.</p>
+                    <h3 class="page-title mt1">@ProfileRes.ProfileInfo_header2</h3>
+                    <p style="direction:rtl">@ProfileRes.ProfileInfo_p2</p>
                     <fieldset class="fields">
                         @Html.LabelFor(m => m.AboutMe)
                         <div>
@@ -136,7 +136,7 @@
                         </div>
                     </fieldset>
 
-                    <h3 class="page-title mt1">Profile Address</h3>
+                    <h3 class="page-title mt1">@ProfileRes.Profile_address</h3>
                     <fieldset class="fields">
                         @Html.LabelFor(m => m.country)
                         <div id="country-input">
@@ -498,7 +498,7 @@
                         </div>
                     </fieldset>
                     <fieldset id="so-actions" class="fields mt1">
-                        <input type="submit" class="button btn-info mt1" value="Save Changes">
+                        <input type="submit" class="button btn-info mt1" value="@ProfileRes.Save_changes">
                     </fieldset>
                 }
             </div>

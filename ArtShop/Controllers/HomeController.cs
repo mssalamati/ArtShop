@@ -39,6 +39,7 @@ namespace ArtShop.Controllers
                 model.slider_Button_Url = sl.ButtonURL;
                 model.slider_text_color = sl.TextColor;
                 model.slider_Button_color = sl.ButtonColor;
+                model.slider_Button_text_color = sl.ButtonTextColor;
                 model.slider_P = sl.Current().P1;
                 
             }

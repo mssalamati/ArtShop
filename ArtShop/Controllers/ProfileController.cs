@@ -28,6 +28,20 @@ namespace ArtShop.Controllers
             model.city = userProfile.City == null ? " ": userProfile.City;
             model.region = userProfile.Region == null ? " " : userProfile.Region;
             model.country = userProfile.country;
+            model.photoPath = userProfile.PhotoPath;
+            model.facebook = userProfile.userLinks.Facebook;
+            model.twitter = userProfile.userLinks.Twitter;
+            model.pinterest = userProfile.userLinks.Pinterest;
+            model.tumbler = userProfile.userLinks.Tumblr;
+            model.instagram = userProfile.userLinks.Instagram;
+            model.googlePlus = userProfile.userLinks.GooglePlus;
+            model.myWebsite = userProfile.userLinks.Website;
+            model.aboutme = userProfile.personalInformation.AboutMe;
+            model.events = userProfile.personalInformation.Events;
+            model.education = userProfile.personalInformation.Education;
+            model.Exhibitions = userProfile.personalInformation.Exhibitions;
+
+
             model.artworks = new List<Product>();
             int counter = 0;
 

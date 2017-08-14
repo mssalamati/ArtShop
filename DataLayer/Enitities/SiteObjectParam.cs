@@ -56,6 +56,7 @@ namespace DataLayer.Enitities
         public string ButtonURL { get; set; }
         public string TextColor { get; set; }
         public string ButtonColor { get; set; }
+        public string ButtonTextColor { get; set; }
         public virtual ICollection<sliderImageTranslation> Translations { get; set; }
     }
 

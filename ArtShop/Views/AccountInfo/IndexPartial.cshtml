@@ -1,9 +1,9 @@
 ﻿@model AccountInfoViewModel
 <style>
     .fields label {
-        clear:right;
-        float:right;
-        text-align:right;
+        clear: right;
+        float: right;
+        text-align: right;
     }
 </style>
 
@@ -14,36 +14,35 @@
 
             <ul class="side-nav">
                 <li class="profile active">
-                    <a href="/accountinfo/index">Account Information</a>
+                    <a href="/accountinfo/index">@ProfileRes.Account_info</a>
                 </li>
                 <li class="profile">
                     <a href="/accountinfo/profileinformation">
-                        Profile
-                        Information
+                       @ProfileRes.Profile_information
                     </a>
                 </li>
                 @if (Model.profileType == ProfileType.Artist)
                 {
                     <li class="billing">
-                        <a href="/accountinfo/billing">Address and Identification</a>
+                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
                     </li>
 
                     <li class="sold">
-                        <a href="/accountinfo/items">Sales Dashboard</a>
+                        <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
                     </li>
-                    <li>
+                    @*<li>
                         <a style="padding-left:20px;" href="/accounts/upload-tax-form">
                             Tax
                             Form
                         </a>
-                    </li>
+                    </li>*@
                 }
                 <li class="purchased">
-                    <a href="/accountinfo/orders">Orders</a>
+                    <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                 </li>
 
 
-                <li class="account-sign-out"><a href="/sign-out">Log Out</a></li>
+                <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>
             </ul>
 
             <div class="clearfix"></div>
@@ -57,10 +56,10 @@
                     <div class="form">
                         <div class="small-12 large-3 columns fields">
                             @*<label for="userTypeId" class="form-label optional">Profile Type</label>*@
-                            @Html.LabelFor(m => m.profileType, new { @class = "form-label optional",@style = "margin-right:15px" })
+                            @Html.LabelFor(m => m.profileType, new { @class = "form-label optional", @style = "margin-right:15px" })
                             <div class="form-div" style="padding:0">
-                                <label><input type="radio" name="profileType" id="profileType" value="Artist" @(Model.profileType == ProfileType.Artist ? "checked" : "")>Artist</label><br>
-                                <label><input type="radio" name="profileType" id="profileType" value="Collector" @(Model.profileType == ProfileType.Collector ? "checked" : "")>Collector</label>
+                                <label><input type="radio" name="profileType" id="profileType" value="Artist" @(Model.profileType == ProfileType.Artist ? "checked" : "")>@ProfileRes.Artist</label><br>
+                                <label><input type="radio" name="profileType" id="profileType" value="Collector" @(Model.profileType == ProfileType.Collector ? "checked" : "")>@ProfileRes.Collector</label>
                             </div>
                             @*<label for="measurementSystem" class="form-label optional">Units</label>
                                 <div class="form-div">
@@ -93,9 +92,9 @@
                             <div class="form-div" style="direction:rtl;margin-right:20px">
                                 <input type="hidden" name="passwordinfo" value="" id="passwordinfo">
                                 <p class="description"></p><ul class="disc">
-                                    <li>Password should be more than 6 characters.</li>
-                                    <li>Use a combination of characters, numbers and punctuations.</li>
-                                    <li>Passwords are case sensitive.</li>
+                                    <li>@ProfileRes.Password_desc_1</li>
+                                    <li>@ProfileRes.Password_desc_2</li>
+                                    <li>@ProfileRes.Password_desc_3</li>
                                 </ul><p></p>
                             </div>
                             @*<label for="username" class="form-label optional" requiredprefix="*">Choose your custom URL and member name.</label>
@@ -123,7 +122,7 @@
                         @Html.ValidationSummary("", new { @class = "text-danger", style = "color:red;font-size:small;display: -webkit-inline-box" })
                         <div class="small-12 columns fields">
                             <div class="form-div">
-                                <input type="submit" name="Save" id="Save" value="Save" class="button btn-info">
+                                <input type="submit" name="Save" id="Save" value="@ProfileRes.Save" class="button btn-info">
                             </div>
                         </div>
                     </div>
