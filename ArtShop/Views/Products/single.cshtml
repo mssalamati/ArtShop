@@ -309,10 +309,38 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <p>
-                            Painting:
-                            <span>Acrylic, Ink, Watercolor and charcoal</span>
+                            @Model.category.Current().Name:
+                            <span>
+                                @{bool first = true; }
+                                @foreach (var item in Model.Mediums)
+                                {
+                                    if (!first)
+                                    {
+                                        <a>,</a>
+                                    }
+
+                                    first = false;
+
+                                    @item.Current().Name
+                                }
+                            </span>
                             on
-                            <span>Wood</span>.
+                            <span>
+                            @{first = true;}
+
+                            @foreach (var item in Model.Materials)
+                            {
+                                
+                                if (!first)
+                                {
+                                    <a>,</a>
+
+                                }
+                                first = false;
+
+                                @item.Current().Name 
+                            }
+                            </span>.
                         </p>
                         <p>
                             @Model.Description

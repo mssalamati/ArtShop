@@ -160,7 +160,7 @@
     <value>مقدار نمیتواند خالی باشد.</value>
   </data>
   <data name="Height" xml:space="preserve">
-    <value>عرض</value>
+    <value>ارتفاع</value>
   </data>
   <data name="Image_cannot_be_empty" xml:space="preserve">
     <value>تصویر نمی تواند خالی باشد.</value>

@@ -10,6 +10,7 @@ using DataLayer.Enitities;
 
 namespace ArtShop.Controllers
 {
+    [Authorize]
     public class ProfileController : BaseController
     {
         // GET: Profile

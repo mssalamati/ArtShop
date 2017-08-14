@@ -16,10 +16,10 @@ namespace AdminPanel.Controllers
 
 
             var data = db.Styles
-                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)))
-                .OrderBy(x => x.insertDate)
-                .Skip(skip).Take(take);
+                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
             count = data.Count();
+            data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
+
 
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
@@ -31,10 +31,10 @@ namespace AdminPanel.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
 
             var data = db.Mediums
-                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)))
-                .OrderBy(x => x.insertDate)
-                .Skip(skip).Take(take);
+                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
             count = data.Count();
+            data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
+
 
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
@@ -46,10 +46,10 @@ namespace AdminPanel.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
 
             var data = db.Subjects
-                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)))
-                 .OrderBy(x => x.insertDate)
-                 .Skip(skip).Take(take);
+                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
             count = data.Count();
+            data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
+
 
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
@@ -61,10 +61,10 @@ namespace AdminPanel.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
 
             var data = db.Materials
-                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)))
-                 .OrderBy(x => x.insertDate)
-                 .Skip(skip).Take(take);
+                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
             count = data.Count();
+            data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
+
 
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;

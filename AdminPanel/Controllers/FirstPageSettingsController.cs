@@ -116,6 +116,7 @@ namespace AdminPanel.Controllers
                 path = result.FullPath,
                 ButtonURL = slider.ButtonURL,
                 TextColor = slider.TextColor,
+                ButtonColor = slider.ButtonColor,
                 Translations = slider.Translations
             });
             db.SaveChanges();
@@ -165,6 +166,7 @@ namespace AdminPanel.Controllers
 
             finder.ButtonURL = slider.ButtonURL;
             finder.TextColor = slider.TextColor;
+            finder.ButtonColor = slider.ButtonColor;
 
             foreach (var item in slider.Translations)
             {
