@@ -1,4 +1,9 @@
-﻿<div id="upload">
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
+<div id="upload">
     <div data-reactroot="">
         <div class="app">
             <div class="full-bleed full-bleed--background" style="background-color:#f3f3f3">
@@ -26,15 +31,15 @@
                                 </div>
                                 <div class="mediums">
                                     <h1 class="animate-group-0-0">@UploadRes.step5_title</h1>
-                                    <p class="descriptor animate-group-0-1">@UploadRes.step5_description</p>
+                                    <p class="descriptor animate-group-0-1" style="@rtldirection">@UploadRes.step5_description</p>
                                     <div>
                                         <div class="form-group form-group--block z-index-fix-0">
-                                            <div class="input-container z-index-fix-0 text-left animate-group-0-2">
-                                                <label>@UploadRes.step5_mediums</label>
+                                            <div class="input-container z-index-fix-0 text-left animate-group-0-2" style="max-width:none !important">
+                                                <label style="@rtlstl">@UploadRes.step5_mediums</label>
                                                 <input name="Mediums" type="text" style="max-width:none" class="sMediums" />
                                             </div>
                                             <div class="input-container z-index-fix-1 text-left animate-group-0-3">
-                                                <label>@UploadRes.step5_materials</label>
+                                                <label style="@rtlstl">@UploadRes.step5_materials</label>
                                                 <select name="Materials" class="sMaterials" multiple="multiple">
                                                     @foreach (var item in (Dictionary<int, string>)ViewBag.Materials)
                                                     {
@@ -43,16 +48,16 @@
                                                 </select>
                                             </div>
                                             <div class="input-container z-index-fix-2 text-left animate-group-0-4">
-                                                <label>@UploadRes.step5_styles</label>
+                                                <label style="@rtlstl">@UploadRes.step5_styles</label>
                                                 <input name="Styles" type="text" style="max-width:none" class="sStyles" />
 
                                             </div>
                                         </div>
                                         <div class="form-group form-group--block animate-group-0-4 mediums__keywords-container">
                                             <h1>@UploadRes.step5_keywords</h1>
-                                            <p class="descriptor">@UploadRes.step5_keywords_detail</p>
+                                            <p class="descriptor" style="@rtldirection">@UploadRes.step5_keywords_detail</p>
                                             <div class="input-container text-left">
-                                                <label>@UploadRes.step5_keywords_lable</label>
+                                                <label style="@rtlstl">@UploadRes.step5_keywords_lable</label>
                                                 <input name="Keywords" type="text" class="tag" />
                                             </div>
                                         </div>

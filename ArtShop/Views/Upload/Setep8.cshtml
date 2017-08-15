@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
 <div id="upload">
     <div data-reactroot="">
         <div class="app">
@@ -28,8 +32,8 @@
                                 </div>
                                 <div class="wizard-step">
                                     <div class="packaging">
-                                        <h1 class="animate-group-0-0">@UploadRes.Packaging</h1>
-                                        <p class="descriptor animate-group-0-1">@UploadRes.step8_description</p>
+                                        <h1 class="animate-group-0-0" style="@rtldirection">@UploadRes.Packaging</h1>
+                                        <p class="descriptor animate-group-0-1" style="@rtldirection">@UploadRes.step8_description</p>
                                         <div class="form-group form-group--block">
                                             <div class="image-radio animate-group-0-2 packaging__shipping-type">
                                                 <div>

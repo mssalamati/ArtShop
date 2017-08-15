@@ -3956,6 +3956,7 @@
 
     <link href="~/Content/select2/css/select2.css" rel="stylesheet" />
     <script src="~/Content/select2/js/select2.min.js"></script>
+ 
 </head>
 
 @{
@@ -3964,6 +3965,7 @@
 }
 
 <body class="saatchi  signed-in">
+
     <script>
         if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
             document.body.className += ' safari';
@@ -3995,6 +3997,25 @@
     </script>
 
     <script src="~/Content/cropper.js"></script>
+    <script>
+        $(".dropdown").click(function () {
+            if ($('.dropdown-content').hasClass('show'))
+                $('.dropdown-content').removeClass('show');
+            else
+                $('.dropdown-content').addClass('show');
+        });
 
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropdown') &&
+                !event.target.matches('.desktop-navigation__context-link') &&
+                !event.target.matches('.lnsp') &&
+                 !event.target.matches('.pchl')) {
+                var dropdowns = $(".dropdown-content");
+                if (dropdowns.hasClass('show')) {
+                    dropdowns.removeClass('show');
+                }
+            }
+        }
+    </script>
 </body>
 </html>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="About_me" xml:space="preserve">
     <value>About Me</value>
   </data>
@@ -129,11 +132,17 @@
   <data name="Artist" xml:space="preserve">
     <value>Artist</value>
   </data>
+  <data name="Artwork" xml:space="preserve">
+    <value>Artwork</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Collections</value>
   </data>
   <data name="Collector" xml:space="preserve">
     <value>Collector</value>
@@ -158,6 +167,9 @@
   </data>
   <data name="Facebook" xml:space="preserve">
     <value>Facebook</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favorites</value>
   </data>
   <data name="First_Name" xml:space="preserve">
     <value>First Name</value>
@@ -189,6 +201,9 @@
   <data name="Mailing_list" xml:space="preserve">
     <value>Mailing List</value>
   </data>
+  <data name="Manage_artworks" xml:space="preserve">
+    <value>Manage Artworks</value>
+  </data>
   <data name="My_website" xml:space="preserve">
     <value>My Website</value>
   </data>
@@ -215,6 +230,9 @@
   </data>
   <data name="Pinterest" xml:space="preserve">
     <value>Pinterest</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
   </data>
   <data name="ProfileInfo_header" xml:space="preserve">
     <value>Links</value>
@@ -275,6 +293,9 @@
   </data>
   <data name="Unit" xml:space="preserve">
     <value>Unit</value>
+  </data>
+  <data name="Upload_art" xml:space="preserve">
+    <value>Upload Art</value>
   </data>
   <data name="Upload_id" xml:space="preserve">
     <value>Upload ID</value>

@@ -16,7 +16,7 @@ namespace DataLayer.Enitities
         public string Street { get; set; }
         [Display(Name = nameof(ProfileRes.City), ResourceType = typeof(ProfileRes))]
         public string City { get; set; }
-        [Display(Name = nameof(ProfileRes.City), ResourceType = typeof(ProfileRes))]
+        [Display(Name = nameof(ProfileRes.Region), ResourceType = typeof(ProfileRes))]
         public string Region { get; set; }
         [Display(Name = nameof(ProfileRes.ZipCode), ResourceType = typeof(ProfileRes))]
         public string ZipCode { get; set; }

@@ -1,4 +1,15 @@
-﻿
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
+
+<style>
+    .form-group--inline label {
+        width:70px;
+    }
+</style>
+
 <div id="upload">
     <div data-reactroot="">
         <div class="app">
@@ -7,17 +18,17 @@
                     <span></span>
                     <div class="new-page">
                         <span></span>
-                      @using (Ajax.BeginForm("Setep10", "Upload", null, new AjaxOptions()
-                      {
-                          HttpMethod = "POST",
-                          UpdateTargetId = "updatediv",
-                          LoadingElementId = "loadingel",
-                          OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
-                          OnSuccess = "OnAjaxComplete(data)",
-                      }, new { enctype = "multipart/form-data" }))
-                      {
-                          if (!string.IsNullOrEmpty(ViewBag.Error))
-                          {
+                        @using (Ajax.BeginForm("Setep10", "Upload", null, new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = "updatediv",
+                            LoadingElementId = "loadingel",
+                            OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                            OnSuccess = "OnAjaxComplete(data)",
+                        }, new { enctype = "multipart/form-data" }))
+                        {
+                            if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
                                 <div class="wizard__errors">
                                     <div class="wizard__errors__error">@ViewBag.Error</div>
                                 </div>
@@ -29,10 +40,10 @@
                                 <div class="wizard-step">
                                     <div class="pricing">
                                         <h1 class="animate-group-0-0">@UploadRes.Pricing</h1>
-                                        <p class="descriptor animate-group-0-1">
-                                        <p>@UploadRes.step10_description</p>                             
-                                        <div class="animate-group-0-2 z-index-fix-0 form-group form-group--inline">
-                                            <label for="price">
+                                        <p class="descriptor animate-group-0-1" style="@rtldirection">
+                                        <p>@UploadRes.step10_description</p>
+                                        <div class="animate-group-0-2 z-index-fix-0 form-group form-group--inline" style="@rtldirection">
+                                            <label for="price" style="@rtlstl">
                                                 @UploadRes.step10_l1
                                             </label>
                                             <div class="price__price-input-container">
@@ -40,16 +51,16 @@
                                                 <div class="pricing__price-cta"></div>
                                             </div>
                                         </div>
-                                        <div class="animate-group-0-3 form-group form-group--inline pricing__profit">
-                                            <label for="profit">
-                                              @UploadRes.step10_l2
+                                        <div class="animate-group-0-3 form-group form-group--inline pricing__profit" style="@rtldirection">
+                                            <label style="@rtlstl" for="profit">
+                                                @UploadRes.step10_l2
                                             </label>
                                             <input type="text" value="$ --" readonly="" id="profit">
                                         </div>
                                         <div>
-                                            <div class="animate-group-0-4 form-group form-group--inline"><label for="shipping-cost">@UploadRes.step10_l3</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>
+                                            <div class="animate-group-0-4 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="shipping-cost">@UploadRes.step10_l3</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>
                                             <div class="animate-group-0-5 pricing__separator"></div>
-                                            <div class="animate-group-0-6 form-group form-group--inline"><label for="allin">@UploadRes.step10_l4</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
+                                            <div class="animate-group-0-6 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="allin">@UploadRes.step10_l4</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -92,4 +103,14 @@
     }
 
     function OnAjaxComplete(arg) { if (arg.result == 1313) { location.href = '/Products/single/' + arg.id; } }
+
+
+    $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+
 </script>

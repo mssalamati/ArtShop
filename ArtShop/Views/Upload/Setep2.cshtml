@@ -1,4 +1,9 @@
-﻿<div id="upload">
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+}
+
+<div id="upload">
     <div data-reactroot="">
         <div class="app">
             <div class="full-bleed full-bleed--background" style="background-color:#f3f3f3">
@@ -28,7 +33,7 @@
                                     <div class="form-group">
                                         <h1 class="animate-group-0-0">@UploadRes.Subject</h1>
 
-                                        <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget">
+                                        <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
                                             @foreach (var item in (Dictionary<int, string>)ViewBag.subjects)
                                             {
                                                 <option value="@item.Key">@item.Value</option>
@@ -38,7 +43,7 @@
 
                                     </div>
                                     <h1 class="animate-group-0-3">@UploadRes.Category</h1>
-                                    <p class="descriptor animate-group-0-4">@UploadRes.select_category_str</p>
+                                    <p class="descriptor animate-group-0-4" style="@rtlstl">@UploadRes.select_category_str</p>
                                     <div class="grid-image-select">
                                         @{ var cats = (List<CategoryViewModel>)ViewBag.category;}
                                         <select id="catselect" name="category" style="display: none;">

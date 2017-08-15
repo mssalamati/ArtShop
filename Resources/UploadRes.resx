@@ -166,7 +166,7 @@
     <value>Image cannot be empty</value>
   </data>
   <data name="inches" xml:space="preserve">
-    <value>inches</value>
+    <value>centimeter</value>
   </data>
   <data name="keyword_lenght_error" xml:space="preserve">
     <value>Enter 5-12 Keywords</value>
@@ -190,7 +190,7 @@
     <value>Photography</value>
   </data>
   <data name="pounds" xml:space="preserve">
-    <value>pounds</value>
+    <value>kilograms</value>
   </data>
   <data name="Pricing" xml:space="preserve">
     <value>Pricing</value>

@@ -1,4 +1,8 @@
-﻿<div id="upload">
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+}
+<div id="upload">
     <div data-reactroot="">
         <div class="app">
             <div class="full-bleed full-bleed--background" style="background-color:#f3f3f3">
@@ -30,7 +34,7 @@
                                             <div class="image-upload-dragover__message"></div>
                                         </div>
                                         <h1 class="animate-group-0-0">@UploadRes.Artwork_Image</h1>
-                                        <p class="descriptor animate-group-0-1">@UploadRes.step4_detail</p>
+                                        <p class="descriptor animate-group-0-1" style="@rtlstl">@UploadRes.step4_detail</p>
                                         <div class="crops__web">
                                             <div class="crops__web-rect animate-group-0-2" data="[object Object]">
                                                 <div class="cropper-container cropper-bg" style="width: 405px; height: 270px;">

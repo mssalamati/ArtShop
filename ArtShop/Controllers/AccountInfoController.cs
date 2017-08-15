@@ -88,20 +88,20 @@ namespace ArtShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ProfileInformation(ProfileInformationViewModel model)
+        public ActionResult ProfileInformation(ProfileInformationViewModel model)
         {
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
             userProfile.userLinks = new UserLink();
             userProfile.personalInformation = new PersonalInformation();
-            userProfile.userLinks.Facebook = model.Facebook;
-            userProfile.userLinks.Twitter = model.Twitter;
-            userProfile.userLinks.Pinterest = model.Pinterest;
-            userProfile.userLinks.Tumblr = model.Tumblr;
-            userProfile.userLinks.Instagram = model.Instagram;
-            userProfile.userLinks.GooglePlus = model.GooglePlus;
-            userProfile.userLinks.Website = model.Website;
+            userProfile.userLinks.Facebook = model.Facebook.Contains("http") ? model.Facebook : "https://"+model.Facebook;
+            userProfile.userLinks.Twitter = model.Twitter.Contains("http") ? model.Twitter : "https://" + model.Twitter;
+            userProfile.userLinks.Pinterest = model.Pinterest.Contains("http") ? model.Pinterest : "https://" + model.Pinterest;
+            userProfile.userLinks.Tumblr = model.Tumblr.Contains("http") ? model.Tumblr : "https://" + model.Tumblr;
+            userProfile.userLinks.Instagram = model.Instagram.Contains("http") ? model.Instagram : "https://" + model.Instagram;
+            userProfile.userLinks.GooglePlus = model.GooglePlus.Contains("http") ? model.GooglePlus : "https://" + model.GooglePlus;
+            userProfile.userLinks.Website = model.Website.Contains("http") ? model.Website : "http://" + model.Website;
             userProfile.personalInformation.AboutMe = model.AboutMe;
             userProfile.personalInformation.Education = model.Education;
             userProfile.personalInformation.Events = model.Events;

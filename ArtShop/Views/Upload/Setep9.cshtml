@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
 <div id="upload">
     <div data-reactroot="">
         <div class="app">
@@ -28,8 +32,8 @@
                                 </div>
                                 <div class="wizard-step">
                                     <div class="shipping">
-                                        <h1 class="animate-group-0-0">@UploadRes.step9_title</h1>
-                                        <p class="descriptor animate-group-0-1">
+                                        <h1 class="animate-group-0-0" style="@rtldirection">@UploadRes.step9_title</h1>
+                                        <p class="descriptor animate-group-0-1" style="@rtldirection">
                                          @UploadRes.step9_description
                                         </p>
                                         <div class="form-group shipping__artwork-weight animate-group-0-2 shipping__artwork-weight--artwork-only">
@@ -38,19 +42,21 @@
                                                 <div class="react-tooltip" style="bottom: 60px;">
                                                     <div class="react-tooltip__text">For an artwork your size, the shipping weight may be between 5 and 10 pounds. Please adjust up or down as needed for your artwork.</div>
                                                 </div>
-                                                <label for="art_weight" class="">@UploadRes.pounds</label>
+                                                <label for="art_weight" class="" style="@rtldirection">@UploadRes.pounds</label>
                                             </div>
                                         </div>
                                         <h1 class="animate-group-1-0">@UploadRes.step9_tilte2</h1>
-                                        <p class="descriptor animate-group-1-1">@UploadRes.step9_description2</p>
+                                        <p class="descriptor animate-group-1-1" style="@rtldirection">@UploadRes.step9_description2</p>
                                         <div class="form-group form-group--block">
                                             <div>
-                                                <div class="input-container text-left animate-group-1-1"><label class="block">@UploadRes.Street_Address</label><input type="text" value="" name="Street_Address" maxlength="35" class=""></div>
-                                                <div class="input-container text-left animate-group-1-2"><label class="block">@UploadRes.Address_2</label><input type="text" value="" name="Address_2" maxlength="35" class=""></div>
-                                                <div class="input-container text-left animate-group-1-3"><label class="block">@UploadRes.City</label><input type="text" value="" name="City" class=""></div>
-                                                <div class="input-container text-left animate-group-1-4 z-index-fix-0">
-                                                    <label class="block">@UploadRes.Country</label>
+                                                <div class="input-container text-left animate-group-1-1" style="@rtlstl"><label class="block" style="@rtlstl">@UploadRes.Street_Address</label><input type="text" value="" name="Street_Address" maxlength="35" class=""></div>
+                                                @*<div class="input-container text-left animate-group-1-2" style="@rtlstl"><label class="block" style="@rtlstl">@UploadRes.Address_2</label><input type="text" value="" name="Address_2" maxlength="35" class=""></div>*@
+                                                <div class="input-container text-left animate-group-1-3" style="@rtlstl"><label class="block" style="@rtlstl">@UploadRes.City</label><input type="text" value="" name="City" class=""></div>
+                                                <div class="input-container text-left animate-group-1-4 z-index-fix-0" style="@rtlstl">
+                                                    <label class="block" style="@rtlstl">@UploadRes.Country</label>
                                                     <select  name="Country" class="animate-group-0-1 category__subject rw-combobox rw-widget">
+                                                        <option>Iran</option>
+
                                                         <option>United States</option>
                                                         <option>Afghanistan</option>
                                                         <option>Aland Islands</option>
@@ -155,7 +161,6 @@
                                                         <option>Iceland</option>
                                                         <option>India</option>
                                                         <option>Indonesia</option>
-                                                        <option>Iran</option>
                                                         <option>Iraq</option>
                                                         <option>Ireland</option>
                                                         <option>Isle of Man</option>
@@ -304,9 +309,9 @@
                                                         <option>Zimbabwe</option>
                                                     </select>
                                                 </div>
-                                                <div class="input-container text-left animate-group-1-5"><label class="block">@UploadRes.Region</label><input type="text" value="" name="Region" class=""></div>
-                                                <div class="input-container text-left animate-group-1-6"><label class="block">@UploadRes.ZipCode</label><input type="text" value="" name="Zip_code" class=""></div>
-                                                <div class="input-container text-left animate-group-1-7"><label class="block">@UploadRes.PhoneNumber</label><input type="text" name="phoneNumber" class=""></div>
+                                                <div class="input-container text-left animate-group-1-5" style="@rtlstl"><label style="@rtlstl" class="block">@UploadRes.Region</label><input type="text" value="" name="Region" class=""></div>
+                                                <div class="input-container text-left animate-group-1-6" style="@rtlstl"><label style="@rtlstl" class="block">@UploadRes.ZipCode</label><input type="text" value="" name="Zip_code" class=""></div>
+                                                <div class="input-container text-left animate-group-1-7" style="@rtlstl"><label style="@rtlstl" class="block">@UploadRes.PhoneNumber</label><input type="text" name="phoneNumber" class=""></div>
                                             </div>
                                         </div>
                                     </div>

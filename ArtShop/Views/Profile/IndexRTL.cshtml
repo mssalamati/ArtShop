@@ -1,0 +1,509 @@
+﻿@model ProfileIndexViewModel
+@using DataLayer.Extentions
+<div class="limited-filters-mobile__dimmer"></div>
+<div role="main" class="row row-layout profile-content">
+    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/profile/994144" style="display: block;">
+        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144&amp;text=View+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144&amp;media=http:&amp;description=adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
+            <i class="fa fa-pinterest"></i>
+        </a>
+        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/profile/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;adib dehghan&quot;}">
+            <i class="fa fa-envelope"></i>
+        </a>
+        <div id="totalShares" class="total-share"><span>0</span></div>
+    </div>
+
+    <script>
+        Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
+        Saatchi.EmailToFriend.modalUrl = 'index.html';
+        Saatchi.EmailToFriend.modalTitle = 'Share this page';
+        Saatchi.EmailToFriend.init();
+    </script>
+    <article class="profile">
+        <header>
+            <div class="small-5 medium-6 large-4 columns">
+                <div class="artist-manage-artworks" style="float:left">
+                    <a href="/account/manage-art" class="" title="Manage Artworks" itemprop="url">@ProfileRes.Manage_artworks</a>
+                    <span class="profie-link-upload-divider"> | </span>
+                    <a href="/upload/index" class="">@ProfileRes.Upload_art</a>
+                </div>
+            </div>
+            <div class="small-7 medium-6 large-8 columns" >
+                <h1 class="ellipsis" style="float:right">
+                    <i class="icn-artist-location flag-@(Model.country == null ? "" : Model.country.Code) so-quick-tip" oldtitle="Iran" style="float:right"></i>
+                    <span style="margin-right:8px" itemprop="name">@Model.fullName</span>
+                </h1>
+            </div>
+
+        </header>
+
+        <style>
+            #loading-indicator {
+                margin: 5px 0 0 5px;
+            }
+        </style>
+
+        <div class="profile-about small-12 medium-6 large-4 columns" style="float:right" itemscope="" itemtype="http://schema.org/Person">
+            <div class="profile-pic">
+                @if (!string.IsNullOrEmpty(Model.photoPath))
+                {
+                    <img src="@Model.photoPath" alt="@Model.fullName @ProfileRes.Profile" itemprop="image">
+                }
+                else
+                {
+                    <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_medium_square.jpg" alt="@Model.fullName 's Profile" itemprop="image">
+                }
+
+                <a href="/accountinfo/uploadavatar" class="btn-add-profile-image"><i class="fa fa-plus"></i> Add Profile Image </a>
+                <a href="/accountinfo/uploadavatar" class="btn-round btn-edit" title="Edit" ><i class="fa fa-pencil"></i></a>
+            </div>
+
+            <h3 style="text-align:right">
+                <a href="/accountinfo/profileinformation" class="btn-round btn-edit" title="Edit" style="left:0;right:auto !important"><i class="fa fa-pencil"></i></a>
+                <span itemprop="name">@Model.fullName</span>
+            </h3>
+            <p class="user-location" style="text-align:right" itemprop="nationality">
+                @Model.city, @Model.region, @{ var x = (Model.country == null ? "" : Model.country.Current().Name); }   @x
+            </p>
+
+            <div class="profile-links nav">
+                <ul>
+                    @if (!string.IsNullOrEmpty(Model.facebook))
+                    {
+                        <li>
+                            <a href="@Model.facebook" class="profile-link link-facebook" title="Facebook" target="_blank" rel="nofollow">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.twitter))
+                    {
+                        <li>
+                            <a href="@Model.twitter" class="profile-link link-twitter" title="Twitter" target="_blank" rel="nofollow">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.pinterest))
+                    {
+                        <li>
+                            <a href="@Model.pinterest" class="profile-link link-pinterest" title="Pinterest" target="_blank" rel="nofollow">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.tumbler))
+                    {
+                        <li>
+                            <a href="@Model.tumbler" class="profile-link link-tumblr" title="Tumblr" target="_blank" rel="nofollow">
+                                <i class="fa fa-tumblr"></i>
+                            </a>
+                        </li>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.instagram))
+                    {
+                        <li>
+                            <a href="@Model.instagram" class="profile-link link-instagram" title="Instagram" target="_blank" rel="nofollow">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.googlePlus))
+                    {
+                        <li>
+                            <a href="@Model.googlePlus" class="profile-link link-google-plus" title="Google Plus" target="_blank" rel="nofollow">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.myWebsite))
+                    {
+                        <li>
+                            <a href="@Model.myWebsite" class="profile-link link-globe" title="My Website" target="_blank" rel="nofollow">
+                                <i class="fa fa-info-circle"></i>
+                            </a>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+            @*<div class="about-follow-nav">
+                <a href="/account/following/994144" rel="nofollow">
+                <span>1</span> Following
+                </a>
+                <a href="/account/followers/994144">
+                <span>0</span> Followers
+                </a>
+                </div>*@
+
+            @if (!string.IsNullOrEmpty(Model.aboutme))
+            {
+                <section itemprop="description">
+                    <h3 style="text-align:right;margin-right:8px">
+                       @Model.fullName @ProfileRes.About
+                        <a href="/accountinfo/profileinformation" class="btn-round btn-edit" style="left:0;right:auto !important" title="Edit"><i class="fa fa-pencil"></i></a>
+                    </h3>
+                    <p class="expandable" style="display: block;text-align:right">@Model.aboutme</p>
+                </section>
+            }
+
+
+            @if (!string.IsNullOrEmpty(Model.education))
+            {
+                <section itemprop="description">
+                    <h3 style="text-align:right;margin-right:8px">
+                       : @ProfileRes.Education
+                        <a href="/accountinfo/profileinformation" class="btn-round btn-edit" style="left:0;right:auto !important" title="Edit"><i class="fa fa-pencil"></i></a>
+                    </h3>
+                    <p class="expandable" style="display:block;text-align:right">@Model.aboutme</p>
+                </section>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.events))
+            {
+                <section class="events">
+                    <h3 style="text-align:right;margin-right:8px">
+                       : @ProfileRes.Events
+                        <a href="/accountinfo/profileinformation" class="btn-round btn-edit" style="left:0;right:auto !important" title="Edit"><i class="fa fa-pencil"></i></a>
+                    </h3>
+                    <p class="expandable" style="display: block;text-align:right">@Model.events</p>
+
+                </section>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Exhibitions))
+            {
+                <section class="events">
+                    <h3 style="text-align:right;margin-right:8px">
+                       : @ProfileRes.Exhibitions
+                        <a href="/accountinfo/profileinformation" class="btn-round btn-edit" style="left:0;right:auto !important" title="Edit"><i class="fa fa-pencil"></i></a>
+                    </h3>
+                    <p class="expandable" style="display: block;text-align:right">@Model.Exhibitions</p>
+
+                </section>
+            }
+
+            <div class="clearfix"></div>
+
+        </div>
+        <aside role="complementary" class="aside-portfolio small-12 medium-6 large-8 columns"  style="float:left">
+
+            @if (Model.artworkCount == 0)
+            {
+            <div class="upload-art small-12 columns">
+                <a href="/upload/index" title="Upload Art" class="profile-new-upload-art">
+                    <i class="fa fa-upload icn-bg" style="display:inline-table"></i>
+                    <span style="display:block">@ProfileRes.Upload_art</span>
+                </a>
+            </div>
+            }
+            else
+            {
+
+            <div id="hero-image-mask" class="small-12 medium-12 large-10 columns editable fast-fade portfolio-hero" style="background-image: url(@Model.artworks.FirstOrDefault().photo.Path)" itemscope="" itemtype="http://schema.org/CreativeWork">
+                <img id="hero-image-container" src="" width="100%" height="100%" itemprop="image" class="hidden">
+                <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                    <img id="hero-image-crop" class="" src="https://dfcdths9j2gip.cloudfront.net/media/images/blank.gif" width="100%" height="100%" itemprop="image">
+                </a>
+
+                <a href="#" id="hero-image-edit-pencil" class="btn-round btn-edit" title="Edit Hero Image"><i class="fa fa-pencil"></i></a>
+                <div id="heroOptionsMenu" style="display: none;">
+                    <a href="#" id="hero-edit-close" class="btn-round btn-close" title="Edit Hero Close"><span>x</span></a>
+                    <ul id="hero-options-list">
+                        <li><a href="#" onclick="Saatchi.Profile.enableHeroReposition();return false;">Reposition</a></li>
+                        <li><a href="#" onclick="Saatchi.Profile.chooseArtDialog();return false;">Choose From Your Art</a></li>
+                    </ul>
+                </div>
+                <div id="btn-DragEnable" style="display: none;"><i class="fa fa-arrows fa-lg"></i> <span>Drag Image to Reposition</span></div>
+            </div>
+
+            <div class="small-12 medium-12 large-2 columns">
+
+                @for (int i = 1; i <= Model.artworks.Count - 1; i++)
+                        {
+
+                            var item = Model.artworks[i];
+
+                            if (item.photo == null)
+                            {
+
+                        <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                            <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
+                            </a>
+                        </div>
+
+                            }
+                            else
+                            {
+
+                        <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                            <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                                <img src="@item.Sqphoto.Path" alt="" itemprop="image">
+                            </a>
+
+                        </div>
+                            }
+
+                        }
+
+            </div>
+            }
+            <h5 style="text-align:right">
+                <a href="/profile/artworks" title="Link to Artwork" >
+                    <i class="fa fa-suitcase"></i> @ProfileRes.Artwork @*<span>(@Model.artworkCount)</span>*@
+                </a>
+            </h5>
+            <a href="/account/manage-art" class="artist-manage-artworks-btn btn-round" style="right:auto !important">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <div class="heroSaveCancel" style="display:none;">
+                <a href="#" class="btn-info" onclick="Saatchi.Profile.heroPositionSave();return false;">
+                    Save
+                    <img id="loading-indicator" class="loading" src="/media/images/status/loading/button.gif" style="display: none;">
+                </a>
+                <a href="#" class="btn-cancel" onclick="Saatchi.Profile.heroPositionCancel();return false;">@ProfileRes.Cancel</a>
+            </div>
+        </aside>
+
+        <div class="small-12 medium-6 large-8 columns buckets" style="float:left">
+
+            <aside role="complementary" class="row aside-collections ">
+                <h5 class="editable fast-fade" style="text-align:right"><a href="/profile/collection" title="Link to Collections" style="left:0;right:auto !important"><i class="fa fa-th"></i> @ProfileRes.Collections @*<span>(@Model.collectionsCount)</span>*@</a></h5>
+            </aside>
+
+            <aside role="complementary" class="row aside-favorites">
+                <h5 class="editable fast-fade" style="text-align:right"><a href="/profile/favorites" title="Link to Favorites" style="left:0;right:auto !important"><i class="fa fa-heart"></i> @ProfileRes.Favorites @*<span>(@Model.favoritesCount)</span>*@</a></h5>
+
+            </aside>
+
+        </div>
+
+
+        <!-- start Activity Feed -->
+        @*<div class="small-12 medium-6 large-8 columns activity-feed">
+            <h2>Recent Activity</h2>
+            <div class="row sub-nav-two">
+            <div class="small-6 columns">
+            <a id="privateViewBtn" href="#" class="active" title="" rel="nofollow">Your View</a>
+            </div>
+            <div class="small-6 columns">
+            <a id="publicViewBtn" href="#" title="" rel="nofollow">Public View</a>
+            </div>
+            </div>
+            <div id="privateView">
+            <section class="small-12 columns" itemscope="" itemtype="http://schema.org/CreativeWork">
+            <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            <a href="/account/profile/994144" title="adib dehghan" itemprop="url">
+            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="adib dehghan" class="avatar" itemprop="image">
+            <span itemprop="name">adib dehghan</span>
+            </a>
+            </span>
+            <span>added a new artwork</span>
+            <span itemprop="datePublished">23 hours ago</span>
+            <h6 itemprop="title">photo - Limited Edition 1 of 1</h6>
+            By
+            <!--a href="/account/profile/994144" title="adib dehghan" itemprop="url" -->
+            <span itemprop="author">adib dehghan</span>
+            <!--/a-->
+            <div class="add-to-favorites fast-fade">
+            <a href="/art/Photography-photo-Limited-Edition-1-of-1/994144/3672399/view" title="photo - Limited Edition 1 of 1" itemprop="url">
+            <img src="//saimg-a.akamaihd.net/saatchi/994144/art/3863434/2933317-ZUVOOYMZ-7.jpg" alt="photo - Limited Edition 1 of 1" itemprop="image">
+            </a>
+            </div>
+            </section>
+
+            <section class="small-12 columns" itemscope="" itemtype="http://schema.org/CreativeWork">
+            <a href="/account/profile/994144" title="adib dehghan">
+            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="adib dehghan" class="avatar">
+            <span>adib dehghan</span>
+            </a>
+            <span itemprop="comment">liked this artwork</span>
+            <span itemprop="dateCreated">3 weeks ago</span>
+            <h6 itemprop="title">Veiled boy</h6>
+            By
+            <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            <a href="/account/profile/700733" title="Marija Mikulic Bosnjak" itemprop="url">
+            <span itemprop="name">Marija Mikulic Bosnjak</span>
+            </a>
+            </span>
+            <div class="add-to-favorites fast-fade">
+            <a href="/art/Painting-Veiled-boy/700733/2443260/view" title="/art/Painting-Veiled-boy/700733/2443260/view" itemprop="url">
+            <img src="//saimg-a.akamaihd.net/saatchi/700733/art/2633376/1703269-TDUQJESP-7.jpg" alt="Veiled boy" itemprop="image">
+            </a>
+            </div>
+            </section>
+
+            <section class="small-12 columns">
+            <a href="/account/profile/994144" title="adib dehghan">
+            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="adib dehghan" class="avatar">
+            <span itemprop="name">adib dehghan</span>
+            </a>
+            <span itemprop="comment">
+            is now following
+            <a href="/Curator" title="Artiscovery homepage" itemprop="url">
+            Artiscovery
+            </a>
+            </span>
+            <span itemprop="dateCreated">3 weeks ago</span>
+            </section>
+            </div>
+            <div id="publicView" style="display: none;"></div>
+            </div>*@
+
+        <script type="text/x-tmpl" id="tmpl-follow-by">
+            <section class="small-12 columns">
+                <a href="{%=o.target_url%}" title="{%=o.target_name%} homepage">
+                    <img src="{%=o.target_profile_pic%}" alt="{%=o.target_name%}" class="avatar" />
+                    <span>{%=o.target_name%}</span>
+                </a>
+                <span itemprop="comment">is now following {%=o.name%}</span>
+                <span itemprop="dateCreated">{%=o.activity_time%}</span>
+            </section>
+        </script>
+
+        <script type="text/x-tmpl" id="tmpl-follow">
+            <section class="small-12 columns">
+                <a href="{%=o.url%}" title="{%=o.name%}">
+                    <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" />
+                    <span itemprop="name">{%=o.name%}</span>
+                </a>
+                <span itemprop="comment">
+                    is now following
+                    <a href="{%=o.target_url%}" title="{%=o.target_name%} homepage" itemprop="url">
+                        {%=o.target_name%}
+                    </a>
+                </span>
+                <span itemprop="dateCreated">{%=o.activity_time%}</span>
+            </section>
+        </script>
+
+        <script type="text/x-tmpl" id="tmpl-favorite">
+            <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                <a href="{%=o.url%}" title="{%=o.name%}">
+                    <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" />
+                    <span>{%=o.name%}</span>
+                </a>
+                <span itemprop="comment">liked this artwork</span>
+                <span itemprop="dateCreated">{%=o.activity_time%}</span>
+                <h6 itemprop="title">{%=o.art_title%}</h6>
+                By
+                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                        <span itemprop="name">{%=o.artist_name%}</span>
+                    </a>
+                </span>
+                <div class="add-to-favorites fast-fade">
+                    <a href="{%=o.art_url%}" title="{%=o.art_url%}" itemprop="url">
+                        <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                    </a>
+                </div>
+            </section>
+        </script>
+
+        <script type="text/x-tmpl" id="tmpl-art-favorite">
+            <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                <a href="{%=o.url%}" title="{%=o.name%}" itemprop="url">
+                    <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" itemprop="image">
+                    <span itemprop="name">{%=o.name%}</span>
+                </a>
+                <span itemprop="comment">liked this artwork</span>
+                <span itemprop="dateCreated">{%=o.activity_time%}</span>
+                <h6 itemprop="title">{%=o.art_title%}</h6>
+                By
+                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                        <span itemprop="name">{%=o.artist_name%}</span>
+                    </a>
+                </span>
+                <div class="add-to-favorites fast-fade">
+                    <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
+                        <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                    </a>
+                </div>
+            </section>
+        </script>
+
+        <script type="text/x-tmpl" id="tmpl-upload">
+            <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <a href="{%=o.url%}" title="{%=o.name%}" itemprop="url">
+                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" itemprop="image">
+                        <span itemprop="name">{%=o.name%}</span>
+                    </a>
+                </span>
+                <span>added a new artwork</span>
+                <span itemprop="datePublished">{%=o.activity_time%}</span>
+                <h6 itemprop="title">{%=o.art_title%}</h6>
+                By
+                <!--a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url" -->
+                <span itemprop="author">{%=o.artist_name%}</span>
+                <!--/a-->
+                <div class="add-to-favorites fast-fade">
+                    <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
+                        <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                    </a>
+                </div>
+            </section>
+        </script>
+
+        <script type="text/x-tmpl" id="tmpl-artist-upload">
+            <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
+                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                        <img src="{%=o.artist_profile_pic%}" alt="{%=o.artist_name%}" class="avatar" itemprop="image">
+                        <span itemprop="name">{%=o.artist_name%}</span>
+                    </a>
+                </span>
+                <span>added a new artwork</span>
+                <span itemprop="datePublished">{%=o.activity_time%}</span>
+                <h6 itemprop="title">{%=o.art_title%}</h6>
+                By
+                <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
+                    <span itemprop="creator">{%=o.artist_name%}</span>
+                </a>
+                <div class="add-to-favorites fast-fade">
+                    <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
+                        <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
+                    </a>
+                </div>
+            </section>
+        </script>
+
+        <script type="text/x-tmpl" id="tmpl-empty-feed">
+            <section class="small-12 columns">
+                <p>You currently have no activity that can be seen by the public.</p>
+            </section>
+        </script>
+        <script type="text/x-tmpl" id="tmpl-art-hero">
+            <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item-small">
+                <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="#" itemprop="url" onclick="Saatchi.Profile.getSelectedImage( $(this) ); return false;">
+                        <img src="{%=o.artwork_image_url%}23.jpg" data-medium="{%=o.artwork_image_url%}7.jpg" alt="{%=o.art_title%}" itemprop="contentURL">
+                        <input class="hero-hover-button" type="button" value="Select" style="display:none;" />
+                    </a>
+                </div>
+                <div class="list-art-meta">
+                    <h4 class="list-art-title left ellipsis" itemprop="name">
+                        <a href="{%=o.artwork_url%}">{%=o.art_title%}</a>
+                    </h4>
+                    <small class="art-category clear left">{%=o.art_category%}</small>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </script>
+    </article>
+    <div class="clearfix"></div>
+</div>
+

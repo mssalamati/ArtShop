@@ -166,7 +166,7 @@
     <value>تصویر نمی تواند خالی باشد.</value>
   </data>
   <data name="inches" xml:space="preserve">
-    <value>اینچ</value>
+    <value>سانتیمتر</value>
   </data>
   <data name="keyword_lenght_error" xml:space="preserve">
     <value>5-12  کلید واژه وارد کنید.</value>
@@ -190,7 +190,7 @@
     <value>عکاسی</value>
   </data>
   <data name="pounds" xml:space="preserve">
-    <value>پوند</value>
+    <value>کیلوگرم</value>
   </data>
   <data name="Pricing" xml:space="preserve">
     <value>قیمت</value>
@@ -277,7 +277,7 @@
     <value>اثر خود را تگ گذاری کنید تا باعث شود که مجموعه دار ها و بازدید کنندگان راحت تر اثر مورد نظر خود را پیدا کنند. توجه کنید بهتر است تگ ها ساده، توصیفی و عناصر کلیدی کار مانند رنگ، موضوع و سبک هنری را توصیف کند.</value>
   </data>
   <data name="step5_keywords_lable" xml:space="preserve">
-    <value>5-12 کلید واژه وارد کنید.</value>
+    <value>5-12 کلید واژه وارد کنید.(بعد از نوشتن کلمه ی مورد نظر کلید اینتر را فشار دهید)</value>
   </data>
   <data name="step5_materials" xml:space="preserve">
     <value>1-5 متریال کلید واژه کنید.</value>
@@ -400,6 +400,6 @@
     <value>عرض نمی تواند صفر باشد.</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
-    <value>Zip/Postal Code</value>
+    <value>کد پستی</value>
   </data>
 </root>

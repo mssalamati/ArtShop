@@ -205,7 +205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to inches.
+        ///   Looks up a localized string similar to centimeter.
         /// </summary>
         public static string inches {
             get {
@@ -277,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to pounds.
+        ///   Looks up a localized string similar to kilograms.
         /// </summary>
         public static string pounds {
             get {

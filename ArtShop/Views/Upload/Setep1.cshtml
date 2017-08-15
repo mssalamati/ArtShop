@@ -1,4 +1,9 @@
-﻿<div id="upload">
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+}
+
+<div id="upload">
     <div data-reactroot="">
         <div class="app">
             <div class="full-bleed full-bleed--background" style="background-color:#f3f3f3">
@@ -35,7 +40,7 @@
                                         </div>
                                     </div>
                                     <h1 class="animate-group-0-0">@UploadRes.Upload</h1>
-                                    <p class="animate-group-0-1 descriptor">
+                                    <p class="animate-group-0-1 descriptor" style="@rtlstl">
                                         @UploadRes.upload_string
                                     </p>
 
