@@ -41,12 +41,33 @@ namespace ArtShop.Controllers
                 model.slider_Button_color = sl.ButtonColor;
                 model.slider_Button_text_color = sl.ButtonTextColor;
                 model.slider_P = sl.Current().P1;
-                
+
+                model.FirstPageSections = db.FirstPageSections.ToList();
             }
 
             return View(model);
         }
 
+        public ActionResult _SelectedCurators(FirstPageSection model)
+        {
+            return PartialView();
+        }
+        public ActionResult _SalebyPrice(FirstPageSection model)
+        {
+            return PartialView();
+        }
+        public ActionResult _RecentlySold(FirstPageSection model)
+        {
+            return PartialView();
+        }
+        public ActionResult _SalebyStyle(FirstPageSection model)
+        {
+            return PartialView();
+        }
+        public ActionResult _SalebyCategory(FirstPageSection model)
+        {
+            return PartialView();
+        }
 
         public ActionResult Header()
         {

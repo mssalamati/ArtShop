@@ -55,6 +55,16 @@ namespace ArtShop.Controllers
             return View();
         }
 
+        public ActionResult start_ltr()
+        {
+            return PartialView();
+        }
+
+        public ActionResult strat_rtl()
+        {
+            return PartialView();
+        }
+
         //upload picture
         public ActionResult Setep1()
         {

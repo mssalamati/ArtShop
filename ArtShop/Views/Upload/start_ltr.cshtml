@@ -1,0 +1,227 @@
+﻿
+
+<div class="row-layout content">
+
+    <div class="sa-hero upload-banner" style="background-image: url('//d3t95n9c6zzriw.cloudfront.net/upload-homepage/upload-hero.jpg');">
+        <ul class="orbit-ul">
+            <li class="orbit-item orbit-item-1">
+                <div class="cover flexcontainer">
+                    <h1 class="sa-hero-title">Share Your Artworks</h1>
+                    <h2 class="sa-hero-subtitle" style="font-size: 1.8rem;">Upload your work and start selling to collectors as well as sharing with our community</h2>
+                    <div class="sa-hero-subtitle-2"></div>
+                    <div id="so-upload-fetching-form" class="upload-fetching-form">
+                        <a href="/upload/start" class="button fileinput-button">
+                            <span>Upload Now</span>
+                            <input id="fileupload" type="button">
+                        </a>
+                    </div>
+                    <script>
+                        $('.orbit-item').click(function () {
+                            window.location = $(this).find('a').attr('href');
+                            return false;
+                        });
+                    </script>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="landing">
+        <div id="so-cols" class="col">
+
+            <div id="so-col-main">
+                <div class="so-col">
+                    <div class="hd">
+
+                    </div>
+                    <div class="bd">
+
+                        <div id="so-upload-description">
+                            <script>
+                                $(function () {
+                                    $("#so-accordion").accordion({
+                                        active: false,
+                                        collapsible: true,
+                                        fillsSpace: true,
+                                        animated: 'easeslide'
+                                    });
+                                });
+                            </script>
+                            <div id="so-quick-guides">
+                                <h2>Upload Standards</h2>
+
+                                <p>Your image must be:</p>
+                                <ul>
+                                    <li>A JPEG file in RGB color format (not CMYK)</li>
+                                    <li>At least 1200 pixels x 1500 pixels</li>
+                                    <li>Less than 50MB</li>
+                                </ul>
+
+                                <div id="so-accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-so-accordion-header-0" aria-controls="ui-accordion-so-accordion-panel-0" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#">Lighting <i class="fa lighting fa-angle-down"></i></a></h3>
+
+                                    <div class="standards ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-so-accordion-panel-0" aria-labelledby="ui-accordion-so-accordion-header-0" role="tabpanel" aria-expanded="false" aria-hidden="true" style="height: 665px; display: none;">
+                                        <div class="info">
+                                            <h4>Color Balance and Exposure</h4>
+
+                                            <p>
+                                                The color of the room, temperatures and use of flash can all distort the color balance, resulting in
+                                                blues, yellows and greys that really should more closely resemble white.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Harsh Shadows and Reflections</h4>
+
+                                            <p>
+                                                Ensure your light-source provides even color and no directional shadows or reflections, which can
+                                                distract from your artwork.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-so-accordion-header-1" aria-controls="ui-accordion-so-accordion-panel-1" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#">Quality <i class="fa quality fa-angle-right"></i> </a></h3>
+
+                                    <div class="standards ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="overflow: auto; height: 665px; display: none;" id="ui-accordion-so-accordion-panel-1" aria-labelledby="ui-accordion-so-accordion-header-1" role="tabpanel" aria-expanded="false" aria-hidden="true">
+                                        <div class="info">
+                                            <h4>Noise and/or Compression</h4>
+
+                                            <p>
+                                                Avoid excessive noise by using a low ISO, (ideally between 100-200), or by shooting in sufficient
+                                                light. (A cloudy day can be ideal, as the clouds work like a giant softbox). Check to ensure your
+                                                camera is shooting at its highest quality settings and the file is saved at maximum quality.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Out of Focus / Motion Blur</h4>
+
+                                            <p>
+                                                Review images at 100% when choosing the best shot, to ensure you also choose the best focus. (By
+                                                shooting with sufficient light, you decrease the likelyhood of camera shake when shooting
+                                                hand-held).
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Post-Production Over Filtering</h4>
+
+                                            <p>
+                                                Some files may benefit with post-production by adjusting color, brightness or contrast to more
+                                                closely resemble the actual artwork. However, files that have been heavily post-processed, affecting
+                                                confusion of medium or quality (color range) of artwork are subject to deactivation.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Upsampling</h4>
+
+                                            <p>
+                                                Increasing the file size only decreases quality. Instead of the misconception it will allow a file to
+                                                be printed at a larger size, it actually decreases the quality in which the file will print.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Intrusive Digital Signatures or Text</h4>
+
+                                            <p>
+                                                Artwork celebrates the signature of the artists, representing ownership and creation; however,
+                                                digital watermarks or in camera date and times make your work appear less valuable.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-so-accordion-header-2" aria-controls="ui-accordion-so-accordion-panel-2" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#">Composition <i class="fa composition fa-angle-right"></i></a></h3>
+
+                                    <div class="standards ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-so-accordion-panel-2" aria-labelledby="ui-accordion-so-accordion-header-2" role="tabpanel" aria-expanded="false" aria-hidden="true" style="height: 665px; display: none;">
+                                        <div class="info">
+                                            <h4>Parallel Angles/Rotation</h4>
+
+                                            <p>
+                                                If you must tilt artwork to take a photograph, ensure the camera is also at a parallel angle. A
+                                                square or rectangle should have even edges.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Borders and Padding</h4>
+
+                                            <p>
+                                                Crop excessive blank space, artwork borders, mattes and padding. Adding extra space will not bypass
+                                                you from minimum size requirements.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Composition: Rotation 90º-180º</h4>
+
+                                            <p>Artwork should be properly rotated upon submission.</p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="info">
+                                            <h4>Art Only</h4>
+
+                                            <p>
+                                                Increasing the file size only decreases quality. Instead of the misconception it will allow a file to
+                                                be printed at a larger size, it actually decreases the quality in which the file will print.
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="so-share-art">
+
+                                <div class="video-container">
+                                    <h1>Photographing Your Artwork</h1>
+                                    <iframe title="Photographing Your Artwork" src="https://www.youtube.com/embed/SrsKycVp-bA?rel=0&amp;enablejsapi=1" frameborder="0" allowfullscreen=""></iframe>
+                                </div>
+                                <div class="small-12 columns multiple-images-container">
+                                    <div class="small-12 medium-6 columns">
+                                        <h1>Displaying Multiple Images</h1>
+
+                                        <p>
+                                            The number one request from interested collectors prior to purchasing an artwork online is to see additional images. Once you've completed
+                                            uploading your artwork, you can add up to five (5) additional images. We highly encourage you to add additional images of your artwork
+                                            hanging on a wall, detail shots, close ups, the edges, and the back of the artwork. <a href="https://support.saatchiart.com/hc/en-us/articles/209038957-How-do-I-add-multiple-images-">Learn more</a> about multiple images.
+                                        </p>
+                                    </div>
+                                    <div class="small-12 medium-5 columns" style="
+                                         height 330px;
+                                         width 300px;
+                                         background-repeat no-repeat;
+                                         background-image url('//d3t95n9c6zzriw.cloudfront.net/upload-homepage/upload-diptych.jpg');">
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            // controls the angle bracket direction for accordion
+                            $(function () {
+                                $('.ui-corner-all').on('click', function () {
+                                    var icon = $(this).find('i');
+
+                                    if (icon.hasClass('fa-angle-down')) {
+                                        $(icon).removeClass('fa-angle-down').addClass('fa-angle-right');
+                                    } else {
+                                        $(icon).removeClass('fa-angle-right').addClass('fa-angle-down');
+                                    }
+                                });
+
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- The global progress bar -->
+<div id="progress" class="progress progress-animated hidden">
+    <div class="progress-bar progress-bar-success"></div>
+</div>
+
+<div class="clearfix"></div>

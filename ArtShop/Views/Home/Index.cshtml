@@ -2,18 +2,18 @@
     ViewBag.Title = "Home Page";
 }
 @model HomeIndexViewModel
-    <div class="sa-hero video-hero">
-        <ul class="orbit-ul">
-            <li class="orbit-item orbit-item-1">
-                <div class="cover flexcontainer" style="background-image: url('@Model.Slider_Image')">
-                    <h1 class="sa-hero-title" style="font-size: 50px;color:@Model.slider_text_color">@Model.slider_H1</h1>
-                    <h2 style="color:@Model.slider_text_color" class="sa-hero-subtitle">@Model.slider_H2</h2>
-                    <a class="button semitransparent" style="color:@Model.slider_Button_text_color;background-color:@Model.slider_Button_color" href="@Model.slider_Button_Url">@Model.slider_Button_Text</a>
-                    <div style="color:@Model.slider_text_color" class="sa-hero-subtitle-2">@Model.slider_P</div>
-                </div>
-            </li>
-        </ul>
-    </div>
+<div class="sa-hero video-hero">
+    <ul class="orbit-ul">
+        <li class="orbit-item orbit-item-1">
+            <div class="cover flexcontainer" style="background-image: url('@Model.Slider_Image')">
+                <h1 class="sa-hero-title" style="font-size: 50px;color:@Model.slider_text_color">@Model.slider_H1</h1>
+                <h2 style="color:@Model.slider_text_color" class="sa-hero-subtitle">@Model.slider_H2</h2>
+                <a class="button semitransparent" style="color:@Model.slider_Button_text_color;background-color:@Model.slider_Button_color" href="@Model.slider_Button_Url">@Model.slider_Button_Text</a>
+                <div style="color:@Model.slider_text_color" class="sa-hero-subtitle-2">@Model.slider_P</div>
+            </div>
+        </li>
+    </ul>
+</div>
 
 <div class="row-layout" style="padding-top:5px">
     <div id='div-gpt-ad-1352935184042-0' class="align-center">
@@ -25,13 +25,17 @@
 
 <div class="row-layout content">
 
-        @Html.Partial("_SelectedCurators")
+    @foreach (var item in Model.FirstPageSections)
+    {
+        @Html.Action(item.type, "home", item)
+    }
+    @*@Html.Partial("_SelectedCurators")
         @Html.Partial("_SalebyPrice")
         @Html.Partial("_RecentlySold")
         @Html.Partial("_SalebyStyle")
-        @Html.Partial("_SalebyCategory")
+        @Html.Partial("_SalebyCategory")*@
     <script type="text/javascript">
-            Saatchi.Favorite.init();
+        Saatchi.Favorite.init();
     </script>
     <div class="clearfix"></div>
 </div>
