@@ -468,8 +468,6 @@
     <Content Include="Views\AccountInfo\BillingRTL.cshtml" />
     <Content Include="Views\AccountInfo\UploadAvatarRTL.cshtml" />
     <Content Include="Views\Profile\IndexRTL.cshtml" />
-    <Content Include="Views\Upload\indexStart.cshtml" />
-    <Content Include="Views\Upload\Stepfinish.cshtml" />
     <Content Include="Views\Profile\ManageArtworks.cshtml" />
   </ItemGroup>
   <ItemGroup>
