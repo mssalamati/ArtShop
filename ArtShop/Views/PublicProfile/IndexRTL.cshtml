@@ -220,7 +220,7 @@
                             {
 
                         <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                            <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                            <a href="/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
                                 <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
                             </a>
                         </div>
@@ -230,7 +230,7 @@
                             {
 
                         <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                            <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                            <a href="/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
                                 <img src="@item.Sqphoto.Path" alt="" itemprop="image">
                             </a>
 
@@ -259,11 +259,11 @@
         <div class="small-12 medium-6 large-8 columns buckets" style="float:left">
 
             <aside role="complementary" class="row aside-collections ">
-                <h5 class="editable fast-fade" style="text-align:right"><a href="/profile/collection" title="Link to Collections" style="left:0;right:auto !important"><i class="fa fa-th"></i> @ProfileRes.Collections @*<span>(@Model.collectionsCount)</span>*@</a></h5>
+                <h5 class="editable fast-fade" style="text-align:right"><a href="/publicprofile/collection?id=@Model.id" title="Link to Collections" style="left:0;right:auto !important"><i class="fa fa-th"></i> @ProfileRes.Collections @*<span>(@Model.collectionsCount)</span>*@</a></h5>
             </aside>
 
             <aside role="complementary" class="row aside-favorites">
-                <h5 class="editable fast-fade" style="text-align:right"><a href="/profile/favorites" title="Link to Favorites" style="left:0;right:auto !important"><i class="fa fa-heart"></i> @ProfileRes.Favorites @*<span>(@Model.favoritesCount)</span>*@</a></h5>
+                <h5 class="editable fast-fade" style="text-align:right"><a href="/publicprofile/favorites?id=@Model.id" title="Link to Favorites" style="left:0;right:auto !important"><i class="fa fa-heart"></i> @ProfileRes.Favorites @*<span>(@Model.favoritesCount)</span>*@</a></h5>
 
             </aside>
 

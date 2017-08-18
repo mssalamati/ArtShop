@@ -4,7 +4,7 @@
 
 @if (IsRighToLeft)
 {
-    @Html.Partial("indexRTL");
+    @Html.Partial("indexRTL",Model);
 }
 else
 {
@@ -40,7 +40,7 @@ else
                         <span itemprop="name">@Model.fullName</span>
                     </h1>
                 </div>
-   
+
             </header>
 
             <style>
@@ -60,12 +60,12 @@ else
                         <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_medium_square.jpg" alt="@Model.fullName 's Profile" itemprop="image">
                     }
 
-                    
+
                 </div>
 
                 <h3>
                     <span itemprop="name">@Model.fullName</span>
-                    
+
                 </h3>
                 <p class="user-location" itemprop="nationality">
                     @Model.city, @Model.region, @{ var x = (Model.country == null ? "" : Model.country.Current().Name); }   @x
@@ -152,7 +152,7 @@ else
                     <section itemprop="description">
                         <h3>
                             @ProfileRes.About @Model.fullName
-                            
+
                         </h3>
                         <p class="expandable" style="display: block;">@Model.aboutme</p>
                     </section>
@@ -164,7 +164,7 @@ else
                     <section itemprop="description">
                         <h3>
                             @ProfileRes.Education
-                            
+
                         </h3>
                         <p class="expandable" style="display: block;">@Model.aboutme</p>
                     </section>
@@ -175,7 +175,7 @@ else
                     <section class="events">
                         <h3>
                             @ProfileRes.Events:
-                            
+
                         </h3>
                         <p class="expandable" style="display: block;">@Model.events</p>
 
@@ -187,7 +187,7 @@ else
                     <section class="events">
                         <h3>
                             @ProfileRes.Exhibitions:
-                            
+
                         </h3>
                         <p class="expandable" style="display: block;">@Model.Exhibitions</p>
 
@@ -201,17 +201,17 @@ else
 
                 @if (Model.artworkCount == 0)
                 {
-                    
+
                 }
                 else
                 {
 
                     <div id="hero-image-mask" class="small-12 medium-12 large-10 columns editable fast-fade portfolio-hero" style="background-image: url(@Model.artworks.FirstOrDefault().photo.Path)" itemscope="" itemtype="http://schema.org/CreativeWork">
                         <img id="hero-image-container" src="" width="100%" height="100%" itemprop="image" class="hidden">
-                        <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                        <a href="/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
                             <img id="hero-image-crop" class="" src="https://dfcdths9j2gip.cloudfront.net/media/images/blank.gif" width="100%" height="100%" itemprop="image">
-                        </a>                
-                        
+                        </a>
+
                     </div>
 
                     <div class="small-12 medium-12 large-2 columns">
@@ -225,7 +225,7 @@ else
                         {
 
                                 <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                                    <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                                    <a href="/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
                                         <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
                                     </a>
                                 </div>
@@ -251,7 +251,7 @@ else
                         <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@Model.artworkCount)</span>
                     </a>
                 </h5>
-            
+
                 <div class="heroSaveCancel" style="display:none;">
                     <a href="#" class="btn-info" onclick="Saatchi.Profile.heroPositionSave();return false;">
                         Save
