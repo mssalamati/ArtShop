@@ -21,6 +21,7 @@ namespace ArtShop.Controllers
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
             model.artworkCount = userProfile.Products.Count;
             model.collectionsCount = userProfile.Collections.Count;
+            model.favoritesCount = userProfile.Favorits.Count;
             model.city = userProfile.City == null ? " " : userProfile.City;
             model.region = userProfile.Region == null ? " " : userProfile.Region;
             model.country = userProfile.country;
@@ -43,8 +44,14 @@ namespace ArtShop.Controllers
 
             foreach (var item in userProfile.Products)
             {
-                model.artworks.Add(item);
-                counter++;
+                if (counter < 4)
+                {
+                    model.artworks.Add(item);
+                    counter++;
+                }
+                else
+                    break;
+
             }
 
             if (counter < 4 && counter != 0)

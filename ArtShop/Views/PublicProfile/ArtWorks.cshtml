@@ -52,19 +52,21 @@
                             </a>
 
                         </div>
-                        <div class="item-controls" data-id="3863434" data-artist="994144" data-art="3672399">
-                            @*<a href="#" data-collection-owner="994144" data-art-id="3672399" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@
-                            <a href="/upload/edit/art/3672399/artist/994144" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>
-                        </div>
+                    
                         <div class="list-art-meta">
                             <h4 class="list-art-title left ellipsis" itemprop="name">
                                 <a href="/products/single/@item.Id">@item.Title - Limited Edition @item.avaible of @item.AllEntity</a>
                             </h4>
                             <small class="art-category clear left">Photography, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
+                            @{
+
+                                var fullname = item.user.FirstName + " " + item.user.LastName;
+
+                            }
                             <div class="list-author clear left">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                    <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
+                                    <a href="/publicprofile?id=@item.user_id" class="artist-card" title="Profile page for @fullname" itemprop="url">@fullname</a>
                                 </h5>
                                 @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>*@
                             </div>
