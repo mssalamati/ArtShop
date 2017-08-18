@@ -1,0 +1,42 @@
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
+
+<style>
+    .form-group--inline label {
+        width: 70px;
+    }
+</style>
+
+<div id="upload">
+    <div data-reactroot="">
+        <div class="app">
+            <div class="full-bleed full-bleed--background" style="background-color:#f3f3f3">
+                <div class="container artwork__container">
+                    <span></span>
+                    <div class="new-page">
+                        <span></span>
+
+                        <div class="new-page__content pane pane--padded pane--centered pane--full">
+                            <div class="progress-component wizard-progress">
+                                <div class="progress-component__inner" style="transform: translateX(740px);"></div>
+                            </div>
+                            <div class="wizard-step">
+                                <p class="alert alert-success">
+                                    upload success
+                                </p>
+
+                                <a class="btn btn-success">
+                                    your artwork
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

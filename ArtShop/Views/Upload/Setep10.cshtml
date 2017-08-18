@@ -6,7 +6,7 @@
 
 <style>
     .form-group--inline label {
-        width:70px;
+        width: 70px;
     }
 </style>
 
@@ -107,7 +107,11 @@
         });
     }
 
-    function OnAjaxComplete(arg) { if (arg.result == 1313) { location.href = '/Products/single/' + arg.id; } }
+    function OnAjaxComplete(arg) {
+        if (arg.result == 1313) {
+            //location.href = '/Products/single/' + arg.id;
+        }
+    }
 
 
     $(window).keydown(function (event) {
