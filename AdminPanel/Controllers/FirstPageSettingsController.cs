@@ -213,7 +213,56 @@ namespace AdminPanel.Controllers
             db.SaveChanges();
             return RedirectToAction("maincontent", db.FirstPageSections);
         }
+        public ActionResult Editmaincontent(int id)
+        {
+            var model = db.FirstPageSections.Include("Translations").FirstOrDefault(x => x.Id == id);
+            ViewBag.language = db.Languages.ToList();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Editmaincontent(FirstPageSection model)
+        {
+            var finder = db.FirstPageSections.Find(model.Id);
 
+            finder.param1 = model.param1;
+            finder.param2 = model.param2;
+            finder.param3 = model.param3;
+            finder.param4 = model.param4;
+            finder.param5 = model.param5;
+            finder.param6 = model.param6;
+            foreach (var item in model.Translations)
+            {
+                var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
+                if (curr != null)
+                {
+                    curr.title = item.title;
+                    curr.title2 = item.title2;
+                    curr.title3 = item.title3;
+                }
+                else
+                {
+                    finder.Translations.Add(new FirstPageSectionTranslation()
+                    {
+                        languageId = item.languageId,
+                        title = item.title,
+                        title2 = item.title2,
+                        title3 = item.title3
+                    });
+                }
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("maincontent");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.ToString());
+            }
+            ViewBag.language = db.Languages.ToList();
+            return View(model);
+        }
 
         public ActionResult footers()
         {
@@ -277,7 +326,7 @@ namespace AdminPanel.Controllers
                 ViewBag.language = db.Languages.ToList();
                 return PartialView(model);
             }
-            
+
             foreach (var item in model.Translations)
             {
                 var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
