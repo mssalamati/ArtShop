@@ -5424,6 +5424,7 @@
     <Content Include="Views\FirstPageSettings\Addmaincontent.cshtml" />
     <Content Include="Views\FirstPageSettings\EditSlider.cshtml" />
     <Content Include="Views\FirstPageSettings\EditFooter.cshtml" />
+    <Content Include="Views\FirstPageSettings\Editmaincontent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
