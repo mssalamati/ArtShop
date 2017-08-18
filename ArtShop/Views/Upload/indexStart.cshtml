@@ -4,5 +4,10 @@
 }
 
 
-<a href="/upload/start">start</a>
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "start_rtl" : "start_ltr";
+}
 
+
+@Html.Action(rtlstl, "Upload", null) 

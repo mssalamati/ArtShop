@@ -469,6 +469,8 @@
     <Content Include="Views\AccountInfo\UploadAvatarRTL.cshtml" />
     <Content Include="Views\Profile\IndexRTL.cshtml" />
     <Content Include="Views\Profile\ManageArtworks.cshtml" />
+    <Content Include="Views\Upload\start_ltr.cshtml" />
+    <Content Include="Views\Upload\strat_rtl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
