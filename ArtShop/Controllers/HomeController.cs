@@ -43,23 +43,23 @@ namespace ArtShop.Controllers
 
         public ActionResult _SelectedCurators(FirstPageSection model)
         {
-            return PartialView();
+            return PartialView(model);
         }
         public ActionResult _SalebyPrice(FirstPageSection model)
         {
-            return PartialView();
+            return PartialView(model);
         }
         public ActionResult _RecentlySold(FirstPageSection model)
         {
-            return PartialView();
+            return PartialView(model);
         }
         public ActionResult _SalebyStyle(FirstPageSection model)
         {
-            return PartialView();
+            return PartialView(model);
         }
         public ActionResult _SalebyCategory(FirstPageSection model)
         {
-            return PartialView();
+            return PartialView(model);
         }
 
         public ActionResult Header()
