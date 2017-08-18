@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Manage Artworks";
+}
+
+<link rel="stylesheet" href="~/Content/app-99c5613a7fbb0f5f16e645bc204d000d.css" />
+ 
+<div class="background-gray-bg padded-background">
+    <div class="container">
+        <div>
+            <div class="artist__badge">
+                <img alt="Artist Avatar" class="artist__badge__image" src="https://d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_small_square.jpg">
+                <div class="artist__badge__name">
+                    <h2>adib dehghan</h2><a href="/account/profile/994144"><span class="artist__badge__arrow">◀</span><!-- react-text: 689 -->Back to Portfolio<!-- /react-text --></a>
+                </div>
+            </div>
+        </div>
+        <div class="artwork-manager__title">
+            <h2>Manage Your Artworks</h2>
+            <div>
+                Update your artworks' price and availability.
+            </div>
+        </div>
+        <div></div>
+        <div class="artwork-manager__body">
+            <div>
+                <table class="artworks__table">
+                    <thead>
+                        <tr class="artworks__table__row">
+                            <th class="artworks__table__header"><!-- react-text: 848 -->Artworks<!-- /react-text --><span><!-- react-text: 850 --> (<!-- /react-text --><!-- react-text: 851 -->2<!-- /react-text --><!-- react-text: 852 -->)<!-- /react-text --></span></th>
+                            <th class="artworks__table__header"></th>
+                            <th class="artworks__table__header">Added</th>
+                            <th class="artworks__table__header">Created</th>
+                            <th class="artworks__table__header">Price ($USD)</th>
+                            <th class="artworks__table__header">Availability</th>
+                            <th class="artworks__table__header">Save Changes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="artworks__table__row">
+                            <td class="artworks__table__cell" style="width: 150px; padding: 18px 18px 18px 50px;">
+                                <a href="/upload/edit/art/3751738/artist/994144"><img alt="hichi" src="//saimg-a.akamaihd.net/saatchi/994144/art/3942839/3012709-LBCUNKCB-22.jpg"></a>
+                            </td>
+                            <td class="artworks__table__cell">
+                                <div class="artwork__item-details__title">
+                                    hichi
+                                </div>
+                                <div class="artwork__item-details__type">
+                                    Drawing
+                                </div>
+                                <div class="artwork__item-details__dimensions">
+                                    <!-- react-text: 868 -->200<!-- /react-text --><!-- react-text: 869 --> x <!-- /react-text --><!-- react-text: 870 -->100<!-- /react-text --><!-- react-text: 871 --> x <!-- /react-text --><!-- react-text: 872 -->1<!-- /react-text --><!-- react-text: 873 --> <!-- /react-text --><!-- react-text: 874 -->cm<!-- /react-text -->
+                                </div>
+                                <div class="artwork__item-details__edit">
+                                    <a href="/upload/edit/art/3751738/artist/994144" rel="noopener noreferrer" target="_blank">Edit</a>
+                                </div>
+                            </td>
+                            <td class="artworks__table__cell">Aug 13, 2017</td>
+                            <td class="artworks__table__cell">2017</td>
+                            <td class="artworks__table__cell">
+                                <span class="currency__input"><input max="100000" min="100" name="price-field" pattern="[0-9]+" step="1" type="tel" value="$200"></span>
+                                <div>
+                                    <div class="artwork__item-details__type">
+                                        <!-- react-text: 884 -->Shipping: $<!-- /react-text --><!-- react-text: 885 -->140<!-- /react-text -->
+                                    </div>
+                                    <div class="artwork__item-details__type">
+                                        <!-- react-text: 887 -->Total: $<!-- /react-text --><!-- react-text: 888 -->340<!-- /react-text -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="artworks__table__cell">
+                                <select name="availability-field">
+                                    <option value="avail">
+                                        For Sale
+                                    </option>
+                                    <option value="unavail">
+                                        Not For Sale
+                                    </option>
+                                    <option value="sold">
+                                        Sold
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="artworks__table__cell"><button class="btn btn--disabled" disabled><span>Save</span></button></td>
+                        </tr>
+                        <tr class="artworks__table__row">
+                            <td class="artworks__table__cell" style="width: 150px; padding: 18px 18px 18px 50px;">
+                                <a href="/upload/edit/art/3702039/artist/994144"><img alt="climb man" src="//saimg-a.akamaihd.net/saatchi/994144/art/3893089/2962972-CAAISOJE-22.jpg"></a>
+                            </td>
+                            <td class="artworks__table__cell">
+                                <div class="artwork__item-details__title">
+                                    climb man
+                                </div>
+                                <div class="artwork__item-details__type">
+                                    Drawing
+                                </div>
+                                <div class="artwork__item-details__dimensions">
+                                    <!-- react-text: 905 -->12<!-- /react-text --><!-- react-text: 906 --> x <!-- /react-text --><!-- react-text: 907 -->12<!-- /react-text --><!-- react-text: 908 --> x <!-- /react-text --><!-- react-text: 909 -->0.1<!-- /react-text --><!-- react-text: 910 --> <!-- /react-text --><!-- react-text: 911 -->cm<!-- /react-text -->
+                                </div>
+                                <div class="artwork__item-details__edit">
+                                    <a href="/upload/edit/art/3702039/artist/994144" rel="noopener noreferrer" target="_blank">Edit</a>
+                                </div>
+                            </td>
+                            <td class="artworks__table__cell">Jul 15, 2017</td>
+                            <td class="artworks__table__cell">2017</td>
+                            <td class="artworks__table__cell">
+                                <span class="currency__input"><input max="100000" min="100" name="price-field" pattern="[0-9]+" step="1" type="tel" value="$100"></span>
+                                <div>
+                                    <div class="artwork__item-details__type">
+                                        <!-- react-text: 921 -->Shipping: $<!-- /react-text --><!-- react-text: 922 -->35<!-- /react-text -->
+                                    </div>
+                                    <div class="artwork__item-details__type">
+                                        <!-- react-text: 924 -->Total: $<!-- /react-text --><!-- react-text: 925 -->135<!-- /react-text -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="artworks__table__cell">
+                                <select name="availability-field">
+                                    <option value="avail">
+                                        For Sale
+                                    </option>
+                                    <option value="unavail">
+                                        Not For Sale
+                                    </option>
+                                    <option value="sold">
+                                        Sold
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="artworks__table__cell"><button class="btn btn--disabled" disabled><span>Save</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

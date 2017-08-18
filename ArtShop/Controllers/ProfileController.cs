@@ -243,5 +243,17 @@ namespace ArtShop.Controllers
 
             return View(userProfile.Products);
         }
+
+        public ActionResult ManageArtWorks()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
+        
+
+            return View();
+        }
+
     }
 }
