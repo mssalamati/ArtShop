@@ -20,6 +20,7 @@ namespace ArtShop.Controllers
     public class UploadController : BaseController
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        [Route("upload/start")]
         public ActionResult Index()
         {
             return View();
@@ -46,6 +47,12 @@ namespace ArtShop.Controllers
             response.EnsureSuccessStatusCode();
             var res = await response.Content.ReadAsAsync<ISResizeViewModel>();
             return res;
+        }
+
+        [Route("upload")]
+        public ActionResult indexStart()
+        {
+            return View();
         }
 
         //upload picture
@@ -380,7 +387,14 @@ namespace ArtShop.Controllers
                 ViewBag.error = Resources.UploadRes.Image_cannot_be_empty;
                 return PartialView();
             }
-            return Json(new { result = 1313, id = id }, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Stepfinish", new { id = id });
+            //return Json(new { result = 1313, id = id }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Stepfinish(int id)
+        {
+
+            return PartialView();
         }
 
         protected override void Dispose(bool disposing)
