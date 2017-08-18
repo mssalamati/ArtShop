@@ -97,16 +97,26 @@
                     }
                     <hr />
                     @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
-                {
-                    var item = ((List<Language>)ViewBag.language)[i];
-                    var current = Model.Translations.SingleOrDefault(x => x.languageId == item.Code);
-                    var title = current == null ? "" : current.title;
-                    var title2 = current == null ? "" : current.title2;
-                    var title3 = current == null ? "" : current.title3;
+                    {
+                        var item = ((List<Language>)ViewBag.language)[i];
+                        var current = Model.Translations.SingleOrDefault(x => x.languageId == item.Code);
+                        var title = current == null ? "" : current.title;
+                        var title2 = current == null ? "" : current.title2;
+                        var title3 = current == null ? "" : current.title3;
+                        var title4 = current == null ? "" : current.title4;
+                        var title5 = current == null ? "" : current.title5;
+                        var title6 = current == null ? "" : current.title6;
+
+                        var desc1 = current == null ? "" : current.desc1;
+                        var desc2 = current == null ? "" : current.desc2;
+                        var desc3 = current == null ? "" : current.desc3;
+                        var desc4 = current == null ? "" : current.desc4;
+                        var desc5 = current == null ? "" : current.desc5;
+                        var desc6 = current == null ? "" : current.desc6;
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  title</label>
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  title1</label>
                                 <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
                                 <input name="Translations[@i].title" value="@title" type="text" class="form-control" />
                             </div>
@@ -116,7 +126,54 @@
                                 <input name="Translations[@i].title2" value="@title2" type="text" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title 3</label>
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title3</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title4</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title5</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title 6</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  desc1</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title" value="@title" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  desc2</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title2" value="@title2" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc3</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc4</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc5</label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc6</label>
                                 <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
                                 <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
                             </div>
