@@ -49,7 +49,7 @@ namespace ArtShop.Controllers
             return res;
         }
 
-        [Route("upload")]
+        [Route("upload/review")]
         public ActionResult indexStart()
         {
             return View();
