@@ -129,7 +129,7 @@ else
                         {
                             <li>
                                 <a href="@Model.myWebsite" class="profile-link link-globe" title="My Website" target="_blank" rel="nofollow">
-                                    <i class="fa fa-info-circle"></i>
+                                    <i class="fa fa-globe"></i>
                                 </a>
                             </li>
                         }
@@ -235,7 +235,7 @@ else
                             {
 
                                 <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                                    <a href="/profile/artworks" title="Link to Artwork" itemprop="url">
+                                    <a href="/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
                                         <img src="@item.Sqphoto.Path" alt="" itemprop="image">
                                     </a>
 
@@ -247,7 +247,7 @@ else
                     </div>
                 }
                 <h5>
-                    <a href="/profile/artworks" title="Link to Artwork">
+                    <a href="/publicprofile/artworks?id=@Model.id" title="Link to Artwork">
                         <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@Model.artworkCount)</span>
                     </a>
                 </h5>
@@ -264,11 +264,11 @@ else
             <div class="small-12 medium-6 large-8 columns buckets">
 
                 <aside role="complementary" class="row aside-collections ">
-                    <h5 class="editable fast-fade"><a href="/profile/collection" title="Link to Collections"><i class="fa fa-th"></i> @ProfileRes.Collections <span>(@Model.collectionsCount)</span></a></h5>
+                    <h5 class="editable fast-fade"><a href="/publicprofile/collection?id=@Model.id" title="Link to Collections"><i class="fa fa-th"></i> @ProfileRes.Collections <span>(@Model.collectionsCount)</span></a></h5>
                 </aside>
 
                 <aside role="complementary" class="row aside-favorites">
-                    <h5 class="editable fast-fade"><a href="/profile/favorites" title="Link to Favorites"><i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@Model.favoritesCount)</span></a></h5>
+                    <h5 class="editable fast-fade"><a href="/publicprofile/favorites?id=@Model.id" title="Link to Favorites"><i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@Model.favoritesCount)</span></a></h5>
 
                 </aside>
 

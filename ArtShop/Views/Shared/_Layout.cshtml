@@ -46,9 +46,13 @@
 @{
     var a = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString().ToLower();
     var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
-    if (c == "profile")
+    if (c == "profile" || c == "publicprofile")
     {
-        if (a == null || c == "favorites")
+        if (c.Contains("public"))
+        {
+            c = "profile";
+        }
+        if (a == null || c == "favorites" || a == "index")
         {
             c = "profile";
         }

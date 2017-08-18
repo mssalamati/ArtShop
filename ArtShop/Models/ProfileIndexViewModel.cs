@@ -8,6 +8,7 @@ namespace ArtShop.Models
 {
     public class ProfileIndexViewModel
     {
+        public string id { get; set; }
         public string fullName { get; set; }
         public int followingCount { get; set; }
         public int followersCount { get; set; }

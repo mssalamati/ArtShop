@@ -17,7 +17,7 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == id);
 
             ProfileIndexViewModel model = new ProfileIndexViewModel();
-
+            model.id = userProfile.Id;
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
             model.artworkCount = userProfile.Products.Count;
             model.collectionsCount = userProfile.Collections.Count;
@@ -65,7 +65,7 @@ namespace ArtShop.Controllers
             ViewBag.profileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.artworksCount = userProfile.Products.Count;
             ViewBag.favoritesCount = userProfile.Favorits.Count;
-
+            ViewBag.id = id;
             List<CollectionViewModel> collectionViewModel = new List<CollectionViewModel>();
 
             int counter = 0;
@@ -104,7 +104,7 @@ namespace ArtShop.Controllers
             
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-
+            ViewBag.id = userId;
             var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
             ViewBag.CollectionName = collection.Title;
             ViewBag.CollectionId = collection.Id;
@@ -121,6 +121,7 @@ namespace ArtShop.Controllers
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.artworkCount = userProfile.Products.Count;
+            ViewBag.id = id;
             if (userProfile.Favorits != null)
                 return View(userProfile.Favorits);
 
@@ -133,7 +134,7 @@ namespace ArtShop.Controllers
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.favoritesCount = userProfile.Favorits.Count;
             ViewBag.collectionCount = userProfile.Collections.Count;
-
+            ViewBag.id = id;
 
             return View(userProfile.Products);
         }
