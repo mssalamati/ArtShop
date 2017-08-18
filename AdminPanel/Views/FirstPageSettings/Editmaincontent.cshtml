@@ -54,7 +54,7 @@
 
             @Html.AntiForgeryToken()
 
-            @if (!ViewData.ModelState.IsValid)
+            if (!ViewData.ModelState.IsValid)
             {
                 @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
             }
@@ -128,7 +128,7 @@
 
 
 
-            <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+            <a href="/FirstPageSettings/maincontent" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</a>
             <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
                 <span class="spinner" hidden id="submit_spin" style="padding:5px">
                     <i class="fa fa-spinner fa-spin"></i>

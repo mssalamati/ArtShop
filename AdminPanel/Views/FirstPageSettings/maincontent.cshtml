@@ -60,7 +60,7 @@
                                 @item.type
                             </th>                          
                             <td>
-                                <button class="btn btn-primary btn-sm">ویرایش</button>
+                                <a href="/FirstPageSettings/Editmaincontent/@item.Id" class="btn btn-primary btn-sm">ویرایش</a>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/FirstPageSettings/Deletesection/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
