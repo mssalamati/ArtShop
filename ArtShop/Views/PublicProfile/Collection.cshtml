@@ -1,0 +1,129 @@
+﻿@model List<CollectionViewModel>
+@{
+    ViewBag.Title = "Collection";
+}
+
+<div role="main" class="row row-layout profile-content">
+
+
+    <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+
+        <a href="/profile" title="adib dehghan's profile" itemprop="url">
+            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.profileFullName</h1>
+            <i class="fa fa-caret-left"></i> Back to Profile
+        </a>
+
+    </header>
+
+    <div class="profile-nav large-12 columns">
+        <a href="/profile/artworks" class="" title="link to artwork">
+            <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.artworksCount)</span>
+        </a>
+        <a href="/profile/collections" class="active" title="link to Collections">
+            <i class="fa fa-th"></i> Collections <span>(@Model.Count)</span>
+        </a>
+        <a href="/profile/favorites" class="" title="link to Favorites">
+            <i class="fa fa-heart"></i> Favorites <span>(@ViewBag.favoritesCount)</span>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <ul id="infinite" class="item-list">
+            <li class="list-item collection create-collection">
+                <a href="/profile/NewCollection" title="Create a New Collection" class="profile-new-collection">
+                    <i class="fa fa-plus icn-bg" style="display:inline-table"></i>
+                    <span style="display:table-caption">Create a New Collection</span>
+                </a>
+            </li>
+
+            @foreach (CollectionViewModel item in Model)
+            {
+                <li class="list-item collection">
+                    <div class="small-12 columns">
+                        <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                            @if (item.collectionProduct.First().product != null)
+                            {
+                                <img src="@item.collectionProduct.First().product.Widephoto.Path" alt="">
+                            }
+                            else
+                            {
+                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" style="width:300px;height:197px;" alt="" nopin="nopin">
+                            }
+
+                        </a>
+                    </div>
+                    <div class="row">
+                        @for (int i = 1; i <= 3; i++)
+                        {
+
+                            var art = item.collectionProduct[i];
+
+                            if (art.product == null)
+                            {
+                                <div class="small-4 columns">
+                                    <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                        <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="small-4 columns">
+                                    <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                        <img src="@art.product.Sqphoto.Path" alt="test collection item" nopin="nopin">
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+
+                    <div class="row collection-meta">
+                        <h4 class="collection-title">
+                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                <span class="ellipsis">@item.CollectionName</span> <span class="count">(@item.CollectionProductCount)</span>
+                            </a>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            }
+
+        </ul>
+        <div class="clearfix"></div>
+        <div id="pageNav" class="hidden">
+            <a href="/account/collection/id/994144/format/json/page/2"></a>
+        </div>
+        <div id="pageLoading"></div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<script src="~/Content/fullview.js"></script>
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
+    });
+    Saatchi.Loader.load('fullview', { js: true }, function () {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('favorite', { js: true }, function () {
+        Saatchi.Favorite.init();
+    });
+
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+
+    var observer;
+    // stop observing
+    if (observer) {
+        observer.disconnect();
+    }
+
+</script>

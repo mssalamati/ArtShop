@@ -210,6 +210,7 @@
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\PublicProfileController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -471,6 +472,12 @@
     <Content Include="Views\Profile\ManageArtworks.cshtml" />
     <Content Include="Views\Upload\start_ltr.cshtml" />
     <Content Include="Views\Upload\strat_rtl.cshtml" />
+    <Content Include="Views\PublicProfile\ArtWorks.cshtml" />
+    <Content Include="Views\PublicProfile\Collection.cshtml" />
+    <Content Include="Views\PublicProfile\CollectionView.cshtml" />
+    <Content Include="Views\PublicProfile\Favorites.cshtml" />
+    <Content Include="Views\PublicProfile\Index.cshtml" />
+    <Content Include="Views\PublicProfile\IndexRTL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
