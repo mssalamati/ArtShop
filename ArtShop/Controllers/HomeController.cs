@@ -20,17 +20,11 @@ namespace ArtShop.Controllers
         public ActionResult Index()
         {
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
-            //var SiteParams = db.SiteParams.Include("Translations").ToList()
-            //    .ToDictionary(x => x.Name,
-            //    y => y.Translations.FirstOrDefault(t => t.languageId == currentCultureName) == null ? string.Empty
-            //    : y.Translations.FirstOrDefault(t => t.languageId == currentCultureName).Value);
-
             HomeIndexViewModel model = new HomeIndexViewModel();
             var count = db.sliderImages.Count();
             if (count != 0)
             {
                 var randomNumber = new Random().Next(0,count);
-
                 var sl = db.sliderImages.Include("Translations").ToList().Skip(randomNumber).Take(1).FirstOrDefault();
                 model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + "/" + sl.path;
                 model.slider_H1 = sl.Current().H1;
@@ -41,8 +35,7 @@ namespace ArtShop.Controllers
                 model.slider_Button_color = sl.ButtonColor;
                 model.slider_Button_text_color = sl.ButtonTextColor;
                 model.slider_P = sl.Current().P1;
-
-                model.FirstPageSections = db.FirstPageSections.ToList();
+                model.FirstPageSections = db.FirstPageSections.Include("Translations").ToList();
             }
 
             return View(model);

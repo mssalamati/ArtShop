@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enitities
 {
-    public class FirstPageSection
+    public class FirstPageSection : ITranslatable<FirstPageSection, FirstPageSectionTranslation>
     {
         public int Id { get; set; }
         public string type { get; set; }
@@ -20,6 +20,22 @@ namespace DataLayer.Enitities
         public string param4 { get; set; }
         public string param5 { get; set; }
         public string param6 { get; set; }
+        public virtual ICollection<FirstPageSectionTranslation> Translations { get; set; }
+    }
+
+    public class FirstPageSectionTranslation : ITranslation<FirstPageSection>
+    {
+        [Key, Column(Order = 0)]
+        [ForeignKey("language")]
+        public string languageId { get; set; }
+        public virtual Language language { get; set; }
+        [ForeignKey("firstPageSection")]
+        [Key, Column(Order = 1)]
+        public virtual int firstPageSectionId { get; set; }
+        public virtual FirstPageSection firstPageSection { get; set; }
+        public string title { get; set; }
+        public string title2 { get; set; }
+        public string title3 { get; set; }
     }
 
     public class footerCell : ITranslatable<footerCell, footerCellTranslation>
