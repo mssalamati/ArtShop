@@ -36,6 +36,15 @@ namespace DataLayer.Enitities
         public string title { get; set; }
         public string title2 { get; set; }
         public string title3 { get; set; }
+        public string title4 { get; set; }
+        public string title5 { get; set; }
+        public string title6 { get; set; }
+        public string desc1 { get; set; }
+        public string desc2 { get; set; }
+        public string desc3 { get; set; }
+        public string desc4 { get; set; }
+        public string desc5 { get; set; }
+        public string desc6 { get; set; }
     }
 
     public class footerCell : ITranslatable<footerCell, footerCellTranslation>

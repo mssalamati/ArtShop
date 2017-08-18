@@ -238,6 +238,16 @@ namespace AdminPanel.Controllers
                     curr.title = item.title;
                     curr.title2 = item.title2;
                     curr.title3 = item.title3;
+                    curr.title4 = item.title4;
+                    curr.title5 = item.title5;
+                    curr.title6 = item.title6;
+
+                    curr.desc1 = item.desc1;
+                    curr.desc2 = item.desc2;
+                    curr.desc3 = item.desc3;
+                    curr.desc4 = item.desc4;
+                    curr.desc5 = item.desc5;
+                    curr.desc6 = item.desc6;
                 }
                 else
                 {
@@ -246,7 +256,17 @@ namespace AdminPanel.Controllers
                         languageId = item.languageId,
                         title = item.title,
                         title2 = item.title2,
-                        title3 = item.title3
+                        title3 = item.title3,
+                        title4 = item.title4,
+                        title5 = item.title5,
+                        title6 = item.title6,
+
+                        desc1 = item.desc1,
+                        desc2 = item.desc2,
+                        desc3 = item.desc3,
+                        desc4 = item.desc4,
+                        desc5 = item.desc5,
+                        desc6 = item.desc6,
                     });
                 }
             }
