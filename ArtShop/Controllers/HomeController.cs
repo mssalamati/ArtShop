@@ -24,7 +24,7 @@ namespace ArtShop.Controllers
             var count = db.sliderImages.Count();
             if (count != 0)
             {
-                var randomNumber = new Random().Next(0,count);
+                var randomNumber = new Random().Next(0, count);
                 var sl = db.sliderImages.Include("Translations").ToList().Skip(randomNumber).Take(1).FirstOrDefault();
                 model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + "/" + sl.path;
                 model.slider_H1 = sl.Current().H1;
@@ -43,6 +43,16 @@ namespace ArtShop.Controllers
 
         public ActionResult _SelectedCurators(FirstPageSection model)
         {
+            try
+            {
+                ViewBag.pic1 = db.Products.Find(int.Parse(model.param1)).Sqphoto.Path;
+                ViewBag.pic2 = db.Products.Find(int.Parse(model.param2)).Sqphoto.Path;
+                ViewBag.pic3 = db.Products.Find(int.Parse(model.param3)).Sqphoto.Path;
+            }
+            catch
+            {
+
+            }
             return PartialView(model);
         }
         public ActionResult _SalebyPrice(FirstPageSection model)

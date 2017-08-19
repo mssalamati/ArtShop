@@ -1,4 +1,5 @@
 ﻿@model FirstPageSection
+@using DataLayer.Extentions
 
 <div class="row">
     <div class="small-12 columns">
@@ -10,38 +11,59 @@
     <ul class="item-list">
         <li class="list-item feature">
             <div class="feature-image">
-                <a href="art-collection/Painting-Drawing-Sculpture/New-This-Week-6-5-2017/153961/187642/view.html" title="See What's New This Week		">
-                    <img src="~/Content/Images/300x300.jpg" alt="New This Week	">
+                <a href="/products/single/@Model.param1" title="See What's New This Week		">
+                    <img src="@ViewBag.pic1" alt="New This Week	">
                 </a>
             </div>
-            <div class="row feature-meta">
-                <h3 class="feature-title ellipsis"><a href="art-collection/Painting-Drawing-Sculpture/New-This-Week-6-5-2017/153961/187642/view.html" title="See What's New This Week		">See What's New This Week		</a></h3>
-                <span class="feature-subtitle ellipsis"><a href="art-collection/Painting-Drawing-Sculpture/New-This-Week-6-5-2017/153961/187642/view.html" title="Selected by our Chief Curator">Selected by our Chief Curator</a></span>
-                <span class="feature-subtitle2 ellipsis"><a href="art-collection/Painting-Drawing-Sculpture/New-This-Week-6-5-2017/153961/187642/view.html" title="View the Collection">View the Collection</a></span>
+            <div class="row feature-meta" style="height:auto">
+                <h3 class="feature-title ellipsis">
+                    <a href="/products/single/@Model.param1">
+                        @Model.Current().title
+                    </a>
+                </h3>
+                <span class="feature-subtitle ellipsis">
+                    <a href="/products/single/@Model.param1">
+                        @Model.Current().desc1
+                    </a>
+                </span>
             </div>
         </li>
         <li class="list-item feature">
             <div class="feature-image">
-                <a href="catalog.html" title="Artiscovery Catalog">
-                    <img src="~/Content/Images/300x300.jpg" alt="New This Week	">
+                <a href="/products/single/@Model.param2" title="Artiscovery Catalog">
+                    <img src="@ViewBag.pic2" alt="New This Week	">
                 </a>
             </div>
-            <div class="row feature-meta">
-                <h3 class="feature-title ellipsis"><a href="catalog.html" title="Artiscovery Catalog">Artiscovery Catalog</a></h3>
-                <span class="feature-subtitle ellipsis"><a href="catalog.html" title="Spring 2017">Spring 2017</a></span>
-                <span class="feature-subtitle2 ellipsis"><a href="catalog.html" title="Peek Inside">Peek Inside</a></span>
+            <div class="row feature-meta" style="height:auto">
+                <h3 class="feature-title ellipsis">
+                    <a href="/products/single/@Model.param1">
+                        @Model.Current().title2
+                    </a>
+                </h3>
+                <span class="feature-subtitle ellipsis">
+                    <a href="/products/single/@Model.param1">
+                        @Model.Current().desc2
+                    </a>
+                </span>
             </div>
         </li>
         <li class="list-item feature">
             <div class="feature-image">
-                <a href="invest-in-art.html" title="Invest In Art: Spring 2017">
-                    <img src="~/Content/Images/300x300.jpg" alt="New This Week	">
+                <a href="/products/single/@Model.param3" title="Invest In Art: Spring 2017">
+                    <img src="@ViewBag.pic3" alt="New This Week	">
                 </a>
             </div>
-            <div class="row feature-meta">
-                <h3 class="feature-title ellipsis"><a href="invest-in-art.html" title="Invest In Art: Spring 2017">Invest In Art: Spring 2017</a></h3>
-                <span class="feature-subtitle ellipsis"><a href="invest-in-art.html" title="Discover Tomorrow's Art Stars">Discover Tomorrow's Art Stars</a></span>
-                <span class="feature-subtitle2 ellipsis"><a href="invest-in-art.html" title="Meet the Artists">Meet the Artists</a></span>
+            <div class="row feature-meta" style="height:auto">
+                <h3 class="feature-title ellipsis">
+                    <a href="/products/single/@Model.param1">
+                        @Model.Current().title3
+                    </a>
+                </h3>
+                <span class="feature-subtitle ellipsis">
+                    <a href="/products/single/@Model.param1">
+                        @Model.Current().desc13
+                    </a>
+                </span>
             </div>
         </li>
     </ul>

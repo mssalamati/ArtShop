@@ -50,7 +50,7 @@
             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
         }, new { enctype = "multipart/form-data" }))
         {
-            @Html.HiddenFor(x=>x.Id)
+            @Html.HiddenFor(x => x.Id)
 
             @Html.AntiForgeryToken()
 
@@ -114,70 +114,48 @@
                         var desc5 = current == null ? "" : current.desc5;
                         var desc6 = current == null ? "" : current.desc6;
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  title1</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title" value="@title" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  title2</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title2" value="@title2" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title3</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
+                        @if (Model.type == "_SelectedCurators")
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  titles</label>
+                                    <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
 
+                                    @if (Model.type == "_SelectedCurators")
+                                    {
+                                        <input name="Translations[@i].title" value="@title" type="text" placeholder="title 1" class="form-control" />
+                                        <input name="Translations[@i].title2" value="@title2" type="text" placeholder="title 2" class="form-control" />
+                                        <input name="Translations[@i].title3" value="@title3" type="text" placeholder="title 3" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input name="Translations[@i].title4" value="@title4" type="text" placeholder="title 4" class="form-control" />
+                                        <input name="Translations[@i].title5" value="@title5" type="text" placeholder="title 5" class="form-control" />
+                                        <input name="Translations[@i].title6" value="@title6" type="text" placeholder="title 6" class="form-control" />
+                                    }
 
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title4</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  descriptions</label>
+                                    <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+
+                                    @if (Model.type == "_SelectedCurators")
+                                    {
+                                        <input name="Translations[@i].desc1" value="@desc1" type="text" placeholder="descriptions 1" class="form-control" />
+                                        <input name="Translations[@i].desc2" value="@desc2" type="text" placeholder="descriptions 2" class="form-control" />
+                                        <input name="Translations[@i].desc3" value="@desc3" type="text" placeholder="descriptions 3" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input name="Translations[@i].desc4" value="@desc4" type="text" placeholder="descriptions 4" class="form-control" />
+                                        <input name="Translations[@i].desc5" value="@desc5" type="text" placeholder="descriptions 5" class="form-control" />
+                                        <input name="Translations[@i].desc6" value="@desc6" type="text" placeholder="descriptions 6" class="form-control" />
+                                    }
+                                </div>
+
                             </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title5</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name title 6</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  desc1</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title" value="@title" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name  desc2</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title2" value="@title2" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc3</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc4</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc5</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name desc6</label>
-                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                <input name="Translations[@i].title3" value="@title3" type="text" class="form-control" />
-                            </div>
-                        </div>
+                        }
+
                     }
                 </div>
 
