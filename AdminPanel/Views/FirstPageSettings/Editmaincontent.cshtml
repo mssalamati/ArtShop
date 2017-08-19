@@ -128,8 +128,39 @@ if (current == selected.ToString())
                             </select>
                         </div>
                     }
+                    else if (Model.type == "_SalebyStyle")
+                    {
+                        <div class="form-group" id="selectedartparams">
+                            <label class="form-label">style id 1 </label>
+                            <input style="direction:ltr" value="@Model.param1" name="param1" class="form-control" />
+                            <label class="form-label">style id 2 </label>
+                            <input style="direction:ltr" value="@Model.param2" name="param2" class="form-control" />
+                            <label class="form-label">style id 3 </label>
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
+                            <label class="form-label">style id 4 </label>
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
+                            <label class="form-label">style id 6 </label>
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
+                        </div>
+                    }
+                    else if (Model.type == "_SalebyCategory")
+                    {
+                        <div class="form-group" id="selectedartparams">
+                            <label class="form-label">category id 1 </label>
+                            <input style="direction:ltr" value="@Model.param1" name="param1" class="form-control" />
+                            <label class="form-label">category id 2 </label>
+                            <input style="direction:ltr" value="@Model.param2" name="param2" class="form-control" />
+                            <label class="form-label">category id 3 </label>
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
+                            <label class="form-label">category id 4 </label>
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
+                            <label class="form-label">category id 6 </label>
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
+                        </div>
+                    }
 
                     <hr />
+
                     @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
                     {
                         var item = ((List<Language>)ViewBag.language)[i];
@@ -148,7 +179,7 @@ if (current == selected.ToString())
                         var desc5 = current == null ? "" : current.desc5;
                         var desc6 = current == null ? "" : current.desc6;
 
-                        if (Model.type == "_SelectedCurators")
+                        if (Model.type == "_SelectedCurators" || Model.type == "_SalebyStyle" || Model.type == "_SalebyCategory")
                         {
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -161,11 +192,13 @@ if (current == selected.ToString())
                                         <input name="Translations[@i].title2" value="@title2" type="text" placeholder="title 2" class="form-control" />
                                         <input name="Translations[@i].title3" value="@title3" type="text" placeholder="title 3" class="form-control" />
                                     }
-                                    else
+                                    else if (Model.type == "_SalebyStyle" || Model.type == "_SalebyCategory")
                                     {
+                                        <input name="Translations[@i].title" value="@title" type="text" placeholder="title 1" class="form-control" />
+                                        <input name="Translations[@i].title2" value="@title2" type="text" placeholder="title 2" class="form-control" />
+                                        <input name="Translations[@i].title3" value="@title3" type="text" placeholder="title 3" class="form-control" />
                                         <input name="Translations[@i].title4" value="@title4" type="text" placeholder="title 4" class="form-control" />
                                         <input name="Translations[@i].title5" value="@title5" type="text" placeholder="title 5" class="form-control" />
-                                        <input name="Translations[@i].title6" value="@title6" type="text" placeholder="title 6" class="form-control" />
                                     }
 
                                 </div>
@@ -179,11 +212,13 @@ if (current == selected.ToString())
                                         <input name="Translations[@i].desc2" value="@desc2" type="text" placeholder="descriptions 2" class="form-control" />
                                         <input name="Translations[@i].desc3" value="@desc3" type="text" placeholder="descriptions 3" class="form-control" />
                                     }
-                                    else
+                                    else if (Model.type == "_SalebyStyle" || Model.type == "_SalebyCategory")
                                     {
+                                        <input name="Translations[@i].desc1" value="@desc1" type="text" placeholder="descriptions 1" class="form-control" />
+                                        <input name="Translations[@i].desc2" value="@desc2" type="text" placeholder="descriptions 2" class="form-control" />
+                                        <input name="Translations[@i].desc3" value="@desc3" type="text" placeholder="descriptions 3" class="form-control" />
                                         <input name="Translations[@i].desc4" value="@desc4" type="text" placeholder="descriptions 4" class="form-control" />
                                         <input name="Translations[@i].desc5" value="@desc5" type="text" placeholder="descriptions 5" class="form-control" />
-                                        <input name="Translations[@i].desc6" value="@desc6" type="text" placeholder="descriptions 6" class="form-control" />
                                     }
                                 </div>
 

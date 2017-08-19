@@ -1,63 +1,74 @@
 ﻿@model FirstPageSection
-  <!-- Browse Art for Sale by Style  -->
+
+@using DataLayer.Extentions
+
+@{
+    Style p1 = (Style)ViewBag.p1;
+    Style p2 = (Style)ViewBag.p2;
+    Style p3 = (Style)ViewBag.p3;
+    Style p4 = (Style)ViewBag.p4;
+    Style p5 = (Style)ViewBag.p5;
+}
+
+
 <div class="row browse-by">
     <div class="small-12 columns">
         <h2 class="section-title mb1">Browse Art for Sale by Style</h2>
     </div>
 </div>
+
 <div class="row browse-by">
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="art-collection/Painting-Collage-Printmaking/Geometric-Abstracts/685448/130245/view.html" class="flexcontainer">
+         style="background-size: cover;background-image: url('@ViewBag.pic1')">
+        <a href="/search?category=0&style=@p1.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>All About Abstract</em>
-                New Geometric Works
+                <em>@Model.Current().title</em>
+                @Model.Current().desc1
             </div>
             <button>View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-8 columns browse-item-large"
-         style="background-image: url('/Content/Images/660x300.jpg')">
-        <a href="art-collection/Painting-Photography-Drawing/Barely-There-New-Nudes/685448/127861/view.html" class="flexcontainer">
+        style="background-size:contain;background-image: url('@ViewBag.pic2')">
+        <a href="/search?category=0&style=@p2.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>The Contemporary Nude</em>
-                New Figurative Art
+                <em>@Model.Current().title2</em>
+                @Model.Current().desc2
             </div>
             <button>View Artworks</button>
         </a>
     </div>
 </div>
+
 <div class="row browse-by">
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="art-collection/Painting-Photography-Collage/Surrealism/722504/130098/view.html" class="flexcontainer">
+        style="background-size:contain;background-image: url('@ViewBag.pic3')">
+        <a href="/search?category=0&style=@p3.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>Suddenly Surreal</em>
-                Contemporary Takes on Surrealism
+                <em>@Model.Current().title3</em>
+                @Model.Current().desc3
             </div>
             <button>View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="art-collection/Painting-Drawing/New-Abstract-Expressionism/685448/130257/view.html" class="flexcontainer">
+       style="background-size:contain;background-image: url('@ViewBag.pic4')">
+        <a href="/search?category=0&style=@p4.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>Inspired by Hans Hofmann</em>
-                New Abstract Expressionism
+                <em>@Model.Current().title4</em>
+                @Model.Current().desc4
             </div>
             <button>View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="art-collection/Painting-Printmaking-Collage/Pop-Art/722504/120783/view.html" class="flexcontainer">
+       style="background-size:contain;background-image: url('@ViewBag.pic5')">
+        <a href="/search?category=0&style=@p5.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>Inspired by Warhol</em>
-                New Pop Art
+                <em>@Model.Current().title5</em>
+                @Model.Current().desc5
             </div>
             <button>View Artworks</button>
         </a>
     </div>
 </div>
-<!-- / Browse Art for Sale by Style  -->
-

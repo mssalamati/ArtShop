@@ -82,24 +82,88 @@ namespace ArtShop.Controllers
             var r3 = new Random().Next(0, count3);
             var r4 = new Random().Next(0, count4);
             var r5 = new Random().Next(0, count5);
-            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r1).First().Widephoto.Path;
-            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x=>x.CreateDate).Skip(r2).First().Sqphoto.Path;
-            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x=>x.CreateDate).Skip(r3).First().Sqphoto.Path;
-            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x=>x.CreateDate).Skip(r4).First().Sqphoto.Path;
-            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x=>x.CreateDate).Skip(r5).First().Sqphoto.Path;
+            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).Skip(r1).First().Widephoto.Path;
+            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x => x.CreateDate).Skip(r2).First().Sqphoto.Path;
+            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x => x.CreateDate).Skip(r3).First().Sqphoto.Path;
+            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x => x.CreateDate).Skip(r4).First().Sqphoto.Path;
+            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x => x.CreateDate).Skip(r5).First().Sqphoto.Path;
             // text1 , text2 , link , pic
             return PartialView(model);
         }
         public ActionResult _RecentlySold(FirstPageSection model)
         {
-            return PartialView(model);
+            var recently = db.Orders
+                .SelectMany(x => x.OrderDetails).Select(x => x.Product).Take(10).ToList();
+            return PartialView(recently);
         }
         public ActionResult _SalebyStyle(FirstPageSection model)
         {
+            var p1 = db.Styles.Find(int.Parse(model.param1)) ?? new Style();
+            var p2 = db.Styles.Find(int.Parse(model.param2)) ?? new Style();
+            var p3 = db.Styles.Find(int.Parse(model.param3)) ?? new Style();
+            var p4 = db.Styles.Find(int.Parse(model.param4)) ?? new Style();
+            var p5 = db.Styles.Find(int.Parse(model.param5)) ?? new Style();
+            ViewBag.p1 = p1;
+            ViewBag.p2 = p2;
+            ViewBag.p3 = p3;
+            ViewBag.p4 = p4;
+            ViewBag.p5 = p5;
+            var filter1 = db.Products.Where(x => x.Styles.Any(y => y.Id == p1.Id));
+            var filter2 = db.Products.Where(x => x.Styles.Any(y => y.Id == p2.Id));
+            var filter3 = db.Products.Where(x => x.Styles.Any(y => y.Id == p3.Id));
+            var filter4 = db.Products.Where(x => x.Styles.Any(y => y.Id == p4.Id));
+            var filter5 = db.Products.Where(x => x.Styles.Any(y => y.Id == p5.Id));
+            var count1 = filter1.Count();
+            var count2 = filter2.Count();
+            var count3 = filter3.Count();
+            var count4 = filter4.Count();
+            var count5 = filter5.Count();
+            var r1 = new Random().Next(0, count1);
+            var r2 = new Random().Next(0, count2);
+            var r3 = new Random().Next(0, count3);
+            var r4 = new Random().Next(0, count4);
+            var r5 = new Random().Next(0, count5);
+            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).Skip(r1).First().Widephoto.Path;
+            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x => x.CreateDate).Skip(r2).First().Sqphoto.Path;
+            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x => x.CreateDate).Skip(r3).First().Sqphoto.Path;
+            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x => x.CreateDate).Skip(r4).First().Sqphoto.Path;
+            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x => x.CreateDate).Skip(r5).First().Sqphoto.Path;
+            // text1 , text2 , link , pic
             return PartialView(model);
         }
         public ActionResult _SalebyCategory(FirstPageSection model)
         {
+            var p1 = db.Categories.Find(int.Parse(model.param1)) ?? new Category();
+            var p2 = db.Categories.Find(int.Parse(model.param2)) ?? new Category();
+            var p3 = db.Categories.Find(int.Parse(model.param3)) ?? new Category();
+            var p4 = db.Categories.Find(int.Parse(model.param4)) ?? new Category();
+            var p5 = db.Categories.Find(int.Parse(model.param5)) ?? new Category();
+            ViewBag.p1 = p1;
+            ViewBag.p2 = p2;
+            ViewBag.p3 = p3;
+            ViewBag.p4 = p4;
+            ViewBag.p5 = p5;
+            var filter1 = db.Products.Where(x => x.categoryId == p1.Id);
+            var filter2 = db.Products.Where(x => x.categoryId == p2.Id);
+            var filter3 = db.Products.Where(x => x.categoryId == p3.Id);
+            var filter4 = db.Products.Where(x => x.categoryId == p4.Id);
+            var filter5 = db.Products.Where(x => x.categoryId == p5.Id);
+            var count1 = filter1.Count();
+            var count2 = filter2.Count();
+            var count3 = filter3.Count();
+            var count4 = filter4.Count();
+            var count5 = filter5.Count();
+            var r1 = new Random().Next(0, count1);
+            var r2 = new Random().Next(0, count2);
+            var r3 = new Random().Next(0, count3);
+            var r4 = new Random().Next(0, count4);
+            var r5 = new Random().Next(0, count5);
+            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).Skip(r1).First().Widephoto.Path;
+            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x => x.CreateDate).Skip(r2).First().Sqphoto.Path;
+            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x => x.CreateDate).Skip(r3).First().Sqphoto.Path;
+            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x => x.CreateDate).Skip(r4).First().Sqphoto.Path;
+            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x => x.CreateDate).Skip(r5).First().Sqphoto.Path;
+            // text1 , text2 , link , pic
             return PartialView(model);
         }
 

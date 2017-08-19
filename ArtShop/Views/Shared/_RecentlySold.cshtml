@@ -1,245 +1,52 @@
-﻿@model FirstPageSection
-<!-- recently sold art -->
-<div class="row recently-sold">
-    <div class="small-12 medium-10 columns">
-        <h2 class="section-title">Recently Sold Artwork</h2>
-        <div class="section-details">See what's selling to collectors all over the world.</div>
+﻿@model List<Product>
+@if (Model.Count > 0)
+{
+
+    <div class="row recently-sold">
+        <div class="small-12 medium-10 columns">
+            <h2 class="section-title">Recently Sold Artwork</h2>
+            <div class="section-details">See what's selling to collectors all over the world.</div>
+        </div>
+        <div class="small-12 medium-2 columns">
+            @*<a href="recently-sold.html" class="link-see-more">See More</a>*@
+        </div>
     </div>
-    <div class="small-12 medium-2 columns">
-        <a href="recently-sold.html" class="link-see-more">See More</a>
+    <div class="row recently-sold">
+
+        <p class="alert alert-info"> </p>
+        <ul class="item-list">
+
+            @foreach (var item in Model)
+            {
+                <li class="art-item-small">
+                    <div class="list-art-image">
+                        <a href="art/Painting-Acid-Rhymes-24/80714/3449272/view.html">
+                            <img src="~/Content/Images/300x300.jpg">
+                        </a>
+                        <div class="right sold">sold</div>
+                    </div>
+                    <div class="list-art-meta">
+                        <h5 class="list-art-title ellipsis" itemprop="name">
+                            <a href="art/view.html" itemprop="url">
+                                <span itemprop="name">Acid Rhymes 24</span>
+                            </a>
+                        </h5>
+                        <h5 class="artist-name ellipsis">
+                            <a href="bzar.html">
+                                <span itemprop="name">Martin Wagstaff</span>
+                            </a>
+                        </h5>
+                        <div class="list-art-price">
+                            <div>
+                                <div itemprop="price">$310</div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            }
+
+        </ul>
     </div>
-</div>
-<div class="row recently-sold">
-    <ul class="item-list">
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Acid-Rhymes-24/80714/3449272/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Acid-Rhymes-24/80714/3449272/view.html" itemprop="url"><span itemprop="name">Acid Rhymes 24</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="bzar.html" itemprop="url"><span itemprop="name">Martin Wagstaff</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$310</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-My-polder-after-the-rain-featured/56712/3566086/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-My-polder-after-the-rain-featured/56712/3566086/view.html" itemprop="url"><span itemprop="name">My polder after the rain (featured)</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="NellyVanNieuwenhuijzen.html" itemprop="url"><span itemprop="name">Nelly van Nieuwenhuijzen</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$285</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-High-Hats/738587/3535120/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-High-Hats/738587/3535120/view.html" itemprop="url"><span itemprop="name">High Hats</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="theswedishfisch.html" itemprop="url"><span itemprop="name">Jonas Fisch</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$3,100</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Blue-roofs-pink-gladiolus-2016/56712/3028559/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Blue-roofs-pink-gladiolus-2016/56712/3028559/view.html" itemprop="url"><span itemprop="name">Blue roofs, pink gladiolus (2016)</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="NellyVanNieuwenhuijzen.html" itemprop="url"><span itemprop="name">Nelly van Nieuwenhuijzen</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$320</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Photography-Fetish-Object/919478/3225290/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Photography-Fetish-Object/919478/3225290/view.html" itemprop="url"><span itemprop="name">Fetish Object</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="sashaandruz.html" itemprop="url"><span itemprop="name">Sasha Andruz</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$785</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Everything-s-Gonna-Be/80714/3626444/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Everything-s-Gonna-Be/80714/3626444/view.html" itemprop="url"><span itemprop="name">Everything's Gonna Be</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="bzar.html" itemprop="url"><span itemprop="name">Martin Wagstaff</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$280</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Return-of-the-Fish-God/80714/3323722/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Return-of-the-Fish-God/80714/3323722/view.html" itemprop="url"><span itemprop="name">Return of the Fish God</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="bzar.html" itemprop="url"><span itemprop="name">Martin Wagstaff</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$300</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Alix-and-Euston/299118/2757987/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Alix-and-Euston/299118/2757987/view.html" itemprop="url"><span itemprop="name">Alix and Euston</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="jamesneedhamart.html" itemprop="url"><span itemprop="name">James Needham</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$4,150</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Gold-Series-III/52548/3348525/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Gold-Series-III/52548/3348525/view.html" itemprop="url"><span itemprop="name">Gold Series III</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="annamat.html" itemprop="url"><span itemprop="name">Anna Matykiewicz</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$380</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-        <li itemscope="" itemtype="http://schema.org/CreativeWork" class="art-item-small">
-            <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
-                <a href="art/Painting-Cuirassier/350454/3186217/view.html" itemprop="url">
-                    <img alt="Acid Rhymes 24" src="~/Content/Images/300x300.jpg" itemprop="contentURL" nopin="nopin">
-                </a>
-                <div class="right sold">sold</div>
-            </div>
-            <div class="list-art-meta">
-                <h5 class="list-art-title ellipsis" itemprop="name">
-                    <a href="art/Painting-Cuirassier/350454/3186217/view.html" itemprop="url"><span itemprop="name">Cuirassier</span></a>
-                </h5>
-                <h5 class="artist-name ellipsis" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                    <a href="dariopucciniart.html" itemprop="url"><span itemprop="name">DARIO PUCCINI</span></a>
-                </h5>
-                <div class="list-art-price">
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <!-- internationalization testing -->
-                        <div itemprop="price">$610</div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </li>
-    </ul>
-</div>
+
+}
