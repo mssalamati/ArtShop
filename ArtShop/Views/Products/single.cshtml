@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
 @model Product
 
 @using DataLayer.Extentions
@@ -83,7 +87,7 @@
                 <div class="small-1 columns">
                     @if (Model.user.country != null)
                     {
-                        <i class="icn-artist-location flag-@Model.user.country.Code so-quick-tip" title="United States"></i>
+                        <i class="icn-artist-location flag-@Model.user.country.Code so-quick-tip" title="@Model.user.country.Current().Name"></i>
                     }
                 </div>
                 <div class="small-11 columns">
@@ -99,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="small-12 columns breadcrumbs">
-                            <a href="#" rel="nofollow">Browse Art</a> <a href="#">Painting</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.LastName</a> @Model.Title
+                            <a href="#" rel="nofollow">Browse Art</a> <a href="#">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.LastName</a> @Model.Title
                         </div>
                     </div>
                 </div>
@@ -154,7 +158,7 @@
                         <div class="small-12 medium-6 large-12 columns art-meta">
                             <h3 itemprop="name" class="title">@Model.Title</h3>
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                <a href="#" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
+                                <a href="/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
                                 <span itemprop="nationality">United States</span>
                             </p>
                             <p class="category-size">
