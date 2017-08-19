@@ -77,8 +77,8 @@
         var y = (height - h) / 2;
         ctx.rect(x, y, w, h);
         ctx.stroke();
-        ctx.fillText("0 in", x - 40, y + (h / 2));
-        ctx.fillText("0 in", x + (w / 2), y - 20);
+        ctx.fillText("0 cm", x - 40, y + (h / 2));
+        ctx.fillText("0 cm", x + (w / 2), y - 20);
 
         function redraw(new_w, new_h) {
             if (new_w > new_h) {
@@ -93,8 +93,8 @@
             var y = (height - h) / 2;
             ctx.clearRect(0, 0, c.width, c.height);
             ctx.strokeRect(x, y, w, h);
-            ctx.fillText(new_h + " in", x - 40, y + (h / 2));
-            ctx.fillText(new_w + " in", x + (w / 2), y - 20);
+            ctx.fillText(new_h + " cm", x - 40, y + (h / 2));
+            ctx.fillText(new_w + " cm", x + (w / 2), y - 20);
         }
 
         $(".h_num").change(function () {

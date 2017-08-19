@@ -51,20 +51,13 @@
             <div class="small-12 medium-6 columns">
                 <ul class="breadcrumbs ">
                     <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">Collections</a></li>
-                    <li><a class="so-quick-tip" href="/account/collection/994144" oldtitle="My collections">My Collections</a></li>
                     <li>@ViewBag.CollectionName</li>
                 </ul>
                 
             </div>
             <div class="small-12 medium-6 columns hide-for-medium-down">
                 <ul class="breadcrumbs pull-right text-right">
-                    <li><a href="/profile/editcollection?id=@ViewBag.CollectionId" class="so-quick-tip" oldtitle="Edit Collection Details">Edit</a></li>
-                    <li>@*<a href="/collections/reorder/owner/994144/collection/192521" class="so-quick-tip" oldtitle="Reorder Images in Collection">Reorder</a>*@</li>
-                    <li>@*<a class="so-quick-tip" href="/collections/duplicate/994144/192521" oldtitle="Create your own collection from this one">Duplicate</a>*@</li>
-                    <li>@*<a class="so-quick-tip" href="#so-comment-message" oldtitle="Comment on this collection">Comment</a>*@</li>
-                    <li><a class="so-quick-tip" href="/profile/newCollection" oldtitle="Create a new collection">Create a Collection</a></li>
-
-                    <li><a onclick="return confirm('Are you sure you want to delete this collection? This cannot be undone.')" href="/profile/DeleteCollection?id=@ViewBag.CollectionId" class="delete so-quick-tip" oldtitle="Delete Collection">Delete</a></li>
+                    
                 </ul>
             </div>
         </nav>
@@ -78,7 +71,7 @@
                 <a href="/account/profile/994144"><img class="avatar" src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="@ViewBag.ProfileFullName"></a>
                 <span class="collection-info">
                     @Model.Count Artworks curated by
-                    <a href="/profile">@ViewBag.ProfileFullName</a>
+                    <a href="/publicprofile?id=@ViewBag.id">@ViewBag.ProfileFullName</a>
 
                 </span>
             </div>
@@ -118,9 +111,14 @@
                                 </h4>
                                 <small class="art-category clear left"><span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
 
+                                @{
+
+                                    var fullname = item.product.user.FirstName + " " + item.product.user.LastName;
+
+                                }
                                 <div class="list-author clear left">
                                     <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                        <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
+                                        <a href="/publicprofile?id=@item.product.user_id" class="artist-card" title="Profile page for @fullname" itemprop="url">@fullname</a>
                                     </h5>
                                     @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>*@
                                 </div>

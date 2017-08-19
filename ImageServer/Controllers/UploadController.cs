@@ -78,7 +78,7 @@ namespace ImageServer.Controllers
         [HttpPost]
         public ActionResult Resize(ResizeViewModel model)
         {
-            model = model.square_width == 0 && model.wide_width == 0 ? new ResizeViewModel()
+            model = model.square_width == 0 || model.wide_width == 0 || model.square_height == 0 || model.wide_height == 0 ? new ResizeViewModel()
             {
                 image = Request["image"],
                 wide_x = float.Parse(Request["wide_x"].Replace(".", "/")),

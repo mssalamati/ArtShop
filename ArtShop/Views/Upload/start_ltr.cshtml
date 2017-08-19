@@ -1,8 +1,7 @@
 ﻿
-
 <div class="row-layout content">
 
-    <div class="sa-hero upload-banner" style="background-image: url('//d3t95n9c6zzriw.cloudfront.net/upload-homepage/upload-hero.jpg');">
+    <div class="sa-hero upload-banner" style="background-image: url('//d3t95n9c6zzriw.cloudfront.net/upload-homepage/upload-hero.jpg');top:-20px !important">
         <ul class="orbit-ul">
             <li class="orbit-item orbit-item-1">
                 <div class="cover flexcontainer">
@@ -194,34 +193,35 @@
                                          width 300px;
                                          background-repeat no-repeat;
                                          background-image url('//d3t95n9c6zzriw.cloudfront.net/upload-homepage/upload-diptych.jpg');">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <script>
-                            // controls the angle bracket direction for accordion
-                            $(function () {
-                                $('.ui-corner-all').on('click', function () {
-                                    var icon = $(this).find('i');
+                            <script>
+                                // controls the angle bracket direction for accordion
+                                $(function () {
+                                    $('.ui-corner-all').on('click', function () {
+                                        var icon = $(this).find('i');
 
-                                    if (icon.hasClass('fa-angle-down')) {
-                                        $(icon).removeClass('fa-angle-down').addClass('fa-angle-right');
-                                    } else {
-                                        $(icon).removeClass('fa-angle-right').addClass('fa-angle-down');
-                                    }
+                                        if (icon.hasClass('fa-angle-down')) {
+                                            $(icon).removeClass('fa-angle-down').addClass('fa-angle-right');
+                                        } else {
+                                            $(icon).removeClass('fa-angle-right').addClass('fa-angle-down');
+                                        }
+                                    });
+
                                 });
-
-                            });
-                        </script>
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
     </div>
-</div>
-<!-- The global progress bar -->
-<div id="progress" class="progress progress-animated hidden">
-    <div class="progress-bar progress-bar-success"></div>
-</div>
+    <!-- The global progress bar -->
+    <div id="progress" class="progress progress-animated hidden">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
+</div>

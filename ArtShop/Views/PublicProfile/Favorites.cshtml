@@ -31,7 +31,7 @@
         Saatchi.EmailToFriend.init();
     </script>        <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
 
-        <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
+        <a href="/publicprofile?id=@ViewBag.id" title="@ViewBag.ProfileFullName's profile" itemprop="url">
             <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
             <i class="fa fa-caret-left"></i> Back to Profile
@@ -40,13 +40,13 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/profile/artworks" class="" title="link to artwork">
+        <a href="/publicprofile/artworks?id=@ViewBag.id" class="" title="link to artwork">
             <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.artworkCount)</span>
         </a>
-        <a href="/profile/collection" class="" title="link to Collections">
+        <a href="/publicprofile/collection?id=@ViewBag.id" class="" title="link to Collections">
             <i class="fa fa-th"></i> Collections <span>(@ViewBag.collectionCount)</span>
         </a>
-        <a href="/profile/favorites" class="active" title="link to Favorites">
+        <a href="/publicprofile/favorites?id=@ViewBag.id" class="active" title="link to Favorites">
             <i class="fa fa-heart"></i> Favorites <span>(@Model.Count)</span>
         </a>
     </div>
@@ -87,11 +87,15 @@
                             <h4 class="list-art-title left ellipsis" itemprop="name">
                                 <a href="/products/single/@item.productId">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
                             </h4>
-                            <small class="art-category clear left">Photography, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
+                            <small class="art-category clear left">@item.product.category, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
+                            @{
 
+                                var fullname = item.product.user.FirstName + " " + item.product.user.LastName;
+
+                             }
                             <div class="list-author clear left">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                    <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
+                                    <a href="/publicprofile?id=@item.product.user_id" class="artist-card" title="Profile page for @fullname" itemprop="url">@fullname</a>
                                 </h5>
                                 @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">@item.product.user.country.Current().Name</h5>*@
                                 </div>
@@ -100,7 +104,7 @@
                                     <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                                         <!-- internationalization testing -->
                                         <div itemprop="price">
-                                            @item.product.Price
+                                            @item.product.Price $
                                         </div>
                                     </div>
                                 </div>
