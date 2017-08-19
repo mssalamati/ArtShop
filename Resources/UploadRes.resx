@@ -154,7 +154,7 @@
     <value>Description</value>
   </data>
   <data name="descriptionnull_error" xml:space="preserve">
-    <value>Description can not be left blank</value>
+    <value>Description should be at least 50 characters long.</value>
   </data>
   <data name="Empty_Error" xml:space="preserve">
     <value> value can not be left blank</value>
