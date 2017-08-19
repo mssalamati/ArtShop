@@ -80,9 +80,9 @@
                             <input value="@Model.param3" name="param3" class="form-control" />
                         </div>
                     }
-                    else if (Model.type != "_SalebyPrice")
+                    else if (Model.type == "_SalebyPrice")
                     {
-                        <div class="form-group" id="searchparameters" hidden>
+                        <div class="form-group" id="searchparameters">
                             <label class="form-label">search link 1 </label>
                             <input value="@Model.param1" name="param1" class="form-control" />
                             <label class="form-label">search link 2 </label>
@@ -114,7 +114,7 @@
                         var desc5 = current == null ? "" : current.desc5;
                         var desc6 = current == null ? "" : current.desc6;
 
-                        @if (Model.type == "_SelectedCurators")
+                        if (Model.type == "_SelectedCurators")
                         {
                             <div class="col-md-6">
                                 <div class="form-group">

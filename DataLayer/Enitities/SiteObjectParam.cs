@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DataLayer.Enitities
 {
@@ -14,11 +15,17 @@ namespace DataLayer.Enitities
         public int Id { get; set; }
         public string type { get; set; }
         public int priority { get; set; }
+        [AllowHtml]
         public string param1 { get; set; }
+        [AllowHtml]
         public string param2 { get; set; }
+        [AllowHtml]
         public string param3 { get; set; }
+        [AllowHtml]
         public string param4 { get; set; }
+        [AllowHtml]
         public string param5 { get; set; }
+        [AllowHtml]
         public string param6 { get; set; }
         public virtual ICollection<FirstPageSectionTranslation> Translations { get; set; }
     }
