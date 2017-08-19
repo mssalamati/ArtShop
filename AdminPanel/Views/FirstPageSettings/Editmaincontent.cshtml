@@ -5,6 +5,14 @@
 
 @model FirstPageSection
 
+@helper selected(string current, int selected)
+{
+if (current == selected.ToString())
+{
+        @:selected
+    }
+}
+
 <div class="page-title">
     <div class="title">   صفحه اصلی</div>
     <ol class="breadcrumb no-bg pl0">
@@ -73,28 +81,54 @@
                     {
                         <div class="form-group" id="selectedartparams">
                             <label class="form-label">selected art 1 </label>
-                            <input value="@Model.param1" name="param1" class="form-control" />
+                            <input style="direction:ltr" value="@Model.param1" name="param1" class="form-control" />
                             <label class="form-label">selected art 2 </label>
-                            <input value="@Model.param2" name="param2" class="form-control" />
+                            <input style="direction:ltr" value="@Model.param2" name="param2" class="form-control" />
                             <label class="form-label">selected art 3 </label>
-                            <input value="@Model.param3" name="param3" class="form-control" />
+                            <input style="direction:ltr" value="@Model.param3" name="param3" class="form-control" />
                         </div>
                     }
                     else if (Model.type == "_SalebyPrice")
                     {
                         <div class="form-group" id="searchparameters">
                             <label class="form-label">search link 1 </label>
-                            <input value="@Model.param1" name="param1" class="form-control" />
+                            <select style="direction:ltr" name="param1" class="form-control">
+                                @foreach (Pricethreshold item in (List<Pricethreshold>)(ViewBag.pricelist))
+                                {
+                                    <option @selected(Model.param1, item.Id) value="@item.Id">@item.min - @item.max</option>
+                                }
+                            </select><br />
                             <label class="form-label">search link 2 </label>
-                            <input value="@Model.param2" name="param2" class="form-control" />
+                            <select style="direction:ltr" name="param2" class="form-control">
+                                @foreach (Pricethreshold item in (List<Pricethreshold>)(ViewBag.pricelist))
+                                {
+                                    <option @selected(Model.param2, item.Id) value="@item.Id">@item.min - @item.max</option>
+                                }
+                            </select><br />
                             <label class="form-label">search link 3 </label>
-                            <input value="@Model.param3" name="param3" class="form-control" />
+                            <select style="direction:ltr" name="param3" class="form-control">
+                                @foreach (Pricethreshold item in (List<Pricethreshold>)(ViewBag.pricelist))
+                                {
+                                    <option @selected(Model.param3, item.Id) value="@item.Id">@item.min - @item.max</option>
+                                }
+                            </select><br />
                             <label class="form-label">search link 4 </label>
-                            <input value="@Model.param4" name="param4" class="form-control" />
+                            <select style="direction:ltr" name="param4" class="form-control">
+                                @foreach (Pricethreshold item in (List<Pricethreshold>)(ViewBag.pricelist))
+                                {
+                                    <option @selected(Model.param4, item.Id) value="@item.Id">@item.min - @item.max</option>
+                                }
+                            </select><br />
                             <label class="form-label">search link 5 </label>
-                            <input value="@Model.param5" name="param5" class="form-control" />
+                            <select style="direction:ltr" name="param5" class="form-control">
+                                @foreach (Pricethreshold item in (List<Pricethreshold>)(ViewBag.pricelist))
+                                {
+                                    <option @selected(Model.param5, item.Id) value="@item.Id">@item.min - @item.max</option>
+                                }
+                            </select>
                         </div>
                     }
+
                     <hr />
                     @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
                     {

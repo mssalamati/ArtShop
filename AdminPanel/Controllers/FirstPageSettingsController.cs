@@ -217,6 +217,7 @@ namespace AdminPanel.Controllers
         {
             var model = db.FirstPageSections.Include("Translations").FirstOrDefault(x => x.Id == id);
             ViewBag.language = db.Languages.ToList();
+            ViewBag.pricelist = db.Pricethresholds.Include("Translations").ToList();
             return View(model);
         }
         [HttpPost]
