@@ -178,7 +178,7 @@ namespace ArtShop.Controllers
             userProfile.billingInfo.Region = model.Region;
             userProfile.billingInfo.ZipCode = model.ZipCode;
             userProfile.billingInfo.PhoneNumber = model.PhoneNumber;
-
+           
             db.SaveChanges();
             ViewBag.country = CashManager.Instance.Countries.FirstOrDefault(a => a.Key == model.CountryId).Value;
 
@@ -193,6 +193,22 @@ namespace ArtShop.Controllers
             ViewBag.profileType = userProfile.profileType;
 
             return View();
+        }
+
+        public ActionResult UploadID(HttpPostedFileBase Image)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            
+            string tempFolderName = "Upload/goverment-ids";
+            var result = ImageHelper.Saveimage(Server, Image, tempFolderName, ImageHelper.saveImageMode.Not);
+            if (result.ResultStatus)
+            {
+                userProfile.GovermentIdPath = result.FullPath;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index", "profile");
         }
     }
 

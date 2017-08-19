@@ -21,6 +21,9 @@ namespace DataLayer.Enitities
         public int? countryId { get; set; }
         public virtual Country country { get; set; }
         public virtual string City { get; set; }
+        public virtual string GovermentIdPath { get; set; }
+        public virtual bool isIDConfirmed { get; set; }
+        public virtual string IdConfirmedBy { get; set; }
         public virtual string Region { get; set; }
         public virtual string ZipCode { get; set; }
         public bool MailingList { get; set; }
