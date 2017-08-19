@@ -48,25 +48,25 @@
          style="background-image: url('@ViewBag.pic2')">
         <a href="all5a36.html?price=500-1000" class="flexcontainer">
             <!-- internationalization test -->
-            @if (p1.min.HasValue && p1.max.HasValue)
+            @if (p2.min.HasValue && p2.max.HasValue)
             {
                 <div>
                     <em>Artworks</em>
-                    $@p1.min.Value &mdash; $@p1.max.Value
+                    $@p2.min.Value &mdash; $@p2.max.Value
                 </div>
             }
-            else if (!p1.min.HasValue && p1.max.HasValue)
+            else if (!p2.min.HasValue && p2.max.HasValue)
             {
                 <div>
                     <em>Artworks up to</em>
-                    $@p1.max.Value
+                    $@p2.max.Value
                 </div>
             }
             else
             {
                 <div>
                     <em>Artworks from</em>
-                    $@p1.min.Value
+                    $@p2.min.Value
                 </div>
             }
             <button onclick="document.location.href = '/search?category=0&style=0&subject=0&medium=0&price=@p2.Id'">View Artworks</button>
@@ -75,84 +75,84 @@
 </div>
 <div class="row browse-by">
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('@ViewBag.pic2')">
+         style="background-image: url('@ViewBag.pic3')">
         <a href="all6d74.html?price=1000-2000" class="flexcontainer">
             <!-- internationalization test -->
-            @if (p1.min.HasValue && p1.max.HasValue)
+            @if (p3.min.HasValue && p3.max.HasValue)
             {
                 <div>
                     <em>Artworks</em>
-                    $@p1.min.Value &mdash; $@p1.max.Value
+                    $@p3.min.Value &mdash; $@p3.max.Value
                 </div>
             }
-            else if (!p1.min.HasValue && p1.max.HasValue)
+            else if (!p3.min.HasValue && p3.max.HasValue)
             {
                 <div>
                     <em>Artworks up to</em>
-                    $@p1.max.Value
+                    $@p3.max.Value
                 </div>
             }
             else
             {
                 <div>
                     <em>Artworks from</em>
-                    $@p1.min.Value
+                    $@p3.min.Value
                 </div>
             }
             <button onclick="document.location.href = '/search?category=0&style=0&subject=0&medium=0&price=@p3.Id'">View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('@ViewBag.pic2')">
+         style="background-image: url('@ViewBag.pic4')">
         <a href="all8c86.html?price=2000-5000" class="flexcontainer">
             <!-- internationalization test -->
-            @if (p1.min.HasValue && p1.max.HasValue)
+            @if (p4.min.HasValue && p4.max.HasValue)
             {
                 <div>
                     <em>Artworks</em>
-                    $@p1.min.Value &mdash; $@p1.max.Value
+                    $@p4.min.Value &mdash; $@p4.max.Value
                 </div>
             }
-            else if (!p1.min.HasValue && p1.max.HasValue)
+            else if (!p4.min.HasValue && p4.max.HasValue)
             {
                 <div>
                     <em>Artworks up to</em>
-                    $@p1.max.Value
+                    $@p4.max.Value
                 </div>
             }
             else
             {
                 <div>
                     <em>Artworks from</em>
-                    $@p1.min.Value
+                    $@p4.min.Value
                 </div>
             }
             <button onclick="document.location.href = '/search?category=0&style=0&subject=0&medium=0&price=@p4.Id'">View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('@ViewBag.pic2')">
+         style="background-image: url('@ViewBag.pic5')">
         <a href="all606b.html?price=5000-10000" class="flexcontainer">
             <!-- internationalization test -->
-            @if (p1.min.HasValue && p1.max.HasValue)
+            @if (p5.min.HasValue && p5.max.HasValue)
             {
                 <div>
                     <em>Artworks</em>
-                    $@p1.min.Value &mdash; $@p1.max.Value
+                    $@p5.min.Value &mdash; $@p5.max.Value
                 </div>
             }
-            else if (!p1.min.HasValue && p1.max.HasValue)
+            else if (!p5.min.HasValue && p5.max.HasValue)
             {
                 <div>
                     <em>Artworks up to</em>
-                    $@p1.max.Value
+                    $@p5.max.Value
                 </div>
             }
             else
             {
                 <div>
                     <em>Artworks from</em>
-                    $@p1.min.Value
+                    $@p5.min.Value
                 </div>
             }
             <button onclick="document.location.href = '/search?category=0&style=0&subject=0&medium=0&price=@p5.Id'">View Artworks</button>
