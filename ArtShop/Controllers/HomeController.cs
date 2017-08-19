@@ -57,6 +57,37 @@ namespace ArtShop.Controllers
         }
         public ActionResult _SalebyPrice(FirstPageSection model)
         {
+            var p1 = db.Pricethresholds.Find(int.Parse(model.param1)) ?? new Pricethreshold();
+            var p2 = db.Pricethresholds.Find(int.Parse(model.param2)) ?? new Pricethreshold();
+            var p3 = db.Pricethresholds.Find(int.Parse(model.param3)) ?? new Pricethreshold();
+            var p4 = db.Pricethresholds.Find(int.Parse(model.param4)) ?? new Pricethreshold();
+            var p5 = db.Pricethresholds.Find(int.Parse(model.param5)) ?? new Pricethreshold();
+            ViewBag.p1 = p1;
+            ViewBag.p2 = p2;
+            ViewBag.p3 = p3;
+            ViewBag.p4 = p4;
+            ViewBag.p5 = p5;
+            var filter1 = db.Products.Where(x => (!p1.min.HasValue || p1.min.Value < x.Price) && (!p1.max.HasValue || p1.max.Value > x.Price));
+            var filter2 = db.Products.Where(x => (!p2.min.HasValue || p2.min.Value < x.Price) && (!p2.max.HasValue || p2.max.Value > x.Price));
+            var filter3 = db.Products.Where(x => (!p3.min.HasValue || p3.min.Value < x.Price) && (!p3.max.HasValue || p3.max.Value > x.Price));
+            var filter4 = db.Products.Where(x => (!p4.min.HasValue || p4.min.Value < x.Price) && (!p4.max.HasValue || p4.max.Value > x.Price));
+            var filter5 = db.Products.Where(x => (!p5.min.HasValue || p5.min.Value < x.Price) && (!p5.max.HasValue || p5.max.Value > x.Price));
+            var count1 = filter1.Count();
+            var count2 = filter2.Count();
+            var count3 = filter3.Count();
+            var count4 = filter4.Count();
+            var count5 = filter5.Count();
+            var r1 = new Random().Next(0, count1);
+            var r2 = new Random().Next(0, count2);
+            var r3 = new Random().Next(0, count3);
+            var r4 = new Random().Next(0, count4);
+            var r5 = new Random().Next(0, count5);
+            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r1).First().Widephoto.Path;
+            ViewBag.pic2 = count2 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r2).First().Sqphoto.Path;
+            ViewBag.pic3 = count3 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r3).First().Sqphoto.Path;
+            ViewBag.pic4 = count4 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r4).First().Sqphoto.Path;
+            ViewBag.pic5 = count5 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).OrderBy(x=>x.CreateDate).Skip(r5).First().Sqphoto.Path;
+            // text1 , text2 , link , pic
             return PartialView(model);
         }
         public ActionResult _RecentlySold(FirstPageSection model)
