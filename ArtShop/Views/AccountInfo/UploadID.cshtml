@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "UploadID";
+}
+<div class="row-layout content">
+    <div class="guide-block">
+        <h1>Agreement</h1>
+        <fieldset id="so-seller-identification">
+            <legend>Seller Verification</legend>
+            <p>
+                In order to prevent fraud and protect our artists and buyers we must receive a copy of a government issued
+                photo ID (i.e. passport or drivers license) before your work can be displayed for sale. You may black out
+                your ID number.
+            </p>
+
+            <p>
+                Rest assured that we will protect the image that you send us. Your ID file is encrypted from the time that it
+                leaves your computer. It is stored in an encrypted state on our servers and can only be viewed by our
+                administrative team.
+            </p>
+
+            <p>For more information, please read our <a href="/privacy">Privacy Policy</a>.</p>
+            <form id="upload-id" enctype="multipart/form-data" action="/accounts/upload-id" method="post">
+                <dl class="zend_form">
+                    <dt id="id-label"><label for="id" class="required">File size must be less than 2MB.</label></dt>
+                    <dd id="id-element">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="16777216" id="MAX_FILE_SIZE">
+                        <input type="file" name="id" id="id">
+                    </dd>
+                    <input type="hidden" name="url" value="" id="url">
+                    <dt id="photo_id_name-label"><label for="photo_id_name" class="optional">If you operate under a different name than what is on your government issued ID, enter your LEGAL name below. We won't make this information public.</label></dt>
+                    <dd id="photo_id_name-element">
+                        <input type="text" name="photo_id_name" id="photo_id_name" value="" placeholder="Enter Legal Name">
+                    </dd>
+
+                    <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-inverse">
+                </dl>
+            </form>
+        </fieldset>
+    </div>        <div class="clearfix"></div>
+</div>

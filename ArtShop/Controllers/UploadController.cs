@@ -271,7 +271,7 @@ namespace ArtShop.Controllers
                 ViewBag.error = Resources.UploadRes.titleNull_error;
                 return PartialView();
             }
-            if (string.IsNullOrEmpty(model.Description) && model.Description.Length >= 50)
+            if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 50)
             {
                 ViewBag.error = Resources.UploadRes.descriptionnull_error;
                 return PartialView();
