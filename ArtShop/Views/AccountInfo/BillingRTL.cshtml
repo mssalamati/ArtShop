@@ -1,5 +1,5 @@
-﻿
-@model BillingInfo
+﻿@model BillingInfo
+@using DataLayer.Extentions
 @{
     ViewBag.Title = "Billing";
 }
@@ -90,7 +90,14 @@
                         <select name="CountryId" id="CountryId">
                             @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                             {
-                                <option value="@item.Key">@item.Value</option>
+                                if (item.Value == ViewBag.country)
+                                {
+                                    <option value="@item.Key" selected="selected">@item.Value</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Key">@item.Value</option>
+                                }
                             }
                             @*<option value=""></option>
                                 <option value="US">United States</option>

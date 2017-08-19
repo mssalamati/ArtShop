@@ -478,6 +478,7 @@
     <Content Include="Views\PublicProfile\Favorites.cshtml" />
     <Content Include="Views\PublicProfile\Index.cshtml" />
     <Content Include="Views\PublicProfile\IndexRTL.cshtml" />
+    <Content Include="Views\Upload\indexStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

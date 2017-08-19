@@ -8,6 +8,8 @@ using ArtShop.Models;
 using System.Threading.Tasks;
 using DataLayer.Enitities;
 using Utilities;
+using DataLayer.Extentions;
+using ArtShop.Util;
 
 namespace ArtShop.Controllers
 {
@@ -95,13 +97,13 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
             userProfile.userLinks = new UserLink();
             userProfile.personalInformation = new PersonalInformation();
-            userProfile.userLinks.Facebook = model.Facebook.Contains("http") ? model.Facebook : "https://"+model.Facebook;
-            userProfile.userLinks.Twitter = model.Twitter.Contains("http") ? model.Twitter : "https://" + model.Twitter;
-            userProfile.userLinks.Pinterest = model.Pinterest.Contains("http") ? model.Pinterest : "https://" + model.Pinterest;
-            userProfile.userLinks.Tumblr = model.Tumblr.Contains("http") ? model.Tumblr : "https://" + model.Tumblr;
-            userProfile.userLinks.Instagram = model.Instagram.Contains("http") ? model.Instagram : "https://" + model.Instagram;
-            userProfile.userLinks.GooglePlus = model.GooglePlus.Contains("http") ? model.GooglePlus : "https://" + model.GooglePlus;
-            userProfile.userLinks.Website = model.Website.Contains("http") ? model.Website : "http://" + model.Website;
+            userProfile.userLinks.Facebook = model.Facebook != null ? (model.Facebook.Contains("http") ? model.Facebook : "https://" + model.Facebook) : model.Facebook;
+            userProfile.userLinks.Twitter = model.Twitter != null ? (model.Twitter.Contains("http") ? model.Twitter : "https://" + model.Twitter) : model.Twitter;
+            userProfile.userLinks.Pinterest = model.Pinterest != null ? (model.Pinterest.Contains("http") ? model.Pinterest : "https://" + model.Pinterest) : model.Pinterest;
+            userProfile.userLinks.Tumblr = model.Tumblr != null ? (model.Tumblr.Contains("http") ? model.Tumblr : "https://" + model.Tumblr) : model.Tumblr;
+            userProfile.userLinks.Instagram = model.Instagram != null ? (model.Instagram.Contains("http") ? model.Instagram : "https://" + model.Instagram) : model.Instagram;
+            userProfile.userLinks.GooglePlus = model.GooglePlus != null ? (model.GooglePlus.Contains("http") ? model.GooglePlus : "https://" + model.GooglePlus) : model.GooglePlus;
+            userProfile.userLinks.Website = model.Website != null ? (model.Website.Contains("http") ? model.Website : "http://" + model.Website) : model.Website;
             userProfile.personalInformation.AboutMe = model.AboutMe;
             userProfile.personalInformation.Education = model.Education;
             userProfile.personalInformation.Events = model.Events;
@@ -141,7 +143,7 @@ namespace ArtShop.Controllers
                 userProfile.PhotoPath = result.FullPath;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index","profile");
+            return RedirectToAction("Index", "profile");
         }
 
         public ActionResult Billing()
@@ -150,6 +152,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
+            ViewBag.country = userProfile.billingInfo.country.Current().Name;
             if (userProfile.billingInfo != null)
             {
                 return View(userProfile.billingInfo);
@@ -168,15 +171,16 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
 
             userProfile.billingInfo = new BillingInfo();
-            userProfile.billingInfo.CountryId= model.CountryId;
+            userProfile.billingInfo.CountryId = model.CountryId;
             userProfile.billingInfo.Street = model.Street;
             userProfile.billingInfo.Unit = model.Unit;
             userProfile.billingInfo.City = model.City;
             userProfile.billingInfo.Region = model.Region;
             userProfile.billingInfo.ZipCode = model.ZipCode;
             userProfile.billingInfo.PhoneNumber = model.PhoneNumber;
-            
+
             db.SaveChanges();
+            ViewBag.country = CashManager.Instance.Countries.FirstOrDefault(a => a.Key == model.CountryId).Value;
 
             return View(model);
         }
@@ -187,7 +191,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-       
+
             return View();
         }
     }

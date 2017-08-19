@@ -30,7 +30,7 @@
                 <div class="artist-manage-artworks" style="float:left">
                     <a href="/account/manage-art" class="" title="Manage Artworks" itemprop="url">@ProfileRes.Manage_artworks</a>
                     <span class="profie-link-upload-divider"> | </span>
-                    <a href="/upload/index" class="">@ProfileRes.Upload_art</a>
+                    <a href="/upload/review" class="">@ProfileRes.Upload_art</a>
                 </div>
             </div>
             <div class="small-7 medium-6 large-8 columns" >
@@ -202,7 +202,7 @@
             @if (Model.artworkCount == 0)
             {
             <div class="upload-art small-12 columns">
-                <a href="/upload/index" title="Upload Art" class="profile-new-upload-art">
+                <a href="/upload/review" title="Upload Art" class="profile-new-upload-art">
                     <i class="fa fa-upload icn-bg" style="display:inline-table"></i>
                     <span style="display:block">@ProfileRes.Upload_art</span>
                 </a>

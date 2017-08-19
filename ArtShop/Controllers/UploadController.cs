@@ -146,7 +146,7 @@ namespace ArtShop.Controllers
         [HttpPost]
         public async Task<ActionResult> Setep4(UploadViewModel.step4 model)
         {
-            model = model.square_width == 0 && model.wide_width == 0 ? new UploadViewModel.step4()
+            model = model.square_width == 0 || model.wide_width == 0 || model.square_height == 0 || model.wide_height == 0 ? new UploadViewModel.step4()
             {
                 wide_x = float.Parse(Request["wide_x"].Replace(".", "/")),
                 wide_height = float.Parse(Request["wide_height"].Replace(".", "/")),
@@ -224,6 +224,10 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep6(UploadViewModel.step6 model)
         {
+            model.Height = float.Parse(Request["Height"].Replace(".", "/"));
+            model.Width = float.Parse(Request["Width"].Replace(".", "/"));
+            model.Depth = float.Parse(Request["Depth"].Replace(".", "/"));
+
             if (model.Height == 0)
             {
                 ViewBag.error = Resources.UploadRes.zeroHeight_error;
@@ -239,6 +243,10 @@ namespace ArtShop.Controllers
                 ViewBag.error = Resources.UploadRes.zeroDepth_error;
                 return PartialView();
             }
+
+    
+
+
 
             Session["Height"] = model.Height;
             Session["Width"] = model.Width;
@@ -296,18 +304,33 @@ namespace ArtShop.Controllers
 
         public ActionResult Setep9()
         {
-            return PartialView();
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+
+            UploadViewModel.step9 model = new UploadViewModel.step9();
+            if (userProfile.billingInfo != null)
+            {
+                model.Street_Address = userProfile.billingInfo.Street;
+                model.City = userProfile.billingInfo.City;
+                model.Country = userProfile.billingInfo.country.Current().Name;
+                model.Region = userProfile.billingInfo.Region;
+                model.Zip_code = userProfile.billingInfo.ZipCode;
+                model.phoneNumber = userProfile.billingInfo.PhoneNumber;
+            }
+
+            return PartialView(model);
         }
         [HttpPost]
         public ActionResult Setep9(UploadViewModel.step9 model)
         {
 
-            if (string.IsNullOrEmpty(model.Street_Address) || string.IsNullOrEmpty(model.Address_2) || string.IsNullOrEmpty(model.City)
+            if (string.IsNullOrEmpty(model.Street_Address) || string.IsNullOrEmpty(model.City)
                 || string.IsNullOrEmpty(model.Country) || string.IsNullOrEmpty(model.Region) || string.IsNullOrEmpty(model.Zip_code) ||
                 string.IsNullOrEmpty(model.phoneNumber))
             {
                 ViewBag.error = Resources.UploadRes.Empty_Error;
-                return PartialView();
+                return PartialView(model);
             }
 
             Session["weight"] = model.weight;

@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="~/Content/main-1497066374081.css" />*@
 
     <link rel="stylesheet" href="~/Content/jquery.toast.min.css" />
-
+    <link rel="stylesheet" href="~/Content/js/upload/css/jquery.fileupload-ui.css" />
+    <link rel="stylesheet" href="~/Content/js/upload/css/jquery.fileupload.css" />
     @Styles.Render("~/Content/scss")
 
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -78,6 +79,11 @@
         {
             c = "upload start";
         }
+    }
+    else if (c == "upload")
+    {
+
+        c = "upload start";
     }
     else if (c == "pages")
     {
