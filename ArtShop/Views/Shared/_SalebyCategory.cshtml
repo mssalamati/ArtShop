@@ -5,59 +5,58 @@
         <h2 class="section-title mb1">Browse Art for Sale by Category</h2>
     </div>
 </div>
+
+
 <div class="row browse-by">
-    <div class="small-12 medium-8 columns browse-item-large"
-          style="background-image: url('/Content/Images/660x300.jpg')">
-        <a href="/search/" class="flexcontainer">
+    <div class="small-12 medium-4 columns browse-item"
+         style="background-size: cover;background-image: url('@ViewBag.pic1')">
+        <a href="/search?category=0&style=@p1.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>Different Strokes</em>
-                Contemporary Paintings
+                <em>@Model.Current().title</em>
+                @Model.Current().desc1
             </div>
             <button>View Artworks</button>
         </a>
     </div>
-    <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="/search/" class="flexcontainer">
+    <div class="small-12 medium-8 columns browse-item-large"
+         style="background-size:contain;background-image: url('@ViewBag.pic2')">
+        <a href="/search?category=0&style=@p2.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>A Fine Line</em>
-                Contemporary Drawings
+                <em>@Model.Current().title2</em>
+                @Model.Current().desc2
             </div>
             <button>View Artworks</button>
         </a>
     </div>
 </div>
-<!-- / Browse Art for Sale by Category  -->
+
 <div class="row browse-by">
     <div class="small-12 medium-4 columns browse-item"
-         style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="/search/" class="flexcontainer">
+         style="background-size:contain;background-image: url('@ViewBag.pic3')">
+        <a href="/search?category=0&style=@p3.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>New Shoots</em>
-                Contemporary
-                Photography
+                <em>@Model.Current().title3</em>
+                @Model.Current().desc3
             </div>
             <button>View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-4 columns browse-item"
-           style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="/search/" class="flexcontainer">
+         style="background-size:contain;background-image: url('@ViewBag.pic4')">
+        <a href="/search?category=0&style=@p4.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>New On the Block</em>
-                Contemporary
-                Sculpture
+                <em>@Model.Current().title4</em>
+                @Model.Current().desc4
             </div>
             <button>View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-4 columns browse-item"
-           style="background-image: url('/Content/Images/300x300.jpg')">
-        <a href="/search/" class="flexcontainer">
+         style="background-size:contain;background-image: url('@ViewBag.pic5')">
+        <a href="/search?category=0&style=@p5.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>Paper Goods</em>
-                Contemporary
-                Collage
+                <em>@Model.Current().title5</em>
+                @Model.Current().desc5
             </div>
             <button>View Artworks</button>
         </a>
