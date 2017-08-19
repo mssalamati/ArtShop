@@ -177,6 +177,24 @@
   <data name="Google_plus" xml:space="preserve">
     <value>گوگل پلاس</value>
   </data>
+  <data name="GovermentID_p1" xml:space="preserve">
+    <value>قبل از اینکه کار شما برای فروش نمایش داده شود برای جلوگیری از تقلب و محافظت از هنرمندان و خریداران باید یک کپی از کارت ملی شما را دریافت کنیم</value>
+  </data>
+  <data name="GovermentID_p2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GovermentID_p3" xml:space="preserve">
+    <value>برای اطلاعات بیشتر لطفا</value>
+  </data>
+  <data name="GovermentID_p3_continue" xml:space="preserve">
+    <value>را مطالعه کنید</value>
+  </data>
+  <data name="GovermentID_privacyPolicy" xml:space="preserve">
+    <value>قوانین و مقررات</value>
+  </data>
+  <data name="GovermentID_title" xml:space="preserve">
+    <value>توافق</value>
+  </data>
   <data name="Identification_header" xml:space="preserve">
     <value>نشانی/ محل اثر انتخاب شده</value>
   </data>

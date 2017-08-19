@@ -195,6 +195,14 @@ namespace ArtShop.Controllers
             return View();
         }
 
+        public ActionResult UploadID()
+        {
+           
+
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult UploadID(HttpPostedFileBase Image)
         {
             var userId = User.Identity.GetUserId();

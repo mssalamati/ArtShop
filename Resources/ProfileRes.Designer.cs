@@ -241,6 +241,55 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In order to prevent fraud and protect our artists and buyers we must receive a copy of a government issued
+        ///                photo ID (i.e. passport or drivers license) before your work can be displayed for sale. You may black out
+        ///                your ID number..
+        /// </summary>
+        public static string GovermentID_p1 {
+            get {
+                return ResourceManager.GetString("GovermentID_p1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rest assured that we will protect the image that you send us. Your ID file is encrypted from the time that it
+        ///                leaves your computer. It is stored in an encrypted state on our servers and can only be viewed by our
+        ///                administrative team..
+        /// </summary>
+        public static string GovermentID_p2 {
+            get {
+                return ResourceManager.GetString("GovermentID_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For more information, please read our.
+        /// </summary>
+        public static string GovermentID_p3 {
+            get {
+                return ResourceManager.GetString("GovermentID_p3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy Policy.
+        /// </summary>
+        public static string GovermentID_privacyPolicy {
+            get {
+                return ResourceManager.GetString("GovermentID_privacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agreement.
+        /// </summary>
+        public static string GovermentID_title {
+            get {
+                return ResourceManager.GetString("GovermentID_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artwork Pick Up Address.
         /// </summary>
         public static string Identification_header {
