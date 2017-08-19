@@ -83,10 +83,10 @@ namespace ArtShop.Controllers
             var r4 = new Random().Next(0, count4);
             var r5 = new Random().Next(0, count5);
             ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r1).First().Widephoto.Path;
-            ViewBag.pic2 = count2 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r2).First().Sqphoto.Path;
-            ViewBag.pic3 = count3 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r3).First().Sqphoto.Path;
-            ViewBag.pic4 = count4 == 0 ? "" : filter1.OrderBy(x=>x.CreateDate).Skip(r4).First().Sqphoto.Path;
-            ViewBag.pic5 = count5 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).OrderBy(x=>x.CreateDate).Skip(r5).First().Sqphoto.Path;
+            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x=>x.CreateDate).Skip(r2).First().Sqphoto.Path;
+            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x=>x.CreateDate).Skip(r3).First().Sqphoto.Path;
+            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x=>x.CreateDate).Skip(r4).First().Sqphoto.Path;
+            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x=>x.CreateDate).Skip(r5).First().Sqphoto.Path;
             // text1 , text2 , link , pic
             return PartialView(model);
         }
