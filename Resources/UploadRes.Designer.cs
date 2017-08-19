@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description can not be left blank.
+        ///   Looks up a localized string similar to Description should be at least 50 characters long..
         /// </summary>
         public static string descriptionnull_error {
             get {

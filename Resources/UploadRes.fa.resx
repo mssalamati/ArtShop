@@ -154,7 +154,7 @@
     <value>توضیحات</value>
   </data>
   <data name="descriptionnull_error" xml:space="preserve">
-    <value>توضیحات نمی تواند خالی باشد.</value>
+    <value>.توضیحات حداقل می بایست 50 حرف باشد</value>
   </data>
   <data name="Empty_Error" xml:space="preserve">
     <value>مقدار نمیتواند خالی باشد.</value>
