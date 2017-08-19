@@ -230,46 +230,47 @@ namespace AdminPanel.Controllers
             finder.param4 = model.param4;
             finder.param5 = model.param5;
             finder.param6 = model.param6;
-            foreach (var item in model.Translations)
-            {
-                var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
-                if (curr != null)
+            if (model.Translations != null)
+                foreach (var item in model.Translations)
                 {
-                    curr.title = item.title;
-                    curr.title2 = item.title2;
-                    curr.title3 = item.title3;
-                    curr.title4 = item.title4;
-                    curr.title5 = item.title5;
-                    curr.title6 = item.title6;
-
-                    curr.desc1 = item.desc1;
-                    curr.desc2 = item.desc2;
-                    curr.desc3 = item.desc3;
-                    curr.desc4 = item.desc4;
-                    curr.desc5 = item.desc5;
-                    curr.desc6 = item.desc6;
-                }
-                else
-                {
-                    finder.Translations.Add(new FirstPageSectionTranslation()
+                    var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
+                    if (curr != null)
                     {
-                        languageId = item.languageId,
-                        title = item.title,
-                        title2 = item.title2,
-                        title3 = item.title3,
-                        title4 = item.title4,
-                        title5 = item.title5,
-                        title6 = item.title6,
+                        curr.title = item.title;
+                        curr.title2 = item.title2;
+                        curr.title3 = item.title3;
+                        curr.title4 = item.title4;
+                        curr.title5 = item.title5;
+                        curr.title6 = item.title6;
 
-                        desc1 = item.desc1,
-                        desc2 = item.desc2,
-                        desc3 = item.desc3,
-                        desc4 = item.desc4,
-                        desc5 = item.desc5,
-                        desc6 = item.desc6,
-                    });
+                        curr.desc1 = item.desc1;
+                        curr.desc2 = item.desc2;
+                        curr.desc3 = item.desc3;
+                        curr.desc4 = item.desc4;
+                        curr.desc5 = item.desc5;
+                        curr.desc6 = item.desc6;
+                    }
+                    else
+                    {
+                        finder.Translations.Add(new FirstPageSectionTranslation()
+                        {
+                            languageId = item.languageId,
+                            title = item.title,
+                            title2 = item.title2,
+                            title3 = item.title3,
+                            title4 = item.title4,
+                            title5 = item.title5,
+                            title6 = item.title6,
+
+                            desc1 = item.desc1,
+                            desc2 = item.desc2,
+                            desc3 = item.desc3,
+                            desc4 = item.desc4,
+                            desc5 = item.desc5,
+                            desc6 = item.desc6,
+                        });
+                    }
                 }
-            }
 
             try
             {
