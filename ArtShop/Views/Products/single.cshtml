@@ -1,6 +1,6 @@
 ﻿@{
     var IsRighToLeft = CultureHelper.IsRighToLeft();
-    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right;text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
 }
 @model Product
@@ -147,10 +147,10 @@
                 <div class="small-12 large-4 columns art-detail-description" style="background: rgba(0, 0, 0, 0.51);color:white;">
                     <div id="productTabs" class="row tab-two">
                         <div id="orginalTabTitle" class="small-6 columns active">
-                            <a onclick="changetab(0);" class="tab-original" title="Original">Original</a>
+                            <a onclick="changetab(0);" class="tab-original" title="Original">@SearchRes.Orginal</a>
                         </div>
                         <div id="printTabTitle" class="small-6 columns">
-                            <a onclick="changetab(1);" class="tab-prints" title="Prints">Prints</a>
+                            <a onclick="changetab(1);" class="tab-prints" title="Prints">@SearchRes.Prints</a>
                         </div>
                     </div>
 
@@ -159,24 +159,24 @@
                             <h3 itemprop="name" class="title">@Model.Title</h3>
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
                                 <a href="/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
-                                <span itemprop="nationality">United States</span>
+                                <span itemprop="nationality">@Model.user.country.Current().Name</span>
                             </p>
-                            <p class="category-size">
-                                Painting<br>
-                                Size: <span>@Model.Height  H</span> x <span> @Model.Width  W</span> x <span> @Model.Depth </span> in
+                            <p class="category-size" style="@rtldirection">
+                                @Model.category.Current().Name<br>
+                                @SearchRes.Size: <span>@Model.Height  H</span> x <span> @Model.Width  W</span> x <span> @Model.Depth </span> @UploadRes.inches
                             </p>
-                            <p class="packaging-info">
-                                Ships in a crate
+                            <p class="packaging-info" style="@rtldirection">
+                                Ships in a ---
                             </p>
                         </div>
                     </div>
                     <div id="original" class="row art-detail-original">
                         <div class="small-12 medium-6 large-12 columns">
 
-                            <div class="art-detail__value-props">
-                                <div><i class="fa fa-check" aria-hidden="true"></i> Shipping included</div>
+                            <div class="art-detail__value-props" style="@rtldirection">
+                                <div><i class="fa fa-check" aria-hidden="true"></i> @SearchRes.Shipping_included</div>
                                 <div>
-                                    <i class="fa fa-check" aria-hidden="true"></i> 7-day money back guarantee
+                                    <i class="fa fa-check" aria-hidden="true"></i> @SearchRes.Money_back
                                 </div>
                                 @*<div>
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -192,7 +192,7 @@
                                     <span class="price" itemprop="price">
                                         $@Model.Price
                                     </span>
-                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">Add&nbsp;to&nbsp;Cart</a>
+                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">@SearchRes.Add_to_Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -202,12 +202,11 @@
                         <div class="small-12 medium-6 large-12 columns">
 
                             <div class="buy-prints">
-                                <h4>
-                                    Open Edition<sup>
-                                    </sup> Prints Available:
+                                <h4 style="@rtldirection">
+                                   @SearchRes.Product_print_header
                                 </h4>
-                                <div>
-                                    <h5>1. Select a Material</h5>
+                                <div style="@rtlstl">
+                                    <h5 style="@rtlstl">1. @SearchRes.Select_material</h5>
                                     <select id="selectMaterial" class="print-options" style="background:white">
                                         <option value="">Choose from List</option>
                                         @foreach (var item in ArtShop.Util.CashManager.Instance.PrintMaterial)
@@ -219,8 +218,8 @@
                                 <div class="photo-print hidden">
                                 </div>
                                 <div class="rag-print hidden">
-                                    <div>
-                                        <h5>2. Select a Size</h5>
+                                    <div >
+                                        <h5 style="@rtlstl">2. @SearchRes.Select_size</h5>
                                         <select id="rag-selectSize" style="background:white" class="print-options product-select">
                                             <option value="" data-width="" data-height="">Choose from List</option>
                                             @*<option value="1" data-price="" data-width="14" data-height="21" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>14 x 21</option>
@@ -237,8 +236,8 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="select-frame hidden">
-                                    <h5>3. Add a Frame</h5>
+                                <div class="select-frame hidden" style="@rtlstl">
+                                    <h5 style="@rtlstl">3. @SearchRes.Add_frame</h5>
                                     <select id="selectFrame" class="print-options" style="background:white">
                                         <option value="">Choose from List</option>
                                     </select>
@@ -247,9 +246,9 @@
 
                                 <div class="art-detail__value-props">
 
-                                    <div>
-                                        <i class="fa fa-check" aria-hidden="true"></i> 7-day money back guarantee
-                                        <a href="https://support.saatchiart.com/hc/en-us/sections/200720108" data-color="blue" class="so-more-tip"
+                                    <div style="@rtldirection">
+                                        <i class="fa fa-check" aria-hidden="true"></i> @SearchRes.Money_back
+                                        <a href="#" data-color="blue" class="so-more-tip"
                                            onclick="window.open($(this).attr('href'), '_blank');" rel="nofollow"><i class="fa fa-info-circle"></i></a>
                                         <span style="display:none;">
                                             <span class="float-left-margin">
@@ -278,7 +277,7 @@
                                                 -
                                             </span>
                                         </span>
-                                        <a class="so-art-buy btn btn-success pull-right disabled" data-type="" style="color: #fff;">Add To Cart</a>
+                                        <a class="so-art-buy btn btn-success pull-right disabled" data-type="" style="color: #fff;">@SearchRes.Add_to_Cart</a>
                                     </div>
                                 </div>
                             </div>
@@ -307,12 +306,12 @@
             <section itemprop="description" class="description">
                 <div class="row">
                     <div class="small-12 columns">
-                        <h3 class="section-title">@SearchRes.Art_description</h3>
+                        <h3 style="@rtldirection" class="section-title">@SearchRes.Art_description</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="small-12 columns">
-                        <p>
+                        <p style="@rtldirection">
                             @Model.category.Current().Name:
                             <span>
                                 @{bool first = true;int count = 0; }
@@ -360,10 +359,10 @@
                             }
                             </span>.
                         </p>
-                        <p>
+                        <p style="@rtldirection">
                             @Model.Description
                         </p>
-                        <p>
+                        <p style="@rtldirection">
                             @SearchRes.Keywords: @Model.Keywords
                         </p>
 

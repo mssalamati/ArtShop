@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a Frame.
+        /// </summary>
+        public static string Add_frame {
+            get {
+                return ResourceManager.GetString("Add_frame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Cart.
+        /// </summary>
+        public static string Add_to_Cart {
+            get {
+                return ResourceManager.GetString("Add_to_Cart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Categories.
         /// </summary>
         public static string All_Categories {
@@ -124,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose from List.
+        /// </summary>
+        public static string Choose_from_list {
+            get {
+                return ResourceManager.GetString("Choose_from_list", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ,.
         /// </summary>
         public static string Comma {
@@ -142,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7-day money back guarantee.
+        /// </summary>
+        public static string Money_back {
+            get {
+                return ResourceManager.GetString("Money_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to on.
         /// </summary>
         public static string On {
@@ -151,11 +187,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Orginal.
+        /// </summary>
+        public static string Orginal {
+            get {
+                return ResourceManager.GetString("Orginal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prints.
+        /// </summary>
+        public static string Prints {
+            get {
+                return ResourceManager.GetString("Prints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Edition Prints Available:.
+        /// </summary>
+        public static string Product_print_header {
+            get {
+                return ResourceManager.GetString("Product_print_header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Material.
+        /// </summary>
+        public static string Select_material {
+            get {
+                return ResourceManager.GetString("Select_material", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Size.
+        /// </summary>
+        public static string Select_size {
+            get {
+                return ResourceManager.GetString("Select_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping included.
+        /// </summary>
+        public static string Shipping_included {
+            get {
+                return ResourceManager.GetString("Shipping_included", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ships in a.
+        /// </summary>
+        public static string Ships_in {
+            get {
+                return ResourceManager.GetString("Ships_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string Size {
+            get {
+                return ResourceManager.GetString("Size", resourceCulture);
             }
         }
     }
