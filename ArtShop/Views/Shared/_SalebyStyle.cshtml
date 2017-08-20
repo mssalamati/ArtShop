@@ -19,21 +19,21 @@
 
 <div class="row browse-by">
     <div class="small-12 medium-4 columns browse-item"
-         style="background-size: cover;background-image: url('@ViewBag.pic1')">
-        <a href="/search?category=0&style=@p1.Id&subject=0&medium=0&price=0" class="flexcontainer">
+         style="background-size:contain;background-image: url('@ViewBag.pic2')">
+        <a href="/search?category=0&style=@p2.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>@Model.Current().title</em>
-                @Model.Current().desc1
+                <em>@Model.Current().title2</em>
+                @Model.Current().desc2
             </div>
             <button>View Artworks</button>
         </a>
     </div>
     <div class="small-12 medium-8 columns browse-item-large"
-        style="background-size:contain;background-image: url('@ViewBag.pic2')">
-        <a href="/search?category=0&style=@p2.Id&subject=0&medium=0&price=0" class="flexcontainer">
+        style="background-size:cover;background-image: url('@ViewBag.pic1')">
+        <a href="/search?category=0&style=@p1.Id&subject=0&medium=0&price=0" class="flexcontainer">
             <div>
-                <em>@Model.Current().title2</em>
-                @Model.Current().desc2
+                <em>@Model.Current().title</em>
+                @Model.Current().desc1
             </div>
             <button>View Artworks</button>
         </a>
