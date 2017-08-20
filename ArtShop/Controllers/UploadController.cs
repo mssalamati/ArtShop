@@ -224,9 +224,12 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep6(UploadViewModel.step6 model)
         {
-            model.Height = float.Parse(Request["Height"].Replace(".", "/"));
-            model.Width = float.Parse(Request["Width"].Replace(".", "/"));
-            model.Depth = float.Parse(Request["Depth"].Replace(".", "/"));
+            if (model.Depth == 0)
+            {
+                //model.Height = float.Parse(Request["Height"].Replace(".", "/"));
+                //model.Width = float.Parse(Request["Width"].Replace(".", "/"));
+                model.Depth = float.Parse(Request["Depth"].Replace(".", "/"));
+            }
 
             if (model.Height == 0)
             {

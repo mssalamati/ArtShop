@@ -4,7 +4,7 @@
 }
 
 @model  List<Product>
-
+@using DataLayer.Extentions
 
 @helper selected(int current, int selected)
 {
@@ -225,7 +225,7 @@ if (current == selected)
                         <h4 class="list-art-title left ellipsis" itemprop="name">
                             <a href="/products/single/@item.Id">@item.Title</a>
                         </h4>
-                        <small class="art-category clear left">Painting, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> in</small>
+                        <small class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
                         <div class="list-author clear left">
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">

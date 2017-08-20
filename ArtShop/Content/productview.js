@@ -176,7 +176,7 @@ function initfullscreen() {
             content: {
                 text: '<img src="' + d + '">',
                 title: {
-                    text: '<img src="/Content/Images/sa-logo.svg">',
+                    text: '<img src="/Content/Images/logo.png">',
                     button: "Close"
                 }
             },
