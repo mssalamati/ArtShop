@@ -135,6 +135,9 @@
   <data name="Artwork" xml:space="preserve">
     <value>Artwork</value>
   </data>
+  <data name="Back_to_profile" xml:space="preserve">
+    <value>Back to Profile</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

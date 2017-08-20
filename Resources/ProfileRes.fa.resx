@@ -135,6 +135,9 @@
   <data name="Artwork" xml:space="preserve">
     <value>آثار</value>
   </data>
+  <data name="Back_to_profile" xml:space="preserve">
+    <value>بازگشت به حساب کاربری</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>انصراف</value>
   </data>

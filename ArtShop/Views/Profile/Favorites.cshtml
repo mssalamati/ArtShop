@@ -34,20 +34,20 @@
         <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
             <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
-            <i class="fa fa-caret-left"></i> Back to Profile
+            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
         </a>
 
     </header>
 
     <div class="profile-nav large-12 columns">
         <a href="/profile/artworks" class="" title="link to artwork">
-            <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.artworkCount)</span>
+            <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@ViewBag.artworkCount)</span>
         </a>
         <a href="/profile/collection" class="" title="link to Collections">
-            <i class="fa fa-th"></i> Collections <span>(@ViewBag.collectionCount)</span>
+            <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@ViewBag.collectionCount)</span>
         </a>
         <a href="/profile/favorites" class="active" title="link to Favorites">
-            <i class="fa fa-heart"></i> Favorites <span>(@Model.Count)</span>
+            <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@Model.Count)</span>
         </a>
     </div>
     <div class="row sort">
