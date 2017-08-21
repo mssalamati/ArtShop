@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageServersController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\PriceListController.cs" />
     <Compile Include="Controllers\PrintOptionsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -5425,6 +5426,8 @@
     <Content Include="Views\FirstPageSettings\EditSlider.cshtml" />
     <Content Include="Views\FirstPageSettings\EditFooter.cshtml" />
     <Content Include="Views\FirstPageSettings\Editmaincontent.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Pages\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

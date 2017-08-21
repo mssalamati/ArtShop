@@ -1,0 +1,120 @@
+﻿
+@model SitePageTranslation
+
+@{
+
+}
+
+
+
+<div class="page-title">
+    <div class="title">   صفحه اصلی</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">  صفحه اصلی</a>
+        </li>
+        <li>
+            <a href="javascript:;">  صفحات </a>
+        </li>
+        <li>
+            <a href="javascript:;">  @Model.Title </a>
+        </li>
+    </ol>
+</div>
+
+
+<div class="clearfix"></div>
+
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <p class="alert alert-success"> @DateTime.Now @ViewBag.message </p>
+}
+<div class="row">
+    <div class="col-lg-12 portlets">
+        @using (Html.BeginForm("edit", "pages", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x => x.sitePageId)
+            @Html.HiddenFor(x => x.languageId)
+            <div class="panel">
+                <div class="card-header">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> @Model.sitePage.DefaultTitle </label> 
+                            <div class="col-sm-5">
+                                <select id="catselect" name="id" class="form-control">
+                                    @foreach (var item in ((List<Language>)ViewBag.language))
+                                    {
+                                        if (Model.languageId == item.Code)
+                                        {
+                                            <option selected value="@item.Code">@item.Code</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Code">@item.Code</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="submit" value="ثبت" class="btn btn-default pull-left" />
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> سربرگ </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="Title" value="@Model.Title" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+               
+                    <div class="col-md-12" style="margin-top:10px">
+                        <div class="form-group">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <textarea name="Content" id="Content">
+                                    @Model.Content
+                                </textarea>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('Content', {
+            customConfig: '/config.js',
+            height: 500,
+            filebrowserImageBrowseUrl: '/CMS/uploadPartial',
+            filebrowserImageUploadUrl: '/CMS/uploadnow',
+        });
+
+    </script>
+
+    <script>
+        $('#catselect').on('change', function (e) {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            document.location.href = '/pages/edit?id=@Model.sitePageId&language=' + valueSelected;
+        });
+    </script>
+}
