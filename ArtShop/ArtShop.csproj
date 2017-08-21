@@ -480,6 +480,13 @@
     <Content Include="Views\PublicProfile\IndexRTL.cshtml" />
     <Content Include="Views\Upload\indexStart.cshtml" />
     <Content Include="Views\AccountInfo\UploadID.cshtml" />
+    <Content Include="Views\Pages\Terms.cshtml" />
+    <Content Include="Views\Pages\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Pages\CopyrightPolicy.cshtml" />
+    <Content Include="Views\Pages\AboutRTL.cshtml" />
+    <Content Include="Views\Pages\CopyrightRTL.cshtml" />
+    <Content Include="Views\Pages\PrivacyRTL.cshtml" />
+    <Content Include="Views\Pages\TermsRTL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

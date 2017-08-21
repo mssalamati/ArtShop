@@ -193,7 +193,7 @@ namespace ArtShop.Controllers
             model.collectionProduct = collection.Artworks;
             model.CollectionDescription = collection.Description;
             model.IsPrivate = collection.IsPrivate;
-
+            model.CollectionType = collection.Type;
             return View(model);
         }
 

@@ -3,6 +3,13 @@
     ViewBag.Title = "Collection";
 }
 
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var rtldirectionMargin = IsRighToLeft ? "display:table-caption;margin-left:-89.5%;direction:rtl !important" : "";
+}
+
 <div role="main" class="row row-layout profile-content">
 
 
@@ -11,20 +18,20 @@
         <a href="/profile" title="adib dehghan's profile" itemprop="url">
             <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.profileFullName</h1>
-            <i class="fa fa-caret-left"></i> Back to Profile
+            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
         </a>
 
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/profile/artworks" class="" title="link to artwork">
-            <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.artworksCount)</span>
+        <a href="/profile/artworks" class="" style="@rtldirection" title="link to artwork">
+            <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@ViewBag.artworksCount)</span>
         </a>
-        <a href="/profile/collections" class="active" title="link to Collections">
-            <i class="fa fa-th"></i> Collections <span>(@Model.Count)</span>
+        <a href="/profile/collections" style="@rtldirection" class="active" title="link to Collections">
+            <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@Model.Count)</span>
         </a>
-        <a href="/profile/favorites" class="" title="link to Favorites">
-            <i class="fa fa-heart"></i> Favorites <span>(@ViewBag.favoritesCount)</span>
+        <a href="/profile/favorites" style="@rtldirection" class="" title="link to Favorites">
+            <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@ViewBag.favoritesCount)</span>
         </a>
     </div>
     <div class="clearfix"></div>
@@ -33,7 +40,7 @@
             <li class="list-item collection create-collection">
                 <a href="/profile/NewCollection" title="Create a New Collection" class="profile-new-collection">
                     <i class="fa fa-plus icn-bg" style="display:inline-table"></i>
-                    <span style="display:table-caption">Create a New Collection</span>
+                    <span style=" @rtldirectionMargin">@ProfileRes.Create_collection</span>
                 </a>
             </li>
 

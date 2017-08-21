@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a New Collection.
+        /// </summary>
+        public static string Create_collection {
+            get {
+                return ResourceManager.GetString("Create_collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Education.
         /// </summary>
         public static string Education {

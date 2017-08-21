@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>درباره</value>
+  </data>
   <data name="AccountInformation" xml:space="preserve">
     <value>حساب کاربری</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Collections" xml:space="preserve">
     <value>مجموعه ها</value>
+  </data>
+  <data name="Copyright_policy" xml:space="preserve">
+    <value>سیاست کپی رایت</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>علاقه مندی ها</value>
@@ -159,6 +165,9 @@
   <data name="Orders" xml:space="preserve">
     <value>سفارشات</value>
   </data>
+  <data name="Privacy_policy" xml:space="preserve">
+    <value>سیاست حفظ حریم خصوصی</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>پروفایل</value>
   </data>
@@ -176,6 +185,9 @@
   </data>
   <data name="Subject" xml:space="preserve">
     <value>موضوع</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>قوانین</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>آپلود</value>
