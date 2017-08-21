@@ -3,26 +3,13 @@
     ViewBag.Title = "About";
 }
 
+@model SitePageTranslation
+
 <div class="row-layout content">
     <div class="row">
         <div class="small-12 large-8 large-push-4 columns bgtext content">
             <div class="row mb1">
-                <h1 class="page-title">About Artiscovery</h1>
-                <h2 class="hd-title">Artiscovery is the universal and leading expertise art references which introduce artworks and artists to the world.</h2>
-                <p>
-                    Artiscovery website suggests different sort of visual arts like; painting, photography, sculpture , drawings and illustrating in different range of prices. Artists are enabled to exhibit and sell their artworks in online platform.
-                    “join Us, and share your artworks.”
-                </p>
-
-                <h2>Our vision:</h2>
-                <p>
-                    World`s leading art and artists references and the largest online global gallery.
-                </p>
-                <h2>Our mission:</h2>
-                <p>
-                    Linking art lovers and artists in all around world and Everybody could afford to buy their favourite artwork with any budget.
-                </p>
-
+                @Html.Raw(Model.Content)
             </div>
 
         </div>
