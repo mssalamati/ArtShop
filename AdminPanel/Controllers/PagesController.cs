@@ -1,6 +1,7 @@
 ﻿using DataLayer.Enitities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,6 +42,31 @@ namespace AdminPanel.Controllers
             ViewBag.language = db.Languages.ToList();
             ViewBag.message = "تغییرات با موفقیت انجام شد";
             return View(finded);
+        }
+
+        public class imagesviewmodel
+        {
+            public string Url { get; set; }
+        }
+
+        public void uploadnow(HttpPostedFileWrapper upload)
+        {
+            if (upload != null)
+            {
+                string ImageName = upload.FileName;
+                string path = System.IO.Path.Combine(Server.MapPath("~/Uploads/cms"), ImageName);
+                upload.SaveAs(path);
+            }
+        }
+
+        public ActionResult uploadPartial()
+        {
+            var appData = Server.MapPath("~/Uploads/cms");
+            var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
+            {
+                Url = Url.Content("http://file.artiscovery.com/Uploads/cms/" + Path.GetFileName(x))
+            });
+            return View(images);
         }
     }
 }

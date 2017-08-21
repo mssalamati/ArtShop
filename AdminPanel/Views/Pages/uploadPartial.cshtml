@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<TalashX.Controllers.CMSController.imagesviewmodel>
+@{Layout = null;}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <title></title>
+</head>
+<body>
+
+    @foreach (var image in Model)
+    {
+        <a href="#" class="returnImage" data-url="@Request.Url.GetLeftPart(UriPartial.Authority)@image.Url">
+            <img src="@image.Url" alt="Hejsan" id="#image" data-source="@image.Url" width="200" height="200" />
+        </a>
+    }
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".returnImage").click("click", function (e) {
+                var urlImage = $(this).attr("data-url");
+
+                var Browser = $(window.opener.document).find('a>span:contains("Browse Server")');
+                var IUrl = Browser.parent('a').parent('td').prev('td').find('input').attr('id');
+
+                var Link = Browser.parent('a').parent('td').parent('tr').prev('tr').find('input').attr('id');
+
+                var $urrlLink = window.opener.document.getElementById(Link);
+                var $urrlbody = window.opener.document.getElementById(IUrl);
+
+                $($urrlbody).val(urlImage);
+                $($urrlLink).val(urlImage);
+
+                window.close();
+            });
+        });
+    </script>
+</body>
+</html>
