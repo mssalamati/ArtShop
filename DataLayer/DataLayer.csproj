@@ -91,6 +91,7 @@
     <Compile Include="Enitities\Collection.cs" />
     <Compile Include="Enitities\Country.cs" />
     <Compile Include="Enitities\Favorit.cs" />
+    <Compile Include="Enitities\Log.cs" />
     <Compile Include="Enitities\Order.cs" />
     <Compile Include="Enitities\PersonalInformation.cs" />
     <Compile Include="Enitities\Photo.cs" />

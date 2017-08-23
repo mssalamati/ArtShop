@@ -171,6 +171,12 @@ namespace ArtShop.Controllers
             {
                 ViewBag.img = (string)Session["imageAddress"];
                 ViewBag.error = result.error;
+                db.logs.Add(new Log()
+                {
+                    Location = "step4",
+                    Message = "" + result.error
+                });
+                db.SaveChanges();
                 return PartialView();
             }
 
@@ -288,6 +294,22 @@ namespace ArtShop.Controllers
             Session["avaible"] = model.avaible;
             Session["Description"] = model.Description;
             Session["AllEntity"] = model.AllEntity;
+
+            if ((bool)Session["isOrginal"] == true)
+            {
+                int id = 0;
+                var error = uploadnow(out id);
+                if (error == string.Empty)
+                {
+                    return RedirectToAction("Stepfinish", new { id = id });
+                }
+                else
+                {
+                    ViewBag.error = error;
+                    return PartialView();
+                }
+            }
+
             return RedirectToAction("Setep8");
         }
 
@@ -355,10 +377,32 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep10(UploadViewModel.step10 model)
         {
+            Session["price"] = (int)model.Price;
+
+            int id = 0;
+            var error = uploadnow(out id);
+            if (error == string.Empty)
+            {
+                return RedirectToAction("Stepfinish", new { id = id });
+            }
+            else
+            {
+                ViewBag.error = error;
+                return PartialView();
+            }
+        }
+
+        public ActionResult Stepfinish(int id)
+        {
+
+            return PartialView();
+        }
+
+        private string uploadnow(out int id)
+        {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-            int id = 0;
             try
             {
                 var widepath = (string)Session["WideFullPath"];
@@ -381,7 +425,7 @@ namespace ArtShop.Controllers
                     Sqphoto = new Photo() { Path = sqpath },
                     Title = (string)Session["Title"],
                     Description = (string)Session["Description"],
-                    Price = (int)model.Price,
+                    Price = (int)(Session["price"] ?? 0),
                     ISOrginalForSale = (bool)Session["isOrginal"],
                     AllEntity = (int)Session["AllEntity"],
                     ArtCreatedYear = (int)Session["createYear"],
@@ -417,20 +461,18 @@ namespace ArtShop.Controllers
 
                 db.SaveChanges();
                 id = product.Id;
+                return string.Empty;
             }
             catch (Exception ex)
             {
-                ViewBag.error = Resources.UploadRes.Image_cannot_be_empty;
-                return PartialView();
+                id = 0;
+                db.logs.Add(new Log()
+                {
+                    Location = "upload now",
+                    Message = "" + ex.ToString()
+                });
+                return Resources.UploadRes.Image_cannot_be_empty;
             }
-            return RedirectToAction("Stepfinish", new { id = id });
-            //return Json(new { result = 1313, id = id }, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult Stepfinish(int id)
-        {
-
-            return PartialView();
         }
 
         protected override void Dispose(bool disposing)

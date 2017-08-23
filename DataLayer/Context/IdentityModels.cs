@@ -105,6 +105,7 @@ namespace DataLayer
         public DbSet<footerCellTranslation> footerCellTranslations { get; set; }
         public DbSet<footercellRow> footercellRows { get; set; }
         public DbSet<sliderImageTranslation> sliderImageTranslations { get; set; }
-        public DbSet<FirstPageSection> FirstPageSections { get; set; }        
+        public DbSet<FirstPageSection> FirstPageSections { get; set; }
+        public DbSet<Log> logs { get; set; }
     }
 }
