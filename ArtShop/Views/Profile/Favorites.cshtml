@@ -1,4 +1,9 @@
 ﻿@model ICollection<Favorit>
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
 @using DataLayer.Extentions
 @{
     ViewBag.Title = "Favorites";
@@ -40,13 +45,13 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/profile/artworks" class="" title="link to artwork">
+        <a href="/profile/artworks" class="" style="@rtldirection" title="link to artwork">
             <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@ViewBag.artworkCount)</span>
         </a>
-        <a href="/profile/collection" class="" title="link to Collections">
+        <a href="/profile/collection"  style="@rtldirection" class="" title="link to Collections">
             <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@ViewBag.collectionCount)</span>
         </a>
-        <a href="/profile/favorites" class="active" title="link to Favorites">
+        <a href="/profile/favorites" style="@rtldirection" class="active" title="link to Favorites">
             <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@Model.Count)</span>
         </a>
     </div>
@@ -87,26 +92,26 @@
                             <h4 class="list-art-title left ellipsis" itemprop="name">
                                 <a href="/products/single/@item.productId">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
                             </h4>
-                            <small class="art-category clear left">Photography, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
+                            <small style="@rtlstl" class="art-category clear left">@item.product.category.Current().Name, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
 
                             <div class="list-author clear left">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
                                     <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
                                 </h5>
                                 @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">@item.product.user.country.Current().Name</h5>*@
-                                </div>
+                            </div>
 
-                                <div class="list-art-price">
-                                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                                        <!-- internationalization testing -->
-                                        <div itemprop="price">
-                                            @item.product.Price
-                                        </div>
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        @item.product.Price $
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
             }
         </ul>
         <div class="clearfix"></div>

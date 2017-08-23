@@ -1,4 +1,11 @@
 ﻿@model ICollection<Product>
+@using DataLayer.Extentions
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var rtldirectionMargin = IsRighToLeft ? "display:-webkit-inline-box;direction:rtl !important" : "";
+}
 <div role="main" class="row row-layout profile-content">
 
 
@@ -8,25 +15,25 @@
         <a href="/profile" title="adib dehghan's profile" itemprop="url">
             <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
-            <i class="fa fa-caret-left"></i> Back to Profile
+            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
         </a>
 
         <div class="artist-manage-links">
-            <a href="/account/manage-art" title="Manage Artworks" itemprop="url">Manage Artworks</a>
+            <a href="/account/manage-art" title="@ProfileRes.Manage_artworks" itemprop="url">@ProfileRes.Manage_artworks</a>
             <span> | </span>
-            <a href="/upload/index" class="">Upload Art</a>
+            <a href="/upload/index" class="">@ProfileRes.Upload_art</a>
         </div>
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/profile/artworks" class="active" title="link to artwork">
-            <i class="fa fa-suitcase"></i> Artwork <span>(@Model.Count)</span>
+        <a style="@rtldirection" href="/profile/artworks" class="active" title="link to artwork">
+            <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@Model.Count)</span>
         </a>
-        <a href="/profile/collection" class="" title="link to Collections">
-            <i class="fa fa-th"></i> Collections <span>(@ViewBag.collectionCount)</span>
+        <a style="@rtldirection" href="/profile/collection" class="" title="link to Collections">
+            <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@ViewBag.collectionCount)</span>
         </a>
-        <a href="/profile/favorites" class="" title="link to Favorites">
-            <i class="fa fa-heart"></i> Favorites <span>(@ViewBag.favoritesCount)</span>
+        <a style="@rtldirection" href="/profile/favorites" class="" title="link to Favorites">
+            <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@ViewBag.favoritesCount)</span>
         </a>
     </div>
     <div class="row sort">
@@ -48,7 +55,7 @@
             <li class="art-item upload-art">
                 <a href="/upload/index" title="Upload Art" class="profile-new-upload-art">
                     <i class="fa fa-upload icn-bg" style="display:inline-table"></i>
-                    <span style="display:-webkit-inline-box">Upload Art</span>
+                    <span style="@rtldirectionMargin">@ProfileRes.Upload_art</span>
                 </a>
             </li>
             @foreach (Product item in Model)
@@ -69,7 +76,7 @@
                             <h4 class="list-art-title left ellipsis" itemprop="name">
                                 <a href="/products/single/@item.Id">@item.Title - Limited Edition @item.avaible of @item.AllEntity</a>
                             </h4>
-                            <small class="art-category clear left">Photography, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
+                            <small style="@rtldirection" class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> @UploadRes.inches</small>
 
                             <div class="list-author clear left">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">

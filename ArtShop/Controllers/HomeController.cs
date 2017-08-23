@@ -204,7 +204,7 @@ namespace ArtShop.Controllers
                 cookie.Expires = DateTime.Now.AddYears(1);
             }
             Response.Cookies.Add(cookie);
-            string url = this.Request.UrlReferrer.AbsolutePath;
+            string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
             return Redirect(url);
         }
 

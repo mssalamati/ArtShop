@@ -69,10 +69,23 @@
                     <div class="control-group" style="padding-left: 19px;">
                         <label for="collection_type_id" class="control-label required">Type</label>
                         <br />
+                        @{var typeCommunity = "";var typePortfolio = ""; }
+                        @if (Model.CollectionType == CollectionType.Community)
+                        {
+                            typeCommunity = "checked";
+                        }
+                        else
+                        {
+
+                            typePortfolio = "checked";
+                        }
+
+
+
                         <div class="controls">
-                            <input type="radio" value="Community" name="CollectionType" style="display:inline-block;" /> Community
+                            <input type="radio" value="Community" name="CollectionType" @typeCommunity style="display:inline-block;" /> Community
                             <br />
-                            <input type="radio" value="Portfolio" name="CollectionType" style="display:inline-block;" /> Portfolio
+                            <input type="radio" value="Portfolio" name="CollectionType" @typePortfolio style="display:inline-block;" /> Portfolio
                         </div>
                     </div>
 

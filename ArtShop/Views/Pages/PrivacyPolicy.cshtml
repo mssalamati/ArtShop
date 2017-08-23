@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Copyright Policy";
 }
 
 @model SitePageTranslation
@@ -9,28 +9,29 @@
 
 @if (IsRighToLeft)
 {
-    @Html.Partial("AboutRTL");
+    @Html.Partial("PrivacyRTL");
 }
 else
 {
 <div class="row-layout content">
     <div class="row">
         <div class="small-12 large-8 large-push-4 columns bgtext content">
-            <div class="row mb1">
+            <div id="so-terms-page" class="row">
+                @*<h1 class="page-title">Artiscovery Copyright Policy</h1>*@
                 @Html.Raw(Model.Content)
             </div>
-
         </div>
         <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
-            <ul class="side-nav" style="height:300px">
-                <li><a href="/pages/about" class="active">@ShareRes.About</a></li>
+            <ul class="side-nav" style="height: 12602px;">
+                <li><a href="/pages/about">@ShareRes.About</a></li>
                 <li><a href="/pages/terms">@ShareRes.Terms</a></li>
-                <li><a href="/pages/privacypolicy">@ShareRes.Privacy_policy</a></li>
+                <li><a href="/pages/privacypolicy" class="active">@ShareRes.Privacy_policy</a></li>
                 <li><a href="/pages/copyrightpolicy" >@ShareRes.Copyright_policy</a></li>
             </ul>
         </div>
 
         <script>if ($(window).width() > 1023) { $('.bgtext.content').imagesLoaded(function () { var sidebarHeight = $('.bgtext.content').height(); $('.side-nav').height(sidebarHeight); }); }</script>
-    </div>        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
 </div>
 }

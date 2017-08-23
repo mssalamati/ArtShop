@@ -156,6 +156,9 @@
   <data name="Country" xml:space="preserve">
     <value>کشور</value>
   </data>
+  <data name="Create_collection" xml:space="preserve">
+    <value>ایجاد مجموعه</value>
+  </data>
   <data name="Education" xml:space="preserve">
     <value>تحصیلات</value>
   </data>
