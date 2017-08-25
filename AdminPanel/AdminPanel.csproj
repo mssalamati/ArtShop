@@ -5431,6 +5431,7 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Pages\Edit.cshtml" />
     <Content Include="Views\Pages\uploadPartial.cshtml" />
+    <Content Include="Views\ProductFrames\Indexcolor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5450,7 +5451,6 @@
     <Folder Include="Content\Admin\vendor\prism\examples\" />
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\ProductFrames\" />
     <Folder Include="Views\Value\" />
   </ItemGroup>
   <ItemGroup>
