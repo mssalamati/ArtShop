@@ -25,7 +25,7 @@ namespace Blog
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css", "~/Content/style.css", "~/Content/recent-tweets.css", "~/Content/perfect-pullquotes.css", "~/Content/instag-slider.css", "~/Content/dashicons.min.css", "~/Content/css_2.css", "~/Content/perfect-pullquotes.css"));
         }
     }
 }
