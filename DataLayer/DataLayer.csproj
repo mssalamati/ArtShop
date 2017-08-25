@@ -101,6 +101,7 @@
     <Compile Include="Enitities\Pricethreshold.cs" />
     <Compile Include="Enitities\PrintOptions.cs" />
     <Compile Include="Enitities\Product.cs" />
+    <Compile Include="Enitities\ProductFrameOption.cs" />
     <Compile Include="Enitities\ShoppingCart.cs" />
     <Compile Include="Enitities\SiteObjectParam.cs" />
     <Compile Include="Enitities\SitePage.cs" />

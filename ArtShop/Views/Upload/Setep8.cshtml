@@ -56,7 +56,7 @@
                                                         </div>
                                                         <div class="image-radio__item__name">@UploadRes.Crate</div>
                                                     </div>
-                                                    <div class="image-radio__item"  id="packing_box" onclick="change_pack(2);">
+                                                    <div class="image-radio__item" id="packing_box" onclick="change_pack(2);">
                                                         <div class="image-radio__item__image">
                                                             <div class="image-radio__item__image__elem">
                                                                 <i>
@@ -73,7 +73,7 @@
                                                         </div>
                                                         <div class="image-radio__item__name">@UploadRes.Box</div>
                                                     </div>
-                                                    <div class="image-radio__item"  id="packing_tube" onclick="change_pack(3);">
+                                                    <div class="image-radio__item" id="packing_tube" onclick="change_pack(3);">
                                                         <div class="image-radio__item__image">
                                                             <div class="image-radio__item__image__elem">
                                                                 <i>
@@ -106,6 +106,40 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div id="framedetail" hidden class="form-group animate-group-0-4 z-index-fix form-group--block packaging__frame-questionnaire">
+                                            <p class="descriptor">After finishing your upload, please add additional images of your artwork that clearly show the frame</p>
+                                            <div class="input-container">
+                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                    <option value="Box">Box</option>
+                                                    <option value="Edge">Edge</option>
+                                                    <option value="Ornate">Ornate</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-container">
+                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">      
+                                                    <option value="Wood">Wood</option>
+                                                    <option value="Metal">Metal</option>
+                                                    <option value="Aluminum">Aluminum</option>
+                                                    <option value="Resin">Resin</option>
+                                                    <option value="Plastic">Plastic</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-container">
+                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                    <option value="Black">Black</option>
+                                                    <option value="Brown">Brown</option>
+                                                    <option value="White">White</option>
+                                                    <option value="Silver">Silver</option>
+                                                    <option value="Gold">Gold</option>
+                                                    <option value="Patina">Patina</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group animate-group-0-5">
                                             <h3>@UploadRes.step8_ask2</h3>
                                             <div class="button-radio">
@@ -166,10 +200,12 @@
             inp.val('true');
             btnyes.addClass('button--active');
             btnno.removeClass('button--active');
+            $('#framedetail').show();
         } else {
             inp.val('false');
             btnno.addClass('button--active');
             btnyes.removeClass('button--active');
+            $('#framedetail').hide();
         }
     }
     function change_multipanel(val) {

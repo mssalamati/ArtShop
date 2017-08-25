@@ -106,6 +106,12 @@ namespace DataLayer
         public DbSet<footercellRow> footercellRows { get; set; }
         public DbSet<sliderImageTranslation> sliderImageTranslations { get; set; }
         public DbSet<FirstPageSection> FirstPageSections { get; set; }
+        public DbSet<ProductFrameColor> ProductFrameColors { get; set; }
+        public DbSet<ProductFrameColorTranslation> ProductFrameColorTranslations { get; set; }
+        public DbSet<ProductFrameMaterial> ProductFrameMaterials { get; set; }
+        public DbSet<ProductFrameMaterialTranslation> ProductFrameMaterialTranslations { get; set; }
+        public DbSet<ProductFrameType> ProductFrameTypes { get; set; }
+        public DbSet<ProductFrameTypeTranslation> ProductFrameTypeTranslations { get; set; }
         public DbSet<Log> logs { get; set; }
     }
 }
