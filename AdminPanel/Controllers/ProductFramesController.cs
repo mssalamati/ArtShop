@@ -96,7 +96,7 @@ namespace AdminPanel.Controllers
             var finder = db.ProductFrameColors.Find(id);
             db.ProductFrameColors.Remove(finder);
             db.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("Indexcolor");
         }
         //type
         public ActionResult IndexType()
@@ -184,7 +184,7 @@ namespace AdminPanel.Controllers
             var finder = db.ProductFrameTypes.Find(id);
             db.ProductFrameTypes.Remove(finder);
             db.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("IndexType");
         }
         //material
         public ActionResult IndexMaterial()
@@ -272,7 +272,7 @@ namespace AdminPanel.Controllers
             var finder = db.ProductFrameMaterials.Find(id);
             db.ProductFrameMaterials.Remove(finder);
             db.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("IndexMaterial");
         }
     }
 }

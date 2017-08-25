@@ -3,17 +3,28 @@
     ViewBag.Title = "Index";
 }
 
+@model List<ProductFrameType>
 
-@model IEnumerable<Pricethreshold>
+
+@{
+    ViewBag.Title = "ProductFrames";
+
+    var c_cntroller = "ProductFrames";
+    var c_add = "addtype";
+    var c_edit = "edittype";
+    var c_delet = "Deletetype";
+    var noentity = "هیچ نوعی ثبت نشده";
+    var addbtn = "نوع";
+}
 
 <div class="page-title">
-    <div class="title"> پارامترها</div>
+    <div class="title"> زبان و کشور ها</div>
     <ol class="breadcrumb no-bg pl0">
         <li>
             <a href="javascript:;">پنل سازمان</a>
         </li>
         <li>
-            <a href="javascript:;">زبان و کشور ها </a>
+            <a href="javascript:;">فریم ها </a>
         </li>
     </ol>
 </div>
@@ -25,14 +36,25 @@
     <li>
         <a href="/Countries/Index">کشور ها</a>
     </li>
-    <li class="active">
+    <li>
         <a href="/PriceList/Index">محدوده قیمت</a>
     </li>
     <li>
         <a href="/PrintOptions/Index">پرینت</a>
     </li>
-    <li>
+    <li class="active">
         <a href="/ProductFrames/Indexcolor"> فریم</a>
+    </li>
+</ul>
+<ul class="nav nav-tabs">
+    <li style="float:right">
+        <a href="/ProductFrames/Indexcolor"> رنگ</a>
+    </li>
+    <li style="float:right" class="active">
+        <a href="/ProductFrames/Indextype"> نوع</a>
+    </li>
+    <li style="float:right">
+        <a href="/ProductFrames/Indexmaterial"> جنس</a>
     </li>
 </ul>
 
@@ -41,7 +63,7 @@
 
 <div class="card bg-white m-b">
     <div class="card-header">
-        <button onclick="showAdd()" type="button" class="pull-left btn btn-default">ثبت محدوده جدید</button>
+        <button onclick="showAdd()" class="pull-left btn btn-default">ثبت @addbtn جدید</button>
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
@@ -53,52 +75,19 @@
                         <th>
                             Name
                         </th>
-                        <th>
-
-                        </th>
-                        <th>
-
-                        </th>
-                        <th>
-                           min
-                        </th>
-                        <th>
-                            max
-                        </th>
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
                         <tr>
                             <th><i class="fa fa-eye"></i></th>
-
-                            @if (item.Translations.Count() == 0)
-                            {
-                                <td colspan="3"><span>No Name</span></td>
-                            }
-                            else
-                            {
-                                foreach (var trans in item.Translations.Take(3))
-                                {
-                                    <td>
-                                        <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name   <span>&nbsp;</span>
-                                    </td>
-                                }
-                                for (int i = 0; i < 3 - item.Translations.Take(3).Count(); i++)
-                                {
-                                    <td></td>
-                                }
-                            }
                             <th>
-                                @item.min
-                            </th>
-                            <th>
-                                @item.max
+                                @item.Name
                             </th>
                             <td>
                                 <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
-                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/PriceList/Delete/@item.Id">آیا مطمئن هستید؟</a>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/@c_cntroller/@c_delet/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
                         </tr>
                     }
@@ -106,8 +95,8 @@
             }
             else
             {
-                <div class="alert alert-warning">
-                    هیچ محدوده ای ثبت نشده
+                <div class="alert alert-warning ">
+                    @noentity
                 </div>
             }
         </div>
@@ -122,6 +111,7 @@
         </div>
     </div>
 </div>
+
 
 
 @section scripts{
@@ -142,12 +132,12 @@
         function showAdd() {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/PriceList/add");
+            $("#dform").load("/@c_cntroller/@c_add");
         }
         function showEdit(id) {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/PriceList/edit/" + id);
+            $("#dform").load("/@c_cntroller/@c_edit/" + id);
         }
     </script>
 }

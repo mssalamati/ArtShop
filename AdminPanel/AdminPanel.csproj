@@ -5432,6 +5432,15 @@
     <Content Include="Views\Pages\Edit.cshtml" />
     <Content Include="Views\Pages\uploadPartial.cshtml" />
     <Content Include="Views\ProductFrames\Indexcolor.cshtml" />
+    <Content Include="Views\ProductFrames\IndexType.cshtml" />
+    <Content Include="Views\ProductFrames\IndexMaterial.cshtml" />
+    <Content Include="Views\ProductFrames\addcolor.cshtml" />
+    <Content Include="Views\ProductFrames\editcolor.cshtml" />
+    <Content Include="Views\ProductFrames\_successWindow.cshtml" />
+    <Content Include="Views\ProductFrames\addType.cshtml" />
+    <Content Include="Views\ProductFrames\editType.cshtml" />
+    <Content Include="Views\ProductFrames\addMaterial.cshtml" />
+    <Content Include="Views\ProductFrames\editMaterial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
