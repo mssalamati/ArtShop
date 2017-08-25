@@ -1,0 +1,69 @@
+.recent-tweet {
+	float: left;
+	clear: left;
+}
+
+.home .recent-tweet.post-element {
+	height: 460px;
+}
+
+.recent-tweet h4 {
+    margin-top: 18px;
+    line-height: 28px;
+}
+
+.home .recent-tweet h4 a,
+.home .recent-tweet h4 a:hover {
+	display: block;
+	color: #3399cc;	
+}
+
+.home .recent-tweet h4 a:focus {
+	text-decoration: none;
+}
+
+.recent-tweet .no-image {
+	display: table;
+	height: 300px;
+}
+
+.recent-tweet .no-image h4 {
+	margin-top: 0;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.recent-tweet .fa-twitter {
+    display: block;
+    font-size: 36px;
+    margin-top: 18px;
+    margin-bottom: 14px;
+}
+
+.fa-twitter:before {
+    /* margin-left: -13px;	 */
+}
+
+.twitter-credit {
+	color: #333;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.twitter-credit span {
+	font-weight: 600;
+	padding-right: 6px;
+	margin-right: 5px;
+	position: relative;
+}
+
+.twitter-credit span:after {
+	display: block;
+	content: "";
+	width: 1px;
+	height: 11px;
+	background: #333;
+	top: 3px;
+	right: 0;
+	position: absolute;
+}
