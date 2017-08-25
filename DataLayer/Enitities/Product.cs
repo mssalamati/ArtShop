@@ -36,9 +36,9 @@ namespace DataLayer.Enitities
         public bool IsPrintAvaibled { get; set; }
         public bool framed { get; set; }
         public bool multiPaneled { get; set; }
-        public string frame_type { get; set; }
-        public string frame_material { get; set; }
-        public string frame_color { get; set; }
+        public virtual ProductFrameType frameType { get; set; }
+        public virtual ProductFrameMaterial frameMaterial { get; set; }
+        public virtual ProductFrameColor frameColor { get; set; }
         public string frame_detail { get; set; }
         public virtual Category category { get; set; }
         [ForeignKey("category")]

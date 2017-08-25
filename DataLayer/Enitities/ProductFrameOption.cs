@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enitities
 {
+    public class ProductFrameOptions
+    {
+        public Dictionary<int, string> ProductFrameColors { get; set; }
+        public Dictionary<int, string> ProductFrameMaterials { get; set; }
+        public Dictionary<int, string> ProductFrameTypes { get; set; }
+    }
+
     public class ProductFrameColor : ITranslatable<ProductFrameColor, ProductFrameColorTranslation>
     {
         public int Id { get; set; }

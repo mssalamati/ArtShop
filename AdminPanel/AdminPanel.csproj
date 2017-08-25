@@ -210,6 +210,7 @@
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\PriceListController.cs" />
     <Compile Include="Controllers\PrintOptionsController.cs" />
+    <Compile Include="Controllers\ProductFramesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -5449,6 +5450,7 @@
     <Folder Include="Content\Admin\vendor\prism\examples\" />
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\ProductFrames\" />
     <Folder Include="Views\Value\" />
   </ItemGroup>
   <ItemGroup>

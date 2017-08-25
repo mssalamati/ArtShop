@@ -111,6 +111,10 @@
                                             <p class="descriptor">After finishing your upload, please add additional images of your artwork that clearly show the frame</p>
                                             <div class="input-container">
                                                 <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                    @foreach (var item in ArtShop.Util.CashManager.Instance.productFrameOptions.ProductFrameTypes)
+                                                    {
+                                                        <option value="@item.Key">@item.Value</option>
+                                                    }
                                                     <option value="Box">Box</option>
                                                     <option value="Edge">Edge</option>
                                                     <option value="Ornate">Ornate</option>
@@ -118,7 +122,11 @@
                                                 </select>
                                             </div>
                                             <div class="input-container">
-                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">      
+                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                    @foreach (var item in ArtShop.Util.CashManager.Instance.productFrameOptions.ProductFrameMaterials)
+                                                    {
+                                                        <option value="@item.Key">@item.Value</option>
+                                                    }
                                                     <option value="Wood">Wood</option>
                                                     <option value="Metal">Metal</option>
                                                     <option value="Aluminum">Aluminum</option>
@@ -129,6 +137,10 @@
                                             </div>
                                             <div class="input-container">
                                                 <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                    @foreach (var item in ArtShop.Util.CashManager.Instance.productFrameOptions.ProductFrameColors)
+                                                    {
+                                                        <option value="@item.Key">@item.Value</option>
+                                                    }
                                                     <option value="Black">Black</option>
                                                     <option value="Brown">Brown</option>
                                                     <option value="White">White</option>

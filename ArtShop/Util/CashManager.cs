@@ -29,6 +29,10 @@ namespace ArtShop.Util
         private List<PrintMaterial> _PrintMaterial = null;
         private List<footerCell> _footer = null;
 
+        private List<ProductFrameColor> _ProductFrameColor = null;
+        private List<ProductFrameMaterial> _ProductFrameMaterial = null;
+        private List<ProductFrameType> _ProductFrameType = null;
+
         public CashManager()
         {
             cats = new List<NavigationCategory>();
@@ -96,6 +100,28 @@ namespace ArtShop.Util
                     }
                 }
                 return _Styles.ToDictionary(x => x.Id, y => y.Current().Name);
+            }
+        }
+
+        public ProductFrameOptions productFrameOptions
+        {
+            get
+            {
+                if (_ProductFrameColor == null && _ProductFrameMaterial == null && _ProductFrameType == null)
+                {
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        _ProductFrameColor = db.ProductFrameColors.Include("Translations").ToList();
+                        _ProductFrameMaterial = db.ProductFrameMaterials.Include("Translations").ToList();
+                        _ProductFrameType = db.ProductFrameTypes.Include("Translations").ToList();
+                    }
+                }
+                return new ProductFrameOptions()
+                {
+                    ProductFrameColors = _ProductFrameColor.ToDictionary(x => x.Id, y => y.Current().Name),
+                    ProductFrameMaterials = _ProductFrameMaterial.ToDictionary(x => x.Id, y => y.Current().Name),
+                    ProductFrameTypes = _ProductFrameType.ToDictionary(x => x.Id, y => y.Current().Name)
+                };
             }
         }
 
