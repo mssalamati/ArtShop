@@ -295,7 +295,7 @@ namespace ArtShop.Controllers
             Session["Description"] = model.Description;
             Session["AllEntity"] = model.AllEntity;
 
-            if ((bool)Session["isOrginal"] == true)
+            if ((bool)Session["isOrginal"] == false)
             {
                 int id = 0;
                 var error = uploadnow(out id);

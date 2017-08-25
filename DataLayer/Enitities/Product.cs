@@ -34,6 +34,12 @@ namespace DataLayer.Enitities
         public int ArtCreatedYear { get; set; }
         public bool ISOrginalForSale { get; set; }
         public bool IsPrintAvaibled { get; set; }
+        public bool framed { get; set; }
+        public bool multiPaneled { get; set; }
+        public string frame_type { get; set; }
+        public string frame_material { get; set; }
+        public string frame_color { get; set; }
+        public string frame_detail { get; set; }
         public virtual Category category { get; set; }
         [ForeignKey("category")]
         public int categoryId { get; set; }
@@ -48,10 +54,12 @@ namespace DataLayer.Enitities
         public int avaible { get; set; }
         public int AllEntity { get; set; }
         public string Description { get; set; }
+        public Productpackage Packaging { get; set; }
         public virtual ICollection<Style> Styles { get; set; }
         public virtual ICollection<Material> Materials { get; set; }
         public virtual ICollection<Medium> Mediums { get; set; }
-
+        public virtual ProductshippingDetail productshippingDetail { get; set; }
+        public virtual ProductPrintDetail productPrintDetail { get; set; }
         public Product()
         {
             CreateDate = DateTime.Now;
@@ -82,6 +90,38 @@ namespace DataLayer.Enitities
                 title = Title,
             };
         }
+    }
+
+    public class ProductPrintDetail
+    {
+        public int Id { get; set; }
+        public virtual ICollection<ProductPrintDetailmaterial> ProductPrintDetailmaterials { get; set; }
+    }
+
+    public class ProductPrintDetailmaterial
+    {
+        public int Id { get; set; }
+        [ForeignKey("printMaterial")]
+        public int printMaterialId { get; set; }
+        public virtual PrintMaterial printMaterial { get; set; }
+    }
+
+    public enum Productpackage
+    {
+        box, crate, tube
+    }
+
+    public class ProductshippingDetail
+    {
+        public int Id { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string ZipCode { get; set; }
+        public string PhoneNumber { get; set; }
+        [ForeignKey("country")]
+        public int CountryId { get; set; }
+        public virtual Country country { get; set; }
     }
 
     public class ProductTranslation : ITranslation<Product>
