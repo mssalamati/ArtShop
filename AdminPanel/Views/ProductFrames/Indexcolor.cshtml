@@ -9,14 +9,12 @@
 @{
     ViewBag.Title = "ProductFrames";
 
-    var c_action = "indexcolor";
     var c_cntroller = "ProductFrames";
     var c_add = "addcolor";
     var c_edit = "editcolor";
     var c_delet = "Deletecolor";
     var noentity = "هیچ رنگی ثبت نشده";
-    var searchbox = "color...";
-    var addbtn = "color";
+    var addbtn = "رنگ";
 }
 
 <div class="page-title">
@@ -48,6 +46,17 @@
         <a href="/ProductFrames/Indexcolor"> فریم</a>
     </li>
 </ul>
+<ul class="nav nav-tabs">
+    <li style="float:right" class="active">
+        <a href="/ProductFrames/Indexcolor"> رنگ</a>
+    </li>
+    <li style="float:right">
+        <a href="/ProductFrames/Indextype"> نوع</a>
+    </li>
+    <li style="float:right">
+        <a href="/ProductFrames/Indexmaterial"> جنس</a>
+    </li>
+</ul>
 
 
 <div class="clearfix"></div>
@@ -66,41 +75,14 @@
                         <th>
                             Name
                         </th>
-                        <th>
-
-                        </th>
-                        <th>
-
-                        </th>
-                        <th>
-                            code
-                        </th>
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
                         <tr>
                             <th><i class="fa fa-eye"></i></th>
-
-                            @if (item.Translations.Count() == 0)
-                            {
-                                <td colspan="3"><span>No Name</span></td>
-                            }
-                            else
-                            {
-                                foreach (var trans in item.Translations.Take(3))
-                                {
-                                    <td>
-                                        <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name   <span>&nbsp;</span>
-                                    </td>
-                                }
-                                for (int i = 0; i < 3 - item.Translations.Take(3).Count(); i++)
-                                {
-                                    <td></td>
-                                }
-                            }
                             <th>
-                                @item.Code
+                                @item.Name
                             </th>
                             <td>
                                 <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
