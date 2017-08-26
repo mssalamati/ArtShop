@@ -92,6 +92,8 @@
                                 </div>
                             </div>
                             <input type="hidden" id="img" name="img" />
+                            <input type="hidden" id="width" name="width" style="display: none;">
+                            <input type="hidden" id="height" name="height" style="display: none;">
                         }
                     </div>
                 </div>
@@ -132,6 +134,8 @@
             processData: false,
             success: function (data) {
                 $('#img').val(data.data);
+                $('#width').val(data.width);
+                $('#height').val(data.height);
                 $('#rpl').removeClass('upload-component__select-container--empty');
                 $('#upedimg').attr('src', data.data);
                 $('#upedimg').show();

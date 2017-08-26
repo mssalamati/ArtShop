@@ -39,46 +39,20 @@
                                             The types and sizes available for this artwork are based on the file size you upload.
                                         </p>
                                         <div class="image-radio animate-group-0-2 print-pricing__print-type">
-                                            <div style="display: none;">
-                                                <select multiple="">
-                                                    <option name="shippingType" value="rag">rag</option>
-                                                    <option name="shippingType" value="photo">photo</option>
-                                                    <option name="shippingType" value="canvas">canvas</option>
-                                                </select>
-                                            </div>
                                             <div>
-                                                <div class="image-radio__item">
-                                                    <div class="image-radio__item__image">
-                                                        <div class="image-radio__item__image__elem">
-                                                            <div class="cropped-image" style="width: 100%; height: 100%;">
-                                                                <div class="cropped-image__canvas" style="overflow: hidden; width: 120.003px; height: 160px; position: relative;">
-                                                                    <img alt="Crop preview" src="~/Content/Images/300x300.jpg" style="width: 120.003px; height: 160.146px; max-width: none; max-height: none; left: 0px; top: -0.0731762px; position: absolute;">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><div class="image-radio__item__name"><!-- react-text: 44 -->Fine Art Paper<!-- /react-text --></div>
-                                                </div>
-                                                <div class="image-radio__item">
-                                                    <div class="image-radio__item__image">
-                                                        <div class="image-radio__item__image__elem">
-                                                            <div class="cropped-image" style="width: 100%; height: 100%;">
-                                                                <div class="cropped-image__canvas" style="overflow: hidden; width: 120.003px; height: 160px; position: relative;">
-                                                                    <img alt="Crop preview" src="~/Content/Images/300x300.jpg" style="width: 120.003px; height: 160.146px; max-width: none; max-height: none; left: 0px; top: -0.0731762px; position: absolute;">
-                                                                </div>
+                                                @foreach (var item in (List<PrintMaterial>)ViewBag.printoptions)
+                                                {
+                                                    <div class="form-group animate-group-0-5">
+                                                        <h3>@item.title</h3>
+                                                        <div class="button-radio">
+                                                            <div class="button-radio__button-container">
+                                                                <input id="multipanel" type="hidden" name="multi_paneled" value="true" />
+                                                                <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                                <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="image-radio__item__name"><!-- react-text: 52 -->Photo Paper<!-- /react-text --></div>
-                                                </div>
-                                                <div class="image-radio__item">
-                                                    <div class="image-radio__item__image">
-                                                        <div class="image-radio__item__image__elem">
-                                                            <div class="canvas-preview canvas-preview--dark"><div style="background-image: url(&quot;/Content/Images/300x300.jpg;);"></div></div>
-                                                        </div>
-                                                    </div><div class="image-radio__item__name">
-                                                        Canvas<!-- /react-text -->
-                                                    </div>
-                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>

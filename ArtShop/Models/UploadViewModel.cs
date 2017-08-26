@@ -10,6 +10,8 @@ namespace ArtShop.Models
         public class step1
         {
             public string img { get; set; }
+            public int width { get; set; }
+            public int height { get; set; }
         }
         public class step2
         {

@@ -86,6 +86,9 @@ namespace ArtShop.Controllers
         public ActionResult Setep1(UploadViewModel.step1 model)
         {
             Session["imageAddress"] = model.img;
+
+            Session["img_width"] = model.width;
+            Session["img_height"] = model.height;
             if (string.IsNullOrEmpty(model.img))
             {
                 ViewBag.Error = Resources.UploadRes.Image_cannot_be_empty;
@@ -329,7 +332,7 @@ namespace ArtShop.Controllers
             bool isforsale = (bool)Session["isOrginal"];
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
             float current = 7;
-           
+
             if (string.IsNullOrEmpty(model.Title))
             {
                 ViewBag.error = Resources.UploadRes.titleNull_error;
@@ -429,7 +432,7 @@ namespace ArtShop.Controllers
             bool isforsale = (bool)Session["isOrginal"];
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
             float current = 9;
-           
+
             if (string.IsNullOrEmpty(model.Street_Address) || string.IsNullOrEmpty(model.City)
                 || string.IsNullOrEmpty(model.Country) || string.IsNullOrEmpty(model.Region) || string.IsNullOrEmpty(model.Zip_code) ||
                 string.IsNullOrEmpty(model.phoneNumber))
@@ -465,6 +468,7 @@ namespace ArtShop.Controllers
             float current = isforsale ? 10 : 8;
             ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
+            ViewBag.printoptions = CashManager.Instance.PrintMaterial;
             return PartialView();
         }
         [HttpPost]
@@ -538,6 +542,9 @@ namespace ArtShop.Controllers
                 var categoryId = (int)Session["category"];
                 var subjectId = (int)Session["subject"];
 
+                int img_width = (int)Session["img_width"];
+                int img_height = (int)Session["img_height"];
+
                 string Mediums = (string)Session["Mediums"];
                 int[] Materials = (int[])Session["Materials"];
                 string Styles = (string)Session["Styles"];
@@ -547,7 +554,7 @@ namespace ArtShop.Controllers
 
                 var product = new Product()
                 {
-                    photo = new Photo() { Path = orginalpic },
+                    photo = new Photo() { Path = orginalpic, width = img_width, Height = img_height },
                     Widephoto = new Photo() { Path = widepath },
                     Sqphoto = new Photo() { Path = sqpath },
                     Title = (string)Session["Title"],
