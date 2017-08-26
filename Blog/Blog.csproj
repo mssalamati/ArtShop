@@ -5319,6 +5319,7 @@
     <Content Include="Content\Admin\vendor\wysihtml5x\package.json" />
     <Content Include="Content\Admin\vendor\wysihtml5x\README.markdown" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -5374,7 +5375,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Posts\" />
     <Folder Include="Content\Admin\vendor\bootstrap-datepicker\build\" />
     <Folder Include="Content\Admin\vendor\bootstrap-rating-input\build\" />
     <Folder Include="Content\Admin\vendor\bootstrap-sass\assets\images\" />

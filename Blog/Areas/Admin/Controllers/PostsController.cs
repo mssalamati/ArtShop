@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,8 @@ namespace Blog.Areas.Admin.Controllers
         // GET: Admin/Posts
         public ActionResult Index()
         {
+           
+            
             return View();
         }
     }
