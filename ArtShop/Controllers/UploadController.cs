@@ -370,6 +370,18 @@ namespace ArtShop.Controllers
             return RedirectToAction("Setep10");
         }
 
+        //print type options
+        public ActionResult Setep9_5()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Setep9_5(UploadViewModel.step9_5 model)
+        {
+            return PartialView();
+        }
+
+
         public ActionResult Setep10()
         {
             return PartialView();

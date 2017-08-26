@@ -499,6 +499,7 @@
     <Content Include="Views\Pages\CopyrightRTL.cshtml" />
     <Content Include="Views\Pages\PrivacyRTL.cshtml" />
     <Content Include="Views\Pages\TermsRTL.cshtml" />
+    <Content Include="Views\Upload\Setep9_5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
