@@ -270,6 +270,13 @@ namespace ArtShop.Controllers
             ViewBag.Keywords = Session["Keywords"];
             ViewBag.firstmedium = Session["firstmedium"];
             ViewBag.firstmaterial = Session["firstmaterial"];
+
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            var current = 7;
+            ViewBag.progress = ((current / total) * 740) + "px";
+
             return PartialView();
         }
         [HttpPost]
@@ -295,7 +302,10 @@ namespace ArtShop.Controllers
             Session["Description"] = model.Description;
             Session["AllEntity"] = model.AllEntity;
 
-            if ((bool)Session["isOrginal"] == false)
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+
+            if (isforsale && !printAvable)
             {
                 int id = 0;
                 var error = uploadnow(out id);
@@ -309,13 +319,23 @@ namespace ArtShop.Controllers
                     return PartialView();
                 }
             }
-
-            return RedirectToAction("Setep8");
+            else if (!isforsale && printAvable)
+            {
+                return RedirectToAction("Setep9_5");
+            }
+            else
+                return RedirectToAction("Setep8");
         }
 
         //Packaging and frame
         public ActionResult Setep8()
         {
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            var current = 8;
+            ViewBag.progress = ((current / total) * 740 )+ "px";
+
             return PartialView();
         }
         [HttpPost]
@@ -332,6 +352,12 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
+
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            var current = 9;
+            ViewBag.progress = ((current / total) * 740 )+ "px";
 
             UploadViewModel.step9 model = new UploadViewModel.step9();
             if (userProfile.billingInfo != null)
@@ -367,18 +393,53 @@ namespace ArtShop.Controllers
             Session["Zip_code"] = model.Zip_code;
             Session["phoneNumber"] = model.phoneNumber;
 
-            return RedirectToAction("Setep10");
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+
+            if (printAvable)
+            {
+                return RedirectToAction("Setep9_5");
+            }
+            else
+                return RedirectToAction("Setep10");
         }
 
         //print type options
         public ActionResult Setep9_5()
         {
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            var current = isforsale ? 10 : 8;
+            ViewBag.progress = ((current / total) * 740) + "px";
+
             return PartialView();
         }
         [HttpPost]
         public ActionResult Setep9_5(UploadViewModel.step9_5 model)
         {
             return PartialView();
+
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            if (isforsale)
+            {
+                return RedirectToAction("Setep10");
+            }
+            else
+            {
+                int id = 0;
+                var error = uploadnow(out id);
+                if (error == string.Empty)
+                {
+                    return RedirectToAction("Stepfinish", new { id = id });
+                }
+                else
+                {
+                    ViewBag.error = error;
+                    return PartialView();
+                }
+            }
         }
 
 

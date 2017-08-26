@@ -30,7 +30,7 @@
                                 @if ((bool)Session["isOrginal"] == false)
                                 {
                                     <div class="progress-component wizard-progress">
-                                        <div class="progress-component__inner" style="transform: translateX(740px);"></div>
+                                        <div class="progress-component__inner" style="transform: translateX(@ViewBag.progress);"></div>
                                     </div>
                                 }
                                 else

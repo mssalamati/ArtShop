@@ -12,7 +12,7 @@
                     <span></span>
                     <div class="new-page">
                         <span></span>
-                        @using (Ajax.BeginForm("Setep10", "Upload", null, new AjaxOptions()
+                        @using (Ajax.BeginForm("Setep9_5", "Upload", null, new AjaxOptions()
                         {
                             HttpMethod = "POST",
                             UpdateTargetId = "updatediv",
@@ -29,7 +29,7 @@
                             }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
-                                    <div class="progress-component__inner" style="transform: translateX(740px);"></div>
+                                    <div class="progress-component__inner" style="transform: translateX(@ViewBag.progress);"></div>
                                 </div>
 
                                 <div class="wizard-step">
