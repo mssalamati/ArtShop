@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Blog.Areas.Admin.Controllers
 {
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
         // GET: Admin/Posts
         public ActionResult Index()

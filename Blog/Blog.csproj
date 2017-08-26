@@ -209,19 +209,28 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\AccountViewModels.cs" />
     <Compile Include="Areas\Admin\Models\ManageViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModel\CategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModel\CountryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModel\TagViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\BlogRepository.cs" />
     <Compile Include="Interfaces\IBlogRepository.cs" />
+    <Compile Include="Interfaces\ITranslation.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\PostMap.cs" />
     <Compile Include="Mappings\TagMap.cs" />
@@ -230,6 +239,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -5320,6 +5330,15 @@
     <Content Include="Content\Admin\vendor\wysihtml5x\README.markdown" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\_successWindow.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\_successWindow.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

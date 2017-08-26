@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Blog.Objects;
 
 namespace Blog.Models
 {
@@ -30,5 +31,11 @@ namespace Blog.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }
