@@ -357,7 +357,7 @@ namespace ArtShop.Controllers
             Session["AllEntity"] = model.AllEntity;
 
 
-            if (isforsale && !printAvable)
+            if (!isforsale && !printAvable)
             {
                 int id = 0;
                 var error = uploadnow(out id);

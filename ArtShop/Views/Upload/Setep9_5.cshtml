@@ -4,6 +4,8 @@
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
 }
 
+@using DataLayer.Extentions
+
 <div id="upload">
     <div data-reactroot="">
         <div class="app">
@@ -43,7 +45,7 @@
                                                 @foreach (var item in (List<PrintMaterial>)ViewBag.printoptions)
                                                 {
                                                     <div class="form-group animate-group-0-5">
-                                                        <h3>@item.title</h3>
+                                                        <h3>@item.Current().title</h3>
                                                         <div class="button-radio">
                                                             <div class="button-radio__button-container">
                                                                 <input id="multipanel" type="hidden" name="multi_paneled" value="true" />
