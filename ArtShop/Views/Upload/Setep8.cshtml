@@ -28,7 +28,7 @@
                             }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
-                                    <div class="progress-component__inner" style="transform: translateX(575.556px);"></div>
+                                    <div class="progress-component__inner" style="transform: translateX(@ViewBag.progress);"></div>
                                 </div>
                                 <div class="wizard-step">
                                     <div class="packaging">
@@ -110,44 +110,27 @@
                                         <div id="framedetail" hidden class="form-group animate-group-0-4 z-index-fix form-group--block packaging__frame-questionnaire">
                                             <p class="descriptor">After finishing your upload, please add additional images of your artwork that clearly show the frame</p>
                                             <div class="input-container">
-                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                <select name="frametype" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.productFrameOptions.ProductFrameTypes)
                                                     {
                                                         <option value="@item.Key">@item.Value</option>
                                                     }
-                                                    <option value="Box">Box</option>
-                                                    <option value="Edge">Edge</option>
-                                                    <option value="Ornate">Ornate</option>
-                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
                                             <div class="input-container">
-                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                <select name="framematerial" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.productFrameOptions.ProductFrameMaterials)
                                                     {
                                                         <option value="@item.Key">@item.Value</option>
                                                     }
-                                                    <option value="Wood">Wood</option>
-                                                    <option value="Metal">Metal</option>
-                                                    <option value="Aluminum">Aluminum</option>
-                                                    <option value="Resin">Resin</option>
-                                                    <option value="Plastic">Plastic</option>
-                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
                                             <div class="input-container">
-                                                <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                                <select name="framecolor" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.productFrameOptions.ProductFrameColors)
                                                     {
                                                         <option value="@item.Key">@item.Value</option>
                                                     }
-                                                    <option value="Black">Black</option>
-                                                    <option value="Brown">Brown</option>
-                                                    <option value="White">White</option>
-                                                    <option value="Silver">Silver</option>
-                                                    <option value="Gold">Gold</option>
-                                                    <option value="Patina">Patina</option>
-                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
                                         </div>

@@ -80,5 +80,10 @@ namespace ArtShop.Models
         {
             public float Price { get; set; }
         }
+
+        public class step9_5
+        {
+            public int[] printtypes { get; set; }
+        }
     }
 }

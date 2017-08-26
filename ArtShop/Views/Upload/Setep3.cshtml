@@ -26,7 +26,7 @@
                             }
                             <div class="new-page__content pane pane--padded pane--centered pane--full">
                                 <div class="progress-component wizard-progress">
-                                    <div class="progress-component__inner" style="transform: translateX(164.444px);"></div>
+                                    <div id="progresstrans" class="progress-component__inner" style="transform: translateX(164.444px);"></div>
                                 </div>
                                 <div class="artwork-status">
                                     <h1 class="animate-group-0-0">@UploadRes.Artwork_Status</h1>
@@ -95,6 +95,26 @@
     </div>
 </div>
 
+
+<script>
+    function getProgressPercentage(print, sale) {
+        var total = 7;
+        if (sale == 'true')
+            total += 3;
+        if (print == 'true')
+            total += 1;
+        var current = 3;
+        var max = 740;
+        return (current / total) * max;
+    }
+    function updateProgress() {
+        var isprint = $('#printAvable').val();
+        var issale = $('#isOrginal').val();
+        var percent = getProgressPercentage(isprint, issale);
+        $('#progresstrans').css('transform', 'translateX(' + percent + 'px)');
+    }
+</script>
+
 <script>
     function change_orginalBtn(val) {
         var inp = $('#isOrginal');
@@ -109,6 +129,7 @@
             btnno.addClass('button--active');
             btnyes.removeClass('button--active');
         }
+        updateProgress();
     }
     function change_prints(val) {
         var inp = $('#printAvable');
@@ -123,6 +144,7 @@
             btnno.addClass('button--active');
             btnyes.removeClass('button--active');
         }
+        updateProgress();
     }
     function change_copyright(val) {
         var inp = $('#copyright');
