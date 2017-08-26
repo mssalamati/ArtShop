@@ -137,7 +137,9 @@ namespace ImageServer.Controllers
             return Json(new
             {
                 result = true,
-                data = "http://" + ImageServerName + "." + mainDomain + saveResult.FullPath
+                data = "http://" + ImageServerName + "." + mainDomain + saveResult.FullPath,
+                width = result.Width,
+                height = result.Height
             }, JsonRequestBehavior.AllowGet);
         }
     }
