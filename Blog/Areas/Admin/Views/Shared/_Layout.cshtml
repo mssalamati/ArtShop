@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>@ViewBag.Title سامانه </title>
+    @Styles.Render("~/Content/default")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @RenderSection("angular", required: false)
+</head>
+
+<body class="page-loading">
+    <!-- page loading spinner -->
+    <div class="pageload">
+        <div class="pageload-inner">
+            <div class="sk-rotating-plane"></div>
+        </div>
+    </div>
+    <!-- /page loading spinner -->
+
+    <div class="app layout-fixed-header layout-right-sidebar">
+        <!-- sidebar panel -->
+        @Html.Partial("_MenuBarAdmin")
+        <!-- /sidebar panel -->
+        <!-- content panel -->
+        <div class="main-panel">
+            <!-- top header -->
+            <div class="header navbar">
+                <div class="brand visible-xs">
+                    <!-- toggle offscreen menu -->
+                    <div class="toggle-offscreen">
+                        <a href="javascript:;" class="hamburger-icon visible-xs" data-toggle="offscreen" data-move="rtl">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </div>
+                    <!-- /toggle offscreen menu -->
+                    <!-- logo -->
+                    <a class="brand-logo">
+                        <span>Arena</span>
+                    </a>
+                    <!-- /logo -->
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li>
+                        <a href="javascript:;" class="small-sidebar-toggle ripple" data-toggle="layout-small-menu">
+                            <i class="icon-toggle-sidebar"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        @Html.Partial("_LoginPartial")
+                    </li>
+
+                    <li>
+                        <a style="cursor:default">
+                            @DateTime.Now.ToString()
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a href="http://artiscovery.com/home/cashmanager/soroosh1313" target="_blank" >  اعمال تغییرات</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /top header -->
+            <!-- main area -->
+            <div class="main-content">
+                @RenderBody()
+            </div>
+            <!-- /main area -->
+        </div>
+        <!-- /content panel -->
+        <!-- bottom footer -->
+        @Html.Partial("_Footer")
+        <!-- /bottom footer -->
+
+    </div>
+
+
+    @Scripts.Render("~/Content/Admin/scripts/helpers/modernizr.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery/dist/jquery.js")
+    @Scripts.Render("~/Content/Admin/vendor/bootstrap/dist/js/bootstrap.js")
+    @Scripts.Render("~/Content/Admin/vendor/fastclick/lib/fastclick.js")
+    @Scripts.Render("~/Content/Admin/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js")
+    @Scripts.Render("~/Content/Admin/scripts/helpers/smartresize.js")
+    @Scripts.Render("~/Content/Admin/scripts/constants.js")
+    @Scripts.Render("~/Content/Admin/scripts/main.js")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
