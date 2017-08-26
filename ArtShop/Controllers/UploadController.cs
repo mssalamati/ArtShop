@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using DataLayer.Enitities;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace ArtShop.Controllers
 {
@@ -139,6 +140,11 @@ namespace ArtShop.Controllers
         //RESIZE PICTURE
         public ActionResult Setep4()
         {
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 4;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
             ViewBag.img = (string)Session["imageAddress"];
             return PartialView();
@@ -177,6 +183,13 @@ namespace ArtShop.Controllers
                     Message = "" + result.error
                 });
                 db.SaveChanges();
+
+                bool printAvable = (bool)Session["printAvable"];
+                bool isforsale = (bool)Session["isOrginal"];
+                float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+                float current = 4;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+
                 return PartialView();
             }
 
@@ -190,6 +203,12 @@ namespace ArtShop.Controllers
             ViewBag.Mediums = CashManager.Instance.Mediums;
             ViewBag.Materials = CashManager.Instance.Materials;
             ViewBag.Styles = CashManager.Instance.Styles;
+
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 5;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
             return PartialView();
         }
@@ -209,6 +228,13 @@ namespace ArtShop.Controllers
             if (model.Keywords.Split(',').Count() < 5)
             {
                 ViewBag.error = Resources.UploadRes.keyword_lenght_error;
+
+                bool printAvable = (bool)Session["printAvable"];
+                bool isforsale = (bool)Session["isOrginal"];
+                float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+                float current = 5;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+
                 return PartialView();
             }
 
@@ -225,6 +251,12 @@ namespace ArtShop.Controllers
         //get size with canvas
         public ActionResult Setep6()
         {
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 6;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+
             return PartialView();
         }
         [HttpPost]
@@ -237,19 +269,30 @@ namespace ArtShop.Controllers
                 model.Depth = float.Parse(Request["Depth"].Replace(".", "/"));
             }
 
+            bool error = false;
             if (model.Height == 0)
             {
                 ViewBag.error = Resources.UploadRes.zeroHeight_error;
-                return PartialView();
+                error = true;
             }
             if (model.Width == 0)
             {
                 ViewBag.error = Resources.UploadRes.zeroWidth_error;
-                return PartialView();
+                error = true;
             }
             if (model.Depth == 0)
             {
                 ViewBag.error = Resources.UploadRes.zeroDepth_error;
+                error = true;
+            }
+
+            if (error)
+            {
+                bool printAvable = (bool)Session["printAvable"];
+                bool isforsale = (bool)Session["isOrginal"];
+                float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+                float current = 6;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
 
@@ -273,28 +316,36 @@ namespace ArtShop.Controllers
 
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
-            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
-            var current = 7;
-            ViewBag.progress = ((current / total) * 740) + "px";
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 7;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
             return PartialView();
         }
         [HttpPost]
         public ActionResult Setep7(UploadViewModel.step7 model)
         {
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 7;
+           
             if (string.IsNullOrEmpty(model.Title))
             {
                 ViewBag.error = Resources.UploadRes.titleNull_error;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
             if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 50)
             {
                 ViewBag.error = Resources.UploadRes.descriptionnull_error;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
             if (model.AllEntity < model.avaible)
             {
                 ViewBag.error = Resources.UploadRes.avaibleEntity_error;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
             Session["Title"] = model.Title;
@@ -302,8 +353,6 @@ namespace ArtShop.Controllers
             Session["Description"] = model.Description;
             Session["AllEntity"] = model.AllEntity;
 
-            bool printAvable = (bool)Session["printAvable"];
-            bool isforsale = (bool)Session["isOrginal"];
 
             if (isforsale && !printAvable)
             {
@@ -316,6 +365,7 @@ namespace ArtShop.Controllers
                 else
                 {
                     ViewBag.error = error;
+                    ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                     return PartialView();
                 }
             }
@@ -332,9 +382,9 @@ namespace ArtShop.Controllers
         {
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
-            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
-            var current = 8;
-            ViewBag.progress = ((current / total) * 740 )+ "px";
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 8;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
             return PartialView();
         }
@@ -355,9 +405,9 @@ namespace ArtShop.Controllers
 
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
-            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
-            var current = 9;
-            ViewBag.progress = ((current / total) * 740 )+ "px";
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 9;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
             UploadViewModel.step9 model = new UploadViewModel.step9();
             if (userProfile.billingInfo != null)
@@ -375,12 +425,17 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep9(UploadViewModel.step9 model)
         {
-
+            bool printAvable = (bool)Session["printAvable"];
+            bool isforsale = (bool)Session["isOrginal"];
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = 9;
+           
             if (string.IsNullOrEmpty(model.Street_Address) || string.IsNullOrEmpty(model.City)
                 || string.IsNullOrEmpty(model.Country) || string.IsNullOrEmpty(model.Region) || string.IsNullOrEmpty(model.Zip_code) ||
                 string.IsNullOrEmpty(model.phoneNumber))
             {
                 ViewBag.error = Resources.UploadRes.Empty_Error;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView(model);
             }
 
@@ -392,9 +447,6 @@ namespace ArtShop.Controllers
             Session["Region"] = model.Region;
             Session["Zip_code"] = model.Zip_code;
             Session["phoneNumber"] = model.phoneNumber;
-
-            bool printAvable = (bool)Session["printAvable"];
-            bool isforsale = (bool)Session["isOrginal"];
 
             if (printAvable)
             {
@@ -409,17 +461,15 @@ namespace ArtShop.Controllers
         {
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
-            var total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
-            var current = isforsale ? 10 : 8;
-            ViewBag.progress = ((current / total) * 740) + "px";
+            float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+            float current = isforsale ? 10 : 8;
+            ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
 
             return PartialView();
         }
         [HttpPost]
         public ActionResult Setep9_5(UploadViewModel.step9_5 model)
         {
-            return PartialView();
-
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
             if (isforsale)
@@ -437,6 +487,10 @@ namespace ArtShop.Controllers
                 else
                 {
                     ViewBag.error = error;
+                    float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
+                    float current = isforsale ? 10 : 8;
+                    ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+
                     return PartialView();
                 }
             }
