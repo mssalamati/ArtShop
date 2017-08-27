@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Blog.Objects
 {
+    public enum PostType { Wide, Sqr,ShowCase }
     /// <summary>
     /// Represents a blog entry - article, presentation or any thing.
     /// </summary>
@@ -75,7 +76,10 @@ namespace Blog.Objects
         /// Collection of tags labelled over the post.
         /// </summary>
         public virtual IList<Tag> Tags { get; set; }
-
+        public virtual IList<Link> Links { get; set; }
+        public virtual IList<HeaderPhoto> HeaderPhotos { get; set; }
         public virtual string Author { get; set; }
+        public virtual string Thumbnail { get; set; }
+        public virtual PostType postType { get; set; }
     }
 }
