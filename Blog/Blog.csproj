@@ -218,7 +218,6 @@
     <Compile Include="Areas\Admin\Models\ManageViewModels.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\CountryViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModel\PostViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\TagViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />

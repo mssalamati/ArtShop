@@ -1,5 +1,6 @@
 ﻿using Blog.Areas.Admin.Models.ViewModel;
 using Blog.Interfaces;
+using Blog.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Blog.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Add(PostViewModel model)
+        public ActionResult Add(Post model)
         {          
             return View();
         }
@@ -41,7 +42,7 @@ namespace Blog.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(PostViewModel model)
+        public ActionResult Edit(Post model)
         {
             return View();
         }

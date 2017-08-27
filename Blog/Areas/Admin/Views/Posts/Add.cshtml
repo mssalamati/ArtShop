@@ -5,7 +5,7 @@
 
 @using Blog.Objects
 
-@model Blog.Areas.Admin.Models.ViewModel.PostViewModel
+@model Post
 
     <div class="page-title">
         <div class="title"> Artiscovery</div>
@@ -73,7 +73,7 @@
                                     @Html.AntiForgeryToken()
 
                                     <textarea name="Content" id="Content">
-                                        @Model.Content
+                                        @Model.Title
                                     </textarea>
                                 }
                             </div>

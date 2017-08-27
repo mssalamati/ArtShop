@@ -1,7 +1,9 @@
 ﻿#region Usings
+using Blog.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 #endregion
 
 namespace Blog.Objects
@@ -10,7 +12,7 @@ namespace Blog.Objects
     /// <summary>
     /// Represents a blog entry - article, presentation or any thing.
     /// </summary>
-    public class Post
+    public class Post : ITranslatable<Post, PostTranslation>
     {
         [Required(ErrorMessage = "Id: Field is required")]
         public virtual int Id { get; set; }
@@ -22,17 +24,8 @@ namespace Blog.Objects
         [StringLength(500, ErrorMessage = "Title: Length should not exceed 500 characters")]
         public virtual string Title { get; set; }
 
-        /// <summary>
-        /// A brief paragraph about the post.
-        /// </summary>
-        [Required(ErrorMessage = "ShortDescription: Field is required")]
-        public virtual string ShortDescription { get; set; }
 
-        /// <summary>
-        /// The complete post content.
-        /// </summary>
-        [Required(ErrorMessage = "Description: Field is required")]
-        public virtual string Description { get; set; }
+        public virtual ICollection<PostTranslation> Translations { get; set; }
 
         /// <summary>
         /// The information about the post that has to be displayed in the &lt;meta&gt; tag (SEO).
@@ -81,5 +74,19 @@ namespace Blog.Objects
         public virtual string Author { get; set; }
         public virtual string Thumbnail { get; set; }
         public virtual PostType postType { get; set; }
+    }
+
+    public class PostTranslation : ITranslation<Post>
+    {
+        [Key, Column(Order = 0)]
+        [ForeignKey("language")]
+        public string languageId { get; set; }
+        public virtual Language language { get; set; }
+        [Key, Column(Order = 1)]
+        [ForeignKey("post")]
+        public virtual int postId { get; set; }
+        public virtual Post post { get; set; }
+        public virtual string Description { get; set; }
+        public virtual string Title { get; set; }
     }
 }
