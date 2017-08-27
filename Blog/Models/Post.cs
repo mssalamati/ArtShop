@@ -76,10 +76,10 @@ namespace Blog.Objects
         /// Collection of tags labelled over the post.
         /// </summary>
         public virtual IList<Tag> Tags { get; set; }
-
         public virtual IList<Link> Links { get; set; }
-
+        public virtual IList<HeaderPhoto> HeaderPhotos { get; set; }
         public virtual string Author { get; set; }
+        public virtual string Thumbnail { get; set; }
         public virtual PostType postType { get; set; }
     }
 }
