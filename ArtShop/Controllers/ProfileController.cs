@@ -48,8 +48,14 @@ namespace ArtShop.Controllers
 
             foreach (var item in userProfile.Products)
             {
-                model.artworks.Add(item);
-                counter++;
+                if (counter < 4)
+                {
+                    model.artworks.Add(item);
+                    counter++;
+                }
+                else
+                    break;
+
             }
 
             if (counter < 4 && counter != 0)
