@@ -38,7 +38,7 @@ namespace Blog.Areas.Admin.Controllers
 
             c.Translations = new List<CategoryTranslation>();
             foreach (var item in model.Translations)
-                c.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name });
+                c.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name ,Description = item.Description});
             db.Categories.Add(c);
             try
             {
