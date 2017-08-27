@@ -3278,8 +3278,10 @@
     <Content Include="Content\dashicons.min.css" />
     <Content Include="Content\easy-pull-quotes-public.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\canvas-logo%402x.png" />
     <Content Include="Content\Images\en.svg" />
     <Content Include="Content\Images\fa.svg" />
+    <Content Include="Content\Images\footer-logo.png" />
     <Content Include="Content\instag-slider.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\perfect-pullquotes.css" />

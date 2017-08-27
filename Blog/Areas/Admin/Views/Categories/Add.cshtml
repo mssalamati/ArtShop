@@ -45,6 +45,8 @@
                 </div>
             }
         </div>
+        <label class="form-label"> توضیحات</label>
+        <hr />
         <div class="row">
             @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
             {
@@ -53,7 +55,7 @@
                     <div class="form-group">
                         <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
                         <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                        <input name="Translations[@i].description" type="text" class="form-control" />
+                        <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px" />
                     </div>
                 </div>
             }

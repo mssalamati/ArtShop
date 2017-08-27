@@ -60,7 +60,7 @@ namespace Blog.Areas.Admin.Controllers
             ViewBag.language = db.Languages.ToList();
             CategoryViewModel cvm = new CategoryViewModel() { Id = finder.Id, Translations = new List<CategoryTranslationViewModel>(), Name = finder.Name };
             foreach (var item in finder.Translations)
-                cvm.Translations.Add(new CategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name });
+                cvm.Translations.Add(new CategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name,Description = item.Description });
 
             return PartialView(cvm);
         }
@@ -75,9 +75,13 @@ namespace Blog.Areas.Admin.Controllers
             {
                 var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
                 if (curr != null)
+                {
                     curr.Name = item.Name;
+                    curr.Description = item.Description;
+                }
+                  
                 else
-                    finder.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name });
+                    finder.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name,Description = item.Description });
             }
 
             try
