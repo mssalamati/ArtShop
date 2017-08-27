@@ -4,6 +4,8 @@
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
 }
 
+@using DataLayer.Extentions
+
 <div id="upload">
     <div data-reactroot="">
         <div class="app">
@@ -43,12 +45,12 @@
                                                 @foreach (var item in (List<PrintMaterial>)ViewBag.printoptions)
                                                 {
                                                     <div class="form-group animate-group-0-5">
-                                                        <h3>@item.title</h3>
+                                                        <h3>@item.Current().title</h3>
                                                         <div class="button-radio">
                                                             <div class="button-radio__button-container">
-                                                                <input id="multipanel" type="hidden" name="multi_paneled" value="true" />
-                                                                <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
-                                                                <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
+                                                                <input id="mx_@item.Id" type="checkbox" name="printtypes" value="@item.Id" style="display:none" />
+                                                                <button id="mx_yes_@item.Id" onclick="change_val(1,@item.Id);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                                <button id="mx_no_@item.Id" onclick="change_val(0,@item.Id);" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -76,3 +78,39 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+
+    function change_val(val,id) {
+        var inp = $('#mx_'+id);
+        var btnyes = $('#mx_yes_'+id);
+        var btnno = $('#mx_no_'+id);
+        if (val == 1) {
+            inp.prop("checked", true);
+            btnyes.addClass('button--active');
+            btnno.removeClass('button--active');
+        } else {
+            inp.prop("checked", false);
+            btnno.addClass('button--active');
+            btnyes.removeClass('button--active');
+        }
+    }
+
+    function callbackpage() {
+        $.ajax({
+            type: 'get',
+            url: '/upload/Setep7',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#updatediv').html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+</script>
