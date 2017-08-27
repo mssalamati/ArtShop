@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+@using Blog.Objects
+
+@model Post
+
+    <div class="page-title">
+        <div class="title"> Artiscovery</div>
+        <ol class="breadcrumb no-bg pl0">
+            <li>
+                <a href="javascript:;">پنل سازمان</a>
+            </li>
+            <li>
+                <a href="javascript:;">مطلب جدید </a>
+            </li>
+        </ol>
+    </div>
+
+
+    <div class="clearfix"></div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.message))
+    {
+        <p class="alert alert-success"> @DateTime.Now @ViewBag.message </p>
+    }
+    <div class="row">
+        <div class="col-lg-12 portlets">
+            @using (Html.BeginForm("add", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(x => x.Id)
+                <div class="panel">
+                    <div class="card-header">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی </label>
+                                <div class="col-sm-5">
+                                    <select id="catselect" name="Category" class="form-control">
+                                        @foreach (var item in ((List<Category>)ViewBag.caregories))
+                                        {
+                                            if (Model.Id == item.Id)
+                                            {
+                                                <option selected value="@item.Name">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Name">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="submit" value="ثبت" class="btn btn-default pull-left" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top:2px">
+                            <div class="form-group">
+                                <label style="padding:5px" class="col-sm-2 control-label"> سربرگ </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="Title" value="@Model.Title" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top:10px">
+                            <div class="form-group">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <textarea name="Content" id="Content">
+                                        @Model.Title
+                                    </textarea>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+
+    @section scripts{
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>
+
+        <script type="text/javascript">
+            CKEDITOR.replace('Content', {
+                customConfig: '/config.js',
+                height: 500,
+                filebrowserImageBrowseUrl: '/pages/uploadPartial',
+                filebrowserImageUploadUrl: '/pages/uploadnow',
+            });
+
+        </script>
+    }

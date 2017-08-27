@@ -1,93 +1,79 @@
-﻿@model IEnumerable<Blog.Objects.Post>
+﻿
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = "Index";
 }
-@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+@using Blog.Objects
+
+@model IEnumerable<Post>
 
 <div class="page-title">
-    <div class="title"> کاربران</div>
+    <div class="title"> Artiscovery</div>
     <ol class="breadcrumb no-bg pl0">
         <li>
-            <a href="javascript:;">وبلاگ</a>
+            <a href="javascript:;">پنل سازمان</a>
         </li>
         <li>
-            <a href="javascript:;">پست ها</a>
+            <a href="javascript:;">مطالب </a>
         </li>
     </ol>
 </div>
 
-<form method="get" action="/users/index">
-    <div class="input-group m-b pull-left col-md-6">
-
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
-        </span>
-        <input type="hidden" name="page" value="@ViewBag.page">
-        <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
-        <input type="search" placeholder="Email " name="search" value="@ViewBag.search" class="form-control bl0">
-    </div>
-</form>
-
 
 <div class="clearfix"></div>
 
-@if (Model.Count() == 0)
-{
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="alert alert-warning ">
-                هیچ پستی وجود ندارد
+<div class="card bg-white m-b">
+    <div class="card-header">
+        <form method="get" action="/posts/index">
+            <div class="input-group pull-right col-md-6">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
+                </span>
+                <input type="hidden" name="page" value="@ViewBag.page">
+                <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
+                <input type="search" placeholder="search..." name="search" value="@ViewBag.search" class="form-control bl0">
             </div>
-        </div>
+        </form>
+        <a href="/posts/add" class="pull-left btn btn-default">ثبت پست جدید</a>
     </div>
-}
-
-else
-{
-    <div class="card bg-white m-b">
-        <div class="card-header">پست ها </div>
-        <div class="card-block p-a-0">
-            <div class="table-responsive">
+    <div class="card-block p-a-0">
+        <div class="table-responsive">
+            @if (Model.Count() != 0)
+            {
                 <table class="table m-b-0">
                     <tr>
                         <th></th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Title)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ShortDescription)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PostedOn)
+                            Title
                         </th>
                         <th></th>
                     </tr>
-
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th><i class="fa fa-user"></i></th>
+                            <th><i class="fa fa-eye"></i></th>
+                            <th>
+                                @item.Title
+                            </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShortDescription)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PostedOn)
-                            </td>
-                            <td>
-                                @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "text-info" }) |
-                                @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }, new { @class = "text-danger" })
+                                <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
+                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/posts/delete/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
                         </tr>
                     }
-
                 </table>
-            </div>
+            }
+            else
+            {
+                <div class="alert alert-warning ">
+                    هیپ مطلبی وارد نشده
+                </div>
+            }
         </div>
     </div>
-}
+</div>
+
 
 <ul class="pagination clearfix block">
     @if (ViewBag.page != 1)
@@ -124,8 +110,3 @@ else
 </ul>
 
 
-@section scripts{
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
-
-}

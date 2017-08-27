@@ -5331,7 +5331,6 @@
     <Content Include="Content\Admin\vendor\wysihtml5x\package.json" />
     <Content Include="Content\Admin\vendor\wysihtml5x\README.markdown" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
@@ -5341,6 +5340,9 @@
     <Content Include="Areas\Admin\Views\Tags\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\_successWindow.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
