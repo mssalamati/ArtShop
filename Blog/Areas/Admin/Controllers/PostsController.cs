@@ -28,6 +28,8 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult Add()
         {
             ViewBag.caregories = db.Categories.ToList();
+            ViewBag.language = db.Languages.ToList();
+            ViewBag.tags = db.Tags.ToList();
             return View();
         }
         [HttpPost]
