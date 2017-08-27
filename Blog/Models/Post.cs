@@ -76,6 +76,8 @@ namespace Blog.Objects
         /// </summary>
         public virtual IList<Tag> Tags { get; set; }
 
+        public virtual IList<Link> Links { get; set; }
+
         public virtual string Author { get; set; }
     }
 }
