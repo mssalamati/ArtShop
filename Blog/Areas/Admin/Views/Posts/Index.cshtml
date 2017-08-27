@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Blog.Objects.Post>
+@{
+    ViewBag.Title = "Posts";
+}
+@Styles.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.css")
+
+<div class="page-title">
+    <div class="title"> کاربران</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">وبلاگ</a>
+        </li>
+        <li>
+            <a href="javascript:;">پست ها</a>
+        </li>
+    </ol>
+</div>
+
+<form method="get" action="/users/index">
+    <div class="input-group m-b pull-left col-md-6">
+
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
+        </span>
+        <input type="hidden" name="page" value="@ViewBag.page">
+        <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
+        <input type="search" placeholder="Email " name="search" value="@ViewBag.search" class="form-control bl0">
+    </div>
+</form>
+
+
+<div class="clearfix"></div>
+
+@if (Model.Count() == 0)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning ">
+                هیچ پستی وجود ندارد
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <div class="card bg-white m-b">
+        <div class="card-header">پست ها </div>
+        <div class="card-block p-a-0">
+            <div class="table-responsive">
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShortDescription)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PostedOn)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><i class="fa fa-user"></i></th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShortDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostedOn)
+                            </td>
+                            <td>
+                                @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "text-info" }) |
+                                @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }, new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+<ul class="pagination clearfix block">
+    @if (ViewBag.page != 1)
+    {
+        <li>
+            <a href="@Url.Action("index", new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+        </li>
+    }
+
+    @for (int i = 1; i <= ViewBag.maxpage; i++)
+    {
+        if (ViewBag.page == i)
+        {
+            <li class="active">
+                <a class="" href="@Url.Action("index",new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action("index",new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+
+    }
+    @if (ViewBag.page != ViewBag.maxpage)
+    {
+        <li>
+            <a href="@Url.Action("index",new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+        </li>
+    }
+
+
+</ul>
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
+}
