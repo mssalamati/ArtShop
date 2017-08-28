@@ -62,7 +62,37 @@ namespace ArtShop.Controllers
         public ActionResult single(int id)
         {
             var p = db.Products.Find(id);
+
+            bool mine = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                mine = profile.Products.Any(x => x.Id == id);
+            }
+            ViewBag.mine = mine;
+
             return View(p);
+        }
+
+        [HttpGet]
+        public ActionResult remove(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                var p = profile.Products.SingleOrDefault(x => x.Id == id);
+                if (p != null)
+                {
+                    db.Products.Remove(p);
+                    db.SaveChanges();
+                    return RedirectToAction("artworks", "profile", new { });
+                }
+            }
+            return Content("error");
         }
 
         public ActionResult AddOrRemoveFavorit(int id)
