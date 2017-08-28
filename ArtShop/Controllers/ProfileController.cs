@@ -28,19 +28,19 @@ namespace ArtShop.Controllers
             model.favoritesCount = userProfile.Favorits.Count;
             model.city = userProfile.City == null ? " ": userProfile.City;
             model.region = userProfile.Region == null ? " " : userProfile.Region;
-            model.country = userProfile.country;
-            model.photoPath = userProfile.PhotoPath;
-            model.facebook = userProfile.userLinks.Facebook;
-            model.twitter = userProfile.userLinks.Twitter;
-            model.pinterest = userProfile.userLinks.Pinterest;
-            model.tumbler = userProfile.userLinks.Tumblr;
-            model.instagram = userProfile.userLinks.Instagram;
-            model.googlePlus = userProfile.userLinks.GooglePlus;
-            model.myWebsite = userProfile.userLinks.Website;
-            model.aboutme = userProfile.personalInformation.AboutMe;
-            model.events = userProfile.personalInformation.Events;
-            model.education = userProfile.personalInformation.Education;
-            model.Exhibitions = userProfile.personalInformation.Exhibitions;
+            model.country = userProfile.country == null ? new Country() : userProfile.country;
+            model.photoPath = userProfile.PhotoPath == null ? "" : userProfile.PhotoPath;
+            model.facebook = userProfile.userLinks.Facebook == null ? "" : userProfile.userLinks.Facebook;
+            model.twitter = userProfile.userLinks.Twitter == null ? "" : userProfile.userLinks.Twitter;
+            model.pinterest = userProfile.userLinks.Pinterest == null ? "" : userProfile.userLinks.Pinterest;
+            model.tumbler = userProfile.userLinks.Tumblr == null ? "" : userProfile.userLinks.Tumblr;
+            model.instagram = userProfile.userLinks.Instagram == null ? "" : userProfile.userLinks.Instagram;
+            model.googlePlus = userProfile.userLinks.GooglePlus == null ? "" : userProfile.userLinks.GooglePlus;
+            model.myWebsite = userProfile.userLinks.Website == null ? "" : userProfile.userLinks.Website;
+            model.aboutme = userProfile.personalInformation.AboutMe == null ? "" : userProfile.personalInformation.AboutMe;
+            model.events = userProfile.personalInformation.Events == null ? "" : userProfile.personalInformation.Events;
+            model.education = userProfile.personalInformation.Education == null ? "" : userProfile.personalInformation.Education;
+            model.Exhibitions = userProfile.personalInformation.Exhibitions == null ? "" : userProfile.personalInformation.Exhibitions;
 
 
             model.artworks = new List<Product>();

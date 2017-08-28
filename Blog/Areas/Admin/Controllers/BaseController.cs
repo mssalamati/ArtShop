@@ -9,7 +9,7 @@ using Blog.Models;
 
 namespace Blog.Areas.Admin.Controllers
 {
-    [Authorize(Users = "admin")]
+    //[Authorize(Users = "admin")]
     public class BaseController : Controller
     {
         protected ApplicationDbContext db = new ApplicationDbContext();
