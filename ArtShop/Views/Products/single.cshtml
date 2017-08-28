@@ -179,13 +179,13 @@
                                     <i class="fa fa-check" aria-hidden="true"></i> @SearchRes.Money_back
                                 </div>
                                 @*<div>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    Trustpilot Score
-                                </div>*@
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        Trustpilot Score
+                                    </div>*@
                             </div>
                             <div style="width:inherit" class="art-detail-ribbon">
                                 <div class="clearfix">
@@ -203,7 +203,7 @@
 
                             <div class="buy-prints">
                                 <h4 style="@rtldirection">
-                                   @SearchRes.Product_print_header
+                                    @SearchRes.Product_print_header
                                 </h4>
                                 <div style="@rtlstl">
                                     <h5 style="@rtlstl">1. @SearchRes.Select_material</h5>
@@ -218,13 +218,13 @@
                                 <div class="photo-print hidden">
                                 </div>
                                 <div class="rag-print hidden">
-                                    <div >
+                                    <div>
                                         <h5 style="@rtlstl">2. @SearchRes.Select_size</h5>
                                         <select id="rag-selectSize" style="background:white" class="print-options product-select">
                                             <option value="" data-width="" data-height="">Choose from List</option>
                                             @*<option value="1" data-price="" data-width="14" data-height="21" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>14 x 21</option>
-                                            <option value="2" data-price="" data-width="16" data-height="24" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>16 x 24</option>
-                                            <option value="3" data-price="" data-width="20" data-height="30" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>20 x 30</option>*@
+                                                <option value="2" data-price="" data-width="16" data-height="24" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>16 x 24</option>
+                                                <option value="3" data-price="" data-width="20" data-height="30" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>20 x 30</option>*@
                                         </select>
                                     </div>
                                 </div>
@@ -261,13 +261,13 @@
                                         </span>
                                     </div>
                                     @*<div>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        Trustpilot Score
-                                    </div>*@
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            Trustpilot Score
+                                        </div>*@
                                 </div>
 
                                 <div itemprop="offers" style="width:inherit;margin:0px -20px" class="art-detail-ribbon">
@@ -314,49 +314,49 @@
                         <p style="@rtldirection">
                             @Model.category.Current().Name:
                             <span>
-                                @{bool first = true;int count = 0; }
+                                @{bool first = true; int count = 0; }
                                 @foreach (var item in Model.Mediums)
                                 {
                                     count++;
                                     if (!first)
                                     {
-                                        if (count == Model.Mediums.Count )
+                                        if (count == Model.Mediums.Count)
                                         {
                                             <span>@SearchRes.And</span>
                                         }
                                         else
                                         {
-                                        <span>@SearchRes.Comma</span>
+                                            <span>@SearchRes.Comma</span>
                                         }
                                     }
 
                                     first = false;
-                                    
+
                                     @item.Current().Name
                                 }
                             </span>
                             <span>@SearchRes.On</span>
                             <span>
-                            @{first = true; count = 0;}
+                                @{first = true; count = 0;}
 
-                            @foreach (var item in Model.Materials)
-                            {
-                                count++;
-                                if (!first)
+                                @foreach (var item in Model.Materials)
                                 {
-                                    if (count == Model.Materials.Count )
+                                    count++;
+                                    if (!first)
                                     {
-                                        <span>@SearchRes.And</span>
+                                        if (count == Model.Materials.Count)
+                                        {
+                                            <span>@SearchRes.And</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@SearchRes.Comma</span>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <span>@SearchRes.Comma</span>
-                                    }
-                                }
-                                first = false;
+                                    first = false;
 
-                                @item.Current().Name 
-                            }
+                                    @item.Current().Name
+                                }
                             </span>.
                         </p>
                         <p style="@rtldirection">
@@ -370,6 +370,17 @@
                 </div>
             </section>
 
+            @if ((bool)ViewBag.mine)
+            {
+                <section itemprop="description" class="description">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <button class="button" style="color:white;background:#cb4747" onclick="remove()">remove</button>
+                        </div>
+                    </div>
+                </section>
+            }
+
 
         </div>
     </article>
@@ -382,6 +393,16 @@
 @Scripts.Render("~/bundles/singleproduct")
 
 @section scripts{
+
+    <script>
+        function remove() {
+            var r = confirm("are you sure to delete ?");
+            if (r == true) {
+                document.location.href = '/Products/remove/@Model.Id';
+            } 
+        }
+    </script>
+
     <script>
         function addfavsingle(obj, id) {
             var heart = '<i class="fa fa-heart"></i> <span>Add to Favorites</span>';

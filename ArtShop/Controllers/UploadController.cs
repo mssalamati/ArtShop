@@ -590,7 +590,7 @@ namespace ArtShop.Controllers
                     if (temp != null)
                         product.Mediums.Add(temp.medium);
                 }
-
+                 
                 profile.Products.Add(product);
 
                 db.SaveChanges();
