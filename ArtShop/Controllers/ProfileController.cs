@@ -19,53 +19,78 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
-
             ProfileIndexViewModel model = new ProfileIndexViewModel();
-
-            model.fullName = userProfile.FirstName + " " + userProfile.LastName;
-            model.artworkCount = userProfile.Products.Count;
-            model.collectionsCount = userProfile.Collections.Count;
-            model.favoritesCount = userProfile.Favorits.Count;
-            model.city = userProfile.City == null ? " ": userProfile.City;
-            model.region = userProfile.Region == null ? " " : userProfile.Region;
-            model.country = userProfile.country == null ? new Country() : userProfile.country;
-            model.photoPath = userProfile.PhotoPath == null ? "" : userProfile.PhotoPath;
-            model.facebook = userProfile.userLinks.Facebook == null ? "" : userProfile.userLinks.Facebook;
-            model.twitter = userProfile.userLinks.Twitter == null ? "" : userProfile.userLinks.Twitter;
-            model.pinterest = userProfile.userLinks.Pinterest == null ? "" : userProfile.userLinks.Pinterest;
-            model.tumbler = userProfile.userLinks.Tumblr == null ? "" : userProfile.userLinks.Tumblr;
-            model.instagram = userProfile.userLinks.Instagram == null ? "" : userProfile.userLinks.Instagram;
-            model.googlePlus = userProfile.userLinks.GooglePlus == null ? "" : userProfile.userLinks.GooglePlus;
-            model.myWebsite = userProfile.userLinks.Website == null ? "" : userProfile.userLinks.Website;
-            model.aboutme = userProfile.personalInformation.AboutMe == null ? "" : userProfile.personalInformation.AboutMe;
-            model.events = userProfile.personalInformation.Events == null ? "" : userProfile.personalInformation.Events;
-            model.education = userProfile.personalInformation.Education == null ? "" : userProfile.personalInformation.Education;
-            model.Exhibitions = userProfile.personalInformation.Exhibitions == null ? "" : userProfile.personalInformation.Exhibitions;
-
-
-            model.artworks = new List<Product>();
-            int counter = 0;
-
-            foreach (var item in userProfile.Products)
+            try
             {
-                if (counter < 4)
-                {
-                    model.artworks.Add(item);
-                    counter++;
-                }
-                else
-                    break;
+                model.fullName = userProfile.FirstName + " " + userProfile.LastName;
+                model.artworkCount = userProfile.Products.Count;
+                model.collectionsCount = userProfile.Collections.Count;
+                model.favoritesCount = userProfile.Favorits.Count;
+                model.city = userProfile.City == null ? " " : userProfile.City;
+                model.region = userProfile.Region == null ? " " : userProfile.Region;
+                model.country = userProfile.country == null ? new Country() : userProfile.country;
+                model.photoPath = userProfile.PhotoPath == null ? "" : userProfile.PhotoPath;
 
+                if (userProfile.userLinks != null)
+                {
+                    model.facebook = userProfile.userLinks.Facebook == null ? "" : userProfile.userLinks.Facebook;
+                    model.twitter = userProfile.userLinks.Twitter == null ? "" : userProfile.userLinks.Twitter;
+                    model.pinterest = userProfile.userLinks.Pinterest == null ? "" : userProfile.userLinks.Pinterest;
+                    model.tumbler = userProfile.userLinks.Tumblr == null ? "" : userProfile.userLinks.Tumblr;
+                    model.instagram = userProfile.userLinks.Instagram == null ? "" : userProfile.userLinks.Instagram;
+                    model.googlePlus = userProfile.userLinks.GooglePlus == null ? "" : userProfile.userLinks.GooglePlus;
+                    model.myWebsite = userProfile.userLinks.Website == null ? "" : userProfile.userLinks.Website;
+                }
+
+                if (userProfile.personalInformation != null)
+                {
+                    model.aboutme = userProfile.personalInformation.AboutMe == null ? "" : userProfile.personalInformation.AboutMe;
+                    model.events = userProfile.personalInformation.Events == null ? "" : userProfile.personalInformation.Events;
+                    model.education = userProfile.personalInformation.Education == null ? "" : userProfile.personalInformation.Education;
+                    model.Exhibitions = userProfile.personalInformation.Exhibitions == null ? "" : userProfile.personalInformation.Exhibitions;
+                }
+
+                try
+                {
+                    model.artworks = new List<Product>();
+                }
+                catch (Exception ex)
+                {
+                    db.logs.Add(new Log() { date = DateTime.Now, Location = "profile", Message = ex.Message + "   " + ex.InnerException + " " + ex.StackTrace + " ", Type = 1 });
+                    throw;
+                }
+
+                
+                int counter = 0;
+
+                foreach (var item in userProfile.Products)
+                {
+                    if (counter < 4)
+                    {
+                        model.artworks.Add(item);
+                        counter++;
+                    }
+                    else
+                        break;
+
+                }
+
+                if (counter < 4 && counter != 0)
+                {
+                    for (int i = 0; i < 4 - counter; i++)
+                    {
+                        Product p = new Product();
+                        model.artworks.Add(p);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                db.logs.Add(new Log() { date = DateTime.Now, Location = "profile", Message = ex.Message + "   " + ex.InnerException + " " + ex.StackTrace + " ", Type = 0 });
+                db.SaveChanges();
+                throw;
             }
 
-            if (counter < 4 && counter != 0)
-            {
-                for (int i = 0; i < 4 - counter; i++)
-                {
-                    Product p = new Product();
-                    model.artworks.Add(p);
-                }
-            }
 
             return View(model);
         }
@@ -158,7 +183,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-            
+
             var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
             ViewBag.CollectionName = collection.Title;
             ViewBag.CollectionId = collection.Id;
@@ -257,7 +282,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-        
+
 
             return View();
         }

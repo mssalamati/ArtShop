@@ -135,13 +135,21 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-
-            string tempFolderName = "Upload/profile_Images";
-            var result = ImageHelper.Saveimage(Server, Image, tempFolderName, ImageHelper.saveImageMode.Not);
-            if (result.ResultStatus)
+            try
             {
-                userProfile.PhotoPath = result.FullPath;
+                string tempFolderName = "Upload/profile_Images";
+                var result = ImageHelper.Saveimage(Server, Image, tempFolderName, ImageHelper.saveImageMode.Not);
+                if (result.ResultStatus)
+                {
+                    userProfile.PhotoPath = result.FullPath;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                db.logs.Add(new Log() { date = DateTime.Now, Location = "upload", Message = ex.Message + "   " + ex.InnerException + " " + ex.StackTrace + " ", Type = 0 });
                 db.SaveChanges();
+                throw;
             }
             return RedirectToAction("Index", "profile");
         }
@@ -178,26 +186,28 @@ namespace ArtShop.Controllers
             userProfile.billingInfo.Region = model.Region;
             userProfile.billingInfo.ZipCode = model.ZipCode;
             userProfile.billingInfo.PhoneNumber = model.PhoneNumber;
-           
+
             db.SaveChanges();
             ViewBag.country = CashManager.Instance.Countries.FirstOrDefault(a => a.Key == model.CountryId).Value;
 
             return View(model);
         }
 
-        public ActionResult Orders()
+        public ActionResult Orders(int page = 1)
         {
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
+            var data = db.Orders.Where(x => x.user_id == userId).OrderBy(o => o.BuyDate).Skip(10 * (page - 1)).Take(10);
 
-            return View();
+            return View(data);
         }
+
 
         public ActionResult UploadID()
         {
-           
+
 
             return View();
         }
@@ -208,7 +218,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
-            
+
             string tempFolderName = "Upload/goverment-ids";
             var result = ImageHelper.Saveimage(Server, Image, tempFolderName, ImageHelper.saveImageMode.Not);
             if (result.ResultStatus)

@@ -1,16 +1,63 @@
-﻿@model AccountInfoViewModel
+﻿@model IEnumerable<Order>
 @{
     ViewBag.Title = "Settings | Artiscovery";
 }
 
 
-<div class="row-layout content" style="
-">
+<div class="row-layout content" style="">
 
     <div class="row">
         <div class="small-12 large-8 large-push-4 columns bgtext content">
-            You have no orders.
-        </div>
+            @if (Model.Count() == 0)
+            {
+                <span>You have no orders.</span>
+            }
+            else
+            {
+
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.user.)*@
+                            test
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BuyDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalPrice)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><i class="fa fa-user"></i></th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderDetails)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BuyDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalPrice)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+
+</div>
+
+
+
         <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
 
             <ul class="side-nav">
