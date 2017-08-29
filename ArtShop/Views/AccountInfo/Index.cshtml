@@ -107,22 +107,21 @@ else
                             @ProfileRes.Profile_information
                         </a>
                     </li>
-                    @if (Model.profileType == ProfileType.Artist)
-                {
-                        <li class="billing">
-                            <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
-                        </li>
 
-                        <li class="sold">
-                            <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
-                        </li>
-                        <li>
-                            <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                                Tax
-                                Form
-                            </a>
-                        </li>
-                    }
+                    <li class="billing">
+                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
+                    </li>
+                    <li>
+                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                            Tax
+                            Form
+                        </a>
+                    </li>
+
                     <li class="purchased">
                         <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                     </li>

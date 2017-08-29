@@ -52,22 +52,21 @@
                         </li>
                     </ul>
                 </li>
-                @if (ViewBag.profileType == ProfileType.Artist)
-                {
-                    <li class="billing">
-                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
-                    </li>
 
-                    <li class="sold">
-                        <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
-                    </li>
-                    @*<li>
-                            <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                                Tax
-                                Form
-                            </a>
-                        </li>*@
-                }
+                <li class="billing">
+                    <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
+                </li>
+
+                <li class="sold">
+                    <a href="/accountinfo/items">@ProfileRes.Sales_Dashboard</a>
+                </li>
+                @*<li>
+                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                            Tax
+                            Form
+                        </a>
+                    </li>*@
+
                 <li class="purchased">
                     <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                 </li>
@@ -109,7 +108,7 @@
                 <input type="hidden" name="avatar" value="1">
                 <div class="clear"></div>
                 <a class="btn btn-link" href="#" onclick="history.go(-1)">@ProfileRes.Cancel</a><input type="submit" id="submit" class="button btn-info mt1" value="@ProfileRes.Submit" disabled="" />
-                
+
             </form>
         </div>
 

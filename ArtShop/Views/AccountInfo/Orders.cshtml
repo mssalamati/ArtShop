@@ -54,7 +54,7 @@
                 </table>
             }
 
-</div>
+        </div>
 
 
 
@@ -70,22 +70,21 @@
                         Information
                     </a>
                 </li>
-                @if (ViewBag.profileType == ProfileType.Artist)
-                {
-                    <li class="billing">
-                        <a href="/accountinfo/billing">Address and Identification</a>
-                    </li>
 
-                    <li class="sold">
-                        <a href="/accountinfo/items">Sales Dashboard</a>
-                    </li>
-                    <li>
-                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                            Tax
-                            Form
-                        </a>
-                    </li>
-                }
+                <li class="billing">
+                    <a href="/accountinfo/billing">Address and Identification</a>
+                </li>
+
+                <li class="sold">
+                    <a href="/accountinfo/items">Sales Dashboard</a>
+                </li>
+                <li>
+                    <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                        Tax
+                        Form
+                    </a>
+                </li>
+
                 <li class="purchased active">
                     <a href="/accountinfo/orders">Orders</a>
                 </li>
