@@ -1,11 +1,246 @@
 ﻿
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Add";
 }
 
 @using Blog.Objects
 
-@model Post
+@using Blog.Areas.Admin.Models.ViewModel
+@model PostViewModel
+
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+
+<div class="page-title">
+    <div class="title"> Artiscovery</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">مطلب جدید </a>
+        </li>
+    </ol>
+</div>
 
 
+<div class="clearfix"></div>
 
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <p class="alert alert-success"> @DateTime.Now @ViewBag.message </p>
+}
+<div class="row">
+    <div class="col-lg-12 portlets">
+        @using (Html.BeginForm("edit", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+            }
+
+            <div class="panel">
+                <div class="card-header">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> زبان </label>
+                            <div class="col-sm-5">
+                                <select id="lanselect" name="languageId" class="form-control">
+                                    @foreach (var item in ((List<Language>)ViewBag.language))
+                                    {
+                                        if (Model.languageId == item.Code)
+                                        {
+                                            <option selected value="@item.Code">@item.Code</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Code">@item.Code</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="submit" value="ثبت" class="btn btn-default pull-left" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="Category" style="width: 100%;">
+                                    @foreach (var item in ((List<Category>)ViewBag.caregories))
+                                    {
+                                        if (Model.Category == item.Id)
+                                        {
+                                            <option selected value="@item.Id">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> tags * </label>
+                            <div class="col-sm-10">
+                                <select data-placeholder="Choose your tags" multiple class="chosen" name="Tags" style="width: 100%;">
+                                    @foreach (var item in ((List<Tag>)ViewBag.tags))
+                                    {
+                                        if (Model.Tags.Any(x => x == item.Id))
+                                        {
+                                            <option selected value="@item.Id">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label">
+                                Related Artworks *
+                                <script> var temp = '<input type="text" name="Links[]" value="" class="form-control" />';</script>
+                                <button type="button" class="btn btn-xs" onclick="$('#links').append(temp);">
+                                    <i class="fa fa-plus text-success"></i>
+                                </button>
+                            </label>
+                            <div class="col-sm-10" id="links">
+                                @foreach (var item in Model.Links)
+                                {
+                                    <input type="text" name="Links[]" value="@item" class="form-control" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> موضوع * </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="TitleDef" value="@Model.TitleDef" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> موضوع </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="Title" value="@Model.Title" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:10px">
+                        <div class="form-group">
+                            <textarea name="Description" id="Content">@Model.Description</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label">
+                                تصویر مطلب *
+                            </label>
+                            <div class="col-sm-5">
+                                <img style="width:200px" src="@Model.ThumbnailPath" />
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="uploader blue">
+                                    <input type="button" name="file" class="button" value="انتخاب.." />
+                                    <input type="text" class="filename" readonly="readonly" />
+                                    <input type="file" id="Image" name="Thumbnail" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"> <br /> </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label">
+                                تصاویر *
+                                <script> var c = 0; var e = ']" /> </div>'; var temp2 = '<div class="uploader blue"><input type="button" name="file" class="button" value="انتخاب.." /><input type="text" class="filename" readonly="readonly" /> <input type="file" id="Image" name="HeaderPhotos[';</script>
+                                <button type="button" class="btn btn-xs" onclick="c++; $('#photosdiv').append(temp2+c+e); initinputcss();">
+                                    <i class="fa fa-plus text-success"></i>
+                                </button>
+                            </label>
+
+                            <div class="col-sm-10" id="photosdiv">
+                                @foreach (var item in Model.HeaderPhotoPaths)
+                                {
+                                    <div class="col-sm-4">
+                                        <button class="btn"><i class="fa fa-remove text-danger"></i></button>
+                                        <img style="width:200px" src="@item.Value" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/admin/vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
+
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('Content', {
+            customConfig: '/config.js',
+            height: 500,
+            filebrowserImageBrowseUrl: '/pages/uploadPartial',
+            filebrowserImageUploadUrl: '/pages/uploadnow',
+        });
+
+    </script>
+
+    <script>
+        $('.chosen').chosen({
+            width: '100%'
+        });
+    </script>
+
+    <script type="text/javascript">
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
+    </script>
+
+    <script>
+        $('#lanselect').on('change', function (e) {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            document.location.href = '/admin/posts/edit?id=@Model.Id&language=' + valueSelected;
+        });
+    </script>
+}

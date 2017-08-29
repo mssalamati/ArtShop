@@ -8,13 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.Objects
 {
-    public enum PostType { Wide, Sqr,ShowCase }
+    public enum PostType { Wide, Sqr, ShowCase }
     /// <summary>
     /// Represents a blog entry - article, presentation or any thing.
     /// </summary>
     public class Post : ITranslatable<Post, PostTranslation>
     {
-        [Required(ErrorMessage = "Id: Field is required")]
         public virtual int Id { get; set; }
 
         /// <summary>
@@ -33,14 +32,12 @@ namespace Blog.Objects
         /// <remarks>
         /// Not sure Google still uses this for ranking but other search providers might be.
         /// </remarks>
-        [Required(ErrorMessage = "Meta: Field is required")]
         [StringLength(1000, ErrorMessage = "Meta: Length should not exceed 1000 characters")]
         public virtual string Meta { get; set; }
 
         /// <summary>
         /// The url slug that is used to define the post address.
         /// </summary>
-        [Required(ErrorMessage = "Meta: Field is required")]
         [StringLength(1000, ErrorMessage = "Meta: UrlSlug should not exceed 50 characters")]
         public virtual string UrlSlug { get; set; }
 
@@ -74,6 +71,11 @@ namespace Blog.Objects
         public virtual string Author { get; set; }
         public virtual string Thumbnail { get; set; }
         public virtual PostType postType { get; set; }
+
+        public Post()
+        {
+            PostedOn = DateTime.Now;
+        }
     }
 
     public class PostTranslation : ITranslation<Post>

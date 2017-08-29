@@ -5,8 +5,10 @@
 
 @using Blog.Objects
 
+@using Blog.Areas.Admin.Models.ViewModel
+@model PostViewModel
 
-@model Post
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
 
 <div class="page-title">
     <div class="title"> Artiscovery</div>
@@ -31,13 +33,20 @@
     <div class="col-lg-12 portlets">
         @using (Html.BeginForm("add", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            @Html.AntiForgeryToken()
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+            }
+
             <div class="panel">
                 <div class="card-header">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> زبان </label>
                             <div class="col-sm-5">
-                                <select id="catselect" name="id" class="form-control">
+                                <select id="catselect" name="languageId" class="form-control">
                                     @foreach (var item in ((List<Language>)ViewBag.language))
                                     {
                                         <option value="@item.Code">@item.Code</option>
@@ -54,25 +63,24 @@
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
                             <div class="col-sm-10">
-                                <select class="form-control" style="width: 100%;">
+                                <select class="form-control" name="Category" style="width: 100%;">
                                     @foreach (var item in ((List<Category>)ViewBag.caregories))
                                     {
-                                        <option value="@item.Name">@item.Name</option>
+                                        <option value="@item.Id">@item.Name</option>
                                     }
                                 </select>
                             </div>
                         </div>
                     </div>
 
-
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> tags * </label>
                             <div class="col-sm-10">
-                                <select data-placeholder="Choose your tags" multiple class="chosen" style="width: 100%;">
+                                <select data-placeholder="Choose your tags" multiple class="chosen" name="Tags" style="width: 100%;">
                                     @foreach (var item in ((List<Tag>)ViewBag.tags))
                                     {
-                                        <option value="@item.Name">@item.Name</option>
+                                        <option value="@item.Id">@item.Name</option>
                                     }
                                 </select>
                             </div>
@@ -83,21 +91,29 @@
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label">
                                 Related Artworks *
-                                <script> var temp = '<input type="text" name="Title" value="" class="form-control" />';</script>
+                                <script> var temp = '<input type="text" name="Links[]" value="" class="form-control" />';</script>
                                 <button type="button" class="btn btn-xs" onclick="$('#links').append(temp);">
                                     <i class="fa fa-plus text-success"></i>
                                 </button>
                             </label>
                             <div class="col-sm-10" id="links">
-                                <input type="text" name="Title" value="" class="form-control" />
+                                <input type="text" name="Links[]" value="" class="form-control" />
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label"> موضوع * </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="TitleDef" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> سربرگ </label>
+                            <label style="padding:5px" class="col-sm-2 control-label"> موضوع </label>
                             <div class="col-sm-10">
                                 <input type="text" name="Title" value="" class="form-control" />
                             </div>
@@ -106,7 +122,42 @@
 
                     <div class="col-md-12" style="margin-top:10px">
                         <div class="form-group">
-                            <textarea name="Content" id="Content"></textarea>
+                            <textarea name="Description" id="Content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label">
+                                تصویر مطلب *
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="uploader blue">
+                                    <input type="button" name="file" class="button" value="انتخاب.." />
+                                    <input type="text" class="filename" readonly="readonly" />
+                                    <input type="file" id="Image" name="Thumbnail" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="padding:5px" class="col-sm-2 control-label">
+                                تصاویر *
+                                <script> var c = 0; var e = ']" /> </div>'; var temp2 = '<div class="uploader blue"><input type="button" name="file" class="button" value="انتخاب.." /><input type="text" class="filename" readonly="readonly" /> <input type="file" id="Image" name="HeaderPhotos[';</script>
+                                <button type="button" class="btn btn-xs" onclick="c++; $('#photosdiv').append(temp2+c+e); initinputcss();">
+                                    <i class="fa fa-plus text-success"></i>
+                                </button>
+                            </label>
+                            <div class="col-sm-10" id="photosdiv">
+                                <div class="uploader blue">
+                                    <input type="button" name="file" class="button" value="انتخاب.." />
+                                    <input type="text" class="filename" readonly="readonly" />
+                                    <input type="file" id="Image" name="HeaderPhotos[0]" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -140,5 +191,17 @@
         $('.chosen').chosen({
             width: '100%'
         });
+    </script>
+
+    <script type="text/javascript">
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
     </script>
 }

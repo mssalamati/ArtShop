@@ -218,6 +218,7 @@
     <Compile Include="Areas\Admin\Models\ManageViewModels.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\CountryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModel\PostViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\TagViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Interfaces\BlogRepository.cs" />
     <Compile Include="Interfaces\IBlogRepository.cs" />
     <Compile Include="Interfaces\ITranslation.cs" />
+    <Compile Include="LimitCountAttribute.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\PostMap.cs" />
     <Compile Include="Mappings\TagMap.cs" />
@@ -5425,6 +5427,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{5cfabe26-1d2a-4519-a6a1-674ed85d0469}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

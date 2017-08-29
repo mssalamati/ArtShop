@@ -24,7 +24,7 @@
 
 <div class="card bg-white m-b">
     <div class="card-header">
-        <form method="get" action="/posts/index">
+        <form method="get" action="/admin/posts/index">
             <div class="input-group pull-right col-md-6">
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
@@ -34,7 +34,7 @@
                 <input type="search" placeholder="search..." name="search" value="@ViewBag.search" class="form-control bl0">
             </div>
         </form>
-        <a href="/posts/add" class="pull-left btn btn-default">ثبت پست جدید</a>
+        <a href="/admin/posts/add" class="pull-left btn btn-default">ثبت پست جدید</a>
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
@@ -56,9 +56,9 @@
                                 @item.Title
                             </th>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
+                                <a class="btn btn-primary btn-sm" href="/admin/posts/edit/@item.Id">ویرایش</a>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
-                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/posts/delete/@item.Id">آیا مطمئن هستید؟</a>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/admin/posts/delete/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
                         </tr>
                     }
