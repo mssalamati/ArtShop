@@ -19,8 +19,11 @@ namespace Blog.Areas.Admin.Controllers
         // GET: Admin/Posts
         public ActionResult Index(int page = 1, string search = "")
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
-            var data = db.Posts
+            var data = user.userDetail.Posts
                  .Where(x => string.IsNullOrEmpty(search) || x.Title.Contains(search))
                  .OrderBy(x => x.PostedOn)
                  .Skip(skip).Take(take);
@@ -79,7 +82,7 @@ namespace Blog.Areas.Admin.Controllers
             newPost.Title = model.TitleDef;
             newPost.Translations = new List<PostTranslation>();
             newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description });
-            db.Posts.Add(newPost);
+            user.userDetail.Posts.Add(newPost);
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e)
             {
@@ -95,10 +98,15 @@ namespace Blog.Areas.Admin.Controllers
 
         public ActionResult Edit(int id, string language = "en")
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
             ViewBag.tags = db.Tags.ToList();
             var model = db.Posts.Find(id);
+            if (model.AuthorProfileId != userId)
+                return HttpNotFound();
             PostTranslation modelTranslation;
             var curr = model.Translations.SingleOrDefault(x => x.languageId == language);
             if (curr == null)
@@ -116,10 +124,17 @@ namespace Blog.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(PostViewModel model)
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
             ViewBag.tags = db.Tags.ToList();
             var post = db.Posts.Find(model.Id);
+
+            if (post.AuthorProfileId != userId)
+                return HttpNotFound();
+
             if (!ModelState.IsValid)
                 return View(model.FillPicture(post));
             string tempFolderName = "Upload/posts";
@@ -170,7 +185,11 @@ namespace Blog.Areas.Admin.Controllers
 
         public ActionResult RemovePhoto(int postId, int photoId)
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
             var post = db.Posts.Find(postId);
+            if (post.AuthorProfileId != userId)
+                return HttpNotFound();
             if (post != null)
             {
                 var photo = post.HeaderPhotos.SingleOrDefault(x => x.Id == photoId);
@@ -192,7 +211,7 @@ namespace Blog.Areas.Admin.Controllers
         public void uploadnow(HttpPostedFileWrapper upload)
         {
             var userId = User.Identity.GetUserId();
-            var folder = Server.MapPath("~/Uploads/cms/" + userId);
+            var folder = Server.MapPath("~/Upload/cms/" + userId);
             FileHelper.CreateFolderIfNeeded(folder);
             if (upload != null)
             {
@@ -205,11 +224,11 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult uploadPartial()
         {
             var userId = User.Identity.GetUserId();
-            var appData = Server.MapPath("~/Uploads/cms/" + userId);
+            var appData = Server.MapPath("~/Upload/cms/" + userId);
             FileHelper.CreateFolderIfNeeded(appData);
             var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
             {
-                Url = Url.Content("http://file.artiscovery.com/Uploads/cms/" + Path.GetFileName(x))
+                Url = Url.Content("/Upload/cms/" + userId + "/" + Path.GetFileName(x))
             });
             return View(images);
         }
