@@ -31,6 +31,13 @@ namespace Blog.Areas.Admin.Models.ViewModel
 
         }
 
+        public PostViewModel FillPicture(Post model)
+        {
+            ThumbnailPath = "/" + model.Thumbnail;
+            HeaderPhotoPaths = model.HeaderPhotos.ToDictionary(x => x.Id, x => "/" + x.Path);
+            return this;
+        }
+
         public virtual int Id { get; set; }
         [Required]
         public string languageId { get; set; }
@@ -44,10 +51,7 @@ namespace Blog.Areas.Admin.Models.ViewModel
         public List<int> Tags { get; set; }
         public List<string> Links { get; set; }
         public int Category { get; set; }
-        [Required]
         public HttpPostedFileBase Thumbnail { get; set; }
-        [Required]
-        [LimitCount(1, 10, ErrorMessage = "tags between 1 and 10")]
         public List<HttpPostedFileBase> HeaderPhotos { get; set; }
 
 

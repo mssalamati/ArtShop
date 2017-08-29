@@ -37,5 +37,8 @@ namespace Blog.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Link> Links { get; set; }
+        public DbSet<HeaderPhoto> HeaderPhotos { get; set; }
+        
     }
 }

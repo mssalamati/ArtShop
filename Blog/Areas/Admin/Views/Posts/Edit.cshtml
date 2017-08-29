@@ -40,6 +40,8 @@
                 @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
             }
 
+            @Html.HiddenFor(x => x.Id)
+
             <div class="panel">
                 <div class="card-header">
                     <div class="col-md-12">
@@ -150,50 +152,64 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="card-header">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label">
-                                تصویر مطلب *
-                            </label>
-                            <div class="col-sm-5">
-                                <img style="width:200px" src="@Model.ThumbnailPath" />
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="uploader blue">
-                                    <input type="button" name="file" class="button" value="انتخاب.." />
-                                    <input type="text" class="filename" readonly="readonly" />
-                                    <input type="file" id="Image" name="Thumbnail" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="padding:5px" class="col-sm-2 control-label">
+                                    تصویر مطلب *
+                                </label>
+                                <div class="col-sm-5">
+                                    <img style="width:150px" src="@Model.ThumbnailPath" />
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="uploader blue">
+                                        <input type="button" name="file" class="button" value="انتخاب.." />
+                                        <input type="text" class="filename" readonly="readonly" />
+                                        <input type="file" id="Image" name="Thumbnail" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="col-md-12"> <br /> </div>
-
+            <div class="panel">
+                <div class="card-header">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label">
-                                تصاویر *
-                                <script> var c = 0; var e = ']" /> </div>'; var temp2 = '<div class="uploader blue"><input type="button" name="file" class="button" value="انتخاب.." /><input type="text" class="filename" readonly="readonly" /> <input type="file" id="Image" name="HeaderPhotos[';</script>
-                                <button type="button" class="btn btn-xs" onclick="c++; $('#photosdiv').append(temp2+c+e); initinputcss();">
-                                    <i class="fa fa-plus text-success"></i>
-                                </button>
-                            </label>
 
-                            <div class="col-sm-10" id="photosdiv">
-                                @foreach (var item in Model.HeaderPhotoPaths)
-                                {
-                                    <div class="col-sm-4">
-                                        <button class="btn"><i class="fa fa-remove text-danger"></i></button>
-                                        <img style="width:200px" src="@item.Value" />
-                                    </div>
-                                }
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="padding:5px" class="col-sm-2 control-label">
+                                    تصاویر *
+                                    <script> var c = 0; var e = ']" /> </div>'; var temp2 = '<div class="uploader blue"><input type="button" name="file" class="button" value="انتخاب.." /><input type="text" class="filename" readonly="readonly" /> <input type="file" id="Image" name="HeaderPhotos[';</script>
+                                    <button type="button" class="btn btn-xs" onclick="$('#photosdiv').append(temp2+c+e); initinputcss(); c++;">
+                                        <i class="fa fa-plus text-success"></i>
+                                    </button>
+                                </label>
+
+                                <div class="col-sm-10" id="photosdiv">
+                                    @foreach (var item in Model.HeaderPhotoPaths)
+                                    {
+                                        <div class="col-sm-3" id="heare_holder_@item.Key">
+                                            <button type="button" onclick="removephoto(@item.Key)" class="btn">
+                                                <i class="fa fa-remove text-danger"></i>
+                                            </button>
+                                            <img style="width:100px" src="@item.Value" />
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+
         }
     </div>
 </div>
@@ -212,8 +228,8 @@
         CKEDITOR.replace('Content', {
             customConfig: '/config.js',
             height: 500,
-            filebrowserImageBrowseUrl: '/pages/uploadPartial',
-            filebrowserImageUploadUrl: '/pages/uploadnow',
+            filebrowserImageBrowseUrl: '/admin/posts/uploadPartial',
+            filebrowserImageUploadUrl: '/admin/posts/uploadnow',
         });
 
     </script>
@@ -242,5 +258,25 @@
             var valueSelected = this.value;
             document.location.href = '/admin/posts/edit?id=@Model.Id&language=' + valueSelected;
         });
+    </script>
+
+    <script>
+        function removephoto(photoid) {
+            var r = confirm("are you sure to remove photo?");
+            if (r == true) {
+                var holder = $('#heare_holder_' + photoid);
+                var removelink = '/admin/posts/RemovePhoto?postId=@Model.Id' + '&photoId=' + photoid;
+                $.ajax({
+                    method: "Get",
+                    url: removelink
+                }).done(function (msg) {
+                    if (msg.result == true) {
+                        holder.remove();
+                    }
+                    else
+                        alert(msg.message);
+                });
+            }
+        }
     </script>
 }

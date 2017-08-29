@@ -1,5 +1,6 @@
 ﻿#region Usings
 using Blog.Interfaces;
+using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,10 @@ namespace Blog.Objects
     public class Post : ITranslatable<Post, PostTranslation>
     {
         public virtual int Id { get; set; }
+
+        [ForeignKey("AuthorProfile")]
+        public string AuthorProfileId { get; set; }
+        public virtual UserProfile AuthorProfile { get; set; }
 
         /// <summary>
         /// The heading of the post.
