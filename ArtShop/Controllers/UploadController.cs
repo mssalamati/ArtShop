@@ -339,7 +339,7 @@ namespace ArtShop.Controllers
                 ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
-            if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 50)
+            if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 10)
             {
                 ViewBag.error = Resources.UploadRes.descriptionnull_error;
                 ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
