@@ -1,5 +1,4 @@
 ﻿
-
 @helper selected(string current, string selected)
 {
 if (current == selected)
@@ -24,7 +23,7 @@ if (current == selected)
     <span></span>
     <nav class="side-navigation mobile-status-bar__inner">
         <div class="side-navigation__hero">
-            <img class="side-navigation__hero__content"  src="@Model.photo">
+            <img class="side-navigation__hero__content"  src="@((string)Model.Photo)">
         </div>
         <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="">Artwork Status</a>
         @*<a class="side-navigation__top-level @selected("Packaging",(string)Model.menu)" href="">Packaging</a>

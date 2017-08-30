@@ -158,7 +158,7 @@ namespace ArtShop.Controllers
 
         public ActionResult Edit(int id)
         {
-            var p = db.Products.Find(id);
+            var p = db.Products.Include("photo").Include("productshippingDetail").Single(x => x.Id == id);
             bool mine = false;
             if (User.Identity.IsAuthenticated)
             {
@@ -169,13 +169,14 @@ namespace ArtShop.Controllers
             }
             if (!mine)
                 return HttpNotFound();
-
+            if (p.productshippingDetail == null)
+                p.productshippingDetail = new ProductshippingDetail();
             return View(p);
         }
 
         public ActionResult EditPackag(int id)
         {
-            var p = db.Products.Find(id);
+            var p = db.Products.Include("photo").Single(x => x.Id == id);
             bool mine = false;
             if (User.Identity.IsAuthenticated)
             {

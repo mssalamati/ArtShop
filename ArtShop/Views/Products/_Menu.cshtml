@@ -13,7 +13,7 @@ if (current == selected)
         <div class="image-upload-dragover">
             <div class="image-upload-dragover__message"></div>
         </div>
-        <img class="side-navigation__hero__content" src="@Model.photo">
+        <img class="side-navigation__hero__content" src="@((string)Model.Photo)">
     </div>
     <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="">Artwork Status</a>
     @*<a class="side-navigation__top-level @selected("Packaging",(string)Model.menu)" href="">Packaging</a>
