@@ -168,6 +168,9 @@
   <data name="Product_print_header" xml:space="preserve">
     <value>Open Edition Prints Available:</value>
   </data>
+  <data name="resultEmpty" xml:space="preserve">
+    <value>no result with your parameters</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>

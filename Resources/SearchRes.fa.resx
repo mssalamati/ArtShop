@@ -168,6 +168,9 @@
   <data name="Product_print_header" xml:space="preserve">
     <value>چاپ های موجود را ببینید:</value>
   </data>
+  <data name="resultEmpty" xml:space="preserve">
+    <value>هیچ محصولی یافت نشد</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
   </data>

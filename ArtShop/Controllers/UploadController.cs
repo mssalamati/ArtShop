@@ -442,6 +442,15 @@ namespace ArtShop.Controllers
                 return PartialView(model);
             }
 
+            if (model.weight == 0)
+                model.weight = float.Parse(Request["weight"].Replace(".", "/"));
+            if (model.weight == 0)
+            {
+                ViewBag.error = Resources.UploadRes.Empty_Error;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+                return PartialView(model);
+            }
+
             Session["weight"] = model.weight;
             Session["Street_Address"] = model.Street_Address;
             Session["Address_2"] = model.Address_2;
@@ -590,7 +599,7 @@ namespace ArtShop.Controllers
                     if (temp != null)
                         product.Mediums.Add(temp.medium);
                 }
-                 
+
                 profile.Products.Add(product);
 
                 db.SaveChanges();

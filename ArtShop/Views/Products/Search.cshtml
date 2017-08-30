@@ -199,6 +199,15 @@ if (current == selected)
     </form>
     <div class="clear"></div>
 
+    @if (Model.Count == 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <p class="alert alert-info" style="text-align:center">@SearchRes.resultEmpty</p>
+            </div>
+        </div>
+    }
+
     <ul class="item-list masonry">
         @foreach (var item in Model)
         {
@@ -210,14 +219,14 @@ if (current == selected)
                         </a>
 
                     </div>
-                    <div class="item-controls" >
+                    <div class="item-controls">
                         <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
                             <i class="fa fa-shopping-cart" style="color:white"></i>
                         </a>
-                        <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)"  class="btn-round btn-favorite" title="Add to Favorites">
+                        <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
                             <i class="fa fa-heart" style="color:white"></i>
                         </a>
-                        <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)"class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                        <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
                             <i class="fa fa-plus" style="color:white"></i>
                         </a>
                     </div>
@@ -277,14 +286,14 @@ if (current == selected)
             <ul class="pull-right">
                 @if (havePrev)
                 {
-                <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
                 @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
                 {
-                <li>
-                    <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
-                </li>
+                    <li>
+                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                    </li>
                 }
 
                 <li class="active">
@@ -293,15 +302,15 @@ if (current == selected)
 
                 @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                 {
-                <li>
-                    <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
-                </li>
+                    <li>
+                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                    </li>
                 }
 
 
                 @if (haveNext)
                 {
-                <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                 }
 
                 @*<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
@@ -316,7 +325,11 @@ if (current == selected)
     <div class="clearfix"></div>
 </div>
 
-
+<div class="row">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
+</div>
 
 <script src="~/Content/fullview.js"></script>
 

@@ -258,6 +258,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cropper.js" />
     <Content Include="Content\dropzone.js" />
+    <Content Include="Content\EditProduct.css" />
     <Content Include="Content\fullview.js" />
     <Content Include="Content\Images\250x143.jpg" />
     <Content Include="Content\Images\300x300.jpg" />
@@ -501,6 +502,10 @@
     <Content Include="Views\Pages\TermsRTL.cshtml" />
     <Content Include="Views\Upload\Setep9_5.cshtml" />
     <Content Include="Views\AccountInfo\OrdersRTL.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\_Menu.cshtml" />
+    <Content Include="Views\Products\_MenuMobile.cshtml" />
+    <Content Include="Views\Products\EditPackag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

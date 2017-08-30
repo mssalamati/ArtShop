@@ -303,6 +303,7 @@
 
                 </div>
             </div>
+
             <section itemprop="description" class="description">
                 <div class="row">
                     <div class="small-12 columns">
@@ -372,10 +373,18 @@
 
             @if ((bool)ViewBag.mine)
             {
-                <section itemprop="description" class="description">
+                <section class="description admin-curation">
+                    <div class="row">
+                        <div class="small-12 columns"><h3 style="@rtldirection" class="section-title">Manage Your Art</h3></div>
+                    </div>
                     <div class="row">
                         <div class="small-12 columns">
-                            <button class="button" style="color:white;background:#cb4747" onclick="remove()">remove</button>
+                            <div id="artAdminSection">
+                                <menu id="edit-actions" class="inline-list">
+                                    @*<li><a class="edit-image btn btn-link" href="">Edit</a>&nbsp;|</li>*@
+                                    <li><button class="btn btn-danger" style="padding:3px" onclick="remove()">remove</button></li>
+                                </menu>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -399,7 +408,7 @@
             var r = confirm("are you sure to delete ?");
             if (r == true) {
                 document.location.href = '/Products/remove/@Model.Id';
-            } 
+            }
         }
     </script>
 

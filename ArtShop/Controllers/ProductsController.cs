@@ -155,5 +155,39 @@ namespace ArtShop.Controllers
                 return Json(new { result = false }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult Edit(int id)
+        {
+            var p = db.Products.Find(id);
+            bool mine = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                mine = profile.Products.Any(x => x.Id == id);
+            }
+            if (!mine)
+                return HttpNotFound();
+
+            return View(p);
+        }
+
+        public ActionResult EditPackag(int id)
+        {
+            var p = db.Products.Find(id);
+            bool mine = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                mine = profile.Products.Any(x => x.Id == id);
+            }
+            if (!mine)
+                return HttpNotFound();
+
+            return View(p);
+        }
     }
 }

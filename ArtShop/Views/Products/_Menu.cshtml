@@ -1,0 +1,28 @@
+﻿
+@helper selected(string current, string selected)
+{
+if (current == selected)
+{
+        @:side-navigation__active
+}
+}
+
+
+<div class="edit-page__nav side-navigation pane pane--inline">
+    <div class="side-navigation__hero">
+        <div class="image-upload-dragover">
+            <div class="image-upload-dragover__message"></div>
+        </div>
+        <img class="side-navigation__hero__content" src="@Model.photo">
+    </div>
+    <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="">Artwork Status</a>
+    @*<a class="side-navigation__top-level @selected("Packaging",(string)Model.menu)" href="">Packaging</a>
+    <a class="side-navigation__top-level @selected("Pricing",(string)Model.menu)" href="">Pricing</a>
+    <a class="side-navigation__top-level @selected("Prints Status",(string)Model.menu)" href="">Prints Status</a>
+    <a class="side-navigation__top-level @selected("Artwork Details",(string)Model.menu)" href="">Artwork Details</a>
+    <a class="side-navigation__top-level @selected("Description",(string)Model.menu)" href="">Description</a>
+    <a class="side-navigation__top-level @selected("Artwork Image",(string)Model.menu)" href="">Artwork Image</a>*@
+    <div>
+        <button class="button button--blue">Save Changes</button>
+    </div>
+</div>

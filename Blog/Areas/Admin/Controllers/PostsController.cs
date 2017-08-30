@@ -233,9 +233,16 @@ namespace Blog.Areas.Admin.Controllers
             return View(images);
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var post = db.Posts.Find(id);
+            if (post.AuthorProfileId != userId)
+                return HttpNotFound();
+            db.Posts.Remove(post);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

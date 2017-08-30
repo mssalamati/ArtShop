@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+@model Product
+
+<link href="~/Content/EditProduct.css" rel="stylesheet" />
+
+<div id="upload">
+    <div class="app">
+        <div class="full-bleed full-bleed--background">
+            <div class="container artwork__container">
+                <span></span>
+                <div class="edit-page">
+                    @Html.Partial("_MenuMobile", new { menu = "Artwork Status", photo = Model.photo.Path })
+                    <div class="edit-page__container">
+                        @Html.Partial("_Menu", new { menu = "Artwork Status", photo = Model.photo.Path })
+                        <div class="edit-page__content pane pane--inline pane--content pane--centered">
+                            <div class="wizard-step">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
