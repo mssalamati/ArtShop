@@ -619,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mediums, Materials, Styles.
+        ///   Looks up a localized string similar to Media, Materials, Styles.
         /// </summary>
         public static string step6_pre_click {
             get {

@@ -36,7 +36,7 @@ namespace ArtShop.Controllers
             ViewBag.priceName = price_cash != null ? price_cash.Name : Resources.SearchRes.All_Prices;
             ViewBag.priceId = price;
 
-            var p = db.Products.OrderBy(x => x.CreateDate).AsQueryable();
+            var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
             p = p.Where(x => category == 0 || x.categoryId == category).AsQueryable();
             p = p.Where(x => style == 0 || x.Styles.FirstOrDefault(y => y.Id == style) != null);
             p = p.Where(x => subject == 0 || x.subjectId == subject).AsQueryable();

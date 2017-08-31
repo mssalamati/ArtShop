@@ -235,13 +235,13 @@
     <value>وضعیت اثر</value>
   </data>
   <data name="step2_pre_click" xml:space="preserve">
-    <value>آپلود</value>
+    <value>بارگذاری</value>
   </data>
   <data name="step3_copyright_string" xml:space="preserve">
     <value>آیا صاحب اثرهستید؟</value>
   </data>
   <data name="step3_detail" xml:space="preserve">
-    <value>رایط فروش اثر خود را بگویید.</value>
+    <value> </value>
   </data>
   <data name="step3_forsale_string" xml:space="preserve">
     <value>اوریجینال است؟</value>
@@ -319,7 +319,7 @@
     <value>چرا این ابزار و این موضوع را انتخاب کرده اید؟</value>
   </data>
   <data name="step7_description" xml:space="preserve">
-    <value>گرداآورندگان، آثاری که داستان آن ها را بدانند، برایشان جذاب تر است. به هین دلیل توصیه می کنیم داستان نفهته در اثر خود را بازگو کنید.</value>
+    <value>توصیه می کنیم برای مجموعه داران و مخاطبانتان داستان اثر خود را بازگو کنید تا بهتر بتوانند  .اثر شما را درک کنند</value>
   </data>
   <data name="step7_next_click" xml:space="preserve">
     <value>بسته بندی</value>
@@ -376,7 +376,7 @@
     <value>رول</value>
   </data>
   <data name="Upload" xml:space="preserve">
-    <value>آپلود</value>
+    <value>بارگذاری</value>
   </data>
   <data name="upload_string" xml:space="preserve">
     <value>عکس آپلود شده باید حداقل 1200X1500 پیکسل باشد تا امکان پرینت فراهم شود و همچنین کمتر از 50MB باشد.</value>

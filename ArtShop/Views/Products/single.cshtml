@@ -159,7 +159,10 @@
                             <h3 itemprop="name" class="title">@Model.Title</h3>
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
                                 <a href="/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
-                                <span itemprop="nationality">@Model.user.country.Current().Name</span>
+                                @if (Model.user.country != null)
+                                {
+                                    <span itemprop="nationality">@Model.user.country.Current().Name</span>
+                                }
                             </p>
                             <p class="category-size" style="@rtldirection">
                                 @Model.category.Current().Name<br>
