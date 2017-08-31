@@ -167,7 +167,7 @@ namespace ArtShop.Controllers
                 var profile = user.userDetail;
                 mine = profile.Products.Any(x => x.Id == id);
             }
-            if (!mine)
+            if (!mine) 
                 return HttpNotFound();
             if (p.productshippingDetail == null)
                 p.productshippingDetail = new ProductshippingDetail();
