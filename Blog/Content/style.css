@@ -723,9 +723,10 @@ header .nav a:active {
 
 .white-box .logo {
     display: inline-block;
+    background-size:contain !important;
     width: 252px;
     height: 33px;
-    background: url(images/footer-logo.png) 0 0 no-repeat;
+    background: url(/Content/Images/footer-logo.png) 0 0 no-repeat;
     margin-left: 40px;
     margin-right: 20px;
     border-right: 1px solid #e9e9e9;

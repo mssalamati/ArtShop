@@ -1,5 +1,7 @@
-﻿@using Blog.Objects
-@model ICollection<Post>
+﻿@using Blog.Extentions
+@using Blog.Objects
+
+@model IList<Post>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
         <div class="row">
@@ -28,7 +30,7 @@
             </div><!-- .col-lg-8 -->
 
             <div class="col-lg-4 col-md-12">
-                 
+
 
                 <div class="widget-area" role="complementary">
                     <aside id="saatchi_widget_recent_tweets-2" class="widget widget_saatchi_widget_recent_tweets"><div class="recent-tweet post-element"><div class="no-image"><h4>Australian Designer Lisa Gorman Talks Art, Fashion, and How She Marries the Two (Plus, her Art Picks):… <a href="https://t.co/7cu0qav24V" target="_blank">https://t.co/7cu0qav24V</a></h4></div><i class="fa fa-twitter"></i><p class="twitter-credit"><a href="https://twitter.com/saatchiart/" target="_blank"><span></span></a>5 hours ago</p></div></aside>
@@ -72,462 +74,465 @@
         </div><!-- .row -->
 
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/meet-the-others-lisa-krannichfeld">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-25-at-3.41.41-PM-300x300.png" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-25-at-3.41.41-PM-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-25-at-3.41.41-PM-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/the-other">The Others</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/meet-the-others-lisa-krannichfeld">
-                            Meet The Others: Lisa Krannichfeld
-                        </a>
-                    </h4>
-                    <p></p><p>The Game Changers. The Rule Breakers. The Innovators. Discover some of the …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/culture/australian-designer-lisa-gorman-talks-art-fashion-and-how-she-marries-the-two">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-1-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-1-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/culture/guest-curator">Guest Curator</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/culture/australian-designer-lisa-gorman-talks-art-fashion-and-how-she-marries-the-two">
-                            Australian Designer Lisa Gorman Talks Art, Fashion, and...
-                        </a>
-                    </h4>
-                    <p></p><p>We’re thrilled to introduce you to Lisa Gorman, founder of gorman clothing, …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/london-introducing-selection-committee-member-rebecca-lewin">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/rebeccalewin_highres-011__medium-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/rebeccalewin_highres-011__medium-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/rebeccalewin_highres-011__medium-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/london-introducing-selection-committee-member-rebecca-lewin">
-                            London: Introducing Selection Committee Member Rebecca ...
-                        </a>
-                    </h4>
-                    <p></p><p>We are thrilled to unveil our esteemed London Selection Committee. These …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6 post-instagram">
-                <div class="post-element">
-                    <script type="text/javascript">
-                        jQuery(document).ready(function ($) {
-                            $('.instaslider-nr-3').pllexislider({
-                                animation: 'fade',
-                                slideshowSpeed: 7000,
-                                directionNav: false,
-                                controlNav: false,
-                                prevText: '',
-                                nextText: '',
-                            });
-                        });
-                    </script>
-                    <div class="pllexislider pllexislider-normal instaslider-nr-3">
-                        <ul class="no-bullet slides">
-                            <li class="pllex-active-slide" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;">
-                                <a href="http://instagram.com/SaatchiArt" target="_blank" title="The artist observes barryjohnsonco with his work Cotton part ofhellip"><img src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/21042484_1853759961606342_3483351638222045184_n-300x300.jpg" alt="The artist observes barryjohnsonco with his work Cotton part ofhellip" title="The artist observes barryjohnsonco with his work Cotton part ofhellip" draggable="false"></a><div class="jr-insta-datacontainer">
-                                    <span class="jr-insta-time" style="display: none;">23 hours ago</span>
-                                    <span class="jr-insta-username"><div class="instagram-icon"><i class="fa fa-instagram"></i></div><p><a href="http://instagram.com/SaatchiArt" target="_blank"><strong></strong></a> | <span>23 hours ago</span></p></span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-8 col-md-12 post-wide">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/art-news/2-reasons-youll-want-to-participate-in-our-follow-15-challenge">
-                            <img width="600" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-600x300.png" class="attachment-saatchi-wide hidden-xs wp-post-image" alt="Participate in our August Challenge" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-600x300.png 600w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-300x150.png 300w" sizes="(max-width: 600px) 100vw, 600px"><img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-300x300.png" class="attachment-saatchi-medium visible-xs wp-post-image" alt="Participate in our August Challenge" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/art/art-news">Art News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/art-news/2-reasons-youll-want-to-participate-in-our-follow-15-challenge">
-                            Follow 15 Challenge: 2 Reasons You’ll Want to Par...
-                        </a>
-                    </h4>
-                    <p></p><p>Have you ever fallen in love with an artwork, only to discover it has already …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-8 -->
-
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-lene-bladbjerg">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-150x150.jpg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-768x768.jpg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-500x500.jpg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies.jpg 1134w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-lene-bladbjerg">
-                            A Day with Lene Bladbjerg
-                        </a>
-                    </h4>
-                    <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-shannon-johnson">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-shannon-johnson">
-                            A Day with Shannon Johnson
-                        </a>
-                    </h4>
-                    <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/art-news/art-in-motion-the-story-behind-mobiles">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-10-at-1.10.50-PM-300x300.png" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-10-at-1.10.50-PM-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-10-at-1.10.50-PM-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/art/art-news">Art News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/art-news/art-in-motion-the-story-behind-mobiles">
-                            Art in Motion: The Story Behind Mobiles
-                        </a>
-                    </h4>
-                    <p></p><p>Most people are familiar with baby mobiles. Fewer know them as an interior …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-taste-of-the-other-art-fair">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/DSC_3259_low-res-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/DSC_3259_low-res-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/DSC_3259_low-res-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-taste-of-the-other-art-fair">
-                            A Taste of The Other Art Fair
-                        </a>
-                    </h4>
-                    <p></p><p>For the third edition of The Other Art Fair Bristol (1-3 September), The Ivy …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/art-news/2-no-hang-ways-to-display-art">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/art/art-news">Art News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/art-news/2-no-hang-ways-to-display-art">
-                            2 No-Hang Ways to Display Art
-                        </a>
-                    </h4>
-                    <p></p><p>If you’re like me—not entirely foreign to a toolbox but preferring to …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/bristol-doris-dickys-4-must-see-artists-at-the-other-art-fair">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/IMG_5632-copy-2-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/IMG_5632-copy-2-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/IMG_5632-copy-2-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/bristol-doris-dickys-4-must-see-artists-at-the-other-art-fair">
-                            Bristol: Doris &amp; Dicky’s 4 Must-See Artists ...
-                        </a>
-                    </h4>
-                    <p></p><p>Our fair partners at Doris &amp; Dicky offer a curated collection of the …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/inside-the-studio/mario-henrique-captures-the-unpredictability-of-human-behavior">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-300x300.jpeg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-300x300.jpeg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-150x150.jpeg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-768x768.jpeg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-500x500.jpeg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio.jpeg 960w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/art/inside-the-studio">Inside the Studio</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/inside-the-studio/mario-henrique-captures-the-unpredictability-of-human-behavior">
-                            Mario Henrique captures the unpredictability of human b...
-                        </a>
-                    </h4>
-                    <p></p><p>Artist Mario Henrique evokes mesmerizing consciousness with his figurative …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/art-news/rebecca-wilsons-6-must-see-artists-at-the-other-art-fair-bristol">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-756-300x300.jpeg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-756-300x300.jpeg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-756-150x150.jpeg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/art-insider">Art Insider</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/art-news/rebecca-wilsons-6-must-see-artists-at-the-other-art-fair-bristol">
-                            Rebecca Wilson’s 6 Must See Artists at The Other ...
-                        </a>
-                    </h4>
-                    <p></p><p>This September,&nbsp;The Other Art Fair&nbsp;is returning to Bristol’s waterside …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/meet-the-others-minty-sainsbury">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-150x150.jpg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-768x768.jpg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-500x500.jpg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace.jpg 1000w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/the-other">The Others</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/meet-the-others-minty-sainsbury">
-                            Meet The Others: Minty Sainsbury
-                        </a>
-                    </h4>
-                    <p></p><p>The Game Changers. The Rule Breakers. The Innovators. Discover some of the …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/win-the-ultimate-bristol-weekend-get-away">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/5-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/5-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/5-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/win-the-ultimate-bristol-weekend-get-away">
-                            Win The Ultimate Bristol Weekend Get Away
-                        </a>
-                    </h4>
-                    <p></p><p>We have teamed up with the delightful folks at The Downs Festival, The Ivy …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/brooklyn-introducing-selection-committee-member-jessamyn-fiore">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Jessamyn_16-1-1-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Jessamyn_16-1-1-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Jessamyn_16-1-1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/brooklyn-introducing-selection-committee-member-jessamyn-fiore">
-                            Brooklyn: Introducing Selection Committee Member Jessam...
-                        </a>
-                    </h4>
-                    <p></p><p>We are thrilled to unveil our esteemed Brooklyn Selection Committee. These …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-andrea-marsiano">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/2686580-ZDFZSLFL-7-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/2686580-ZDFZSLFL-7-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/2686580-ZDFZSLFL-7-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-andrea-marsiano">
-                            A Day with Andrea Marsiano
-                        </a>
-                    </h4>
-                    <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-eleanor-angelinetta">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-150x150.jpg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-768x768.jpg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-500x500.jpg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7.jpg 770w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-eleanor-angelinetta">
-                            A Day with Eleanor Angelinetta
-                        </a>
-                    </h4>
-                    <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/one-to-watch/victoria-dael">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/06/Victoria-Dael-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/06/Victoria-Dael-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/06/Victoria-Dael-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/art/one-to-watch">One to Watch</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/one-to-watch/victoria-dael">
-                            Victoria Dael’s Works Preserve Cultural Memory
-                        </a>
-                    </h4>
-                    <p></p><p>Playing on memory, culture and history Victoria Dael creates contemporary …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-element">
-                    <div class="img-holder">
-                        <a href="https://canvas.saatchiart.com/art/art-history-101/these-3-recreations-of-velasquez-prove-hes-an-important-figure">
-                            <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/l54j4lkj-300x300.png" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/l54j4lkj-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/l54j4lkj-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
-                        </a>
-                    </div><!-- .img-holder -->
-
-                    <h3><a href="https://canvas.saatchiart.com/category/art/art-history-101">Art History 101</a></h3>
-                    <h4>
-                        <a href="https://canvas.saatchiart.com/art/art-history-101/these-3-recreations-of-velasquez-prove-hes-an-important-figure">
-                            These 3 Recreations of Velásquez Prove He’s an Im...
-                        </a>
-                    </h4>
-                    <p></p><p>Though perhaps not widely known outside of those with a particular penchant for …</p>
-                    <p></p>
-                </div><!-- .post-element -->
-            </div><!-- .col-lg-4 -->
-
-            <div class="append-post-container"></div>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="post-element">
+                        <div class="img-holder">
+                            <a href="/post/index?id=@item.Id">
+                                <img width="300" height="300" src="@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                            </a>
+                        </div><!-- .img-holder -->
+
+                        <h3><a href="@item.Category">@item.Category.Current().Name</a></h3>
+                        <h4>
+                            <a href="/post/index?id=@item.Id">
+                                @item.Current().Title
+                            </a>
+                        </h4>
+                        <p></p><p>@Html.Raw(@item.Current().Description.Substring(0,85)) ...</p>
+                        <p></p>
+                    </div><!-- .post-element -->
+                </div><!-- .col-lg-4 -->
+            }
+
+            <region name>
+
+                @*<div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/culture/australian-designer-lisa-gorman-talks-art-fashion-and-how-she-marries-the-two">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-1-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-1-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/culture/guest-curator">Guest Curator</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/culture/australian-designer-lisa-gorman-talks-art-fashion-and-how-she-marries-the-two">
+                                    Australian Designer Lisa Gorman Talks Art, Fashion, and...
+                                </a>
+                            </h4>
+                            <p></p><p>We’re thrilled to introduce you to Lisa Gorman, founder of gorman clothing, …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/london-introducing-selection-committee-member-rebecca-lewin">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/rebeccalewin_highres-011__medium-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/rebeccalewin_highres-011__medium-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/rebeccalewin_highres-011__medium-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/london-introducing-selection-committee-member-rebecca-lewin">
+                                    London: Introducing Selection Committee Member Rebecca ...
+                                </a>
+                            </h4>
+                            <p></p><p>We are thrilled to unveil our esteemed London Selection Committee. These …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6 post-instagram">
+                        <div class="post-element">
+                            <script type="text/javascript">
+                                jQuery(document).ready(function ($) {
+                                    $('.instaslider-nr-3').pllexislider({
+                                        animation: 'fade',
+                                        slideshowSpeed: 7000,
+                                        directionNav: false,
+                                        controlNav: false,
+                                        prevText: '',
+                                        nextText: '',
+                                    });
+                                });
+                            </script>
+                            <div class="pllexislider pllexislider-normal instaslider-nr-3">
+                                <ul class="no-bullet slides">
+                                    <li class="pllex-active-slide" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;">
+                                        <a href="http://instagram.com/SaatchiArt" target="_blank" title="The artist observes barryjohnsonco with his work Cotton part ofhellip"><img src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/21042484_1853759961606342_3483351638222045184_n-300x300.jpg" alt="The artist observes barryjohnsonco with his work Cotton part ofhellip" title="The artist observes barryjohnsonco with his work Cotton part ofhellip" draggable="false"></a><div class="jr-insta-datacontainer">
+                                            <span class="jr-insta-time" style="display: none;">23 hours ago</span>
+                                            <span class="jr-insta-username"><div class="instagram-icon"><i class="fa fa-instagram"></i></div><p><a href="http://instagram.com/SaatchiArt" target="_blank"><strong></strong></a> | <span>23 hours ago</span></p></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-8 col-md-12 post-wide">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/art-news/2-reasons-youll-want-to-participate-in-our-follow-15-challenge">
+                                    <img width="600" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-600x300.png" class="attachment-saatchi-wide hidden-xs wp-post-image" alt="Participate in our August Challenge" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-600x300.png 600w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-300x150.png 300w" sizes="(max-width: 600px) 100vw, 600px"><img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-300x300.png" class="attachment-saatchi-medium visible-xs wp-post-image" alt="Participate in our August Challenge" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Untitled-design-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/art/art-news">Art News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/art-news/2-reasons-youll-want-to-participate-in-our-follow-15-challenge">
+                                    Follow 15 Challenge: 2 Reasons You’ll Want to Par...
+                                </a>
+                            </h4>
+                            <p></p><p>Have you ever fallen in love with an artwork, only to discover it has already …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-8 -->
+
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-lene-bladbjerg">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-150x150.jpg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-768x768.jpg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies-500x500.jpg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/7stanleyknives-butterflies.jpg 1134w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-lene-bladbjerg">
+                                    A Day with Lene Bladbjerg
+                                </a>
+                            </h4>
+                            <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-shannon-johnson">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-shannon-johnson">
+                                    A Day with Shannon Johnson
+                                </a>
+                            </h4>
+                            <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/art-news/art-in-motion-the-story-behind-mobiles">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-10-at-1.10.50-PM-300x300.png" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-10-at-1.10.50-PM-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-10-at-1.10.50-PM-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/art/art-news">Art News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/art-news/art-in-motion-the-story-behind-mobiles">
+                                    Art in Motion: The Story Behind Mobiles
+                                </a>
+                            </h4>
+                            <p></p><p>Most people are familiar with baby mobiles. Fewer know them as an interior …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-taste-of-the-other-art-fair">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/DSC_3259_low-res-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/DSC_3259_low-res-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/DSC_3259_low-res-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-taste-of-the-other-art-fair">
+                                    A Taste of The Other Art Fair
+                                </a>
+                            </h4>
+                            <p></p><p>For the third edition of The Other Art Fair Bristol (1-3 September), The Ivy …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/art-news/2-no-hang-ways-to-display-art">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/unnamed-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/art/art-news">Art News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/art-news/2-no-hang-ways-to-display-art">
+                                    2 No-Hang Ways to Display Art
+                                </a>
+                            </h4>
+                            <p></p><p>If you’re like me—not entirely foreign to a toolbox but preferring to …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/bristol-doris-dickys-4-must-see-artists-at-the-other-art-fair">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/IMG_5632-copy-2-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/IMG_5632-copy-2-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/IMG_5632-copy-2-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/bristol-doris-dickys-4-must-see-artists-at-the-other-art-fair">
+                                    Bristol: Doris &amp; Dicky’s 4 Must-See Artists ...
+                                </a>
+                            </h4>
+                            <p></p><p>Our fair partners at Doris &amp; Dicky offer a curated collection of the …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/inside-the-studio/mario-henrique-captures-the-unpredictability-of-human-behavior">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-300x300.jpeg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-300x300.jpeg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-150x150.jpeg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-768x768.jpeg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio-500x500.jpeg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Mario-Henrique-at-the-studio.jpeg 960w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/art/inside-the-studio">Inside the Studio</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/inside-the-studio/mario-henrique-captures-the-unpredictability-of-human-behavior">
+                                    Mario Henrique captures the unpredictability of human b...
+                                </a>
+                            </h4>
+                            <p></p><p>Artist Mario Henrique evokes mesmerizing consciousness with his figurative …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/art-news/rebecca-wilsons-6-must-see-artists-at-the-other-art-fair-bristol">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-756-300x300.jpeg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-756-300x300.jpeg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-756-150x150.jpeg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/art-insider">Art Insider</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/art-news/rebecca-wilsons-6-must-see-artists-at-the-other-art-fair-bristol">
+                                    Rebecca Wilson’s 6 Must See Artists at The Other ...
+                                </a>
+                            </h4>
+                            <p></p><p>This September,&nbsp;The Other Art Fair&nbsp;is returning to Bristol’s waterside …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/meet-the-others-minty-sainsbury">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-150x150.jpg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-768x768.jpg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace-500x500.jpg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/static1.squarespace.jpg 1000w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/the-other">The Others</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/meet-the-others-minty-sainsbury">
+                                    Meet The Others: Minty Sainsbury
+                                </a>
+                            </h4>
+                            <p></p><p>The Game Changers. The Rule Breakers. The Innovators. Discover some of the …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/win-the-ultimate-bristol-weekend-get-away">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/5-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/5-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/5-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/win-the-ultimate-bristol-weekend-get-away">
+                                    Win The Ultimate Bristol Weekend Get Away
+                                </a>
+                            </h4>
+                            <p></p><p>We have teamed up with the delightful folks at The Downs Festival, The Ivy …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/brooklyn-introducing-selection-committee-member-jessamyn-fiore">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Jessamyn_16-1-1-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/Jessamyn_16-1-1-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/Jessamyn_16-1-1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/fair-news">Fair News</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/brooklyn-introducing-selection-committee-member-jessamyn-fiore">
+                                    Brooklyn: Introducing Selection Committee Member Jessam...
+                                </a>
+                            </h4>
+                            <p></p><p>We are thrilled to unveil our esteemed Brooklyn Selection Committee. These …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-andrea-marsiano">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/2686580-ZDFZSLFL-7-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/2686580-ZDFZSLFL-7-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/2686580-ZDFZSLFL-7-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-andrea-marsiano">
+                                    A Day with Andrea Marsiano
+                                </a>
+                            </h4>
+                            <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-eleanor-angelinetta">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-150x150.jpg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-768x768.jpg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7-500x500.jpg 500w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/1223234-7.jpg 770w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/the-other-art-fair/toaf-takeover">TOAF takeover</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/the-other-art-fair/a-day-with-eleanor-angelinetta">
+                                    A Day with Eleanor Angelinetta
+                                </a>
+                            </h4>
+                            <p></p><p>Get a glimpse at #TOAFtakeover, a weekly Instagram series that gives you an …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/one-to-watch/victoria-dael">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/06/Victoria-Dael-300x300.jpg" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/06/Victoria-Dael-300x300.jpg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/06/Victoria-Dael-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/art/one-to-watch">One to Watch</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/one-to-watch/victoria-dael">
+                                    Victoria Dael’s Works Preserve Cultural Memory
+                                </a>
+                            </h4>
+                            <p></p><p>Playing on memory, culture and history Victoria Dael creates contemporary …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+
+
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="https://canvas.saatchiart.com/art/art-history-101/these-3-recreations-of-velasquez-prove-hes-an-important-figure">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/l54j4lkj-300x300.png" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/l54j4lkj-300x300.png 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/l54j4lkj-150x150.png 150w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="https://canvas.saatchiart.com/category/art/art-history-101">Art History 101</a></h3>
+                            <h4>
+                                <a href="https://canvas.saatchiart.com/art/art-history-101/these-3-recreations-of-velasquez-prove-hes-an-important-figure">
+                                    These 3 Recreations of Velásquez Prove He’s an Im...
+                                </a>
+                            </h4>
+                            <p></p><p>Though perhaps not widely known outside of those with a particular penchant for …</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->*@
+               
+                    <div class="append-post-container"></div>
         </div>
 
 
 
-        <div class="row loader">
+        @*<div class="row loader">
             <div class="col-lg-12">
                 <a href="javascript:void(0);" class="load-more-btn" data-total="48">Load more</a>
             </div>
-        </div>
+        </div>*@
 
 
         <div class="row">

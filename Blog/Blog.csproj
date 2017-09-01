@@ -225,6 +225,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3279,6 +3280,7 @@
     <Content Include="Content\css_2.css" />
     <Content Include="Content\dashicons.min.css" />
     <Content Include="Content\easy-pull-quotes-public.css" />
+    <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\canvas-logo%402x.png" />
     <Content Include="Content\Images\en.svg" />
@@ -3314,11 +3316,11 @@
     <Content Include="Content\recent-tweets.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\1.12.4.js" />
-    <Content Include="Scripts\1.4.1.js" />
     <Content Include="Scripts\1061.js" />
     <Content Include="Scripts\2.2.js" />
     <Content Include="Scripts\4.8.1.js" />
@@ -5348,13 +5350,21 @@
     <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\uploadPartial.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\Blog.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-migrate.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.flexslider-min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -5401,6 +5411,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

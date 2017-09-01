@@ -12,8 +12,8 @@ namespace Blog.Controllers
         public ActionResult Index()
         {
             ViewBag.ShowCase = db.Posts.FirstOrDefault(a => a.postType == Objects.PostType.ShowCase);
-            db.Posts.OrderByDescending(a => a.PostedOn).Take(20);
-            return View();
+            var post = db.Posts.OrderByDescending(a => a.PostedOn).Take(20).ToList();
+            return View(post);
         }
     }
 }

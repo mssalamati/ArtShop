@@ -29,7 +29,8 @@ namespace Blog
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
           "~/Scripts/modules-9fa0e7afd9c8b2a8eac97ecf9d682f2d.js",
-          "~/Scripts/froogaloop.js", "~/Scripts/jquery.cookie.js", "~/Scripts/1061.js", "~/Scripts/4.8.1.js", "~/Scripts/1.12.4.js", "~/Scripts/1.4.1.js"));
+          "~/Scripts/froogaloop.js", "~/Scripts/jquery.cookie.js", "~/Scripts/1061.js", "~/Scripts/4.8.1.js", "~/Scripts/1.12.4.js", "~/Scripts/1.4.1.js", 
+          "~/Scripts/jquery.flexslider-min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/bootstrap.min.css",
@@ -41,7 +42,8 @@ namespace Blog
                       "~/Content/instag-slider.css",
                       "~/Content/dashicons.min.css",
                       "~/Content/css_2.css",
-                      "~/Content/easy-pull-quotes-public.css"
+                      "~/Content/easy-pull-quotes-public.css",
+                      "~/Content/flexslider.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/default").Include(

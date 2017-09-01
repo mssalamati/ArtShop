@@ -82,6 +82,7 @@ namespace Blog.Areas.Admin.Controllers
             newPost.Title = model.TitleDef;
             newPost.Translations = new List<PostTranslation>();
             newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description });
+            //newPost.Author = user.userDetail.FirstName + user.userDetail.LastName;
             user.userDetail.Posts.Add(newPost);
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e)
