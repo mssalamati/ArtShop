@@ -142,6 +142,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Art Selected by our Curators.
+        /// </summary>
+        public static string Art_Selected_by_our_Curators {
+            get {
+                return ResourceManager.GetString("Art_Selected_by_our_Curators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse Art for Sale by Category.
+        /// </summary>
+        public static string Browse_Art_for_Sale_by_Category {
+            get {
+                return ResourceManager.GetString("Browse_Art_for_Sale_by_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse Art for Sale by Style.
+        /// </summary>
+        public static string Browse_Art_for_Sale_by_Style {
+            get {
+                return ResourceManager.GetString("Browse_Art_for_Sale_by_Style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse Art for Sale by Price.
+        /// </summary>
+        public static string Browse_Art_for_Sale_Price {
+            get {
+                return ResourceManager.GetString("Browse_Art_for_Sale_Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose from List.
         /// </summary>
         public static string Choose_from_list {
@@ -156,6 +192,15 @@ namespace Resources {
         public static string Comma {
             get {
                 return ResourceManager.GetString("Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discover new original artwork from around the world.
+        /// </summary>
+        public static string discover_new_original {
+            get {
+                return ResourceManager.GetString("discover_new_original", resourceCulture);
             }
         }
         
@@ -273,6 +318,15 @@ namespace Resources {
         public static string Size {
             get {
                 return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Artworks.
+        /// </summary>
+        public static string ViewArtwork {
+            get {
+                return ResourceManager.GetString("ViewArtwork", resourceCulture);
             }
         }
     }
