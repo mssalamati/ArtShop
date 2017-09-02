@@ -80,9 +80,10 @@ namespace Blog.Areas.Admin.Controllers
             newPost.Tags = db.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
             newPost.Thumbnail = Thumbresult.FullPath;
             newPost.Title = model.TitleDef;
+            newPost.postType = model.postType;
             newPost.Translations = new List<PostTranslation>();
             newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description });
-            //newPost.Author = user.userDetail.FirstName + user.userDetail.LastName;
+            newPost.Author = user.userDetail.FirstName + user.userDetail.LastName;
             user.userDetail.Posts.Add(newPost);
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e)
@@ -167,6 +168,7 @@ namespace Blog.Areas.Admin.Controllers
             post.Tags.Clear();
             post.Tags = db.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
             post.Title = model.TitleDef;
+            post.postType = model.postType;
             var translation = post.Translations.Single(x => x.languageId == model.languageId);
             translation.Title = model.Title;
             translation.Description = model.Description;

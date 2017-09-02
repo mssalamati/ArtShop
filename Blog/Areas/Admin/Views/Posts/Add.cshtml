@@ -62,7 +62,7 @@
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <select class="form-control" name="Category" style="width: 100%;">
                                     @foreach (var item in ((List<Category>)ViewBag.caregories))
                                     {
@@ -70,8 +70,17 @@
                                     }
                                 </select>
                             </div>
+                            <label style="padding:5px;text-align:left" class="col-sm-2 control-label"> نوع مطلب </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="postType" style="width: 100%;">
+                                    <option value="Wide">Wide</option>
+                                    <option value="Sqr">Sqr</option>
+                                    <option value="ShowCase">ShowCase</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+
 
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">

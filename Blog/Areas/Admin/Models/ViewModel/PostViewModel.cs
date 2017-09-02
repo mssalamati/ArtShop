@@ -22,6 +22,7 @@ namespace Blog.Areas.Admin.Models.ViewModel
             this.Tags = model.Tags.Select(x => x.Id).ToList();
             this.Links = model.Links.Select(x => x.URL).ToList();
             this.Category = model.Category.Id;
+            this.postType = model.postType;
             this.ThumbnailPath = "/" + model.Thumbnail;
             this.HeaderPhotoPaths = model.HeaderPhotos.ToDictionary(x => x.Id, x => "/" + x.Path);
         }
@@ -53,7 +54,7 @@ namespace Blog.Areas.Admin.Models.ViewModel
         public int Category { get; set; }
         public HttpPostedFileBase Thumbnail { get; set; }
         public List<HttpPostedFileBase> HeaderPhotos { get; set; }
-
+        public PostType postType { get; set; }
 
         public string ThumbnailPath { get; set; }
         public Dictionary<int, string> HeaderPhotoPaths { get; set; }

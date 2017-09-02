@@ -39,6 +39,7 @@ namespace Blog.Models
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Link> Links { get; set; }
         public DbSet<HeaderPhoto> HeaderPhotos { get; set; }
-        
+        public DbSet<NavigationCategory> NavigationCategories { get; set; }      
+
     }
 }
