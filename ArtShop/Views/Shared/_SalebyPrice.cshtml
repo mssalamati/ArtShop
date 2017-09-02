@@ -8,10 +8,14 @@
     Pricethreshold p5 = (Pricethreshold)ViewBag.p5;
 }
 
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var tar = IsRighToLeft ? "text-align:right" : "";
+}
 <!-- Browse Art for Sale by Price  -->
 <div class="row browse-by">
     <div class="small-12 columns">
-        <h2 class="section-title mb1">@SearchRes.Browse_Art_for_Sale_Price</h2>
+        <h2 style="@tar" class="section-title mb1">@SearchRes.Browse_Art_for_Sale_Price</h2>
     </div>
 </div>
 <div class="row browse-by">

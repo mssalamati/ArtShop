@@ -1,10 +1,16 @@
 ﻿@model FirstPageSection
+
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var tar = IsRighToLeft ? "text-align:right" : "";
+}
+
 @using DataLayer.Extentions
 
 <div class="row">
     <div class="small-12 columns">
-        <h2 class="section-title mt0">@SearchRes.Art_Selected_by_our_Curators</h2>
-        <div class="section-details">@SearchRes.discover_new_original</div>
+        <h2 style="@tar" class="section-title mt0">@SearchRes.Art_Selected_by_our_Curators</h2>
+        <div style="@tar" class="section-details">@SearchRes.discover_new_original</div>
     </div>
 </div>
 <div class="row">
