@@ -132,20 +132,8 @@
   <data name="Artworks" xml:space="preserve">
     <value>اثر هنری</value>
   </data>
-  <data name="Art_Selected_by_our_Curators" xml:space="preserve">
-    <value>آثار منتخب سرپرست های هنری ما</value>
-  </data>
   <data name="Blog" xml:space="preserve">
     <value>بلاگ</value>
-  </data>
-  <data name="Browse_Art_for_Sale_by_Category" xml:space="preserve">
-    <value>جستجوی آثار قابل عرضه بر اساس طبقه بندی</value>
-  </data>
-  <data name="Browse_Art_for_Sale_by_Style" xml:space="preserve">
-    <value>جستچو بر اساس سبک</value>
-  </data>
-  <data name="Browse_Art_for_Sale_Price" xml:space="preserve">
-    <value>جستجوی آثار هنری بر اساس قیمت</value>
   </data>
   <data name="Collection" xml:space="preserve">
     <value>مجموعه</value>
@@ -155,9 +143,6 @@
   </data>
   <data name="Copyright_policy" xml:space="preserve">
     <value>حق نشر</value>
-  </data>
-  <data name="discover_new_original" xml:space="preserve">
-    <value>جستجو در میان آثار اصیل و جدید در سراسر دنیا</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>علاقه مندی ها</value>
@@ -206,8 +191,5 @@
   </data>
   <data name="Upload" xml:space="preserve">
     <value>بارگذاری</value>
-  </data>
-  <data name="ViewArtwork" xml:space="preserve">
-    <value>مشاهده آثار هنری</value>
   </data>
 </root>
