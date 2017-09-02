@@ -150,6 +150,9 @@
   <data name="Featured" xml:space="preserve">
     <value>Featured</value>
   </data>
+  <data name="Forgot_password" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="Medium" xml:space="preserve">
     <value>Medium</value>
+  </data>
+  <data name="New_artiscovery" xml:space="preserve">
+    <value>New to Artiscovery</value>
   </data>
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>

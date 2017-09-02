@@ -169,6 +169,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign up for our newsletter.
+        /// </summary>
+        public static string Email_header1 {
+            get {
+                return ResourceManager.GetString("Email_header1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discover new art and collections added weekly.
+        /// </summary>
+        public static string Email_header2 {
+            get {
+                return ResourceManager.GetString("Email_header2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For Artists.
         /// </summary>
         public static string For_Artists {
@@ -201,6 +219,15 @@ namespace Resources {
         public static string Privacy_Policy {
             get {
                 return ResourceManager.GetString("Privacy_Policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up.
+        /// </summary>
+        public static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
             }
         }
         

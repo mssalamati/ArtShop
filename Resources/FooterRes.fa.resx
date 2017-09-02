@@ -174,4 +174,13 @@
   <data name="Why_Sell" xml:space="preserve">
     <value>چرا Artiscovery</value>
   </data>
+  <data name="Email_header1" xml:space="preserve">
+    <value>برای خبرنامه ثبت نام کنید</value>
+  </data>
+  <data name="Email_header2" xml:space="preserve">
+    <value>اطلاع رسانی هفتگی آثار و مجموعه های جدید</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
 </root>

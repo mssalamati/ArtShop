@@ -150,6 +150,9 @@
   <data name="Featured" xml:space="preserve">
     <value>ویژگی</value>
   </data>
+  <data name="Forgot_password" xml:space="preserve">
+    <value>کلمه ی عبور خود را فراموش کرده اید؟</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>صفحه اصلی</value>
   </data>
@@ -162,6 +165,12 @@
   <data name="Medium" xml:space="preserve">
     <value>مدیا</value>
   </data>
+  <data name="New_artiscovery" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>یا</value>
+  </data>
   <data name="Orders" xml:space="preserve">
     <value>سفارشات</value>
   </data>
@@ -172,6 +181,9 @@
     <value>پروفایل</value>
   </data>
   <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
+  <data name="Register_now" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
   <data name="SalesDashboard" xml:space="preserve">
@@ -191,5 +203,8 @@
   </data>
   <data name="Upload" xml:space="preserve">
     <value>بارگذاری</value>
+  </data>
+  <data name="Welcome_back" xml:space="preserve">
+    <value>خوش آمدید</value>
   </data>
 </root>
