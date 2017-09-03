@@ -60,7 +60,7 @@
                     <div>
                         <div class="authentication__content__section">
                             <div class="authentication__section-title animate-group-0-0">Register</div>
-                            <h1 class="animate-group-0-4">Welcome!</h1>
+                            <h1 class="animate-group-0-4">@ShareRes.Welcome</h1>
                             <div class="animate-group-1-5 authentication__content__inner">
 
                                 @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
@@ -70,7 +70,7 @@
 
                                     <br>
                                     <div class="authentication__or">
-                                        <strong>or</strong>
+                                        <strong>@ShareRes.Or</strong>
                                     </div>
                                     <br>
                                     <div class="input-group">
@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
 
-                                    <div style="margin-top:10px"><strong>Select your profile type</strong></div>
+                                    <div style="margin-top:10px"><strong>@ShareRes.Select_profile_type</strong></div>
                                     <div style="margin-bottom:10px"><small>You’ll be able to change this later</small></div>
                                     <div class="row">
                                         <div class="col-md-6">

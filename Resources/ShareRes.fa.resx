@@ -166,7 +166,7 @@
     <value>مدیا</value>
   </data>
   <data name="New_artiscovery" xml:space="preserve">
-    <value />
+    <value>عضو سایت نیستید؟</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>یا</value>
@@ -192,6 +192,9 @@
   <data name="SalesDashboard" xml:space="preserve">
     <value>داشبورد فروش</value>
   </data>
+  <data name="Select_profile_type" xml:space="preserve">
+    <value>نوع پروفایل خود را مشخص کنید</value>
+  </data>
   <data name="SignIn" xml:space="preserve">
     <value>ورود</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="Upload" xml:space="preserve">
     <value>بارگذاری</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>خوش آمدید</value>
   </data>
   <data name="Welcome_back" xml:space="preserve">
     <value>خوش آمدید</value>

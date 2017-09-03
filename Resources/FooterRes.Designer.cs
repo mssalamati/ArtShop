@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discover new art and collections added weekly.
+        ///   Looks up a localized string similar to Discover new original artworks all around the world.
         /// </summary>
         public static string Email_header2 {
             get {
