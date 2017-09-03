@@ -7,7 +7,7 @@
 
 <link href="~/Content/EditProduct.css" rel="stylesheet" />
 
-@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new {id="mform", @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.Id)
     <div id="upload">
@@ -63,15 +63,15 @@
                                             <div class="form-group form-group--inline-block dimensions-input">
                                                 <div class="input-container">
                                                     <label for="art_height">Height</label>
-                                                    <input type="number" class="" name="Height" value="@Model.Height" id="art_height" min="0">
+                                                    <input type="text" class="" name="Height" value="@Model.Height" id="Height" min="0">
                                                 </div>
                                                 <div class="input-container">
                                                     <label for="art_width">Width</label>
-                                                    <input type="number" class="" name="Width" value="@Model.Width" min="0">
+                                                    <input type="text" class="" name="Width" id="Width" value="@Model.Width" min="0">
                                                 </div>
                                                 <div class="input-container">
                                                     <label for="art_depth">Depth</label>
-                                                    <input type="number" class="" name="Depth" step="0.1" value="@Model.Depth" min="0">
+                                                    <input type="text" class="" name="Depth" id="Depth" step="0.1" value="@Model.Depth" min="0">
                                                 </div>
                                                 <div class="form-group__info">cm</div>
                                             </div>
@@ -105,7 +105,7 @@
                                                     <div class="input-container text-left animate-group-1-4 z-index-fix-0">
                                                         <label class="block">Country</label>
 
-                                                        <select class="rw-combobox rw-widget">
+                                                        <select name="productshippingDetail.CountryId" class="rw-combobox rw-widget">
                                                             @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                             {
                                                                 if (item.Key == Model.productshippingDetail.CountryId)
@@ -146,7 +146,24 @@
 }
 
 @section scripts{
-
+    <script>
+        $("#mform").validate({
+            rules: {
+                Height: {
+                    required: true,
+                    number: true
+                },
+                Width: {
+                    required: true,
+                    number: true
+                },
+                Depth: {
+                    required: true,
+                    number: true
+                }
+            }
+        });
+    </script>
     <script>
         var inp = $('#statusinp');
         var packing_forsale = $('#forsale');
