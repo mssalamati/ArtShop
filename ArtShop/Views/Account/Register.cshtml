@@ -1,5 +1,9 @@
 ﻿@model ArtShop.Models.RegisterViewModel
 @{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+}
+@{
     ViewBag.Title = "Log in";
     Layout = null;
 }
@@ -59,7 +63,7 @@
                     <!-- react-empty: 8 -->
                     <div>
                         <div class="authentication__content__section">
-                            <div class="authentication__section-title animate-group-0-0">Register</div>
+                            <div class="authentication__section-title animate-group-0-0">@ShareRes.Register</div>
                             <h1 class="animate-group-0-4">@ShareRes.Welcome</h1>
                             <div class="animate-group-1-5 authentication__content__inner">
 
@@ -97,30 +101,30 @@
                                     </div>
 
                                     <div style="margin-top:10px"><strong>@ShareRes.Select_profile_type</strong></div>
-                                    <div style="margin-bottom:10px"><small>You’ll be able to change this later</small></div>
+                                    <div style="margin-bottom:10px"><small>@ShareRes.Register_header2</small></div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <input id="IsArtist" type="hidden" />
-                                            <button type="button" id="collectorButton" onclick="ChangeState(1)" class="btn btn--block">I am a collector</button>
+                                            <button type="button" id="collectorButton" onclick="ChangeState(1)" class="btn btn--block">@ShareRes.Collector</button>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="button" id="artistButton" onclick="ChangeState(2)" class="btn btn--block">I am an artist</button>
+                                            <button type="button" id="artistButton" onclick="ChangeState(2)" class="btn btn--block">@ShareRes.I_artist</button>
                                         </div>
                                     </div>
 
                                     <br>
-                                    <button type="submit" class="btn btn--green btn--block">Register</button>
+                                    <button type="submit" class="btn btn--green btn--block">@ShareRes.Register</button>
                                     <br>
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
                                     <strong>
-                                        <!-- react-text: 40 -->Already have an account? <!-- /react-text -->
-                                        <a href="/Account/Login">Sign In</a>
+                                        <!-- react-text: 40 -->@ShareRes.Already_have <!-- /react-text -->
+                                        <a href="/Account/Login">@ShareRes.SignIn</a>
                                     </strong>
 
                                 }
                             </div>
 
-                            <div class="authentication__section-footer animate-group-1-12 authentication__section-footer--light"><!-- react-text: 43 -->By signing up, you agree to our <!-- /react-text --><a href="/terms">Terms of Use</a><!-- react-text: 45 --> and&nbsp;<!-- /react-text --><a href="/privacy">Privacy Policy</a><!-- react-text: 47 -->. You'll receive weekly updates on recently added artworks, new curated collections, featured artists, and more.<!-- /react-text --></div><div class="authentication__loader"></div>
+                            <div class="authentication__section-footer animate-group-1-12 authentication__section-footer--light" style="@rtlstl"><!-- react-text: 43 -->@ShareRes.Register_des_p1 <!-- /react-text --><a href="/pages/terms">@ShareRes.Terms_use</a><!-- react-text: 45 --> @ShareRes.And&nbsp;<!-- /react-text --><a href="/pages/privacypolicy">@ShareRes.Privacy_policy</a><!-- react-text: 47 --> @ShareRes.Register_des_p2<!-- /react-text --></div><div class="authentication__loader"></div>
                         </div>
                     </div>
                 </div>

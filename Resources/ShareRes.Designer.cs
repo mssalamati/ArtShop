@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Already have an account?.
+        /// </summary>
+        public static string Already_have {
+            get {
+                return ResourceManager.GetString("Already_have", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        public static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Art.
         /// </summary>
         public static string Art {
@@ -133,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I am a collector.
+        /// </summary>
+        public static string Collector {
+            get {
+                return ResourceManager.GetString("Collector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copyright Policy.
         /// </summary>
         public static string Copyright_policy {
@@ -174,6 +201,15 @@ namespace Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I am an artist.
+        /// </summary>
+        public static string I_artist {
+            get {
+                return ResourceManager.GetString("I_artist", resourceCulture);
             }
         }
         
@@ -259,6 +295,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By signing up, you agree to our.
+        /// </summary>
+        public static string Register_des_p1 {
+            get {
+                return ResourceManager.GetString("Register_des_p1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ll receive weekly updates on recently added artworks, new curated collections, featured artists, and more..
+        /// </summary>
+        public static string Register_des_p2 {
+            get {
+                return ResourceManager.GetString("Register_des_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You’ll be able to change this later.
+        /// </summary>
+        public static string Register_header2 {
+            get {
+                return ResourceManager.GetString("Register_header2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string Remove {
@@ -318,6 +381,15 @@ namespace Resources {
         public static string Terms {
             get {
                 return ResourceManager.GetString("Terms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terms of Use.
+        /// </summary>
+        public static string Terms_use {
+            get {
+                return ResourceManager.GetString("Terms_use", resourceCulture);
             }
         }
         

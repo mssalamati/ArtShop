@@ -169,7 +169,7 @@
     <value>چاپ های موجود را ببینید:</value>
   </data>
   <data name="resultEmpty" xml:space="preserve">
-    <value>هیچ محصولی یافت نشد</value>
+    <value>هیچ موردی یافت نشد</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
@@ -190,13 +190,13 @@
     <value>اندازه</value>
   </data>
   <data name="Art_Selected_by_our_Curators" xml:space="preserve">
-    <value>آثار منتخب سرپرست های هنری ما</value>
+    <value>آثار منتخب نمایشگاه گردان ها</value>
   </data>
   <data name="Browse_Art_for_Sale_by_Category" xml:space="preserve">
-    <value>جستجوی آثار قابل عرضه بر اساس طبقه بندی</value>
+    <value>آثار قابل فروش بر اساس دسته بندی</value>
   </data>
   <data name="Browse_Art_for_Sale_by_Style" xml:space="preserve">
-    <value>جستجو بر اساس سبک</value>
+    <value>آثار قابل فروش بر اساس سبک</value>
   </data>
   <data name="Browse_Art_for_Sale_Price" xml:space="preserve">
     <value>جستجوی آثار هنری بر اساس قیمت</value>
