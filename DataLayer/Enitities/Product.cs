@@ -55,6 +55,7 @@ namespace DataLayer.Enitities
         public int AllEntity { get; set; }
         public string Description { get; set; }
         public Productpackage Packaging { get; set; }
+        public ProductStatus Status { get; set; }
         public virtual ICollection<Style> Styles { get; set; }
         public virtual ICollection<Material> Materials { get; set; }
         public virtual ICollection<Medium> Mediums { get; set; }
@@ -63,6 +64,7 @@ namespace DataLayer.Enitities
         public Product()
         {
             CreateDate = DateTime.Now;
+            Status = ProductStatus.NotForSale;
         }
 
         public object tojason()
@@ -91,6 +93,8 @@ namespace DataLayer.Enitities
             };
         }
     }
+
+    public enum ProductStatus { Sold, forSale, NotForSale }
 
     public class ProductPrintDetail
     {
