@@ -82,7 +82,7 @@ namespace Blog.Areas.Admin.Controllers
             newPost.Title = model.TitleDef;
             newPost.postType = model.postType;
             newPost.Translations = new List<PostTranslation>();
-            newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description });
+            newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description,ShortDescription = model.ShortDescription });
             newPost.Author = user.userDetail.FirstName + user.userDetail.LastName;
             user.userDetail.Posts.Add(newPost);
             try { db.SaveChanges(); }
@@ -171,6 +171,7 @@ namespace Blog.Areas.Admin.Controllers
             post.postType = model.postType;
             var translation = post.Translations.Single(x => x.languageId == model.languageId);
             translation.Title = model.Title;
+            translation.ShortDescription = model.ShortDescription;
             translation.Description = model.Description;
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e)

@@ -24,6 +24,7 @@ namespace Blog.Areas.Admin.Models.ViewModel
             this.Category = model.Category.Id;
             this.postType = model.postType;
             this.ThumbnailPath = "/" + model.Thumbnail;
+            this.ShortDescription = translation.ShortDescription;
             this.HeaderPhotoPaths = model.HeaderPhotos.ToDictionary(x => x.Id, x => "/" + x.Path);
         }
 
@@ -42,6 +43,8 @@ namespace Blog.Areas.Admin.Models.ViewModel
         public virtual int Id { get; set; }
         [Required]
         public string languageId { get; set; }
+        [Required]
+        public string ShortDescription { get; set; }
         [AllowHtml]
         public string Description { get; set; }
         [Required]

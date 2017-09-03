@@ -156,29 +156,50 @@ namespace ArtShop.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var p = db.Products.Include("photo").Include("productshippingDetail").Single(x => x.Id == id);
-            bool mine = false;
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = User.Identity.GetUserId();
-                var user = db.Users.Find(userId);
-                var profile = user.userDetail;
-                mine = profile.Products.Any(x => x.Id == id);
-            }
-            if (!mine) 
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == id);
+            if (!mine)
                 return HttpNotFound();
             if (p.productshippingDetail == null)
                 p.productshippingDetail = new ProductshippingDetail();
             return View(p);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Product model)
         {
-           
-            return View(model);
+            var p = db.Products.Include("photo").Include("productshippingDetail").Single(x => x.Id == model.Id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == model.Id);
+            if (!mine)
+                return HttpNotFound();
+            if (p.productshippingDetail == null)
+                p.productshippingDetail = new ProductshippingDetail();
+            p.Title = model.Title;
+            p.Status = model.Status;
+            p.TotalWeight = model.TotalWeight;
+            p.Height = model.Height;
+            p.Width = model.Width;
+            p.Depth = model.Depth;
+            if (model.Status == ProductStatus.forSale)
+            {
+                p.productshippingDetail.Street = model.productshippingDetail.Street;
+                p.productshippingDetail.City = model.productshippingDetail.City;
+                p.productshippingDetail.CountryId = model.productshippingDetail.CountryId;
+                p.productshippingDetail.PhoneNumber = model.productshippingDetail.PhoneNumber;
+                p.productshippingDetail.Region = model.productshippingDetail.Region;
+            }
+            db.SaveChanges();
+            return View(p);
         }
 
         public ActionResult EditPackag(int id)
