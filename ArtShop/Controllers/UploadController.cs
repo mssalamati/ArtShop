@@ -579,7 +579,9 @@ namespace ArtShop.Controllers
                     IsPrintAvaibled = false,
                     Keywords = (string)Session["Keywords"],
                     categoryId = categoryId,
-                    subjectId = subjectId
+                    subjectId = subjectId,
+                    TotalWeight = (float)Session["weight"],
+                    Status = ((bool)Session["isOrginal"]) ? ProductStatus.forSale : ProductStatus.NotForSale
                 };
                 product.Materials = new List<Material>();
                 product.Styles = new List<Style>();

@@ -50,6 +50,9 @@ namespace DataLayer.Enitities
         public float Height { get; set; }
         public float Width { get; set; }
         public float Depth { get; set; }
+        public float ArtWeight { get; set; }
+        public float BoxWeight { get; set; }
+        public float TotalWeight { get; set; }
         public string Title { get; set; }
         public int avaible { get; set; }
         public int AllEntity { get; set; }

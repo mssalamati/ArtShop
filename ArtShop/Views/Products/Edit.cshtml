@@ -7,120 +7,130 @@
 
 <link href="~/Content/EditProduct.css" rel="stylesheet" />
 
-<div id="upload">
-    <div class="app">
-        <div class="full-bleed full-bleed--background">
-            <div class="container artwork__container">
-                <span></span>
-                <div class="edit-page">
-                    @Html.Partial("_MenuMobile", new { Photo = Model.photo.Path, menu = "Artwork Status" })
-                    <div class="edit-page__container">
-                        @Html.Partial("_Menu", new { Photo = Model.photo.Path, menu = "Artwork Status" })
-                        <div class="edit-page__content pane pane--inline pane--content pane--centered">
-                            <div class="wizard-step">
-                                <div class="pane__content__block">
-                                    <h1 class="animate-group-0-0">Artwork Status</h1>
-                                    <p class="descriptor animate-group-0-1">Is the original artwork for sale?</p>
-                                    <div class="sold-status-input animate-group-0-2">
-                                        <div class="sold-status-input__option">
-                                            <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 82.4 63.6" enable-background="new 0 0 82.4 63.6" xml:space="preserve"><polygon class="path" fill="#333333" points="82.4,6 76.4,0 24.9,51.5 6,32.6 0,38.6 18.9,57.5 18.9,57.5 24.9,63.6 24.9,63.5 25,63.6 31,57.5 30.9,57.5 "></polygon></svg></i>
-                                            <div class="sold-status-input__option__name">For Sale</div>
-                                        </div>
-                                        <div class="sold-status-input__option">
-                                            <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 62.7 62.7" enable-background="new 0 0 62.7 62.7" xml:space="preserve"><path class="path" fill="#333333" d="M31.4,0C14.1,0,0,14.1,0,31.4s14.1,31.4,31.4,31.4s31.4-14.1,31.4-31.4S48.7,0,31.4,0z M31.4,9 c4.7,0,9,1.4,12.6,3.9L12.9,44C10.4,40.4,9,36.1,9,31.4C9,19,19,9,31.4,9z M31.4,53.7c-4.7,0-9-1.4-12.6-3.9l31.1-31.1 c2.5,3.6,3.9,7.9,3.9,12.6C53.7,43.7,43.7,53.7,31.4,53.7z"></path></svg></i>
-                                            <div class="sold-status-input__option__name">Not for sale</div>
-                                        </div>
-                                        <div class="sold-status-input__option sold-status-input__option--selected">
-                                            <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 41.2 67.3" enable-background="new 0 0 41.2 67.3" xml:space="preserve"><g><path class="path" fill="#333333" d="M10.4,42.6c0,2.8,0.7,5,2.2,6.7s3.4,2.7,5.7,3.1V36.9c-0.2-0.1-0.6-0.2-1-0.3c-0.4-0.1-0.9-0.2-1.4-0.3 c-1.8-0.5-3.6-1.1-5.4-1.7c-1.8-0.7-3.4-1.6-4.8-2.7c-1.4-1.1-2.5-2.5-3.4-4.1c-0.8-1.7-1.3-3.7-1.3-6.2c0-2.5,0.5-4.7,1.4-6.7 c1-1.9,2.2-3.5,3.8-4.8C8,8.7,9.8,7.7,11.9,7c2.1-0.7,4.2-1.1,6.4-1.3V0h4.4v5.7C24.9,5.9,27,6.4,29,7.1s3.7,1.7,5.1,3 c1.5,1.3,2.7,2.8,3.6,4.7s1.5,4.1,1.6,6.7H28.9c0-2-0.7-3.7-1.9-5c-1.2-1.4-2.6-2.1-4.3-2.1v13.1c0.6,0.1,1.2,0.3,1.8,0.4 c0.6,0.1,1.3,0.3,2,0.5c3.7,1,6.5,2.2,8.4,3.7c2,1.5,3.4,3,4.4,4.6c0.9,1.6,1.5,3.2,1.7,4.7c0.2,1.6,0.3,3,0.3,4.2 c0,1.1-0.3,2.5-0.8,4.1c-0.5,1.7-1.5,3.3-2.9,4.8c-1.4,1.6-3.3,3-5.7,4.2s-5.4,2-9.1,2.2v6.3h-4.4V61c-5.5-0.4-9.8-2.1-13-5.1 c-3.1-3-4.9-7.4-5.4-13.2H10.4z M18.4,14.4c-0.8,0-1.7,0.1-2.4,0.4c-0.8,0.2-1.5,0.6-2.1,1.1c-0.6,0.5-1.1,1.2-1.5,1.9 c-0.4,0.8-0.6,1.7-0.6,2.7c0,1.6,0.5,2.9,1.6,3.8s2.7,1.6,5.1,2.1V14.4z M22.7,52.4c0.9-0.1,1.8-0.3,2.8-0.6c1-0.3,1.8-0.8,2.6-1.4 c0.8-0.6,1.4-1.3,1.9-2.2c0.5-0.9,0.7-1.9,0.7-3.1c0-1.9-0.6-3.4-1.8-4.3c-1.2-1-3.3-1.8-6.2-2.6V52.4z"></path></g></svg></i>
-                                            <div class="sold-status-input__option__name">Sold</div>
-                                        </div>
-                                    </div>
-                                </div>
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div id="upload">
+        <div class="app">
+            <div class="full-bleed full-bleed--background">
+                <div class="container artwork__container">
+                    <span></span>
+                    <div class="edit-page">
+                        @Html.Partial("_MenuMobile", new { Photo = Model.photo.Path, menu = "Artwork Status" })
+                        <div class="edit-page__container">
+                            @Html.Partial("_Menu", new { Photo = Model.photo.Path, menu = "Artwork Status" })
+                            <div class="edit-page__content pane pane--inline pane--content pane--centered">
+                                <div class="wizard-step">
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                                    }
 
-                                <div class="pane__content__block">
-                                    <h1 class="animate-group-0-3">Title</h1>
-                                    <div class="form-group form-group--block animate-group-0-4">
-                                        <div class="title-input">
-                                            <div class="title-input__title-wrapper">
-                                                <input type="text" value="@Model.Title">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pane__content__block">
-                                    <h1 class="animate-group-0-5">Dimensions</h1>
-                                    <div class="form-group form-group--block animate-group-0-6">
-                                        <div class="form-group form-group--inline-block dimensions-input">
-                                            <div class="input-container">
-                                                <label for="art_height">Height</label>
-                                                <input type="number" class="" value="@Model.Height" id="art_height" min="0">
-                                            </div>
-                                            <div class="input-container">
-                                                <label for="art_width">Width</label>
-                                                <input type="number" class="" value="@Model.Width" min="0">
-                                            </div>
-                                            <div class="input-container">
-                                                <label for="art_depth">Depth</label>
-                                                <input type="number" class="" step="0.1" value="@Model.Depth" min="0">
-                                            </div>
-                                            <div class="form-group__info">inches</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="billingInfo">
                                     <div class="pane__content__block">
-                                        <h1 class="animate-group-0-7">Weight</h1>
-                                        <div class="form-group shipping__artwork-weight animate-group-0-9 shipping__artwork-weight--artwork-only">
-                                            <div class="shipping__artwork-weight__weight label-under-group">
-                                                <input type="number" class="" value="" id="art_weight" min="0.1">
-                                                <div class="react-tooltip" style="bottom: 60px;"></div>
-                                                <label for="art_weight" class="">pounds</label>
+                                        <h1 class="animate-group-0-0">Artwork Status</h1>
+                                        <p class="descriptor animate-group-0-1">Is the original artwork for sale?</p>
+                                        <div class="sold-status-input animate-group-0-2">
+                                            <div onclick="changestatus('forSale')" id="forsale" class="sold-status-input__option">
+                                                <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 82.4 63.6" enable-background="new 0 0 82.4 63.6" xml:space="preserve"><polygon class="path" fill="#333333" points="82.4,6 76.4,0 24.9,51.5 6,32.6 0,38.6 18.9,57.5 18.9,57.5 24.9,63.6 24.9,63.5 25,63.6 31,57.5 30.9,57.5 "></polygon></svg></i>
+                                                <div class="sold-status-input__option__name">For Sale</div>
+                                            </div>
+                                            <div onclick="changestatus('NotForSale')" id="notforsale" class="sold-status-input__option">
+                                                <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 62.7 62.7" enable-background="new 0 0 62.7 62.7" xml:space="preserve"><path class="path" fill="#333333" d="M31.4,0C14.1,0,0,14.1,0,31.4s14.1,31.4,31.4,31.4s31.4-14.1,31.4-31.4S48.7,0,31.4,0z M31.4,9 c4.7,0,9,1.4,12.6,3.9L12.9,44C10.4,40.4,9,36.1,9,31.4C9,19,19,9,31.4,9z M31.4,53.7c-4.7,0-9-1.4-12.6-3.9l31.1-31.1 c2.5,3.6,3.9,7.9,3.9,12.6C53.7,43.7,43.7,53.7,31.4,53.7z"></path></svg></i>
+                                                <div class="sold-status-input__option__name">Not for sale</div>
+                                            </div>
+                                            <div onclick="changestatus('Sold')" id="sold" class="sold-status-input__option">
+                                                <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 41.2 67.3" enable-background="new 0 0 41.2 67.3" xml:space="preserve"><g><path class="path" fill="#333333" d="M10.4,42.6c0,2.8,0.7,5,2.2,6.7s3.4,2.7,5.7,3.1V36.9c-0.2-0.1-0.6-0.2-1-0.3c-0.4-0.1-0.9-0.2-1.4-0.3 c-1.8-0.5-3.6-1.1-5.4-1.7c-1.8-0.7-3.4-1.6-4.8-2.7c-1.4-1.1-2.5-2.5-3.4-4.1c-0.8-1.7-1.3-3.7-1.3-6.2c0-2.5,0.5-4.7,1.4-6.7 c1-1.9,2.2-3.5,3.8-4.8C8,8.7,9.8,7.7,11.9,7c2.1-0.7,4.2-1.1,6.4-1.3V0h4.4v5.7C24.9,5.9,27,6.4,29,7.1s3.7,1.7,5.1,3 c1.5,1.3,2.7,2.8,3.6,4.7s1.5,4.1,1.6,6.7H28.9c0-2-0.7-3.7-1.9-5c-1.2-1.4-2.6-2.1-4.3-2.1v13.1c0.6,0.1,1.2,0.3,1.8,0.4 c0.6,0.1,1.3,0.3,2,0.5c3.7,1,6.5,2.2,8.4,3.7c2,1.5,3.4,3,4.4,4.6c0.9,1.6,1.5,3.2,1.7,4.7c0.2,1.6,0.3,3,0.3,4.2 c0,1.1-0.3,2.5-0.8,4.1c-0.5,1.7-1.5,3.3-2.9,4.8c-1.4,1.6-3.3,3-5.7,4.2s-5.4,2-9.1,2.2v6.3h-4.4V61c-5.5-0.4-9.8-2.1-13-5.1 c-3.1-3-4.9-7.4-5.4-13.2H10.4z M18.4,14.4c-0.8,0-1.7,0.1-2.4,0.4c-0.8,0.2-1.5,0.6-2.1,1.1c-0.6,0.5-1.1,1.2-1.5,1.9 c-0.4,0.8-0.6,1.7-0.6,2.7c0,1.6,0.5,2.9,1.6,3.8s2.7,1.6,5.1,2.1V14.4z M22.7,52.4c0.9-0.1,1.8-0.3,2.8-0.6c1-0.3,1.8-0.8,2.6-1.4 c0.8-0.6,1.4-1.3,1.9-2.2c0.5-0.9,0.7-1.9,0.7-3.1c0-1.9-0.6-3.4-1.8-4.3c-1.2-1-3.3-1.8-6.2-2.6V52.4z"></path></g></svg></i>
+                                                <div class="sold-status-input__option__name">Sold</div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" value="@Model.Status" name="status" id="statusinp" />
+                                    </div>
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-3">Title</h1>
+                                        <div class="form-group form-group--block animate-group-0-4">
+                                            <div class="title-input">
+                                                <div class="title-input__title-wrapper">
+                                                    <input type="text" name="Title" value="@Model.Title">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pane__content__block">
-                                        <h1 class="animate-group-0-10">Shipping Address</h1>
-                                        <p class="descriptor animate-group-0-10">Tell us where your artwork will be picked up</p>
-                                        <div class="form-group form-group--block animate-group-0-10">
-                                            <div>
-                                                <div class="input-container text-left animate-group-1-1">
-                                                    <label class="block">Street Address</label>
-                                                    <input type="text" value="@Model.productshippingDetail.Street" maxlength="35" class="">
-                                                </div>
-                                                <div class="input-container text-left animate-group-1-3">
-                                                    <label class="block">City</label>
-                                                    <input type="text" value="@Model.productshippingDetail.City" class="">
-                                                </div>
-                                                <div class="input-container text-left animate-group-1-4 z-index-fix-0">
-                                                    <label class="block">Country</label>
 
-                                                    <select class="rw-combobox rw-widget">
-                                                        @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
-                                                        {
-                                                            if (item.Key == Model.productshippingDetail.CountryId)
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-5">Dimensions</h1>
+                                        <div class="form-group form-group--block animate-group-0-6">
+                                            <div class="form-group form-group--inline-block dimensions-input">
+                                                <div class="input-container">
+                                                    <label for="art_height">Height</label>
+                                                    <input type="number" class="" name="Height" value="@Model.Height" id="art_height" min="0">
+                                                </div>
+                                                <div class="input-container">
+                                                    <label for="art_width">Width</label>
+                                                    <input type="number" class="" name="Width" value="@Model.Width" min="0">
+                                                </div>
+                                                <div class="input-container">
+                                                    <label for="art_depth">Depth</label>
+                                                    <input type="number" class="" name="Depth" step="0.1" value="@Model.Depth" min="0">
+                                                </div>
+                                                <div class="form-group__info">cm</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="billingInfo" hidden>
+                                        <div class="pane__content__block">
+                                            <h1 class="animate-group-0-7">Weight</h1>
+                                            <div class="form-group shipping__artwork-weight animate-group-0-9 shipping__artwork-weight--artwork-only">
+                                                <div class="shipping__artwork-weight__weight label-under-group">
+                                                    <input type="number" class="" name="TotalWeight" value="@Model.TotalWeight" id="art_weight" min="0.1">
+                                                    <div class="react-tooltip" style="bottom: 60px;"></div>
+                                                    <label for="art_weight" class="">kg</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pane__content__block">
+                                            <h1 class="animate-group-0-10">Shipping Address</h1>
+                                            <p class="descriptor animate-group-0-10">Tell us where your artwork will be picked up</p>
+                                            <div class="form-group form-group--block animate-group-0-10">
+                                                <div>
+                                                    <div class="input-container text-left animate-group-1-1">
+                                                        <label class="block">Street Address</label>
+                                                        <input type="text" name="productshippingDetail.Street" value="@Model.productshippingDetail.Street" maxlength="35" class="">
+                                                    </div>
+                                                    <div class="input-container text-left animate-group-1-3">
+                                                        <label class="block">City</label>
+                                                        <input type="text" name="productshippingDetail.City" value="@Model.productshippingDetail.City" class="">
+                                                    </div>
+                                                    <div class="input-container text-left animate-group-1-4 z-index-fix-0">
+                                                        <label class="block">Country</label>
+
+                                                        <select class="rw-combobox rw-widget">
+                                                            @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                             {
-                                                                <option value="@item.Key" selected="selected">@item.Value</option>
+                                                                if (item.Key == Model.productshippingDetail.CountryId)
+                                                                {
+                                                                    <option value="@item.Key" selected="selected">@item.Value</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@item.Key">@item.Value</option>
+                                                                }
                                                             }
-                                                            else
-                                                            {
-                                                                <option value="@item.Key">@item.Value</option>
-                                                            }
-                                                        }
-                                                    </select>
-                                                </div>
-                                                <div class="input-container text-left animate-group-1-5">
-                                                    <label class="block">Region</label>
-                                                    <input type="text" value="@Model.productshippingDetail.Region" class="">
-                                                </div>
-                                                <div class="input-container text-left animate-group-1-6">
-                                                    <label class="block">Zip/Postal Code</label>
-                                                    <input type="text" value="@Model.productshippingDetail.ZipCode" class="">
-                                                </div>
-                                                <div class="input-container text-left animate-group-1-7">
-                                                    <label class="block">Phone Number</label>
-                                                    <input type="text" value="@Model.productshippingDetail.PhoneNumber" class="">
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-container text-left animate-group-1-5">
+                                                        <label class="block">Region</label>
+                                                        <input type="text" name="productshippingDetail.Region" value="@Model.productshippingDetail.Region" class="">
+                                                    </div>
+                                                    <div class="input-container text-left animate-group-1-6">
+                                                        <label class="block">Zip/Postal Code</label>
+                                                        <input type="text" name="productshippingDetail.ZipCode" value="@Model.productshippingDetail.ZipCode" class="">
+                                                    </div>
+                                                    <div class="input-container text-left animate-group-1-7">
+                                                        <label class="block">Phone Number</label>
+                                                        <input type="text" name="productshippingDetail.PhoneNumber" value="@Model.productshippingDetail.PhoneNumber" class="">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,10 +142,39 @@
                 </div>
             </div>
         </div>
-    </div> 
-</div>
+    </div>
+}
 
 @section scripts{
 
+    <script>
+        var inp = $('#statusinp');
+        var packing_forsale = $('#forsale');
+        var packing_notforsale = $('#notforsale');
+        var packing_sold = $('#sold');
+        var bilingDiv = $('#billingInfo');
+
+        function changestatus(val) {
+            packing_forsale.removeClass('sold-status-input__option--selected');
+            packing_notforsale.removeClass('sold-status-input__option--selected');
+            packing_sold.removeClass('sold-status-input__option--selected');
+            if (val == 'Sold') {
+                inp.val('Sold');
+                packing_sold.addClass('sold-status-input__option--selected');
+                bilingDiv.hide();
+            } else if (val == 'forSale') {
+                inp.val('forSale');
+                packing_forsale.addClass('sold-status-input__option--selected');
+                bilingDiv.show();
+            } else if (val == 'NotForSale') {
+                inp.val('NotForSale');
+                packing_notforsale.addClass('sold-status-input__option--selected');
+                bilingDiv.hide();
+            }
+        }
+
+        changestatus(inp.val());
+
+    </script>
 
 }

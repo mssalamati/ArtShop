@@ -174,6 +174,13 @@ namespace ArtShop.Controllers
             return View(p);
         }
 
+        [HttpPost]
+        public ActionResult Edit(Product model)
+        {
+           
+            return View(model);
+        }
+
         public ActionResult EditPackag(int id)
         {
             var p = db.Products.Include("photo").Single(x => x.Id == id);
