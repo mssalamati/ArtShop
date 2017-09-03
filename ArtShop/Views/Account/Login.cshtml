@@ -62,8 +62,8 @@
                     <!-- react-empty: 8 -->
                     <div>
                         <div class="authentication__content__section">
-                            <div class="authentication__section-title animate-group-0-0">Sign in</div>
-                            <h1 class="animate-group-0-4">Welcome back!</h1>
+                            <div class="authentication__section-title animate-group-0-0">@ShareRes.SignIn</div>
+                            <h1 class="animate-group-0-4">@ShareRes.Welcome_back</h1>
                             
                             <div class="animate-group-1-5 authentication__content__inner">
 
@@ -75,7 +75,7 @@
                                     <br>
 
                                     <div class="authentication__or">
-                                        <strong>or</strong>
+                                        <strong>@ShareRes.Or</strong>
                                     </div>
                                     <br>
                                     <div class="input-group">
@@ -92,8 +92,8 @@
                                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <a class="authentication__sign-in__forgot" href="/Account/ForgotPassword">Forgot your password?</a><br>
-                                    <button class="btn btn--green btn--block" type="submit">Sign In</button>
+                                    <a class="authentication__sign-in__forgot" href="/Account/ForgotPassword">@ShareRes.Forgot_password</a><br>
+                                    <button class="btn btn--green btn--block" type="submit">@ShareRes.SignIn</button>
                                     <br />
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
                                     @*</form>*@
@@ -103,9 +103,9 @@
 
                             <div class="authentication__section-footer animate-group-1-12">
                                 <!-- react-text: 33 -->
-                                New to Artiscovery?
+                                @ShareRes.New_artiscovery
                                 <!-- /react-text -->
-                                <a href="/Account/register">Register now</a>
+                                <a href="/Account/register">@ShareRes.Register</a>
                             </div><div class="authentication__loader"></div>
                         </div>
                     </div>

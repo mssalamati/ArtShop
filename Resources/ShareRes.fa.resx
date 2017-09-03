@@ -186,6 +186,9 @@
   <data name="Register_now" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>حذف</value>
+  </data>
   <data name="SalesDashboard" xml:space="preserve">
     <value>داشبورد فروش</value>
   </data>

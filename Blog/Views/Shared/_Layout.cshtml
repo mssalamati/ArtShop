@@ -31,7 +31,7 @@
 <body class="@c">
     <div class="container">
 
-        @Html.Partial("_Header")
+        @Html.Action("Header", "Home", null)
         @RenderBody()
     </div>
     @Html.Partial("_Footer")

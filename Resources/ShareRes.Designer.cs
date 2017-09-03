@@ -214,6 +214,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        public static string Or {
+            get {
+                return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Orders.
         /// </summary>
         public static string Orders {
@@ -241,11 +250,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sign up.
+        ///   Looks up a localized string similar to Sign up.
         /// </summary>
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
             }
         }
         
@@ -300,6 +318,15 @@ namespace Resources {
         public static string Upload {
             get {
                 return ResourceManager.GetString("Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome back!.
+        /// </summary>
+        public static string Welcome_back {
+            get {
+                return ResourceManager.GetString("Welcome_back", resourceCulture);
             }
         }
     }
