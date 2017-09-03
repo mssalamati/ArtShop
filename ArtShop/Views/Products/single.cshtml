@@ -145,14 +145,18 @@
 
                 <!-- /share module -->
                 <div class="small-12 large-4 columns art-detail-description" style="background: rgba(0, 0, 0, 0.51);color:white;">
-                    <div id="productTabs" class="row tab-two">
-                        <div id="orginalTabTitle" class="small-6 columns active">
-                            <a onclick="changetab(0);" class="tab-original" title="Original">@SearchRes.Orginal</a>
+                    
+                    @if (Model.IsPrintAvaibled)
+                    {
+                        <div id="productTabs" class="row tab-two">
+                            <div id="orginalTabTitle" class="small-6 columns active">
+                                <a onclick="changetab(0);" class="tab-original" title="Original">@SearchRes.Orginal</a>
+                            </div>
+                            <div id="printTabTitle" class="small-6 columns">
+                                <a onclick="changetab(1);" class="tab-prints" title="Prints">@SearchRes.Prints</a>
+                            </div>
                         </div>
-                        <div id="printTabTitle" class="small-6 columns">
-                            <a onclick="changetab(1);" class="tab-prints" title="Prints">@SearchRes.Prints</a>
-                        </div>
-                    </div>
+                    }
 
                     <div class="row">
                         <div class="small-12 medium-6 large-12 columns art-meta">
@@ -181,23 +185,23 @@
                                 <div>
                                     <i class="fa fa-check" aria-hidden="true"></i> @SearchRes.Money_back
                                 </div>
-                                @*<div>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        Trustpilot Score
-                                    </div>*@
                             </div>
-                            <div style="width:inherit" class="art-detail-ribbon">
-                                <div class="clearfix">
-                                    <span class="price" itemprop="price">
-                                        $@Model.Price
-                                    </span>
-                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                            @if (Model.ISOrginalForSale)
+                            {
+                                <div style="width:inherit" class="art-detail-ribbon">
+                                    <div class="clearfix">
+                                        <span class="price" itemprop="price">
+                                            $@Model.Price
+                                        </span>
+                                        <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="clearfix">&nbsp;</div>
+                            }
+                         
                         </div>
                     </div>
 
@@ -263,14 +267,6 @@
                                             </span>
                                         </span>
                                     </div>
-                                    @*<div>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            Trustpilot Score
-                                        </div>*@
                                 </div>
 
                                 <div itemprop="offers" style="width:inherit;margin:0px -20px" class="art-detail-ribbon">

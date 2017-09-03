@@ -249,12 +249,15 @@ if (current == selected)
                         </div>
 
                         <div class="list-art-price">
-                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                <!-- internationalization testing -->
-                                <div itemprop="price">
-                                    $@item.Price
+                            @if (item.ISOrginalForSale)
+                            {
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $@item.Price
+                                    </div>
                                 </div>
-                            </div>
+                            }
                             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                 <!-- internationalization testing -->
                                 <div class="sample-print-price" itemprop="price">
