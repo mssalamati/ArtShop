@@ -94,6 +94,7 @@ namespace Blog.Objects
         public virtual int postId { get; set; }
         public virtual Post post { get; set; }
         public virtual string Description { get; set; }
+        public virtual string ShortDescription { get; set; }
         public virtual string Title { get; set; }
     }
 }
