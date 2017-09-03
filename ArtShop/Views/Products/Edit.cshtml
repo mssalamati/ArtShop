@@ -83,7 +83,7 @@
                                             <h1 class="animate-group-0-7">Weight</h1>
                                             <div class="form-group shipping__artwork-weight animate-group-0-9 shipping__artwork-weight--artwork-only">
                                                 <div class="shipping__artwork-weight__weight label-under-group">
-                                                    <input type="number" class="" name="TotalWeight" value="@Model.TotalWeight" id="art_weight" min="0.1">
+                                                    <input type="number" class="" name="TotalWeight" value="@Model.TotalWeight" min="0.1">
                                                     <div class="react-tooltip" style="bottom: 60px;"></div>
                                                     <label for="art_weight" class="">kg</label>
                                                 </div>
@@ -146,6 +146,7 @@
 }
 
 @section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
     <script>
         $("#mform").validate({
             rules: {
