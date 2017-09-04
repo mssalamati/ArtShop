@@ -138,6 +138,12 @@
   <data name="Artworks" xml:space="preserve">
     <value>Artworks</value>
   </data>
+  <data name="Artworks_from" xml:space="preserve">
+    <value>Artworks from</value>
+  </data>
+  <data name="Artworks_up_to" xml:space="preserve">
+    <value>Artworks up to</value>
+  </data>
   <data name="Blog" xml:space="preserve">
     <value>Blog</value>
   </data>

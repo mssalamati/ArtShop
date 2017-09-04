@@ -124,6 +124,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artworks from.
+        /// </summary>
+        public static string Artworks_from {
+            get {
+                return ResourceManager.GetString("Artworks_from", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artworks up to.
+        /// </summary>
+        public static string Artworks_up_to {
+            get {
+                return ResourceManager.GetString("Artworks_up_to", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blog.
         /// </summary>
         public static string Blog {

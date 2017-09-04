@@ -87,7 +87,7 @@
                 <div class="small-1 columns">
                     @if (Model.user.country != null)
                     {
-                        <i class="icn-artist-location flag-@Model.user.country.Code so-quick-tip" title="@Model.user.country.Current().Name"></i>
+                    <i class="icn-artist-location flag-@Model.user.country.Code so-quick-tip" title="@Model.user.country.Current().Name"></i>
                     }
                 </div>
                 <div class="small-11 columns">
@@ -103,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="small-12 columns breadcrumbs">
-                            <a href="#" rel="nofollow">Browse Art</a> <a href="#">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.LastName</a> @Model.Title
+                            @*<a href="#" rel="nofollow">Browse Art</a>*@ <a href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.LastName</a> @Model.Title
                         </div>
                     </div>
                 </div>
@@ -145,17 +145,17 @@
 
                 <!-- /share module -->
                 <div class="small-12 large-4 columns art-detail-description" style="background: rgba(0, 0, 0, 0.51);color:white;">
-                    
+
                     @if (Model.IsPrintAvaibled)
                     {
-                        <div id="productTabs" class="row tab-two">
-                            <div id="orginalTabTitle" class="small-6 columns active">
-                                <a onclick="changetab(0);" class="tab-original" title="Original">@SearchRes.Orginal</a>
-                            </div>
-                            <div id="printTabTitle" class="small-6 columns">
-                                <a onclick="changetab(1);" class="tab-prints" title="Prints">@SearchRes.Prints</a>
-                            </div>
+                    <div id="productTabs" class="row tab-two">
+                        <div id="orginalTabTitle" class="small-6 columns active">
+                            <a onclick="changetab(0);" class="tab-original" title="Original">@SearchRes.Orginal</a>
                         </div>
+                        <div id="printTabTitle" class="small-6 columns">
+                            <a onclick="changetab(1);" class="tab-prints" title="Prints">@SearchRes.Prints</a>
+                        </div>
+                    </div>
                     }
 
                     <div class="row">
@@ -165,12 +165,22 @@
                                 <a href="/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
                                 @if (Model.user.country != null)
                                 {
-                                    <span itemprop="nationality">@Model.user.country.Current().Name</span>
+                                <span itemprop="nationality">@Model.user.country.Current().Name</span>
                                 }
                             </p>
                             <p class="category-size" style="@rtldirection">
                                 @Model.category.Current().Name<br>
-                                @SearchRes.Size: <span>@Model.Height  H</span> x <span> @Model.Width  W</span> x <span> @Model.Depth </span> @UploadRes.inches
+
+                                @{
+                                if (IsRighToLeft)
+                                {
+                                <span>@SearchRes.Size</span><span> (طول * عرض * عمق):</span> <span>@Model.Height </span><span>*</span><span> @Model.Width </span> <span>*</span> <span> @Model.Depth </span> @UploadRes.inches
+                                }
+                                else
+                                {
+                                <span>@SearchRes.Size: </span><span>@Model.Height  H</span><span> x</span><span> @Model.Width  W</span> <span>x</span> <span> @Model.Depth </span> @UploadRes.inches
+                                }
+                                }
                             </p>
                             <p class="packaging-info" style="@rtldirection">
                                 Ships in a ---
@@ -188,20 +198,20 @@
                             </div>
                             @if (Model.ISOrginalForSale)
                             {
-                                <div style="width:inherit" class="art-detail-ribbon">
-                                    <div class="clearfix">
-                                        <span class="price" itemprop="price">
-                                            $@Model.Price
-                                        </span>
-                                        <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">@SearchRes.Add_to_Cart</a>
-                                    </div>
+                            <div style="width:inherit" class="art-detail-ribbon">
+                                <div class="clearfix">
+                                    <span class="price" itemprop="price">
+                                        $@Model.Price
+                                    </span>
+                                    <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">@SearchRes.Add_to_Cart</a>
                                 </div>
+                            </div>
                             }
                             else
                             {
-                                <div class="clearfix">&nbsp;</div>
+                            <div class="clearfix">&nbsp;</div>
                             }
-                         
+
                         </div>
                     </div>
 
@@ -218,7 +228,7 @@
                                         <option value="">Choose from List</option>
                                         @foreach (var item in ArtShop.Util.CashManager.Instance.PrintMaterial)
                                         {
-                                            <option value="@item.Id" data-size='@item.toJson()'>@item.Current().title</option>
+                                        <option value="@item.Id" data-size='@item.toJson()'>@item.Current().title</option>
                                         }
                                     </select>
                                 </div>
@@ -229,9 +239,10 @@
                                         <h5 style="@rtlstl">2. @SearchRes.Select_size</h5>
                                         <select id="rag-selectSize" style="background:white" class="print-options product-select">
                                             <option value="" data-width="" data-height="">Choose from List</option>
-                                            @*<option value="1" data-price="" data-width="14" data-height="21" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>14 x 21</option>
-                                                <option value="2" data-price="" data-width="16" data-height="24" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>16 x 24</option>
-                                                <option value="3" data-price="" data-width="20" data-height="30" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>20 x 30</option>*@
+                                            @*
+                                            <option value="1" data-price="" data-width="14" data-height="21" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>14 x 21</option>
+                                            <option value="2" data-price="" data-width="16" data-height="24" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>16 x 24</option>
+                                            <option value="3" data-price="" data-width="20" data-height="30" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>20 x 30</option>*@
                                         </select>
                                     </div>
                                 </div>
@@ -284,21 +295,21 @@
                     </div>
 
                     @*<div class="row ">
-                            <div class="view-room-fav-stats">
-                                <div class="art-detail-stats">
-                                    <ul class="inline-list">
-                                        <li>
-                                            0<br>
-                                            <span>Views</span>
-                                        </li>
-                                        <li>
-                                            <div id="favoriteCount">0</div>
-                                            <span>Favorites</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <div class="view-room-fav-stats">
+                            <div class="art-detail-stats">
+                                <ul class="inline-list">
+                                    <li>
+                                        0<br>
+                                        <span>Views</span>
+                                    </li>
+                                    <li>
+                                        <div id="favoriteCount">0</div>
+                                        <span>Favorites</span>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>*@
+                        </div>
+                    </div>*@
 
                 </div>
             </div>
@@ -317,22 +328,22 @@
                                 @{bool first = true; int count = 0; }
                                 @foreach (var item in Model.Mediums)
                                 {
-                                    count++;
-                                    if (!first)
-                                    {
-                                        if (count == Model.Mediums.Count)
-                                        {
-                                            <span>@SearchRes.And</span>
-                                        }
-                                        else
-                                        {
-                                            <span>@SearchRes.Comma</span>
-                                        }
-                                    }
+                                count++;
+                                if (!first)
+                                {
+                                if (count == Model.Mediums.Count)
+                                {
+                                <span>@SearchRes.And</span>
+                                }
+                                else
+                                {
+                                <span>@SearchRes.Comma</span>
+                                }
+                                }
 
-                                    first = false;
+                                first = false;
 
-                                    @item.Current().Name
+                                @item.Current().Name
                                 }
                             </span>
                             <span>@SearchRes.On</span>
@@ -341,21 +352,21 @@
 
                                 @foreach (var item in Model.Materials)
                                 {
-                                    count++;
-                                    if (!first)
-                                    {
-                                        if (count == Model.Materials.Count)
-                                        {
-                                            <span>@SearchRes.And</span>
-                                        }
-                                        else
-                                        {
-                                            <span>@SearchRes.Comma</span>
-                                        }
-                                    }
-                                    first = false;
+                                count++;
+                                if (!first)
+                                {
+                                if (count == Model.Materials.Count)
+                                {
+                                <span>@SearchRes.And</span>
+                                }
+                                else
+                                {
+                                <span>@SearchRes.Comma</span>
+                                }
+                                }
+                                first = false;
 
-                                    @item.Current().Name
+                                @item.Current().Name
                                 }
                             </span>.
                         </p>
@@ -372,21 +383,22 @@
 
             @if ((bool)ViewBag.mine)
             {
-                <section class="description admin-curation">
-                    <div class="row">
-                        <div class="small-12 columns"><h3 style="@rtldirection" class="section-title">@ProfileRes.Manage_artworks</h3></div>
-                    </div>
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <div id="artAdminSection">
-                                <menu id="edit-actions" class="inline-list">
-                                    @*<li><a class="edit-image btn btn-link" href="">Edit</a>&nbsp;|</li>*@
-                                    <li><button class="btn btn-danger" style="padding:5px" onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
-                                </menu>
-                            </div>
+            <section class="description admin-curation">
+                <div class="row">
+                    <div class="small-12 columns"><h3 style="@rtldirection" class="section-title">@ProfileRes.Manage_artworks</h3></div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div id="artAdminSection">
+                            <menu id="edit-actions" class="inline-list">
+                                @*
+                                <li><a class="edit-image btn btn-link" href="">Edit</a>&nbsp;|</li>*@
+                                <li><button class="btn btn-danger" style="padding:5px" onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
+                            </menu>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
             }
 
 
@@ -402,56 +414,56 @@
 
 @section scripts{
 
-    <script>
-        function remove() {
-            var r = confirm("are you sure to delete ?");
-            if (r == true) {
-                document.location.href = '/Products/remove/@Model.Id';
-            }
+<script>
+    function remove() {
+        var r = confirm("are you sure to delete ?");
+        if (r == true) {
+            document.location.href = '/Products/remove/@Model.Id';
         }
-    </script>
+    }
+</script>
 
-    <script>
-        function addfavsingle(obj, id) {
-            var heart = '<i class="fa fa-heart"></i> <span>Add to Favorites</span>';
-            var hearted = '<i class="fa fa-heart is-favorite"></i> <span>Add to Favorites</span>';
-            var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
-            $(obj).html(loadingspin);
-            $(obj).removeClass('is-favorite');
-            $.ajax({
-                type: 'Get',
-                url: '/Products/AddOrRemoveFavorit/' + id,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data.IsAuthenticated == false) {
-                        location.href = '/account/login';
+<script>
+    function addfavsingle(obj, id) {
+        var heart = '<i class="fa fa-heart"></i> <span>Add to Favorites</span>';
+        var hearted = '<i class="fa fa-heart is-favorite"></i> <span>Add to Favorites</span>';
+        var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
+        $(obj).html(loadingspin);
+        $(obj).removeClass('is-favorite');
+        $.ajax({
+            type: 'Get',
+            url: '/Products/AddOrRemoveFavorit/' + id,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.IsAuthenticated == false) {
+                    location.href = '/account/login';
+                } else {
+                    if (data.isInMyFavList) {
+                        $(obj).html(hearted);
+                        $.toast({
+                            heading: 'Success',
+                            text: 'Item Added to your Favorit',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            hideAfter: 7000
+                        })
                     } else {
-                        if (data.isInMyFavList) {
-                            $(obj).html(hearted);
-                            $.toast({
-                                heading: 'Success',
-                                text: 'Item Added to your Favorit',
-                                icon: 'success',
-                                showHideTransition: 'slide',
-                                position: 'top-right',
-                                hideAfter: 7000
-                            })
-                        } else {
-                            $(obj).html(heart);
-                            $.toast({
-                                heading: 'Success',
-                                text: 'Item Removed from your Favorit',
-                                icon: 'success',
-                                showHideTransition: 'slide',
-                                position: 'top-right',
-                                hideAfter: 7000
-                            })
-                        }
+                        $(obj).html(heart);
+                        $.toast({
+                            heading: 'Success',
+                            text: 'Item Removed from your Favorit',
+                            icon: 'success',
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            hideAfter: 7000
+                        })
                     }
                 }
-            });
-        }
-    </script>
+            }
+        });
+    }
+</script>
 }

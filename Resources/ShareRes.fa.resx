@@ -136,7 +136,13 @@
     <value>هنرمند</value>
   </data>
   <data name="Artworks" xml:space="preserve">
-    <value>اثر هنری</value>
+    <value>آثار هنری</value>
+  </data>
+  <data name="Artworks_from" xml:space="preserve">
+    <value>آثار هنری از</value>
+  </data>
+  <data name="Artworks_up_to" xml:space="preserve">
+    <value>آثار هنری تا</value>
   </data>
   <data name="Blog" xml:space="preserve">
     <value>بلاگ</value>

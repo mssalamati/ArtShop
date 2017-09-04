@@ -112,25 +112,48 @@ if (current == selected)
     <header class="small-12 columns" xmlns="http://www.w3.org/1999/html">
         <div class="row">
             <div class="small-12 columns breadcrumbs">
-                <a href="/">@ShareRes.Home</a><a href="/search/@ViewBag.categoryId">@ViewBag.categoryName</a>
-                <span>
-                    @if (ViewBag.styleId != 0)
+
+                @{
+                    Dictionary<string, string> links = new Dictionary<string, string>();
+                    links.Add("/", ShareRes.Home);
+                    if (ViewBag.categoryId != 0)
                     {
-                        <text>  @ViewBag.styleName </text>
+                        links.Add("/search/" + ViewBag.categoryId + "/0/0/0/0", ViewBag.categoryName);
                     }
-                    @if (ViewBag.subjectId != 0)
+                    if (ViewBag.styleId != 0)
                     {
-                        <text> @ViewBag.subjectName </text>
+                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/0/0/0", ViewBag.styleName);
                     }
-                    @if (ViewBag.mediumId != 0)
+                    if (ViewBag.subjectId != 0)
                     {
-                        <text>  @ViewBag.mediumName </text>
+                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/0/0", ViewBag.subjectName);
                     }
-                    @if (ViewBag.priceId != 0)
+                    if (ViewBag.mediumId != 0)
                     {
-                        <text>  @ViewBag.priceName </text>
+                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/" + ViewBag.mediumId + "/0", ViewBag.mediumName);
                     }
-                </span>
+                    if (ViewBag.priceId != 0)
+                    {
+                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/" + ViewBag.mediumId + "/" + ViewBag.priceId, ViewBag.priceName);
+                    }
+                }
+
+                @foreach (var item in links)
+                {
+                    if (item.Key == links.Last().Key)
+                    {
+                        <span>
+                            @item.Value
+                        </span>
+                    }
+                    else
+                    {
+                        <a href="@item.Key">@item.Value</a>
+                    }
+                }
+
+
+
             </div>
         </div>
     </header>

@@ -183,4 +183,7 @@
   <data name="SignUp" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
+  <data name="Artiscovery" xml:space="preserve">
+    <value>شرایط و ضوابط</value>
+  </data>
 </root>

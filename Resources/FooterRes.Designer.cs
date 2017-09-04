@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artiscovery.
+        /// </summary>
+        public static string Artiscovery {
+            get {
+                return ResourceManager.GetString("Artiscovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Legal Condition / .
         /// </summary>
         public static string Artiscovery_Art {

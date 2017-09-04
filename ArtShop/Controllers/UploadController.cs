@@ -14,6 +14,7 @@ using DataLayer.Enitities;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data.Entity.Validation;
 
 namespace ArtShop.Controllers
 {
@@ -580,12 +581,13 @@ namespace ArtShop.Controllers
                     Keywords = (string)Session["Keywords"],
                     categoryId = categoryId,
                     subjectId = subjectId,
-                    TotalWeight = (float)Session["weight"],
+                    TotalWeight = Session["weight"] == null ? 0 : (float)Session["weight"],
                     Status = ((bool)Session["isOrginal"]) ? ProductStatus.forSale : ProductStatus.NotForSale
                 };
                 product.Materials = new List<Material>();
                 product.Styles = new List<Style>();
                 product.Mediums = new List<Medium>();
+
                 foreach (var item in Materials)
                     product.Materials.Add(db.Materials.FirstOrDefault(x => item == x.Id));
                 foreach (var item in stylelist)
@@ -608,14 +610,22 @@ namespace ArtShop.Controllers
                 id = product.Id;
                 return string.Empty;
             }
-            catch (Exception ex)
+
+            catch (DbEntityValidationException e)
             {
                 id = 0;
+                string message = string.Empty;
+                foreach (var eve in e.EntityValidationErrors)
+                    foreach (var ve in eve.ValidationErrors)
+                        message += Environment.NewLine + (ve.PropertyName + " " +
+                        eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) + " " +
+                        ve.ErrorMessage);
                 db.logs.Add(new Log()
                 {
                     Location = "upload now",
-                    Message = "" + ex.ToString()
+                    Message = "" + message
                 });
+                db.SaveChanges();
                 return Resources.UploadRes.Image_cannot_be_empty;
             }
         }
