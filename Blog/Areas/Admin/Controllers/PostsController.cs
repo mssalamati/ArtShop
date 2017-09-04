@@ -164,8 +164,12 @@ namespace Blog.Areas.Admin.Controllers
                         post.HeaderPhotos.Add(new HeaderPhoto() { Path = res.FullPath });
                     }
             post.Category = db.Categories.Find(model.Category);
-            db.Links.RemoveRange(post.Links);
-            post.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
+            if (post.Links != null)
+                db.Links.RemoveRange(post.Links);
+            
+            if (model.Links != null)
+                post.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
+            
             post.Tags.Clear();
             post.Tags = db.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
             post.Title = model.TitleDef;

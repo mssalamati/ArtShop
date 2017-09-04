@@ -80,14 +80,14 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="post-element">
                         <div class="img-holder">
-                            <a href="@Url.Action(@item.Tags.FirstOrDefault().Name, @item.Category.Name, new { id = @item.GenerateSlug() })">
+                            <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
                                 <img width="300" height="300" src="@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                             </a>
                         </div><!-- .img-holder -->
 
-                        <h3><a href="@item.Category">@item.Category.Current().Name</a></h3>
+                        <h3><a href="@Url.Action(@item.Category.Name,"Category", new { id = @item.Category.GenerateSlug()})">@item.Category.Current().Name</a></h3>
                         <h4>
-                            <a href="@Url.Action("index", "post", new { id = @item.GenerateSlug() })">
+                            <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
                                 @item.Current().Title
                             </a>
                         </h4>

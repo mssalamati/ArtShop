@@ -14,9 +14,12 @@ namespace Blog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.Add("Search", new SeoFriendlyRoute("Category/{Index}/{id}",
+          new RouteValueDictionary(new { controller = "Search", action = "Index", Index = UrlParameter.Optional }),
+          new MvcRouteHandler()));
 
-            routes.Add("PostDetails", new SeoFriendlyRoute("{post}/{Index}/{id}",
-                new RouteValueDictionary(new { controller = "post", action = "Index" }),
+            routes.Add("PostDetails", new SeoFriendlyRoute("post/{Index}/{id}",
+                new RouteValueDictionary(new { controller = "post", action = "Index", Index = UrlParameter.Optional }),
                 new MvcRouteHandler()));
 
             routes.MapRoute(
@@ -25,7 +28,7 @@ namespace Blog
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
               namespaces: new[] { "Blog.Controllers" }
             );
- 
+
         }
     }
 }

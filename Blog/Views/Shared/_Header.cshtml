@@ -20,7 +20,7 @@
                     <li id="menu-item-47373" class="mobile-item menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-47373"><a href="http://Artiscovery.com/">Artsiscovery</a></li>
                     @foreach (var item in Model)
                     {
-                        <li id="menu-item-42540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-42540"><a href="/category/art">@item.Current().Name</a></li>
+                        <li id="menu-item-42540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-42540"><a href="@Url.Action(@item.Name,"Category", new { id = @item.GenerateSlug()})">@item.Current().Name</a></li>
                     }
                     <li id="menu-item-42552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42552"><a href="/search">Search</a></li>
                 </ul>
@@ -40,7 +40,7 @@
                 <li class="mobile-item menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-47373"><a href="http://Artsiscovery.com/">Artsiscovery</a></li>
                 @foreach (var item in Model)
                 {
-                    <li id="menu-item-42540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-42540"><a href="/category/art">@item.Current().Name</a></li>
+                    <li id="menu-item-42540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-42540"><a href="@Url.Action(@item.Name,"Category", new { id = @item.GenerateSlug() })">@item.Current().Name</a></li>
                 }
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42552"><a href="/search">Search</a></li>
             </ul>
