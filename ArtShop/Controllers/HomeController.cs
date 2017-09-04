@@ -45,9 +45,16 @@ namespace ArtShop.Controllers
         {
             try
             {
-                ViewBag.pic1 = db.Products.Find(int.Parse(model.param1)).Sqphoto.Path;
-                ViewBag.pic2 = db.Products.Find(int.Parse(model.param2)).Sqphoto.Path;
-                ViewBag.pic3 = db.Products.Find(int.Parse(model.param3)).Sqphoto.Path;
+                var p1 = db.Products.Find(int.Parse(model.param1));
+                ViewBag.pic1 = p1.Sqphoto.Path;
+                ViewBag.url1 = p1.category.Current().Name + "/artwork/" + p1.GenerateSlug();
+
+                var p2 = db.Products.Find(int.Parse(model.param2));
+                ViewBag.pic2 = p2.Sqphoto.Path;
+                ViewBag.url2 = p2.category.Current().Name + "/artwork/" + p2.GenerateSlug();
+                var p3 = db.Products.Find(int.Parse(model.param3));
+                ViewBag.pic3 = p3.Sqphoto.Path;
+                ViewBag.url3 = p3.category.Current().Name + "/artwork/" + p3.GenerateSlug();
             }
             catch
             {

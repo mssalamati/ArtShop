@@ -95,7 +95,7 @@
                         <h1>
                             <a href="">
                                 <span itemprop="name">@Model.Title</span>
-                                <span itemprop="category">Painting</span>
+                                <span itemprop="category">@Model.category.Current().Name</span>
                                 by
                                 <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
                             </a>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="small-12 columns breadcrumbs">
-                            @*<a href="#" rel="nofollow">Browse Art</a>*@ <a href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.LastName</a> @Model.Title
+                            @*<a href="#" rel="nofollow">Browse Art</a>*@ <a href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
                         </div>
                     </div>
                 </div>

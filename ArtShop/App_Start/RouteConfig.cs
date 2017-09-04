@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtShop.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,10 @@ namespace ArtShop
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
+            routes.Add("ProductDetails", new SeoFriendlyRoute("{products}/{details}/{id}",
+       new RouteValueDictionary(new { controller = "Products", action = "single" }),
+       new MvcRouteHandler()));
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
