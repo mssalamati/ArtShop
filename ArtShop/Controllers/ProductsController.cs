@@ -181,7 +181,14 @@ namespace ArtShop.Controllers
             var profile = user.userDetail;
             bool mine = profile.Products.Any(x => x.Id == model.Id);
             if (!mine)
-                return HttpNotFound();  
+                return HttpNotFound();
+            if (string.IsNullOrEmpty(p.Title) || p.Title.Length < 5)
+            {
+                ModelState.AddModelError(string.Empty, "Title Length can not be less than 5 character");
+                if (p.productshippingDetail == null)
+                    p.productshippingDetail = new ProductshippingDetail();
+                return View(p);
+            }
             p.Title = model.Title;
             p.Status = model.Status;
             p.TotalWeight = model.TotalWeight;
