@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Extentions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,11 @@ namespace Blog
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+
+            routes.Add("PostDetails", new SeoFriendlyRoute("post/Index/{id}",
+                new RouteValueDictionary(new { controller = "post", action = "Index" }),
+                new MvcRouteHandler()));
 
             routes.MapRoute(
                 name: "Default",
