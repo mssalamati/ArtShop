@@ -76,7 +76,8 @@ namespace Blog.Areas.Admin.Controllers
                 newPost.HeaderPhotos.Add(new HeaderPhoto() { Path = res.FullPath });
             }
             newPost.Category = db.Categories.Find(model.Category);
-            newPost.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
+            if (model.Links != null)
+                newPost.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
             newPost.Tags = db.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
             newPost.Thumbnail = Thumbresult.FullPath;
             newPost.Title = model.TitleDef;
