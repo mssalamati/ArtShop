@@ -15,7 +15,7 @@ namespace Blog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
-            routes.Add("PostDetails", new SeoFriendlyRoute("post/Index/{id}",
+            routes.Add("PostDetails", new SeoFriendlyRoute("{post}/{Index}/{id}",
                 new RouteValueDictionary(new { controller = "post", action = "Index" }),
                 new MvcRouteHandler()));
 
