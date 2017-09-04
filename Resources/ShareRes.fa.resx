@@ -159,6 +159,9 @@
   <data name="Copyright_policy" xml:space="preserve">
     <value>حق نشر</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
   <data name="Favorites" xml:space="preserve">
     <value>علاقه مندی ها</value>
   </data>

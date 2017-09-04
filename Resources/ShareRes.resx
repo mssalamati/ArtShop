@@ -159,6 +159,9 @@
   <data name="Copyright_policy" xml:space="preserve">
     <value>Copyright Policy</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="Favorites" xml:space="preserve">
     <value>Favorites</value>
   </data>

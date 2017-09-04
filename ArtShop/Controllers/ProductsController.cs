@@ -181,9 +181,7 @@ namespace ArtShop.Controllers
             var profile = user.userDetail;
             bool mine = profile.Products.Any(x => x.Id == model.Id);
             if (!mine)
-                return HttpNotFound();
-            if (p.productshippingDetail == null)
-                p.productshippingDetail = new ProductshippingDetail();
+                return HttpNotFound();  
             p.Title = model.Title;
             p.Status = model.Status;
             p.TotalWeight = model.TotalWeight;
@@ -192,13 +190,18 @@ namespace ArtShop.Controllers
             p.Depth = model.Depth;
             if (model.Status == ProductStatus.forSale)
             {
+                if (p.productshippingDetail == null)
+                    p.productshippingDetail = new ProductshippingDetail();
                 p.productshippingDetail.Street = model.productshippingDetail.Street;
                 p.productshippingDetail.City = model.productshippingDetail.City;
-                p.productshippingDetail.CountryId = model.productshippingDetail.CountryId;
+                if (model.productshippingDetail.CountryId != 0)
+                    p.productshippingDetail.CountryId = model.productshippingDetail.CountryId;
                 p.productshippingDetail.PhoneNumber = model.productshippingDetail.PhoneNumber;
                 p.productshippingDetail.Region = model.productshippingDetail.Region;
             }
             db.SaveChanges();
+            if (p.productshippingDetail == null)
+                p.productshippingDetail = new ProductshippingDetail();
             return View(p);
         }
 
