@@ -1,6 +1,6 @@
 ﻿
 @{
-
+    ViewBag.Title = "Artworks";
 }
 
 @model  List<Product>
@@ -237,7 +237,7 @@ if (current == selected)
             <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
-                        <a href="@Url.Action("Artwork", @item.category.Current().Name, new { id = @item.GenerateSlug() })" itemprop="url">
+                        <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" itemprop="url">
                             <img src="@item.photo.Path">
                         </a>
 
@@ -255,13 +255,13 @@ if (current == selected)
                     </div>
                     <div class="list-art-meta">
                         <h4 class="list-art-title left ellipsis" itemprop="name">
-                            <a href="@Url.Action("Artwork", @item.category.Current().Name, new { id = @item.GenerateSlug() })">@item.Title</a>
+                            <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })">@item.Title</a>
                         </h4>
                         <small class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
                         <div class="list-author clear left">
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                                <a href="@Url.Action("Artwork", @item.category.Current().Name, new { id = @item.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
+                                <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                             </h5>
                             <h5 class="user-location ellipsis clear" itemprop="contentLocation">
                                 @if (item.user.country != null)

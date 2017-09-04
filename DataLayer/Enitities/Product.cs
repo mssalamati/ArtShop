@@ -101,9 +101,9 @@ namespace DataLayer.Enitities
         {
             string phrase = string.Format("{0}-{1}", Id, Title);
 
-            string str = RemoveAccent(phrase).ToLower();
+            string str = phrase.ToLower();//RemoveAccent(phrase).ToLower();
             // invalid chars           
-            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+            str = Regex.Replace(str, @"[^a-z0-9\u0600-\u06FF\s-]", "");
             // convert multiple spaces into one space   
             str = Regex.Replace(str, @"\s+", " ").Trim();
             // cut and trim 

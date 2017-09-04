@@ -14,7 +14,7 @@ namespace ArtShop
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
-            routes.Add("ProductDetails", new SeoFriendlyRoute("{products}/{details}/{id}",
+            routes.Add("ProductDetails", new SeoFriendlyRoute("Artwork/{details}/{id}",
        new RouteValueDictionary(new { controller = "Products", action = "single" }),
        new MvcRouteHandler()));
 
