@@ -221,5 +221,31 @@ namespace ArtShop.Controllers
 
             return View(p);
         }
+
+        public ActionResult EditPricing()
+        {
+
+            return View();
+        }
+
+        public ActionResult EditDetail()
+        {
+
+            return View();
+        }
+
+        public ActionResult EditDescription()
+        {
+
+            return View();
+        }
+
+        public ActionResult EditImage()
+        {
+
+            return View();
+        }
+
+
     }
 }

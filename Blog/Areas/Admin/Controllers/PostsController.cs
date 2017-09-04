@@ -82,7 +82,7 @@ namespace Blog.Areas.Admin.Controllers
             newPost.Title = model.TitleDef;
             newPost.postType = model.postType;
             newPost.Translations = new List<PostTranslation>();
-            newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description,ShortDescription = model.ShortDescription });
+            newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description, ShortDescription = model.ShortDescription });
             newPost.Author = user.userDetail.FirstName + user.userDetail.LastName;
             user.userDetail.Posts.Add(newPost);
             try { db.SaveChanges(); }
@@ -244,6 +244,8 @@ namespace Blog.Areas.Admin.Controllers
             var post = db.Posts.Find(id);
             if (post.AuthorProfileId != userId)
                 return HttpNotFound();
+            db.Links.RemoveRange(post.Links);
+            db.HeaderPhotos.RemoveRange(post.HeaderPhotos);
             db.Posts.Remove(post);
             db.SaveChanges();
             return RedirectToAction("Index");
