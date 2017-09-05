@@ -12,7 +12,9 @@ namespace Blog.Controllers
         // GET: Search
         public ActionResult Index(int id)
         {
-            var posts = db.Categories.Find(id).Posts.ToList();
+            var category = db.Categories.Find(id);
+            var posts = category.Posts.ToList();
+            ViewBag.CategoryName = category.Name;
             return View(posts);
 
         }

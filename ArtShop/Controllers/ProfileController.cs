@@ -60,7 +60,7 @@ namespace ArtShop.Controllers
                     throw;
                 }
 
-                
+
                 int counter = 0;
 
                 foreach (var item in userProfile.Products)
@@ -273,7 +273,7 @@ namespace ArtShop.Controllers
             ViewBag.collectionCount = userProfile.Collections.Count;
 
 
-            return View(userProfile.Products);
+            return View(userProfile.Products.OrderByDescending(a => a.CreateDate));
         }
 
         public ActionResult ManageArtWorks()
