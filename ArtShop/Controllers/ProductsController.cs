@@ -156,6 +156,8 @@ namespace ArtShop.Controllers
             }
         }
 
+
+
         [Authorize]
         public ActionResult Edit(int id)
         {
@@ -170,7 +172,6 @@ namespace ArtShop.Controllers
                 p.productshippingDetail = new ProductshippingDetail();
             return View(p);
         }
-
         [Authorize]
         [HttpPost]
         public ActionResult Edit(Product model)
@@ -182,12 +183,12 @@ namespace ArtShop.Controllers
             bool mine = profile.Products.Any(x => x.Id == model.Id);
             if (!mine)
                 return HttpNotFound();
-            if (string.IsNullOrEmpty(p.Title) || p.Title.Length < 5)
+            if (string.IsNullOrEmpty(model.Title) || model.Title.Length < 5)
             {
                 ModelState.AddModelError(string.Empty, "Title Length can not be less than 5 character");
-                if (p.productshippingDetail == null)
-                    p.productshippingDetail = new ProductshippingDetail();
-                return View(p);
+                if (model.productshippingDetail == null)
+                    model.productshippingDetail = new ProductshippingDetail();
+                return View(model);
             }
             p.Title = model.Title;
             p.Status = model.Status;
@@ -212,6 +213,45 @@ namespace ArtShop.Controllers
             return View(p);
         }
 
+        [Authorize]
+        public ActionResult EditDetail(int id)
+        {
+            var p = db.Products.Include("photo").Single(x => x.Id == id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == id);
+            if (!mine)
+                return HttpNotFound();
+            return View(p);
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditDetail(Product model)
+        {
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult EditDescription(int id)
+        {
+            var p = db.Products.Include("photo").Single(x => x.Id == id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == id);
+            if (!mine)
+                return HttpNotFound();
+            return View(p);
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditDescription(Product model)
+        {
+            return View(model);
+        }
+
+        [Authorize]
         public ActionResult EditPackag(int id)
         {
             var p = db.Products.Include("photo").Single(x => x.Id == id);
@@ -228,31 +268,39 @@ namespace ArtShop.Controllers
 
             return View(p);
         }
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditPackag(Product model)
+        {
+            return View(model);
+        }
 
+        [Authorize]
         public ActionResult EditPricing()
         {
 
             return View();
         }
-
-        public ActionResult EditDetail()
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditPricing(Product model)
         {
-
-            return View();
+            return View(model);
         }
 
-        public ActionResult EditDescription()
-        {
-
-            return View();
-        }
-
+        [Authorize]
         public ActionResult EditImage()
         {
 
             return View();
         }
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditImage(Product model)
+        {
 
+            return View();
+        }
 
     }
 }

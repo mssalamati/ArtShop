@@ -510,6 +510,9 @@
     <Content Include="Views\Products\_Menu.cshtml" />
     <Content Include="Views\Products\_MenuMobile.cshtml" />
     <Content Include="Views\Products\EditPackag.cshtml" />
+    <Content Include="Views\Products\EditDetail.cshtml" />
+    <Content Include="Views\Products\EditDescription.cshtml" />
+    <Content Include="Views\Products\EditPricing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

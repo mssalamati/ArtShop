@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = Model.Title;
+}
+
+@model Product
+
+@using DataLayer.Extentions
+
+<link href="~/Content/EditProduct.css" rel="stylesheet" />
+<link href="~/Content/select2/css/select2.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("EditDetail", "Products", FormMethod.Post, new { id = "mform", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div id="upload">
+        <div class="app">
+            <div class="full-bleed full-bleed--background">
+                <div class="container artwork__container">
+                    <span></span>
+                    <div class="edit-page">
+                        @Html.Partial("_MenuMobile", new { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id })
+                        <div class="edit-page__container">
+                            @Html.Partial("_Menu", new { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id })
+                            <div class="edit-page__content pane pane--inline pane--content pane--centered">
+                                <div class="wizard-step">
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                                    }
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-0">Category</h1>
+                                        <div class="form-group form-group--block">
+                                            <div class="input-container animate-group-0-1 z-index-fix-0">
+                                                <select class="rw-combobox rw-widget">
+                                                    @foreach (var item in ArtShop.Util.CashManager.Instance.Categories)
+                                                    {
+                                                        if (Model.categoryId == item.id)
+                                                        {
+                                                            <option selected value="@item.id">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.id">@item.name</option>
+                                                        }
+
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-2">Subject</h1>
+                                        <div class="form-group form-group--block">
+                                            <div class="input-container animate-group-0-3 z-index-fix-1">
+                                                <div class="input-container animate-group-0-1 z-index-fix-0">
+                                                    <select class="rw-combobox rw-widget">
+                                                        @foreach (var item in ArtShop.Util.CashManager.Instance.Subjects)
+                                                        {
+                                                            if (Model.subjectId == item.Key)
+                                                            {
+                                                                <option selected value="@item.Key">@item.Value</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Key">@item.Value</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-4">Mediums</h1>
+                                        <div class="form-group form-group--block animate-group-0-4 z-index-fix-2">
+                                            <div class="input-container z-index-fix-0 text-left animate-group-0-5">
+                                                <label>Select 1-5 Mediums</label>
+                                                <div class="input-container animate-group-0-1 z-index-fix-0">
+                                                    <input value="@string.Join(",",Model.Mediums.Select(x=>x.Current().Name))" name="Mediums" type="text" style="max-width:none" class="sMediums rw-combobox rw-widget" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-6">Styles</h1>
+                                        <div class="form-group form-group--block animate-group-0-6 z-index-fix-3">
+                                            <div class="input-container z-index-fix-2 text-left animate-group-0-7">
+                                                <label>Select 1-5 Styles</label>
+                                                <div class="input-container animate-group-0-1 z-index-fix-0 ">
+                                                    <input value="@string.Join(",",Model.Styles.Select(x=>x.Current().Name))" name="Styles" type="text" style="max-width:none" class="sStyles  rw-combobox rw-widget" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section scripts{
+  
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Content/select2/js/select2.min.js"></script>
+
+    <script>
+        $(".sMediums").select2({
+            tags: [@(Html.Raw(string.Join(",", (ArtShop.Util.CashManager.Instance.Mediums).Select(x =>("'" + x.Value + "'")))))]
+        });
+        $(".sStyles").select2({
+            tags: [@(Html.Raw(string.Join(",", (ArtShop.Util.CashManager.Instance.Styles).Select(x =>("'" + x.Value + "'")))))]
+        });
+    </script>
+
+
+}

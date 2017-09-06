@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@model Product
+
+@using DataLayer.Extentions
+
+<link href="~/Content/EditProduct.css" rel="stylesheet" />
+<link href="~/Content/select2/css/select2.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditDescription", "Products", FormMethod.Post, new { id = "mform", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div id="upload">
+        <div class="app">
+            <div class="full-bleed full-bleed--background">
+                <div class="container artwork__container">
+                    <span></span>
+                    <div class="edit-page">
+                        @Html.Partial("_MenuMobile", new { Photo = Model.photo.Path, menu = "Description", id = Model.Id })
+                        <div class="edit-page__container">
+                            @Html.Partial("_Menu", new { Photo = Model.photo.Path, menu = "Description", id = Model.Id })
+                            <div class="edit-page__content pane pane--inline pane--content pane--centered">
+                                <div class="wizard-step">
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                                    }
+
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-0">Materials</h1>
+                                        <div class="form-group form-group--block animate-group-0-0 z-index-fix-0">
+                                            <div class="input-container z-index-fix-1 text-left animate-group-0-1">
+                                                <label>Select 1-5 Materials</label>
+                                                <select name="Materials" class="sMaterials rw-combobox rw-widget" multiple="multiple">
+                                                    @foreach (var item in ArtShop.Util.CashManager.Instance.Materials)
+                                                    {
+                                                        <option value="@item.Key">@item.Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pane__content__block">
+                                        <div class="form-group form-group--block animate-group-0-3 mediums__keywords-container">
+                                            <h1>Keywords</h1>
+                                            <p class="descriptor">Tagging your artwork with keywords allows collectors to find your artwork more easily when they conduct a search. 
+                                            It’s best to enter simple, descriptive words describing the key visual elements of the work. These would include descriptors like color, subject matter, and artistic style.</p>
+                                            <div class="input-container text-left">
+                                                <label>Enter 5-12 Keywords</label>
+                                                <input name="Keywords" type="text" class="rw-combobox rw-widget tag" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-4">Description</h1>
+                                        <div class="descriptor text-left animate-group-0-5">
+                                            <p>Collectors tend to appreciate works more if they know the “story” behind them, so be sure to write informative artwork descriptions.
+                                             Great descriptions not only provide useful information (e.g. physical texture, whether hanging hardware is included, quality of materials), but they also answer questions like:</p>
+                                        </div>
+                                        <div class="descriptor text-left animate-group-0-6"><strong><p>What/who inspired the work?</p><p>What do you hope its viewers will feel/think?</p><p>Why did you choose the medium, subject matter, style?</p></strong></div>
+                                        <div class="form-group form-group--block">
+                                            <div class="input-container animate-group-0-7">
+                                                <div class="description-input__description-container">
+                                                    <div class="description-input__prop-aggregate">Painting: Gouache on Bronze</div>
+                                                    <textarea class="description-input__description" placeholder="Write here ..."></textarea>
+                                                    <div class="description__word-count">59</div>
+                                                    <div class="description-input__prop-aggregate">Keywords: vvv, ert, ret, vvd, ffewr\</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Content/select2/js/select2.min.js"></script>
+
+    <script>
+        $(".sMaterials").select2({
+            allowClear: true,
+        });
+        $(".tag").select2({
+            allowClear: true,
+            tags: true
+        });
+    </script>
+
+
+}

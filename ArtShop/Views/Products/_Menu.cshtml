@@ -15,13 +15,14 @@ if (current == selected)
         </div>
         <img class="side-navigation__hero__content" src="@((string)Model.Photo)">
     </div>
-    <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="">Artwork Status</a>
+    <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="/Products/Edit/@Model.id">Artwork Status</a>
+    <a class="side-navigation__top-level @selected("Artwork Details",(string)Model.menu)" href="/Products/Editdetail/@Model.id">Artwork Details</a>
+    <a class="side-navigation__top-level @selected("Description",(string)Model.menu)" href="/Products/EditDescription/@Model.id">Description</a>
+
     @*<a class="side-navigation__top-level @selected("Packaging",(string)Model.menu)" href="">Packaging</a>
-    <a class="side-navigation__top-level @selected("Pricing",(string)Model.menu)" href="">Pricing</a>
-    <a class="side-navigation__top-level @selected("Prints Status",(string)Model.menu)" href="">Prints Status</a>
-    <a class="side-navigation__top-level @selected("Artwork Details",(string)Model.menu)" href="">Artwork Details</a>
-    <a class="side-navigation__top-level @selected("Description",(string)Model.menu)" href="">Description</a>
-    <a class="side-navigation__top-level @selected("Artwork Image",(string)Model.menu)" href="">Artwork Image</a>*@
+        <a class="side-navigation__top-level @selected("Pricing",(string)Model.menu)" href="">Pricing</a>
+        <a class="side-navigation__top-level @selected("Prints Status",(string)Model.menu)" href="">Prints Status</a>
+        <a class="side-navigation__top-level @selected("Artwork Image",(string)Model.menu)" href="">Artwork Image</a>*@
     <div>
         <button type="submit" class="button button--blue">Save Changes</button>
     </div>

@@ -7,7 +7,7 @@
 
 <link href="~/Content/EditProduct.css" rel="stylesheet" />
 
-@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new {id="mform", @class = "form-horizontal", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { id = "mform", @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.Id)
     <div id="upload">
@@ -16,9 +16,9 @@
                 <div class="container artwork__container">
                     <span></span>
                     <div class="edit-page">
-                        @Html.Partial("_MenuMobile", new { Photo = Model.photo.Path, menu = "Artwork Status" })
+                        @Html.Partial("_MenuMobile", new { Photo = Model.photo.Path, menu = "Artwork Status", id = Model.Id })
                         <div class="edit-page__container">
-                            @Html.Partial("_Menu", new { Photo = Model.photo.Path, menu = "Artwork Status" })
+                            @Html.Partial("_Menu", new { Photo = Model.photo.Path, menu = "Artwork Status", id = Model.Id })
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="wizard-step">
                                     @if (!ViewData.ModelState.IsValid)
@@ -51,7 +51,7 @@
                                         <div class="form-group form-group--block animate-group-0-4">
                                             <div class="title-input">
                                                 <div class="title-input__title-wrapper">
-                                                    <input type="text" name="Title" value="@Model.Title">
+                                                    <input type="text" id="Title" name="Title" value="@Model.Title">
                                                 </div>
                                             </div>
                                         </div>
@@ -161,6 +161,10 @@
                 Depth: {
                     required: true,
                     number: true
+                },
+                Title: {
+                    required: true,
+                    minlength: 6
                 }
             }
         });
