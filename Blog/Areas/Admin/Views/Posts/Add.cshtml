@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> موضوع * </label>
                             <div class="col-sm-10">
-                                <input type="text" name="TitleDef" value="" class="form-control" />
+                                <input type="text" name="TitleDef" value="@Model.TitleDef" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> موضوع </label>
                             <div class="col-sm-10">
-                                <input type="text" name="Title" value="" class="form-control" />
+                                <input type="text" name="Title" value="@Model.Title" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -133,14 +133,14 @@
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label"> خلاصه </label>
                             <div class="col-sm-10">
-                                <input type="text" name="ShortDescription" value="" class="form-control" />
+                                <input type="text" name="ShortDescription" value="@Model.ShortDescription" class="form-control" />
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-12" style="margin-top:10px">
                         <div class="form-group">
-                            <textarea name="Description" id="Content"></textarea>
+                            <textarea name="Description" id="Content">@Model.Description</textarea>
                         </div>
                     </div>
 

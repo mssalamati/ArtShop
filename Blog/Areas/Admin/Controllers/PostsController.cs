@@ -38,7 +38,7 @@ namespace Blog.Areas.Admin.Controllers
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
             ViewBag.tags = db.Tags.ToList();
-            return View();
+            return View(new PostViewModel());
         }
         [HttpPost]
         public ActionResult Add(PostViewModel model)
@@ -62,7 +62,7 @@ namespace Blog.Areas.Admin.Controllers
             if (!Thumbresult.ResultStatus)
             {
                 ModelState.AddModelError(string.Empty, Thumbresult.Error);
-                return View();
+                return View(model);
             }
             newPost.HeaderPhotos = new List<HeaderPhoto>();
             foreach (var item in model.HeaderPhotos)
@@ -71,7 +71,7 @@ namespace Blog.Areas.Admin.Controllers
                 if (!res.ResultStatus)
                 {
                     ModelState.AddModelError(string.Empty, res.Error);
-                    return View();
+                    return View(model);
                 }
                 newPost.HeaderPhotos.Add(new HeaderPhoto() { Path = res.FullPath });
             }
@@ -94,7 +94,7 @@ namespace Blog.Areas.Admin.Controllers
                         ModelState.AddModelError(string.Empty, ve.PropertyName + " " +
                         eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) + " " +
                         ve.ErrorMessage);
-                return View();
+                return View(model);
             }
             return RedirectToAction("index");
         }
@@ -166,10 +166,10 @@ namespace Blog.Areas.Admin.Controllers
             post.Category = db.Categories.Find(model.Category);
             if (post.Links != null)
                 db.Links.RemoveRange(post.Links);
-            
+
             if (model.Links != null)
                 post.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
-            
+
             post.Tags.Clear();
             post.Tags = db.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
             post.Title = model.TitleDef;
