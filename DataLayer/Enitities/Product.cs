@@ -65,6 +65,9 @@ namespace DataLayer.Enitities
         public virtual ICollection<Medium> Mediums { get; set; }
         public virtual ProductshippingDetail productshippingDetail { get; set; }
         public virtual ProductPrintDetail productPrintDetail { get; set; }
+
+        [NotMapped]
+        public List<int> MaterialList { get; set; }
         public Product()
         {
             CreateDate = DateTime.Now;

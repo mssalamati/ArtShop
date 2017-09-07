@@ -229,7 +229,33 @@ namespace ArtShop.Controllers
         [Authorize]
         public ActionResult EditDetail(Product model)
         {
-            return View(model);
+            var p = db.Products.Include("photo").Single(x => x.Id == model.Id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == model.Id);
+            if (!mine)
+                return HttpNotFound();
+            p.categoryId = model.categoryId;
+            p.subjectId = model.subjectId;
+            p.Mediums.Clear();
+            p.Styles.Clear();
+            var medumsList = Request["Mediums"].Split(',');
+            foreach (var item in medumsList)
+            {
+                var temp = db.MediumTranslations.FirstOrDefault(x => x.Name == item);
+                if (temp != null)
+                    p.Mediums.Add(temp.medium);
+            }
+            var styeList = Request["Styleslist"].Split(',');
+            foreach (var item in styeList)
+            {
+                var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
+                if (temp != null)
+                    p.Styles.Add(temp.style);
+            }
+            db.SaveChanges();
+            return View(p);
         }
 
         [Authorize]
@@ -248,7 +274,24 @@ namespace ArtShop.Controllers
         [Authorize]
         public ActionResult EditDescription(Product model)
         {
-            return View(model);
+            var p = db.Products.Include("photo").Single(x => x.Id == model.Id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == model.Id);
+            if (!mine)
+                return HttpNotFound();
+
+            foreach (var item in model.MaterialList)
+            {
+                var temp = db.Materials.Find(item);
+                if (temp != null)
+                    p.Materials.Add(temp);
+            }
+            p.Description = model.Description;
+            p.Keywords = model.Keywords;
+            db.SaveChanges();
+            return View(p);
         }
 
         [Authorize]
@@ -276,10 +319,21 @@ namespace ArtShop.Controllers
         }
 
         [Authorize]
-        public ActionResult EditPricing()
+        public ActionResult EditPricing(int id)
         {
+            var p = db.Products.Include("photo").Single(x => x.Id == id);
+            bool mine = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                mine = profile.Products.Any(x => x.Id == id);
+            }
+            if (!mine)
+                return HttpNotFound();
 
-            return View();
+            return View(p);
         }
         [HttpPost]
         [Authorize]
