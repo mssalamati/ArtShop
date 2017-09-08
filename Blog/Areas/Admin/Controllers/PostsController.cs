@@ -25,7 +25,7 @@ namespace Blog.Areas.Admin.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
             var data = user.userDetail.Posts
                  .Where(x => string.IsNullOrEmpty(search) || x.Title.Contains(search))
-                 .OrderBy(x => x.PostedOn)
+                 .OrderByDescending(x => x.PostedOn)
                  .Skip(skip).Take(take);
             count = data.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
