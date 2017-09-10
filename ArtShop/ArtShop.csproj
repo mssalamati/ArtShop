@@ -223,6 +223,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PublicProfileController.cs" />
+    <Compile Include="Controllers\QSearchController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -513,6 +514,9 @@
     <Content Include="Views\Products\EditDetail.cshtml" />
     <Content Include="Views\Products\EditDescription.cshtml" />
     <Content Include="Views\Products\EditPricing.cshtml" />
+    <Content Include="Views\QSearch\Artist.cshtml" />
+    <Content Include="Views\QSearch\Art.cshtml" />
+    <Content Include="Views\QSearch\Collection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
