@@ -2586,6 +2586,7 @@
     <Content Include="Content\Admin\ckeditor\plugins\maximize\plugin.js" />
     <Content Include="Content\Admin\ckeditor\plugins\menubutton\plugin.js" />
     <Content Include="Content\Admin\ckeditor\plugins\menu\plugin.js" />
+    <Content Include="Content\Admin\ckeditor\plugins\nbsp\plugin.js" />
     <Content Include="Content\Admin\ckeditor\plugins\newpage\icons\hidpi\newpage-rtl.png" />
     <Content Include="Content\Admin\ckeditor\plugins\newpage\icons\hidpi\newpage.png" />
     <Content Include="Content\Admin\ckeditor\plugins\newpage\icons\newpage-rtl.png" />

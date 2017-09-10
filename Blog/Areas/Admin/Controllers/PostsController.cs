@@ -58,7 +58,8 @@ namespace Blog.Areas.Admin.Controllers
             }
             Post newPost = new Post();
             string tempFolderName = "Upload/posts";
-            var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
+            var umode = model.postType == PostType.Sqr ? ImageHelper.saveImageMode.Squre : ImageHelper.saveImageMode.Not;
+            var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, umode);
             if (!Thumbresult.ResultStatus)
             {
                 ModelState.AddModelError(string.Empty, Thumbresult.Error);
@@ -143,7 +144,8 @@ namespace Blog.Areas.Admin.Controllers
             string tempFolderName = "Upload/posts";
             if (model.Thumbnail != null)
             {
-                var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
+                var umode = model.postType == PostType.Sqr ? ImageHelper.saveImageMode.Squre : ImageHelper.saveImageMode.Not;
+                var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, umode);
                 if (!Thumbresult.ResultStatus)
                 {
                     ModelState.AddModelError(string.Empty, Thumbresult.Error);
