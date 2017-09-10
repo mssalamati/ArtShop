@@ -228,6 +228,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Extentions\CultureHelper.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Extentions\SeoFriendlyRoute.cs" />
     <Compile Include="Global.asax.cs">
@@ -6986,6 +6987,8 @@
     <Content Include="Content\Images\en.svg" />
     <Content Include="Content\Images\fa.svg" />
     <Content Include="Content\Images\footer-logo.png" />
+    <Content Include="Content\Images\iran.svg" />
+    <Content Include="Content\Images\united-states.svg" />
     <Content Include="Content\instag-slider.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\perfect-pullquotes.css" />
@@ -9135,6 +9138,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{889b94a8-b8d2-4b8c-9634-e2ee3a5ea2f7}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{5cfabe26-1d2a-4519-a6a1-674ed85d0469}</Project>
       <Name>Utilities</Name>

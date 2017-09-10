@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-
+using Blog.Extentions;
+using System.Globalization;
 
 namespace Blog.Areas.Admin.Controllers
 {
@@ -13,10 +14,9 @@ namespace Blog.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
 
             return View();
         }
-
     }
 }
