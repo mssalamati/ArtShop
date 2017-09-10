@@ -8,7 +8,7 @@ namespace ArtShop.Controllers
 {
     public class QSearchController : BaseController
     {
-        [Route("search/artist/{query}/{page}")]
+        [Route("qsearch/artist/{query}/{page?}")]
         public ActionResult Artist(string query, int page = 1)
         {
             int pageSize = 18;
@@ -17,6 +17,7 @@ namespace ArtShop.Controllers
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
             page = Math.Max(1, page);
+            ViewBag.query = query;
             ViewBag.page = page;
             ViewBag.count = count;
             ViewBag.pageSize = pageSize;
@@ -25,7 +26,7 @@ namespace ArtShop.Controllers
             return View(res);
         }
 
-        [Route("search/art/{query}/{page}")]
+        [Route("qsearch/art/{query}/{page?}")]
         public ActionResult Art(string query, int page = 1)
         {
             int pageSize = 18;
@@ -34,6 +35,7 @@ namespace ArtShop.Controllers
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
             page = Math.Max(1, page);
+            ViewBag.query = query;
             ViewBag.page = page;
             ViewBag.count = count;
             ViewBag.pageSize = pageSize;
@@ -42,7 +44,7 @@ namespace ArtShop.Controllers
             return View(res);
         }
 
-        [Route("search/collection/{query}/{page}")]
+        [Route("qsearch/collection/{query}/{page?}")]
         public ActionResult Collection(string query, int page = 1)
         {
             int pageSize = 18;
@@ -52,6 +54,7 @@ namespace ArtShop.Controllers
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
             page = Math.Max(1, page);
             ViewBag.page = page;
+            ViewBag.query = query;
             ViewBag.count = count;
             ViewBag.pageSize = pageSize;
             p = p.Skip((page - 1) * pageSize).Take(pageSize);

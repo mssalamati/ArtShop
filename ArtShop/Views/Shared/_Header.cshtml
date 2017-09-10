@@ -207,16 +207,16 @@
 
                         </div>
                     </div>
-                    <form action="/all/search" class="desktop-navigation__search">
+                    <form action="/qsearch/art" class="desktop-navigation__search">
                         <button class="desktop-navigation__search__button" type="submit"><img class="desktop-navigation__search__mag" src="~/Content/Images/mag-glass.svg" /></button>
                         <input name="query" type="text" class="desktop-navigation__search__input" placeholder="Art" autocomplete="off" value="">
                         <div class="desktop-navigation__search__caret">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8"><g fill="none" fill-rule="evenodd" stroke="#333" stroke-linecap="square"><path d="M1 0l7.071 7.071M8.5 7.5l7-7"></path></g></svg>
                         </div>
                         <div tabindex="0" class="desktop-navigation__search__dropdown dropdown-menu">
-                            <div class="link-standard desktop-navigation__search__dropdown__item--active" data-path="/all">@ShareRes.Art</div>
-                            <div class="link-standard" data-path="/search/user">@ShareRes.Artist</div>
-                            <div class="link-standard" data-path="/search/collection">@ShareRes.Collection</div>
+                            <div class="link-standard desktop-navigation__search__dropdown__item--active" data-path="/qsearch/art">@ShareRes.Art</div>
+                            <div class="link-standard" data-path="/qsearch/artist">@ShareRes.Artist</div>
+                            <div class="link-standard" data-path="/qsearch/collection">@ShareRes.Collection</div>
                         </div>
                     </form>
                 </div>
@@ -370,7 +370,7 @@
                 </a>
             </div>
         </div>
-        <form action="/all/search" class="mobile-navigation__search-container">
+        <form action="/qsearch/art" class="mobile-navigation__search-container">
             <div class="mobile-navigation__search-container__background"></div>
             <svg class="mobile-navigation__search-container__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 21"><g fill="none" fill-rule="evenodd"><rect width="8.903" height="1.25" x="14.747" y="17.027" fill="#333" rx=".625" transform="rotate(45 19.198 17.652)"></rect><ellipse cx="9.274" cy="9.073" stroke="#333" rx="8.774" ry="8.573"></ellipse></g></svg>
             <input class="mobile-navigation__search-container__input" name="query" autocomplete="off" value="" />
