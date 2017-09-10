@@ -12,7 +12,14 @@ namespace Blog.Areas.Admin.Controllers
     {
         public ActionResult Index(int page = 1, string search = "")
         {
-            var data = db.Tags;
+            int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
+            var data = db.Tags
+                 .Where(x => string.IsNullOrEmpty(search) || x.Name.Contains(search))
+                 .OrderByDescending(x => x.Name)
+                 .Skip(skip).Take(take);
+            count = data.Count();
+            int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
+            ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
             return View(data.ToList());
         }
         [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
@@ -69,6 +76,7 @@ namespace Blog.Areas.Admin.Controllers
         {
             var finder = db.Tags.Find(model.Id);
 
+            finder.Name = model.Name;
 
             foreach (var item in model.Translations)
             {
@@ -76,7 +84,9 @@ namespace Blog.Areas.Admin.Controllers
                 if (curr != null)
                     curr.Name = item.Name;
                 else
+                {
                     finder.Translations.Add(new TagTranslation() { languageId = item.languageId, Name = item.Name });
+                }
             }
 
             try

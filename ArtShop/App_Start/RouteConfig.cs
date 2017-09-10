@@ -1,4 +1,5 @@
 ﻿using ArtShop.Helper;
+using Canonicalize;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ArtShop
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
+            routes.Canonicalize().NoWww().Lowercase().NoTrailingSlash();
             routes.Add("ProductDetails", new SeoFriendlyRoute("Artwork/{details}/{id}",
        new RouteValueDictionary(new { controller = "Products", action = "single" }),
        new MvcRouteHandler()));

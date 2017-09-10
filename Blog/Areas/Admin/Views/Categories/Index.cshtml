@@ -8,9 +8,33 @@
 
 <link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
 
+<div class="page-title">
+    <div class="title"> Artiscovery</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل ادمین</a>
+        </li>
+        <li>
+            <a href="javascript:;">دسته بندی ها </a>
+        </li>
+    </ol>
+</div>
+<div class="clearfix"></div>
 
 <div class="card bg-white m-b">
-    <div class="card-header"> Categories  <button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت دسته جدید</button> </div>
+    <div class="card-header">
+        <form method="get" action="/admin/categories/index">
+            <div class="input-group pull-right col-md-6">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
+                </span>
+                <input type="hidden" name="page" value="@ViewBag.page">
+                <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
+                <input type="search" placeholder="search..." name="search" value="@ViewBag.search" class="form-control bl0">
+            </div>
+        </form>
+        <button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت دسته جدید</button>
+    </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
             @if (Model.Count() != 0)
@@ -76,10 +100,46 @@
     </div>
 </div>
 
+
+<ul class="pagination clearfix block">
+    @if (ViewBag.page != 1)
+    {
+        <li>
+            <a href="@Url.Action("index", new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+        </li>
+    }
+
+    @for (int i = 1; i <= ViewBag.maxpage; i++)
+    {
+        if (ViewBag.page == i)
+        {
+            <li class="active">
+                <a class="" href="@Url.Action("index",new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action("index",new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+
+    }
+    @if (ViewBag.page != ViewBag.maxpage)
+    {
+        <li>
+            <a href="@Url.Action("index",new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+        </li>
+    }
+
+
+</ul>
+
+
 <div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="dform">
-           
+
         </div>
     </div>
 </div>

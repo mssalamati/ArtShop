@@ -1,0 +1,181 @@
+﻿@using Blog.Extentions
+@using Blog.Objects
+@{
+    ViewBag.Title = Model.Title;
+    var contentClass = Model.Links.Count == 0 ? "col-lg-10" : "col-lg-6";
+}
+@model Post
+<style>
+    .archive .post-element,
+    .search .post-element,
+    .tag .post-element,
+    .category .post-element,
+    .single .post-element {
+        min-height: 460px;
+        height: auto;
+        text-align: left;
+        position: relative;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            @*<div class="col-lg-12">
+                    <div class="social-list" style="display: block;">
+                        <ul>
+                            <li>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://canvas.saatchiart.com/lifestyle/inspiration/the-beauty-of-contrast-traditional-art-in-contemporary-rooms" target="_blank"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/intent/tweet?text=The Beauty of Contrast: Traditional Art in Contemporary Rooms&amp;url=https://canvas.saatchiart.com/lifestyle/inspiration/the-beauty-of-contrast-traditional-art-in-contemporary-rooms&amp;via=SaatchiArt" target="_blank"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.pinterest.com/pin/create/bookmarklet/?url=https://canvas.saatchiart.com/lifestyle/inspiration/the-beauty-of-contrast-traditional-art-in-contemporary-rooms&amp;description=Spaces with exclusively modern furniture and furnishings can sometimes feel ...&amp;title=The Beauty of Contrast: Traditional Art in Contemporary Rooms&amp;media=https://canvas.saatchiart.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-29-at-10.53.33-AM-300x223.png" target="_blank"><i class="fa fa-pinterest"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://canvas.saatchiart.com/lifestyle/inspiration/the-beauty-of-contrast-traditional-art-in-contemporary-rooms&amp;title=The Beauty of Contrast: Traditional Art in Contemporary Rooms&amp;summary=Spaces with exclusively modern furniture and furnishings can sometimes feel ...&amp;source=SaatchiArt" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="mailto:?subject=Design Inspiration: The Beauty of Contrast: Traditional Art in Contemporary Rooms&amp;body=Spaces with exclusively modern furniture and furnishings can sometimes feel ... %0D%0A%0D%0A https://canvas.saatchiart.com/lifestyle/inspiration/the-beauty-of-contrast-traditional-art-in-contemporary-rooms %0D%0A%0D%0A Found on Canvas, a blog by Saatchi Art %0D%0A https://saatchiart.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                            </li>
+                            <!--li>
+                                <a href="#" class="counter">340</a>
+                            </li-->
+                        </ul>
+                    </div><!-- .social-list -->
+                </div><!-- .col-lg-12 -->*@
+        </div>
+
+        <div id="post-80445" class="post-element post-80445 post type-post status-publish format-standard has-post-thumbnail hentry category-inspiration category-lifestyle">
+
+            <div class="flexslider">
+                <div class="slider-overlay">
+                    <span class="close"></span>
+                </div>
+
+                <ul class="slides">
+
+                    @foreach (var item in Model.HeaderPhotos)
+                    {
+                        <li class="flex-active-slide" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;">
+                            <div class="img-holder">
+                                <img src="/@item.Path" draggable="false">
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <span id="play-youtube"></span>
+                <span id="play-vimeo"></span>
+                <span id="pause-youtube"></span>
+                <span id="pause-vimeo"></span>
+                <ol class="flex-control-nav flex-control-paging"></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1"></a></li><li class="flex-nav-next"><a class="flex-next flex-disabled" href="#" tabindex="-1"></a></li></ul>
+            </div>
+
+            <div class="row post-wrapper">
+                <div class="col-lg-2 hidden-xs hidden-sm hidden-md">
+                    <div class="date-info">
+                        <p><strong>@Model.PostedOn.ToString("dd MMM yyyy")</strong></p>
+                        <p>Posted by</p>
+                        <p><strong>@Model.Author</strong></p>
+                    </div><!-- .date-info -->
+
+                    <div class="about-info">
+                        <h3>About @Model.Category.Current().Name</h3>
+                        <p></p><p>@Model.Category.Current().Description</p>
+                        <p></p>
+                    </div>
+                    <div class="tag-info">
+                        <h3>Tagged</h3>
+
+                        <ul class="tag-list">
+                            @foreach (var item in Model.Tags)
+                            {
+                                <li>
+                                    <a href="">
+                                        @item.Current().Name
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div><!-- .col-lg-2 -->
+
+                <div class="@contentClass post-content">
+                    <article>
+                        <h3 style="text-align:center !important"><a href="@Url.Action(Model.Category.Name,"Category", new { id = Model.Category.GenerateSlug()})">@Model.Category.Current().Name</a></h3>
+                        <h1 style="text-align:center !important">@Model.Current().Title</h1>
+
+                        <div class="date-info hidden-lg">
+                            <p><strong>@Model.PostedOn.ToString("dd MMM yyyy")</strong>Posted by <strong>@Model.Author</strong></p>
+                        </div><!-- .date-info -->
+                        @Html.Raw(Model.Current().Description)
+                    </article>
+
+
+
+                    <div class="row hidden-lg">
+                        <div class="about-info">
+                            <h3>About Design Inspiration</h3>
+                            <p></p><p>Check out these photo spreads for ideas on how to add style, polish, and the perfect works of art to your home décor.</p>
+                            <p></p>
+                        </div>
+                        <div class="tag-info">
+                            <h3>Tagged</h3>
+
+                            <ul class="tag-list">
+                                @foreach (var item in Model.Tags)
+                                {
+                                    <li>
+                                        <a href="">
+                                            @item.Current().Name
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div><!-- .row -->
+
+                </div><!-- .col-lg-6 -->
+                <!-- .col-lg-4 -->
+                @if (Model.Links.Count > 0)
+                {
+                    <div class="col-lg-4 right-sidebar">
+
+
+                        <h3>New This Week on Artiscovery</h3>
+                        @foreach (var item in Model.Links)
+                        {
+                            <div class="artwork">
+                                <a href="@item.URL" target="_blank">
+                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-300x300.jpeg" class="attachment-300x300 size-300x300" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-300x300.jpeg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-150x150.jpeg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-768x768.jpeg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-500x500.jpeg 500w" sizes="(max-width: 300px) 100vw, 300px">
+                                </a>
+                                <p>
+                                    <span>Mon'd'UNtérieur îlien</span>
+                                    <span>3500</span>
+                                </p>
+                                <p>
+                                    <a href="https://www.saatchiart.com/cati.b" class="artist-url" target="_blank">Cati BURNOT</a>
+
+                                    <a href="https://www.saatchiart.com/art/Painting-Mon-d-UNt-rieur-lien/773238/3747126/view" class="artwork-url" target="_blank">View artwork</a>
+                                </p>
+                            </div>
+                        }
+
+                    </div>
+                }
+
+            </div><!-- .row -->
+        </div>
+
+
+
+    </div>
+</div>
+@*<script src="~/Scripts/jquery.flexslider-min.js"></script>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type='text/javascript' src="http://flexslider.woothemes.com/js/jquery.flexslider.js"></script>
+<script type='text/javascript' src="http://flexslider.woothemes.com/js/jquery.easing.js"></script>
+<script type='text/javascript' src="http://flexslider.woothemes.com/js/jquery.mousewheel.js"></script>
+<script type='text/javascript' src="http://lab.mattvarone.com/projects/jquery/totop/js/jquery.ui.totop.js"></script>

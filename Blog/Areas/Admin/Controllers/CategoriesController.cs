@@ -13,7 +13,15 @@ namespace Blog.Areas.Admin.Controllers
         // GET: Admin/Categories
         public ActionResult Index(int page = 1, string search = "")
         {
-            var data = db.Categories;
+            int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
+            var data = db.Categories
+                 .Where(x => string.IsNullOrEmpty(search) || x.Name.Contains(search))
+                 .OrderByDescending(x => x.Name)
+                 .Skip(skip).Take(take);
+            count = data.Count();
+            int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
+            ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
+
             return View(data.ToList());
         }
         [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
@@ -38,7 +46,7 @@ namespace Blog.Areas.Admin.Controllers
 
             c.Translations = new List<CategoryTranslation>();
             foreach (var item in model.Translations)
-                c.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name ,Description = item.Description});
+                c.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
             db.Categories.Add(c);
             try
             {
@@ -60,7 +68,7 @@ namespace Blog.Areas.Admin.Controllers
             ViewBag.language = db.Languages.ToList();
             CategoryViewModel cvm = new CategoryViewModel() { Id = finder.Id, Translations = new List<CategoryTranslationViewModel>(), Name = finder.Name };
             foreach (var item in finder.Translations)
-                cvm.Translations.Add(new CategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name,Description = item.Description });
+                cvm.Translations.Add(new CategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name, Description = item.Description });
 
             return PartialView(cvm);
         }
@@ -69,7 +77,7 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult Edit(CategoryViewModel model)
         {
             var finder = db.Categories.Find(model.Id);
-
+            finder.Name = model.Name;
 
             foreach (var item in model.Translations)
             {
@@ -79,9 +87,10 @@ namespace Blog.Areas.Admin.Controllers
                     curr.Name = item.Name;
                     curr.Description = item.Description;
                 }
-                  
+
                 else
-                    finder.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name,Description = item.Description });
+                    finder.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+
             }
 
             try
