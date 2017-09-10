@@ -1,6 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "Artworks";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
 }
 
 @model  List<Product>
@@ -142,13 +146,13 @@ if (current == selected)
                 {
                     if (item.Key == links.Last().Key)
                     {
-                        <span>
+                        <span style="@rtlstl">
                             @item.Value
                         </span>
                     }
                     else
                     {
-                        <a href="@item.Key">@item.Value</a>
+                        <a style="@rtlstl" href="@item.Key">@item.Value</a>
                     }
                 }
 
@@ -158,7 +162,7 @@ if (current == selected)
         </div>
     </header>
     <div class="clear"></div>
-    <form action="/search" method="get">
+    <form action="/search" method="get" style="@rtldirection">
         <div class="row filters-main" style="padding: 20px 20px 0;margin-bottom:10px">
             <div class="small-6 medium-2 columns">
                 <select name="category" id="selectCategory" class="filter-options">
@@ -234,7 +238,7 @@ if (current == selected)
     <ul class="item-list masonry">
         @foreach (var item in Model)
         {
-            <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+            <li  itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
                         <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" itemprop="url">
@@ -253,13 +257,13 @@ if (current == selected)
                             <i class="fa fa-plus" style="color:white"></i>
                         </a>
                     </div>
-                    <div class="list-art-meta">
-                        <h4 class="list-art-title left ellipsis" itemprop="name">
+                    <div class="list-art-meta" style="@rtlstl">
+                        <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
                             <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })">@item.Title</a>
                         </h4>
-                        <small class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
+                        <small style="@rtlstl" class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
-                        <div class="list-author clear left">
+                        <div class="list-author clear left" style="@rtlstl">
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
                                 <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                             </h5>
@@ -271,7 +275,7 @@ if (current == selected)
                             </h5>
                         </div>
 
-                        <div class="list-art-price">
+                        <div class="list-art-price" style="@rtlstl">
                             @if (item.ISOrginalForSale)
                             {
                                 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">

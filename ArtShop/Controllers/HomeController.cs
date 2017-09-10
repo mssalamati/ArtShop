@@ -12,6 +12,7 @@ using DataLayer.Enitities;
 using DataLayer;
 using Microsoft.AspNet.Identity;
 using ArtShop.Util;
+using System.Text;
 
 namespace ArtShop.Controllers
 {
@@ -220,6 +221,27 @@ namespace ArtShop.Controllers
             if (id == "soroosh1313")
                 CashManager.resete();
             return Content("ok");
+        }
+
+        [Route("robots.txt", Name = "GetRobotsText"), OutputCache(Duration = 86400)]
+        public ContentResult RobotsText()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("user-agent: *");
+            stringBuilder.AppendLine("disallow: /error/");
+            stringBuilder.AppendLine("allow: /error/foo");
+            stringBuilder.Append("sitemap: ");
+            stringBuilder.AppendLine(this.Url.RouteUrl("GetSitemapXml", null, this.Request.Url.Scheme).TrimEnd('/'));
+
+            return this.Content(stringBuilder.ToString(), "text/plain", Encoding.UTF8);
+        }
+
+        [Route("sitemap.xml", Name = "GetSitemapXml"), OutputCache(Duration = 86400)]
+        public ContentResult SitemapXml()
+        {
+            // I'll talk about this in a later blog post.
+            return null;
         }
     }
 }
