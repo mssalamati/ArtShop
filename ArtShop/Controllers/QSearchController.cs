@@ -9,6 +9,7 @@ namespace ArtShop.Controllers
     public class QSearchController : BaseController
     {
         [Route("qsearch/artist/{query}/{page?}")]
+        [Route("qsearch/artist")]
         public ActionResult Artist(string query, int page = 1)
         {
             int pageSize = 18;
@@ -27,6 +28,7 @@ namespace ArtShop.Controllers
         }
 
         [Route("qsearch/art/{query}/{page?}")]
+        [Route("qsearch/art")]
         public ActionResult Art(string query, int page = 1)
         {
             int pageSize = 18;
@@ -45,10 +47,11 @@ namespace ArtShop.Controllers
         }
 
         [Route("qsearch/collection/{query}/{page?}")]
+        [Route("qsearch/collection")]
         public ActionResult Collection(string query, int page = 1)
         {
             int pageSize = 18;
-            var p = db.Collections.OrderByDescending(x => x.Title).AsQueryable();
+            var p = db.Collections.Include("Artworks").OrderByDescending(x => x.Title).AsQueryable();
             p = p.Where(x => string.IsNullOrEmpty(query) || x.Title.Contains(query)).AsQueryable();
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
