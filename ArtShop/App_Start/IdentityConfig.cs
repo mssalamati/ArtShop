@@ -40,7 +40,7 @@ namespace ArtShop
             SmtpClient smtpClient = new SmtpClient("smtp.artiscovery.com.netsolmail.net", Convert.ToInt32(587));
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("noreply@artiscovery.com", "QWErty@321");
             smtpClient.Credentials = credentials;
-            smtpClient.EnableSsl = true;
+            smtpClient.EnableSsl = false;
             smtpClient.Send(msg);
 
             return Task.FromResult(0);
