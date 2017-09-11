@@ -7,6 +7,12 @@
 
 @using DataLayer.Extentions
 
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+}
+
+
 <link href="~/Content/EditProduct.css" rel="stylesheet" />
 <link href="~/Content/select2/css/select2.css" rel="stylesheet" />
 
@@ -21,7 +27,10 @@
                     <div class="edit-page">
                         @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Description", id = Model.Id, Status = Model.Status })
                         <div class="edit-page__container">
-                            @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Description", id = Model.Id, Status = Model.Status })
+                            @if (!IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Description", id = Model.Id, Status = Model.Status })
+                            }                      
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="wizard-step">
                                     @if (!ViewData.ModelState.IsValid)
@@ -87,6 +96,10 @@
 
                                 </div>
                             </div>
+                            @if (IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Description", id = Model.Id, Status = Model.Status })
+                            }
                         </div>
                     </div>
                 </div>

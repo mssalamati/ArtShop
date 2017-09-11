@@ -8,8 +8,25 @@ if (current == selected)
 }
 }
 
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var cstyle = IsRighToLeft ? "margin-right:auto;margin-left:20px" : "";
+}
 
-<div class="edit-page__nav side-navigation pane pane--inline">
+@if (IsRighToLeft)
+{
+    <style>
+        .side-navigation__top-level{
+            text-align:right;
+        }
+        .side-navigation__sub-level {
+             text-align:right;
+        }
+    </style>
+}
+
+<div class="edit-page__nav side-navigation pane pane--inline" style="@cstyle">
     <div class="side-navigation__hero">
         <div class="image-upload-dragover">
             <div class="image-upload-dragover__message"></div>

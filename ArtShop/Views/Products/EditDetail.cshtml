@@ -6,6 +6,13 @@
 
 @using DataLayer.Extentions
 
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+}
+
 <link href="~/Content/EditProduct.css" rel="stylesheet" />
 <link href="~/Content/select2/css/select2.css" rel="stylesheet" />
 
@@ -21,7 +28,10 @@
                     <div class="edit-page">
                         @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id, Status = Model.Status })
                         <div class="edit-page__container">
-                            @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id, Status = Model.Status })
+                            @if (!IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id, Status = Model.Status })
+                            }                            
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="wizard-step">
                                     @if (!ViewData.ModelState.IsValid)
@@ -30,7 +40,7 @@
                                     }
 
                                     <div class="pane__content__block">
-                                        <h1 class="animate-group-0-0">Category</h1>
+                                        <h1 class="animate-group-0-0">@UploadRes.Category</h1>
                                         <div class="form-group form-group--block">
                                             <div class="input-container animate-group-0-1 z-index-fix-0">
                                                 <select name="categoryId" class="rw-combobox rw-widget">
@@ -52,7 +62,7 @@
                                     </div>
 
                                     <div class="pane__content__block">
-                                        <h1 class="animate-group-0-2">Subject</h1>
+                                        <h1 class="animate-group-0-2">@UploadRes.Subject</h1>
                                         <div class="form-group form-group--block">
                                             <div class="input-container animate-group-0-3 z-index-fix-1">
                                                 <div class="input-container animate-group-0-1 z-index-fix-0">
@@ -78,7 +88,7 @@
                                         <h1 class="animate-group-0-4">Mediums</h1>
                                         <div class="form-group form-group--block animate-group-0-4 z-index-fix-2">
                                             <div class="input-container z-index-fix-0 text-left animate-group-0-5">
-                                                <label>Select 1-5 Mediums</label>
+                                                <label  style="@rtlstl">@UploadRes.step5_mediums</label>
                                                 <div class="input-container animate-group-0-1 z-index-fix-0">
                                                     <input value="@string.Join(",",Model.Mediums.Select(x=>x.Current().Name))" name="Mediums" type="text" style="max-width:none" class="sMediums rw-combobox rw-widget" />
                                                 </div>
@@ -90,7 +100,7 @@
                                         <h1 class="animate-group-0-6">Styles</h1>
                                         <div class="form-group form-group--block animate-group-0-6 z-index-fix-3">
                                             <div class="input-container z-index-fix-2 text-left animate-group-0-7">
-                                                <label>Select 1-5 Styles</label>
+                                                <label  style="@rtlstl">@UploadRes.step5_styles</label>
                                                 <div class="input-container animate-group-0-1 z-index-fix-0 ">
                                                     <input value="@string.Join(",",Model.Styles.Select(x=>x.Current().Name))" name="Styleslist" type="text" style="max-width:none" class="sStyles  rw-combobox rw-widget" />
                                                 </div>
@@ -100,6 +110,10 @@
 
                                 </div>
                             </div>
+                            @if (IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id, Status = Model.Status })
+                            }
                         </div>
                     </div>
                 </div>
