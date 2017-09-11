@@ -37,8 +37,8 @@ namespace ArtShop
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
 
-            SmtpClient smtpClient = new SmtpClient("smtp.artiscovery.com", Convert.ToInt32(587));
-            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("noreply@artiscovery.com", "DMC@Arena");
+            SmtpClient smtpClient = new SmtpClient("smtp.artiscovery.com.netsolmail.net", Convert.ToInt32(587));
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("noreply@artiscovery.com", "QWErty@321");
             smtpClient.Credentials = credentials;
             smtpClient.EnableSsl = true;
             smtpClient.Send(msg);

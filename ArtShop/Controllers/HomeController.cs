@@ -75,7 +75,7 @@ namespace ArtShop.Controllers
             ViewBag.p3 = p3;
             ViewBag.p4 = p4;
             ViewBag.p5 = p5;
-            var filter1 = db.Products.Where(x => (!p1.min.HasValue || p1.min.Value <= x.Price) && (!p1.max.HasValue || p1.max.Value > x.Price));
+            var filter1 = db.Products.Where(x => (!p1.min.HasValue || p1.min.Value < x.Price) && (!p1.max.HasValue || p1.max.Value >= x.Price));
             var filter2 = db.Products.Where(x => (!p2.min.HasValue || p2.min.Value <= x.Price) && (!p2.max.HasValue || p2.max.Value > x.Price));
             var filter3 = db.Products.Where(x => (!p3.min.HasValue || p3.min.Value <= x.Price) && (!p3.max.HasValue || p3.max.Value > x.Price));
             var filter4 = db.Products.Where(x => (!p4.min.HasValue || p4.min.Value <= x.Price) && (!p4.max.HasValue || p4.max.Value > x.Price));
