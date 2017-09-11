@@ -19,6 +19,7 @@ namespace DataLayer.Enitities
         public virtual DateTime BuyDate { get; set; }
         public virtual OrderStatus Status { get; set; }
         public virtual double TotalPrice { get; set; }
+        public virtual TransactionDetail TransactionDetail { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public Order()
         {
@@ -26,6 +27,22 @@ namespace DataLayer.Enitities
             Status = OrderStatus.NoSeen;
         }
     }
+
+    public class TransactionDetail
+    {
+        [Key]
+        public virtual int Id { get; set; }
+        public string Description { get; set; }
+        public DateTime date { get; set; }
+        public string Number { get; set; }
+        public bool Payed { get; set; }
+
+        public TransactionDetail()
+        {
+            date = DateTime.Now;
+        }
+    }
+
     public class OrderDetail
     {
         [Key]
