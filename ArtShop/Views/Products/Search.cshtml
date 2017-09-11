@@ -5,6 +5,7 @@
     var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
     var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
 }
 
 @model  List<Product>
@@ -275,7 +276,7 @@ if (current == selected)
                             </h5>
                         </div>
 
-                        <div class="list-art-price" style="@rtlstl">
+                        <div class="list-art-price" style="@pricertl">
                             @if (item.ISOrginalForSale)
                             {
                                 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
