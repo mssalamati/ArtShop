@@ -39,8 +39,6 @@ namespace ArtShop.Controllers
         [Authorize]
         public ActionResult Pay()
         {
-            // 1. save order from card to user orders with payment false
-            // 2. in verify you can set payment flag true and order status and save transaction code and detail
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;

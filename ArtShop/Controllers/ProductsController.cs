@@ -207,6 +207,7 @@ namespace ArtShop.Controllers
                     p.productshippingDetail.CountryId = model.productshippingDetail.CountryId;
                 p.productshippingDetail.PhoneNumber = model.productshippingDetail.PhoneNumber;
                 p.productshippingDetail.Region = model.productshippingDetail.Region;
+                p.productshippingDetail.ZipCode = model.productshippingDetail.ZipCode;
             }
             db.SaveChanges();
             if (p.productshippingDetail == null)
