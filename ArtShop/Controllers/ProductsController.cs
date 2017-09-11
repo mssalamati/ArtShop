@@ -192,6 +192,7 @@ namespace ArtShop.Controllers
             }
             p.Title = model.Title;
             p.Status = model.Status;
+            p.ISOrginalForSale = model.Status == ProductStatus.forSale;
             p.TotalWeight = model.TotalWeight;
             p.Height = model.Height;
             p.Width = model.Width;
