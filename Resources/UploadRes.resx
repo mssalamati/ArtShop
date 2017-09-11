@@ -402,4 +402,19 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Zip/Postal Code</value>
   </data>
+  <data name="ArtworkDetail" xml:space="preserve">
+    <value>Artwork Details</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="foresale" xml:space="preserve">
+    <value>For Sale</value>
+  </data>
+  <data name="notforsale" xml:space="preserve">
+    <value>Not for sale</value>
+  </data>
+  <data name="sold" xml:space="preserve">
+    <value>Sold</value>
+  </data>
 </root>

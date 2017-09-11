@@ -2,6 +2,7 @@
 
 @{
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
 }
 
 
@@ -113,44 +114,57 @@
                     <a data-gtm-event="nav header" href="/" class="navigation__logo"><img src="~/Content/Images/logo.png" /></a>
                     <div class="desktop-navigation__site-links">
                         <div class="desktop-navigation__site-links__indicator"></div>
-                        @for (int i = 0; i < Model.Navigation.Count; i++)
+
+                        @if (IsRighToLeft)
                         {
-                            <div data-index="@i" class="desktop-navigation__site-link">
+                            <div data-index="0" class="desktop-navigation__site-link">
                                 <div class="desktop-navigation__site-link__title">
                                     <a data-gtm-event="nav header"
-                                       href="/search/@Model.Navigation[i].Id/0/0/0/0"
+                                       href="http://blog.artiscovery.com"
                                        class="desktop-navigation__site-link__title__link">
-                                        @Model.Navigation[i].Name
+                                        @ShareRes.Blog
                                     </a>
                                 </div>
                             </div>
                         }
 
-                        <div data-index="7" class="desktop-navigation__site-link">
-                            <div class="desktop-navigation__site-link__title">
-                                <a data-gtm-event="nav header"
-                                   href="http://blog.artiscovery.com"
-                                   class="desktop-navigation__site-link__title__link">
-                                    @ShareRes.Blog
-                                </a>
+                        @for (int i = 0; i < Model.Navigation.Count; i++)
+                        {
+                            int j = IsRighToLeft ? i + 1 : i;
+                            int it = IsRighToLeft ? Model.Navigation.Count - i - 1 : i;
+                            <div data-index="@j" class="desktop-navigation__site-link">
+                                <div class="desktop-navigation__site-link__title">
+                                    <a data-gtm-event="nav header"
+                                       href="/search/@Model.Navigation[it].Id/0/0/0/0"
+                                       class="desktop-navigation__site-link__title__link">
+                                        @Model.Navigation[it].Name
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        }
+
+                        @if (!IsRighToLeft)
+                        {
+                            <div data-index="7" class="desktop-navigation__site-link">
+                                <div class="desktop-navigation__site-link__title">
+                                    <a data-gtm-event="nav header"
+                                       href="http://blog.artiscovery.com"
+                                       class="desktop-navigation__site-link__title__link">
+                                        @ShareRes.Blog
+                                    </a>
+                                </div>
+                            </div>
+                        }
+
 
                         <div class="desktop-navigation__dropdown">
 
-                            @for (int i = 0; i < Model.Navigation.Count; i++)
+                            @for (int x = 0; x < Model.Navigation.Count; x++)
                             {
-                                <div data-index="@i" class="desktop-navigation__dropdown__inner">
-                                    @*<div class="desktop-navigation__dropdown__image-container">
-                                        <a data-gtm-event="nav header"
-                                           href="/search/@Model.Navigation[i].Id/0/0/0/0"
-                                           class="desktop-navigation__dropdown__image"
-                                           style="background-image: url(@Model.Navigation[i].Photo)">
-                                            <div class="desktop-navigation__dropdown__image__title">
-                                                @ShareRes.Featured @Model.Navigation[i].Name
-                                            </div>
-                                        </a>
-                                    </div>*@
+                                int j = IsRighToLeft ? x + 1 : x;
+                                int i = IsRighToLeft ? Model.Navigation.Count - x - 1 : x;
+
+                                <div data-index="@j" class="desktop-navigation__dropdown__inner">
 
                                     <div class="desktop-navigation__dropdown__sections">
                                         <div class="desktop-navigation__dropdown__section">

@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artwork Details.
+        /// </summary>
+        public static string ArtworkDetail {
+            get {
+                return ResourceManager.GetString("ArtworkDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Limited Edition is wrong ????.
         /// </summary>
         public static string avaibleEntity_error {
@@ -187,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For Sale.
+        /// </summary>
+        public static string foresale {
+            get {
+                return ResourceManager.GetString("foresale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         public static string Height {
@@ -237,6 +255,15 @@ namespace Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not for sale.
+        /// </summary>
+        public static string notforsale {
+            get {
+                return ResourceManager.GetString("notforsale", resourceCulture);
             }
         }
         
@@ -304,6 +331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Changes.
+        /// </summary>
+        public static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a category and subject to help collectors to find your work easily.
         /// </summary>
         public static string select_category_str {
@@ -327,6 +363,15 @@ namespace Resources {
         public static string SelectImage {
             get {
                 return ResourceManager.GetString("SelectImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sold.
+        /// </summary>
+        public static string sold {
+            get {
+                return ResourceManager.GetString("sold", resourceCulture);
             }
         }
         
