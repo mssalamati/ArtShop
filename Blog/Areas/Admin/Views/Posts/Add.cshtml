@@ -49,7 +49,14 @@
                                 <select id="catselect" name="languageId" class="form-control">
                                     @foreach (var item in ((List<Language>)ViewBag.language))
                                     {
-                                        <option value="@item.Code">@item.Code</option>
+                                        if (item.Code == Model.languageId)
+                                        {
+                                            <option selected="selected" value="@item.Code">@item.Code</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Code">@item.Code</option>
+                                        }
                                     }
                                 </select>
                             </div>

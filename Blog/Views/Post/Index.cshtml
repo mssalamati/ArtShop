@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = Model.Title;
     var contentClass = Model.Links.Count == 0 ? "col-lg-10" : "col-lg-6";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
 }
+
 @model Post
 <style>
     .archive .post-element,
@@ -102,7 +105,7 @@
                 </div><!-- .col-lg-2 -->
 
                 <div class="@contentClass post-content">
-                    <article>
+                    <article >
                         <h3 style="text-align:center !important"><a href="@Url.Action(Model.Category.Name,"Category", new { id = Model.Category.GenerateSlug()})">@Model.Category.Current().Name</a></h3>
                         <h1 style="text-align:center !important">@Model.Current().Title</h1>
 

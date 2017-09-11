@@ -4,6 +4,8 @@
     ViewBag.Title = "Artiscovery Blog";
     var widePostCol = "col-lg-8 col-md-12";
     var sqrPostCol = "col-lg-4 col-md-6";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
 }
 @model IList<Post>
 <div id="primary" class="content-area">
@@ -14,7 +16,7 @@
                 <div class="showcase">
                     <div class="img-holder">
                         <a href="@Url.Action(@showcasePost.Category.Name, "Post", new { id = @showcasePost.GenerateSlug() })">
-                            <img width="300" height="300" src="@showcasePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                            <img width="660" height="300" src="@showcasePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                         </a>
                     </div><!-- .img-holder -->
 
@@ -26,7 +28,7 @@
                             </a>
                         </h4>
                         <div class="excerpt-container">
-                            <p></p><p>@showcasePost.Current().ShortDescription ...</p>
+                            <p></p><p style="@rtlstl">@showcasePost.Current().ShortDescription</p>
                             <p></p>
                         </div>
 
@@ -99,7 +101,7 @@
                                     @item.Current().Title
                                 </a>
                             </h4>
-                            <p></p><p>@item.Current().ShortDescription ...</p>
+                            <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
                             <p></p>
                         </div><!-- .post-element -->
                     </div><!-- .col-lg-4 -->
