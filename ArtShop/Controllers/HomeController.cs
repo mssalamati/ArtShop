@@ -42,6 +42,7 @@ namespace ArtShop.Controllers
             return View(model);
         }
 
+        [OutputCache(Duration = 360)]
         public ActionResult _SelectedCurators(FirstPageSection model)
         {
             try
@@ -63,6 +64,7 @@ namespace ArtShop.Controllers
             }
             return PartialView(model);
         }
+        [OutputCache(Duration = 360)]
         public ActionResult _SalebyPrice(FirstPageSection model)
         {
             var p1 = db.Pricethresholds.Find(int.Parse(model.param1)) ?? new Pricethreshold();
@@ -98,12 +100,14 @@ namespace ArtShop.Controllers
             // text1 , text2 , link , pic
             return PartialView(model);
         }
+        [OutputCache(Duration = 360)]
         public ActionResult _RecentlySold(FirstPageSection model)
         {
             var recently = db.Orders
                 .SelectMany(x => x.OrderDetails).Select(x => x.Product).Take(10).ToList();
             return PartialView(recently);
         }
+        [OutputCache(Duration = 360)]
         public ActionResult _SalebyStyle(FirstPageSection model)
         {
             var p1 = db.Styles.Find(int.Parse(model.param1)) ?? new Style();
@@ -139,6 +143,7 @@ namespace ArtShop.Controllers
             // text1 , text2 , link , pic
             return PartialView(model);
         }
+        [OutputCache(Duration = 360)]
         public ActionResult _SalebyCategory(FirstPageSection model)
         {
             var p1 = db.Categories.Find(int.Parse(model.param1)) ?? new Category();
