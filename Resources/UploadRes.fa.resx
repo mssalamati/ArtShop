@@ -244,7 +244,7 @@
     <value> </value>
   </data>
   <data name="step3_forsale_string" xml:space="preserve">
-    <value>اوریجینال است؟</value>
+    <value>آیا اثر برای فروش است؟</value>
   </data>
   <data name="step3_next_click" xml:space="preserve">
     <value>عکس اثر</value>
@@ -401,5 +401,20 @@
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>کد پستی</value>
+  </data>
+  <data name="ArtworkDetail" xml:space="preserve">
+    <value>جزئیات اثر</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>ذخیره تغییرات</value>
+  </data>
+  <data name="foresale" xml:space="preserve">
+    <value>برای فروش</value>
+  </data>
+  <data name="notforsale" xml:space="preserve">
+    <value>غیر قابل فروش</value>
+  </data>
+  <data name="sold" xml:space="preserve">
+    <value>فروخته شده</value>
   </data>
 </root>
