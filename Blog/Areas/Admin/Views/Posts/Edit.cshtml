@@ -53,7 +53,7 @@
                                     {
                                         if (Model.languageId == item.Code)
                                         {
-                                            <option selected value="@item.Code">@item.Code</option>
+                                            <option selected="selected" value="@item.Code">@item.Code</option>
                                         }
                                         else
                                         {
@@ -77,7 +77,7 @@
                                     {
                                         if (Model.Category == item.Id)
                                         {
-                                            <option selected value="@item.Id">@item.Name</option>
+                                            <option selected="selected" value="@item.Id">@item.Name</option>
                                         }
                                         else
                                         {
@@ -89,9 +89,32 @@
                             <label style="padding:5px;text-align:left" class="col-sm-2 control-label"> نوع مطلب </label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="postType" style="width: 100%;">
-                                    <option @(Model.postType==PostType.Wide? "selected" : "") value="Wide">Wide</option>
-                                    <option @(Model.postType==PostType.Sqr ? "Sqr" : "")  value="Sqr">Sqr</option>
-                                    <option @(Model.postType==PostType.ShowCase ? "ShowCase" : "")  value="ShowCase">ShowCase</option>
+                                    @if (Model.postType == PostType.Wide)
+                                    {
+                                        <option selected="selected" value="Wide">Wide</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Wide">Wide</option>
+                                    }
+                                    @if (Model.postType == PostType.Sqr)
+                                    {
+                                        <option selected="selected" value="Sqr">Sqr</option>
+                                    }
+                                    else
+                                    {
+                                        <option  value="Sqr">Sqr</option>
+                                    }
+                                    
+                                    @if (Model.postType == PostType.ShowCase)
+                                    {
+                                        <option selected="selected" value="ShowCase">ShowCase</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="ShowCase">ShowCase</option>
+                                    }
+                                    
                                 </select>
                             </div>
                         </div>

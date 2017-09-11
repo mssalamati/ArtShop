@@ -273,7 +273,7 @@ namespace ArtShop.Controllers
             ViewBag.collectionCount = userProfile.Collections.Count;
 
 
-            return View(userProfile.Products.OrderByDescending(a => a.CreateDate));
+            return View(userProfile.Products.OrderByDescending(a => a.CreateDate).ToList());
         }
 
         public ActionResult ManageArtWorks()
