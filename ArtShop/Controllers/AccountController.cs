@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using ArtShop.Models;
 using DataLayer;
 using DataLayer.Enitities;
+using RestSharp;
 
 namespace ArtShop.Controllers
 {
@@ -161,11 +162,12 @@ namespace ArtShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType };
+                var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType, MailingList = true };
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, userDetail = userDetail };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    AddSubscriber(user.Email);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -181,6 +183,16 @@ namespace ArtShop.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public void AddSubscriber(string email)
+        {
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            request.AddHeader("content-type", "application/json");
+            request.AddParameter("application/json", "{\"email\":\"" + email + "\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
         }
 
         //
@@ -370,7 +382,7 @@ namespace ArtShop.Controllers
                             return View("ExternalLoginFailure");
                         }
 
-                        var userDetail = new UserProfile { FirstName = loginInfo.ExternalIdentity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ')[1]) ? null : loginInfo.ExternalIdentity.Name.Split(' ')[1], profileType = ProfileType.Collector };
+                        var userDetail = new UserProfile { FirstName = loginInfo.ExternalIdentity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ')[1]) ? null : loginInfo.ExternalIdentity.Name.Split(' ')[1], profileType = ProfileType.Collector,MailingList= true };
                         var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail };
                         var registerResult = await UserManager.CreateAsync(user);
                         if (registerResult.Succeeded)
@@ -378,6 +390,7 @@ namespace ArtShop.Controllers
                             registerResult = await UserManager.AddLoginAsync(user.Id, info.Login);
                             if (registerResult.Succeeded)
                             {
+                                AddSubscriber(user.Email);
                                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                                 return RedirectToAction("Index", "Home");
                             }
@@ -386,7 +399,7 @@ namespace ArtShop.Controllers
                         {
                             ApplicationDbContext db = new ApplicationDbContext();
                             user = db.Users.FirstOrDefault(a => a.Email == loginInfo.Email);
-
+                            AddSubscriber(user.Email);
                             await SignInManager.SignInAsync(user, false, false);
                             return RedirectToAction("Index", "Home");
 

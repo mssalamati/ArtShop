@@ -13,6 +13,7 @@ using DataLayer;
 using Microsoft.AspNet.Identity;
 using ArtShop.Util;
 using System.Text;
+using RestSharp;
 
 namespace ArtShop.Controllers
 {
@@ -201,18 +202,31 @@ namespace ArtShop.Controllers
 
         public ActionResult Footer()
         {
+
             return PartialView("_footer", CashManager.Instance.Footer);
+        }
+
+        public ActionResult AddSubscriber(string email)
+        {
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            request.AddHeader("content-type", "application/json");
+            request.AddParameter("application/json","{\"email\":\""+email+"\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", ParameterType.RequestBody);
+            IRestResponse response =  client.Execute(request);
+
+            return Content("done");
         }
 
         public ActionResult SetCulture(string culture)
         {
             culture = CultureHelper.GetImplementedCulture(culture);
-            HttpCookie cookie = Request.Cookies["_culture"];
+            System.Web.HttpCookie cookie = Request.Cookies["_culture"];
             if (cookie != null)
                 cookie.Value = culture;   // update cookie value
             else
             {
-                cookie = new HttpCookie("_culture");
+                cookie = new System.Web.HttpCookie("_culture");
                 cookie.Value = culture;
                 cookie.Expires = DateTime.Now.AddYears(1);
             }

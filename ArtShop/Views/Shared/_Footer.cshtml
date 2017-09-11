@@ -64,15 +64,21 @@
                 <div id="footerSubscribe">
                     <h2>@FooterRes.Email_header1</h2>
                     <div>@FooterRes.Email_header2</div>
-                    <form id="so-sign-up-form" class="footer-newsletter-subscribe" onsubmit="Saatchi.Subscribe.simpleFooterSubmit($(this)); return false;">
+
+
+                    @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
+                    {
+                        @Html.AntiForgeryToken()
                         <div class="enter-email">
                             <input type="hidden" name="version" value="1">
                             <input type="hidden" name="account_type" value="collector">
                             <input type="hidden" name="user_type_id" value="1">
-                            <input type="text" name="email" id="so-subscribe-email" value="" class="text" autocomplete="off" placeholder="Email Address">
+                            <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
                             <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4" value="@FooterRes.SignUp" class="button btn-info dark">
                         </div>
-                    </form>
+                    }
+
+
                 </div>
                 <div id="footerSubscribeThanks" class="thank-you hide">
                     <h2>Thank you for signing up!</h2>
@@ -106,7 +112,23 @@
         </div>
     </div>
 
+    @*for ajax*@
     <script>
+        function parsContent(result) {
+            if (result == "done") {
+                $.toast({
+                    heading: 'Success',
+                    text: 'subscription successful',
+                    icon: 'success',
+                    showHideTransition: 'slide',
+                    position: 'top-right',
+                    hideAfter: 7000
+                })
+            } else {
 
+                $('#ajaxrender').html(result);
+            }
+        }
     </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
 </footer>

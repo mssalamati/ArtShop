@@ -10,6 +10,7 @@ using DataLayer.Enitities;
 using Utilities;
 using DataLayer.Extentions;
 using ArtShop.Util;
+using RestSharp;
 
 namespace ArtShop.Controllers
 {
@@ -52,11 +53,42 @@ namespace ArtShop.Controllers
             userProfile.ApplicationUserDetail.Email = model.Email;
             userProfile.profileType = model.profileType;
             userProfile.ReceiveNewArtEmail = model.ReceiveNewArtEmail;
+            if (model.MailingList && !userProfile.MailingList)
+            {
+                AddSubscriber(userProfile.ApplicationUserDetail.Email);
+            }
+            else if (!model.MailingList)
+            {
+                RemoveFromSubscribers(userProfile.ApplicationUserDetail.Email);
+            }
             userProfile.MailingList = model.MailingList;
 
             db.SaveChanges();
 
             return View(model);
+        }
+
+        public void AddSubscriber(string email)
+        {
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            request.AddHeader("content-type", "application/json");
+            request.AddParameter("application/json", "{\"email\":\"" + email + "\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+        }
+
+        public void RemoveFromSubscribers(string email)
+        {
+
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers/" + email);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            //request.AddHeader("content-type", "application/json");
+            //request.AddParameter("application/json", "{\"" + email + "\"}", ParameterType.QueryString);
+            //request.AddQueryParameter("", email);
+
+            IRestResponse response = client.Delete(request);
         }
 
         public ActionResult ProfileInformation()
