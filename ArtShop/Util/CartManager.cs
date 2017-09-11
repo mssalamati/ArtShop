@@ -27,7 +27,7 @@ namespace ArtShop.Util
         }
 
 
-        public void AddToCart(Product p,Ordertype type)
+        public void AddToCart(Product p, Ordertype type)
         {
             // Get the matching cart and album instances
             var cartItem = db.ShoppingCarts.SingleOrDefault(
@@ -170,33 +170,24 @@ namespace ArtShop.Util
         public int CreateOrder(Order order)
         {
             decimal orderTotal = 0;
-
             var cartItems = GetCartItems();
-            // Iterate over the items in the cart, 
-            // adding the order details for each
             foreach (var item in cartItems)
             {
                 var orderDetail = new OrderDetail
                 {
                     Product = item.Product,
-                    orderId = order.Id,
                     UnitPrice = item.Product.Price,
                     Quantity = item.Quantity,
                     type = item.type
                 };
-                // Set the order total of the shopping cart
                 orderTotal += (item.Quantity * item.Product.Price);
-
-                db.OrderDetails.Add(orderDetail);
+                order.OrderDetails.Add(orderDetail);
             }
-            // Set the order's total to the orderTotal count
             order.TotalPrice = (double)orderTotal;
-
-            // Save the order
+            order.TransactionDetail = new TransactionDetail() { amount = orderTotal };
+            db.Orders.Add(order);
             db.SaveChanges();
-            // Empty the shopping cart
             EmptyCart();
-            // Return the OrderId as the confirmation number
             return order.Id;
         }
         // We're using HttpContextBase to allow access to cookies.

@@ -35,8 +35,9 @@ namespace DataLayer.Enitities
         public string Description { get; set; }
         public DateTime date { get; set; }
         public string Number { get; set; }
+        public string TransactionNumber { get; set; }
         public bool Payed { get; set; }
-
+        public decimal amount { get; set; }
         public TransactionDetail()
         {
             date = DateTime.Now;

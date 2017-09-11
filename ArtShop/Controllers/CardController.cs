@@ -45,6 +45,10 @@ namespace ArtShop.Controllers
             var cart = CartManager.GetCart(this.HttpContext);
             int amount = (int)cart.GetTotal() * 4000;
 
+            Order o = new Order() { user_id = userId };
+            var orderId = cart.CreateOrder(o);
+            var neworder = db.Orders.Find(orderId);
+
             System.Net.ServicePointManager.Expect100Continue = false;
             ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
@@ -58,10 +62,8 @@ namespace ArtShop.Controllers
 
             long longAuth = 0;
             long.TryParse(Authority, out longAuth);
-            //Transaction t = new Transaction(amount, TransactionType.IncreaseCredit, longAuth);
-            //profile.Transactions.Add(t);
+            neworder.TransactionDetail.Number = longAuth.ToString();
             db.SaveChanges();
-
             if (Status == 100)
             {
                 Response.Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
@@ -75,69 +77,64 @@ namespace ArtShop.Controllers
 
         public ActionResult verify()
         {
-            //if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
-            //{
-            //    if (Request.QueryString["Status"].ToString().Equals("OK"))
-            //    {
-            //        long longAuth = 0;
-            //        long.TryParse(Request.QueryString["Authority"], out longAuth);
-            //        var tran = db.Transactions.FirstOrDefault(x => x.Authority == longAuth);
-            //        if (tran != null)
-            //        {
-            //            int Amount = (int)tran.Amount;
-            //            long RefID;
-
-            //            System.Net.ServicePointManager.Expect100Continue = false;
-            //            ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp =
-            //                new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
-
-            //            int Status = zp.PaymentVerification("e21e6fde-e5f6-11e6-bdac-000c295eb8fc", Request.QueryString["Authority"].ToString(), Amount, out RefID);
-
-            //            tran.RefID = RefID.ToString();
-            //            tran.Status = Status.ToString();
-            //            if (Status == 100)
-            //            {
-            //                tran.Confirmed = true;
-            //                tran.profile.Account += Amount;
-            //                db.SaveChanges();
-
-            //                ViewBag.text = "پرداخت با موفقیت انجام شد";
-            //                ViewBag.refid = RefID.ToString();
-            //                return View();
-            //            }
-            //            else
-            //            {
-            //                db.SaveChanges();
-            //                ViewBag.text = "پرداخت نا موفق";
-            //                ViewBag.refid = RefID.ToString();
-            //                return View();
-            //            }
-            //        }
-            //        else
-            //        {
-            //            ViewBag.text = "پرداخت نا موفق";
-            //            return View();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        long longAuth = 0;
-            //        long.TryParse(Request.QueryString["Authority"], out longAuth);
-            //        var tran = db.Transactions.FirstOrDefault(x => x.Authority == longAuth);
-            //        if (tran != null)
-            //        {
-            //            tran.Status = Request.QueryString["Status"].ToString();
-            //            db.SaveChanges();
-            //        }
-            //        ViewBag.text = "پرداخت نا موفق";
-            //        return View();
-            //    }
-            //}
-            //else
-            //{
-            ViewBag.text = "پرداخت نا موفق";
-            return RedirectToAction("orders", "accounts", new { });
-            //}
+            if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
+            {
+                if (Request.QueryString["Status"].ToString().Equals("OK"))
+                {
+                    long longAuth = 0;
+                    long.TryParse(Request.QueryString["Authority"], out longAuth);
+                    var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
+                    if (tran != null)
+                    {
+                        decimal Amount = tran.amount;
+                        long RefID;
+                        System.Net.ServicePointManager.Expect100Continue = false;
+                        ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp =
+                            new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
+                        int Status = zp.PaymentVerification("e21e6fde-e5f6-11e6-bdac-000c295eb8fc", Request.QueryString["Authority"].ToString(), (int)Amount, out RefID);
+                        tran.TransactionNumber = RefID.ToString();
+                        tran.Description = Status.ToString();
+                        if (Status == 100)
+                        {
+                            tran.Payed = true;
+                            db.SaveChanges();
+                            ViewBag.text = "پرداخت با موفقیت انجام شد";
+                            ViewBag.refid = RefID.ToString();
+                            return View();
+                        }
+                        else
+                        {
+                            db.SaveChanges();
+                            ViewBag.text = "پرداخت نا موفق";
+                            ViewBag.refid = RefID.ToString();
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.text = "پرداخت نا موفق";
+                        return View();
+                    }
+                }
+                else
+                {
+                    long longAuth = 0;
+                    long.TryParse(Request.QueryString["Authority"], out longAuth);
+                    var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
+                    if (tran != null)
+                    {
+                        tran.Description = Request.QueryString["Status"].ToString();
+                        db.SaveChanges();
+                    }
+                    ViewBag.text = "پرداخت نا موفق";
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.text = "پرداخت نا موفق";
+                return View();
+            }
         }
 
         [HttpPost]
