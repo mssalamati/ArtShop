@@ -108,6 +108,7 @@
     <Compile Include="Enitities\SiteParam.cs" />
     <Compile Include="Enitities\Style.cs" />
     <Compile Include="Enitities\Subject.cs" />
+    <Compile Include="Enitities\Transactions.cs" />
     <Compile Include="Enitities\UserLink.cs" />
     <Compile Include="Enitities\UserProfile.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
