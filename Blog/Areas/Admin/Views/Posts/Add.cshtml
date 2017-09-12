@@ -147,7 +147,8 @@
 
                     <div class="col-md-12" style="margin-top:10px">
                         <div class="form-group">
-                            <textarea name="Description" id="Content">@Model.Description</textarea>
+                            @*<textarea name="Description" id="Content">@Model.Description</textarea>*@
+                            @Html.Raw(ViewBag.Editor)
                         </div>
                     </div>
 
@@ -200,8 +201,8 @@
 
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>
+    @*<script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>*@
 
     <script type="text/javascript">
         CKEDITOR.replace('Content', {

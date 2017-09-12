@@ -38,6 +38,7 @@ namespace Blog.Areas.Admin.Controllers
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
             ViewBag.tags = db.Tags.ToList();
+            
             return View(new PostViewModel());
         }
         [HttpPost]
