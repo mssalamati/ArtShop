@@ -526,6 +526,7 @@
     <Content Include="Views\QSearch\Art.cshtml" />
     <Content Include="Views\QSearch\Collection.cshtml" />
     <Content Include="Views\Card\verify.cshtml" />
+    <Content Include="Views\Card\getinfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

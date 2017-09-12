@@ -28,14 +28,11 @@ namespace ArtShop.Controllers
             return View(viewModel);
         }
 
-        public ActionResult AddToCart(int id, Ordertype type)
+        public ActionResult getinfo()
         {
-            var addedAlbum = db.Products.Find(id);
-            var cart = CartManager.GetCart(this.HttpContext);
-            cart.AddToCart(addedAlbum, type);
-            return Redirect("/checkout");
+            return View();
         }
-
+  
         [Authorize]
         public ActionResult Pay()
         {
@@ -138,6 +135,16 @@ namespace ArtShop.Controllers
             }
         }
 
+
+
+        public ActionResult AddToCart(int id, Ordertype type)
+        {
+            var addedAlbum = db.Products.Find(id);
+            var cart = CartManager.GetCart(this.HttpContext);
+            cart.AddToCart(addedAlbum, type);
+            return Redirect("/checkout");
+        }
+
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
@@ -189,7 +196,6 @@ namespace ArtShop.Controllers
             };
             return Json(results);
         }
-
 
         [ChildActionOnly]
         public ActionResult CartSummary()
