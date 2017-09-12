@@ -43,9 +43,9 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var cart = CartManager.GetCart(this.HttpContext);
-            int amount = (int)cart.GetTotal() * 4000;
+            int amount = (int)cart.GetTotal();
 
-            Order o = new Order() { user_id = userId };
+            Order o = new Order() { user_id = userId,OrderDetails = new List<OrderDetail>() };
             var orderId = cart.CreateOrder(o);
             var neworder = db.Orders.Find(orderId);
 
