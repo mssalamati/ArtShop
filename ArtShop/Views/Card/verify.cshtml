@@ -3,5 +3,33 @@
     ViewBag.Title = "verify";
 }
 
-<h2>@ViewBag.text</h2>
+<div class="row-layout content">
+    <div class="row">
+        <div class="small-12 columns">
+            <h2 style="text-align:right" class="section-title mt0">نتیجه سفارش شما</h2>
+            <div style="text-align:right" class="section-details">@User.Identity.Name</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns">
+            <table class="table table-hover">
+                <tr>
+                    <td>status</td>
+                    <td>@ViewBag.status</td>
+                </tr>
+                <tr>
+                    <td>text</td>
+                    <td>@ViewBag.text</td>
+                </tr>
+                <tr>
+                    <td>refid</td>
+                    <td>@ViewBag.refid</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <a class="btn btn-info">لیست سفارشات</a>
+</div>
 

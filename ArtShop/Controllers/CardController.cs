@@ -100,6 +100,7 @@ namespace ArtShop.Controllers
                             db.SaveChanges();
                             ViewBag.text = "پرداخت با موفقیت انجام شد";
                             ViewBag.refid = RefID.ToString();
+                            CartManager.GetCart(this.HttpContext).EmptyCart();
                             return View();
                         }
                         else

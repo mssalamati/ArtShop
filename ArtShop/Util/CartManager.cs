@@ -187,7 +187,6 @@ namespace ArtShop.Util
             order.TransactionDetail = new TransactionDetail() { amount = orderTotal };
             db.Orders.Add(order);
             db.SaveChanges();
-            EmptyCart();
             return order.Id;
         }
         // We're using HttpContextBase to allow access to cookies.
