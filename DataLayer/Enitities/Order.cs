@@ -21,6 +21,15 @@ namespace DataLayer.Enitities
         public virtual double TotalPrice { get; set; }
         public virtual TransactionDetail TransactionDetail { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string Address { get; set; }
+        public string BuildingNumber { get; set; }
+        public string ReceiverName { get; set; }
+        public string PostalCode { get; set; }
+
         public Order()
         {
             BuyDate = DateTime.Now;
