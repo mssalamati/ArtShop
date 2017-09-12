@@ -28,14 +28,11 @@ namespace ArtShop.Controllers
             return View(viewModel);
         }
 
-        public ActionResult AddToCart(int id, Ordertype type)
+        public ActionResult getinfo()
         {
-            var addedAlbum = db.Products.Find(id);
-            var cart = CartManager.GetCart(this.HttpContext);
-            cart.AddToCart(addedAlbum, type);
-            return Redirect("/checkout");
+            return View();
         }
-
+  
         [Authorize]
         public ActionResult Pay()
         {
@@ -100,6 +97,7 @@ namespace ArtShop.Controllers
                             db.SaveChanges();
                             ViewBag.text = "پرداخت با موفقیت انجام شد";
                             ViewBag.refid = RefID.ToString();
+                            CartManager.GetCart(this.HttpContext).EmptyCart();
                             return View();
                         }
                         else
@@ -135,6 +133,16 @@ namespace ArtShop.Controllers
                 ViewBag.text = "پرداخت نا موفق";
                 return View();
             }
+        }
+
+
+
+        public ActionResult AddToCart(int id, Ordertype type)
+        {
+            var addedAlbum = db.Products.Find(id);
+            var cart = CartManager.GetCart(this.HttpContext);
+            cart.AddToCart(addedAlbum, type);
+            return Redirect("/checkout");
         }
 
         [HttpPost]
@@ -188,7 +196,6 @@ namespace ArtShop.Controllers
             };
             return Json(results);
         }
-
 
         [ChildActionOnly]
         public ActionResult CartSummary()
