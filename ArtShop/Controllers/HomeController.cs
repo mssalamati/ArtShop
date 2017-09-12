@@ -13,7 +13,7 @@ using DataLayer;
 using Microsoft.AspNet.Identity;
 using ArtShop.Util;
 using System.Text;
-using RestSharp;
+
 
 namespace ArtShop.Controllers
 {
@@ -43,7 +43,7 @@ namespace ArtShop.Controllers
             return View(model);
         }
 
-        [OutputCache(Duration = 360)]
+        //[OutputCache(Duration = 360)]
         public ActionResult _SelectedCurators(FirstPageSection model)
         {
             try
@@ -65,7 +65,7 @@ namespace ArtShop.Controllers
             }
             return PartialView(model);
         }
-        [OutputCache(Duration = 360)]
+        //[OutputCache(Duration = 360)]
         public ActionResult _SalebyPrice(FirstPageSection model)
         {
             var p1 = db.Pricethresholds.Find(int.Parse(model.param1)) ?? new Pricethreshold();
@@ -101,14 +101,14 @@ namespace ArtShop.Controllers
             // text1 , text2 , link , pic
             return PartialView(model);
         }
-        [OutputCache(Duration = 360)]
+        //[OutputCache(Duration = 360)]
         public ActionResult _RecentlySold(FirstPageSection model)
         {
             var recently = db.Orders
                 .SelectMany(x => x.OrderDetails).Select(x => x.Product).Take(10).ToList();
             return PartialView(recently);
         }
-        [OutputCache(Duration = 360)]
+        //[OutputCache(Duration = 360)]
         public ActionResult _SalebyStyle(FirstPageSection model)
         {
             var p1 = db.Styles.Find(int.Parse(model.param1)) ?? new Style();
@@ -144,7 +144,7 @@ namespace ArtShop.Controllers
             // text1 , text2 , link , pic
             return PartialView(model);
         }
-        [OutputCache(Duration = 360)]
+        //[OutputCache(Duration = 360)]
         public ActionResult _SalebyCategory(FirstPageSection model)
         {
             var p1 = db.Categories.Find(int.Parse(model.param1)) ?? new Category();
@@ -208,12 +208,12 @@ namespace ArtShop.Controllers
 
         public ActionResult AddSubscriber(string email)
         {
-            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
-            var request = new RestRequest(Method.POST);
+            var client = new RestSharp.RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var request = new RestSharp.RestRequest(RestSharp.Method.POST);
             request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
             request.AddHeader("content-type", "application/json");
-            request.AddParameter("application/json","{\"email\":\""+email+"\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", ParameterType.RequestBody);
-            IRestResponse response =  client.Execute(request);
+            request.AddParameter("application/json","{\"email\":\""+email+"\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", RestSharp.ParameterType.RequestBody);
+            RestSharp.IRestResponse response =  client.Execute(request);
 
             return Content("done");
         }
@@ -221,12 +221,12 @@ namespace ArtShop.Controllers
         public ActionResult SetCulture(string culture)
         {
             culture = CultureHelper.GetImplementedCulture(culture);
-            System.Web.HttpCookie cookie = Request.Cookies["_culture"];
+            HttpCookie cookie = Request.Cookies["_culture"];
             if (cookie != null)
                 cookie.Value = culture;   // update cookie value
             else
             {
-                cookie = new System.Web.HttpCookie("_culture");
+                cookie = new HttpCookie("_culture");
                 cookie.Value = culture;
                 cookie.Expires = DateTime.Now.AddYears(1);
             }

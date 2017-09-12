@@ -13,7 +13,7 @@ namespace Blog.Controllers
         public ActionResult Index(int id)
         {
             var category = db.Categories.Find(id);
-            var posts = category.Posts.ToList();
+            var posts = category.Posts.OrderByDescending(a=>a.PostedOn).ToList();
             ViewBag.CategoryName = category.Name;
             return View(posts);
 
