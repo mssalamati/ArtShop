@@ -28,13 +28,25 @@ namespace ArtShop.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         public ActionResult getinfo()
         {
+            var user = db.UserProfiles.Find(User.Identity.GetUserId());
+            if (user.billingInfo != null)
+            {
+                ViewBag.Street = user.billingInfo.Street;
+                ViewBag.City = user.billingInfo.City;
+                ViewBag.Country = user.billingInfo.country.Current().Name;
+                ViewBag.Region = user.billingInfo.Region;
+                ViewBag.ZipCode = user.billingInfo.ZipCode;
+                ViewBag.PhoneNumber = user.billingInfo.PhoneNumber;
+            }
             return View();
         }
-  
+
+        [HttpPost]
         [Authorize]
-        public ActionResult Pay()
+        public ActionResult Pay(checkInfoViewModel model)
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
@@ -42,7 +54,16 @@ namespace ArtShop.Controllers
             var cart = CartManager.GetCart(this.HttpContext);
             int amount = (int)cart.GetTotal();
 
-            Order o = new Order() { user_id = userId,OrderDetails = new List<OrderDetail>() };
+            Order o = new Order()
+            {
+                user_id = userId,
+                OrderDetails = new List<OrderDetail>(),
+                ReceiverName = model.firstname + " " + model.lastname,
+                Address = model.address,
+                Country = model.country,
+                City = model.city,
+                PhoneNumber = model.PhoneNumber,
+            };
             var orderId = cart.CreateOrder(o);
             var neworder = db.Orders.Find(orderId);
 

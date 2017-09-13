@@ -259,6 +259,7 @@
     <Compile Include="Models\AccountInfoViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\checkInfoViewModel.cs" />
     <Compile Include="Models\CollectionViewModel.cs" />
     <Compile Include="Models\EditProductMenuViewModel.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
