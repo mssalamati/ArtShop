@@ -85,7 +85,7 @@
             @foreach (var item in posts)
             {
                 count++;
-                
+
                 if (count != 5)
                 {
                     <div class="@sqrPostCol">
@@ -107,7 +107,7 @@
                         </div><!-- .post-element -->
                     </div><!-- .col-lg-4 -->
                 }
-                else
+                else if (Model.Any(a => a.postType == PostType.Wide))
                 {
                     var widePost = Model.FirstOrDefault(a => a.postType == PostType.Wide);
                     <div class="@widePostCol">
@@ -129,6 +129,28 @@
                         </div><!-- .post-element -->
                     </div><!-- .col-lg-4 -->
 
+
+                }
+                else
+                {
+                    <div class="@sqrPostCol">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                    <img width="300" height="300" src="@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
+                            <h4>
+                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                    @item.Current().Title
+                                </a>
+                            </h4>
+                            <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
 
                 }
             }
