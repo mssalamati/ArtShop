@@ -112,8 +112,10 @@
         </div>
     </div>
 
-    @*for ajax*@
-    <script>
+</footer>
+
+
+<script>
         function parsContent(result) {
             if (result == "done") {
                 $.toast({
@@ -129,6 +131,4 @@
                 $('#ajaxrender').html(result);
             }
         }
-    </script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
-</footer>
+</script>

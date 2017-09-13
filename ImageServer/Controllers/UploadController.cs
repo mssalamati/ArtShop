@@ -23,8 +23,8 @@ namespace ImageServer.Controllers
             var maxStoreage = long.Parse(ConfigurationManager.AppSettings["maxStoreage"]);
             var path = Server.MapPath("~" + rootFolder);
             var length = GetDirectorySize(path + "/Equal");
-            length += GetDirectorySize(path+ "/Orginal");
-            length += GetDirectorySize(path+ "/Squre");
+            length += GetDirectorySize(path + "/Orginal");
+            length += GetDirectorySize(path + "/Squre");
             length += GetDirectorySize(path + "/Wide");
             return Json(new
             {
@@ -123,24 +123,31 @@ namespace ImageServer.Controllers
         [HttpPost]
         public ActionResult upload(HttpPostedFileBase file)
         {
-            var rootFolder = ConfigurationManager.AppSettings["rootFolder"];
-            var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
-            var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
-            string OrginalFolderName = rootFolder + "/Orginal";
-            string thumbPath = rootFolder + "/Equal";
-            var result = ImageHelper.Saveimage(Server, file, OrginalFolderName, ImageHelper.saveImageMode.Not);
-            if (!result.ResultStatus)
-                return Json(new { result = false, data = result.Error });
-            var saveResult = ImageHelper.saveThumb(Server, result.FullPath, thumbPath);
-            if (!saveResult.ResultStatus)
-                return Json(new { result = false, data = saveResult.Error }, JsonRequestBehavior.AllowGet);
-            return Json(new
+            try
             {
-                result = true,
-                data = "http://" + ImageServerName + "." + mainDomain + saveResult.FullPath,
-                width = result.Width,
-                height = result.Height
-            }, JsonRequestBehavior.AllowGet);
+                var rootFolder = ConfigurationManager.AppSettings["rootFolder"];
+                var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
+                var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
+                string OrginalFolderName = rootFolder + "/Orginal";
+                string thumbPath = rootFolder + "/Equal";
+                var result = ImageHelper.Saveimage(Server, file, OrginalFolderName, ImageHelper.saveImageMode.Not);
+                if (!result.ResultStatus)
+                    return Json(new { result = false, data = result.Error });
+                var saveResult = ImageHelper.saveThumb(Server, result.FullPath, thumbPath);
+                if (!saveResult.ResultStatus)
+                    return Json(new { result = false, data = saveResult.Error }, JsonRequestBehavior.AllowGet);
+                return Json(new
+                {
+                    result = true,
+                    data = "http://" + ImageServerName + "." + mainDomain + saveResult.FullPath,
+                    width = result.Width,
+                    height = result.Height
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = false, data = ex.ToString() }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
