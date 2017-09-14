@@ -231,7 +231,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-            var data = db.Orders.Where(x => x.user_id == userId).OrderBy(o => o.BuyDate).Skip(10 * (page - 1)).Take(10);
+            var data = db.Orders.Where(x => x.user_id == userId).OrderByDescending(o => o.BuyDate).Skip(10 * (page - 1)).Take(10);
 
             return View(data);
         }

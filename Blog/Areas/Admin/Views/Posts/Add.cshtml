@@ -205,11 +205,17 @@
 
     <script type="text/javascript">
         CKEDITOR.replace('Content', {
-            customConfig: '/config.js',
+            customConfig: '/Content/Admin/ckeditor/config.js',
             height: 500,
+            uploadUrl: '/admin/posts/uploadnow',
             filebrowserImageBrowseUrl: '/admin/posts/uploadPartial',
             filebrowserImageUploadUrl: '/admin/posts/uploadnow',
+            filebrowserUploadUrl: '/admin/posts/uploadnow',
+            filebrowserWindowWidth: '640',
+            filebrowserWindowHeight: '480'
         });
+
+
 
     </script>
 

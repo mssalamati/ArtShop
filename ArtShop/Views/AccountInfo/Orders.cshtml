@@ -1,8 +1,16 @@
 ﻿@model IEnumerable<Order>
 @{
-    ViewBag.Title = "Settings | Artiscovery";
+    ViewBag.Title = "Orders | Artiscovery";
 }
 
+@{var IsRighToLeft = CultureHelper.IsRighToLeft();}
+
+@if (IsRighToLeft)
+{
+    @Html.Partial("OrdersRTL");
+}
+else
+{
 
 <div class="row-layout content" style="">
 
@@ -97,3 +105,4 @@
         </div>
     </div>        <div class="clearfix"></div>
 </div>
+}

@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/467015a2b4edcdc80f8117b27ad3f316
+ * (2) http://ckeditor.com/builder/4c376338a98314c4f2435721b64ac8d7
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/467015a2b4edcdc80f8117b27ad3f316
+ * (3) http://ckeditor.com/builder/download/4c376338a98314c4f2435721b64ac8d7
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -25,7 +25,7 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'office2013',
+	skin: 'icy_orange',
 	preset: 'full',
 	ignore: [
 		'.DS_Store',
@@ -51,6 +51,7 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins : {
+		'SimpleImage' : 1,
 		'a11yhelp' : 1,
 		'about' : 1,
 		'basicstyles' : 1,
@@ -86,6 +87,7 @@ var CKBUILDER_CONFIG = {
 		'liststyle' : 1,
 		'magicline' : 1,
 		'maximize' : 1,
+		'nbsp' : 1,
 		'newpage' : 1,
 		'pagebreak' : 1,
 		'pastefromword' : 1,
@@ -110,6 +112,7 @@ var CKBUILDER_CONFIG = {
 		'templates' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
+		'uploadimage' : 1,
 		'wsc' : 1,
 		'wysiwygarea' : 1
 	},
