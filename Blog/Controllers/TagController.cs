@@ -7,14 +7,14 @@ using System.Web.Mvc;
 
 namespace Blog.Controllers
 {
-    public class CategoryController : BaseController
+    public class TagController : BaseController
     {
-        // GET: Category
+        // GET: Tag
         public ActionResult Index(int id)
         {
-            var category = db.Categories.Find(id);
-            var posts = category.Posts.OrderByDescending(a => a.PostedOn).ToList();
-            ViewBag.CategoryName = category.Name;
+            var tags = db.Tags.Find(id);
+            var posts = tags.Posts.OrderByDescending(a => a.PostedOn).ToList();
+            ViewBag.TagName = tags.Name;
             return View(posts);
         }
     }

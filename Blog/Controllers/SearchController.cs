@@ -10,11 +10,10 @@ namespace Blog.Controllers
     public class SearchController : BaseController
     {
         // GET: Search
-        public ActionResult Index(int id)
+        public ActionResult Index(string Keyword)
         {
-            var category = db.Categories.Find(id);
-            var posts = category.Posts.OrderByDescending(a=>a.PostedOn).ToList();
-            ViewBag.CategoryName = category.Name;
+            var posts = db.Posts.Where(x => x.Title.Contains(Keyword)).OrderByDescending(a => a.PostedOn).ToList();
+            ViewBag.keyword = Keyword;
             return View(posts);
 
         }

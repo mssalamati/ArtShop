@@ -14,9 +14,16 @@ namespace Blog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.Add("Search", new SeoFriendlyRoute("Category/{Index}/{id}",
-          new RouteValueDictionary(new { controller = "Search", action = "Index", Index = UrlParameter.Optional }),
+            routes.Add("Category", new SeoFriendlyRoute("Category/{Index}/{id}",
+          new RouteValueDictionary(new { controller = "Category", action = "Index", Index = UrlParameter.Optional }),
           new MvcRouteHandler()));
+
+
+            routes.MapRoute(
+        "item_details",
+        "search/{id}",
+        new { controller = "Search", action = "Index" }
+        );
 
             routes.Add("PostDetails", new SeoFriendlyRoute("post/{Index}/{id}",
                 new RouteValueDictionary(new { controller = "post", action = "Index", Index = UrlParameter.Optional }),
