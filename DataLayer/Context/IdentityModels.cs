@@ -113,7 +113,10 @@ namespace DataLayer
         public DbSet<ProductFrameType> ProductFrameTypes { get; set; }
         public DbSet<ProductFrameTypeTranslation> ProductFrameTypeTranslations { get; set; }
         public DbSet<TransactionDetail> TransactionDetails { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }  
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<WordCategory> WordCategories { get; set; }
+        public DbSet<Word> Words { get; set; }
+        public DbSet<WordTranslation> WordTranslations { get; set; }
         public DbSet<Log> logs { get; set; }
     }
 }

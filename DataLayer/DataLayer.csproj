@@ -111,9 +111,41 @@
     <Compile Include="Enitities\Transactions.cs" />
     <Compile Include="Enitities\UserLink.cs" />
     <Compile Include="Enitities\UserProfile.cs" />
+    <Compile Include="Enitities\Word.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Context\IdentityModels.cs" />
     <Compile Include="Interfaces\ITranslation.cs" />
+    <Compile Include="LanguageUtil\ResBase.cs" />
+    <Compile Include="LanguageUtil\WordResources\CardRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageUtil\WordResources\FooterRes.Designer.cs">
+      <DependentUpon>FooterRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="LanguageUtil\WordResources\ProfileRes.Designer.cs">
+      <DependentUpon>ProfileRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="LanguageUtil\WordResources\SearchRes.Designer.cs">
+      <DependentUpon>SearchRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="LanguageUtil\WordResources\ShareRes.Designer.cs">
+      <DependentUpon>ShareRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="LanguageUtil\WordResources\UploadRes.Designer.cs">
+      <DependentUpon>UploadRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +158,32 @@
       <Project>{889b94a8-b8d2-4b8c-9634-e2ee3a5ea2f7}</Project>
       <Name>Resources</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LanguageUtil\WordResources\CardRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CardRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageUtil\WordResources\FooterRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FooterRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageUtil\WordResources\ProfileRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageUtil\WordResources\SearchRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageUtil\WordResources\ShareRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShareRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageUtil\WordResources\UploadRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UploadRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
