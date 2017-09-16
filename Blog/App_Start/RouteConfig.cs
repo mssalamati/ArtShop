@@ -25,6 +25,12 @@ namespace Blog
         new { controller = "Search", action = "Index" }
         );
 
+            routes.MapRoute(
+"tag_details",
+"Tag/{id}",
+new { controller = "Tag", action = "Index" }
+);
+
             routes.Add("PostDetails", new SeoFriendlyRoute("post/{Index}/{id}",
                 new RouteValueDictionary(new { controller = "post", action = "Index", Index = UrlParameter.Optional }),
                 new MvcRouteHandler()));
