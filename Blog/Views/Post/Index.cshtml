@@ -87,7 +87,7 @@ else
                             @foreach (var item in Model.Tags)
             {
                                 <li>
-                                    <a href="">
+                                    <a href="/Tag/@item.GenerateSlug()">
                                         @item.Current().Name
                                     </a>
                                 </li>
