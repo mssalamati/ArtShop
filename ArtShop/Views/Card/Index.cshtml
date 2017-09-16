@@ -5,6 +5,12 @@
 @model ShoppingCartViewModel
 @using DataLayer.Extentions
 
+
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +24,21 @@
 
     <link rel="stylesheet" href="https://www.saatchiart.com/build/css/app-6d00ab08f8841479f5fb9520e2a7d990.css" />
     <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+    @if (IsRighToLeft)
+    {
+        <style>
+            body {
+                direction: rtl;
+            }
+
+            @@media (min-width: 992px) {
+                .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                    float: left;
+                }
+            }
+        </style>
+    }
 
     <script type="text/javascript">
     $(function () {
@@ -66,25 +87,37 @@
             <div class="checkout">
                 <header class="checkout__header">
                     <div class="container">
-                        <div class="checkout__header__container"><div class="checkout__header__logo checkout__header__logo--large"><a href="/"><img alt="Artiscovery" style="width:200px;height:29px" src="~/Content/Images/logo.png"></a></div><div class="checkout__header__logo checkout__header__logo--small"><a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png"></a></div><nav class="checkout__breadcrumb"><a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout"><!-- react-text: 15 -->1<!-- /react-text --><!-- react-text: 16 -->. <!-- /react-text --><!-- react-text: 17 -->Cart<!-- /react-text --></a><a class="checkout__breadcrumb__item"><!-- react-text: 19 -->2<!-- /react-text --><!-- react-text: 20 -->. <!-- /react-text --><!-- react-text: 21 -->Checkout<!-- /react-text --></a><a class="checkout__breadcrumb__item"><!-- react-text: 23 -->3<!-- /react-text --><!-- react-text: 24 -->. <!-- /react-text --><!-- react-text: 25 -->Review<!-- /react-text --></a></nav></div>
+                        <div class="checkout__header__container">
+                            <div class="checkout__header__logo checkout__header__logo--large">
+                                <a href="/"><img alt="Artiscovery" style="width:200px;height:29px" src="~/Content/Images/logo.png"></a>
+                            </div>
+                            <div class="checkout__header__logo checkout__header__logo--small">
+                                <a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png"></a>
+                            </div><nav class="checkout__breadcrumb">
+                                <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout">
+                                    1. Cart
+                                </a><a class="checkout__breadcrumb__item">
+                                    2. Checkout
+                                </a><a class="checkout__breadcrumb__item">3. Review</a>
+                            </nav>
+                        </div>
                     </div>
                 </header>
                 <section class="checkout__container">
                     <div class="container">
                         <nav class="checkout__breadcrumb" style="padding:10px">
                             <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout">
-                                <!-- react-text: 30 -->1<!-- /react-text --><!-- react-text: 31 -->. <!-- /react-text --><!-- react-text: 32 -->Cart<!-- /react-text -->
+                                1. Cart
                             </a>
                             <a class="checkout__breadcrumb__item">
-                                <!-- react-text: 34 -->2<!-- /react-text --><!-- react-text: 35 -->. <!-- /react-text --><!-- react-text: 36 -->Checkout<!-- /react-text -->
+                                2. Checkout
                             </a>
                             <a class="checkout__breadcrumb__item">
-                                <!-- react-text: 38 -->3<!-- /react-text --><!-- react-text: 39 -->. <!-- /react-text --><!-- react-text: 40 -->pay<!-- /react-text -->
+                                3. pay
                             </a>
                         </nav>
                         <div></div>
                         <div>
-                            <!-- react-empty: 43 -->
                             <div class="row">
                                 <div class="col-xs-12 col-md-8">
                                     <div>
@@ -93,7 +126,7 @@
                                             <div class="cart__items">
                                                 @foreach (var item in Model.CartItems)
                                                 {
-                                                    <div  id="row-@item.Id" class="cart__item cart__item--original">
+                                                    <div id="row-@item.Id" class="cart__item cart__item--original">
                                                         <a rel="noopener noreferrer" target="_blank" href="/products/single/@item.ProductId" class="cart__item__photo">
                                                             <img alt="yin yang" src="@item.Product.photo.Path">
                                                         </a>
@@ -123,12 +156,13 @@
                                                             </div>
                                                             <div class="cart__item__estimated-delivery-time">
                                                                 <div>
-                                                                    <!-- react-text: 1175 -->This item usually ships within <!-- /react-text --><!-- react-text: 1176 -->11 - 14<!-- /react-text --><!-- react-text: 1177 --> business days*<!-- /react-text -->
+                                                                    This item usually ships within 11 - 14 business days*
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 }
+
                                                 @*<div class="cart__item cart__item--print">
                                                         <a rel="noopener noreferrer" target="_blank" href="/art/Photography-yin-yang/768405/2361395/view" class="cart__item__photo"><img alt="yin yang" src="//saimg-a.akamaihd.net/saatchi/768405/art/2551400/1621340-6.jpg"></a>
                                                         <div class="cart__item__details">
@@ -168,6 +202,7 @@
                                                         </div>
                                                     </div>*@
                                             </div>
+
                                             <hr>
 
                                             <div class="cart__total">
@@ -185,14 +220,14 @@
                                         <footer class="checkout__footer">
                                             <div>
                                                 <span>
-                                                    <!-- react-text: 2223 -->© <!-- /react-text --><!-- react-text: 2224 -->2017<!-- /react-text --><!-- react-text: 2225 --> Artiscovery Online, Inc. Arena Group Commerce. All rights reserved. <!-- /react-text --><!-- react-text: 2226 --> <!-- /react-text -->
+                                                    © 2017  Artiscovery Online, Inc. Arena Group Commerce. All rights reserved.
                                                 </span>
                                                 <span class="checkout__footer__support">
-                                                    <!-- react-text: 2228 -->Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp;<!-- /react-text --><a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
+                                                    Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp; <a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
                                                 </span>
                                             </div>
                                             <div>
-                                                <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2232 --> |&nbsp;<!-- /react-text --><a href="/copyright" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2234 --> |&nbsp;<!-- /react-text --><a href="/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
+                                                <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>  |&nbsp;<!-- /react-text --><a href="/copyright" target="_blank" rel="noopener noreferrer">Copyright Policy</a> |&nbsp;<a href="/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
                                             </div>
                                         </footer>
                                     </div>
@@ -201,22 +236,21 @@
                                     <div class="checkout__sidebar">
                                         <div class="checkout__sidebar__value-props">
                                             <div>
-                                                <span class="fa fa-check"></span><!-- react-text: 2241 --> Shipping Included On Original Art<!-- /react-text -->
+                                                <span class="fa fa-check"></span> Shipping Included On Original Art
                                             </div>
                                             <div>
-                                                <span class="fa fa-check"></span><!-- react-text: 2244 --> 7-Day Money-Back Guarantee<!-- /react-text -->
+                                                <span class="fa fa-check"></span> 7-Day Money-Back Guarantee
                                             </div>
                                             <div>
-                                                <span class="fa fa-lock"></span><!-- react-text: 2247 --> Safe &amp; Secure Shopping<!-- /react-text -->
+                                                <span class="fa fa-lock"></span>  Safe &amp; Secure Shopping
                                             </div>
-                                            <div><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span> 5-Star Trust Pilot Rating</span></div>
+                                            <div>
+                                                <span> 5-Star Trust Pilot Rating</span>
+                                            </div>
                                         </div>
                                         <div class="checkout__sidebar__quote">
                                             <span class="checkout__sidebar__quote__quote">
-                                                @*"Service as beautiful as the art they sell...Saatchi facilitated the deal and worked
-                                                extremely hard to make sure I received a deal I was happy with and could afford.
-                                                They've found a life long customer in me!"*@
-                                            </span><!-- react-text: 2257 -->—<!-- /react-text --><span class="checkout__sidebar__quote__author">David B, Wilmington, DE, USA</span>
+                                            </span>—<span class="checkout__sidebar__quote__author">David B, Wilmington, DE, USA</span>
                                         </div>
                                         <hr>
                                         <div class="checkout__sidebar__payment-methods">
