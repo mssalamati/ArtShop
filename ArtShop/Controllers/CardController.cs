@@ -12,10 +12,8 @@ using Microsoft.AspNet.Identity;
 
 namespace ArtShop.Controllers
 {
-    public class CardController : Controller
+    public class CardController : BaseController
     {
-        ApplicationDbContext db = new ApplicationDbContext();
-
         [Route("checkout")]
         public ActionResult Index()
         {
