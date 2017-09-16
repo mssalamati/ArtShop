@@ -17,7 +17,7 @@
             else
             {
                 <img style="width:20px;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
-                <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">فارسی</span>
+                <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">فارسی<i class="fa fa-caret-down" style="margin-left:6px"></i></span>
             }
         </button>
 
@@ -55,7 +55,7 @@
                     {
                         <li id="menu-item-42540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-42540"><a href="@Url.Action(@item.Name,"Category", new { id = @item.GenerateSlug()})">@item.Current().Name</a></li>
                     }
-                    <li id="menu-item-42552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42552"><a href="/search">@Resources.SearchRes.Search</a></li>
+                    <li id="menu-item-42552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42552"><a href="@Url.Action("","Search", new { id = ""})">@Resources.SearchRes.Search</a></li>
                 </ul>
             </nav>
         </div><!-- .col-lg-12 -->
@@ -75,7 +75,7 @@
                 {
                     <li id="menu-item-42540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-42540"><a href="@Url.Action(@item.Name,"Category", new { id = @item.GenerateSlug() })">@item.Current().Name</a></li>
                 }
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42552"><a href="/search">Search</a></li>
+                <li id="menu-item-42552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42552"><a href="@Url.Action("","Search", new { id = ""})">@Resources.SearchRes.Search</a></li>
             </ul>
         </div><!-- .drowpdown -->
     </div><!-- .row -->

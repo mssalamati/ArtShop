@@ -1,0 +1,98 @@
+﻿@using Blog.Extentions
+@using Blog.Objects
+@{
+    ViewBag.Title = ViewBag.TagName + " | Blog";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "direction:ltr !important;text-align:left !important";
+    var dir = IsRighToLeft ? "direction:rtl !important" : "";
+}
+@model IList<Post>
+@if (Model.Count > 0)
+{
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 style="@rtlstl">@Model.FirstOrDefault().Category.Current().Name</h2>
+                    <p></p><p style="@rtlstl">@Model.FirstOrDefault().Category.Current().Description</p>
+                    <p></p>
+                    <br />
+                </div><!-- .col-lg-12 -->
+            </div>
+
+
+            <div class="row">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="post-element">
+                            <div class="img-holder">
+                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                    <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                </a>
+                            </div><!-- .img-holder -->
+
+                            <h3><a href="@Url.Action(@item.Category.Name,"Category", new { id = @item.Category.GenerateSlug()})">@item.Category.Current().Name</a></h3>
+                            <h4 style="@dir">
+                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                    @item.Current().Title
+                                </a>
+                            </h4>
+                            <p></p><p>@item.Current().ShortDescription</p>
+                            <p></p>
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-4 -->
+                }
+
+                <div class="append-post-container"></div>
+            </div>
+
+
+
+            <div class="row loader">
+                <div class="col-lg-12">
+                    <a href="javascript:void(0);" class="load-more-btn" data-total="30">Load more</a>
+                </div>
+            </div>
+
+
+            @*<div class="row">
+                    <div class="col-lg-12 col-md-12 sign-up-big">
+                        <div class="post-element">
+                            <div class="feedback-overlay"></div>
+                            <div class="found-overlay">
+                                <div>
+                                    <h2>Good news!</h2>
+                                    <p>You are already subscribed</p>
+                                </div>
+                            </div>
+                            <div class="success-overlay">
+                                <div>
+                                    <h2>Congratulations!</h2>
+                                    <p>You successfully signed up</p>
+                                </div>
+                            </div>
+
+                            <h4>Sign up for our email list</h4>
+                            <p>Find out about new art and collections added weekly</p>
+
+                            <div class="content">
+                                <div class="feedback">
+                                    <span></span>
+                                </div>
+
+                                <form action="" class="sign-up" novalidate="">
+                                    <input type="hidden" id="saatchi_wpnonce_field" name="saatchi_wpnonce_field" value="d779e1b6c4"><input type="hidden" name="_wp_http_referer" value="/category/art">                            <input type="hidden" name="source" value="blog-bottom" autocomplete="off">
+                                    <input type="text" id="honeypot" name="honeypot" placeholder="Leave this field blank" autocomplete="off">
+                                    <input type="email" name="email" placeholder="Email Address" autocomplete="off">
+                                    <button type="submit" class="signup-full">Sign up</button>
+                                </form>
+                            </div><!-- .content -->
+                        </div><!-- .post-element -->
+                    </div><!-- .col-lg-12 -->
+                </div><!-- .row -->*@
+        </main><!-- #main -->
+    </div>
+}
