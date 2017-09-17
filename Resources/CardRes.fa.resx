@@ -180,4 +180,13 @@
   <data name="zipcode" xml:space="preserve">
     <value>کد پستی</value>
   </data>
+  <data name="DeliveryPartners" xml:space="preserve">
+    <value>پست</value>
+  </data>
+  <data name="PaymentMethods" xml:space="preserve">
+    <value>راه های پرداخت</value>
+  </data>
+  <data name="SecureTransaction" xml:space="preserve">
+    <value>امن</value>
+  </data>
 </root>

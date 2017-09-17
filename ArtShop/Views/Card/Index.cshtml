@@ -95,10 +95,10 @@
                                 <a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png"></a>
                             </div><nav class="checkout__breadcrumb">
                                 <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout">
-                                    1. Cart
+                                    1. @CardRes.Cart
                                 </a><a class="checkout__breadcrumb__item">
-                                    2. Checkout
-                                </a><a class="checkout__breadcrumb__item">3. Review</a>
+                                    2. @CardRes.Checkout
+                                </a><a class="checkout__breadcrumb__item">3. @CardRes.Review</a>
                             </nav>
                         </div>
                     </div>
@@ -107,13 +107,13 @@
                     <div class="container">
                         <nav class="checkout__breadcrumb" style="padding:10px">
                             <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout">
-                                1. Cart
+                                1. @CardRes.Cart
                             </a>
                             <a class="checkout__breadcrumb__item">
-                                2. Checkout
+                                2. @CardRes.Checkout
                             </a>
                             <a class="checkout__breadcrumb__item">
-                                3. pay
+                                3. @CardRes.pay
                             </a>
                         </nav>
                         <div></div>
@@ -122,7 +122,7 @@
                                 <div class="col-xs-12 col-md-8">
                                     <div>
                                         <div class="cart checkout__content-section">
-                                            <h1>Cart</h1>
+                                            <h1>@CardRes.Cart</h1>
                                             <div class="cart__items">
                                                 @foreach (var item in Model.CartItems)
                                                 {
@@ -146,12 +146,12 @@
                                                                         }
                                                                     </div>
                                                                 </div>
-                                                                <div class="cart__item__details__right"><a data-id="@item.Id" style="cursor:pointer" class="RemoveLink">Remove (@((int)item.Quantity))</a></div>
+                                                                <div class="cart__item__details__right"><a data-id="@item.Id" style="cursor:pointer" class="RemoveLink">@CardRes.Review (@((int)item.Quantity))</a></div>
                                                             </div>
                                                         </div>
                                                         <div class="cart__item__pricing">
                                                             <div>
-                                                                <div>Original Work</div>
+                                                                <div>@CardRes.OriginalWork</div>
                                                                 <div>$<span id="cart-total">@item.Product.Price</span></div>
                                                             </div>
                                                             <div class="cart__item__estimated-delivery-time">
@@ -208,7 +208,7 @@
                                             <div class="cart__total">
                                                 <div class="cart__total__inner">
                                                     <div class="cart__total__row">
-                                                        <div>Subtotal</div>
+                                                        <div>@CardRes.Subtotal</div>
                                                         <div>$@Model.CartTotal</div>
                                                     </div>
 
@@ -236,13 +236,16 @@
                                     <div class="checkout__sidebar">
                                         <div class="checkout__sidebar__value-props">
                                             <div>
-                                                <span class="fa fa-check"></span> Shipping Included On Original Art
+                                                <span class="fa fa-check"></span> @CardRes.r1
                                             </div>
                                             <div>
-                                                <span class="fa fa-check"></span> 7-Day Money-Back Guarantee
+                                                <span class="fa fa-check"></span> @CardRes.r2
                                             </div>
                                             <div>
-                                                <span class="fa fa-lock"></span>  Safe &amp; Secure Shopping
+                                                <span class="fa fa-lock"></span> @CardRes.r3
+                                            </div>
+                                            <div>
+                                                <span> @CardRes.r4</span>
                                             </div>
                                         </div>
                                         @*<div class="checkout__sidebar__quote">
@@ -251,7 +254,7 @@
                                         </div>*@
                                         <hr>
                                         <div class="checkout__sidebar__payment-methods">
-                                            <h5>Payment Method</h5>
+                                            <h5>@CardRes.PaymentMethods</h5>
                                             <div class="checkout__sidebar__payment-methods__icons">
                                                 <img alt="ZarrinPal" src="~/Content/Images/zarrinpal.png">
                                             </div>
@@ -260,7 +263,7 @@
                                         <div class="checkout__sidebar__two-column">
                                             <div>
                                                 <div class="checkout__sidebar__shipping-providers">
-                                                    <h5>Delivery Partner</h5>
+                                                    <h5>@CardRes.DeliveryPartners</h5>
                                                     <div class="checkout__sidebar__shipping-providers__icons">
                                                         <img style="width:80%;height:50%;margin-top:10px" alt="Mahex" src="~/Content/Images/mahex.png">
                                                     </div>

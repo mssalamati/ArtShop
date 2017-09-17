@@ -75,7 +75,7 @@
                                         @using (Html.BeginForm("pay", "Card", FormMethod.Post, new { id = "mform" }))
                                         {
                                             <div class="cart checkout__content-section">
-                                                <h1>Check Info</h1>
+                                                <h1>@CardRes.CheckInfo</h1>
                                                 <div class="cart__items">
 
                                                     <div class="form">
@@ -155,29 +155,26 @@
                                     <div class="checkout__sidebar">
                                         <div class="checkout__sidebar__value-props">
                                             <div>
-                                                <span class="fa fa-check"></span><!-- react-text: 2241 --> Shipping Included On Original Art<!-- /react-text -->
+                                                <span class="fa fa-check"></span> @CardRes.r1
                                             </div>
                                             <div>
-                                                <span class="fa fa-check"></span><!-- react-text: 2244 --> 7-Day Money-Back Guarantee<!-- /react-text -->
+                                                <span class="fa fa-check"></span> @CardRes.r2
                                             </div>
                                             <div>
-                                                <span class="fa fa-lock"></span><!-- react-text: 2247 --> Safe &amp; Secure Shopping<!-- /react-text -->
+                                                <span class="fa fa-lock"></span> @CardRes.r3
                                             </div>
                                             <div>
-                                                <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span><span class="fa fa-star"></span><span> 5-Star Trust Pilot Rating</span>
+                                                <span> @CardRes.r4</span>
                                             </div>
                                         </div>
                                         <div class="checkout__sidebar__quote">
                                             <span class="checkout__sidebar__quote__quote">
-                                                "Service as beautiful as the art they sell...Saatchi facilitated the deal and worked
-                                                extremely hard to make sure I received a deal I was happy with and could afford.
-                                                They've found a life long customer in me!"
+                                                @CardRes.getinfoRghtBar
                                             </span>
                                         </div>
                                         <hr>
                                         <div class="checkout__sidebar__payment-methods">
-                                            <h5>Payment Methods</h5>
+                                            <h5>@CardRes.PaymentMethods</h5>
                                             <div class="checkout__sidebar__payment-methods__icons">
                                                 <img alt="Visa" src="//d3t95n9c6zzriw.cloudfront.net/checkout/visa.svg">
                                                 <img alt="Mastercard" src="//d3t95n9c6zzriw.cloudfront.net/checkout/mastercard.svg">
@@ -192,7 +189,7 @@
                                         <div class="checkout__sidebar__two-column">
                                             <div>
                                                 <div class="checkout__sidebar__shipping-providers">
-                                                    <h5>Delivery Partners</h5>
+                                                    <h5>@CardRes.DeliveryPartners</h5>
                                                     <div class="checkout__sidebar__shipping-providers__icons">
                                                         <img alt="DHL" src="//d3t95n9c6zzriw.cloudfront.net/checkout/dhl-square.svg">
                                                         <img alt="UPS" src="//d3t95n9c6zzriw.cloudfront.net/checkout/ups-square.svg">
@@ -202,7 +199,7 @@
                                             </div>
                                             <div>
                                                 <div class="checkout__sidebar__security-indicator">
-                                                    <h5>Secure Transaction</h5>
+                                                    <h5>@CardRes.SecureTransaction</h5>
                                                     <img alt="Secured By Rapid SSL" src="//d3t95n9c6zzriw.cloudfront.net/checkout/rapidssl.gif">
                                                 </div>
                                             </div>

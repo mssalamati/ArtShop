@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delivery Partners.
+        /// </summary>
+        public static string DeliveryPartners {
+            get {
+                return ResourceManager.GetString("DeliveryPartners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string firstname {
@@ -165,6 +174,15 @@ namespace Resources {
         public static string pay {
             get {
                 return ResourceManager.GetString("pay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Methods.
+        /// </summary>
+        public static string PaymentMethods {
+            get {
+                return ResourceManager.GetString("PaymentMethods", resourceCulture);
             }
         }
         
@@ -228,6 +246,15 @@ namespace Resources {
         public static string Review {
             get {
                 return ResourceManager.GetString("Review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Transaction.
+        /// </summary>
+        public static string SecureTransaction {
+            get {
+                return ResourceManager.GetString("SecureTransaction", resourceCulture);
             }
         }
         
