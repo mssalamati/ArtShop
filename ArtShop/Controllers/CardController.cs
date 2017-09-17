@@ -105,6 +105,7 @@ namespace ArtShop.Controllers
                 long longAuth = 0;
                 long.TryParse(Request.QueryString["Authority"], out longAuth);
                 var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
+                var orderId = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
                 if (tran != null)
                 {
                     
@@ -123,19 +124,19 @@ namespace ArtShop.Controllers
                             tran.Payed = true;
                             db.SaveChanges();
                             CartManager.GetCart(this.HttpContext).EmptyCart();
-                            return RedirectToAction("paymentReport", new { id = tran.Id });
+                            return RedirectToAction("paymentReport", new { id = orderId });
                         }
                         else
                         {
                             db.SaveChanges();
-                            return RedirectToAction("paymentReport", new { id = tran.Id });
+                            return RedirectToAction("paymentReport", new { id = orderId });
                         }
                     }
                     else
                     {
                         tran.Description = Request.QueryString["Status"].ToString();
                         db.SaveChanges();
-                        return RedirectToAction("paymentReport", new { id = tran.Id });
+                        return RedirectToAction("paymentReport", new { id = orderId });
                     }
                 }
                 else
