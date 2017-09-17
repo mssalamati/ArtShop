@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Title;
     var contentClass = Model.Links.Count == 0 ? "col-lg-10" : "col-lg-6";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
-    var rtlstl = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlstl = IsRighToLeft ? "direction:rtl !important;text-align:justify !important" : "";
 }
 
 @model Post
