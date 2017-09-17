@@ -569,6 +569,7 @@
     <Content Include="Views\Card\getinfo.cshtml" />
     <Content Include="Views\AccountInfo\SalesDashboard.cshtml" />
     <Content Include="Views\AccountInfo\SalesDashboardRTL.cshtml" />
+    <Content Include="Views\Card\paymentReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

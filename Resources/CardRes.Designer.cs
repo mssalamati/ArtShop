@@ -268,6 +268,87 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter only digits..
+        /// </summary>
+        public static string ValidateDigits {
+            get {
+                return ResourceManager.GetString("ValidateDigits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a value less than or equal to.
+        /// </summary>
+        public static string ValidateMax {
+            get {
+                return ResourceManager.GetString("ValidateMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter no more than.
+        /// </summary>
+        public static string ValidateMaxlength {
+            get {
+                return ResourceManager.GetString("ValidateMaxlength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a value greater than or equal to.
+        /// </summary>
+        public static string ValidateMin {
+            get {
+                return ResourceManager.GetString("ValidateMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter at least.
+        /// </summary>
+        public static string ValidateMinlength {
+            get {
+                return ResourceManager.GetString("ValidateMinlength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid number..
+        /// </summary>
+        public static string ValidateNumber {
+            get {
+                return ResourceManager.GetString("ValidateNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a value between.
+        /// </summary>
+        public static string ValidateRange {
+            get {
+                return ResourceManager.GetString("ValidateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a value between.
+        /// </summary>
+        public static string ValidateRangelength {
+            get {
+                return ResourceManager.GetString("ValidateRangelength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required..
+        /// </summary>
+        public static string ValidateRequired {
+            get {
+                return ResourceManager.GetString("ValidateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zip / Postal Code.
         /// </summary>
         public static string zipcode {

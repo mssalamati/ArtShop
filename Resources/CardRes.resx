@@ -189,4 +189,31 @@
   <data name="SecureTransaction" xml:space="preserve">
     <value>Secure Transaction</value>
   </data>
+  <data name="ValidateDigits" xml:space="preserve">
+    <value>Please enter only digits.</value>
+  </data>
+  <data name="ValidateMax" xml:space="preserve">
+    <value>Please enter a value less than or equal to</value>
+  </data>
+  <data name="ValidateMaxlength" xml:space="preserve">
+    <value>Please enter no more than</value>
+  </data>
+  <data name="ValidateMin" xml:space="preserve">
+    <value>Please enter a value greater than or equal to</value>
+  </data>
+  <data name="ValidateMinlength" xml:space="preserve">
+    <value>Please enter at least</value>
+  </data>
+  <data name="ValidateNumber" xml:space="preserve">
+    <value>Please enter a valid number.</value>
+  </data>
+  <data name="ValidateRange" xml:space="preserve">
+    <value>Please enter a value between</value>
+  </data>
+  <data name="ValidateRangelength" xml:space="preserve">
+    <value>Please enter a value between</value>
+  </data>
+  <data name="ValidateRequired" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
 </root>
