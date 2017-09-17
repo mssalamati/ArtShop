@@ -19,6 +19,8 @@ namespace DataLayer.Enitities
         public virtual DateTime BuyDate { get; set; }
         public virtual OrderStatus Status { get; set; }
         public virtual double TotalPrice { get; set; }
+        [ForeignKey("TransactionDetail")]
+        public virtual int? TransactionDetailId { get; set; }
         public virtual TransactionDetail TransactionDetail { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public string Country { get; set; }
@@ -39,9 +41,8 @@ namespace DataLayer.Enitities
 
     public class TransactionDetail
     {
-        [Key,ForeignKey("order")]
+        [Key]
         public virtual int Id { get; set; }
-        public virtual Order order { get; set; }
         public string Description { get; set; }
         public DateTime date { get; set; }
         public string Number { get; set; }
