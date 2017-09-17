@@ -35,20 +35,35 @@
             <div class="checkout">
                 <header class="checkout__header">
                     <div class="container">
-                        <div class="checkout__header__container"><div class="checkout__header__logo checkout__header__logo--large"><a href="/"><img alt="Artiscovery" style="width:200px;height:29px" src="~/Content/Images/logo.png"></a></div><div class="checkout__header__logo checkout__header__logo--small"><a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png"></a></div><nav class="checkout__breadcrumb"><a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout"><!-- react-text: 15 -->1<!-- /react-text --><!-- react-text: 16 -->. <!-- /react-text --><!-- react-text: 17 -->Cart<!-- /react-text --></a><a class="checkout__breadcrumb__item"><!-- react-text: 19 -->2<!-- /react-text --><!-- react-text: 20 -->. <!-- /react-text --><!-- react-text: 21 -->Checkout<!-- /react-text --></a><a class="checkout__breadcrumb__item"><!-- react-text: 23 -->3<!-- /react-text --><!-- react-text: 24 -->. <!-- /react-text --><!-- react-text: 25 -->Review<!-- /react-text --></a></nav></div>
+                        <div class="checkout__header__container">
+                            <div class="checkout__header__logo checkout__header__logo--large">
+                                <a href="/">
+                                    <img alt="Artiscovery" style="width:200px;height:29px" src="~/Content/Images/logo.png">
+                                </a>
+                            </div><div class="checkout__header__logo checkout__header__logo--small">
+                                <a href="/">
+                                    <img alt="Artiscovery" src="~/Content/Images/logo.png">
+                                </a>
+                            </div>
+                            <nav class="checkout__breadcrumb">
+                                <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout"><!-- react-text: 15 -->1<!-- react-text: 16 -->. <!-- /react-text -->@CardRes.Cart<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item"><!-- react-text: 19 -->2<!-- /react-text -->. <!-- /react-text --><!-- react-text: 21 -->@CardRes.Checkout<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item"><!-- react-text: 23 -->3<!-- /react-text -->. <!-- /react-text --><!-- react-text: 25 -->@CardRes.Review<!-- /react-text --></a>
+                            </nav>
+                        </div>
                     </div>
                 </header>
                 <section class="checkout__container">
                     <div class="container">
                         <nav class="checkout__breadcrumb" style="padding:10px">
                             <a class="checkout__breadcrumb__item" href="/checkout">
-                                <!-- react-text: 30 -->1<!-- /react-text --><!-- react-text: 31 -->. <!-- /react-text --><!-- react-text: 32 -->Cart<!-- /react-text -->
+                                <!-- react-text: 30 -->1<!-- /react-text --><!-- react-text: 31 -->. <!-- /react-text --><!-- react-text: 32 -->@CardRes.Cart<!-- /react-text -->
                             </a>
                             <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active">
-                                <!-- react-text: 34 -->2<!-- /react-text --><!-- react-text: 35 -->. <!-- /react-text --><!-- react-text: 36 -->Checkout<!-- /react-text -->
+                                <!-- react-text: 34 -->2<!-- /react-text --><!-- react-text: 35 -->. <!-- /react-text --><!-- react-text: 36 -->@CardRes.Checkout<!-- /react-text -->
                             </a>
                             <a class="checkout__breadcrumb__item">
-                                <!-- react-text: 38 -->3<!-- /react-text --><!-- react-text: 39 -->. <!-- /react-text --><!-- react-text: 40 -->pay<!-- /react-text -->
+                                <!-- react-text: 38 -->3<!-- /react-text --><!-- react-text: 39 -->. <!-- /react-text --><!-- react-text: 40 -->@CardRes.pay<!-- /react-text -->
                             </a>
                         </nav>
                         <div></div>
@@ -66,21 +81,21 @@
                                                     <div class="form">
                                                         <div class="input-group">
                                                             <div class="input-with-placeholder">
-                                                                <input type="text" placeholder="First Name" name="firstname" value="" class="input-with-placeholder__input " id="firstname">
+                                                                <input type="text" placeholder="@CardRes.firstname" name="firstname" value="" class="input-with-placeholder__input " id="firstname">
                                                             </div>
                                                             <div class="input-with-placeholder">
-                                                                <input type="text" placeholder="Last Name" name="lastname" value="" class="input-with-placeholder__input " id="lastname">
+                                                                <input type="text" placeholder="@CardRes.lastname" name="lastname" value="" class="input-with-placeholder__input " id="lastname">
                                                             </div>
                                                         </div>
                                                         <div class="input-group">
                                                             <span class="fa fa-map-marker input-group__icon input-group__icon--right" aria-hidden="true"></span>
                                                             <div class="input-with-placeholder">
-                                                                <input type="text" placeholder="Address" value="@ViewBag.Street" name="address" class="input-with-placeholder__input " id="address" autocomplete="off">
+                                                                <input type="text" placeholder="@CardRes.Address" value="@ViewBag.Street" name="address" class="input-with-placeholder__input " id="address" autocomplete="off">
                                                             </div>
                                                         </div>
                                                         <div class="input-group-container" style="display: block;">
                                                             <div class="input-group">
-                                                                <select name="country" placeholder="Country" id="country">
+                                                                <select name="country" placeholder="@CardRes.Country" id="country">
 
                                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                                     {
@@ -89,18 +104,18 @@
 
                                                                 </select>
                                                                 <div class="input-with-placeholder">
-                                                                    <input type="text" placeholder="City" value="@ViewBag.Street" name="City" class="input-with-placeholder__input " id="city">
+                                                                    <input type="text" placeholder="@CardRes.City" value="@ViewBag.Street" name="City" class="input-with-placeholder__input " id="city">
                                                                 </div>
                                                             </div>
                                                             <div class="input-group">
                                                                 <div class="input-with-placeholder">
-                                                                    <input type="text" placeholder="Zip / Postal Code" value="@ViewBag.ZipCode" name="zipcode" class="input-with-placeholder__input " id="zipcode">
+                                                                    <input type="text" placeholder="@CardRes.zipcode" value="@ViewBag.ZipCode" name="zipcode" class="input-with-placeholder__input " id="zipcode">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-with-placeholder">
-                                                                <input type="tel" value="@ViewBag.PhoneNumber" name="PhoneNumber" placeholder="Phone" class="input-with-placeholder__input " id="PhoneNumber">
+                                                                <input type="tel" value="@ViewBag.PhoneNumber" name="PhoneNumber" placeholder="@CardRes.Phone" class="input-with-placeholder__input " id="PhoneNumber">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -111,13 +126,13 @@
                                                 <div class="cart__total">
                                                     <div class="cart__total__inner">
                                                         <div class="cart__total__row">
-                                                            <div>Subtotal</div>
-                                                            <div>@Model.CartTotal</div>
+                                                            <div>@CardRes.Subtotal</div>
+                                                            <div> Model.CartTotal</div>
                                                         </div>
 
                                                     </div>
                                                 </div>
-                                                <button class="step-submission-button" type="submit">Checkout</button>
+                                                <button class="step-submission-button" type="submit">@CardRes.Checkout</button>
                                                 <div class="loading-block"></div>
                                             </div>
                                         }
@@ -148,26 +163,41 @@
                                             <div>
                                                 <span class="fa fa-lock"></span><!-- react-text: 2247 --> Safe &amp; Secure Shopping<!-- /react-text -->
                                             </div>
-                                            <div><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span> 5-Star Trust Pilot Rating</span></div>
+                                            <div>
+                                                <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span><span class="fa fa-star"></span><span> 5-Star Trust Pilot Rating</span>
+                                            </div>
                                         </div>
                                         <div class="checkout__sidebar__quote">
                                             <span class="checkout__sidebar__quote__quote">
                                                 "Service as beautiful as the art they sell...Saatchi facilitated the deal and worked
                                                 extremely hard to make sure I received a deal I was happy with and could afford.
                                                 They've found a life long customer in me!"
-                                            </span><!-- react-text: 2257 -->—<!-- /react-text --><span class="checkout__sidebar__quote__author">David B, Wilmington, DE, USA</span>
+                                            </span>
                                         </div>
                                         <hr>
                                         <div class="checkout__sidebar__payment-methods">
                                             <h5>Payment Methods</h5>
-                                            <div class="checkout__sidebar__payment-methods__icons"><img alt="Visa" src="//d3t95n9c6zzriw.cloudfront.net/checkout/visa.svg"><img alt="Mastercard" src="//d3t95n9c6zzriw.cloudfront.net/checkout/mastercard.svg"><img alt="Discover" src="//d3t95n9c6zzriw.cloudfront.net/checkout/discover.svg"><img alt="Amex" src="//d3t95n9c6zzriw.cloudfront.net/checkout/amex.svg"><img alt="JCB" src="//d3t95n9c6zzriw.cloudfront.net/checkout/jcb.svg"><img alt="Diners Club" src="//d3t95n9c6zzriw.cloudfront.net/checkout/diners.svg"><img alt="Paypal" src="//d3t95n9c6zzriw.cloudfront.net/checkout/paypal.svg"></div>
+                                            <div class="checkout__sidebar__payment-methods__icons">
+                                                <img alt="Visa" src="//d3t95n9c6zzriw.cloudfront.net/checkout/visa.svg">
+                                                <img alt="Mastercard" src="//d3t95n9c6zzriw.cloudfront.net/checkout/mastercard.svg">
+                                                <img alt="Discover" src="//d3t95n9c6zzriw.cloudfront.net/checkout/discover.svg">
+                                                <img alt="Amex" src="//d3t95n9c6zzriw.cloudfront.net/checkout/amex.svg">
+                                                <img alt="JCB" src="//d3t95n9c6zzriw.cloudfront.net/checkout/jcb.svg">
+                                                <img alt="Diners Club" src="//d3t95n9c6zzriw.cloudfront.net/checkout/diners.svg">
+                                                <img alt="Paypal" src="//d3t95n9c6zzriw.cloudfront.net/checkout/paypal.svg">
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="checkout__sidebar__two-column">
                                             <div>
                                                 <div class="checkout__sidebar__shipping-providers">
                                                     <h5>Delivery Partners</h5>
-                                                    <div class="checkout__sidebar__shipping-providers__icons"><img alt="DHL" src="//d3t95n9c6zzriw.cloudfront.net/checkout/dhl-square.svg"><img alt="UPS" src="//d3t95n9c6zzriw.cloudfront.net/checkout/ups-square.svg"><img alt="FedEx" src="//d3t95n9c6zzriw.cloudfront.net/checkout/fedex-square.svg"></div>
+                                                    <div class="checkout__sidebar__shipping-providers__icons">
+                                                        <img alt="DHL" src="//d3t95n9c6zzriw.cloudfront.net/checkout/dhl-square.svg">
+                                                        <img alt="UPS" src="//d3t95n9c6zzriw.cloudfront.net/checkout/ups-square.svg">
+                                                        <img alt="FedEx" src="//d3t95n9c6zzriw.cloudfront.net/checkout/fedex-square.svg">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div>

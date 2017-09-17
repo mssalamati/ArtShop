@@ -150,4 +150,34 @@
   <data name="Subtotal" xml:space="preserve">
     <value>Subtotal</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="CheckInfo" xml:space="preserve">
+    <value>Check Info</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="getinfoRghtBar" xml:space="preserve">
+    <value>"Service as beautiful as the art they sell...Saatchi facilitated the deal and worked extremely hard to make sure I received a deal I was happy with and could afford. They've found a life long customer in me!"</value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="zipcode" xml:space="preserve">
+    <value>Zip / Postal Code</value>
+  </data>
 </root>
