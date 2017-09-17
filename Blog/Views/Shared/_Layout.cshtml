@@ -19,6 +19,7 @@
 
 
 </head>
+
 @{
     var a = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString().ToLower();
     var c = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
@@ -37,6 +38,7 @@
     }
 }
 <body class="@c">
+
     <div class="container">
 
         @Html.Action("Header", "Home", null)
