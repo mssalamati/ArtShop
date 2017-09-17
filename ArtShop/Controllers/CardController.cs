@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer.Extentions;
 using Microsoft.AspNet.Identity;
+using Postal;
 
 namespace ArtShop.Controllers
 {
@@ -227,6 +228,16 @@ namespace ArtShop.Controllers
 
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
+        }
+
+        private void SendInvoice()
+        {
+
+            dynamic email = new Email("Invoice");
+            email.To = User.Identity.GetUserName();
+            email.total = "";
+            email.Send();
+
         }
     }
 }
