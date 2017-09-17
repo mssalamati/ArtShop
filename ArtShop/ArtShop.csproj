@@ -141,6 +141,14 @@
       <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Postal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=45719375b8b4d528, processorArchitecture=MSIL">
+      <HintPath>..\packages\Postal.Mvc5.1.2.0\lib\net45\Postal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.4.1.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -280,7 +288,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\CartManager.cs" />
     <Compile Include="Util\CashManager.cs" />
-    <Compile Include="Util\EmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2220741194.js" />
@@ -570,6 +577,9 @@
     <Content Include="Views\AccountInfo\SalesDashboard.cshtml" />
     <Content Include="Views\AccountInfo\SalesDashboardRTL.cshtml" />
     <Content Include="Views\Card\paymentReport.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
+    <Content Include="Views\Emails\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
