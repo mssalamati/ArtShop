@@ -44,7 +44,11 @@
                 flex-grow: 1;
                 margin-left: 15px;
                 width: 50%;
-                margin-right:auto !important;
+                margin-right: auto !important;
+            }
+
+            .checkout__breadcrumb__item:last-child {
+                 margin-right: 20px; 
             }
 
             @@media (min-width: 992px) {
@@ -73,8 +77,8 @@
                                 </a>
                             </div>
                             <nav class="checkout__breadcrumb">
-                                <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout"><!-- react-text: 15 -->1<!-- react-text: 16 -->. <!-- /react-text -->@CardRes.Cart<!-- /react-text --></a>
-                                <a class="checkout__breadcrumb__item"><!-- react-text: 19 -->2<!-- /react-text -->. <!-- /react-text --><!-- react-text: 21 -->@CardRes.Checkout<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item" href="/checkout"><!-- react-text: 15 -->1<!-- react-text: 16 -->. <!-- /react-text -->@CardRes.Cart<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item  checkout__breadcrumb__item--active"><!-- react-text: 19 -->2<!-- /react-text -->. <!-- /react-text --><!-- react-text: 21 -->@CardRes.Checkout<!-- /react-text --></a>
                                 <a class="checkout__breadcrumb__item"><!-- react-text: 23 -->3<!-- /react-text -->. <!-- /react-text --><!-- react-text: 25 -->@CardRes.Review<!-- /react-text --></a>
                             </nav>
                         </div>
