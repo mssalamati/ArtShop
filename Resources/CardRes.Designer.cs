@@ -22,7 +22,7 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CardRes {
+    public class CardRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.CardRes", typeof(CardRes).Assembly);
@@ -51,7 +51,7 @@ namespace Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,27 +61,90 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cart.
         /// </summary>
-        internal static string Cart {
+        public static string Cart {
             get {
                 return ResourceManager.GetString("Cart", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Info.
+        /// </summary>
+        public static string CheckInfo {
+            get {
+                return ResourceManager.GetString("CheckInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Checkout.
         /// </summary>
-        internal static string Checkout {
+        public static string Checkout {
             get {
                 return ResourceManager.GetString("Checkout", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string firstname {
+            get {
+                return ResourceManager.GetString("firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Service as beautiful as the art they sell...Saatchi facilitated the deal and worked extremely hard to make sure I received a deal I was happy with and could afford. They&apos;ve found a life long customer in me!&quot;.
+        /// </summary>
+        public static string getinfoRghtBar {
+            get {
+                return ResourceManager.GetString("getinfoRghtBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string lastname {
+            get {
+                return ResourceManager.GetString("lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
-        internal static string Next {
+        public static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
             }
@@ -90,7 +153,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Original Work.
         /// </summary>
-        internal static string OriginalWork {
+        public static string OriginalWork {
             get {
                 return ResourceManager.GetString("OriginalWork", resourceCulture);
             }
@@ -99,16 +162,25 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to pay.
         /// </summary>
-        internal static string pay {
+        public static string pay {
             get {
                 return ResourceManager.GetString("pay", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping Included On Original Art.
         /// </summary>
-        internal static string r1 {
+        public static string r1 {
             get {
                 return ResourceManager.GetString("r1", resourceCulture);
             }
@@ -117,7 +189,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to 7-Day Money-Back Guarantee.
         /// </summary>
-        internal static string r2 {
+        public static string r2 {
             get {
                 return ResourceManager.GetString("r2", resourceCulture);
             }
@@ -126,7 +198,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Safe &amp; Secure Shopping.
         /// </summary>
-        internal static string r3 {
+        public static string r3 {
             get {
                 return ResourceManager.GetString("r3", resourceCulture);
             }
@@ -135,7 +207,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to 5-Star Trust Pilot Rating.
         /// </summary>
-        internal static string r4 {
+        public static string r4 {
             get {
                 return ResourceManager.GetString("r4", resourceCulture);
             }
@@ -144,18 +216,36 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string Remove {
+        public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Review.
+        /// </summary>
+        public static string Review {
+            get {
+                return ResourceManager.GetString("Review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subtotal.
         /// </summary>
-        internal static string Subtotal {
+        public static string Subtotal {
             get {
                 return ResourceManager.GetString("Subtotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip / Postal Code.
+        /// </summary>
+        public static string zipcode {
+            get {
+                return ResourceManager.GetString("zipcode", resourceCulture);
             }
         }
     }
