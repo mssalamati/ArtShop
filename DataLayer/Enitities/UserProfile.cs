@@ -37,6 +37,7 @@ namespace DataLayer.Enitities
         public virtual ICollection<Collection> Collections { get; set; }
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Favorit> Favorits { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public UserProfile()
         {
             RegisterDate = DateTime.Now;

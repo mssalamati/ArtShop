@@ -189,4 +189,31 @@
   <data name="SecureTransaction" xml:space="preserve">
     <value>امن</value>
   </data>
+  <data name="ValidateDigits" xml:space="preserve">
+    <value>لطفا شماره وارد کنید</value>
+  </data>
+  <data name="ValidateMax" xml:space="preserve">
+    <value>حداکثر</value>
+  </data>
+  <data name="ValidateMaxlength" xml:space="preserve">
+    <value>وارد نکنید بیشتر از</value>
+  </data>
+  <data name="ValidateMin" xml:space="preserve">
+    <value>حد اقل</value>
+  </data>
+  <data name="ValidateMinlength" xml:space="preserve">
+    <value>حد اقل</value>
+  </data>
+  <data name="ValidateNumber" xml:space="preserve">
+    <value>لطفا شماره وارد کنید</value>
+  </data>
+  <data name="ValidateRange" xml:space="preserve">
+    <value>بین</value>
+  </data>
+  <data name="ValidateRangelength" xml:space="preserve">
+    <value>بین</value>
+  </data>
+  <data name="ValidateRequired" xml:space="preserve">
+    <value>این فیلد اجباریست</value>
+  </data>
 </root>
