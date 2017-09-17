@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="FooterRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +93,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CardRes.fa.resx" />
+    <EmbeddedResource Include="CardRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CardRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="FooterRes.fa.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FooterRes.fa.Designer.cs</LastGenOutput>
