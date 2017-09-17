@@ -280,6 +280,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\CartManager.cs" />
     <Compile Include="Util\CashManager.cs" />
+    <Compile Include="Util\EmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2220741194.js" />
