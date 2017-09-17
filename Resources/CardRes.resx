@@ -216,4 +216,25 @@
   <data name="ValidateRequired" xml:space="preserve">
     <value>This field is required.</value>
   </data>
+  <data name="bilingStatus" xml:space="preserve">
+    <value>result</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>quantity</value>
+  </data>
+  <data name="orderNumber" xml:space="preserve">
+    <value>order number</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>orders</value>
+  </data>
+  <data name="PaymentResult" xml:space="preserve">
+    <value>payment result</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>total price</value>
+  </data>
+  <data name="transactionNumber" xml:space="preserve">
+    <value>transaction number</value>
+  </data>
 </root>

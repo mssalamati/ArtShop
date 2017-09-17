@@ -1,43 +1,237 @@
-﻿
-@{
-    ViewBag.Title = "verify";
+﻿@{
+    Layout = null;
 }
 
 @model Order
+@using DataLayer.Extentions
 
-<div class="row-layout content">
-    <div class="row">
-        <div class="small-12 columns">
-            <h2 style="text-align:right" class="section-title mt0">نتیجه سفارش شما</h2>
-            <div style="text-align:right" class="section-details">@User.Identity.Name</div>
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Art Shopping Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Artiscovery is the best place to buy artwork online. Find the perfect original paintings, fine art photographs and more from the largest selection of original art in the world." />
+    <meta name="keywords" content="affordable art, art dealers, art for sale, art original,art websites, buy art, buy art online, buy original art, buy paintings,buy paintings online, canvas wall art, contemporary abstract art,contemporary art, contemporary arts, contemporary oil paintings, fine art,fine art photography, fine art photography for sale, framed art,home decor wall art, modern art, modern art paintings, office interior design,online art, online art gallery, original art, original art for sale, original painting,collage, drawings, pencil drawings, printmaking for sale, london artists, la artists, nyc artists, australia artists, uk artists, german artists,interior design help, nude photography, nude art, abstract art" />
+
+
+    <link rel="stylesheet" href="https://www.saatchiart.com/build/css/app-6d00ab08f8841479f5fb9520e2a7d990.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+    @if (IsRighToLeft)
+    {
+        <style>
+            body {
+                direction: rtl;
+            }
+
+            .input-group > * {
+                flex-grow: 1;
+                margin-left: 15px;
+                width: 50%;
+                margin-right: auto !important;
+            }
+
+            .checkout__breadcrumb__item:last-child {
+                margin-right: 20px;
+            }
+
+            th, td {
+                text-align: right !important;
+                padding: 8px;
+            }
+
+            @@media (min-width: 992px) {
+                .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                    float: left;
+                }
+            }
+        </style>
+    }
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="checkout-app-container">
+        <div data-reactroot="">
+            <div class="checkout">
+                <header class="checkout__header">
+                    <div class="container">
+                        <div class="checkout__header__container">
+                            <div class="checkout__header__logo checkout__header__logo--large">
+                                <a href="/">
+                                    <img alt="Artiscovery" style="width:200px;height:29px" src="~/Content/Images/logo.png">
+                                </a>
+                            </div><div class="checkout__header__logo checkout__header__logo--small">
+                                <a href="/">
+                                    <img alt="Artiscovery" src="~/Content/Images/logo.png">
+                                </a>
+                            </div>
+                            <nav class="checkout__breadcrumb">
+                                <a class="checkout__breadcrumb__item" href="/checkout"><!-- react-text: 15 -->1<!-- react-text: 16 -->. <!-- /react-text -->@CardRes.Cart<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item "><!-- react-text: 19 -->2<!-- /react-text -->. <!-- /react-text --><!-- react-text: 21 -->@CardRes.Checkout<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active"><!-- react-text: 23 -->3<!-- /react-text -->. <!-- /react-text --><!-- react-text: 25 -->@CardRes.Review<!-- /react-text --></a>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+                <section class="checkout__container">
+                    <div class="container">
+                        <nav class="checkout__breadcrumb" style="padding:10px">
+                            <a class="checkout__breadcrumb__item" href="/checkout">
+                                <!-- react-text: 30 -->1<!-- /react-text --><!-- react-text: 31 -->. <!-- /react-text --><!-- react-text: 32 -->@CardRes.Cart<!-- /react-text -->
+                            </a>
+                            <a class="checkout__breadcrumb__item ">
+                                <!-- react-text: 34 -->2<!-- /react-text --><!-- react-text: 35 -->. <!-- /react-text --><!-- react-text: 36 -->@CardRes.Checkout<!-- /react-text -->
+                            </a>
+                            <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active">
+                                <!-- react-text: 38 -->3<!-- /react-text --><!-- react-text: 39 -->. <!-- /react-text --><!-- react-text: 40 -->@CardRes.pay<!-- /react-text -->
+                            </a>
+                        </nav>
+                        <div>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-8">
+                                    <div>
+                                        <div class="cart checkout__content-section">
+                                            <h1></h1>
+                                            <div class="cart__items">
+
+                                                <div class="row-layout content" style="text-align:center">
+                                                    <div class="row">
+                                                        <div class="small-12 columns">
+                                                            <h2 style="text-align:center" class="section-title mt0">@CardRes.PaymentResult</h2>
+                                                            <div style="text-align:center" class="section-details">@User.Identity.Name</div>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="small-6 small-offset-3 columns">
+                                                            <table class="">
+                                                                <tr>
+                                                                    <td>@CardRes.orderNumber</td>
+                                                                    <td>@Model.Id</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>@CardRes.bilingStatus</td>
+                                                                    <td>@Model.TransactionDetail.Payed</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>@CardRes.transactionNumber</td>
+                                                                    <td>@Model.TransactionDetail.Number</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> @CardRes.Count</td>
+                                                                    <td>@Model.OrderDetails.Count()</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>@CardRes.TotalPrice</td>
+                                                                    <td>@Model.TransactionDetail.amount.ToString("#,##") $</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <button class="step-submission-button" style="background:#2196F3" type="submit">@CardRes.Orders</button>
+                                            <div class="loading-block"></div>
+                                        </div>
+                                        <footer class="checkout__footer">
+                                            <div>
+                                                <span>
+                                                    © 2017  Artiscovery Online, Inc. Arena Group Commerce. All rights reserved.
+                                                </span>
+                                                <span class="checkout__footer__support">
+                                                    Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp; <a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>  |&nbsp;<!-- /react-text --><a href="/copyright" target="_blank" rel="noopener noreferrer">Copyright Policy</a> |&nbsp;<a href="/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
+                                            </div>
+                                        </footer>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="checkout__sidebar">
+                                        <div class="checkout__sidebar__value-props">
+                                            <div>
+                                                <span class="fa fa-check"></span> @CardRes.r1
+                                            </div>
+                                            <div>
+                                                <span class="fa fa-check"></span> @CardRes.r2
+                                            </div>
+                                            <div>
+                                                <span class="fa fa-lock"></span> @CardRes.r3
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="checkout__sidebar__payment-methods">
+                                            <h5>@CardRes.PaymentMethods</h5>
+                                            <div class="checkout__sidebar__payment-methods__icons">
+                                                <img alt="ZarrinPal" src="~/Content/Images/zarrinpal.png">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="checkout__sidebar__two-column">
+                                            <div>
+                                                <div class="checkout__sidebar__shipping-providers">
+                                                    <h5>@CardRes.DeliveryPartners</h5>
+                                                    <div class="checkout__sidebar__shipping-providers__icons">
+                                                        <img style="width:80%;height:50%;margin-top:10px" alt="Mahex" src="~/Content/Images/mahex.png">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="checkout__footer checkout__footer--mobile">
+                            <div>
+                                <span>
+                                    <!-- react-text: 2286 -->© <!-- /react-text --><!-- react-text: 2287 -->2017<!-- /react-text --><!-- react-text: 2288 --> Artiscovery Online, Inc. Arena Group Commerce. All rights reserved. <!-- /react-text --><!-- react-text: 2289 --> <!-- /react-text -->
+                                </span>
+                                <span class="checkout__footer__support">
+                                    <!-- react-text: 2291 -->Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp;<!-- /react-text --><a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
+                                </span>
+                            </div>
+                            <div>
+                                <a href="/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
+                            </div>
+                        </footer>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="small-12 columns">
-            <table class="table table-hover">
-                <tr>
-                    <td colspan="2">شماره فاکتور</td>
-                    <td colspan="2">@Model.Id</td>
-                </tr>
-                <tr>
-                    <td>وضعیت پرداخت</td>
-                    <td>@Model.TransactionDetail.Payed</td>
 
-                    <td>شماره فاکتور</td>
-                    <td>@Model.TransactionDetail.Number</td>
-                </tr>
-                <tr>
-                    <td>تعداد کالا</td>
-                    <td>@Model.OrderDetails.Count()</td>
 
-                    <td>مبلغ</td>
-                    <td>@Model.TransactionDetail.amount $</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <a class="btn btn-info">لیست سفارشات</a>
-</div>
-
+</body>
+</html>

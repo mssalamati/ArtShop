@@ -105,7 +105,7 @@ namespace ArtShop.Controllers
                 long longAuth = 0;
                 long.TryParse(Request.QueryString["Authority"], out longAuth);
                 var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
-                var orderId = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+                var orderId = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id).Id;
                 if (tran != null)
                 {
                     

@@ -216,4 +216,25 @@
   <data name="ValidateRequired" xml:space="preserve">
     <value>این فیلد اجباریست</value>
   </data>
+  <data name="bilingStatus" xml:space="preserve">
+    <value>وضعیت پرداخت</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>تعداد کالا</value>
+  </data>
+  <data name="orderNumber" xml:space="preserve">
+    <value>شماره فاکتور</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>سفارشات</value>
+  </data>
+  <data name="PaymentResult" xml:space="preserve">
+    <value>نتیجه سفارش شما</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="transactionNumber" xml:space="preserve">
+    <value>شماره تراکنش</value>
+  </data>
 </root>

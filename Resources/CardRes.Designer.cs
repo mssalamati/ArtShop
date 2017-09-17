@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to result.
+        /// </summary>
+        public static string bilingStatus {
+            get {
+                return ResourceManager.GetString("bilingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cart.
         /// </summary>
         public static string Cart {
@@ -102,6 +111,15 @@ namespace Resources {
         public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to quantity.
+        /// </summary>
+        public static string Count {
+            get {
+                return ResourceManager.GetString("Count", resourceCulture);
             }
         }
         
@@ -160,6 +178,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to order number.
+        /// </summary>
+        public static string orderNumber {
+            get {
+                return ResourceManager.GetString("orderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to orders.
+        /// </summary>
+        public static string Orders {
+            get {
+                return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original Work.
         /// </summary>
         public static string OriginalWork {
@@ -183,6 +219,15 @@ namespace Resources {
         public static string PaymentMethods {
             get {
                 return ResourceManager.GetString("PaymentMethods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to payment result.
+        /// </summary>
+        public static string PaymentResult {
+            get {
+                return ResourceManager.GetString("PaymentResult", resourceCulture);
             }
         }
         
@@ -264,6 +309,24 @@ namespace Resources {
         public static string Subtotal {
             get {
                 return ResourceManager.GetString("Subtotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total price.
+        /// </summary>
+        public static string TotalPrice {
+            get {
+                return ResourceManager.GetString("TotalPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to transaction number.
+        /// </summary>
+        public static string transactionNumber {
+            get {
+                return ResourceManager.GetString("transactionNumber", resourceCulture);
             }
         }
         
