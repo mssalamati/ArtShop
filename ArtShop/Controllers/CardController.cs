@@ -101,12 +101,13 @@ namespace ArtShop.Controllers
         {
             if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
             {
-                if (Request.QueryString["Status"].ToString().Equals("OK"))
+                long longAuth = 0;
+                long.TryParse(Request.QueryString["Authority"], out longAuth);
+                var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
+                if (tran != null)
                 {
-                    long longAuth = 0;
-                    long.TryParse(Request.QueryString["Authority"], out longAuth);
-                    var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
-                    if (tran != null)
+                    
+                    if (Request.QueryString["Status"].ToString().Equals("OK"))
                     {
                         decimal Amount = tran.amount;
                         long RefID;
@@ -120,43 +121,30 @@ namespace ArtShop.Controllers
                         {
                             tran.Payed = true;
                             db.SaveChanges();
-                            ViewBag.text = "پرداخت با موفقیت انجام شد";
-                            ViewBag.refid = RefID.ToString();
                             CartManager.GetCart(this.HttpContext).EmptyCart();
-                            return View();
+                            return RedirectToAction("paymentReport", new { id = tran.Id });
                         }
                         else
                         {
                             db.SaveChanges();
-                            ViewBag.text = "پرداخت نا موفق";
-                            ViewBag.refid = RefID.ToString();
-                            return View();
+                            return RedirectToAction("paymentReport", new { id = tran.Id });
                         }
                     }
                     else
                     {
-                        ViewBag.text = "پرداخت نا موفق";
-                        return View();
+                        tran.Description = Request.QueryString["Status"].ToString();
+                        db.SaveChanges();
+                        return RedirectToAction("paymentReport", new { id = tran.Id });
                     }
                 }
                 else
                 {
-                    long longAuth = 0;
-                    long.TryParse(Request.QueryString["Authority"], out longAuth);
-                    var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
-                    if (tran != null)
-                    {
-                        tran.Description = Request.QueryString["Status"].ToString();
-                        db.SaveChanges();
-                    }
-                    ViewBag.text = "پرداخت نا موفق";
-                    return View();
+                    return Content("not valid address");
                 }
             }
             else
             {
-                ViewBag.text = "پرداخت نا موفق";
-                return View();
+                return Content("not valid address");
             }
         }
 
