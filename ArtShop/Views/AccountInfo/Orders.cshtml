@@ -26,10 +26,9 @@ else
                 <table class="table m-b-0">
                     <tr>
                         <th></th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.user.)*@
-                            test
-                        </th>
+                        @*<th>
+                          
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.BuyDate)
                         </th>
@@ -43,10 +42,10 @@ else
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th><i class="fa fa-user"></i></th>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OrderDetails)
-                            </td>
+                            <th><i class="fa fa-check"></i></th>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.OrderDetails.Count())
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.BuyDate)
                             </td>
