@@ -311,6 +311,7 @@
     <Content Include="Content\Images\toaf-logo-grayscale.svg" />
     <Content Include="Content\Images\united-states.svg" />
     <Content Include="Content\Images\upload-hero1.jpg" />
+    <Content Include="Content\Images\zarrinpal.png" />
     <Content Include="Content\jquery.toast.min.css" />
     <Content Include="Content\jquery.toast.min.js" />
     <Content Include="Content\js\dist\authentication-a8d44a3b2cd84d4b45f9.js" />
