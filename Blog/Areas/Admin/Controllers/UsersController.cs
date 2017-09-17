@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Blog.Areas.Admin.Models.ViewModel;
+using Blog.Models;
+using System.Threading.Tasks;
 
 namespace Blog.Areas.Admin.Controllers
 {
@@ -42,6 +44,34 @@ namespace Blog.Areas.Admin.Controllers
             ViewBag.maxpage = maxpage;
             ViewBag.search = search;
             return View(outres);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Add(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, userDetail = userDetail };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+
+                    return PartialView("_successWindow");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }

@@ -41,43 +41,43 @@
     }
 
     <script type="text/javascript">
-    $(function () {
-        $(".RemoveLink").click(function () {
-            var recordToDelete = $(this).attr("data-id");
-            if (recordToDelete != '') {
-                $.post("/Card/RemoveFromCart", { "id": recordToDelete },
-                    function (data) {
-                        if (data.ItemCount == 0) {
-                            $('#row-' + data.DeleteId).fadeOut('slow');
-                        } else {
-                            //$('#item-count-' + data.DeleteId).val(data.ItemCount);
-                        }
-                        $('#cart-total').text(data.CartTotal);
-                        //$('#update-message').text(data.Message);
-                        //$('#update-message').show('slow');
-                        //$('#cart-status').text('Cart (' + data.CartCount + ')');
+        $(function () {
+            $(".RemoveLink").click(function () {
+                var recordToDelete = $(this).attr("data-id");
+                if (recordToDelete != '') {
+                    $.post("/Card/RemoveFromCart", { "id": recordToDelete },
+                        function (data) {
+                            if (data.ItemCount == 0) {
+                                $('#row-' + data.DeleteId).fadeOut('slow');
+                            } else {
+                                //$('#item-count-' + data.DeleteId).val(data.ItemCount);
+                            }
+                            $('#cart-total').text(data.CartTotal);
+                            //$('#update-message').text(data.Message);
+                            //$('#update-message').show('slow');
+                            //$('#cart-status').text('Cart (' + data.CartCount + ')');
 
-                    });
-            }
+                        });
+                }
+            });
+
         });
 
-    });
-
-    function changecnt(id){
-        var val = $('#count-' + id).val();
-        $.post("/Card/changecnt", { "id": id , "cnt" : val },
-             function (data) {
-                 if (data.ItemCount == 0) {
-                     $('#row-' + data.DeleteId).fadeOut('slow');
-                 } else {
-                     $('#item-count-' + data.DeleteId).val(data.ItemCount);
-                 }
-                 $('#cart-total').text(data.CartTotal);
-                 $('#update-message').text(data.Message);
-                 $('#update-message').show('slow');
-                 $('#cart-status').text('Cart (' + data.CartCount + ')');
-             });
-    };
+        function changecnt(id) {
+            var val = $('#count-' + id).val();
+            $.post("/Card/changecnt", { "id": id, "cnt": val },
+                 function (data) {
+                     if (data.ItemCount == 0) {
+                         $('#row-' + data.DeleteId).fadeOut('slow');
+                     } else {
+                         $('#item-count-' + data.DeleteId).val(data.ItemCount);
+                     }
+                     $('#cart-total').text(data.CartTotal);
+                     $('#update-message').text(data.Message);
+                     $('#update-message').show('slow');
+                     $('#cart-status').text('Cart (' + data.CartCount + ')');
+                 });
+        };
     </script>
 </head>
 <body>
@@ -262,7 +262,9 @@
                                             <div>
                                                 <div class="checkout__sidebar__shipping-providers">
                                                     <h5>Delivery Partners</h5>
-                                                    <div class="checkout__sidebar__shipping-providers__icons"><img alt="DHL" src="//d3t95n9c6zzriw.cloudfront.net/checkout/dhl-square.svg"><img alt="UPS" src="//d3t95n9c6zzriw.cloudfront.net/checkout/ups-square.svg"><img alt="FedEx" src="//d3t95n9c6zzriw.cloudfront.net/checkout/fedex-square.svg"></div>
+                                                    <div class="checkout__sidebar__shipping-providers__icons">
+                                                        <img alt="Mahex" src="~/Content/Images/mahex.png">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
