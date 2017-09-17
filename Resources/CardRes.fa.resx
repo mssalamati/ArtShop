@@ -237,4 +237,10 @@
   <data name="transactionNumber" xml:space="preserve">
     <value>شماره تراکنش</value>
   </data>
+  <data name="ResultFalse" xml:space="preserve">
+    <value>پرداخت ناموفق</value>
+  </data>
+  <data name="ResultTrue" xml:space="preserve">
+    <value>پرداخت موفق</value>
+  </data>
 </root>

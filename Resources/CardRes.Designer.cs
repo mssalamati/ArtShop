@@ -286,6 +286,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UnSuccessful.
+        /// </summary>
+        public static string ResultFalse {
+            get {
+                return ResourceManager.GetString("ResultFalse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful.
+        /// </summary>
+        public static string ResultTrue {
+            get {
+                return ResourceManager.GetString("ResultTrue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Review.
         /// </summary>
         public static string Review {

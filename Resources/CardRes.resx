@@ -237,4 +237,10 @@
   <data name="transactionNumber" xml:space="preserve">
     <value>transaction number</value>
   </data>
+  <data name="ResultFalse" xml:space="preserve">
+    <value>UnSuccessful</value>
+  </data>
+  <data name="ResultTrue" xml:space="preserve">
+    <value>Successful</value>
+  </data>
 </root>

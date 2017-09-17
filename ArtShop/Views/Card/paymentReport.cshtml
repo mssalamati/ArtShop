@@ -139,7 +139,14 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>@CardRes.bilingStatus</td>
-                                                                    <td>@Model.TransactionDetail.Payed</td>
+                                                                    @if (Model.TransactionDetail.Payed)
+                                                                    {
+                                                                        <td style="color:green">@CardRes.ResultTrue</td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td style="color:red">@CardRes.ResultFalse</td>
+                                                                    }
                                                                 </tr>
                                                                 <tr>
                                                                     <td>@CardRes.transactionNumber</td>
