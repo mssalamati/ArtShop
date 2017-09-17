@@ -138,6 +138,10 @@
       <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -3128,6 +3132,7 @@
     <Content Include="Content\Images\iran.svg" />
     <Content Include="Content\Images\united-states.svg" />
     <Content Include="Content\instag-slider.css" />
+    <Content Include="Content\jquery.toast.min.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\perfect-pullquotes.css" />
     <Content Include="Content\persianDatepicker\default.htm" />
@@ -5216,6 +5221,9 @@
     <Content Include="Content\Admin\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\Admin\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\Admin\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\Users\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_successWindow.cshtml" />
     <None Include="Properties\PublishProfiles\Blog.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />
@@ -5228,6 +5236,7 @@
     <Content Include="Scripts\jquery-migrate.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.flexslider-min.js" />
+    <Content Include="Scripts\jquery.toast.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />

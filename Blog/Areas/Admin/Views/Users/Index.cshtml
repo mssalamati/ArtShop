@@ -18,7 +18,7 @@
 </div>
 
 <form method="get" action="/users/index">
-    <div class="input-group m-b pull-left col-md-6">
+    <div class="input-group pull-right col-md-6">
 
         <span class="input-group-btn">
             <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
@@ -28,7 +28,7 @@
         <input type="search" placeholder="Email " name="search" value="@ViewBag.search" class="form-control bl0">
     </div>
 </form>
-
+<button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت کاربر جدید</button> </div>
 
 <div class="clearfix"></div>
 
@@ -136,3 +136,38 @@ else
     @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
 
 }
+
+<script>
+        var loading =
+            '<div class="modal-header bg-primary">' +
+            '   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>' +
+            '   <h4 class="modal-title">...</h4>' +
+            '</div>' +
+            '<div class="modal-body" style="padding:20px;text-align:center">' +
+            '   <p style="text-align:center">در حال بارگذاری</p>' +
+            '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+            '</div>';
+
+        function showAdd() {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/admin/Tags/add");
+        }
+        function showEdit(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/Admin/Tags/edit/" + id);
+        }
+</script>
+
+<script type="text/javascript">
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
+</script>

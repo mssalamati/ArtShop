@@ -1,5 +1,6 @@
 ﻿@using Blog.Extentions
 @using Blog.Objects
+@using Resources;
 @{
     ViewBag.Title = "Artiscovery Blog";
     var widePostCol = "col-lg-8 col-md-12";
@@ -60,20 +61,22 @@
 
                     <a href="javascript:void(0);" class="close-btn"></a>
 
-                    <h3>Sign up for our email list</h3>
-                    <p>Find out about new art and collections added weekly</p>
+                    <h3>@FooterRes.Email_header1</h3>
+                    <p>@FooterRes.Email_header2</p>
 
                     <div class="content">
                         <div class="feedback">
                             <span></span>
                         </div>
+                        @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "sign-up" }))
+                        {
+                            @Html.AntiForgeryToken()
 
-                        <form action="" class="sign-up" novalidate="">
                             <input type="hidden" id="saatchi_wpnonce_field" name="saatchi_wpnonce_field" value="bbfe787331"><input type="hidden" name="_wp_http_referer" value="/">                            <input type="hidden" name="source" value="blog-top" autocomplete="off">
                             <input type="text" id="honeypot" name="honeypot" placeholder="Leave this field blank" autocomplete="off">
                             <input type="email" name="email" placeholder="Email Address" autocomplete="off">
-                            <button type="submit" class="signup-head">Sign up</button>
-                        </form>
+                            <button type="submit" class="signup-head">@FooterRes.SignUp</button>
+                        }
                     </div><!-- .content -->
                 </div><!-- .mail-list-container -->
 
@@ -114,7 +117,7 @@
                         <div class="post-element">
                             <div class="img-holder">
                                 <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
-                                    <img width="600" height="300"  src="@widePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    <img width="600" height="300" src="@widePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                                 </a>
                             </div><!-- .img-holder -->
 
@@ -184,23 +187,43 @@
                         </div>
                     </div>
 
-                    <h4>Sign up for our email list</h4>
-                    <p>Find out about new art and collections added weekly</p>
+                    <h4>@FooterRes.Email_header1</h4>
+                    <p>@FooterRes.Email_header2</p>
 
                     <div class="content">
                         <div class="feedback">
                             <span></span>
                         </div>
+                        @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "sign-up" }))
+                        {
+                            @Html.AntiForgeryToken()
 
-                        <form action="" class="sign-up" novalidate="">
                             <input type="hidden" id="saatchi_wpnonce_field" name="saatchi_wpnonce_field" value="bbfe787331"><input type="hidden" name="_wp_http_referer" value="/">                            <input type="hidden" name="source" value="blog-bottom" autocomplete="off">
                             <input type="text" id="honeypot" name="honeypot" placeholder="Leave this field blank" autocomplete="off">
                             <input type="email" name="email" placeholder="Email Address" autocomplete="off">
-                            <button type="submit" class="signup-full">Sign up</button>
-                        </form>
+                            <button type="submit" class="signup-full">@FooterRes.SignUp</button>
+
+                        }
                     </div><!-- .content -->
                 </div><!-- .post-element -->
             </div><!-- .col-lg-12 -->
         </div><!-- .row -->
     </main><!-- #main -->
 </div><!-- #primary -->
+<script>
+    function parsContent(result) {
+        if (result == "done") {
+            $.toast({
+                heading: 'Success',
+                text: 'subscription successful',
+                icon: 'success',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 7000
+            })
+        } else {
+
+            $('#ajaxrender').html(result);
+        }
+    }
+</script>
