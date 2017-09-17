@@ -39,7 +39,13 @@ namespace ArtShop.Controllers
                 ViewBag.ZipCode = user.billingInfo.ZipCode;
                 ViewBag.PhoneNumber = user.billingInfo.PhoneNumber;
             }
-            return View();
+            var cart = CartManager.GetCart(this.HttpContext);
+            var viewModel = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
