@@ -192,14 +192,15 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-            ViewBag.country = userProfile.billingInfo.country.Current().Name;
+        
             if (userProfile.billingInfo != null)
             {
+                ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "iran";
                 return View(userProfile.billingInfo);
             }
 
 
-            return View();
+            return View(new BillingInfo());
         }
 
         [HttpPost]
