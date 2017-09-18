@@ -347,7 +347,7 @@ if (current == selected)
                 @*<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
             </ul>
             <div class="so-pagination-count pull-right">
-                <small>Showing @((((page - 1) * pageSize) + 1) * (count == 0 ? 0 : 1)) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) of @count  </small>
+                <small>@ShareRes.Showing @((((page - 1) * pageSize) + 1) * (count == 0 ? 0 : 1)) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) @ShareRes.of @count  </small>
             </div>
             <div class="clearfix"></div>
         </div>

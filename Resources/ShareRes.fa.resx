@@ -261,4 +261,10 @@
   <data name="Welcome_back" xml:space="preserve">
     <value>خوش آمدید</value>
   </data>
+  <data name="of" xml:space="preserve">
+    <value>از</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>نمایش</value>
+  </data>
 </root>

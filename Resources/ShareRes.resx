@@ -258,4 +258,10 @@
   <data name="Welcome_back" xml:space="preserve">
     <value>Welcome back!</value>
   </data>
+  <data name="of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>Showing</value>
+  </data>
 </root>
