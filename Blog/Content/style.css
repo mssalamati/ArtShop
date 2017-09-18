@@ -725,7 +725,7 @@ header .nav {
     .white-box .logo {
         display: inline-block;
         background-size: contain !important;
-        width: 252px;
+        width: 300px;
         height: 33px;
         background: url(/Content/Images/footer-logo.png) 0 0 no-repeat;
         margin-left: 40px;
@@ -1754,9 +1754,9 @@ header .nav li.current-menu-item a {
 .main-logo h1 a {
     display: block;
     width: 350px;
-    height: 80px;
+    height: 70px;
     background: url(images/canvas-logo@2x.png) no-repeat;
-    background-size: 350px 90px;
+    background-size: 300px 63px;
     text-indent: -9999px;
     margin: 0 auto;
 }
