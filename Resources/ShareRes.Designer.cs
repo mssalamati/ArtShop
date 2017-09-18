@@ -295,6 +295,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delivered.
+        /// </summary>
+        public static string OrderStatus_Delivered {
+            get {
+                return ResourceManager.GetString("OrderStatus_Delivered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pending.
+        /// </summary>
+        public static string OrderStatus_NoSeen {
+            get {
+                return ResourceManager.GetString("OrderStatus_NoSeen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to posted.
+        /// </summary>
+        public static string OrderStatus_Posted {
+            get {
+                return ResourceManager.GetString("OrderStatus_Posted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seen.
+        /// </summary>
+        public static string OrderStatus_Seen {
+            get {
+                return ResourceManager.GetString("OrderStatus_Seen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Policy.
         /// </summary>
         public static string Privacy_policy {

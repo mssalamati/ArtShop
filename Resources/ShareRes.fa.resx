@@ -195,6 +195,18 @@
   <data name="Orders" xml:space="preserve">
     <value>سفارشات</value>
   </data>
+  <data name="OrderStatus_Delivered" xml:space="preserve">
+    <value>رسید</value>
+  </data>
+  <data name="OrderStatus_NoSeen" xml:space="preserve">
+    <value>در حال بررسی</value>
+  </data>
+  <data name="OrderStatus_Posted" xml:space="preserve">
+    <value>پست شد</value>
+  </data>
+  <data name="OrderStatus_Seen" xml:space="preserve">
+    <value>بررسی شد</value>
+  </data>
   <data name="Privacy_policy" xml:space="preserve">
     <value>حفظ حریم خصوصی</value>
   </data>

@@ -195,6 +195,18 @@
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>
   </data>
+  <data name="OrderStatus_Delivered" xml:space="preserve">
+    <value>delivered</value>
+  </data>
+  <data name="OrderStatus_NoSeen" xml:space="preserve">
+    <value>pending</value>
+  </data>
+  <data name="OrderStatus_Posted" xml:space="preserve">
+    <value>posted</value>
+  </data>
+  <data name="OrderStatus_Seen" xml:space="preserve">
+    <value>seen</value>
+  </data>
   <data name="Privacy_policy" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>

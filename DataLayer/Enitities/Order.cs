@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -81,5 +82,25 @@ namespace DataLayer.Enitities
         Seen = 1,
         Delivered = 2,
         Posted = 3
+    }
+
+    public static class ErrorLevelExtensions
+    {
+        public static string ToOrderStatus(this OrderStatus me)
+        {
+            switch (me)
+            {
+                case OrderStatus.NoSeen:
+                    return ShareRes.OrderStatus_NoSeen;
+                case OrderStatus.Seen:
+                    return ShareRes.OrderStatus_Seen;
+                case OrderStatus.Delivered:
+                    return ShareRes.OrderStatus_Delivered;
+                case OrderStatus.Posted:
+                    return ShareRes.OrderStatus_Posted;
+                default:
+                    return "";
+            }
+        }
     }
 }
