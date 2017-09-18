@@ -9,7 +9,6 @@ using System.Resources;
 using System.Globalization;
 using System.Collections;
 using DataLayer;
-using DataLayer.LanguageUtil.WordResources;
 
 namespace Resources
 {
