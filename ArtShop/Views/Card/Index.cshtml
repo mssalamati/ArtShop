@@ -218,7 +218,15 @@
 
                                                 </div>
                                             </div>
-                                            <a class="step-submission-button" href="/Card/getinfo">@CardRes.Next</a>
+                                            @if (Model.CartTotal != 0)
+                                            {
+                                                <a class="step-submission-button" href="/Card/getinfo">@CardRes.Next</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="step-submission-button disabled" style="background-color:gray">@CardRes.Next</a>
+                                            }
+                                          
                                             <div class="loading-block"></div>
                                         </div>
                                         <footer class="checkout__footer">
