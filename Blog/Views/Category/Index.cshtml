@@ -21,7 +21,7 @@
             </div>
 
 
-            <div class="row">
+            <div class="row holder">
 
 
                 @foreach (var item in Model)
@@ -53,46 +53,18 @@
 
             <div class="row loader">
                 <div class="col-lg-12">
-                    <a href="javascript:void(0);" class="load-more-btn" data-total="30">Load more</a>
+                    <a style="cursor:pointer" onclick="LoadMore();" class="load-more-btn" data-total="48">Load more</a>
                 </div>
             </div>
-
-
-            @*<div class="row">
-                    <div class="col-lg-12 col-md-12 sign-up-big">
-                        <div class="post-element">
-                            <div class="feedback-overlay"></div>
-                            <div class="found-overlay">
-                                <div>
-                                    <h2>Good news!</h2>
-                                    <p>You are already subscribed</p>
-                                </div>
-                            </div>
-                            <div class="success-overlay">
-                                <div>
-                                    <h2>Congratulations!</h2>
-                                    <p>You successfully signed up</p>
-                                </div>
-                            </div>
-
-                            <h4>Sign up for our email list</h4>
-                            <p>Find out about new art and collections added weekly</p>
-
-                            <div class="content">
-                                <div class="feedback">
-                                    <span></span>
-                                </div>
-
-                                <form action="" class="sign-up" novalidate="">
-                                    <input type="hidden" id="saatchi_wpnonce_field" name="saatchi_wpnonce_field" value="d779e1b6c4"><input type="hidden" name="_wp_http_referer" value="/category/art">                            <input type="hidden" name="source" value="blog-bottom" autocomplete="off">
-                                    <input type="text" id="honeypot" name="honeypot" placeholder="Leave this field blank" autocomplete="off">
-                                    <input type="email" name="email" placeholder="Email Address" autocomplete="off">
-                                    <button type="submit" class="signup-full">Sign up</button>
-                                </form>
-                            </div><!-- .content -->
-                        </div><!-- .post-element -->
-                    </div><!-- .col-lg-12 -->
-                </div><!-- .row -->*@
         </main><!-- #main -->
     </div>
 }
+<script>
+    var page = 1;
+    function LoadMore() {
+        page++;
+        $.get("/category/more?id=" + @ViewBag.id +"&page="+page, function (data) {
+            $(".holder").append(data);
+        });
+    }
+</script>

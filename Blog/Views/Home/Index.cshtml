@@ -2,7 +2,7 @@
 @using Blog.Objects
 @using Resources;
 @{
-    ViewBag.Title = "Artiscovery Blog";
+    ViewBag.Title = "Artiscovery | Blog";
     var widePostCol = "col-lg-8 col-md-12";
     var sqrPostCol = "col-lg-4 col-md-6";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
@@ -20,7 +20,7 @@
                 <div class="showcase">
                     <div class="img-holder">
                         <a href="@Url.Action(@showcasePost.Category.Name, "Post", new { id = @showcasePost.GenerateSlug() })">
-                            <img width="660" height="300" src="@showcasePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                            <img width="660" height="300" src="/@showcasePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                         </a>
                     </div><!-- .img-holder -->
 
@@ -83,7 +83,7 @@
             </div><!-- .col-lg-4 -->
         </div><!-- .row -->
 
-        <div class="row">
+        <div class="row holder">
             @{ int count = 0; var posts = Model.Where(a => a.postType == PostType.Sqr);}
             @foreach (var item in posts)
             {
@@ -95,7 +95,7 @@
                         <div class="post-element">
                             <div class="img-holder">
                                 <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
-                                    <img width="300" height="300" src="@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                                 </a>
                             </div><!-- .img-holder -->
 
@@ -117,7 +117,7 @@
                         <div class="post-element">
                             <div class="img-holder">
                                 <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
-                                    <img width="600" height="300" src="@widePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    <img width="600" height="300" src="/@widePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                                 </a>
                             </div><!-- .img-holder -->
 
@@ -140,7 +140,7 @@
                         <div class="post-element">
                             <div class="img-holder">
                                 <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
-                                    <img width="300" height="300" src="@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
                                 </a>
                             </div><!-- .img-holder -->
 
@@ -163,11 +163,11 @@
 
 
 
-        @*<div class="row loader">
-                <div class="col-lg-12">
-                    <a href="javascript:void(0);" class="load-more-btn" data-total="48">Load more</a>
-                </div>
-            </div>*@
+        <div class="row loader">
+            <div class="col-lg-12">
+                <a style="cursor:pointer" onclick="LoadMore();" class="load-more-btn" data-total="48">Load more</a>
+            </div>
+        </div>
 
 
         <div class="row">
@@ -225,5 +225,13 @@
 
             $('#ajaxrender').html(result);
         }
+    }
+
+    var page = 1;
+    function LoadMore() {
+        page++;
+        $.get("/home/more?page=" + page, function (data) {
+            $(".holder").append(data);
+        });
     }
 </script>

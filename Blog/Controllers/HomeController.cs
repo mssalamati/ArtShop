@@ -10,17 +10,24 @@ namespace Blog.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             ViewBag.ShowCase = db.Posts.FirstOrDefault(a => a.postType == Objects.PostType.ShowCase);
-            var post = db.Posts.OrderByDescending(a => a.PostedOn).Take(20).ToList();
+            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Take(20).ToList();
+
             return View(post);
+        }
+
+        public ActionResult More(int page = 1)
+        {
+            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Skip((page-1) * 20).Take(20).ToList();
+            return PartialView(post);
         }
 
         public ActionResult Header()
         {
             var Header = db.NavigationCategories.OrderBy(a => a.priority).Select(x => x.category).ToList();
-            return PartialView("_Header",Header);
+            return PartialView("_Header", Header);
         }
 
         public ActionResult SetCulture(string culture)

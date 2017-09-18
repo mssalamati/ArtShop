@@ -1,7 +1,14 @@
-﻿
+﻿@using Blog.Extentions
+@using Blog.Objects
+@using Resources;
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Artiscovery Blog | Search";
+    var widePostCol = "col-lg-8 col-md-12";
+    var sqrPostCol = "col-lg-4 col-md-6";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
 }
+@model IList<Post>
 <div class="content-area row">
     <main id="main" class="site-main col-lg-12" role="main">
         <article id="post-42550" class="post-42550 page type-page status-publish hentry">
@@ -46,17 +53,45 @@
             }
             else
             {
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Search Results for: <span>@ViewBag.keyword</span></h2>
-                    </div><!-- .col-lg-12 -->
-                </div>
-                <div class="row">
-                    @foreach (var item in Model)
+                if (Model.Count == 0)
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Search Results for: <span>@ViewBag.keyword</span> Not found</h2>
+                        </div><!-- .col-lg-12 -->
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Search Results for: <span>@ViewBag.keyword</span></h2>
+                        </div><!-- .col-lg-12 -->
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model)
                     {
+                            <div class="@sqrPostCol">
+                                <div class="post-element">
+                                    <div class="img-holder">
+                                        <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                            <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                        </a>
+                                    </div><!-- .img-holder -->
 
-                    }
-                </div>
+                                    <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
+                                    <h4>
+                                        <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                            @item.Current().Title
+                                        </a>
+                                    </h4>
+                                    <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
+                                    <p></p>
+                                </div><!-- .post-element -->
+                            </div><!-- .col-lg-4 -->
+                        }
+                    </div>
+                }
             }
 
             <div class="row loader">
