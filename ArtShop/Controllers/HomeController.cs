@@ -43,6 +43,12 @@ namespace ArtShop.Controllers
             return View(model);
         }
 
+        [Route("Blog")]
+        public ActionResult Blog()
+        {
+            return Redirect("http://blog.artiscovery.com/");
+        }
+
         //[OutputCache(Duration = 360)]
         public ActionResult _SelectedCurators(FirstPageSection model)
         {
