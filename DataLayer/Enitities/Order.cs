@@ -50,10 +50,18 @@ namespace DataLayer.Enitities
         public string TransactionNumber { get; set; }
         public bool Payed { get; set; }
         public decimal amount { get; set; }
+        public PaymentMethod Method { get; set; }
+        public decimal currencyRate { get; set; }
+
         public TransactionDetail()
         {
             date = DateTime.Now;
         }
+    }
+
+    public enum PaymentMethod
+    {
+        zarinpall = 0, paypall = 1
     }
 
     public class OrderDetail

@@ -184,7 +184,7 @@ namespace ArtShop.Util
                 order.OrderDetails.Add(orderDetail);
             }
             order.TotalPrice = (double)orderTotal;
-            order.TransactionDetail = new TransactionDetail() { amount = orderTotal };
+            order.TransactionDetail = new TransactionDetail() { amount = orderTotal, Method = PaymentMethod.zarinpall, currencyRate = 1 };
             db.Orders.Add(order);
             db.SaveChanges();
             return order.Id;
