@@ -76,10 +76,6 @@
                     <tr>
                         <th></th>
                         <th>
-                            @*@Html.DisplayNameFor(model => model.user.)*@
-                            test
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.BuyDate)
                         </th>
                         <th>
@@ -88,23 +84,33 @@
                         <th>
                             @Html.DisplayNameFor(model => model.TotalPrice)
                         </th>
+                        <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
                         <tr>
                             <th><i class="fa fa-user"></i></th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OrderDetails)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.BuyDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Status)
+                                @item.Status.ToOrderStatus()
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
+                                @item.TotalPrice.ToString("#,##") $
                             </td>
+                            @if (item.TransactionDetail != null && item.TransactionDetail.Payed)
+                            {
+                                <td>
+                                    @CardRes.ResultTrue
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @CardRes.ResultFalse
+                                </td>
+                            }
                         </tr>
                     }
 

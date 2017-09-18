@@ -27,10 +27,6 @@ else
                         <tr>
                             <th></th>
                             <th>
-                                @*@Html.DisplayNameFor(model => model.user.)*@
-                                test
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.BuyDate)
                             </th>
                             <th>
@@ -39,14 +35,12 @@ else
                             <th>
                                 @Html.DisplayNameFor(model => model.TotalPrice)
                             </th>
+                            <th></th>
                         </tr>
                         @foreach (var item in Model)
-                    {
+                        {
                             <tr>
                                 <th><i class="fa fa-user"></i></th>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.OrderDetails)
-                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.BuyDate)
                                 </td>
@@ -56,7 +50,7 @@ else
                                 <td>
                                     @item.TotalPrice.ToString("#,##") $
                                 </td>
-                                @if (item.TransactionDetail.Payed)
+                                @if (item.TransactionDetail != null && item.TransactionDetail.Payed)
                                 {
                                     <td>
                                         @CardRes.ResultTrue
