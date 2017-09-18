@@ -239,7 +239,7 @@ if (current == selected)
     <ul class="item-list masonry">
         @foreach (var item in Model)
         {
-            <li  itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+            <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
                         <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" itemprop="url">
@@ -347,7 +347,7 @@ if (current == selected)
                 @*<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
             </ul>
             <div class="so-pagination-count pull-right">
-                <small>Showing @(((page - 1) * pageSize) + 1) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) of @count  </small>
+                <small>Showing @((((page - 1) * pageSize) + 1) * (count == 0 ? 0 : 1)) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) of @count  </small>
             </div>
             <div class="clearfix"></div>
         </div>
