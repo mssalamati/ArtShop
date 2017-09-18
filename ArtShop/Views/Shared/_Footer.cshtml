@@ -69,7 +69,7 @@
                     @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
                     {
                         @Html.AntiForgeryToken()
-                        <div class="enter-email">
+                        <div class="enter-email" style="padding-right:10px;">
                             <input type="hidden" name="version" value="1">
                             <input type="hidden" name="account_type" value="collector">
                             <input type="hidden" name="user_type_id" value="1">

@@ -157,6 +157,7 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var order = profile.Orders.SingleOrDefault(x => x.Id == id);
+            SendInvoice(order);
             return View(order);
         }
 
@@ -231,12 +232,19 @@ namespace ArtShop.Controllers
             return PartialView("CartSummary");
         }
 
-        private void SendInvoice()
+        private void SendInvoice(Order order)
         {
 
             dynamic email = new Email("Invoice");
             email.To = User.Identity.GetUserName();
-            email.total = "";
+            email.orderid = order.Id;
+            email.fullname = order.ReceiverName;
+            email.address = order.Address;
+            email.shipaddress = order.Address;
+            email.orderdate = order.BuyDate.ToString();
+            email.products = order.OrderDetails.ToList();
+            email.subtotal = order.TotalPrice;
+            email.total = order.TotalPrice;
             email.Send();
 
         }

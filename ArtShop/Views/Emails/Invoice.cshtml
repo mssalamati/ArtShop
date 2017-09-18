@@ -1,4 +1,6 @@
-﻿<div class="container">
+﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="invoice-title">
@@ -39,36 +41,28 @@
                                     <td><strong>Product</strong></td>
                                     <td class="text-center"><strong>Price</strong></td>
                                     <td class="text-center"><strong>Quantity</strong></td>
-                                    <td class="text-center"><strong>Order Status</strong></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                <tr>
-                                    <td class="col-md-3">
-                                        <div class="media">
-                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@ViewBag.picurl" style="width: 72px; height: 72px;"> </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"> Product Name</h4>
-                                                <h5 class="media-heading"> Product Code</h5>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">$10.99</td>
-                                    <td class="text-center">1</td>
-                                    <td>
-                                        <div class="col-md-13">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                    <span class="sr-only">60% Complete</span>
+                                @foreach (OrderDetail item in (List<OrderDetail>)ViewBag.products)
+                                {
+                                    <tr>
+                                        <td class="col-md-3">
+                                            <div class="media">
+                                                @*<a class="thumbnail pull-left" href="#">
+                                                    <img class="media-object" src="@item.Product.photo.Path" style="width: 72px; height: 72px;">
+                                                </a>*@
+                                                <div class="media-body">
+                                                    <h4 class="media-heading"> @item.Product.Title</h4>
+                                                    <h5 class="media-heading"> @item.Quantity</h5>
                                                 </div>
-                                                <span class="progress-type">Packaging</span>
-                                                <span class="progress-completed">61%</span>
                                             </div>
-                                        </div>
-
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td class="text-center">$10.99</td>
+                                        <td class="text-center">1</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -84,12 +78,12 @@
                 <div class="pull-left"><h4>Subtotal</h4> </div>
                 <div class="pull-right"><h4 class="text-right">@ViewBag.subtotal</h4></div>
                 <div class="clearfix"></div>
-                <div class="pull-left"><h4>Tax</h4> </div>
+                @*<div class="pull-left"><h4>Tax</h4> </div>
                 <div class="pull-right"><h4 class="text-right">@ViewBag.tax</h4></div>
-                <div class="clearfix"></div>
-                <div class="pull-left"><h4>Order Total</h4> </div>
+                <div class="clearfix"></div>*@
+                @*<div class="pull-left"><h4>Order Total</h4> </div>
                 <div class="pull-right"><h4 class="text-right">@ViewBag.total</h4></div>
-                <div class="clearfix"></div>
+                <div class="clearfix"></div>*@
             </div>
             <div class="col-md-4 offset-md-1">
                 <h3 class="text-center">Payment Type</h3><hr>
