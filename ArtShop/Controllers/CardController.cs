@@ -85,7 +85,7 @@ namespace ArtShop.Controllers
                 o.OrderDetails.Add(orderDetail);
             }
             o.TotalPrice = (double)orderTotal;
-            o.TransactionDetail = new TransactionDetail() { amount = orderTotal * setting.IRRialRate, Method = model.paymentMethod, currencyRate = setting.IRRialRate };
+            o.TransactionDetail = new TransactionDetail() { amount = orderTotal, Method = model.paymentMethod, currencyRate = setting.IRRialRate };
             db.Orders.Add(o);
             db.SaveChanges();
 
@@ -128,7 +128,7 @@ namespace ArtShop.Controllers
 
                     if (Request.QueryString["Status"].ToString().Equals("OK"))
                     {
-                        decimal Amount = tran.amount;
+                        decimal Amount = tran.amount * tran.currencyRate;
                         long RefID;
                         System.Net.ServicePointManager.Expect100Continue = false;
                         ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp =
