@@ -417,4 +417,13 @@
   <data name="sold" xml:space="preserve">
     <value>فروخته شده</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>مقدار</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
 </root>
