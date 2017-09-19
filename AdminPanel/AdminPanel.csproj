@@ -231,6 +231,7 @@
     <Compile Include="Controllers\ProductFramesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
     <Compile Include="Global.asax.cs">
@@ -5479,6 +5480,9 @@
     <Content Include="Views\ProductFrames\editMaterial.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Setting\edit.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\Setting\_successWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

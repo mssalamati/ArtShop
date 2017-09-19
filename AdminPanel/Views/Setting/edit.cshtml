@@ -1,0 +1,55 @@
+﻿
+@model SettingValue
+
+
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+    <h4 class="modal-title">Edit params</h4>
+</div>
+@using (Ajax.BeginForm("edit", "setting", null, new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "dform",
+    LoadingElementId = "submit_spin",
+    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');"
+}, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal-body" style="padding:20px;">
+
+        @Html.AntiForgeryToken()
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
+
+        @Html.HiddenFor(x => x.siteName)
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="form-label">ضریب ریال </label>
+                    <input name="min" value="@(Model==null ? 0 : Model.IRRialRate)" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="form-label">ضریب یورو </label>
+                    <input name="max" value="@(Model==null ? 0 : Model.EURate)" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+            <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                <i class="fa fa-spinner fa-spin"></i>
+            </span>&nbsp;  ثبت  &nbsp;
+        </button>
+    </div>
+}
+
+
