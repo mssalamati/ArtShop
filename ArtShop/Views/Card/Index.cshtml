@@ -2,7 +2,7 @@
     Layout = null;
     ViewBag.Title = "Card | Artiscovery";
 }
-}
+
 
 @model ShoppingCartViewModel
 @using DataLayer.Extentions
@@ -99,7 +99,8 @@
                             </div>
                             <div class="checkout__header__logo checkout__header__logo--small">
                                 <a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png"></a>
-                            </div><nav class="checkout__breadcrumb">
+                            </div>
+                            <nav class="checkout__breadcrumb">
                                 <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active" href="/checkout">
                                     1. @CardRes.Cart
                                 </a><a class="checkout__breadcrumb__item">
@@ -132,41 +133,41 @@
                                             <div class="cart__items">
                                                 @foreach (var item in Model.CartItems)
                                                 {
-                                                    <div id="row-@item.Id" class="cart__item cart__item--original">
-                                                        <a rel="noopener noreferrer" target="_blank" href="/products/single/@item.ProductId" class="cart__item__photo">
-                                                            <img alt="yin yang" src="@item.Product.photo.Path">
-                                                        </a>
-                                                        <div class="cart__item__details">
-                                                            <div class="cart__item__details__row">
-                                                                <div class="cart__item__details__left">
-                                                                    <div class="cart__item__title">@item.Product.Title</div>
-                                                                    <div>@item.Product.user.FirstName @item.Product.user.LastName</div>
-                                                                    <div>
-                                                                        @if (item.Product.user.country != null)
+                                                <div id="row-@item.Id" class="cart__item cart__item--original">
+                                                    <a rel="noopener noreferrer" target="_blank" href="/products/single/@item.ProductId" class="cart__item__photo">
+                                                        <img alt="yin yang" src="@item.Product.photo.Path">
+                                                    </a>
+                                                    <div class="cart__item__details">
+                                                        <div class="cart__item__details__row">
+                                                            <div class="cart__item__details__left">
+                                                                <div class="cart__item__title">@item.Product.Title</div>
+                                                                <div>@item.Product.user.FirstName @item.Product.user.LastName</div>
+                                                                <div>
+                                                                    @if (item.Product.user.country != null)
                                                                         {
-                                                                            @item.Product.user.country.Current().Name
+                                                                        @item.Product.user.country.Current().Name
                                                                         }
                                                                         else
                                                                         {
-                                                                            <span>Unknown</span>
+                                                                        <span>Unknown</span>
                                                                         }
-                                                                    </div>
                                                                 </div>
-                                                                <div class="cart__item__details__right"><a data-id="@item.Id" style="cursor:pointer" class="RemoveLink">@CardRes.Remove (@((int)item.Quantity))</a></div>
                                                             </div>
+                                                            <div class="cart__item__details__right"><a data-id="@item.Id" style="cursor:pointer" class="RemoveLink">@CardRes.Remove (@((int)item.Quantity))</a></div>
                                                         </div>
-                                                        <div class="cart__item__pricing">
+                                                    </div>
+                                                    <div class="cart__item__pricing">
+                                                        <div>
+                                                            <div>@CardRes.OriginalWork</div>
+                                                            <div>$<span id="cart-total">@item.Product.Price</span></div>
+                                                        </div>
+                                                        <div class="cart__item__estimated-delivery-time">
                                                             <div>
-                                                                <div>@CardRes.OriginalWork</div>
-                                                                <div>$<span id="cart-total">@item.Product.Price</span></div>
-                                                            </div>
-                                                            <div class="cart__item__estimated-delivery-time">
-                                                                <div>
-                                                                    This item usually ships within 11 - 14 business days*
-                                                                </div>
+                                                                This item usually ships within 11 - 14 business days*
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                                 }
 
                                                 @*<div class="cart__item cart__item--print">
@@ -222,13 +223,13 @@
                                             </div>
                                             @if (Model.CartTotal != 0)
                                             {
-                                                <a class="step-submission-button" href="/Card/getinfo">@CardRes.Next</a>
+                                            <a class="step-submission-button" href="/Card/getinfo">@CardRes.Next</a>
                                             }
                                             else
                                             {
-                                                <a class="step-submission-button disabled" style="background-color:gray">@CardRes.Next</a>
+                                            <a class="step-submission-button disabled" style="background-color:gray">@CardRes.Next</a>
                                             }
-                                          
+
                                             <div class="loading-block"></div>
                                         </div>
                                         <footer class="checkout__footer">
@@ -259,10 +260,6 @@
                                                 <span class="fa fa-lock"></span> @CardRes.r3
                                             </div>
                                         </div>
-                                        @*<div class="checkout__sidebar__quote">
-                                                <span class="checkout__sidebar__quote__quote">
-                                                </span>—<span class="checkout__sidebar__quote__author">David B, Wilmington, DE, USA</span>
-                                            </div>*@
                                         <hr>
                                         <div class="checkout__sidebar__payment-methods">
                                             <h5>@CardRes.PaymentMethods</h5>
@@ -281,10 +278,6 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                @*<div class="checkout__sidebar__security-indicator">
-                                                        <h5>Secure Transaction</h5>
-                                                        <img alt="Secured By Rapid SSL" src="//d3t95n9c6zzriw.cloudfront.net/checkout/rapidssl.gif">
-                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
