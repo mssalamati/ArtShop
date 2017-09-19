@@ -58,6 +58,9 @@ namespace ArtShop.Controllers
             var profile = user.userDetail;
             var cart = CartManager.GetCart(this.HttpContext);
             int amount = (int)cart.GetTotal();
+            decimal orderTotal = 0;
+            var cartItems = cart.GetCartItems();
+            var setting = db.SettingValues.FirstOrDefault();
 
             Order o = new Order()
             {
@@ -69,8 +72,22 @@ namespace ArtShop.Controllers
                 City = model.city,
                 PhoneNumber = model.PhoneNumber,
             };
-            var orderId = cart.CreateOrder(o);
-            var neworder = db.Orders.Find(orderId);
+            foreach (var item in cartItems)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    Product = item.Product,
+                    UnitPrice = item.Product.Price,
+                    Quantity = item.Quantity,
+                    type = item.type
+                };
+                orderTotal += (item.Quantity * item.Product.Price);
+                o.OrderDetails.Add(orderDetail);
+            }
+            o.TotalPrice = (double)orderTotal;
+            o.TransactionDetail = new TransactionDetail() { amount = orderTotal * setting.IRRialRate, Method = model.paymentMethod, currencyRate = setting.IRRialRate };
+            db.Orders.Add(o);
+            db.SaveChanges();
 
             System.Net.ServicePointManager.Expect100Continue = false;
             ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
@@ -85,7 +102,7 @@ namespace ArtShop.Controllers
 
             long longAuth = 0;
             long.TryParse(Authority, out longAuth);
-            neworder.TransactionDetail.Number = longAuth.ToString();
+            o.TransactionDetail.Number = longAuth.ToString();
             db.SaveChanges();
             if (Status == 100)
             {
@@ -108,7 +125,7 @@ namespace ArtShop.Controllers
                 var orderId = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id).Id;
                 if (tran != null)
                 {
-                    
+
                     if (Request.QueryString["Status"].ToString().Equals("OK"))
                     {
                         decimal Amount = tran.amount;

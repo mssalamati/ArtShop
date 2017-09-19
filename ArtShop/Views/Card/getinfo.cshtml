@@ -48,7 +48,7 @@
             }
 
             .checkout__breadcrumb__item:last-child {
-                 margin-right: 20px; 
+                margin-right: 20px;
             }
 
             @@media (min-width: 992px) {
@@ -148,6 +148,32 @@
                                                             <div class="input-with-placeholder">
                                                                 <input type="tel" value="@ViewBag.PhoneNumber" name="PhoneNumber" placeholder="@CardRes.Phone" class="input-with-placeholder__input " id="PhoneNumber">
                                                             </div>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <div class="input-with-placeholder">
+                                                                <div class="list-group-select__item list-group-select__item--selected">
+                                                                    <div>
+                                                                        <input name="paymentMethod" checked type="radio" readonly="" value="0">
+                                                                    </div>
+                                                                    <div>
+                                                                        <div>
+                                                                            <img alt="paypal" src="/Content/Images/zarrinpal.png">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @*<div class="input-with-placeholder">
+                                                                <div class="list-group-select__item ">
+                                                                    <div>
+                                                                        <input name="paymentMethod" type="radio" readonly="" value="1">
+                                                                    </div>
+                                                                    <div>
+                                                                        <div>
+                                                                            <img alt="paypal" src="//d3t95n9c6zzriw.cloudfront.net/checkout/paypal.svg">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>*@
                                                         </div>
                                                     </div>
 
@@ -281,6 +307,22 @@
                     minlength: 2
                 }
             }
+        });
+    </script>
+
+    <script>
+        $('.list-group-select__item').click(function () {
+            if ($(this).find('input:radio[name=paymentMethod]').is(":checked")) {
+            }
+            else {
+                $(this).find('input:radio[name=paymentMethod]').prop("checked", true);
+                $('.list-group-select__item').removeClass('list-group-select__item--selected');
+                $(this).addClass('list-group-select__item--selected');
+            }
+        });
+
+        $('input[type=checkbox]').click(function (e) {
+            e.stopPropagation();
         });
     </script>
 
