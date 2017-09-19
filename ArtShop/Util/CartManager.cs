@@ -142,7 +142,7 @@ namespace ArtShop.Util
         }
         public List<ShoppingCart> GetCartItems()
         {
-            return db.ShoppingCarts.Where(
+            return db.ShoppingCarts.Include("Product").Where(
                 cart => cart.CartNumber == ShoppingCartId).ToList();
         }
         public int GetCount()

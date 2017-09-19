@@ -76,7 +76,7 @@ namespace ArtShop.Controllers
             {
                 var orderDetail = new OrderDetail
                 {
-                    Product = item.Product,
+                    ProductId = item.ProductId,
                     UnitPrice = item.Product.Price,
                     Quantity = item.Quantity,
                     type = item.type
