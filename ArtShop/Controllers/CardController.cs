@@ -254,6 +254,7 @@ namespace ArtShop.Controllers
 
             dynamic email = new Email("Invoice");
             email.To = User.Identity.GetUserName();
+            email.Subject = "Invoice";
             email.orderid = order.Id;
             email.fullname = order.ReceiverName;
             email.address = order.Address;
