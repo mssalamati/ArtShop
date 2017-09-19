@@ -88,6 +88,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Holder.
+        /// </summary>
+        public static string AccountHolder {
+            get {
+                return ResourceManager.GetString("AccountHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Number.
+        /// </summary>
+        public static string AccountNumber {
+            get {
+                return ResourceManager.GetString("AccountNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you have {0} in your account.
+        /// </summary>
+        public static string accountValue {
+            get {
+                return ResourceManager.GetString("accountValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address and Identification.
         /// </summary>
         public static string Address_Identification {
@@ -124,11 +151,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank Name.
+        /// </summary>
+        public static string BankName {
+            get {
+                return ResourceManager.GetString("BankName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Card Number.
+        /// </summary>
+        public static string CardNumber {
+            get {
+                return ResourceManager.GetString("CardNumber", resourceCulture);
             }
         }
         
@@ -425,6 +470,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not payed.
+        /// </summary>
+        public static string Notpayed {
+            get {
+                return ResourceManager.GetString("Notpayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Orders.
         /// </summary>
         public static string Orders {
@@ -457,6 +511,24 @@ namespace Resources {
         public static string Password_desc_3 {
             get {
                 return ResourceManager.GetString("Password_desc_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payed.
+        /// </summary>
+        public static string Payed {
+            get {
+                return ResourceManager.GetString("Payed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pending.
+        /// </summary>
+        public static string pending {
+            get {
+                return ResourceManager.GetString("pending", resourceCulture);
             }
         }
         

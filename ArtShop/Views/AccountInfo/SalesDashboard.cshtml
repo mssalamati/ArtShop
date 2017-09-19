@@ -9,13 +9,53 @@
 
 @{var IsRighToLeft = CultureHelper.IsRighToLeft();}
 
+@{
+    string side = "pull";
+    string content = "push";
+    string fl = "";
+
+}
+
+@if (IsRighToLeft)
+{
+    side = content; content = "pull";
+    fl = "float:right !important";
+    <style>
+        .fields label {
+            clear: right;
+            float: right;
+            text-align: right;
+        }
+
+        textarea.wide {
+            padding-right: 0.75rem;
+            text-align: right;
+        }
+
+        .page-title {
+            text-align: right;
+        }
+
+        .mb2 {
+            text-align: right;
+        }
+
+        .hd-title {
+            text-align: right;
+        }
+
+        .side-nav-container {
+            text-align: right;
+        }
+    </style>
+}
 
 <div class="row-layout content">
 
     <div class="row">
-        <div class="small-12 large-8 large-push-4 columns bgtext content">
+        <div class="small-12 large-8 large-@content-4 columns bgtext content" style="@fl">
             <h3 class="hd-title">@ProfileRes.Requestpayout</h3>
-            <p class="mb2">you have $@ViewBag.account in your account</p>
+            <p class="mb2">@(string.Format(ProfileRes.accountValue, "$"+ ViewBag.account)) </p>
 
             @if (Model == null || Model.Count == 0 || Model.All(x => x.Seen))
             {
@@ -24,24 +64,24 @@
                     @Html.AntiForgeryToken()
 
                     <fieldset class="fields">
-                        <label>Bank Name</label>
+                        <label>@ProfileRes.BankName</label>
                         <div>
-                            <input class="wide"  name="BankName"/>
+                            <input class="wide" name="BankName" />
                         </div>
 
-                        <label>Card Number</label>
+                        <label>@ProfileRes.CardNumber</label>
                         <div>
-                            <input class="wide"  name="CardNumber"/>
+                            <input class="wide" name="CardNumber" />
                         </div>
 
-                        <label>Account Number</label>
+                        <label>@ProfileRes.AccountNumber</label>
                         <div>
-                            <input class="wide"  name="AccountNumber"/>
+                            <input class="wide" name="AccountNumber" />
                         </div>
 
-                        <label>Account Holder</label>
+                        <label>@ProfileRes.AccountHolder</label>
                         <div>
-                            <input class="wide"  name="AccountHolder"/>
+                            <input class="wide" name="AccountHolder" />
                         </div>
 
                         <input type="submit" class="button btn-info mt1" value="@ProfileRes.Requestpayout">
@@ -66,15 +106,15 @@
                                 <td>@item.Value $</td>
                                 @if (!item.Seen)
                                 {
-                                    <td>pending</td>
+                                    <td>@ProfileRes.pending</td>
                                 }
                                 else if (item.Payed)
                                 {
-                                    <td>payed</td>
+                                    <td>@ProfileRes.Payed</td>
                                 }
                                 else
                                 {
-                                    <td>Not payed</td>
+                                    <td>@ProfileRes.Notpayed</td>
                                 }
                             </tr>
                         }
@@ -83,7 +123,7 @@
             </div>
 
         </div>
-        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
+        <div class="small-12 large-4 large-@side-8 columns bgtext side-nav-container" style="@fl">
 
             <ul class="side-nav">
                 <li class="profile ">

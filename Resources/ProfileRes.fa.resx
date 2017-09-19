@@ -123,6 +123,15 @@
   <data name="About_me" xml:space="preserve">
     <value>درباره من</value>
   </data>
+  <data name="AccountHolder" xml:space="preserve">
+    <value>نام دارنده حساب</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>شماره حساب</value>
+  </data>
+  <data name="accountValue" xml:space="preserve">
+    <value>شما {0} در حساب خود دارید</value>
+  </data>
   <data name="Account_info" xml:space="preserve">
     <value>حساب کاربری</value>
   </data>
@@ -138,8 +147,14 @@
   <data name="Back_to_profile" xml:space="preserve">
     <value>بازگشت به حساب کاربری</value>
   </data>
+  <data name="BankName" xml:space="preserve">
+    <value>نام بانک</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>انصراف</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>شماره کارت</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>شهر</value>
@@ -202,7 +217,7 @@
     <value>توافق</value>
   </data>
   <data name="History" xml:space="preserve">
-    <value>History</value>
+    <value>سوابق</value>
   </data>
   <data name="Identification_header" xml:space="preserve">
     <value>نشانی/ محل اثر انتخاب شده</value>
@@ -237,6 +252,9 @@
   <data name="New_password" xml:space="preserve">
     <value>کلمه عبور جدید</value>
   </data>
+  <data name="Notpayed" xml:space="preserve">
+    <value>پرداخت نشده</value>
+  </data>
   <data name="No_file_chosen" xml:space="preserve">
     <value>تصویری انتخاب نشده</value>
   </data>
@@ -251,6 +269,12 @@
   </data>
   <data name="Password_desc_3" xml:space="preserve">
     <value>رمز عبور، به حروف کوچک و بزرگ حساس است.</value>
+  </data>
+  <data name="Payed" xml:space="preserve">
+    <value>پرداخت شده</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>درحال بررسی</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>تلفن همراه</value>
@@ -292,7 +316,7 @@
     <value>ناحیه</value>
   </data>
   <data name="Requestpayout" xml:space="preserve">
-    <value>Request a payout</value>
+    <value>درخواست تسویه حساب</value>
   </data>
   <data name="Sales_Dashboard" xml:space="preserve">
     <value>داشبورد فروش</value>
