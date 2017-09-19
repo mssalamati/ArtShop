@@ -10,7 +10,7 @@ namespace DataLayer.Enitities
     public class SettingValue
     {
         [Key]
-        public int Id { get; set; }
+        public string siteName { get; set; }
         public decimal IRRialRate { get; set; }
         public decimal EURate { get; set; }
         public DateTime UpdateDate { get; set; }
