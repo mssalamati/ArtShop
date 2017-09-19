@@ -119,5 +119,6 @@ namespace DataLayer
         public DbSet<WordTranslation> WordTranslations { get; set; }
         public DbSet<Log> logs { get; set; }
         public DbSet<SettingValue> SettingValues { get; set; }
+        public DbSet<PayoutRequest> PayoutRequests { get; set; }
     }
 }

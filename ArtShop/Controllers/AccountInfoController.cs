@@ -238,6 +238,17 @@ namespace ArtShop.Controllers
         }
 
 
+        public ActionResult SalesDashboard()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SalesDashboard(PayoutRequest model)
+        {
+            return View();
+        }
+
         public ActionResult UploadID()
         {
 

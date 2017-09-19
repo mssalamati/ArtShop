@@ -3,5 +3,77 @@
     ViewBag.Title = "SalesDashboard | Artiscovery";
 }
 
-<h2>SalesDashboard</h2>
+@model List<PayoutRequest>
 
+@using DataLayer.Extentions
+
+@{var IsRighToLeft = CultureHelper.IsRighToLeft();}
+
+
+<div class="row-layout content">
+
+    <div class="row">
+        <div class="small-12 large-8 large-push-4 columns bgtext content">
+            @using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3 class="hd-title">@ProfileRes.Identification_header</h3>
+                <p class="mb2">@ProfileRes.Identification_p</p>
+                <fieldset class="fields">
+                    <label>one</label>
+                    <div>
+                        <input class="wide" />
+                    </div>
+
+                    <label>one</label>
+                    <div>
+                        <input class="wide" />
+                    </div>
+
+                    <label>one</label>
+                    <div>
+                        <input class="wide" />
+                    </div>
+
+                    <label>one</label>
+                    <div>
+                        <input class="wide" />
+                    </div>
+
+                    <input type="submit" class="button btn-info mt1" value="@ProfileRes.Save_changes">
+                </fieldset>
+            }
+
+        </div>
+        <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
+
+            <ul class="side-nav">
+                <li class="profile ">
+                    <a href="/accountinfo/index">@ProfileRes.Account_info</a>
+                </li>
+                <li class="profile ">
+                    <a href="/accountinfo/profileinformation">
+                        @ProfileRes.Profile_information
+                    </a>
+                </li>
+                @if (ViewBag.profileType == ProfileType.Artist)
+                {
+                    <li class="billing">
+                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
+                    </li>
+
+                    <li class="sold active">
+                        <a href="/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
+                    </li>
+                }
+                <li class="purchased">
+                    <a href="/accountinfo/orders">@ProfileRes.Orders</a>
+                </li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
