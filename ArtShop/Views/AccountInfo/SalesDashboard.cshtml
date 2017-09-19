@@ -19,7 +19,7 @@
 
             @if (Model == null || Model.Count == 0 || Model.All(x => x.Seen))
             {
-                @using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+                using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -63,8 +63,19 @@
                         {
                             <tr>
                                 <td>@item.date</td>
-                                <td>@item.Value.ToString("#,##") $</td>
-                                <td>@(item.Payed ? "✓" : "")</td>
+                                <td>@item.Value $</td>
+                                @if (!item.Seen)
+                                {
+                                    <td>pending</td>
+                                }
+                                else if (item.Payed)
+                                {
+                                    <td>payed</td>
+                                }
+                                else
+                                {
+                                    <td>Not payed</td>
+                                }
                             </tr>
                         }
                     }
