@@ -44,7 +44,7 @@
 
 <div class="card bg-white m-b">
     <div class="card-header">
-
+        <button class="btn btn-primary btn-sm" onclick="showEdit()">ویرایش</button>
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
@@ -55,24 +55,18 @@
                         ضریب یورو به دلار
                     </th>
                     <th>
-                        ضریب تومان به دلار
-                    </th>
-                    <th>
-
+                        @Model.EURate
                     </th>
                 </tr>
 
                 <tr>
                     <th><i class="fa fa-eye"></i></th>
                     <th>
-                        @Model.EURate
+                        ضریب تومان به دلار
                     </th>
                     <th>
                         @Model.IRRialRate
                     </th>
-                    <td>
-                        <button class="btn btn-primary btn-sm" onclick="showEdit()">ویرایش</button>
-                    </td>
                 </tr>
             </table>
         </div>
@@ -107,7 +101,7 @@
         function showEdit(id) {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/setting/edit");
+            $("#dform").load("/setting/edit/0");
         }
     </script>
 }
