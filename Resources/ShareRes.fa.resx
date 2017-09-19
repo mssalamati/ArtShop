@@ -267,4 +267,7 @@
   <data name="Showing" xml:space="preserve">
     <value>نمایش</value>
   </data>
+  <data name="Languages" xml:space="preserve">
+    <value>زبان ها</value>
+  </data>
 </root>

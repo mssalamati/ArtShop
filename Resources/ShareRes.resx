@@ -264,4 +264,7 @@
   <data name="Showing" xml:space="preserve">
     <value>Showing</value>
   </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
 </root>

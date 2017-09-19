@@ -249,21 +249,66 @@
                 <div class="mobile-navigation__content">
                     <div class="mobile-navigation__menu__logo">
                         <a data-gtm-event="nav header" href="/" class="navigation__logo navigation__logo--saatchiart">
-                            <img src="~/Content/Images/logo.png?d=@DateTime.Now.Second" style="height:auto" />
+                            <img src="~/Content/Images/logo.png?d=@DateTime.Now.Second" style="image-rendering:-webkit-optimize-contrast" />
                         </a>
                     </div>
                     <div class="mobile-navigation__site-links">
 
                         @if (Request.IsAuthenticated)
                         {
+                     
                             <div>
-                                <a data-gtm-event="nav header"
-                                   href="authentication128b.html?redirect_url=%2F"
-                                   data-index="0"
-                                   class="mobile-navigation__site-link">
-                                    @User.Identity.Name
+                                <a data-gtm-event="nav header" data-index="0" class="mobile-navigation__site-link">
+                                    @ShareRes.AccountInformation
+                                    <img class="mobile-navigation__site-link__arrow-indicator" src="~/Content/Images/caret-right.svg" />
                                 </a>
+
+                                <div data-index="0" class="mobile-navigation__menu__panel">
+                                    <div class="mobile-navigation__menu__panel__header">
+                                        <img src="~/Content/Images/caret-left.svg" class="mobile-navigation__menu__panel__back" />
+                                        <a data-gtm-event="nav header" class="mobile-navigation__menu__panel__header__title">
+                                            @ShareRes.AccountInformation
+                                        </a>
+                                    </div>
+
+
+                                    <div>
+                                        <a data-gtm-event="nav header" class="mobile-navigation__site-link mobile-navigation__site-link--section-header" href="/accountInfo/index">
+                                            @User.Identity.Name
+                                        </a>
+
+                                        <a data-gtm-event="nav header" href="/profile" class="mobile-navigation__site-link">
+                                            @ShareRes.Profile
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/accountInfo/index" class="mobile-navigation__site-link">
+                                            @ShareRes.AccountInformation
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/profile/favorites" class="mobile-navigation__site-link">
+                                            @ShareRes.Favorites
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/profile/collection" class="mobile-navigation__site-link">
+                                            @ShareRes.Collections
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/accountInfo/orders" class="mobile-navigation__site-link">
+                                            @ShareRes.Orders
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/upload/review" class="mobile-navigation__site-link">
+                                            @ShareRes.Upload
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/profile/artworks" class="mobile-navigation__site-link">
+                                            @ShareRes.Artworks
+                                        </a>
+                                        <a data-gtm-event="nav header" href="/accountInfo/salesdashboard" class="mobile-navigation__site-link">
+                                            @ShareRes.SalesDashboard
+                                        </a>
+                                        <a data-gtm-event="nav header" href="javascript:document.getElementById('logoutForm').submit()" class="mobile-navigation__site-link">
+                                            @ShareRes.Logout
+                                        </a>
+                                    </div>
+
+                                </div>
                             </div>
+
                         }
                         else
                         {
@@ -365,13 +410,42 @@
                                 </div>
                             </div>
                         }
+                        <div>
+                            <a data-gtm-event="nav header" data-index="7" class="mobile-navigation__site-link">
+                                @ShareRes.Languages
+                                <img class="mobile-navigation__site-link__arrow-indicator" src="~/Content/Images/caret-right.svg" />
+                            </a>
+
+                            <div data-index="7" class="mobile-navigation__menu__panel">
+                                <div class="mobile-navigation__menu__panel__header">
+                                    <img src="~/Content/Images/caret-left.svg" class="mobile-navigation__menu__panel__back" />
+                                    <a data-gtm-event="nav header" class="mobile-navigation__menu__panel__header__title">
+                                        @ShareRes.Languages
+                                    </a>
+                                </div>
+
+
+                                <div>
+                                    <a data-gtm-event="nav header" class="mobile-navigation__site-link" href="/Home/SetCulture?culture=fa">
+                                        <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                        <span style="padding-left:5px;color:black;font-size:13px">فارسی</span>
+                                    </a>
+                                    <a data-gtm-event="nav header" class="mobile-navigation__site-link" href="/Home/SetCulture?culture=en-us">
+                                        <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                                        <span style="padding-left:5px;color:black;font-size:13px">English</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="mobile-navigation__header">
+ 
             <div class="mobile-navigation__header__left">
-                <a data-gtm-event="nav header" href="/" class="navigation__logo navigation__logo--saatchiart"><img style="height:auto" src="~/Content/Images/logo.png?d=@DateTime.Now.Second" /></a>
+                <a data-gtm-event="nav header" href="/" class="navigation__logo navigation__logo--saatchiart"><img  style="image-rendering:-webkit-optimize-contrast" src="~/Content/Images/logo.png?d=@DateTime.Now.Second" /></a>
             </div>
             <div class="mobile-navigation__header__right">
                 <img class="mobile-navigation__search-trigger" src="https://d3t95n9c6zzriw.cloudfront.net/navigation/mag-glass.svg" />
