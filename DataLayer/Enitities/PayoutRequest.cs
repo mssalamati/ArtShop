@@ -18,6 +18,7 @@ namespace DataLayer.Enitities
         public virtual DateTime date { get; set; }
         public decimal Value { get; set; }
         public bool Payed { get; set; }
+        public bool Seen { get; set; }
         public string CardNumber { get; set; }
         public string BankName { get; set; }
         public string AccountNumber { get; set; }

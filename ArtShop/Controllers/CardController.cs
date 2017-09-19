@@ -174,7 +174,8 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var order = profile.Orders.SingleOrDefault(x => x.Id == id);
-            SendInvoice(order);
+            if (order.TransactionDetail.Payed)
+                SendInvoice(order);
             return View(order);
         }
 

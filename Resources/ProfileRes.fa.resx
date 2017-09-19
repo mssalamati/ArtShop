@@ -201,6 +201,9 @@
   <data name="GovermentID_title" xml:space="preserve">
     <value>توافق</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
   <data name="Identification_header" xml:space="preserve">
     <value>نشانی/ محل اثر انتخاب شده</value>
   </data>
@@ -287,6 +290,9 @@
   </data>
   <data name="Region" xml:space="preserve">
     <value>ناحیه</value>
+  </data>
+  <data name="Requestpayout" xml:space="preserve">
+    <value>Request a payout</value>
   </data>
   <data name="Sales_Dashboard" xml:space="preserve">
     <value>داشبورد فروش</value>

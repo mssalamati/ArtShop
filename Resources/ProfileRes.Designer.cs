@@ -308,6 +308,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artwork Pick Up Address.
         /// </summary>
         public static string Identification_header {
@@ -565,6 +574,15 @@ namespace Resources {
         public static string Region {
             get {
                 return ResourceManager.GetString("Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request a payout.
+        /// </summary>
+        public static string Requestpayout {
+            get {
+                return ResourceManager.GetString("Requestpayout", resourceCulture);
             }
         }
         

@@ -14,48 +14,61 @@
 
     <div class="row">
         <div class="small-12 large-8 large-push-4 columns bgtext content">
-            @using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+            <h3 class="hd-title">@ProfileRes.Requestpayout</h3>
+            <p class="mb2">you have $@ViewBag.account in your account</p>
+
+            @if (Model == null || Model.Count == 0 || Model.All(x => x.Seen))
             {
-                @Html.AntiForgeryToken()
-                <h3 class="hd-title">@ProfileRes.Identification_header</h3>
-                <p class="mb2">@ProfileRes.Identification_p</p>
-                <fieldset class="fields">
-                    <label>one</label>
-                    <div>
-                        <input class="wide" />
-                    </div>
+                @using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
-                    <label>one</label>
-                    <div>
-                        <input class="wide" />
-                    </div>
+                    <fieldset class="fields">
+                        <label>Bank Name</label>
+                        <div>
+                            <input class="wide"  name="BankName"/>
+                        </div>
 
-                    <label>one</label>
-                    <div>
-                        <input class="wide" />
-                    </div>
+                        <label>Card Number</label>
+                        <div>
+                            <input class="wide"  name="CardNumber"/>
+                        </div>
 
-                    <label>one</label>
-                    <div>
-                        <input class="wide" />
-                    </div>
+                        <label>Account Number</label>
+                        <div>
+                            <input class="wide"  name="AccountNumber"/>
+                        </div>
 
-                    <input type="submit" class="button btn-info mt1" value="@ProfileRes.Save_changes">
-                </fieldset>
+                        <label>Account Holder</label>
+                        <div>
+                            <input class="wide"  name="AccountHolder"/>
+                        </div>
+
+                        <input type="submit" class="button btn-info mt1" value="@ProfileRes.Requestpayout">
+                    </fieldset>
+                }
             }
 
             <div id="so-shipping-id">
-                <h3 class="page-title">@ProfileRes.Identification_header2</h3>
-
-                <fieldset id="so-name-fieldset" class="fields">
-                    <legend>Seller Account</legend>
-                    <div id="upload-government-id" class="settings-inputs">
-                        <p>
-                            @ProfileRes.Identification_p2
-                        </p>
-                        <a class="button btn-info" href="/accountinfo/uploadid">@ProfileRes.Upload_id</a>
-                    </div>
-                </fieldset>
+                <h3 class="page-title">@ProfileRes.History</h3>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                        <td>Payed</td>
+                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.date</td>
+                                <td>@item.Value.ToString("#,##") $</td>
+                                <td>@(item.Payed ? "✓" : "")</td>
+                            </tr>
+                        }
+                    }
+                </table>
             </div>
 
         </div>
@@ -70,16 +83,15 @@
                         @ProfileRes.Profile_information
                     </a>
                 </li>
-                @if (ViewBag.profileType == ProfileType.Artist)
-                {
-                    <li class="billing">
-                        <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
-                    </li>
 
-                    <li class="sold active">
-                        <a href="/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
-                    </li>
-                }
+                <li class="billing">
+                    <a href="/accountinfo/billing">@ProfileRes.Address_Identification</a>
+                </li>
+
+                <li class="sold active">
+                    <a href="/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
+                </li>
+
                 <li class="purchased">
                     <a href="/accountinfo/orders">@ProfileRes.Orders</a>
                 </li>

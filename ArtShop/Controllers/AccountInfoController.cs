@@ -240,13 +240,26 @@ namespace ArtShop.Controllers
 
         public ActionResult SalesDashboard()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.account = userProfile.Account;
+            return View(userProfile.PayoutRequests.ToList());
         }
 
         [HttpPost]
         public ActionResult SalesDashboard(PayoutRequest model)
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var userProfile = db.UserProfiles.Find(userId);
+            ViewBag.account = userProfile.Account;
+            if (!userProfile.PayoutRequests.Any(x => x.Seen == false))
+            {
+                model.Value = userProfile.Account;
+                model.date = DateTime.Now;
+                userProfile.PayoutRequests.Add(model);
+                db.SaveChanges();
+            }
+            return View(userProfile.PayoutRequests.ToList());
         }
 
         public ActionResult UploadID()
