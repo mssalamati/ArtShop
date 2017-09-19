@@ -93,7 +93,7 @@ namespace ArtShop.Controllers
             ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
             int Status = zp.PaymentRequest("test",
-                amount,
+                (int)(orderTotal * setting.IRRialRate),
                 profile.FirstName + " " + profile.LastName,
                 user.Email,
                 user.PhoneNumber,
