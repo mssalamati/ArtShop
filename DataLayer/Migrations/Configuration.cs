@@ -30,6 +30,8 @@ namespace DataLayer.Migrations
                 new SiteParam() { Name = "Pintrest" },
                 new SiteParam() { Name = "Instagram" },
                 new SiteParam() { Name = "Youtube" });
+
+            context.SettingValues.AddOrUpdate(x => x.siteName, new SettingValue() { siteName = "Artiscovery", UpdateDate = DateTime.Now, UpdaterUser = "soroosh" });
         }
     }
 }
