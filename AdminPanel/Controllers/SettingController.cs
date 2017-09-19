@@ -11,7 +11,7 @@ namespace AdminPanel.Controllers
     {
         public ActionResult Index()
         {
-            return View(db.SettingValues.ToList());
+            return View(db.SettingValues.FirstOrDefault());
         }
 
         public ActionResult edit(int id)
