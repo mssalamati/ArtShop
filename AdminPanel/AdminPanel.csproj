@@ -225,7 +225,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageServersController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PayoutsController.cs" />
     <Compile Include="Controllers\PriceListController.cs" />
     <Compile Include="Controllers\PrintOptionsController.cs" />
     <Compile Include="Controllers\ProductFramesController.cs" />
@@ -233,6 +235,7 @@
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserVerificationsController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -5483,6 +5486,13 @@
     <Content Include="Views\Setting\edit.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
     <Content Include="Views\Setting\_successWindow.cshtml" />
+    <Content Include="Views\Payouts\Index.cshtml" />
+    <Content Include="Views\Payouts\detail.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\detail.cshtml" />
+    <Content Include="Views\UserVerifications\Index.cshtml" />
+    <Content Include="Views\UserVerifications\detail.cshtml" />
+    <Content Include="Views\Products\detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

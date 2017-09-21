@@ -10,8 +10,26 @@ namespace AdminPanel.Controllers
     {
         public ActionResult Index(int page = 1, string search = "")
         {
+            int count = 0, pagesize = 16, take = pagesize, skip = (page - 1) * pagesize;
             var data = db.Products;
-            return View(data.ToList());
+                 
+            count = data.Count();
+            int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
+            ViewBag.page = page; ViewBag.maxpage = maxpage;
+            return View(data.OrderByDescending(x => x.CreateDate).Skip(skip).Take(take).ToList());
+        }
+
+        public ActionResult detail(int id)
+        {
+            var obj = db.Products.Find(id);
+            return View(obj);
+        }
+
+        public ActionResult remove(int id)
+        {
+            var obj = db.Products.Find(id);
+            db.Products.Remove(obj);
+            return RedirectToAction("Index");
         }
     }
 }

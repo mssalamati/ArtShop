@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@model IEnumerable<UserProfile>
+
+
+@{
+    ViewBag.Title = "index";
+
+    var c_action = "index";
+    var c_cntroller = "UserVerifications";
+    var noentity = "هیچ درخواستی وجود ندارد";
+}
+
+<div class="page-title">
+    <div class="title"> PayoutRequest</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="javascript:;">PayoutRequest </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="card bg-white m-b">
+    <div class="card-header">
+        Payout Requests
+    </div>
+    <div class="card-block p-a-0">
+        <div class="table-responsive">
+            @if (Model.Count() != 0)
+            {
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            UserName
+                        </th>
+                        <th>isIDConfirmed</th>
+                        <th>IdConfirmedBy</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><i class="fa fa-eye"></i></th>
+                            <th>
+                                @item.ApplicationUserDetail.UserName
+                            </th>
+                            <th>
+                                @if (item.isIDConfirmed)
+                                {
+                                    <span>yes</span>
+                                }
+                                else
+                                {
+                                    <span>no</span>
+                                }
+                            </th>
+                            <th>
+                                @if (string.IsNullOrEmpty(item.IdConfirmedBy))
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                { <span>@item.IdConfirmedBy</span>
+
+                                }
+                            </th>
+                            <th>
+                                <img style="height:50px;width:100px" src="http://artiscovery.com/@item.GovermentIdPath" />
+                            </th>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/@c_cntroller/detail/@item.Id">نمایش</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning ">
+                    @noentity
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<ul class="pagination clearfix block">
+    @if (ViewBag.page != 1)
+    {
+        <li>
+            <a href="@Url.Action(c_action, new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+        </li>
+    }
+
+    @for (int i = 1; i <= ViewBag.maxpage; i++)
+    {
+        if (ViewBag.page == i)
+        {
+            <li class="active">
+                <a class="" href="@Url.Action(c_action,new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action(c_action,new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+
+    }
+    @if (ViewBag.page != ViewBag.maxpage)
+    {
+        <li>
+            <a href="@Url.Action(c_action,new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+        </li>
+    }
+
+
+</ul>
+
+<div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="dform">
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
+}

@@ -5,6 +5,13 @@
 
 @model IEnumerable<Product>
 
+@{
+    ViewBag.Title = "index";
+
+    var c_action = "index";
+}
+
+
 <div class="page-title">
     <div class="title">  محصولات</div>
     <ol class="breadcrumb no-bg pl0">
@@ -20,19 +27,6 @@
 
 <div class="clearfix"></div>
 
-
-<div class="m-b clearfix">
-    <div class="pull-right">
-        <div class="btn-group">
-            <button type="button" class="btn btn-default">
-                <i class="icon-arrow-right"></i>
-            </button>
-            <button type="button" class="btn btn-default">
-                <i class="icon-arrow-left"></i>
-            </button>
-        </div>
-    </div>
-</div>
 
 <div class="card-columns four">
     @if (Model.Count() != 0)
@@ -64,4 +58,39 @@
     }
 </div>
 
+<hr />
 
+
+<ul class="pagination clearfix block">
+    @if (ViewBag.page != 1)
+    {
+        <li>
+            <a href="@Url.Action(c_action, new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+        </li>
+    }
+
+    @for (int i = 1; i <= ViewBag.maxpage; i++)
+    {
+        if (ViewBag.page == i)
+        {
+            <li class="active">
+                <a class="" href="@Url.Action(c_action,new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+        else if (Math.Abs(ViewBag.page -  i) < 3)
+        {
+            <li>
+                <a href="@Url.Action(c_action,new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+
+    }
+    @if (ViewBag.page != ViewBag.maxpage)
+    {
+        <li>
+            <a href="@Url.Action(c_action,new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+        </li>
+    }
+
+
+</ul>
