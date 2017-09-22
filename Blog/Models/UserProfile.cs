@@ -15,8 +15,7 @@ namespace Blog.Models
         [Key, ForeignKey("ApplicationUserDetail")]
         public virtual String Id { get; set; }
         public virtual ApplicationUser ApplicationUserDetail { get; set; }
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
+        public virtual string FullName { get; set; }
         public virtual string PhotoPath { get; set; }
         public virtual ProfileType profileType { get; set; }
         public virtual DateTime RegisterDate { get; set; }

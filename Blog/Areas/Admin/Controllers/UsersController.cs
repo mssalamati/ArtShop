@@ -33,8 +33,8 @@ namespace Blog.Areas.Admin.Controllers
                 .Select(x => new UserViewModel()
                 {
                     id = x.Id,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
+                    FullName = x.FullName,
+                    Username = x.ApplicationUserDetail.UserName,
                     Email = x.ApplicationUserDetail.Email,
                     RegisterDate = x.RegisterDate.ToString()
                 }).ToList();
@@ -46,26 +46,88 @@ namespace Blog.Areas.Admin.Controllers
             return View(outres);
         }
 
+        public ActionResult Add()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType};
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, userDetail = userDetail };
+                var userDetail = new UserProfile { FullName = model.Fullname, profileType = model.profileType };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, userDetail = userDetail };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
 
                     return PartialView("_successWindow");
                 }
+
                 AddErrors(result);
+                return PartialView(model);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return PartialView(model);
         }
+
+        public ActionResult Edit(string id)
+        {
+            var user = db.Users.Find(id);
+            var data = new EditUserViewModel
+            {
+                id = user.Id,
+                Email = user.Email,
+                Fullname = user.userDetail.FullName,
+                profileType = ProfileType.Admin,
+                Username = user.UserName
+            };
+
+            return PartialView(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(EditUserViewModel model)
+        {
+            var user = db.Users.Find(model.id);
+
+            if (ModelState.IsValid)
+            {
+                user.Email = model.Email;
+                user.userDetail.FullName = model.Fullname;
+                user.UserName = model.Username;
+
+                if (!string.IsNullOrEmpty(model.NewPassword))
+                {
+                    var result = await UserManager.AddPasswordAsync(model.id, model.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        db.SaveChanges();
+                        return PartialView("_successWindow");
+                    }
+
+                    AddErrors(result);
+                    return PartialView(model);
+
+                }
+
+                db.SaveChanges();
+            }
+
+            return PartialView("_successWindow");
+        }
+
+        public ActionResult Deactive(string id)
+        {
+
+
+            return RedirectToAction("Index");
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

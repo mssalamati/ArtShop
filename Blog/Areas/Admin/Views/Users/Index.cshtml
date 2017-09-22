@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "کاربران";
 }
 @model IEnumerable<Blog.Areas.Admin.Models.ViewModel.UserViewModel>
 
@@ -17,127 +17,142 @@
     </ol>
 </div>
 
-<form method="get" action="/users/index">
-    <div class="input-group pull-right col-md-6">
+<div class="card bg-white m-b">
+    <div class="card-header">
+        <form method="get" action="/users/index">
+            <div class="input-group pull-right col-md-6">
 
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
-        </span>
-        <input type="hidden" name="page" value="@ViewBag.page">
-        <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
-        <input type="search" placeholder="Email " name="search" value="@ViewBag.search" class="form-control bl0">
-    </div>
-</form>
-<button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت کاربر جدید</button> </div>
-
-<div class="clearfix"></div>
-
-@if (Model.Count() == 0)
-{
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="alert alert-warning ">
-                هیچ کاربری در سیستم ثبت نشده
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
+                </span>
+                <input type="hidden" name="page" value="@ViewBag.page">
+                <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
+                <input type="search" placeholder="Email " name="search" value="@ViewBag.search" class="form-control bl0">
             </div>
+        </form>
+        <button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت کاربر جدید</button>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="card-block p-a-0">
+        <div class="table-responsive">
+            @if (Model.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-warning ">
+                            هیچ کاربری در سیستم ثبت نشده
+                        </div>
+                    </div>
+                </div>
+            }
+
+            else
+            {
+                <div class="card bg-white m-b">
+                    <div class="card-header">کاربران </div>
+                    <div class="card-block p-a-0">
+                        <div class="table-responsive">
+                            <table class="table m-b-0">
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FullName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Username)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                               
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RegisterDate)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th><i class="fa fa-user"></i></th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Username)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RegisterDate)
+                                        </td>
+                                        <td>
+                                            
+                                            <button class="btn btn-primary btn-sm" onclick="showEdit('@item.id')">ویرایش</button>
+                                            <button class="btn btn-danger btn-sm" onclick="$('#c_@item.id').show('fast');$(this).hide('fast');">حذف</button>
+                                            <a id="c_@item.id" class="btn btn-danger btn-sm" style="display:none" href="/admin/users/Delete/@item.id">آیا مطمئن هستید؟</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-}
-
-else
-{
-    <div class="card bg-white m-b">
-        <div class="card-header">کاربران </div>
-        <div class="card-block p-a-0">
-            <div class="table-responsive">
-                <table class="table m-b-0">
-                    <tr>
-                        <th></th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FirstName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.LastName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.RegisterDate)
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <th><i class="fa fa-user"></i></th>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RegisterDate)
-                            </td>
-                            <td>
-                                
-                                @Html.ActionLink("ویرایش", "EditUser", new { id = item.id }, new { @class = "text-danger" })
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-            </div>
-        </div>
-    </div>
-}
-
-<ul class="pagination clearfix block">
-    @if (ViewBag.page != 1)
-    {
-        <li>
-            <a href="@Url.Action("index", new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
-        </li>
-    }
-
-    @for (int i = 1; i <= ViewBag.maxpage; i++)
-    {
-        if (ViewBag.page == i)
-        {
-            <li class="active">
-                <a class="" href="@Url.Action("index",new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
-            </li>
-        }
-        else
-        {
+</div>
+    <ul class="pagination clearfix block">
+        @if (ViewBag.page != 1)
+            {
             <li>
-                <a href="@Url.Action("index",new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                <a href="@Url.Action("index", new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
             </li>
         }
 
+        @for (int i = 1; i <= ViewBag.maxpage; i++)
+            {
+                if (ViewBag.page == i)
+                {
+                <li class="active">
+                    <a class="" href="@Url.Action("index",new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("index",new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                </li>
+            }
+
+        }
+        @if (ViewBag.page != ViewBag.maxpage)
+            {
+            <li>
+                <a href="@Url.Action("index",new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+            </li>
+        }
+
+
+    </ul>
+    <div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="dform">
+
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+        @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
     }
-    @if (ViewBag.page != ViewBag.maxpage)
-    {
-        <li>
-            <a href="@Url.Action("index",new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
-        </li>
-    }
 
-
-</ul>
-
-
-@section scripts{
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
-
-}
-
-<script>
+    <script>
         var loading =
             '<div class="modal-header bg-primary">' +
             '   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>' +
@@ -151,16 +166,17 @@ else
         function showAdd() {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/admin/Tags/add");
+            $("#dform").load("/admin/users/add");
         }
         function showEdit(id) {
+            
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/Admin/Tags/edit/" + id);
+            $("#dform").load("/admin/users/edit/" + id);
         }
-</script>
+    </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
         function initinputcss() {
             $(document).ready(function () {
                 $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
@@ -170,4 +186,4 @@ else
             });
         }
         initinputcss();
-</script>
+    </script>

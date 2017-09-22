@@ -11,12 +11,12 @@ namespace Blog.Areas.Admin.Models.ViewModel
         public string id { get; set; }
 
         [Required]
-        [Display(Name = "نام")]
-        public string FirstName { get; set; }
+        [Display(Name = "نام و نام خانوادگی")]
+        public string FullName { get; set; }
 
         [Required]
-        [Display(Name = "نام خانوادگی")]
-        public string LastName { get; set; }
+        [Display(Name = "نام کاربری")]
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "پست الکترونیک را وارد کنید")]
         [EmailAddress(ErrorMessage = ("فرمت پست الکترونیک  اشتیاه"))]

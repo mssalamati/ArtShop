@@ -58,7 +58,14 @@
                             } else {
                                 //$('#item-count-' + data.DeleteId).val(data.ItemCount);
                             }
-                            $('#cart-total').text(data.CartTotal);
+                            $('#carttotalx').html(data.CartTotal);
+                            if (data.CartTotal == 0)
+                            {
+                                $('.step-submission-button').addClass('disabled');
+                                $('.step-submission-button').attr('href', '#');
+                                $('.step-submission-button').css("background-color", "gray");
+
+                            }
                             //$('#update-message').text(data.Message);
                             //$('#update-message').show('slow');
                             //$('#cart-status').text('Cart (' + data.CartCount + ')');
@@ -78,7 +85,7 @@
                      } else {
                          $('#item-count-' + data.DeleteId).val(data.ItemCount);
                      }
-                     $('#cart-total').text(data.CartTotal);
+                     $('#carttotalx').html(data.CartTotal);
                      $('#update-message').text(data.Message);
                      $('#update-message').show('slow');
                      $('#cart-status').text('Cart (' + data.CartCount + ')');
@@ -95,7 +102,9 @@
                     <div class="container">
                         <div class="checkout__header__container">
                             <div class="checkout__header__logo checkout__header__logo--large">
-                                <img alt="Artiscovery" style="width:200px;image-rendering:-webkit-optimize-contrast" src="~/Content/Images/logo.png?d=@DateTime.Now.Second">
+                                <a href="/">
+                                    <img alt="Artiscovery" style="width:200px;image-rendering:-webkit-optimize-contrast" src="~/Content/Images/logo.png?d=@DateTime.Now.Second">
+                                </a>
                             </div>
                             <div class="checkout__header__logo checkout__header__logo--small">
                                 <a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png?d=@DateTime.Now.Second" style="height:auto;image-rendering:-webkit-optimize-contrast"></a>
@@ -216,7 +225,7 @@
                                                 <div class="cart__total__inner">
                                                     <div class="cart__total__row">
                                                         <div>@CardRes.Subtotal</div>
-                                                        <div>$@Model.CartTotal</div>
+                                                        <div>$ <span id="carttotalx">@Model.CartTotal</span></div>
                                                     </div>
 
                                                 </div>

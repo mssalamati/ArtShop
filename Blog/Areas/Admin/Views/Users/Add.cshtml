@@ -1,11 +1,11 @@
 ﻿@using Blog.Objects;
-@model Blog.Areas.Admin.Models.ViewModel.TagViewModel
+@model Blog.Models.RegisterViewModel
 
 <div class="modal-header bg-primary">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
-    <h4 class="modal-title">برچسب جدید</h4>
+    <h4 class="modal-title">کاربر جدید</h4>
 </div>
-@using (Ajax.BeginForm("Add", "Tags", null, new AjaxOptions()
+@using (Ajax.BeginForm("Add", "users", null, new AjaxOptions()
 {
     HttpMethod = "POST",
     UpdateTargetId = "dform",
@@ -19,32 +19,39 @@
         @Html.AntiForgeryToken()
 
         @if (!ViewData.ModelState.IsValid)
-        {
-            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
-        }
+            {
+                @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+            }
 
         <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
-                    <input name="Name" id="Name" value="" type="" class="form-control" />
-            
+                    <label class="form-label"> نام و نام خانوادگی </label>
+                    <input name="fullname" id="fullname" value="" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label"> نام کاربری </label>
+                    <input name="username" id="username" value="" class="form-control" />
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label"> پست الکترونیک </label>
+                    <input name="email" id="email" type="email" value="" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label"> کلمه ی عبور</label>
+                    <input name="password" id="password" type="password" value="" class="form-control" />
+                    <p>کلمه ی عبور می بایست حداقل 6 رقم باشد</p>
+                </div>
             </div>
         </div>
 
-        <hr />
-        <div class="row">
-            @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
-            {
-                var item = ((List<Language>)ViewBag.language)[i];
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
-                        <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                        <input name="Translations[@i].Name" type="text" class="form-control" />
-                    </div>
-                </div>
-            }
-        </div>
 
     </div>
     <div class="modal-footer">

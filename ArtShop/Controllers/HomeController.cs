@@ -40,6 +40,14 @@ namespace ArtShop.Controllers
                 model.FirstPageSections = db.FirstPageSections.Include("Translations").ToList();
             }
 
+
+            //foreach (var item in db.Photos)
+            //{
+            //    item.Path = item.Path.Replace("https://", "http://");
+            //}
+
+            //db.SaveChanges();
+
             return View(model);
         }
 
@@ -218,8 +226,8 @@ namespace ArtShop.Controllers
             var request = new RestSharp.RestRequest(RestSharp.Method.POST);
             request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
             request.AddHeader("content-type", "application/json");
-            request.AddParameter("application/json","{\"email\":\""+email+"\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", RestSharp.ParameterType.RequestBody);
-            RestSharp.IRestResponse response =  client.Execute(request);
+            request.AddParameter("application/json", "{\"email\":\"" + email + "\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", RestSharp.ParameterType.RequestBody);
+            RestSharp.IRestResponse response = client.Execute(request);
 
             return Content("done");
         }

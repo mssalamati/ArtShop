@@ -74,7 +74,10 @@ namespace ArtShop.Controllers
             Session["iserver"] = iserver.Id;
             if (iserver != null)
             {
-                ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
+                if (Request.IsSecureConnection)
+                    ViewBag.iserver = "https://" + iserver.Host + "/upload/upload";
+                else
+                    ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
                 ViewBag.lastpic = (string)Session["imageAddress"];
                 return PartialView();
             }
