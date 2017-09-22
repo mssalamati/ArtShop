@@ -29,6 +29,7 @@ namespace AdminPanel.Controllers
         {
             var obj = db.Products.Find(id);
             db.Products.Remove(obj);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

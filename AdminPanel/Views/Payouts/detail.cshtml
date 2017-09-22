@@ -3,5 +3,97 @@
     ViewBag.Title = "detail";
 }
 
-<h2>detail</h2>
+
+
+@model PayoutRequest
+
+
+<div class="page-title">
+    <div class="title"> PayoutRequest</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="/payouts/index"> Payout Requests</a>
+        </li>
+        <li>
+            <a href="javascript:;">@Model.user.ApplicationUserDetail.Email </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+               <a class="btn btn-sm " href="/payouts/index"><i class="fa fa-arrow-right"></i></a>  @Model.user.ApplicationUserDetail.Email
+            </div>
+            <div class="card-block">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Account Holder </label>
+                            <input type="text" readonly value="@Model.AccountHolder" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Account Number </label>
+                            <input type="text" readonly value="@Model.AccountNumber" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Bank Name </label>
+                            <input type="text" readonly value="@Model.BankName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Card Number </label>
+                            <input type="text" readonly value="@Model.CardNumber" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">date </label>
+                            <input type="text" readonly value="@Model.date" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Status </label>
+                            @if (!Model.Seen)
+                            {
+                                <input type="text" readonly value="pending" class="form-control" />
+                            }
+                            else if (Model.Payed)
+                            {
+                                <input type="text" readonly value="Payed" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="text" readonly value="Not Payed" class="form-control" />
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a href="/payouts/index" class="btn btn-primary">back</a>
+                        <a href="/payouts/setPayStatus?id=@Model.Id&payed=true" class="btn btn-success">payed</a>
+                        <a href="/payouts/setPayStatus?id=@Model.Id&payed=false" class="btn btn-danger">No Payed</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 

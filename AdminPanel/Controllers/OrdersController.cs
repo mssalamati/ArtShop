@@ -31,6 +31,7 @@ namespace AdminPanel.Controllers
         {
             var obj = db.Orders.Find(id);
             obj.Status = status;
+            db.SaveChanges();
             return RedirectToAction("detail", new { id = id });
         }
     }
