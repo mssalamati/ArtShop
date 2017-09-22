@@ -3,5 +3,137 @@
     ViewBag.Title = "detail";
 }
 
-<h2>detail</h2>
+
+
+@model Product
+
+
+<div class="page-title">
+    <div class="title"> PayoutRequest</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="/Products/index"> Product</a>
+        </li>
+        <li>
+            <a href="javascript:;">@Model.Title </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+                <a class="btn btn-sm " href="/Products/index"><i class="fa fa-arrow-right"></i></a>  @Model.Title
+            </div>
+            <div class="card-block">
+                <div class="row">
+
+                    <div class="col-md-2" id="maximize">
+                        <div class="form-group">
+                            <label class="form-label">Image</label>
+                            <img src="@Model.photo.Path" style="width:100%" onclick="$('#maximize').removeClass('col-md-2'); $('#maximize').addClass('col-md-12');"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Title </label>
+                            <input type="text" readonly value="@Model.Title" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">User </label>
+                            <input type="text" readonly value="@Model.user.ApplicationUserDetail.Email" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Price </label>
+                            <input type="text" readonly value="@Model.Price" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Weight </label>
+                            <input type="text" readonly value="@Model.ArtWeight" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">ArtCreatedYear </label>
+                            <input type="text" readonly value="@Model.ArtCreatedYear" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">avaible </label>
+                            <input type="text" readonly value="@Model.avaible" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">AllEntity </label>
+                            <input type="text" readonly value="@Model.AllEntity" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Width </label>
+                            <input type="text" readonly value="@Model.Width" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Height </label>
+                            <input type="text" readonly value="@Model.Height" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Depth </label>
+                            <input type="text" readonly value="@Model.Depth" class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Description </label>
+                            <textarea readonly class="form-control">
+                                @Model.Description
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Keywords </label>
+                            <textarea readonly class="form-control">
+                                @Model.Keywords
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a href="/Products/index" class="btn btn-primary">back</a>
+                        <a href="/Products/remove?id=@Model.Id" class="btn btn-danger">Remove</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 

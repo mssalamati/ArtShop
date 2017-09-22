@@ -3,5 +3,171 @@
     ViewBag.Title = "detail";
 }
 
-<h2>detail</h2>
 
+
+@model Order
+
+
+<div class="page-title">
+    <div class="title"> Orders</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">پنل سازمان</a>
+        </li>
+        <li>
+            <a href="/Orders/index"> Orders </a>
+        </li>
+        <li>
+            <a href="javascript:;">@Model.user.ApplicationUserDetail.Email </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+                <a class="btn btn-sm " href="/Orders/index"><i class="fa fa-arrow-right"></i></a>  @Model.user.ApplicationUserDetail.Email
+            </div>
+            <div class="card-block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Account Name </label>
+                            <input type="text" readonly value="@Model.user.FirstName @Model.user.LastName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number </label>
+                            <input type="text" readonly value="@Model.PhoneNumber" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Date </label>
+                            <input type="text" readonly value="@Model.BuyDate" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Country/City </label>
+                            <input type="text" readonly value="@Model.Country / @Model.City" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Total Price </label>
+                            <input type="text" readonly value="$@Model.TotalPrice.ToString("#,##")" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Status </label>
+                            <input type="text" readonly value="@Model.Status.ToOrderStatus()" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Address </label>
+                            <textarea readonly class="form-control">
+                                Address: @Model.Address ,BuildingNumber: @Model.BuildingNumber ,PostalCode: @Model.PostalCode ,ReceiverName: @Model.ReceiverName
+                            </textarea>
+                        </div>
+                    </div>
+
+                    @if (Model.TransactionDetail != null && Model.TransactionDetail.Payed)
+                    {
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Transaction </label>
+                                <input type="text" style="background-color:#4caf50;color:white" readonly value="Payed" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">amount </label>
+                                <input type="text" readonly value="@Model.TransactionDetail.amount" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">currencyRate </label>
+                                <input type="text" readonly value="@Model.TransactionDetail.currencyRate" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Method </label>
+                                <input type="text" readonly value="@Model.TransactionDetail.Method" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Number </label>
+                                <input type="text" readonly value="@Model.TransactionDetail.Number" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">TransactionNumber </label>
+                                <input type="text" readonly value="@Model.TransactionDetail.TransactionNumber" class="form-control" />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Transaction </label>
+                                <input type="text" style="background-color:#f44336;color:white" readonly value="Not Payed" class="form-control" />
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Products </label>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>Title</td>
+                                        <td>Quantity</td>
+                                        <td>UnitPrice</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderDetails)
+                                    {
+                                        <tr>
+                                            <td> <img style="width:25px" src="@item.Product.Sqphoto.Path" /> </td>
+                                            <td>@item.Product.Title</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.UnitPrice.ToString("#,##")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+
+                    <div class="col-md-12">
+                        <a href="/Orders/index" class="btn btn-primary">back</a>
+                        <a href="/Orders/setStatus?id=@Model.Id&status=@OrderStatus.Seen" class="btn btn-success">Seen</a>
+                        <a href="/Orders/setStatus?id=@Model.Id&status=@OrderStatus.Posted" class="btn btn-info">Posted</a>
+                        <a href="/Orders/setStatus?id=@Model.Id&status=@OrderStatus.Delivered" class="btn btn-danger">Delivered</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

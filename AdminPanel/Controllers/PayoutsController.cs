@@ -29,6 +29,7 @@ namespace AdminPanel.Controllers
             var obj = db.PayoutRequests.Find(id);
             obj.Seen = true;
             obj.Payed = payed;
+            db.SaveChanges();
             return RedirectToAction("detail", new { id = id });
         }
     }

@@ -11,12 +11,12 @@ namespace AdminPanel.Controllers
         public ActionResult Index(int page = 1)
         {
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
-            var data = db.UserProfiles
-                 .Where(x => string.IsNullOrEmpty(x.IdConfirmedBy) && !string.IsNullOrEmpty(x.GovermentIdPath));
+            var data = db.UserProfiles.Where(x => !string.IsNullOrEmpty(x.GovermentIdPath))
+                  .OrderByDescending(x => string.IsNullOrEmpty(x.IdConfirmedBy));
             count = data.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage;
-            return View(data.OrderByDescending(x => x.RegisterDate).Skip(skip).Take(take).ToList());
+            return View(data.Skip(skip).Take(take).ToList());
         }
 
         public ActionResult detail(string id)
@@ -30,6 +30,7 @@ namespace AdminPanel.Controllers
             var obj = db.UserProfiles.Find(id);
             obj.isIDConfirmed = confirm;
             obj.IdConfirmedBy = User.Identity.Name;
+            db.SaveChanges();
             return RedirectToAction("detail", new { id = id });
         }
     }
