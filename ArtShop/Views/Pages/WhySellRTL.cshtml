@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Why Sell | Artiscovery";
+}
+
+@model SitePageTranslation
+
+<div class="row-layout content">
+    <div class="row">
+        <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="direction:rtl">
+            <ul class="side-nav" style="height:300px">
+                <li><a href="/pages/WhySell" class="active">@FooterRes.Why_Sell</a></li>
+            </ul>
+        </div>
+        <div class="small-12 large-8 large-pull-4 columns bgtext content" style="direction:rtl">
+            <div class="row mb1">
+                @Html.Raw(Model.Content)
+            </div>
+
+        </div>
+
+
+        <script>if ($(window).width() > 1023) { $('.bgtext.content').imagesLoaded(function () { var sidebarHeight = $('.bgtext.content').height(); $('.side-nav').height(sidebarHeight); }); }</script>
+    </div>        <div class="clearfix"></div>
+</div>

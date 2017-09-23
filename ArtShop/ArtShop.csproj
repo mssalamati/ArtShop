@@ -292,6 +292,7 @@
   <ItemGroup>
     <Content Include="Content\2220741194.js" />
     <Content Include="Content\app-99c5613a7fbb0f5f16e645bc204d000d.css" />
+    <Content Include="Content\app-Cart.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -580,6 +581,8 @@
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\Invoice.cshtml" />
+    <Content Include="Views\Pages\WhySell.cshtml" />
+    <Content Include="Views\Pages\WhySellRTL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
