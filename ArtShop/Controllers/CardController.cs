@@ -31,6 +31,8 @@ namespace ArtShop.Controllers
         public ActionResult getinfo()
         {
             var user = db.UserProfiles.Find(User.Identity.GetUserId());
+            ViewBag.name = user.FirstName;
+            ViewBag.lastname = user.LastName;
             if (user.billingInfo != null)
             {
                 ViewBag.Street = user.billingInfo.Street;

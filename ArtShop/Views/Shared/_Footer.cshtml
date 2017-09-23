@@ -37,6 +37,12 @@
                 padding: 0 3rem 0 0;
             }
         }
+
+        @@media screen and (min-width: 65rem) {
+            #footer .social-follow {
+                 margin-right: 70px; 
+            }
+        }
     </style>
 
 }
@@ -93,14 +99,14 @@
 
                     @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
                     {
-                    @Html.AntiForgeryToken()
-                    <div class="enter-email" style="padding-right:10px;">
-                        <input type="hidden" name="version" value="1">
-                        <input type="hidden" name="account_type" value="collector">
-                        <input type="hidden" name="user_type_id" value="1">
-                        <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
-                        <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4" value="@FooterRes.SignUp" class="button btn-info dark">
-                    </div>
+                        @Html.AntiForgeryToken()
+                        <div class="enter-email" style="padding-right:10px;">
+                            <input type="hidden" name="version" value="1">
+                            <input type="hidden" name="account_type" value="collector">
+                            <input type="hidden" name="user_type_id" value="1">
+                            <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
+                            <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4" value="@FooterRes.SignUp" class="button btn-info dark">
+                        </div>
                     }
 
 
