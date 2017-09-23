@@ -28,5 +28,10 @@ namespace ArtShop.Controllers
             var page = db.SitePages.Include("Translations").SingleOrDefault(x => x.DefaultTitle == "Copyright Policy");
             return View(page.Current());
         }
+        public ActionResult WhySell()
+        {
+            var page = db.SitePages.Include("Translations").SingleOrDefault(x => x.DefaultTitle == "Why Sell");
+            return View(page.Current());
+        }
     }
 }
