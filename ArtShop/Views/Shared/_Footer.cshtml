@@ -27,9 +27,11 @@
         .footer-container {
             direction: rtl;
         }
+
         .enter-email input[type="text"] {
-          padding-right:10px;
+            padding-right: 10px;
         }
+
         @@media screen and (min-width: 64rem) {
             #footerSubscribe {
                 padding: 0 3rem 0 0;
@@ -91,14 +93,14 @@
 
                     @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
                     {
-                        @Html.AntiForgeryToken()
-                        <div class="enter-email" style="padding-right:10px;">
-                            <input type="hidden" name="version" value="1">
-                            <input type="hidden" name="account_type" value="collector">
-                            <input type="hidden" name="user_type_id" value="1">
-                            <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
-                            <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4" value="@FooterRes.SignUp" class="button btn-info dark">
-                        </div>
+                    @Html.AntiForgeryToken()
+                    <div class="enter-email" style="padding-right:10px;">
+                        <input type="hidden" name="version" value="1">
+                        <input type="hidden" name="account_type" value="collector">
+                        <input type="hidden" name="user_type_id" value="1">
+                        <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
+                        <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4" value="@FooterRes.SignUp" class="button btn-info dark">
+                    </div>
                     }
 
 
@@ -133,6 +135,18 @@
                 </div>
             </div>
         </div>
+        @if (IsRighToLeft)
+        {
+            <div class="clear"></div>
+            <hr>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <p style="direction:rtl;font-size:16px">
+                        گروه Artiscovery با هدف از بین بردن مرزها برای معرفی هنرمندان و فروش آثار هنری شروع به کار کرده و در حوزه ی هنرهای تجسمی از قبیل: نقاشی، طراحی، تصویر سازی، چاپ، کلاژ و مجسمه سازی تلاش می کند تا بهترین منبع برای دستیابی به اطلاعات، اخبار هنری و آثار اصیل باشد.
+                    </p>
+                </div>
+            </div>
+        }
     </div>
 
 </footer>
