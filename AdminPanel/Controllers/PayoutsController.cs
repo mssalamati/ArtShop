@@ -39,14 +39,14 @@ namespace AdminPanel.Controllers
         private void SendEmail(PayoutRequest request)
         {
             dynamic email = new Email("Payout");
-            email.To = request.user.ApplicationUserDetail.Email;
+            email.To = request.user.ApplicationUserDetail.UserName;
             email.Subject = "Payout Status";
             email.RequestId = request.Id;
             email.Date = request.date;
             email.AccountHolder = request.AccountHolder;
             email.CardNumber = request.CardNumber;
             email.Amount = request.Value;
-            email.Status = request.Payed == true ? "Done":"Failed";
+            email.Status = request.Payed == true ? "Done" : "Not Payed";
             email.Send();
         }
     }
