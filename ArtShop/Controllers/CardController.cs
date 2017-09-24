@@ -176,6 +176,10 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var order = profile.Orders.SingleOrDefault(x => x.Id == id);
+            foreach (var item in order.OrderDetails)
+                item.Product.user.Account += (item.UnitPrice * item.Quantity) * ((100 - 10) / 100);
+            db.SaveChanges();
+
             if (order.TransactionDetail.Payed)
                 SendInvoice(order);
             return View(order);
