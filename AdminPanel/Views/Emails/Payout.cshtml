@@ -358,36 +358,28 @@
                                 <tr>
                                     <td>
                                         <table class="invoice-info">
-                                            <tbody>
+                                            <tbody>                                  
                                                 <tr>
                                                     <td>
-                                                        Name
+                                                        Request Date:
                                                     </td>
                                                     <td>
-                                                        @ViewBag.fullname
+                                                        @ViewBag.Date
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Order Date:
+                                                        Request #
                                                     </td>
                                                     <td>
-                                                        @ViewBag.orderdate
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Invoice #
-                                                    </td>
-                                                    <td>
-                                                        @ViewBag.orderid
+                                                        @ViewBag.RequestId
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </td>
                                     <td>
-                                        <table class="invoice-info">
+                                        @*<table class="invoice-info">
                                             <tbody>
                                                 <tr>
                                                     <td align="right">
@@ -399,7 +391,7 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table>*@
                                     </td>
                                 </tr>
                             </tbody>
@@ -409,65 +401,58 @@
                             <tbody>
                                 <tr>
                                     <th>
-                                        Description
+                                        Account Holder
                                     </th>
                                     <th>
-                                        Qty
+                                        Card Number
+                                    </th>
+
+                                    <th>
+                                        Amount
                                     </th>
                                     <th>
-                                        Price
-                                    </th>
-                                    <th>
-                                        Total
+                                        Status
                                     </th>
                                 </tr>
-                                @foreach (OrderDetail item in (List<OrderDetail>)ViewBag.products)
-                                {
 
-                                    <tr>
+                                <tr>
+                                    <td>
+                                        @ViewBag.AccountHolder
+                                    </td>
+                                    <td>
+                                        @ViewBag.CardNumber
+                                    </td>
+
+                                    <td>
+                                        $@(ViewBag.Amount.ToString("#,##"))
+                                    </td>
+                                    <td>
+                                        @ViewBag.Status
+                                    </td>
+                                </tr>
+
+                                @*<tr class="no-border">
+                                        <td colspan="3"></td>
+
                                         <td>
-                                            @item.Product.Title
+                                            Subtotal
                                         </td>
                                         <td>
-                                            @item.Quantity
-                                        </td>
-                                        <td>
-                                            $@item.UnitPrice
-                                        </td>
-                                        <td>
-                                            $@((item.UnitPrice * item.Quantity).ToString("#,##"))
+                                            $20.00
                                         </td>
                                     </tr>
-                                }
-                                @*<tr class="no-border">
-                                    <td colspan="3"></td>
+                                    <tr class="no-border">
+                                        <td colspan="3"></td>
 
-                                    <td>
-                                        Subtotal
-                                    </td>
-                                    <td>
-                                        $20.00
-                                    </td>
-                                </tr>
+                                        <td>
+                                            Tax
+                                        </td>
+                                        <td>
+                                            $20.00
+                                        </td>
+                                    </tr>*@
                                 <tr class="no-border">
-                                    <td colspan="3"></td>
 
-                                    <td>
-                                        Tax
-                                    </td>
-                                    <td>
-                                        $20.00
-                                    </td>
-                                </tr>*@
-                                <tr class="no-border">
-                                    <td colspan="2"></td>
-
-                                    <td>
-                                        Total
-                                    </td>
-                                    <td>
-                                        $@ViewBag.subtotal
-                                    </td>
                                 </tr>
 
                             </tbody>

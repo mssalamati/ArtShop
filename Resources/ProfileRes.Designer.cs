@@ -659,7 +659,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request a payout.
+        ///   Looks up a localized string similar to Request Payout.
         /// </summary>
         public static string Requestpayout {
             get {

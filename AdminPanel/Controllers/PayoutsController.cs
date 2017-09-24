@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLayer.Enitities;
+using Postal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,7 +32,22 @@ namespace AdminPanel.Controllers
             obj.Seen = true;
             obj.Payed = payed;
             db.SaveChanges();
+            SendEmail(obj);
             return RedirectToAction("detail", new { id = id });
+        }
+
+        private void SendEmail(PayoutRequest request)
+        {
+            dynamic email = new Email("Payout");
+            email.To = request.user.ApplicationUserDetail.Email;
+            email.Subject = "Payout Status";
+            email.RequestId = request.Id;
+            email.Date = request.date;
+            email.AccountHolder = request.AccountHolder;
+            email.CardNumber = request.CardNumber;
+            email.Amount = request.Value;
+            email.Status = request.Payed == true ? "Done":"Failed";
+            email.Send();
         }
     }
 }
