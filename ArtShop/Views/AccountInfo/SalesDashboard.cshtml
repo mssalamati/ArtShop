@@ -62,29 +62,27 @@
             <div id="payout" hidden>
                 @if (Model != null && Model.Count != 0 && Model.All(x => x.Seen) && ((int)ViewBag.account) != 0)
                 {
-                    using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+                    using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form", id = "payform" }))
                     {
                         @Html.AntiForgeryToken()
 
                         <fieldset class="fields">
-                            <label>@ProfileRes.BankName</label>
-                            <div>
-                                <input class="wide" name="BankName" />
-                            </div>
+                            <label for="BankName">@ProfileRes.BankName</label>
+                            <input class="wide" name="BankName" id="BankName" />
 
-                            <label>@ProfileRes.CardNumber</label>
-                            <div>
-                                <input class="wide" name="CardNumber" />
-                            </div>
+
+                            <label for="CardNumber">@ProfileRes.CardNumber</label>
+                            <input class="wide" name="CardNumber" id="CardNumber" />
+
 
                             <label>@ProfileRes.AccountNumber</label>
                             <div>
-                                <input class="wide" name="AccountNumber" />
+                                <input class="wide" name="AccountNumber" id="AccountNumber" />
                             </div>
 
                             <label>@ProfileRes.AccountHolder</label>
                             <div>
-                                <input class="wide" name="AccountHolder" />
+                                <input class="wide" name="AccountHolder" id="AccountHolder" />
                             </div>
 
                             <input type="submit" class="button btn-info mt1" value="@ProfileRes.Requestpayout">
@@ -141,14 +139,14 @@
                     {
                         foreach (var item in (List<OrderDetail>)ViewBag.orders)
                         {
-                            <tr>
-                                <td>@item.order.BuyDate</td>
-                                <td>@item.Product.Title</td>
-                                <td>@item.Quantity</td>
-                                <td>@item.type</td>
-                                <td>@item.UnitPrice</td>
-                                <td>@(item.UnitPrice * item.Quantity)</td>
-                            </tr>
+                    <tr>
+                        <td>@item.order.BuyDate</td>
+                        <td>@item.Product.Title</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.type</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@(item.UnitPrice * item.Quantity)</td>
+                    </tr>
                         }
                     }
                 </table>
@@ -186,3 +184,42 @@
 
     <div class="clearfix"></div>
 </div>
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        jQuery.extend(jQuery.validator.messages, {
+            required: "@CardRes.ValidateRequired",
+            number: "@CardRes.ValidateNumber",
+            digits: "@CardRes.ValidateDigits",
+            maxlength: jQuery.validator.format("@CardRes.ValidateMaxlength {0}"),
+            minlength: jQuery.validator.format("@CardRes.ValidateMinlength {0}."),
+            rangelength: jQuery.validator.format("@CardRes.ValidateRangelength {0} - {1}"),
+            range: jQuery.validator.format("@CardRes.ValidateRange {0} - {1}."),
+            max: jQuery.validator.format("@CardRes.ValidateMax {0}."),
+            min: jQuery.validator.format("@CardRes.ValidateMin {0}.")
+        });
+    </script>
+    <script>
+        $("#payform").validate({
+            rules: {
+                BankName: {
+                    required: true,
+                    number: true,
+                },
+                CardNumber: {
+                    required: true,
+                },
+                AccountNumber: {
+                    required: true,
+                },
+                AccountHolder: {
+                    required: true,
+                },
+            },
+            errorPlacement: function (error, element) { }
+        });
+    </script>
+
+}
