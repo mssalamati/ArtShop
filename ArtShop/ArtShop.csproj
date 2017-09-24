@@ -583,6 +583,7 @@
     <Content Include="Views\Emails\Invoice.cshtml" />
     <Content Include="Views\Pages\WhySell.cshtml" />
     <Content Include="Views\Pages\WhySellRTL.cshtml" />
+    <Content Include="Views\Emails\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

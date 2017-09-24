@@ -269,5 +269,25 @@ namespace ArtShop.Controllers
             email.Send();
 
         }
+        private void SendOrderDetail(Order order)
+        {
+            foreach (var item in order.OrderDetails.GroupBy(a => a.Product.user_id))
+            {
+                foreach (var orderDetail in item)
+                {
+                    dynamic email = new Email("Order");
+                    email.To = orderDetail.Product.user.ApplicationUserDetail.Email;
+                    email.Subject = "Order";
+                    email.orderid = order.Id;
+                    email.fullname = order.ReceiverName;
+                    email.orderdate = order.BuyDate.ToString();
+                    email.products = order.OrderDetails.ToList();
+                    email.subtotal = order.TotalPrice;
+                    email.total = order.TotalPrice;
+                    email.Send();
+                }
+            }
+        }
+
     }
 }
