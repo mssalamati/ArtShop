@@ -13,28 +13,18 @@ else
 {
     <div class="limited-filters-mobile__dimmer"></div>
     <div role="main" class="row row-layout profile-content">
-        <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/profile/994144" style="display: block;">
-            <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144" target="_blank">
+        <div id="shareArt" class="share-module" data-url="http://www.artiscovery.com/publicprofile?id=@Model.id" style="display: block;">
+            <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.artiscovery.com%2Fpublicprofile?id=@Model.id" target="_blank">
                 <i class="fa fa-facebook"></i>
             </a>
-            <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144&amp;text=View+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
+            <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.artiscovery.com%2Fpublicprofile?id=@Model.id&amp;text=View+@Model.fullName+on+Artiscovery+%40Artiscovery" target="_blank">
                 <i class="fa fa-twitter"></i>
             </a>
-            <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Fprofile%2F994144&amp;media=http:&amp;description=adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
+            <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.artiscovery.com%2Fpublicprofile?id=@Model.id&amp&media=http:%2F%2Fartiscovery.com/@Model.photoPath&description=@Model.fullName+on+Artiscovery+%23art" target="_blank">
                 <i class="fa fa-pinterest"></i>
             </a>
-            <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/profile/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;adib dehghan&quot;}">
-                <i class="fa fa-envelope"></i>
-            </a>
-            <div id="totalShares" class="total-share"><span>0</span></div>
         </div>
 
-        <script>
-            Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
-            Saatchi.EmailToFriend.modalUrl = 'index.html';
-            Saatchi.EmailToFriend.modalTitle = 'Share this page';
-            Saatchi.EmailToFriend.init();
-        </script>
         <article class="profile">
             <header>
                 <div class="small-5 medium-6 large-4 columns">
@@ -516,4 +506,5 @@ else
         </article>
         <div class="clearfix"></div>
     </div>
+
                         }

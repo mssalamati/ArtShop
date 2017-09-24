@@ -46,7 +46,7 @@ namespace AdminPanel.Controllers
             email.AccountHolder = request.AccountHolder;
             email.CardNumber = request.CardNumber;
             email.Amount = request.Value;
-            email.Status = request.Payed == true ? "Done" : "Not Payed";
+            email.Status = request.Payed == true ? "Done" : "Failed";
             email.Send();
         }
     }

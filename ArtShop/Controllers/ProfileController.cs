@@ -30,6 +30,7 @@ namespace ArtShop.Controllers
                 model.region = userProfile.Region == null ? " " : userProfile.Region;
                 model.country = userProfile.country == null ? new Country() : userProfile.country;
                 model.photoPath = userProfile.PhotoPath == null ? "" : userProfile.PhotoPath;
+                model.id = userId;
 
                 if (userProfile.userLinks != null)
                 {

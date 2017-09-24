@@ -1,14 +1,10 @@
-﻿
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <!-- If you delete this meta tag, Half Life 3 will never be released. -->
     <meta name="viewport" content="width=device-width">
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Payout</title>
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/email.css">
+    <title>Verification</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
     <style>
@@ -36,8 +32,6 @@
             width: 100% !important;
             height: 100%;
         }
-
-
 
         /* -------------------------------------
                 ELEMENTS
@@ -312,11 +306,8 @@
             padding: 3px;
         }
     </style>
-
 </head>
-
 <body bgcolor="#e8e8e8">
-
     <!-- HEADER -->
     <table class="head-wrap">
         <tbody>
@@ -353,110 +344,17 @@
                 <td class="container" bgcolor="#FFFFFF">
 
                     <div class="content">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <table class="invoice-info">
-                                            <tbody>                                  
-                                                <tr>
-                                                    <td>
-                                                        Request Date:
-                                                    </td>
-                                                    <td>
-                                                        @ViewBag.Date
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Request #
-                                                    </td>
-                                                    <td>
-                                                        @ViewBag.RequestId
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        @*<table class="invoice-info">
-                                            <tbody>
-                                                <tr>
-                                                    <td align="right">
-                                                        <p>
-                                                            Address<br>
-                                                            @ViewBag.address<br>
+                        @if (ViewBag.Status)
+                        {
+                            <h4>Your uploaded id has been verified, Now you can sell your artworks.</h4>
+                        }
+                        else
+                        {
+                            <h4>
+                                Your uploaded id is not valid, please upload a valid id.
+                            </h4>
+                        }
 
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>*@
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <table class="heading-style">
-                            <tbody>
-                                <tr>
-                                    <th>
-                                        Account Holder
-                                    </th>
-                                    <th>
-                                        Card Number
-                                    </th>
-
-                                    <th>
-                                        Amount
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        @ViewBag.AccountHolder
-                                    </td>
-                                    <td>
-                                        @ViewBag.CardNumber
-                                    </td>
-
-                                    <td>
-                                        $@ViewBag.Amount
-                                    </td>
-                                    <td>
-                                        @ViewBag.Status
-                                    </td>
-                                </tr>
-
-                                @*<tr class="no-border">
-                                        <td colspan="3"></td>
-
-                                        <td>
-                                            Subtotal
-                                        </td>
-                                        <td>
-                                            $20.00
-                                        </td>
-                                    </tr>
-                                    <tr class="no-border">
-                                        <td colspan="3"></td>
-
-                                        <td>
-                                            Tax
-                                        </td>
-                                        <td>
-                                            $20.00
-                                        </td>
-                                    </tr>*@
-                                <tr class="no-border">
-
-                                </tr>
-
-                            </tbody>
-                        </table>
                         <br><br>
                         <h4 style="text-align: center;">Thank You</h4>
                     </div>
@@ -504,4 +402,5 @@
 
 
 </body>
+
 </html>

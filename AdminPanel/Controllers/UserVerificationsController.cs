@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLayer.Enitities;
+using Postal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,7 +33,16 @@ namespace AdminPanel.Controllers
             obj.isIDConfirmed = confirm;
             obj.IdConfirmedBy = User.Identity.Name;
             db.SaveChanges();
+            SendEmail(obj);
             return RedirectToAction("detail", new { id = id });
+        }
+        private void SendEmail(UserProfile userProfile)
+        {
+            dynamic email = new Email("IdVerification");
+            email.To = userProfile.ApplicationUserDetail.UserName;
+            email.Subject = "Id Verification Status";
+            email.Status = userProfile.isIDConfirmed ;
+            email.Send();
         }
     }
 }
