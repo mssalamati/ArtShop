@@ -281,7 +281,7 @@ namespace ArtShop.Controllers
                     email.orderid = order.Id;
                     email.fullname = order.ReceiverName;
                     email.orderdate = order.BuyDate.ToString();
-                    email.products = order.OrderDetails.ToList();
+                    email.products = item.ToList();
                     email.subtotal = order.TotalPrice;
                     email.total = order.TotalPrice;
                     email.Send();
