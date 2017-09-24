@@ -124,7 +124,8 @@ namespace ArtShop.Controllers
                 long longAuth = 0;
                 long.TryParse(Request.QueryString["Authority"], out longAuth);
                 var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
-                var orderId = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id).Id;
+                var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+                var orderId = order.Id;
                 if (tran != null)
                 {
 
@@ -141,6 +142,8 @@ namespace ArtShop.Controllers
                         if (Status == 100)
                         {
                             tran.Payed = true;
+                            foreach (var item in order.OrderDetails)
+                                item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
                             db.SaveChanges();
                             CartManager.GetCart(this.HttpContext).EmptyCart();
                             return RedirectToAction("paymentReport", new { id = orderId });
@@ -176,10 +179,6 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var order = profile.Orders.SingleOrDefault(x => x.Id == id);
-            foreach (var item in order.OrderDetails)
-                item.Product.user.Account += (item.UnitPrice * item.Quantity) * ((100 - 10) / 100);
-            db.SaveChanges();
-
             if (order.TransactionDetail.Payed)
                 SendInvoice(order);
             return View(order);
