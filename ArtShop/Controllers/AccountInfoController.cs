@@ -243,6 +243,11 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.account = userProfile.Account;
+
+            ViewBag.orders = db.OrderDetails.Include("Product").Include("order")
+                .Where(x => x.Product.user_id == userId) 
+                .Where(x => x.order.TransactionDetail.Payed).ToList();
+
             return View(userProfile.PayoutRequests.ToList());
         }
 

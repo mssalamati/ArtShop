@@ -54,68 +54,100 @@
 
     <div class="row">
         <div class="small-12 large-8 large-@content-4 columns bgtext content" style="@fl">
-            <h3 class="hd-title">@ProfileRes.Requestpayout</h3>
-            <p class="mb2">@(string.Format(ProfileRes.accountValue, "$"+ ViewBag.account)) </p>
+            <h3 class="hd-title">@ProfileRes.Sales</h3>
+            <p class="mb2" style="margin-bottom:5px !important;">@(string.Format(ProfileRes.accountValue, "$" + ViewBag.account)) </p>
 
-            @if (Model == null || Model.Count == 0 || Model.All(x => x.Seen))
-            {
-                using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+            <button class="btn btn-info" onclick="$(this).hide(); $('#sales').hide(); $('#payout').show('slow');" style="margin-bottom:5px;"> @ProfileRes.Requestpayout </button>
+
+            <div id="payout" hidden>
+                @if (Model != null && Model.Count != 0 && Model.All(x => x.Seen) && ((int)ViewBag.account) != 0)
                 {
-                    @Html.AntiForgeryToken()
+                    using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <fieldset class="fields">
-                        <label>@ProfileRes.BankName</label>
-                        <div>
-                            <input class="wide" name="BankName" />
-                        </div>
+                        <fieldset class="fields">
+                            <label>@ProfileRes.BankName</label>
+                            <div>
+                                <input class="wide" name="BankName" />
+                            </div>
 
-                        <label>@ProfileRes.CardNumber</label>
-                        <div>
-                            <input class="wide" name="CardNumber" />
-                        </div>
+                            <label>@ProfileRes.CardNumber</label>
+                            <div>
+                                <input class="wide" name="CardNumber" />
+                            </div>
 
-                        <label>@ProfileRes.AccountNumber</label>
-                        <div>
-                            <input class="wide" name="AccountNumber" />
-                        </div>
+                            <label>@ProfileRes.AccountNumber</label>
+                            <div>
+                                <input class="wide" name="AccountNumber" />
+                            </div>
 
-                        <label>@ProfileRes.AccountHolder</label>
-                        <div>
-                            <input class="wide" name="AccountHolder" />
-                        </div>
+                            <label>@ProfileRes.AccountHolder</label>
+                            <div>
+                                <input class="wide" name="AccountHolder" />
+                            </div>
 
-                        <input type="submit" class="button btn-info mt1" value="@ProfileRes.Requestpayout">
-                    </fieldset>
+                            <input type="submit" class="button btn-info mt1" value="@ProfileRes.Requestpayout">
+                        </fieldset>
+                    }
                 }
-            }
 
-            <div id="so-shipping-id">
-                <h3 class="page-title">@ProfileRes.History</h3>
+                <div id="so-shipping-id">
+                    <h3 class="page-title">@ProfileRes.History</h3>
+                    <table class="table table-hover">
+                        <tr>
+                            <td>@UploadRes.Date</td>
+                            <td>@UploadRes.Amount</td>
+                            <td>@UploadRes.Status</td>
+                        </tr>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.date</td>
+                                    <td>@item.Value $</td>
+                                    @if (!item.Seen)
+                                    {
+                                        <td>@ProfileRes.pending</td>
+                                    }
+                                    else if (item.Payed)
+                                    {
+                                        <td>@ProfileRes.Payed</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@ProfileRes.Notpayed</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <div id="sales">
+                <h3 class="page-title">@ProfileRes.Sales</h3>
                 <table class="table table-hover">
                     <tr>
                         <td>@UploadRes.Date</td>
-                        <td>@UploadRes.Amount</td>
-                        <td>@UploadRes.Status</td>
+                        <td>@ProfileRes.Title</td>
+                        <td>@ProfileRes.Quantity</td>
+                        <td>@ProfileRes.Type</td>
+                        <td>@ProfileRes.UnitPrice</td>
+                        <td>@ProfileRes.TotalPrice</td>
                     </tr>
-                    @if (Model != null)
+                    @if (ViewBag.orders != null)
                     {
-                        foreach (var item in Model)
+                        foreach (var item in (List<OrderDetail>)ViewBag.orders)
                         {
                             <tr>
-                                <td>@item.date</td>
-                                <td>@item.Value $</td>
-                                @if (!item.Seen)
-                                {
-                                    <td>@ProfileRes.pending</td>
-                                }
-                                else if (item.Payed)
-                                {
-                                    <td>@ProfileRes.Payed</td>
-                                }
-                                else
-                                {
-                                    <td>@ProfileRes.Notpayed</td>
-                                }
+                                <td>@item.order.BuyDate</td>
+                                <td>@item.Product.Title</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.type</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@(item.UnitPrice * item.Quantity)</td>
                             </tr>
                         }
                     }
