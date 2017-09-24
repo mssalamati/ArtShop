@@ -31,6 +31,10 @@ namespace AdminPanel.Controllers
             var obj = db.PayoutRequests.Find(id);
             obj.Seen = true;
             obj.Payed = payed;
+            if (payed)
+            {
+                obj.user.Account -= obj.Value;
+            }
             db.SaveChanges();
             SendEmail(obj);
             return RedirectToAction("detail", new { id = id });
