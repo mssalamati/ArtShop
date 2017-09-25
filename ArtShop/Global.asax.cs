@@ -16,10 +16,7 @@ namespace ArtShop
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            GlobalFilters.Filters.Add(new En2FaConvertor());
-
+            BundleConfig.RegisterBundles(BundleTable.Bundles); 
             //GlobalFilters.Filters.Add(new RequireHttpsAttribute());
         }
  
