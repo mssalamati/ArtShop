@@ -349,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Posted by.
+        /// </summary>
+        public static string Posted_by {
+            get {
+                return ResourceManager.GetString("Posted_by", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Policy.
         /// </summary>
         public static string Privacy_policy {
@@ -462,6 +471,15 @@ namespace Resources {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tagged.
+        /// </summary>
+        public static string Tagged {
+            get {
+                return ResourceManager.GetString("Tagged", resourceCulture);
             }
         }
         

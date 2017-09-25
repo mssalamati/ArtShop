@@ -270,4 +270,10 @@
   <data name="Languages" xml:space="preserve">
     <value>زبان ها</value>
   </data>
+  <data name="Posted_by" xml:space="preserve">
+    <value>نویسنده</value>
+  </data>
+  <data name="Tagged" xml:space="preserve">
+    <value>برچسب ها</value>
+  </data>
 </root>

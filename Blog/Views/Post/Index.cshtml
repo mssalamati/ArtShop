@@ -72,17 +72,17 @@ else
                 <div class="col-lg-2 hidden-xs hidden-sm hidden-md">
                     <div class="date-info">
                         <p><strong>@Model.PostedOn.ToString("dd MMM yyyy")</strong></p>
-                        <p>Posted by</p>
+                        <p>@Resources.ShareRes.Posted_by</p>
                         <p><strong>@Model.Author</strong></p>
                     </div><!-- .date-info -->
 
                     <div class="about-info">
-                        <h3>About @Model.Category.Current().Name</h3>
+                        <h3>@Resources.ShareRes.About @Model.Category.Current().Name</h3>
                         <p></p><p>@Model.Category.Current().Description</p>
                         <p></p>
                     </div>
                     <div class="tag-info">
-                        <h3>Tagged</h3>
+                        <h3>@Resources.ShareRes.Tagged</h3>
                         <ul class="tag-list">
                             @foreach (var item in Model.Tags)
             {
