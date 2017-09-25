@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtShop.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,9 @@ namespace ArtShop
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-           
+
+            GlobalFilters.Filters.Add(new En2FaConvertor());
+
             //GlobalFilters.Filters.Add(new RequireHttpsAttribute());
         }
  
