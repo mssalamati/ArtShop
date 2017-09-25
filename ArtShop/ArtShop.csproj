@@ -430,6 +430,7 @@
     <Content Include="Content\font\Yekan\Yekan.eot" />
     <Content Include="Content\font\Yekan\Yekan.ttf" />
     <Content Include="Content\font\Yekan\Yekan.woff" />
+    <Content Include="Content\font\Yekan\BYekan.ttf" />
     <None Include="Properties\PublishProfiles\ARAD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
