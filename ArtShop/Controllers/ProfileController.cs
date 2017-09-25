@@ -104,7 +104,7 @@ namespace ArtShop.Controllers
             ViewBag.profileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.artworksCount = userProfile.Products.Count;
             ViewBag.favoritesCount = userProfile.Favorits.Count;
-
+            ViewBag.PhotoPath = userProfile.PhotoPath;
             List<CollectionViewModel> collectionViewModel = new List<CollectionViewModel>();
 
             int counter = 0;
@@ -258,6 +258,7 @@ namespace ArtShop.Controllers
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.artworkCount = userProfile.Products.Count;
+            ViewBag.PhotoPath = userProfile.PhotoPath;
             if (userProfile.Favorits != null)
                 return View(userProfile.Favorits);
 
@@ -272,7 +273,7 @@ namespace ArtShop.Controllers
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.favoritesCount = userProfile.Favorits.Count;
             ViewBag.collectionCount = userProfile.Collections.Count;
-
+            ViewBag.PhotoPath = userProfile.PhotoPath;
 
             return View(userProfile.Products.OrderByDescending(a => a.CreateDate).ToList());
         }
