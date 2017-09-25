@@ -140,7 +140,7 @@ namespace ArtShop.Controllers
             Session["copyright"] = model.copyright;
             Session["createYear"] = model.createYear;
             Session["isOrginal"] = model.isOrginal;
-            Session["printAvable"] = model.printAvable;
+            Session["printAvable"] = false;// model.printAvable;
             return RedirectToAction("Setep4");
         }
 
