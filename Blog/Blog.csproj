@@ -5224,6 +5224,7 @@
     <Content Include="Areas\Admin\Views\Users\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\_successWindow.cshtml" />
+    <Content Include="Content\font\IRANSans.ttf" />
     <None Include="Properties\PublishProfiles\Blog.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />

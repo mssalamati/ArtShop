@@ -17,6 +17,37 @@
     @Scripts.Render("~/bundles/site")
     @Scripts.Render("~/bundles/bootstrap")
 
+    @{var IsRighToLeft = CultureHelper.IsRighToLeft();}
+
+    @if (IsRighToLeft)
+    {
+        <style>
+            @@font-face {
+                font-family: iransans;
+                src: url(/Content/font/IRANSans.ttf);
+            }
+
+            h1 {
+                font-family: 'iransans' !important;
+            }
+
+            h2 {
+                font-family: 'iransans' !important;
+            }
+
+            p {
+                font-family: 'iransans' !important;
+            }
+
+            a {
+                font-family: 'iransans' !important;
+            }
+
+            body {
+                font-family: 'iransans' !important;
+            }
+        </style>
+    }
 
 </head>
 

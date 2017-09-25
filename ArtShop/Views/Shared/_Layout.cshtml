@@ -58,6 +58,36 @@
         var ml_account = ml('accounts', '895607', 'i0r0l4r5t2', 'load');
     </script>
     <!-- End MailerLite Universal -->
+
+    @if (IsRighToLeft)
+    {
+        <style>
+            @@font-face {
+                font-family: iransans;
+                src: url(/Content/font/IRANSans.ttf);
+            }
+
+            h1 {
+                font-family: 'iransans' !important;
+            }
+
+            h2 {
+                font-family: 'iransans' !important;
+            }
+
+            p {
+                font-family: 'iransans' !important;
+            }
+
+            a {
+                font-family: 'iransans' !important;
+            }
+
+            body {
+                font-family: 'iransans' !important;
+            }
+        </style>
+    }
 </head>
 
 @{

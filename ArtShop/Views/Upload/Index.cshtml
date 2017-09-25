@@ -3956,13 +3956,44 @@
 
     <link href="~/Content/select2/css/select2.css" rel="stylesheet" />
     <script src="~/Content/select2/js/select2.min.js"></script>
- 
+
+    @{
+        var IsRighToLeft = CultureHelper.IsRighToLeft();
+        var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+    }
+
+    @if (IsRighToLeft)
+    {
+        <style>
+            @@font-face {
+                font-family: iransans;
+                src: url(/Content/font/IRANSans.ttf);
+            }
+
+            h1 {
+                font-family: 'iransans' !important;
+            }
+
+            h2 {
+                font-family: 'iransans' !important;
+            }
+
+            p {
+                font-family: 'iransans' !important;
+            }
+
+            a {
+                font-family: 'iransans' !important;
+            }
+
+            body {
+                font-family: 'iransans' !important;
+            }
+        </style>
+    }
+
 </head>
 
-@{
-    var IsRighToLeft = CultureHelper.IsRighToLeft();
-    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
-}
 
 <body class="saatchi  signed-in">
 
@@ -3986,7 +4017,7 @@
     <div id="updatediv" style="">
         @Html.Action("Setep1", "Upload", null)
 
-        @*@Html.Action("Stepfinish", "Upload", new { id=1})*@ 
+        @*@Html.Action("Stepfinish", "Upload", new { id=1})*@
     </div>
 
     @Html.Partial("_Footer")
