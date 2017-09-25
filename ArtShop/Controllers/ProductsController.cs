@@ -44,7 +44,7 @@ namespace ArtShop.Controllers
             if (price_cash != null && price_cash.max.HasValue)
                 p = p.Where(x => x.Price < price_cash.max.Value);
             if (price_cash != null && price_cash.min.HasValue)
-                p = p.Where(x => x.Price > price_cash.min.Value);
+                p = p.Where(x => x.Price >= Math.Max(1, price_cash.min.Value));
 
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
