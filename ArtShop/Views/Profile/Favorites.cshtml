@@ -11,36 +11,21 @@
 
 <div role="main" class="row row-layout profile-content">
 
+       <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
 
-    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/favorite/994144" style="display: block;">
-        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144" target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;text=View+Favorites+by+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;media=http:&amp;description=Favorites+by+adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
-            <i class="fa fa-pinterest"></i>
-        </a>
-        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/favorite/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;Favorites by adib dehghan&quot;}">
-            <i class="fa fa-envelope"></i>
-        </a>
-        <div id="totalShares" class="total-share"><span>0</span></div>
-    </div>
+           <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
+               @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
+            {
+                   <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+               }
+               else
+               {
+                   <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+               }
 
-
-    <script>
-        Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
-        Saatchi.EmailToFriend.modalUrl = '/social/email/page';
-        Saatchi.EmailToFriend.modalTitle = 'Share this page';
-        Saatchi.EmailToFriend.init();
-    </script>        <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-
-        <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
-            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
-            <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
-            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
-        </a>
+               <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
+               <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
+           </a>
 
     </header>
 

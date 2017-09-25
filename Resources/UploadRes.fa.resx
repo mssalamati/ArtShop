@@ -244,7 +244,7 @@
     <value> </value>
   </data>
   <data name="step3_forsale_string" xml:space="preserve">
-    <value>آیا اثر برای فروش است؟</value>
+    <value>آیا نسخه اصلی اثر را برای فروش می گذارید؟</value>
   </data>
   <data name="step3_next_click" xml:space="preserve">
     <value>عکس اثر</value>
@@ -268,22 +268,22 @@
     <value>وضعیت اثر</value>
   </data>
   <data name="step5_description" xml:space="preserve">
-    <value>در مورد اثر خود توضیحات بیشتری بیان کنید.</value>
+    <value>در مورد اثر هنری خود بیشتر توضیح دهید.</value>
   </data>
   <data name="step5_keywords" xml:space="preserve">
     <value>کلید واژه</value>
   </data>
   <data name="step5_keywords_detail" xml:space="preserve">
-    <value>اثر خود را تگ گذاری کنید تا باعث شود که مجموعه دار ها و بازدید کنندگان راحت تر اثر مورد نظر خود را پیدا کنند. توجه کنید بهتر است تگ ها ساده، توصیفی و عناصر کلیدی کار مانند رنگ، موضوع و سبک هنری را توصیف کند.</value>
+    <value>اثر خود را تگ گذاری کنید تا باعث شود که مجموعه دار ها و بازدید کنندگان راحت تر اثر مورد نظر خود را پیدا کنند. توجه کنید بهتر است تگ ها ساده و توصیفی باشد.</value>
   </data>
   <data name="step5_keywords_lable" xml:space="preserve">
     <value>5-12 کلید واژه وارد کنید.(بعد از نوشتن کلمه ی مورد نظر کلید اینتر را فشار دهید)</value>
   </data>
   <data name="step5_materials" xml:space="preserve">
-    <value>1-5 متریال کلید واژه کنید.</value>
+    <value>1-5 نوع ماده سازنده استفاده شده را مشخص کنید.</value>
   </data>
   <data name="step5_mediums" xml:space="preserve">
-    <value>1-5مدیا کلید واژه وارد کنید.</value>
+    <value>1-5نوع مدیا استفاده شده را مشخص کنید.</value>
   </data>
   <data name="step5_next_click" xml:space="preserve">
     <value />
@@ -292,10 +292,10 @@
     <value>تصویر اثر</value>
   </data>
   <data name="step5_styles" xml:space="preserve">
-    <value>1-5 سبک را انتخاب کنید.</value>
+    <value>1-5 سبک اثر خود را مشخص کنید.</value>
   </data>
   <data name="step5_title" xml:space="preserve">
-    <value>مدیا، متریال، سبک</value>
+    <value>مدیا، ماده سازنده، سبک</value>
   </data>
   <data name="step6_description" xml:space="preserve">
     <value>بسیار مهم است که ابعاد را بسیار دقیق وارد کنید.  برای کارهای تخت، مانند عکس ها و آثار بر روی کاغذ، پیشنهاد می کنیم عمق 0.1 را وارد کنید.</value>
@@ -304,7 +304,7 @@
     <value>توضیحات</value>
   </data>
   <data name="step6_pre_click" xml:space="preserve">
-    <value>مدیا، متریال، سبک</value>
+    <value>مدیا، ماده سازنده، سبک</value>
   </data>
   <data name="step6_title" xml:space="preserve">
     <value>ابعاد</value>
