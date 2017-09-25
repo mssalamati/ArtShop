@@ -13,14 +13,14 @@ namespace Blog.Controllers
         public ActionResult Index(int page = 1)
         {
             ViewBag.ShowCase = db.Posts.FirstOrDefault(a => a.postType == Objects.PostType.ShowCase);
-            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Take(20).ToList();
+            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Take(19).ToList();
 
             return View(post);
         }
 
         public ActionResult More(int page = 1)
         {
-            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Skip((page-1) * 20).Take(20).ToList();
+            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Skip((page-1) * 19).Take(19).ToList();
             return PartialView(post);
         }
 

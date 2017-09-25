@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
-
+@{ 
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
+}
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
@@ -15,15 +18,15 @@
         </div>
 
         <div class="desktop-navigation__account-nav__dropdown">
-            <a data-gtm-event="nav header" href="/profile" title="Profile">@ShareRes.Profile</a>
-            <a data-gtm-event="nav header" href="/accountInfo/index" title="Account Information">@ShareRes.AccountInformation</a>
-            <a data-gtm-event="nav header" href="/profile/favorites" title="Favorites">@ShareRes.Favorites</a>
-            <a data-gtm-event="nav header" href="/profile/collection" title="Collections">@ShareRes.Collections</a>
-            <a data-gtm-event="nav header" href="/accountInfo/orders" title="Orders">@ShareRes.Orders</a>
-            <a data-gtm-event="nav header" href="/upload/review" title="Upload">@ShareRes.Upload</a>
-            <a data-gtm-event="nav header" href="/profile/artworks" title="Artworks">@ShareRes.Artworks</a>
-            <a data-gtm-event="nav header" href="/accountInfo/salesdashboard" title="Sales Dashboard">@ShareRes.SalesDashboard</a>
-            <a data-gtm-event="nav header" href="javascript:document.getElementById('logoutForm').submit()" title="Logout">@ShareRes.Logout</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/profile" title="Profile">@ShareRes.Profile</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/accountInfo/index" title="Account Information">@ShareRes.AccountInformation</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/profile/favorites" title="Favorites">@ShareRes.Favorites</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/profile/collection" title="Collections">@ShareRes.Collections</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/accountInfo/orders" title="Orders">@ShareRes.Orders</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/upload/review" title="Upload">@ShareRes.Upload</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/profile/artworks" title="Artworks">@ShareRes.Artworks</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="/accountInfo/salesdashboard" title="Sales Dashboard">@ShareRes.SalesDashboard</a>
+            <a style="@rtlstl" data-gtm-event="nav header" href="javascript:document.getElementById('logoutForm').submit()" title="Logout">@ShareRes.Logout</a>
         </div>
 
         @*<div class="desktop-navigation__authentication-links__item">

@@ -273,4 +273,7 @@
   <data name="Tagged" xml:space="preserve">
     <value>Tagged</value>
   </data>
+  <data name="Load_more" xml:space="preserve">
+    <value>Load more</value>
+  </data>
 </root>
