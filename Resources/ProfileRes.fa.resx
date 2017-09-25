@@ -381,4 +381,10 @@
   <data name="UnitPrice" xml:space="preserve">
     <value>قیمت واحد</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
 </root>

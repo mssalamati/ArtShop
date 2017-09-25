@@ -17,8 +17,11 @@ namespace DataLayer.Enitities
         public virtual String user_id { get; set; }
         [Display(Name = "کاربر")]
         public virtual UserProfile user { get; set; }
+        [Display(Name = nameof(ProfileRes.Date), ResourceType = typeof(ProfileRes))]
         public virtual DateTime BuyDate { get; set; }
+        [Display(Name = nameof(ProfileRes.status), ResourceType = typeof(ProfileRes))]
         public virtual OrderStatus Status { get; set; }
+        [Display(Name = nameof(ProfileRes.TotalPrice), ResourceType = typeof(ProfileRes))]
         public virtual double TotalPrice { get; set; }
         [ForeignKey("TransactionDetail")]
         public virtual int? TransactionDetailId { get; set; }
