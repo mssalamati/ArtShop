@@ -267,4 +267,10 @@
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
+  <data name="Posted_by" xml:space="preserve">
+    <value>Posted by</value>
+  </data>
+  <data name="Tagged" xml:space="preserve">
+    <value>Tagged</value>
+  </data>
 </root>
