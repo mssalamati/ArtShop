@@ -302,6 +302,7 @@
     <Content Include="Content\dropzone.js" />
     <Content Include="Content\EditProduct.css" />
     <Content Include="Content\font\IRANSans.ttf" />
+    <Content Include="Content\font\Yekan\Yekan.svg" />
     <Content Include="Content\fullview.js" />
     <Content Include="Content\Images\250x143.jpg" />
     <Content Include="Content\Images\300x300.jpg" />
@@ -426,6 +427,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\font\IRANSans2.ttf" />
+    <Content Include="Content\font\Yekan\Yekan.eot" />
+    <Content Include="Content\font\Yekan\Yekan.ttf" />
+    <Content Include="Content\font\Yekan\Yekan.woff" />
     <None Include="Properties\PublishProfiles\ARAD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
