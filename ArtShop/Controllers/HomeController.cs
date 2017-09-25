@@ -102,16 +102,16 @@ namespace ArtShop.Controllers
             var count3 = filter3.Count();
             var count4 = filter4.Count();
             var count5 = filter5.Count();
-            var r1 = new Random().Next(0, count1);
-            var r2 = new Random().Next(0, count2);
-            var r3 = new Random().Next(0, count3);
-            var r4 = new Random().Next(0, count4);
-            var r5 = new Random().Next(0, count5);
-            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).Skip(r1).First().Widephoto.Path;
-            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x => x.CreateDate).Skip(r2).First().Sqphoto.Path;
-            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x => x.CreateDate).Skip(r3).First().Sqphoto.Path;
-            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x => x.CreateDate).Skip(r4).First().Sqphoto.Path;
-            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x => x.CreateDate).Skip(r5).First().Sqphoto.Path;
+            var r1 = new Random().Next(1, Math.Max(count1, 1));
+            var r2 = new Random().Next(1, Math.Max(count2, 1));
+            var r3 = new Random().Next(1, Math.Max(count3, 1));
+            var r4 = new Random().Next(1, Math.Max(count4, 1));
+            var r5 = new Random().Next(1, Math.Max(count5, 1));
+            ViewBag.pic1 = count1 == 0 ? "" : filter1.OrderBy(x => x.CreateDate).Skip(r1 - 1).First().Widephoto.Path;
+            ViewBag.pic2 = count2 == 0 ? "" : filter2.OrderBy(x => x.CreateDate).Skip(r2 - 1).First().Sqphoto.Path;
+            ViewBag.pic3 = count3 == 0 ? "" : filter3.OrderBy(x => x.CreateDate).Skip(r3 - 1).First().Sqphoto.Path;
+            ViewBag.pic4 = count4 == 0 ? "" : filter4.OrderBy(x => x.CreateDate).Skip(r4 - 1).First().Sqphoto.Path;
+            ViewBag.pic5 = count5 == 0 ? "" : filter5.OrderBy(x => x.CreateDate).Skip(r5 - 1).First().Sqphoto.Path;
             // text1 , text2 , link , pic
             return PartialView(model);
         }
