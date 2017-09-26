@@ -145,6 +145,8 @@ namespace ArtShop.Controllers
                             foreach (var item in order.OrderDetails)
                                 item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
                             db.SaveChanges();
+                            SendOrderDetail(order);
+                            SendInvoice(order);
                             CartManager.GetCart(this.HttpContext).EmptyCart();
                             return RedirectToAction("paymentReport", new { id = orderId });
                         }
@@ -179,8 +181,6 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var order = profile.Orders.SingleOrDefault(x => x.Id == id);
-            if (order.TransactionDetail.Payed)
-                SendInvoice(order);
             return View(order);
         }
 
@@ -274,21 +274,27 @@ namespace ArtShop.Controllers
         }
         private void SendOrderDetail(Order order)
         {
-            foreach (var item in order.OrderDetails.GroupBy(a => a.Product.user_id))
+            foreach (var item in order.OrderDetails.GroupBy(a => a.Product.user))
             {
-                foreach (var orderDetail in item)
+                var user = item.Key;
+                dynamic email = new Email("Order");
+                email.To = user.ApplicationUserDetail.Email;
+                email.Subject = "Order";
+                email.orderid = order.Id;
+                email.ReceiverName = order.ReceiverName;
+                email.orderdate = order.BuyDate.ToString();
+                email.products = item.Select(x => new productemailviewmodel()
                 {
-                    dynamic email = new Email("Order");
-                    email.To = orderDetail.Product.user.ApplicationUserDetail.Email;
-                    email.Subject = "Order";
-                    email.orderid = order.Id;
-                    email.fullname = order.ReceiverName;
-                    email.orderdate = order.BuyDate.ToString();
-                    email.products = item.ToList();
-                    email.subtotal = order.TotalPrice;
-                    email.total = order.TotalPrice;
-                    email.Send();
-                }
+                    title = x.Product.Title,
+                    photo = x.Product.Sqphoto.Path,
+                    quantity = x.Quantity,
+                    unitPrice = x.UnitPrice,
+                    package = x.Product.Packaging
+                }).ToList();
+   
+                email.subtotal = order.TotalPrice;
+                email.total = order.TotalPrice;
+                email.Send();
             }
         }
 
