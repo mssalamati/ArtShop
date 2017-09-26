@@ -3,6 +3,7 @@
 @{
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
     var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "margin-top:5px" : "";
 }
 
 
@@ -78,14 +79,14 @@
                                 }
                                 else
                                 {
-                                    <img style="width:auto;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                    <img style="width:auto;float:left;opacity:1;@rtlstl" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
                                     <span class="lnsp" style="padding-left:5px;color:white;font-size:13px">فارسی</span>
                                 }
 
                             </a>
                             <div class="dropdown-content">
                                 <a href="/Home/SetCulture?culture=fa">
-                                    <img style="width:40px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                    <img style="width:40px;float:left;opacity:1;@rtlstl" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
                                     <span style="padding-left:5px;color:black;font-size:13px">فارسی</span>
                                 </a>
                                 <a href="/Home/SetCulture?culture=en-us">
@@ -120,7 +121,7 @@
                             <div data-index="0" class="desktop-navigation__site-link">
                                 <div class="desktop-navigation__site-link__title">
                                     <a data-gtm-event="nav header"
-                                       href="http://blog.artiscovery.com"
+                                       href="https://blog.artiscovery.com"
                                        class="desktop-navigation__site-link__title__link">
                                         @ShareRes.Blog
                                     </a>

@@ -276,4 +276,7 @@
   <data name="Tagged" xml:space="preserve">
     <value>برچسب ها</value>
   </data>
+  <data name="Load_more" xml:space="preserve">
+    <value>بیشتر</value>
+  </data>
 </root>

@@ -43,7 +43,7 @@ namespace ArtShop.Controllers
 
             //foreach (var item in db.Photos)
             //{
-            //    item.Path = item.Path.Replace("https://", "http://");
+            //    item.Path = item.Path.Replace("http://", "https://");
             //}
 
             //db.SaveChanges();
