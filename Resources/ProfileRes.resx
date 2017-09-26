@@ -388,4 +388,16 @@
   <data name="status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Collection_description" xml:space="preserve">
+    <value>Collection Description</value>
+  </data>
+  <data name="Collection_title" xml:space="preserve">
+    <value>Collection Title</value>
+  </data>
+  <data name="My_collections" xml:space="preserve">
+    <value>My Collections</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
 </root>

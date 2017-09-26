@@ -187,6 +187,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collection Description.
+        /// </summary>
+        public static string Collection_description {
+            get {
+                return ResourceManager.GetString("Collection_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collection Title.
+        /// </summary>
+        public static string Collection_title {
+            get {
+                return ResourceManager.GetString("Collection_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collections.
         /// </summary>
         public static string Collections {
@@ -452,6 +470,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Collections.
+        /// </summary>
+        public static string My_collections {
+            get {
+                return ResourceManager.GetString("My_collections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Website.
         /// </summary>
         public static string My_website {
@@ -556,6 +583,15 @@ namespace Resources {
         public static string Pinterest {
             get {
                 return ResourceManager.GetString("Pinterest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private.
+        /// </summary>
+        public static string Private {
+            get {
+                return ResourceManager.GetString("Private", resourceCulture);
             }
         }
         

@@ -387,4 +387,16 @@
   <data name="status" xml:space="preserve">
     <value>وضعیت</value>
   </data>
+  <data name="Collection_description" xml:space="preserve">
+    <value>توضیحات مجموعه</value>
+  </data>
+  <data name="Collection_title" xml:space="preserve">
+    <value>عنوان مجموعه</value>
+  </data>
+  <data name="My_collections" xml:space="preserve">
+    <value>مجموعه های من</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>نمایش خصوصی</value>
+  </data>
 </root>

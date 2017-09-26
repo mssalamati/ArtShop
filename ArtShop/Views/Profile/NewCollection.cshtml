@@ -22,6 +22,12 @@
             float: right;
             text-align:right;
         }
+        .ctextright {
+        text-align:right;
+        }
+        .breadcrumbs {
+        float:right;
+        }
     </style>
 }
 
@@ -29,21 +35,26 @@
 <div class="row-layout content">
     <header>
         <nav class="row">
-            <div class="small-12 medium-6 columns">
+            <div class="small-12 medium-12 columns">
                 <ul class="breadcrumbs">
-                    <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">Collections</a></li>
-                    <li><a class="so-quick-tip" href="/account/collection/994144" oldtitle="My collections">My Collections</a></li>
-                </ul>
-            </div>
-            <div class="small-12 medium-6 columns">
-                <ul class="breadcrumbs pull-right">
-                    <li>Create a Collection</li>
+                    @if (IsRighToLeft)
+                    {
+                        <li><a class="so-quick-tip" href="/account/collection/994144" oldtitle="My collections">@ProfileRes.My_collections</a></li>
+                        <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
+                      
+                    }
+                    else
+                    {
+                        <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
+                        <li><a class="so-quick-tip" href="/account/collection/994144" oldtitle="My collections">@ProfileRes.My_collections</a></li>
+                    }
+                  
                 </ul>
             </div>
         </nav>
         <div class="row">
             <div class="small-12 columns">
-                <h1>Create a Collection</h1>
+                <h1 class="ctextright">@ProfileRes.Create_collection</h1>
             </div>
         </div>
     </header>
@@ -71,7 +82,7 @@
                 </div>
 
                 <div class="control-group">
-                    <label for="collection_type_id" class="control-label required">Type</label>
+                    <label for="collection_type_id" class="control-label required">@ProfileRes.Type</label>
                     <br />
                     <div style="clear:both"></div>
                     @if (IsRighToLeft)
@@ -98,7 +109,7 @@
                     <div class="controls">
                         @if (IsRighToLeft)
                         {
-                            @Html.DisplayNameFor(m => m.IsPrivate)
+                            @Html.DisplayNameFor(m => m.IsPrivate) <text>&nbsp;</text>
                             @Html.CheckBoxFor(m => m.IsPrivate, new { @style = "display:inline-block" })
                         }
                         else
@@ -113,7 +124,7 @@
 
                 <div class="control-group">
                     <div class="controls">
-                        <input type="submit" name="create" class="button btn-info">
+                        <input type="submit" name="create" value="@ProfileRes.Submit" class="button btn-info">
                     </div>
                 </div>
 

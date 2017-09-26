@@ -1,4 +1,5 @@
 ﻿using DataLayer.Enitities;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,14 +11,15 @@ namespace ArtShop.Models
     public class NewCollectionViewModel
     {
         public int CollectionId { get; set; }
-        [Display(Name = "Collection Title")]
+        
+        [Display(Name = nameof(ProfileRes.Collection_title), ResourceType = typeof(ProfileRes))]
         public string CollectionTitle { get; set; }
 
-        [Display(Name = "Collection Description")]
+        [Display(Name = nameof(ProfileRes.Collection_description), ResourceType = typeof(ProfileRes))]
         public string CollectionDescription { get; set; }
         public ICollection<CollectionProduct> collectionProduct { get; set; }
         public CollectionType CollectionType { get; set; }
-        [Display(Name = "Private")]
+        [Display(Name = nameof(ProfileRes.Private), ResourceType = typeof(ProfileRes))]
         public bool IsPrivate { get; set; }
 
     }
