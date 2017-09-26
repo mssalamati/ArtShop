@@ -4,7 +4,7 @@ namespace ArtShop.Controllers
 {
     public class productemailviewmodel
     {
-     
+
         public productemailviewmodel()
         {
         }
@@ -14,4 +14,5 @@ namespace ArtShop.Controllers
         public string title { get; set; }
         public decimal unitPrice { get; set; }
         public Productpackage package { get; set; }
+    }
 }
