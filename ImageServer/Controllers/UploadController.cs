@@ -95,7 +95,7 @@ namespace ImageServer.Controllers
             {
                 var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
                 var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
-                Uri mainuri = new Uri("http://" + ImageServerName + "." + mainDomain);
+                Uri mainuri = new Uri("https://" + ImageServerName + "." + mainDomain);
                 Uri imageuri = new Uri(model.image);
                 string image = mainuri.MakeRelativeUri(imageuri).ToString();
                 var result = ImageHelper.Crop(Server, image, model.square_x, model.square_y, model.square_width, model.square_height, model.wide_x, model.wide_y, model.wide_width, model.wide_height);
@@ -104,8 +104,8 @@ namespace ImageServer.Controllers
                     return Json(new
                     {
                         result = true,
-                        SqureFullPath = "http://" + ImageServerName + "." + mainDomain + result.SqureFullPath,
-                        WideFullPath = "http://" + ImageServerName + "." + mainDomain + result.WideFullPath
+                        SqureFullPath = "https://" + ImageServerName + "." + mainDomain + result.SqureFullPath,
+                        WideFullPath = "https://" + ImageServerName + "." + mainDomain + result.WideFullPath
                     }, JsonRequestBehavior.AllowGet);
                 }
                 else

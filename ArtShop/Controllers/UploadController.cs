@@ -37,7 +37,7 @@ namespace ArtShop.Controllers
             ISResizeViewModel obj = null;
             var iserverid = (int)Session["iserver"];
             var iserver = db.ImageServers.Find(iserverid);
-            obj = await resizeasync(model, "http://" + iserver.Host);
+            obj = await resizeasync(model, "https://" + iserver.Host);
             return obj;
         }
 
@@ -74,10 +74,10 @@ namespace ArtShop.Controllers
             Session["iserver"] = iserver.Id;
             if (iserver != null)
             {
-                if (Request.IsSecureConnection)
+                //if (Request.IsSecureConnection)
                     ViewBag.iserver = "https://" + iserver.Host + "/upload/upload";
-                else
-                    ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
+                //else
+                //    ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
                 ViewBag.lastpic = (string)Session["imageAddress"];
                 return PartialView();
             }

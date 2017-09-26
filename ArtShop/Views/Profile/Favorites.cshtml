@@ -1,31 +1,31 @@
 ﻿@model ICollection<Favorit>
 @{
+    ViewBag.Title = "Favorites | Artiscovery";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
-    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
-    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
 }
 @using DataLayer.Extentions
-@{
-    ViewBag.Title = "Favorites | Artiscovery";
-}
 
 <div role="main" class="row row-layout profile-content">
 
-       <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+    <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
 
-           <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
-               @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
+        <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
+            @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
             {
-                   <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
-               }
-               else
-               {
-                   <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
-               }
+                <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+            }
+            else
+            {
+                <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            }
 
-               <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
-               <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
-           </a>
+            <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
+            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
+        </a>
 
     </header>
 
@@ -33,7 +33,7 @@
         <a href="/profile/artworks" class="" style="@rtldirection" title="link to artwork">
             <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@ViewBag.artworkCount)</span>
         </a>
-        <a href="/profile/collection"  style="@rtldirection" class="" title="link to Collections">
+        <a href="/profile/collection" style="@rtldirection" class="" title="link to Collections">
             <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@ViewBag.collectionCount)</span>
         </a>
         <a href="/profile/favorites" style="@rtldirection" class="active" title="link to Favorites">
@@ -58,138 +58,96 @@
         <ul id="infinite" class="item-list masonry" style="position: relative; height: 372.891px;">
             @foreach (var item in Model)
             {
-                <li class="art-item fast-fade ">
-                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+                    <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                         <div class="list-art-image-wrapper">
-                            <a href="/products/single/@item.productId" itemprop="url">
-                                <img src="@item.product.photo.Path" alt="Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
+                            <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" itemprop="url">
+                                <img src="@item.product.photo.Path">
                             </a>
 
                         </div>
-                        <div class="item-controls" data-id="3752244" data-artist="955468" data-art="3561261">
-                            <a href="/cart/add/P1-U955468-A3561261" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U955468-A3561261" data-title="Infinity Diptych - Limited Edition 50" data-price="1920" data-category="Printmaking" data-artist-id="955468" data-art-id="3561261">
-                                <i class="fa fa-shopping-cart"></i>
+                        <div class="item-controls">
+                            @if (item.product.ISOrginalForSale && item.product.Status == ProductStatus.forSale)
+                            {
+                                <a href="/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                                    <i class="fa fa-shopping-cart" style="color:white"></i>
+                                </a>
+                            }
+
+                            <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                <i class="fa fa-heart"></i>
                             </a>
-                            <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite is-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
-                            @*<a href="#" data-collection-owner="955468" data-art-id="3561261" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@
+                            <a onclick="addcollect(@item.productId)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                                <i class="fa fa-plus" style="color:white"></i>
+                            </a>
                         </div>
-                        <div class="list-art-meta">
-                            <h4 class="list-art-title left ellipsis" itemprop="name">
-                                <a href="/products/single/@item.productId">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
+                        <div class="list-art-meta" style="height:auto; @rtlstl">
+                            <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                                <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })">@item.product.Title</a>
                             </h4>
                             <small style="@rtlstl" class="art-category clear left">@item.product.category.Current().Name, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
 
-                            <div class="list-author clear left">
-                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                    <a href="/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
+                            <div class="list-author clear left" style="@rtlstl">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+                                    <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                                 </h5>
-                                @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">@item.product.user.country.Current().Name</h5>*@
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">
+                                    @if (item.user.country != null)
+                                    {
+                                        <span>@item.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
+                                    }
+                                </h5>
                             </div>
 
-                            <div class="list-art-price">
-                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                            <div class="list-art-price" style="@pricertl">
+                                @if (item.product.ISOrginalForSale)
+                                {
+                                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                        <!-- internationalization testing -->
+                                        <div itemprop="price">
+                                            $@item.product.Price
+                                        </div>
+                                    </div>
+                                }
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                     <!-- internationalization testing -->
-                                    <div itemprop="price">
-                                        @item.product.Price $
+                                    <div class="sample-print-price" itemprop="price">
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
+
             }
         </ul>
         <div class="clearfix"></div>
-        <div id="pageNav" class="hidden">
-            <a href="/account/favorite/id/994144/format/json/page/2">2</a>
-        </div>
-        <div id="pageLoading"></div>
-    </div>
 
-    <script type="text/javascript">
-        Saatchi.Loader.load('profile', { js: true }, function () {
-            Saatchi.Profile.init();
-        });
-        Saatchi.Loader.load('favorite', { js: true }, function () {
-            Saatchi.Favorite.init();
+    </div>
+    <script src="~/Content/fullview.js"></script>
+    <script>
+        Saatchi.Loader.load('hslpicker', { js: true });
+        Saatchi.Loader.load('browse', { js: true }, function () {
+            Saatchi.Browse.init();
         });
         Saatchi.Loader.load('fullview', { js: true }, function () {
             Saatchi.Fullview.init();
             Saatchi.Fullview.SetView.init();
             Saatchi.Fullview.FullScreen.init();
         });
-        Saatchi.Loader.load('infinitescroll');
-        Saatchi.Loader.load('pagination', { js: true }, function () {
-            Saatchi.Pagination.type = 'art';
-            Saatchi.Pagination.init();
-        });
-
-        $('body').bind('contextmenu', function (e) {
-            $('body').trigger("click");
-            return false;
+        Saatchi.Loader.load('favorite', { js: true }, function () {
+            Saatchi.Favorite.init();
         });
 
         $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+
+        var observer;
+        // stop observing
+        if (observer) {
+            observer.disconnect();
+        }
+
     </script>
-    <script type="text/x-tmpl" id="tmpl-art">
-        <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade" data-page="{%=o.page%}">
-            <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
-                <div class="list-art-image-wrapper">
-                    <a href="{%=o.artwork_url%}" itemprop="url">
-                        <img src="{%=o.artwork_image_url%}7.jpg" alt="{%=o.art_title%}" itemprop="contentURL">
-                    </a>
-                </div>
-                <div class="item-controls" data-id="{%=o.user_art_id%}">
-                    {% if (o.original_sale_status === 'avail') { %}
-                    <a href="/cart/add/{%=o.original_sku%}" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>
-                    {% } %}
-                    {% if ('994144' != o.artist_id) { %}
-                    <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
-                    {% } %}
-                    <a href="#" data-collection-owner="{%=o.artist_id%}" data-art-id="{%=o.art_id%}" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection" rel="nofollow"><i class="fa fa-plus"></i></a>
-                    {% if ('994144' == o.artist_id) { %}
-                    <a href="{%=o.artwork_edit_url%}" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>
-                    {% } %}
-                </div>
-                <div class="list-art-meta">
-                    <h4 class="list-art-title left ellipsis" itemprop="name">
-                        <a href="{%=o.artwork_url%}">{%=o.art_title%}</a>
-                    </h4>
-                    <small class="art-category clear left">{%=o.art_category%}, {%#o.art_dimensions_string%}</small>
-                    {% if (o.original_sale_status === 'sold') { %}
-                    <div class="right sold" itemprop="availability">sold</div>
-                    {% } else if (o.original_sale_status === 'reserved') { %}
-                    <div class="right reserved" itemprop="availability">reserved</div>
-                    {% }  %}
 
-                    <div class="list-author clear left">
-                        <h5 class="artist-name ellipsis left" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                            <a href="{%=o.artist_url%}" class="artist-card" title="{%=o.artist_name%}'s homepage" itemprop="url">{%=o.artist_name%}</a>
-                        </h5>
-                        <h5 class="user-location ellipsis clear" itemprop="contentLocation">{%=o.artist_country%}</h5>
-                    </div>
-
-                    <div class="list-art-price">
-                        {% if (o.original_sale_status === 'avail' || o.original_sale_status === 'sold') { %}
-                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <div itemprop="price">
-                                {%=o.aisp_price%}
-                            </div>
-                        </div>
-                        {% }  %}
-                        {% if (o.lowest_print_price) { %}
-                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <div class="sample-print-price" itemprop="price">
-                                Prints from {%=o.lowest_print_price%}
-                            </div>
-                        </div>
-                        {% }  %}
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </li>
-    </script>
-    <div class="clearfix"></div>
 </div>
