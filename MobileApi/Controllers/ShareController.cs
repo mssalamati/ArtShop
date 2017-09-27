@@ -183,6 +183,23 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
+        [Authorize, Route("getCollectionList")]
+        public HttpResponseMessage getCollectionList()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var result = profile.Collections.Select(x => new
+            {
+                Id = x.Id,
+                IsPrivate = x.IsPrivate,
+                ArtworksSize = x.Artworks.Count,
+                Description = x.Description,
+                Title = x.Title,
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
         [Authorize, Route("getOrders")]
         public HttpResponseMessage getOrders()
         {
