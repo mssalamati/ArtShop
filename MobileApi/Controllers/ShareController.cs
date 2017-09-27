@@ -163,6 +163,57 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
+        [Authorize, Route("getFavoritList")]
+        public HttpResponseMessage getFavoritList()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var result = profile.Favorits.Select(x => new
+            {
+                Id = x.product.Id,
+                Sqphoto = x.product.Sqphoto.Path,
+                Title = x.product.Title,
+                Description = x.product.Description,
+                Photo = x.product.photo.Path,
+                WidePhoto = x.product.Widephoto.Path,
+                Status = x.product.Status,
+                Price = x.product.Price,
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
+        [Authorize, Route("getOrders")]
+        public HttpResponseMessage getOrders()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var result = db.Orders
+               .Include("TransactionDetail")
+               .Where(x => x.user_id == userId)
+               .OrderByDescending(o => o.BuyDate).Select(x => new
+               {
+                   Date = x.BuyDate,
+                   Status = x.Status,
+                   TotalPrice = x.TotalPrice,
+                   Payed = x.TransactionDetail.Payed
+               });
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
+        [Authorize, Route("getSales")]
+        public HttpResponseMessage getSales()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var result = db.OrderDetails.Include("Product").Include("order")
+             .Where(x => x.Product.user_id == userId)
+             .Where(x => x.order.TransactionDetail.Payed).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
         [Route("getProduct")]
         public HttpResponseMessage getProduct(int id)
         {
@@ -253,6 +304,8 @@ namespace MobileApi.Controllers
                 message = ""
             }, formatter);
         }
+
+
 
         [Authorize, HttpPost, Route("Upload")]
         public async Task<HttpResponseMessage> Upload(UploadViewModel model)
