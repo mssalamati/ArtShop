@@ -98,23 +98,40 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
             ProfileInformationViewModel model = new ProfileInformationViewModel();
-            if (userProfile.userLinks != null)
+
+            try
             {
-                model.Facebook = userProfile.userLinks.Facebook;
-                model.Twitter = userProfile.userLinks.Twitter;
-                model.Pinterest = userProfile.userLinks.Pinterest;
-                model.Tumblr = userProfile.userLinks.Tumblr;
-                model.Instagram = userProfile.userLinks.Instagram;
-                model.GooglePlus = userProfile.userLinks.GooglePlus;
-                model.Website = userProfile.userLinks.Website;
-                model.AboutMe = userProfile.personalInformation.AboutMe;
-                model.Education = userProfile.personalInformation.Education;
-                model.Events = userProfile.personalInformation.Events;
-                model.Exhibitions = userProfile.personalInformation.Exhibitions;
-                model.country = userProfile.country;
-                model.City = userProfile.City;
-                model.Region = userProfile.Region;
-                model.ZipCode = userProfile.ZipCode;
+
+                if (userProfile.userLinks != null)
+                {
+
+                    model.Facebook = userProfile.userLinks.Facebook;
+                    model.Twitter = userProfile.userLinks.Twitter;
+                    model.Pinterest = userProfile.userLinks.Pinterest;
+                    model.Tumblr = userProfile.userLinks.Tumblr;
+                    model.Instagram = userProfile.userLinks.Instagram;
+                    model.GooglePlus = userProfile.userLinks.GooglePlus;
+                    model.Website = userProfile.userLinks.Website;
+
+                    model.country = userProfile.country;
+                    model.City = userProfile.City;
+                    model.Region = userProfile.Region;
+                    model.ZipCode = userProfile.ZipCode;
+
+                }
+
+                if (userProfile.personalInformation != null)
+                {
+                    model.AboutMe = userProfile.personalInformation.AboutMe;
+                    model.Education = userProfile.personalInformation.Education;
+                    model.Events = userProfile.personalInformation.Events;
+                    model.Exhibitions = userProfile.personalInformation.Exhibitions;
+                }
+            }
+            catch (Exception ex)
+            {
+                db.logs.Add(new Log() { date = DateTime.Now, Location = "account info", Message = ex.Message + "   " + ex.InnerException + " " + ex.StackTrace + " ", Type = 1 });
+                throw;
             }
             return View(model);
         }
@@ -192,7 +209,7 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-        
+
             if (userProfile.billingInfo != null)
             {
                 ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "iran";
@@ -245,7 +262,7 @@ namespace ArtShop.Controllers
             ViewBag.account = userProfile.Account;
 
             ViewBag.orders = db.OrderDetails.Include("Product").Include("order")
-                .Where(x => x.Product.user_id == userId) 
+                .Where(x => x.Product.user_id == userId)
                 .Where(x => x.order.TransactionDetail.Payed).ToList();
 
             return View(userProfile.PayoutRequests.ToList());

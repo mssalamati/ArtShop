@@ -90,14 +90,25 @@ else
                                 <select name="CountryId" id="CountryId">
                                     @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                     {
-                                        if (item.Key == Model.country.Id)
+                                        if (Model.country != null)
                                         {
-                                            <option selected value="@item.Key">@item.Value</option>
+                                            if (item.Key == Model.country.Id)
+                                            {
+                                                <option selected value="@item.Key">@item.Value</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Key">@item.Value</option>
+                                            }
                                         }
                                         else
                                         {
+
                                             <option value="@item.Key">@item.Value</option>
+
+
                                         }
+
 
                                     }
                                     @*<option value="United States">United States</option>

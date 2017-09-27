@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using AdminPanel.Models.ViewModel;
+using DataLayer.Enitities;
+using System.Threading.Tasks;
+using AdminPanel.Models;
+using DataLayer;
 
 namespace AdminPanel.Controllers
 {
@@ -42,6 +46,112 @@ namespace AdminPanel.Controllers
             ViewBag.maxpage = maxpage;
             ViewBag.search = search;
             return View(outres);
+        }
+
+        public ActionResult Add()
+        {
+            return PartialView();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Add(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string prefix = "sys.";
+                string postfix = "@artiscovery.com";
+                string fullEmail = prefix + model.FirstName + model.LastName + postfix;
+                var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = ProfileType.Artist, MailingList = true };
+                var user = new ApplicationUser { UserName = fullEmail, Email = fullEmail, userDetail = userDetail };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+
+                    return PartialView("_successWindow");
+                }
+
+                AddErrors(result);
+                return PartialView(model);
+            }
+
+            return PartialView(model);
+        }
+
+        public ActionResult Edit(string id)
+        {
+            var user = db.Users.Find(id);
+            var data = new EditUserViewModel
+            {
+                id = user.Id,
+                Email = user.Email,
+                FirstName = user.userDetail.FirstName,
+                LastName = user.userDetail.LastName,
+                profileType = ProfileType.Artist,
+            };
+
+            return PartialView(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(EditUserViewModel model)
+        {
+            var user = db.Users.Find(model.id);
+
+            if (ModelState.IsValid)
+            {
+                user.Email = model.Email;
+                user.userDetail.FirstName = model.FirstName;
+                user.userDetail.LastName = model.LastName;
+
+                if (!string.IsNullOrEmpty(model.NewPassword))
+                {
+                    var result = await UserManager.AddPasswordAsync(model.id, model.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        db.SaveChanges();
+                        return PartialView("_successWindow");
+                    }
+
+                    AddErrors(result);
+                    return PartialView(model);
+
+                }
+
+                db.SaveChanges();
+            }
+
+            return PartialView("_successWindow");
+        }
+
+        //public ActionResult Login(LoginViewModel model)
+        //{
+
+        //    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+        //    switch (result)
+        //    {
+        //        case SignInStatus.Success:
+        //            return RedirectToLocal(returnUrl);
+        //        case SignInStatus.LockedOut:
+        //            return View("Lockout");
+        //        case SignInStatus.Failure:
+        //        default:
+        //            ModelState.AddModelError("", "Invalid login attempt.");
+        //            return View(model);
+        //    }
+
+
+        //}
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }

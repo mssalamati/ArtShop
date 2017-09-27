@@ -64,7 +64,7 @@ namespace ArtShop.Controllers
 
                 int counter = 0;
 
-                foreach (var item in userProfile.Products)
+                foreach (var item in userProfile.Products.OrderByDescending(a=>a.CreateDate))
                 {
                     if (counter < 4)
                     {

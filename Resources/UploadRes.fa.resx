@@ -199,7 +199,7 @@
     <value>منطقه</value>
   </data>
   <data name="SelectImage" xml:space="preserve">
-    <value>انخاب عکس</value>
+    <value>انتخاب عکس</value>
   </data>
   <data name="select_category_str" xml:space="preserve">
     <value>دسته و موضوع را انتخاب کنید تا به مجموعه دار ها  کمک کند تا اثر را راحت پیدا کنند.</value>
