@@ -4,6 +4,8 @@
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "margin-top:5px" : "";
+    var menuRTL = IsRighToLeft ? "direction:rtl !important" : "";
+    var menuPadding = IsRighToLeft ? "padding:0 50px 0 50px !important;width:auto !important" : "";
 }
 
 
@@ -167,8 +169,8 @@
 
                                 <div data-index="@j" class="desktop-navigation__dropdown__inner">
 
-                                    <div class="desktop-navigation__dropdown__sections">
-                                        <div class="desktop-navigation__dropdown__section">
+                                    <div class="desktop-navigation__dropdown__sections" style="@menuRTL">
+                                        <div class="desktop-navigation__dropdown__section" style="@menuPadding">
                                             <div class="desktop-navigation__dropdown__section-title">
                                                 @ShareRes.Style
                                             </div>
@@ -184,7 +186,7 @@
                                                 }
                                             </div>
                                         </div>
-                                        <div class="desktop-navigation__dropdown__section">
+                                        <div class="desktop-navigation__dropdown__section" style="@menuPadding">
                                             <div class="desktop-navigation__dropdown__section-title">
                                                 @ShareRes.Subject
                                             </div>
@@ -200,7 +202,7 @@
                                                 }
                                             </div>
                                         </div>
-                                        <div class="desktop-navigation__dropdown__section">
+                                        <div class="desktop-navigation__dropdown__section" style="@menuPadding">
                                             <div class="desktop-navigation__dropdown__section-title">
                                                 @ShareRes.Medium
                                             </div>
