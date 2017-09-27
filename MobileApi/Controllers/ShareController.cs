@@ -139,8 +139,7 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, product.tojason(), formatter);
         }
 
-        [HttpGet]
-        [Route("Search")]
+        [HttpGet, Route("Search")]
         public HttpResponseMessage Search(int CategoryId = 0, int StyleId = 0, int SubjectId = 0, int MediumId = 0, int PriceListId = 0, int page = 1)
         {
             int pageSize = 10;
@@ -180,11 +179,7 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-        public class favMV { public int productId { get; set; } public string language { get; set; } }
-
-        [Authorize]
-        [HttpPost]
-        [Route("addToFavorit")]
+        [Authorize,HttpPost, Route("addToFavorit")]
         public HttpResponseMessage addToFavorit(favMV model)
         {
             var userId = User.Identity.GetUserId();
@@ -206,9 +201,7 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-        [Authorize]
-        [HttpPost]
-        [Route("removeFromFavorti")]
+        [Authorize, HttpPost, Route("removeFromFavorti")]
         public HttpResponseMessage removeFromFavorti(favMV model)
         {
             var userId = User.Identity.GetUserId();
@@ -230,123 +223,152 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-        //[Authorize]
-        //[HttpPost]
-        //[Route("Upload")]
-        //public HttpResponseMessage Upload(UploadViewModel model)
-        //{
-        //    int id = 0;
-        //    string error = "";// uploadnow(model, out id);
-        //    return Request.CreateResponse(HttpStatusCode.OK, new
-        //    {
-        //        success = string.IsNullOrEmpty(error),
-        //        message = error,
-        //        id = id
-        //    }, formatter);
-        //}
+        [Authorize, HttpPost, Route("Upload")]
+        public async Task<HttpResponseMessage> Upload(UploadViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var error = new
+                {
+                    message = "The request is invalid.",
+                    error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
+                };
+                return Request.CreateResponse(HttpStatusCode.BadRequest, error);
+            }
+            var res = await uploadnow(model);
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                success = res.success,
+                message = res.error,
+                id = res.id
+            }, formatter);
+        }
 
-        //private string uploadnow(UploadViewModel model, out int id)
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var user = db.Users.Find(userId);
-        //    var profile = user.userDetail;
-        //    try
-        //    {
-        //        var widepath = (string)model["WideFullPath"];
-        //        var sqpath = (string)Session["SqureFullPath"];
-        //        var orginalpic = (string)Session["imageAddress"];
-        //        var categoryId = (int)Session["category"];
-        //        var subjectId = (int)Session["subject"];
-        //        int img_width = (int)Session["img_width"];
-        //        int img_height = (int)Session["img_height"];
-        //        string Mediums = (string)Session["Mediums"];
-        //        int[] Materials = (int[])Session["Materials"];
-        //        string Styles = (string)model.styles["Styles"];
+        public class favMV { public int productId { get; set; } public string language { get; set; } }
+        private async Task<upoadNowResult> uploadnow(UploadViewModel model)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var iserver = getAvaibleServer();
+            var iserverPath = "https://" + iserver.Host + "/upload/upload";
+            try
+            {
+                //upload picture
+                var UploadResult = await UploadImage(model.Image, iserver.Id);
+                if (!UploadResult.result)
+                    return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
+                
+                //reize picture
+                var ResizeResult = await resize(new ResizeViewModel()
+                {
+                    image = UploadResult.data,
+                    square_height = model.SqrResizeRect.height,
+                    square_width = model.SqrResizeRect.width,
+                    square_x = model.SqrResizeRect.x,
+                    square_y = model.SqrResizeRect.y,
+                    wide_height = model.WideResizeRect.height,
+                    wide_width = model.WideResizeRect.width,
+                    wide_x = model.WideResizeRect.x,
+                    wide_y = model.WideResizeRect.y,
+                }, iserver.Id);
+                if (!ResizeResult.result)
+                    return new upoadNowResult(0, "Image Server resize Error: " + ResizeResult.error, false);
 
-        //        var medumsList = Mediums.Split(',');
-        //        var stylelist = Styles.Split(',');
+                //define value
+                var widepath = ResizeResult.WideFullPath;
+                var sqpath = ResizeResult.SqureFullPath;
+                var orginalpic = UploadResult.data;
+                var categoryId = model.categoryId;
+                var subjectId = model.SubjectId;
+                int img_width = UploadResult.width;
+                int img_height = UploadResult.height;
+                string Mediums = model.mediums;
+                int[] Materials = (int[])model.materials;
+                string Styles = model.styles;
 
-        //        var product = new Product()
-        //        {
-        //            photo = new Photo() { Path = orginalpic, width = img_width, Height = img_height },
-        //            Widephoto = new Photo() { Path = widepath },
-        //            Sqphoto = new Photo() { Path = sqpath },
-        //            Title = model.Title,
-        //            Description = model.Description,
-        //            Price = (int)model.Price,
-        //            ISOrginalForSale = model.isforsale,
-        //            AllEntity = model.LimitOf,
-        //            ArtCreatedYear = model.createDate,
-        //            avaible = model.Limitform,
-        //            Depth = model.Depth,
-        //            Height = model.Height,
-        //            Width = model.Width,
-        //            IsPrintAvaibled = false,
-        //            Keywords = model.keywords,
-        //            categoryId = categoryId,
-        //            subjectId = subjectId,
-        //            TotalWeight = model.weight,
-        //            Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale
-        //        };
-        //        product.Materials = new List<Material>();
-        //        product.Styles = new List<Style>();
-        //        product.Mediums = new List<Medium>();
+                var medumsList = Mediums.Split(',');
+                var stylelist = Styles.Split(',');
 
-        //        foreach (var item in Materials)
-        //            product.Materials.Add(db.Materials.FirstOrDefault(x => item == x.Id));
-        //        foreach (var item in stylelist)
-        //        {
-        //            var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
-        //            if (temp != null)
-        //                product.Styles.Add(temp.style);
-        //        }
+                var product = new Product()
+                {
+                    photo = new Photo() { Path = orginalpic, width = img_width, Height = img_height },
+                    Widephoto = new Photo() { Path = widepath },
+                    Sqphoto = new Photo() { Path = sqpath },
+                    Title = model.Title,
+                    Description = model.Description,
+                    Price = (int)model.Price,
+                    ISOrginalForSale = model.isforsale,
+                    AllEntity = model.LimitOf,
+                    ArtCreatedYear = model.createDate,
+                    avaible = model.Limitform,
+                    Depth = model.Depth,
+                    Height = model.Height,
+                    Width = model.Width,
+                    IsPrintAvaibled = false,
+                    Keywords = model.keywords,
+                    categoryId = categoryId,
+                    subjectId = subjectId,
+                    TotalWeight = model.weight,
+                    Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale
+                };
+                product.Materials = new List<Material>();
+                product.Styles = new List<Style>();
+                product.Mediums = new List<Medium>();
 
-        //        foreach (var item in medumsList)
-        //        {
-        //            var temp = db.MediumTranslations.FirstOrDefault(x => x.Name == item);
-        //            if (temp != null)
-        //                product.Mediums.Add(temp.medium);
-        //        }
+                foreach (var item in Materials)
+                    product.Materials.Add(db.Materials.FirstOrDefault(x => item == x.Id));
+                foreach (var item in stylelist)
+                {
+                    var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
+                    if (temp != null)
+                        product.Styles.Add(temp.style);
+                }
 
-        //        profile.Products.Add(product);
+                foreach (var item in medumsList)
+                {
+                    var temp = db.MediumTranslations.FirstOrDefault(x => x.Name == item);
+                    if (temp != null)
+                        product.Mediums.Add(temp.medium);
+                }
 
-        //        db.SaveChanges();
-        //        id = product.Id;
-        //        return string.Empty;
-        //    }
-        //    catch (DbEntityValidationException e)
-        //    {
-        //        id = 0;
-        //        string message = string.Empty;
-        //        foreach (var eve in e.EntityValidationErrors)
-        //            foreach (var ve in eve.ValidationErrors)
-        //                message += Environment.NewLine + (ve.PropertyName + " " +
-        //                eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) + " " +
-        //                ve.ErrorMessage);
-        //        db.logs.Add(new Log()
-        //        {
-        //            Location = "upload now api",
-        //            Message = "" + message
-        //        });
-        //        db.SaveChanges();
-        //        return message;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        id = 0;
-        //        string message = ex.ToString() + ex.InnerException == null ? "" : ex.InnerException.ToString();
-        //        db.logs.Add(new Log()
-        //        {
-        //            Location = "upload now api",
-        //            Message = "" + message
-        //        });
-        //        db.SaveChanges();
-        //        return message;
-        //    }
-        //}
+                profile.Products.Add(product);
 
-
-
+                db.SaveChanges();
+                return new upoadNowResult(product.Id, string.Empty, true);
+            }
+            catch (DbEntityValidationException e)
+            {
+                string message = string.Empty;
+                foreach (var eve in e.EntityValidationErrors)
+                    foreach (var ve in eve.ValidationErrors)
+                        message += Environment.NewLine + (ve.PropertyName + " " +
+                        eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) + " " +
+                        ve.ErrorMessage);
+                db.logs.Add(new Log()
+                {
+                    Location = "upload now api",
+                    Message = "" + message
+                });
+                db.SaveChanges();
+                return new upoadNowResult(0, "DbEntityValidationException: " + message, false);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.ToString() + ex.InnerException == null ? "" : ex.InnerException.ToString();
+                db.logs.Add(new Log()
+                {
+                    Location = "upload now api",
+                    Message = "" + message
+                });
+                db.SaveChanges();
+                return new upoadNowResult(0, message, false);
+            }
+        }
+        private ImageServer getAvaibleServer()
+        {
+            return db.ImageServers.FirstOrDefault();
+        }
         private async Task<ISUploadResult> UploadImage(HttpPostedFileBase model, int ImageServerId)
         {
             ISUploadResult obj = null;
@@ -381,7 +403,6 @@ namespace MobileApi.Controllers
             var res = await response.Content.ReadAsAsync<ISResizeViewModel>();
             return res;
         }
-
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
