@@ -30,6 +30,7 @@ namespace MobileApi.Controllers
             return formatter;
         };
 
+        [HttpGet, Route("GetCard")]
         public HttpResponseMessage GetCard()
         {
             var cart = CartManager.GetCart(HttpContext.Current);
@@ -41,7 +42,7 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, viewModel, formatter);
         }
 
-        [HttpPost]
+        [HttpPost, Route("RemoveFromCart")]
         public HttpResponseMessage RemoveFromCart(int id)
         {
             var cart = CartManager.GetCart(HttpContext.Current);
@@ -58,8 +59,8 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, results, formatter);
         }
 
-        [HttpPost]
-        public HttpResponseMessage changecnt(int id, int cnt)
+        [HttpPost, Route("ChangeQuantity")]
+        public HttpResponseMessage ChangeQuantity(int id, int cnt)
         {
             var cart = CartManager.GetCart(HttpContext.Current);
             string Pname = db.ShoppingCarts.Single(item => item.Id == id).Product.Title;
@@ -75,6 +76,7 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, results, formatter);
         }
 
+        [HttpGet, Route("AddToCart")]
         public HttpResponseMessage AddToCart(int id, Ordertype type)
         {
             var addedAlbum = db.Products.Find(id);
@@ -82,6 +84,7 @@ namespace MobileApi.Controllers
             cart.AddToCart(addedAlbum, type);
             return Request.CreateResponse(HttpStatusCode.OK, new { result = true }, formatter);
         }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
