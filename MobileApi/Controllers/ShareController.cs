@@ -132,7 +132,6 @@ namespace MobileApi.Controllers
                 db.Languages.Select(x => new { x.Code, x.Name }), formatter);
         }
 
-
         [Authorize, Route("getProfileDetail")]
         public HttpResponseMessage getProfileDetail()
         {
