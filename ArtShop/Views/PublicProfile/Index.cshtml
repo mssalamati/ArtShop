@@ -1,12 +1,12 @@
 ﻿@model ProfileIndexViewModel
 @using DataLayer.Extentions
 @{var IsRighToLeft = CultureHelper.IsRighToLeft();
-    
-    }
+    ViewBag.title = Model.fullName + " | Artiscovery";
+}
 
 @if (IsRighToLeft)
 {
-    @Html.Partial("indexRTL",Model);
+    @Html.Partial("indexRTL", Model);
 }
 else
 {
@@ -337,149 +337,35 @@ else
                 </div>
                 <div id="publicView" style="display: none;"></div>
                 </div>*@
-
-            <script type="text/x-tmpl" id="tmpl-follow-by">
-                <section class="small-12 columns">
-                    <a href="{%=o.target_url%}" title="{%=o.target_name%} homepage">
-                        <img src="{%=o.target_profile_pic%}" alt="{%=o.target_name%}" class="avatar" />
-                        <span>{%=o.target_name%}</span>
-                    </a>
-                    <span itemprop="comment">is now following {%=o.name%}</span>
-                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
-                </section>
+            <script src="~/Content/fullview.js"></script>
+            <script>
+                Saatchi.Loader.load('hslpicker', { js: true });
+                Saatchi.Loader.load('browse', { js: true }, function () {
+                    Saatchi.Browse.init();
+                });
+                Saatchi.Loader.load('fullview', { js: true }, function () {
+                    Saatchi.Fullview.init();
+                    Saatchi.Fullview.SetView.init();
+                    Saatchi.Fullview.FullScreen.init();
+                });
+                Saatchi.Loader.load('favorite', { js: true }, function () {
+                    Saatchi.Favorite.init();
+                });
+     
+                Saatchi.Loader.load('fullview', { js: true }, function () {
+                    $('.expandable').truncate({
+                        slicePoint: 200,
+                        expandText: 'Read More',
+                        userCollapseText: 'Less'
+                    });
+                });
+       
             </script>
 
-            <script type="text/x-tmpl" id="tmpl-follow">
-                <section class="small-12 columns">
-                    <a href="{%=o.url%}" title="{%=o.name%}">
-                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" />
-                        <span itemprop="name">{%=o.name%}</span>
-                    </a>
-                    <span itemprop="comment">
-                        is now following
-                        <a href="{%=o.target_url%}" title="{%=o.target_name%} homepage" itemprop="url">
-                            {%=o.target_name%}
-                        </a>
-                    </span>
-                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
-                </section>
-            </script>
 
-            <script type="text/x-tmpl" id="tmpl-favorite">
-                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
-                    <a href="{%=o.url%}" title="{%=o.name%}">
-                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" />
-                        <span>{%=o.name%}</span>
-                    </a>
-                    <span itemprop="comment">liked this artwork</span>
-                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
-                    <h6 itemprop="title">{%=o.art_title%}</h6>
-                    By
-                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                        <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
-                            <span itemprop="name">{%=o.artist_name%}</span>
-                        </a>
-                    </span>
-                    <div class="add-to-favorites fast-fade">
-                        <a href="{%=o.art_url%}" title="{%=o.art_url%}" itemprop="url">
-                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
-                        </a>
-                    </div>
-                </section>
-            </script>
-
-            <script type="text/x-tmpl" id="tmpl-art-favorite">
-                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
-                    <a href="{%=o.url%}" title="{%=o.name%}" itemprop="url">
-                        <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" itemprop="image">
-                        <span itemprop="name">{%=o.name%}</span>
-                    </a>
-                    <span itemprop="comment">liked this artwork</span>
-                    <span itemprop="dateCreated">{%=o.activity_time%}</span>
-                    <h6 itemprop="title">{%=o.art_title%}</h6>
-                    By
-                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                        <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
-                            <span itemprop="name">{%=o.artist_name%}</span>
-                        </a>
-                    </span>
-                    <div class="add-to-favorites fast-fade">
-                        <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
-                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
-                        </a>
-                    </div>
-                </section>
-            </script>
-
-            <script type="text/x-tmpl" id="tmpl-upload">
-                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
-                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                        <a href="{%=o.url%}" title="{%=o.name%}" itemprop="url">
-                            <img src="{%=o.profile_pic%}" alt="{%=o.name%}" class="avatar" itemprop="image">
-                            <span itemprop="name">{%=o.name%}</span>
-                        </a>
-                    </span>
-                    <span>added a new artwork</span>
-                    <span itemprop="datePublished">{%=o.activity_time%}</span>
-                    <h6 itemprop="title">{%=o.art_title%}</h6>
-                    By
-                    <!--a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url" -->
-                    <span itemprop="author">{%=o.artist_name%}</span>
-                    <!--/a-->
-                    <div class="add-to-favorites fast-fade">
-                        <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
-                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
-                        </a>
-                    </div>
-                </section>
-            </script>
-
-            <script type="text/x-tmpl" id="tmpl-artist-upload">
-                <section class="small-12 columns" itemscope itemtype="http://schema.org/CreativeWork">
-                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                        <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
-                            <img src="{%=o.artist_profile_pic%}" alt="{%=o.artist_name%}" class="avatar" itemprop="image">
-                            <span itemprop="name">{%=o.artist_name%}</span>
-                        </a>
-                    </span>
-                    <span>added a new artwork</span>
-                    <span itemprop="datePublished">{%=o.activity_time%}</span>
-                    <h6 itemprop="title">{%=o.art_title%}</h6>
-                    By
-                    <a href="{%=o.artist_url%}" title="{%=o.artist_name%}" itemprop="url">
-                        <span itemprop="creator">{%=o.artist_name%}</span>
-                    </a>
-                    <div class="add-to-favorites fast-fade">
-                        <a href="{%=o.art_url%}" title="{%=o.art_title%}" itemprop="url">
-                            <img src="{%=o.art_image_url%}" alt="{%=o.art_title%}" itemprop="image" />
-                        </a>
-                    </div>
-                </section>
-            </script>
-
-            <script type="text/x-tmpl" id="tmpl-empty-feed">
-                <section class="small-12 columns">
-                    <p>You currently have no activity that can be seen by the public.</p>
-                </section>
-            </script>
-            <script type="text/x-tmpl" id="tmpl-art-hero">
-                <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item-small">
-                    <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
-                        <a href="#" itemprop="url" onclick="Saatchi.Profile.getSelectedImage( $(this) ); return false;">
-                            <img src="{%=o.artwork_image_url%}23.jpg" data-medium="{%=o.artwork_image_url%}7.jpg" alt="{%=o.art_title%}" itemprop="contentURL">
-                            <input class="hero-hover-button" type="button" value="Select" style="display:none;" />
-                        </a>
-                    </div>
-                    <div class="list-art-meta">
-                        <h4 class="list-art-title left ellipsis" itemprop="name">
-                            <a href="{%=o.artwork_url%}">{%=o.art_title%}</a>
-                        </h4>
-                        <small class="art-category clear left">{%=o.art_category%}</small>
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-            </script>
         </article>
         <div class="clearfix"></div>
     </div>
+
+
                         }
