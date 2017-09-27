@@ -132,6 +132,38 @@ namespace MobileApi.Controllers
                 db.Languages.Select(x => new { x.Code, x.Name }), formatter);
         }
 
+
+        [Authorize, Route("getProfileDetail")]
+        public HttpResponseMessage getProfileDetail()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var result = new
+            {
+                profile.FirstName,
+                profile.LastName,
+                profile.Account,
+                profile.City,
+                profile.countryId,
+                profile.isIDConfirmed,
+                profile.PhotoPath,
+                profile.profileType,
+                profile.Region,
+                profile.RegisterDate,
+                profile.ZipCode,
+                ArtworksSummery = profile.Products.Take(3).Select(x => new
+                {
+                    widePhoto = x.Widephoto.Path,
+                    squarPhoto = x.Sqphoto.Path
+                }),
+                ArtworkSize = profile.Products.Count,
+                collectionSize = profile.Collections.Count,
+                favoritSize = profile.Favorits.Count
+            };
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
         [Route("getProduct")]
         public HttpResponseMessage getProduct(int id)
         {
@@ -179,7 +211,7 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-        [Authorize,HttpPost, Route("addToFavorit")]
+        [Authorize, HttpPost, Route("addToFavorit")]
         public HttpResponseMessage addToFavorit(favMV model)
         {
             var userId = User.Identity.GetUserId();
@@ -258,7 +290,7 @@ namespace MobileApi.Controllers
                 var UploadResult = await UploadImage(model.Image, iserver.Id);
                 if (!UploadResult.result)
                     return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
-                
+
                 //reize picture
                 var ResizeResult = await resize(new ResizeViewModel()
                 {
