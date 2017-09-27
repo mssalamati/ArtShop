@@ -305,8 +305,6 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-
-
         [Authorize, HttpPost, Route("Upload")]
         public async Task<HttpResponseMessage> Upload(UploadViewModel model)
         {
@@ -328,6 +326,7 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
+        //functions
         public class favMV { public int productId { get; set; } public string language { get; set; } }
         private async Task<upoadNowResult> uploadnow(UploadViewModel model)
         {
