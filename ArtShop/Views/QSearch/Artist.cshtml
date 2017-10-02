@@ -135,21 +135,21 @@ if (current == selected)
             <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
-                        <a href="@Url.Action(item.FirstName + " " + item.LastName, "publicprofile", new { id = item.Id })" itemprop="url">
+                        <a href="/publicprofile?id=@item.Id" itemprop="url">
                             @if (string.IsNullOrEmpty(item.PhotoPath))
                             {
                                 <img src="~/Content/Images/300x300.jpg">
                             }
                             else
                             {
-                                <img src="@item.PhotoPath">
+                                <img src="/@item.PhotoPath">
                             }
                         </a>
                     </div>
                     <div class="list-art-meta" style="height:auto">
                         <div class="list-author clear left">
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                                <a href="@Url.Action(item.FirstName + "" + item.LastName, "publicprofile", new { id = item.Id })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.FirstName  @item.LastName</a>
+                                <a href="/publicprofile?id=@item.Id" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.FirstName  @item.LastName</a>
                             </h5>
                             <h5 class="user-location ellipsis clear" itemprop="contentLocation">
                                 @if (item.country != null)
