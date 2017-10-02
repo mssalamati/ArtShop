@@ -17,7 +17,7 @@ namespace Blog.Areas.Admin.Controllers
                  .Where(x => string.IsNullOrEmpty(search) || x.Name.Contains(search))
                  .OrderByDescending(x => x.Name)
                  .Skip(skip).Take(take);
-            count = data.Count();
+            count = db.Tags.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
             return View(data.ToList());
