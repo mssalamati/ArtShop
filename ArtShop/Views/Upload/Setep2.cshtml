@@ -36,6 +36,7 @@
                                         <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
                                             @foreach (var item in (Dictionary<int, string>)ViewBag.subjects)
                                             {
+                                                <option value="0">@UploadRes.Subject</option>
                                                 <option value="@item.Key">@item.Value</option>
                                             }
 

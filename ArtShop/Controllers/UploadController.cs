@@ -114,6 +114,8 @@ namespace ArtShop.Controllers
             if (model.category == 0 || model.subject == 0)
             {
                 ViewBag.Error = Resources.UploadRes.select_subject;
+                ViewBag.subjects = CashManager.Instance.Subjects;
+                ViewBag.category = CashManager.Instance.Categories;
                 return PartialView();
             }
             Session["category"] = model.category;
