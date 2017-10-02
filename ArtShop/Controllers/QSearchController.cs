@@ -14,7 +14,7 @@ namespace ArtShop.Controllers
         {
             int pageSize = 18;
             var p = db.UserProfiles.OrderByDescending(x => x.LastName).AsQueryable();
-            p = p.Where(x => string.IsNullOrEmpty(query) || x.LastName.Contains(query) || x.LastName.Contains(query)).AsQueryable();
+            p = p.Where(x => string.IsNullOrEmpty(query) || (x.LastName + x.FirstName).Contains(query)).AsQueryable();
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
             page = Math.Max(1, page);

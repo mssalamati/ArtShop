@@ -75,7 +75,7 @@ namespace ArtShop.Controllers
             if (iserver != null)
             {
                 //if (Request.IsSecureConnection)
-                    ViewBag.iserver = "https://" + iserver.Host + "/upload/upload";
+                ViewBag.iserver = "https://" + iserver.Host + "/upload/upload";
                 //else
                 //    ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
                 ViewBag.lastpic = (string)Session["imageAddress"];
@@ -134,6 +134,11 @@ namespace ArtShop.Controllers
             if (model.copyright == false)
             {
                 ViewBag.Error = Resources.UploadRes.copyright_error;
+                return PartialView();
+            }
+            if (model.createYear == 0)
+            {
+                ViewBag.Error = Resources.UploadRes.step3_year_string;
                 return PartialView();
             }
             if (Session["imageAddress"] == null)
