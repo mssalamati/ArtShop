@@ -144,27 +144,31 @@ namespace ArtShop.Controllers
                             },
                             item_list = new paypal.ItemList
                             {
-                            items = new List<paypal.Item>
-                            {
-                                new paypal.Item
+                                items = new List<paypal.Item>
                                 {
-                                    name = "Item Name",
-                                    currency = "USD",
-                                    price = "15",
-                                    quantity = "5",
-                                    sku = "sku"
+                                    new paypal.Item
+                                    {
+                                        name = "Item Name",
+                                        currency = "USD",
+                                        price = "15",
+                                        quantity = "5",
+                                        sku = "sku"
+                                    }
                                 }
-                                }
-                          }
+                            }
                         }
                     },
                     redirect_urls = new paypal.RedirectUrls
                     {
-                        return_url = "http://mysite.com/return",
-                        cancel_url = "http://mysite.com/cancel"
+                        return_url = "http://artiscovery.com/card/Verify",
+                        cancel_url = "http://artiscovery.com/card/Verify"
                     }
                 });
-                return Content("error: ");
+
+                var paypalid = payment.id;
+                var approveurl = payment.links.FirstOrDefault(x => x.rel.Equals("approval_url", StringComparison.OrdinalIgnoreCase));
+
+                return Redirect(approveurl.href);
             }
         }
 

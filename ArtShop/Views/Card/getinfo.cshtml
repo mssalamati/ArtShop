@@ -31,7 +31,7 @@
 
 
     <link rel="stylesheet" href="~/Content/app-Cart.css" />
-    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
 
     @if (IsRighToLeft)
     {
@@ -181,7 +181,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            @*<div class="input-with-placeholder">
+                                                            <div class="input-with-placeholder">
                                                                 <div class="list-group-select__item ">
                                                                     <div>
                                                                         <input name="paymentMethod" type="radio" readonly="" value="1">
@@ -192,7 +192,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>*@
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -332,6 +332,7 @@
     <script>
         $('.list-group-select__item').click(function () {
             if ($(this).find('input:radio[name=paymentMethod]').is(":checked")) {
+                alert('s');
             }
             else {
                 $(this).find('input:radio[name=paymentMethod]').prop("checked", true);
