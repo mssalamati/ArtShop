@@ -157,16 +157,16 @@
     <value>تلفن همراه</value>
   </data>
   <data name="r1" xml:space="preserve">
-    <value>پرداخت سریع</value>
+    <value>ارسال سریع به تمام نقاط جهان</value>
   </data>
   <data name="r2" xml:space="preserve">
-    <value>7 روز تضمین </value>
+    <value>7 روز ضمانت بازگشت کالا</value>
   </data>
   <data name="r3" xml:space="preserve">
-    <value>پرداخت امن</value>
+    <value>تصمین سلامت کالا</value>
   </data>
   <data name="r4" xml:space="preserve">
-    <value>5 ستاره</value>
+    <value>بهترین خدمات ارسال</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>حذف</value>
@@ -181,10 +181,10 @@
     <value>کد پستی</value>
   </data>
   <data name="DeliveryPartners" xml:space="preserve">
-    <value>پست</value>
+    <value>روش های ارسال</value>
   </data>
   <data name="PaymentMethods" xml:space="preserve">
-    <value>راه های پرداخت</value>
+    <value>درگاه های پرداخت</value>
   </data>
   <data name="SecureTransaction" xml:space="preserve">
     <value>امن</value>
