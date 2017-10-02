@@ -11,6 +11,7 @@ using Utilities;
 using DataLayer.Extentions;
 using ArtShop.Util;
 using RestSharp;
+using System.Globalization;
 
 namespace ArtShop.Controllers
 {
@@ -98,13 +99,11 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
             ProfileInformationViewModel model = new ProfileInformationViewModel();
-
             try
             {
 
                 if (userProfile.userLinks != null)
                 {
-
                     model.Facebook = userProfile.userLinks.Facebook;
                     model.Twitter = userProfile.userLinks.Twitter;
                     model.Pinterest = userProfile.userLinks.Pinterest;
@@ -117,15 +116,14 @@ namespace ArtShop.Controllers
                     model.City = userProfile.City;
                     model.Region = userProfile.Region;
                     model.ZipCode = userProfile.ZipCode;
-
                 }
 
                 if (userProfile.personalInformation != null)
                 {
-                    model.AboutMe = userProfile.personalInformation.AboutMe;
-                    model.Education = userProfile.personalInformation.Education;
-                    model.Events = userProfile.personalInformation.Events;
-                    model.Exhibitions = userProfile.personalInformation.Exhibitions;
+                    model.AboutMe = string.IsNullOrEmpty(userProfile.personalInformation.Current().AboutMe) ? "" : userProfile.personalInformation.Current().AboutMe;
+                    model.Education = string.IsNullOrEmpty(userProfile.personalInformation.Current().Education) ? "" : userProfile.personalInformation.Current().Education;
+                    model.Events = string.IsNullOrEmpty(userProfile.personalInformation.Current().Events) ? "" : userProfile.personalInformation.Current().Events;
+                    model.Exhibitions = string.IsNullOrEmpty(userProfile.personalInformation.Current().Exhibitions) ? "" : userProfile.personalInformation.Current().Exhibitions;
                 }
             }
             catch (Exception ex)
@@ -153,10 +151,26 @@ namespace ArtShop.Controllers
             userProfile.userLinks.Instagram = model.Instagram != null ? (model.Instagram.Contains("http") ? model.Instagram : "https://" + model.Instagram) : model.Instagram;
             userProfile.userLinks.GooglePlus = model.GooglePlus != null ? (model.GooglePlus.Contains("http") ? model.GooglePlus : "https://" + model.GooglePlus) : model.GooglePlus;
             userProfile.userLinks.Website = model.Website != null ? (model.Website.Contains("http") ? model.Website : "http://" + model.Website) : model.Website;
-            userProfile.personalInformation.AboutMe = model.AboutMe;
-            userProfile.personalInformation.Education = model.Education;
-            userProfile.personalInformation.Events = model.Events;
-            userProfile.personalInformation.Exhibitions = model.Exhibitions;
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
+
+            PersonalInformation pi = new PersonalInformation();
+            if (userProfile.personalInformation.Translations != null)
+            {
+                pi.Translations = userProfile.personalInformation.Translations;
+            }
+
+            pi.Translations = new List<PersonalInformationTranslation>();
+            pi.Translations.Add(new PersonalInformationTranslation { AboutMe = model.AboutMe, Education = model.Education, Events = model.Events, Exhibitions = model.Exhibitions, languageId = currentCultureName });
+
+            userProfile.personalInformation = pi;
+            //item.languageId = currentCultureName;
+            //item.AboutMe = model.AboutMe;
+            //item.Education = model.Education;
+            //item.Events = model.Events;
+            //item.Exhibitions = model.Exhibitions;
+
+
+
             userProfile.countryId = model.countryId;
             userProfile.City = model.City;
             userProfile.Region = model.Region;

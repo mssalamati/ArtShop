@@ -1,5 +1,4 @@
-﻿@using Blog.Objects;
-@model Blog.Models.EditUserViewModel
+﻿@model AdminPanel.Models.EditUserViewModel
 
 <style>
     .uploadcontainer {
@@ -41,13 +40,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-label"> نام و نام خانوادگی </label>
-                    <input name="fullname" id="fullname" value="@Model.Fullname" class="form-control" />
+                    <input name="FirstName" id="FirstName" value="@Model.FirstName" class="form-control" />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-label"> نام کاربری </label>
-                    <input name="username" id="username" value="@Model.Username" class="form-control" />
+                    <input name="LastName" id="LastName" value="@Model.LastName" class="form-control" />
                 </div>
             </div>
             <hr />

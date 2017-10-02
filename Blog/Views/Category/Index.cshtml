@@ -26,6 +26,8 @@
 
                 @foreach (var item in Model)
                 {
+                    if (!string.IsNullOrEmpty(item.Current().Description))
+                    {
                     <div class="col-lg-4 col-md-6">
                         <div class="post-element">
                             <div class="img-holder">
@@ -34,7 +36,7 @@
                                 </a>
                             </div><!-- .img-holder -->
 
-                            <h3><a href="@Url.Action(@item.Category.Name,"Category", new { id = @item.Category.GenerateSlug()})">@item.Category.Current().Name</a></h3>
+                            <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
                             <h4 style="@dir">
                                 <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
                                     @item.Current().Title
@@ -44,6 +46,7 @@
                             <p></p>
                         </div><!-- .post-element -->
                     </div><!-- .col-lg-4 -->
+                    }
                 }
 
                 <div class="append-post-container"></div>

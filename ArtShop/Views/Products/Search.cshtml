@@ -270,18 +270,9 @@ if (current == selected)
                         <small style="@rtlstl" class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
                         <div class="list-author clear left" style="@rtlstl">
-                            <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+                            <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
                                 <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                             </h5>
-                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">
-                                @if (item.user.country != null)
-                                {
-                                    <span>@item.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
-                                }
-                            </h5>
-                        </div>
-
-                        <div class="list-art-price" style="@pricertl">
                             @if (item.ISOrginalForSale)
                             {
                                 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -291,6 +282,16 @@ if (current == selected)
                                     </div>
                                 </div>
                             }
+                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">
+                                @if (item.user.country != null)
+                                {
+                                    <span>@item.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
+                                }
+                            </h5>
+                        </div>
+
+                        <div class="list-art-price" style="@pricertl">
+                
                             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                 <!-- internationalization testing -->
                                 <div class="sample-print-price" itemprop="price">

@@ -15,7 +15,7 @@
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
         <div class="row">
-            @{ var showcasePost = Model.FirstOrDefault(a => a.postType == PostType.ShowCase);}
+            @{ Post showcasePost = ViewBag.ShowCase;}
             <div class="col-lg-8 col-md-12">
                 <div class="showcase">
                     <div class="img-holder">
@@ -87,75 +87,79 @@
             @{ int count = 0; var posts = Model.Where(a => a.postType == PostType.Sqr);}
             @foreach (var item in posts)
             {
-                count++;
-
-                if (count != 5)
+                if (!string.IsNullOrEmpty(item.Current().Description))
                 {
-                    <div class="@sqrPostCol">
-                        <div class="post-element">
-                            <div class="img-holder">
-                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
-                                    <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
-                                </a>
-                            </div><!-- .img-holder -->
+                    count++;
 
-                            <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
-                            <h4>
-                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
-                                    @item.Current().Title
-                                </a>
-                            </h4>
-                            <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
-                            <p></p>
-                        </div><!-- .post-element -->
-                    </div><!-- .col-lg-4 -->
+                    if (count != 5)
+                    {
+                        <div class="@sqrPostCol">
+                            <div class="post-element">
+                                <div class="img-holder">
+                                    <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                        <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    </a>
+                                </div><!-- .img-holder -->
+
+                                <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
+                                <h4>
+                                    <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                        @item.Current().Title
+                                    </a>
+                                </h4>
+                                <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
+                                <p></p>
+                            </div><!-- .post-element -->
+                        </div><!-- .col-lg-4 -->
+                    }
+                    else if (Model.Any(a => a.postType == PostType.Wide))
+                    {
+                        var widePost = Model.FirstOrDefault(a => a.postType == PostType.Wide);
+                        <div class="@widePostCol">
+                            <div class="post-element">
+                                <div class="img-holder">
+                                    <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
+                                        <img width="600" height="300" src="/@widePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    </a>
+                                </div><!-- .img-holder -->
+
+                                <h3><a href="@Url.Action(@widePost.Category.Name, "Category", new { id = @widePost.Category.GenerateSlug() })">@widePost.Category.Current().Name</a></h3>
+                                <h4>
+                                    <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
+                                        @widePost.Current().Title
+                                    </a>
+                                </h4>
+                                <p></p><p style="@rtlstl">@widePost.Current().ShortDescription</p>
+                                <p></p>
+                            </div><!-- .post-element -->
+                        </div><!-- .col-lg-4 -->
+
+
+                    }
+                    else
+                    {
+                        <div class="@sqrPostCol">
+                            <div class="post-element">
+                                <div class="img-holder">
+                                    <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                        <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
+                                    </a>
+                                </div><!-- .img-holder -->
+
+                                <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
+                                <h4>
+                                    <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
+                                        @item.Current().Title
+                                    </a>
+                                </h4>
+                                <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
+                                <p></p>
+                            </div><!-- .post-element -->
+                        </div><!-- .col-lg-4 -->
+
+                    }
                 }
-                else if (Model.Any(a => a.postType == PostType.Wide))
-                {
-                    var widePost = Model.FirstOrDefault(a => a.postType == PostType.Wide);
-                    <div class="@widePostCol">
-                        <div class="post-element">
-                            <div class="img-holder">
-                                <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
-                                    <img width="600" height="300" src="/@widePost.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
-                                </a>
-                            </div><!-- .img-holder -->
 
-                            <h3><a href="@Url.Action(@widePost.Category.Name, "Category", new { id = @widePost.Category.GenerateSlug() })">@widePost.Category.Current().Name</a></h3>
-                            <h4>
-                                <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
-                                    @widePost.Current().Title
-                                </a>
-                            </h4>
-                            <p></p><p style="@rtlstl">@widePost.Current().ShortDescription</p>
-                            <p></p>
-                        </div><!-- .post-element -->
-                    </div><!-- .col-lg-4 -->
-
-
-                }
-                else
-                {
-                    <div class="@sqrPostCol">
-                        <div class="post-element">
-                            <div class="img-holder">
-                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
-                                    <img width="300" height="300" src="/@item.Thumbnail" class="attachment-saatchi-medium size-saatchi-medium wp-post-image" alt="">
-                                </a>
-                            </div><!-- .img-holder -->
-
-                            <h3><a href="@Url.Action(@item.Category.Name, "Category", new { id = @item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
-                            <h4>
-                                <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
-                                    @item.Current().Title
-                                </a>
-                            </h4>
-                            <p></p><p style="@rtlstl">@item.Current().ShortDescription</p>
-                            <p></p>
-                        </div><!-- .post-element -->
-                    </div><!-- .col-lg-4 -->
-
-                }
             }
 
             <div class="append-post-container"></div>

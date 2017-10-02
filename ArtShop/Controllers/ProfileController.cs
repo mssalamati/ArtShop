@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using ArtShop.Models;
 using System.Threading.Tasks;
 using DataLayer.Enitities;
+using DataLayer.Extentions;
 
 namespace ArtShop.Controllers
 {
@@ -45,10 +46,10 @@ namespace ArtShop.Controllers
 
                 if (userProfile.personalInformation != null)
                 {
-                    model.aboutme = userProfile.personalInformation.AboutMe == null ? "" : userProfile.personalInformation.AboutMe;
-                    model.events = userProfile.personalInformation.Events == null ? "" : userProfile.personalInformation.Events;
-                    model.education = userProfile.personalInformation.Education == null ? "" : userProfile.personalInformation.Education;
-                    model.Exhibitions = userProfile.personalInformation.Exhibitions == null ? "" : userProfile.personalInformation.Exhibitions;
+                    model.aboutme = string.IsNullOrEmpty(userProfile.personalInformation.Current().AboutMe) ? "" : userProfile.personalInformation.Current().AboutMe;
+                    model.education = string.IsNullOrEmpty(userProfile.personalInformation.Current().Education) ? "" : userProfile.personalInformation.Current().Education;
+                    model.events = string.IsNullOrEmpty(userProfile.personalInformation.Current().Events) ? "" : userProfile.personalInformation.Current().Events;
+                    model.Exhibitions = string.IsNullOrEmpty(userProfile.personalInformation.Current().Exhibitions) ? "" : userProfile.personalInformation.Current().Exhibitions;
                 }
 
                 try

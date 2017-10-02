@@ -88,9 +88,8 @@
                                             @Html.DisplayFor(modelItem => item.RegisterDate)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("ورود به اکانت", "Users", "Login", new { id = item.id }, new { @class = "text-info" }) |
-                                            @Html.ActionLink("سفارشات", "UsersOrders", "Orders", new { id = item.id }, new { @class = "text-info" }) |
-                                            @Html.ActionLink("ویرایش", "EditUser", new { id = item.id }, new { @class = "text-danger" })
+                                            @*@Html.ActionLink("سفارشات", "UsersOrders", "Orders", new { id = item.id }, new { @class = "text-info" }) |*@
+                                            <button class="btn btn-primary btn-sm" onclick="showEdit('@item.id')">ویرایش</button>
                                         </td>
                                     </tr>
                                 }
