@@ -241,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shipping Included On Original Art.
+        ///   Looks up a localized string similar to 7 days momey back guarantee.
         /// </summary>
         public static string r1 {
             get {
@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7-Day Money-Back Guarantee.
+        ///   Looks up a localized string similar to Fast and safely delivery to your door, worldwide.
         /// </summary>
         public static string r2 {
             get {
@@ -259,7 +259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Safe &amp; Secure Shopping.
+        ///   Looks up a localized string similar to Taking your order 24/7.
         /// </summary>
         public static string r3 {
             get {
@@ -268,7 +268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5-Star Trust Pilot Rating.
+        ///   Looks up a localized string similar to Secure payment.
         /// </summary>
         public static string r4 {
             get {
