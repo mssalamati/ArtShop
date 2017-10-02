@@ -278,8 +278,8 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-        [Authorize, HttpPost, Route("addToFavorit")]
-        public HttpResponseMessage addToFavorit(favMV model)
+        [Authorize, HttpPost, Route("addToFavorite")]
+        public HttpResponseMessage addToFavorite(favMV model)
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
@@ -300,8 +300,8 @@ namespace MobileApi.Controllers
             }, formatter);
         }
 
-        [Authorize, HttpPost, Route("removeFromFavorti")]
-        public HttpResponseMessage removeFromFavorti(favMV model)
+        [Authorize, HttpPost, Route("removeFromFavorite")]
+        public HttpResponseMessage removeFromFavorite(favMV model)
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);

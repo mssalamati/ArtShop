@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using DataLayer.Extentions;
 using Microsoft.AspNet.Identity;
 using Postal;
+using paypal = PayPal.Api;
 
 namespace ArtShop.Controllers
 {
@@ -91,29 +92,79 @@ namespace ArtShop.Controllers
             db.Orders.Add(o);
             db.SaveChanges();
 
-            System.Net.ServicePointManager.Expect100Continue = false;
-            ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
-            string Authority;
-            int Status = zp.PaymentRequest("test",
-                (int)(orderTotal * setting.IRRialRate),
-                profile.FirstName + " " + profile.LastName,
-                user.Email,
-                user.PhoneNumber,
-                "http://artiscovery.com/card/Verify",
-                out Authority);
-
-            long longAuth = 0;
-            long.TryParse(Authority, out longAuth);
-            o.TransactionDetail.Number = longAuth.ToString();
-            db.SaveChanges();
-            if (Status == 100)
+            if (model.paymentMethod == PaymentMethod.zarinpall)
             {
-                Response.Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
-                return View();
+                System.Net.ServicePointManager.Expect100Continue = false;
+                ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
+                string Authority;
+                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName,
+                    user.Email, user.PhoneNumber, "http://artiscovery.com/card/Verify", out Authority);
+                long longAuth = 0;
+                long.TryParse(Authority, out longAuth);
+                o.TransactionDetail.Number = longAuth.ToString();
+                db.SaveChanges();
+                if (Status == 100)
+                {
+                    Response.Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
+                    return View();
+                }
+                else
+                {
+                    return Content("error: " + Status);
+                }
             }
             else
             {
-                return Content("error: " + Status);
+                var config = paypal.ConfigManager.Instance.GetProperties();
+                var accessToken = new paypal.OAuthTokenCredential(config).GetAccessToken();
+                var apiContext = new paypal.APIContext(accessToken);
+                var payment = paypal.Payment.Create(apiContext, new paypal.Payment
+                {
+                    intent = "sale",
+                    payer = new paypal.Payer
+                    {
+                        payment_method = "paypal"
+                    },
+                    transactions = new List<paypal.Transaction>
+                    {
+                        new paypal.Transaction
+                        {
+                            description = "Transaction description.",
+                            invoice_number = "001",
+                            amount = new paypal.Amount
+                            {
+                                currency = "USD",
+                                total = "100.00",
+                                details = new paypal.Details
+                                {
+                                    tax = "15",
+                                    shipping = "10",
+                                    subtotal = "75"
+                                }
+                            },
+                            item_list = new paypal.ItemList
+                            {
+                            items = new List<paypal.Item>
+                            {
+                                new paypal.Item
+                                {
+                                    name = "Item Name",
+                                    currency = "USD",
+                                    price = "15",
+                                    quantity = "5",
+                                    sku = "sku"
+                                }
+                                }
+                          }
+                        }
+                    },
+                    redirect_urls = new paypal.RedirectUrls
+                    {
+                        return_url = "http://mysite.com/return",
+                        cancel_url = "http://mysite.com/cancel"
+                    }
+                });
+                return Content("error: ");
             }
         }
 
@@ -291,7 +342,7 @@ namespace ArtShop.Controllers
                     unitPrice = x.UnitPrice,
                     package = x.Product.Packaging
                 }).ToList();
-   
+
                 email.subtotal = order.TotalPrice;
                 email.total = order.TotalPrice;
                 email.Send();
