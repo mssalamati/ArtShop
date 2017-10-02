@@ -276,4 +276,16 @@
   <data name="Load_more" xml:space="preserve">
     <value>Load more</value>
   </data>
+  <data name="collectionAddFaild" xml:space="preserve">
+    <value>Cant Add to your Collection</value>
+  </data>
+  <data name="collectionAddSuccess" xml:space="preserve">
+    <value>Item Added to your Collection</value>
+  </data>
+  <data name="FavAddFail" xml:space="preserve">
+    <value>Item Removed from your Favorit</value>
+  </data>
+  <data name="FavAddSuccess" xml:space="preserve">
+    <value>Item Added to your Favorit</value>
+  </data>
 </root>

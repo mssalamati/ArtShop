@@ -160,6 +160,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cant Add to your Collection.
+        /// </summary>
+        public static string collectionAddFaild {
+            get {
+                return ResourceManager.GetString("collectionAddFaild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Added to your Collection.
+        /// </summary>
+        public static string collectionAddSuccess {
+            get {
+                return ResourceManager.GetString("collectionAddSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collections.
         /// </summary>
         public static string Collections {
@@ -192,6 +210,24 @@ namespace Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Removed from your Favorit.
+        /// </summary>
+        public static string FavAddFail {
+            get {
+                return ResourceManager.GetString("FavAddFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Added to your Favorit.
+        /// </summary>
+        public static string FavAddSuccess {
+            get {
+                return ResourceManager.GetString("FavAddSuccess", resourceCulture);
             }
         }
         

@@ -279,4 +279,16 @@
   <data name="Load_more" xml:space="preserve">
     <value>بیشتر</value>
   </data>
+  <data name="collectionAddFaild" xml:space="preserve">
+    <value>این اثر در مجموعه وجود دارد</value>
+  </data>
+  <data name="collectionAddSuccess" xml:space="preserve">
+    <value>اثر به مجموعه اضافه شد</value>
+  </data>
+  <data name="FavAddFail" xml:space="preserve">
+    <value>اثر از لیست علاقه مندی ها حذف</value>
+  </data>
+  <data name="FavAddSuccess" xml:space="preserve">
+    <value>اثر به لیست علاقه مندی ها اضافه شد</value>
+  </data>
 </root>
