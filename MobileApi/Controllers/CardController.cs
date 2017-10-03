@@ -16,6 +16,7 @@ namespace MobileApi.Controllers
 {
     [EnableCors("*", "*", "GET,POST")]
     [RoutePrefix("api/Card")]
+    [Authorize]
     public class CardController : ApiController
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -36,7 +37,7 @@ namespace MobileApi.Controllers
         [HttpGet, Route("GetCard")]
         public HttpResponseMessage GetCard()
         {
-            var cart = CartManager.GetCart(HttpContext.Current);
+            var cart = CartManager.GetCart(User.Identity.Name);
             var viewModel = new
             {
                 CartItems = cart.GetCartItems(),
@@ -48,7 +49,7 @@ namespace MobileApi.Controllers
         [HttpPost, Route("RemoveFromCart")]
         public HttpResponseMessage RemoveFromCart(int id)
         {
-            var cart = CartManager.GetCart(HttpContext.Current);
+            var cart = CartManager.GetCart(User.Identity.Name);
             string Pname = db.ShoppingCarts.Single(item => item.Id == id).Product.Title;
             decimal itemCount = cart.RemoveAllFromCart(id);
             var results = new
@@ -65,7 +66,7 @@ namespace MobileApi.Controllers
         [HttpPost, Route("ChangeQuantity")]
         public HttpResponseMessage ChangeQuantity(int id, int cnt)
         {
-            var cart = CartManager.GetCart(HttpContext.Current);
+            var cart = CartManager.GetCart(User.Identity.Name);
             string Pname = db.ShoppingCarts.Single(item => item.Id == id).Product.Title;
             decimal itemCount = cart.newcnt(id, cnt);
             var results = new
@@ -83,7 +84,7 @@ namespace MobileApi.Controllers
         public HttpResponseMessage AddToCart(int id, Ordertype type)
         {
             var addedAlbum = db.Products.Find(id);
-            var cart = CartManager.GetCart(HttpContext.Current);
+            var cart = CartManager.GetCart(User.Identity.Name);
             cart.AddToCart(addedAlbum, type);
             return Request.CreateResponse(HttpStatusCode.OK, new { result = true }, formatter);
         }
