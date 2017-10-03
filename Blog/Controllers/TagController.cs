@@ -1,6 +1,7 @@
 ﻿using Blog.Areas.Admin.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -13,9 +14,10 @@ namespace Blog.Controllers
         // GET: Tag
         public ActionResult Index(string id)
         {
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
             int intId = int.Parse(GetIdValue(id).ToString());
             var tags = db.Tags.Find(intId);
-            var posts = tags.Posts.OrderByDescending(a => a.PostedOn).ToList();
+            var posts = tags.Posts.Where(a => a.postType == Objects.PostType.Sqr && a.Translations.Any(x => x.languageId == currentCultureName && (x.Description.Length != 0 && x.Description != null))).OrderByDescending(a => a.PostedOn).ToList();
             ViewBag.TagName = tags.Name;
             return View(posts);
         }

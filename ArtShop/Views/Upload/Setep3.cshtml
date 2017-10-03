@@ -37,8 +37,8 @@
                                             <h3>@UploadRes.step3_year_string</h3>
                                             <select name="createYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" style="@rtlstl">
                                                 <option value="0"></option>
-                                                 @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 100; i--)
-                                                { 
+                                                @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
+                                                {
                                                     <option value="@i">@i</option>
                                                 }
                                             </select>
@@ -55,15 +55,15 @@
                                         </div>
                                         <input id="printAvable" type="hidden" name="printAvable" value="false" />
                                         @*<div class="form-group animate-group-0-4">
-                                            <h3>@UploadRes.step3_print_avaible_string</h3>
-                                            <div class="button-radio">
-                                                <div class="button-radio__button-container">
-                                                    <input id="printAvable" type="hidden" name="printAvable" value="false" />
-                                                    <button onclick="change_prints(1)" id="printAvable_yes" class="button-radio__button button" type="button">@UploadRes.Yes</button>
-                                                    <button onclick="change_prints(0)" id="printAvable_no" class="button-radio__button button button--active" type="button">@UploadRes.No</button>
+                                                <h3>@UploadRes.step3_print_avaible_string</h3>
+                                                <div class="button-radio">
+                                                    <div class="button-radio__button-container">
+                                                        <input id="printAvable" type="hidden" name="printAvable" value="false" />
+                                                        <button onclick="change_prints(1)" id="printAvable_yes" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                        <button onclick="change_prints(0)" id="printAvable_no" class="button-radio__button button button--active" type="button">@UploadRes.No</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>*@
+                                            </div>*@
                                         <div class="form-group animate-group-0-5">
                                             <h3>@UploadRes.step3_copyright_string</h3>
                                             <div class="button-radio">

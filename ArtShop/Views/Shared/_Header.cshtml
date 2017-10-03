@@ -333,17 +333,18 @@
                             </div>
 
                         }
-
+                        @{ int count = 0;}
                         @foreach (var item in Model.Navigation)
                         {
+                            count++;
                             <div>
                                 <a data-gtm-event="nav header"
-                                   data-index="2"
+                                   data-index="@count"
                                    class="mobile-navigation__site-link">
                                     @item.Name
                                     <img class="mobile-navigation__site-link__arrow-indicator" src="~/Content/Images/caret-right.svg" />
                                 </a>
-                                <div data-index="2" class="mobile-navigation__menu__panel">
+                                <div data-index="@count" class="mobile-navigation__menu__panel">
                                     <div class="mobile-navigation__menu__panel__header">
                                         <img src="~/Content/Images/caret-left.svg"
                                              class="mobile-navigation__menu__panel__back" />
@@ -414,12 +415,12 @@
                             </div>
                         }
                         <div>
-                            <a data-gtm-event="nav header" data-index="7" class="mobile-navigation__site-link">
+                            <a data-gtm-event="nav header" data-index="20" class="mobile-navigation__site-link">
                                 @ShareRes.Languages
                                 <img class="mobile-navigation__site-link__arrow-indicator" src="~/Content/Images/caret-right.svg" />
                             </a>
 
-                            <div data-index="7" class="mobile-navigation__menu__panel">
+                            <div data-index="20" class="mobile-navigation__menu__panel">
                                 <div class="mobile-navigation__menu__panel__header">
                                     <img src="~/Content/Images/caret-left.svg" class="mobile-navigation__menu__panel__back" />
                                     <a data-gtm-event="nav header" class="mobile-navigation__menu__panel__header__title">
