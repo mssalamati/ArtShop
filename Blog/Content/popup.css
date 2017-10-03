@@ -1,4 +1,4 @@
-.box {
+.boxPopup {
   width: 40%;
   margin: 0 auto;
   background: rgba(255,255,255,0.2);
@@ -8,7 +8,7 @@
   background-clip: padding-box;
   text-align: center;
 }
-.overlay {
+.overlayPopup {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -19,12 +19,12 @@
   visibility: hidden;
   opacity: 0;
 }
-.overlay:target {
+.overlayPopup:target {
   visibility: visible;
   opacity: 1;
 }
 
-.popup {
+.popupExt {
   margin: 70px auto;
   padding: 20px;
   background: #fff;
@@ -34,12 +34,12 @@
   transition: all 5s ease-in-out;
 }
 
-.popup h2 {
+.popupExt h2 {
   margin-top: 0;
   color: #333;
   font-family: Tahoma, Arial, sans-serif;
 }
-.popup .close {
+.popupExt .close {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -49,19 +49,19 @@
   text-decoration: none;
   color: #333;
 }
-.popup .close:hover {
+.popupExt .close:hover {
   color: #06D85F;
 }
-.popup .content {
+.popupExt .content {
   max-height: 30%;
   overflow: auto;
 }
 
 @media screen and (max-width: 700px){
-  .box{
+  .boxPopup{
     width: 70%;
   }
-  .popup{
+  .popupExt{
     width: 70%;
   }
 }
