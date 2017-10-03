@@ -19,7 +19,7 @@ namespace Blog.Controllers
         }
         public ActionResult AddSubscriber(string email)
         {
-            var client = new RestSharp.RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var client = new RestSharp.RestClient("https://api.mailerlite.com/api/v2/groups/8129891/subscribers");
             var request = new RestSharp.RestRequest(RestSharp.Method.POST);
             request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
             request.AddHeader("content-type", "application/json");
