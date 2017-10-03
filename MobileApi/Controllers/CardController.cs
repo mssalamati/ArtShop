@@ -10,9 +10,12 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MobileApi.Controllers
 {
+    [EnableCors("*", "*", "GET,POST")]
+    [RoutePrefix("api/Card")]
     public class CardController : ApiController
     {
         ApplicationDbContext db = new ApplicationDbContext();

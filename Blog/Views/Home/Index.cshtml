@@ -9,6 +9,7 @@
     var rtlstl = IsRighToLeft ? "direction:rtl !important" : "";
 }
 
+<link rel="stylesheet" href="~/Content/popup.css" />
 
 
 @model IList<Post>
@@ -210,6 +211,17 @@
         </div><!-- .row -->
     </main><!-- #main -->
 </div><!-- #primary -->
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <h2>Choose a language</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            
+        </div>
+    </div>
+</div>
+
 <script>
     function parsContent(result) {
         if (result == "done") {
@@ -234,4 +246,10 @@
             $(".holder").append(data);
         });
     }
+    $(document).ready(function()
+    {
+    
+        window.location.href = "#popup1";
+    });
+    
 </script>

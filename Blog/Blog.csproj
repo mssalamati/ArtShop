@@ -3159,6 +3159,7 @@
     <Content Include="Content\persianDatepicker\styles\images\ui-icons_cccccc_256x240.png" />
     <Content Include="Content\persianDatepicker\styles\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\persianDatepicker\styles\jquery-ui-1.8.14.css" />
+    <Content Include="Content\popup.css" />
     <Content Include="Content\recent-tweets.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
