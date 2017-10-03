@@ -78,9 +78,10 @@
                                 </select>
                             </div>
                             <label style="padding:5px;text-align:left" class="col-sm-2 control-label"> نوع مطلب </label>
+                            <p>ShowCase پست بالای صفحه | Sqr پست های مربع شکل</p>
                             <div class="col-sm-4">
                                 <select class="form-control" name="postType" style="width: 100%;">
-                                    <option value="Wide">Wide</option>
+                                    @*<option value="Wide">Wide</option>*@
                                     <option value="Sqr">Sqr</option>
                                     <option value="ShowCase">ShowCase</option>
                                 </select>
@@ -120,7 +121,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> موضوع * </label>
+                            <label style="padding:5px" class="col-sm-2 control-label">(در URL مطلب نمایش داده می شود) موضوع * </label>
                             <div class="col-sm-10">
                                 <input type="text" name="TitleDef" value="@Model.TitleDef" class="form-control" />
                             </div>
@@ -129,7 +130,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> موضوع </label>
+                            <label style="padding:5px" class="col-sm-2 control-label">(وابسته به زبان) موضوع </label>
                             <div class="col-sm-10">
                                 <input type="text" name="Title" value="@Model.Title" class="form-control" />
                             </div>

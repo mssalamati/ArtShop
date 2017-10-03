@@ -34,9 +34,10 @@
                                         <h1 class="animate-group-0-0">@UploadRes.Subject</h1>
 
                                         <select name="subject" class="animate-group-0-1 category__subject rw-combobox rw-widget" style="@rtlstl">
+                                            <option value="0">@UploadRes.Subject</option>
                                             @foreach (var item in (Dictionary<int, string>)ViewBag.subjects)
                                             {
-                                                <option value="0">@UploadRes.Subject</option>
+                                         
                                                 <option value="@item.Key">@item.Value</option>
                                             }
 

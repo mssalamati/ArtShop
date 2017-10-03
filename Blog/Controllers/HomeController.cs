@@ -2,6 +2,7 @@
 using Blog.Extentions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,14 +13,16 @@ namespace Blog.Controllers
     {
         public ActionResult Index(int page = 1)
         {
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
             ViewBag.ShowCase = db.Posts.FirstOrDefault(a => a.postType == Objects.PostType.ShowCase);
-            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Take(19).ToList();
+            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries" && a.postType == Objects.PostType.Sqr && a.Translations.Any(x => x.languageId == currentCultureName && (x.Description.Length != 0 && x.Description != null))).OrderByDescending(a => a.PostedOn).Take(21).ToList();
             return View(post);
         }
 
         public ActionResult More(int page = 1)
         {
-            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries").OrderByDescending(a => a.PostedOn).Skip((page - 1) * 19).Take(19).ToList();
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
+            var post = db.Posts.Where(a => a.Category.Name.ToLower() != "galleries" && a.postType == Objects.PostType.Sqr && a.Translations.Any(x => x.languageId == currentCultureName && (x.Description.Length != 0 && x.Description != null))).OrderByDescending(a => a.PostedOn).Skip((page - 1) * 21).Take(21).ToList();
             return PartialView(post);
         }
 
@@ -48,7 +51,7 @@ namespace Blog.Controllers
 
         public ActionResult AddSubscriber(string email)
         {
-            var client = new RestSharp.RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var client = new RestSharp.RestClient("https://api.mailerlite.com/api/v2/groups/8129891/subscribers");
             var request = new RestSharp.RestRequest(RestSharp.Method.POST);
             request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
             request.AddHeader("content-type", "application/json");
