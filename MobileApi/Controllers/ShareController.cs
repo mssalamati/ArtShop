@@ -17,6 +17,7 @@ using MobileApi.Models;
 using System.Data.Entity.Validation;
 using DataLayer.Enitities;
 using System.Web;
+using System.IO;
 
 namespace MobileApi.Controllers
 {
@@ -334,6 +335,11 @@ namespace MobileApi.Controllers
                 };
                 return Request.CreateResponse(HttpStatusCode.BadRequest, error);
             }
+
+            var fileName = Guid.NewGuid().ToString() + ".png";
+            var contentType = "Image/png";
+            model.Image = new HttpPostedFileBaseCustom(GetSteamFromBase64String(model.imageUpload), contentType, fileName);
+
             var res = await uploadnow(model);
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
@@ -344,6 +350,17 @@ namespace MobileApi.Controllers
         }
 
         //functions
+        public MemoryStream GetSteamFromBase64String(string imageBase64)
+        {
+            if (imageBase64.IndexOf(',') > 0)
+            {
+                imageBase64 = imageBase64.Substring(imageBase64.IndexOf(',') + 1);
+            }
+            byte[] bytes = Convert.FromBase64String(imageBase64);
+            var ms = new MemoryStream(bytes);
+
+            return ms;
+        }
         public class favMV { public int productId { get; set; } public string language { get; set; } }
         private async Task<upoadNowResult> uploadnow(UploadViewModel model)
         {

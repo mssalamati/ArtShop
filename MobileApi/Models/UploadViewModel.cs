@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -49,10 +50,12 @@ namespace MobileApi.Models
         [Required]
         public sizeMV SqrResizeRect { get; set; }
         [Required]
-        public sizeMV WideResizeRect { get; set; }
-        [Required]
+        public sizeMV WideResizeRect { get; set; }  
         public HttpPostedFileBase Image { get; set; }
+        [Required]
+        public string imageUpload { get; set; }
     }
+
 
     public class sizeMV
     {

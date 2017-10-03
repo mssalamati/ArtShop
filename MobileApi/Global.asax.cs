@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MultipartDataMediaFormatter;
+using MultipartDataMediaFormatter.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +20,8 @@ namespace MobileApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+//            GlobalConfiguration.Configuration.Formatters.Add
+//(new FormMultipartEncodedMediaTypeFormatter(new MultipartFormatterSettings()));
         }
     }
 }
