@@ -68,6 +68,12 @@ namespace MobileApi.Controllers
                 name = x.Translations.Any(t => t.languageId == language) ?
                  x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
             });
+            var material = db.Materials.Where(x => x.AddedByAdmin).Select(x => new
+            {
+                id = x.Id,
+                name = x.Translations.Any(t => t.languageId == language) ?
+                 x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
+            });
             var Pricelists = db.Pricethresholds.Select(x => new
             {
                 id = x.Id,
@@ -80,7 +86,8 @@ namespace MobileApi.Controllers
                 Mediums = Mediums,
                 Subjects = Subjects,
                 Styles = Styles,
-                Categories = Categories
+                Categories = Categories,
+                material = material
             }, formatter);
         }
 
