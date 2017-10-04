@@ -40,7 +40,7 @@ namespace MobileApi.Controllers
             var cart = CartManager.GetCart(User.Identity.Name);
             var viewModel = new
             {
-                CartItems = cart.GetCartItems(),
+                CartItems = cart.GetCartItems().Select(x => new { x.type, x.Quantity, product = x.Product.tojason() }),
                 CartTotal = cart.GetTotal()
             };
             return Request.CreateResponse(HttpStatusCode.OK, viewModel, formatter);
