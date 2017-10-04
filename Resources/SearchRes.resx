@@ -207,4 +207,7 @@
   <data name="ViewArtwork" xml:space="preserve">
     <value>View Artworks</value>
   </data>
+  <data name="by" xml:space="preserve">
+    <value>by</value>
+  </data>
 </root>

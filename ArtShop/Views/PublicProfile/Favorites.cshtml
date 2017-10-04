@@ -29,12 +29,20 @@
         Saatchi.EmailToFriend.modalUrl = '/social/email/page';
         Saatchi.EmailToFriend.modalTitle = 'Share this page';
         Saatchi.EmailToFriend.init();
-    </script>        <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+    </script>
+    <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+        <a href="/publicprofile?id=@ViewBag.id" title="@ViewBag.ProfileFullName 's profile" itemprop="url">
+            @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
+            {
+                <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+            }
+            else
+            {
+                <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            }
 
-        <a href="/publicprofile?id=@ViewBag.id" title="@ViewBag.ProfileFullName's profile" itemprop="url">
-            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
-            <i class="fa fa-caret-left"></i> Back to Profile
+            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
         </a>
 
     </header>
@@ -92,26 +100,26 @@
 
                                 var fullname = item.product.user.FirstName + " " + item.product.user.LastName;
 
-                             }
+                            }
                             <div class="list-author clear left">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
                                     <a href="/publicprofile?id=@item.product.user_id" class="artist-card" title="Profile page for @fullname" itemprop="url">@fullname</a>
                                 </h5>
                                 @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">@item.product.user.country.Current().Name</h5>*@
-                                </div>
+                            </div>
 
-                                <div class="list-art-price">
-                                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                                        <!-- internationalization testing -->
-                                        <div itemprop="price">
-                                            @item.product.Price $
-                                        </div>
+                            <div class="list-art-price">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        @item.product.Price $
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-            }
+                    </div>
+                </li>
+                                }
         </ul>
         <div class="clearfix"></div>
         <div id="pageNav" class="hidden">

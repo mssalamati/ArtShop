@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Artworks";
+    ViewBag.Title = "Artworks | Artiscovery";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
@@ -271,7 +271,7 @@ if (current == selected)
 
                         <div class="list-author clear left" style="@rtlstl">
                             <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
-                                <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
+                                <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" class="artist-card" title="Profile page for @item.user.FirstName @item.user.LastName" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                             </h5>
                             @if (item.ISOrginalForSale)
                             {

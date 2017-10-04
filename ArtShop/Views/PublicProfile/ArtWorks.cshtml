@@ -4,14 +4,21 @@
 
 
     <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-
         <a href="/publicprofile?id=@ViewBag.id" title="@ViewBag.ProfileFullName 's profile" itemprop="url">
-            <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
+            {
+                <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+            }
+            else
+            {
+                <img src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="avatar" class="avatar" itemprop="image">
+            }
+
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
-            <i class="fa fa-caret-left"></i> Back to Profile
+            <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
         </a>
 
-    
+
     </header>
 
     <div class="profile-nav large-12 columns">
@@ -41,7 +48,7 @@
     <div class="row">
 
         <ul id="infinite" class="item-list masonry" style="position: relative; height: 359.797px;">
- 
+
             @foreach (Product item in Model)
             {
                 <li class="art-item fast-fade ">
@@ -52,7 +59,7 @@
                             </a>
 
                         </div>
-                    
+
                         <div class="list-art-meta">
                             <h4 class="list-art-title left ellipsis" itemprop="name">
                                 <a href="/products/single/@item.Id">@item.Title - Limited Edition @item.avaible of @item.AllEntity</a>
@@ -76,7 +83,7 @@
                         </div>
                     </div>
                 </li>
-            }
+                                }
         </ul>
         <div class="clearfix"></div>
         <div id="pageNav" class="hidden">

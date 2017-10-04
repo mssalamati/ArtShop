@@ -263,6 +263,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PublicProfileController.cs" />
     <Compile Include="Controllers\QSearchController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -325,6 +326,18 @@
     <Content Include="Content\Images\sa-logo2.svg" />
     <Content Include="Content\Images\saatchi-logo-grayscale.svg" />
     <Content Include="Content\Images\sprite_v5.42.3.png" />
+    <Content Include="Content\Images\Support\icon_branding.png" />
+    <Content Include="Content\Images\Support\icon_checklist.png" />
+    <Content Include="Content\Images\Support\icon_chevron_right.png" />
+    <Content Include="Content\Images\Support\icon_iphone.png" />
+    <Content Include="Content\Images\Support\icon_legal.png" />
+    <Content Include="Content\Images\Support\icon_limited.png" />
+    <Content Include="Content\Images\Support\icon_manage_acct.png" />
+    <Content Include="Content\Images\Support\icon_manage_art.png" />
+    <Content Include="Content\Images\Support\icon_payments.png" />
+    <Content Include="Content\Images\Support\icon_shipping.png" />
+    <Content Include="Content\Images\Support\icon_start.png" />
+    <Content Include="Content\Images\Support\icon_upload.png" />
     <Content Include="Content\Images\toaf-logo-grayscale.svg" />
     <Content Include="Content\Images\united-states.svg" />
     <Content Include="Content\Images\upload-hero1.jpg" />
@@ -597,6 +610,10 @@
     <Content Include="Views\Pages\WhySell.cshtml" />
     <Content Include="Views\Pages\WhySellRTL.cshtml" />
     <Content Include="Views\Emails\Order.cshtml" />
+    <Content Include="Views\Support\Index.cshtml" />
+    <Content Include="Views\Support\_ViewStart.cshtml" />
+    <Content Include="Views\Support\_SupportLayout.cshtml" />
+    <Content Include="Views\Support\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

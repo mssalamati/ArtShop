@@ -207,4 +207,7 @@
   <data name="ViewArtwork" xml:space="preserve">
     <value>مشاهده آثار هنری</value>
   </data>
+  <data name="by" xml:space="preserve">
+    <value>از</value>
+  </data>
 </root>

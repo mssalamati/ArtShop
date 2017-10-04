@@ -34,6 +34,18 @@ namespace Blog.Controllers
 
         public ActionResult SetCulture(string culture)
         {
+            HttpCookie popupCookie = Request.Cookies["isShown"];
+            if (popupCookie != null)
+                popupCookie.Value = "true";   // update cookie value
+            else
+            {
+                popupCookie = new HttpCookie("isShown");
+                popupCookie.Value = "true";
+                popupCookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(popupCookie);
+
+
             culture = CultureHelper.GetImplementedCulture(culture);
             HttpCookie cookie = Request.Cookies["_culture"];
             if (cookie != null)
