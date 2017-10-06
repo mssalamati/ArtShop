@@ -46,6 +46,7 @@ namespace ArtShop.Controllers
             //    item.Path = item.Path.Replace("http://", "https://");
             //}
 
+
             //db.SaveChanges();
 
             return View(model);

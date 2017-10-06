@@ -18,6 +18,7 @@ namespace DataLayer.Enitities
         public string AuthorProfileId { get; set; }
         public virtual UserProfile AuthorProfile { get; set; }
 
+        public ICollection<Article> ReletedArticles { get; set; }
         /// <summary>
         /// The heading of the post.
         /// </summary>

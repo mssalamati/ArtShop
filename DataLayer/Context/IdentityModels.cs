@@ -11,6 +11,7 @@ namespace DataLayer
     public class ApplicationUser : IdentityUser
     {
         public virtual UserProfile userDetail { get; set; }
+        public virtual AdminProfile adminDetail { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -73,6 +74,7 @@ namespace DataLayer
         public DbSet<SiteParamTranslation> SiteParamTranslations { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<AdminProfile> AdminProfiles { get; set; }
         public DbSet<ImageServer> ImageServers { get; set; }
         public DbSet<NavigationCategory> NavigationCategories { get; set; }
         public DbSet<NavigationCategoryFavStyle> NavigationCategoryFavStyles { get; set; }
@@ -120,5 +122,7 @@ namespace DataLayer
         public DbSet<Log> logs { get; set; }
         public DbSet<SettingValue> SettingValues { get; set; }
         public DbSet<PayoutRequest> PayoutRequests { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<SupportCategory> SupportCategories { get; set; }
     }
 }

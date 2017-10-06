@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\ShoppingCartConfig.cs" />
+    <Compile Include="Enitities\AdminProfile.cs" />
     <Compile Include="Enitities\Article.cs" />
     <Compile Include="Enitities\BillingInfo.cs" />
     <Compile Include="Enitities\Category.cs" />

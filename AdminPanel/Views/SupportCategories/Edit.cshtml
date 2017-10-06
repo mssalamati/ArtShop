@@ -1,0 +1,119 @@
+﻿@model SupportCategoryViewModel
+
+<style>
+    .uploadcontainer {
+        width: 250px;
+        border: 2px dashed #ccc;
+        padding: 5px;
+        margin-bottom: 15px;
+        transition: border-color .2s cubic-bezier(.455,.03,.515,.955);
+        transform-origin: center top;
+        position: relative;
+    }
+</style>
+
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+    <h4 class="modal-title">دسته جدید</h4>
+</div>
+@using (Ajax.BeginForm("edit", "SupportCategories", null, new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "dform",
+    LoadingElementId = "submit_spin",
+    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');"
+}, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal-body" style="padding:20px;">
+   
+        @Html.AntiForgeryToken()
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+        }
+
+        @Html.HiddenFor(x => x.Id)
+
+
+        <div class="row">
+            <div class="form-group">
+                <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
+                <input name="Name" id="Name" value="@Model.Name" class="form-control" />
+
+            </div>
+        </div>
+
+        <hr />
+        <div class="row">
+            @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+            {
+                var item = ((List<Language>)ViewBag.language)[i];
+                var current = Model.Translations.SingleOrDefault(x => x.languageId == item.Code);
+                var value = current == null ? "" : current.Name;
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                        <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                        <input name="Translations[@i].Name" value="@value" type="text" class="form-control" />
+                    </div>
+                </div>
+            }
+        </div>
+        <label class="form-label"> توضیحات</label>
+        <hr />
+        <div class="row">
+            @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+            {
+                var item = ((List<Language>)ViewBag.language)[i];
+                var current = Model.Translations.SingleOrDefault(x => x.languageId == item.Code);
+                var value = current == null ? "" : current.Description;
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                        <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                        <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px" >@value</textarea>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+            <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                <i class="fa fa-spinner fa-spin"></i>
+            </span>&nbsp;  ثبت  &nbsp;
+        </button>
+    </div>
+}
+
+
+<script>
+    initinputcss();
+
+    window.addEventListener("submit", function (e) {
+        var form = e.target;
+        if (form.getAttribute("enctype") === "multipart/form-data") {
+            if (form.dataset.ajax) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var xhr = new XMLHttpRequest();
+                xhr.open(form.method, form.action);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xhr.responseText;
+                            }
+                        }
+                    }
+                };
+                xhr.send(new FormData(form));
+            }
+        }
+    }, true);
+</script>

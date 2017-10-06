@@ -226,6 +226,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\SupportCategoriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserVerificationsController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
@@ -250,12 +252,14 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModel\ArticleViewModel.cs" />
     <Compile Include="Models\ViewModel\PrintMaterialViewModel.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\CountryViewModel.cs" />
     <Compile Include="Models\ViewModel\NavigationCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\PriceListViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductTypeViewModel.cs" />
+    <Compile Include="Models\ViewModel\SupportCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -5331,6 +5335,10 @@
     <Content Include="Views\Users\Add.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\_successWindow.cshtml" />
+    <Content Include="Views\SupportCategories\Add.cshtml" />
+    <Content Include="Views\SupportCategories\Edit.cshtml" />
+    <Content Include="Views\SupportCategories\Index.cshtml" />
+    <Content Include="Views\SupportCategories\_successWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5349,6 +5357,7 @@
     <Folder Include="Content\Admin\vendor\nvd3\build\" />
     <Folder Include="Content\Admin\vendor\prism\examples\" />
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
+    <Folder Include="Views\Article\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Value\" />
   </ItemGroup>
