@@ -11,8 +11,8 @@ namespace ArtShop.Controllers
         // GET: Support
         public ActionResult Index()
         {
-
-            return View();
+            var data = db.SupportCategories.Where(a=>a.categoryType == DataLayer.Enitities.CategoryType.Artist).ToList();
+            return View(data);
         }
 
         public ActionResult Header()
