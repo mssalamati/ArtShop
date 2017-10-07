@@ -19,7 +19,7 @@ namespace AdminPanel.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
-
+            
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
             var data = user.adminDetail.Articles
                  .Where(x => string.IsNullOrEmpty(search) || x.Title.Contains(search))
@@ -28,6 +28,7 @@ namespace AdminPanel.Controllers
             count = user.adminDetail.Articles.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
+            
             return View(data.ToList());
         }
 
@@ -53,8 +54,8 @@ namespace AdminPanel.Controllers
             Article newPost = new Article();
             
             newPost.Category = db.Categories.Find(model.Category);
-            if (model.ReletedArticles != null)
-                newPost.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
+            //if (model.ReletedArticles != null)
+            //    newPost.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
             
             newPost.Title = model.TitleDef;
             newPost.Translations = new List<ArticleTranslation>();
@@ -114,8 +115,8 @@ namespace AdminPanel.Controllers
 
             post.Category = db.Categories.Find(model.Category);
             
-            if (model.Links != null)
-                post.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
+            //if (model.ReletedArticles != null)
+            //    post.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
             
             post.Title = model.TitleDef;
             

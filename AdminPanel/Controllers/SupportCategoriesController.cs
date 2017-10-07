@@ -41,8 +41,7 @@ namespace AdminPanel.Controllers
                 return PartialView(model);
             }
 
-
-            SupportCategory c = new SupportCategory() { Name = model.Name };
+            SupportCategory c = new SupportCategory() { Name = model.Name, Thumbnail = model.Thumbnail, categoryType = model.categorytype };
 
             c.Translations = new List<SupportCategoryTranslation>();
             foreach (var item in model.Translations)
@@ -66,7 +65,7 @@ namespace AdminPanel.Controllers
         {
             var finder = db.SupportCategories.Find(id);
             ViewBag.language = db.Languages.ToList();
-            SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>(), Name = finder.Name };
+            SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>(), Name = finder.Name, categorytype = finder.categoryType, Thumbnail = finder.Thumbnail };
             foreach (var item in finder.Translations)
                 cvm.Translations.Add(new SupportCategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name, Description = item.Description });
 
@@ -78,6 +77,8 @@ namespace AdminPanel.Controllers
         {
             var finder = db.SupportCategories.Find(model.Id);
             finder.Name = model.Name;
+            finder.categoryType = model.categorytype;
+            finder.Thumbnail = model.Thumbnail;
 
             foreach (var item in model.Translations)
             {

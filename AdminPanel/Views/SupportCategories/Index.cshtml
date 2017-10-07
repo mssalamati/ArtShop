@@ -52,7 +52,7 @@
 
                         </th>
                         <th>
-                            Posts
+                            Articles
                         </th>
                         <th></th>
                     </tr>
@@ -163,12 +163,12 @@
         function showAdd() {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/admin/Categories/add");
+            $("#dform").load("/SupportCategories/add");
         }
         function showEdit(id) {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/Admin/Categories/edit/" + id);
+            $("#dform").load("/SupportCategories/edit/" + id);
         }
     </script>
 

@@ -23,10 +23,26 @@
         }
 
         <div class="row">
-                <div class="form-group">
-                    <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
-                    <input name="Name" id="Name" value=""  class="form-control" />
-            
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
+                        <input name="Name" id="Name" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"> نوع دسته بندی </label>
+                        <select class="form-control" name="CategoryType" style="width: 100%;">
+                            <option value="buyer">Buyer</option>
+                            <option value="artist">Artists</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label"> نام تصویر<small>( مخصوص دسته بندی مربوط به هنرمندان)</small> </label>
+                <input name="Thumbnail" id="Thumbnail" value="" class="form-control" />
             </div>
         </div>
 

@@ -19,7 +19,8 @@ namespace DataLayer.Enitities
 
         [Required(ErrorMessage = "Name: Field is required")]
         [StringLength(500, ErrorMessage = "Name: Length should not exceed 500 characters")]
-        public virtual string Name { get; set; }        
+        public virtual string Name { get; set; }
+        public virtual string Thumbnail { get; set; }
         public virtual IList<Article> Articles { get; set; }
         public virtual ICollection<SupportCategoryTranslation> Translations { get; set; }
         public virtual CategoryType categoryType { get; set; }

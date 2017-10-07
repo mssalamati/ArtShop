@@ -20,7 +20,7 @@ namespace DataLayer.Migrations
             var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var store = new UserStore<ApplicationUser>(context);
             var manager = new UserManager<ApplicationUser>(store);
-            var user = new ApplicationUser { UserName = "superadmin", Email = "ms.salamati@gmail.com", PhoneNumber = "9374641231", userDetail = new UserProfile() };
+            var user = new ApplicationUser { UserName = "superadmin", Email = "ms.salamati@gmail.com", PhoneNumber = "9374641231", adminDetail = new AdminProfile(), userDetail = new UserProfile() };
             manager.Create(user, "Art123");
 
             context.SiteParams.AddOrUpdate(x => x.Name,

@@ -26,7 +26,7 @@
 }, new { enctype = "multipart/form-data" }))
 {
     <div class="modal-body" style="padding:20px;">
-   
+
         @Html.AntiForgeryToken()
 
         @if (!ViewData.ModelState.IsValid)
@@ -37,14 +37,46 @@
         @Html.HiddenFor(x => x.Id)
 
 
-        <div class="row">
-            <div class="form-group">
-                <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
-                <input name="Name" id="Name" value="@Model.Name" class="form-control" />
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
+                        <input name="Name" id="Name" value="@Model.Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label"> نوع دسته بندی </label>
+                        <select class="form-control" name="CategoryType" style="width: 100%;">
+                            @if (Model.categorytype == CategoryType.Buyer)
+                            {
+                                <option selected="selected" value="buyer">Buyer</option>
+                            }
+                            else
+                            {
+                                <option value="buyer">Buyer</option>
+                            }
+                            @if (Model.categorytype == CategoryType.Artist)
+                            {
+                                <option selected="selected" value="artist">Artists</option>                            }
+                            else
+                            {
+                                <option value="artist">Artists</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <label class="form-label"> نام تصویر<small>( مخصوص دسته بندی مربوط به هنرمندان)</small> </label>
+                <input name="Thumbnail" id="Thumbnail" value="@Model.Thumbnail" class="form-control" />
             </div>
         </div>
-
         <hr />
         <div class="row">
             @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
@@ -74,7 +106,7 @@
                     <div class="form-group">
                         <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
                         <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                        <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px" >@value</textarea>
+                        <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px">@value</textarea>
                     </div>
                 </div>
             }

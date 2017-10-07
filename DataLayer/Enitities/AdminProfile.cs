@@ -15,6 +15,6 @@ namespace DataLayer.Enitities
         public virtual ApplicationUser ApplicationAdminDetail { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
-        public ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

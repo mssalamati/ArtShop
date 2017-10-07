@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Enitities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,8 @@ namespace AdminPanel.Models.ViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Thumbnail { get; set; }
+        public CategoryType categorytype { get; set; }
         public virtual ICollection<SupportCategoryTranslationViewModel> Translations { get; set; }
     }
 
