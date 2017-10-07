@@ -16,7 +16,7 @@ namespace AdminPanel.Controllers
 
 
             var data = db.Styles
-                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
+                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.ToLower().Contains(search.ToLower().Trim())));
             count = data.Count();
             data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
 
@@ -31,7 +31,7 @@ namespace AdminPanel.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
 
             var data = db.Mediums
-                .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
+                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.ToLower().Contains(search.ToLower().Trim())));
             count = data.Count();
             data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
 
@@ -46,7 +46,7 @@ namespace AdminPanel.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
 
             var data = db.Subjects
-                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
+                   .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.ToLower().Contains(search.ToLower().Trim())));
             count = data.Count();
             data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
 
@@ -61,7 +61,7 @@ namespace AdminPanel.Controllers
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
 
             var data = db.Materials
-                 .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)));
+                   .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.ToLower().Contains(search.ToLower().Trim())));
             count = data.Count();
             data = data.OrderBy(x => x.insertDate).Skip(skip).Take(take);
 
