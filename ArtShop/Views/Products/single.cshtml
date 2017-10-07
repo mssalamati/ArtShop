@@ -125,10 +125,13 @@
                         <li id="theArtwork" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject" class="selector-item" data-orbit-slide="slide-1">
                             <img src="@Model.photo.Path" id="mainmage" itemprop="image">
                             <div class="art-image-actions">
-                                <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="View in a Room">
-                                    <i id="viewroombtnicon" class="icn-view-in-a-room"></i>
-                                    <span id="viewroombtntxt">View in a Room</span>
-                                </a>
+                                @if (Model.category.Id != 6)
+                                {
+                                    <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="View in a Room">
+                                        <i id="viewroombtnicon" class="icn-view-in-a-room"></i>
+                                        <span id="viewroombtntxt">View in a Room</span>
+                                    </a>
+                                }
 
                                 <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="@Model.photo.Path" title="View Fullscreen">
                                     <i class="fa fa-expand"></i>
