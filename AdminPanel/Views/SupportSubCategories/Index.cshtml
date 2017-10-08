@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SupportCategory>
+﻿@model IEnumerable<SupportSubCategory>
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,7 @@
             <a href="javascript:;">پنل ادمین</a>
         </li>
         <li>
-            <a href="javascript:;">دسته بندی ها </a>
+            <a href="javascript:;">زیر دسته بندی ها </a>
         </li>
     </ol>
 </div>
@@ -33,7 +33,7 @@
                 <input type="search" placeholder="search..." name="search" value="@ViewBag.search" class="form-control bl0">
             </div>
         </form>
-        <button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت دسته جدید</button>
+        <button onclick="showAdd()" class="pull-left btn btn-default btn-xs">ثبت زیر دسته جدید</button>
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
@@ -84,7 +84,7 @@
                             <td>
                                 <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
-                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/SupportCategories/Delete/@item.Id">آیا مطمئن هستید؟</a>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/SupportSubCategories/Delete/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
                         </tr>
                     }
@@ -163,12 +163,12 @@
         function showAdd() {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/SupportCategories/add");
+            $("#dform").load("/SupportSubCategories/add");
         }
         function showEdit(id) {
             $('#modal-basic').modal('show');
             $("#dform").html(loading);
-            $("#dform").load("/SupportCategories/edit/" + id);
+            $("#dform").load("/SupportSubCategories/edit/" + id);
         }
     </script>
 

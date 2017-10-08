@@ -1,5 +1,4 @@
-﻿using DataLayer.Enitities;
-using DataLayer.Interfaces;
+﻿using DataLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enitities
 {
-    public enum CategoryType { Artist, Buyer }
-    public class SupportCategory : ITranslatable<SupportCategory, SupportCategoryTranslation>
+
+    public class SupportSubCategory : ITranslatable<SupportSubCategory, SupportSubCategoryTranslation>
     {
         [Key]
         public int Id { get; set; }
@@ -20,12 +19,10 @@ namespace DataLayer.Enitities
         [Required(ErrorMessage = "Name: Field is required")]
         [StringLength(500, ErrorMessage = "Name: Length should not exceed 500 characters")]
         public virtual string Name { get; set; }
-        public virtual string Thumbnail { get; set; }
+        public virtual SupportCategory supportCategory { get; set; }
         public virtual IList<Article> Articles { get; set; }
-        public virtual IList<SupportSubCategory> supportSubCategories { get; set; }
-        public virtual ICollection<SupportCategoryTranslation> Translations { get; set; }
-        public virtual CategoryType categoryType { get; set; }
-
+        public virtual ICollection<SupportSubCategoryTranslation> Translations { get; set; }
+        
         public override string ToString()
         {
             return string.Join(",", Translations.Select(x => x.Name));
@@ -51,17 +48,18 @@ namespace DataLayer.Enitities
             return System.Text.Encoding.ASCII.GetString(bytes);
         }
     }
-    public class SupportCategoryTranslation : ITranslation<SupportCategory>
+    public class SupportSubCategoryTranslation : ITranslation<SupportSubCategory>
     {
         [Key, Column(Order = 0)]
         [ForeignKey("language")]
         public string languageId { get; set; }
         public virtual Language language { get; set; }
         [Key, Column(Order = 1)]
-        [ForeignKey("supportCategory")]
-        public virtual int SupportCategoryId { get; set; }
-        public virtual SupportCategory supportCategory { get; set; }
+        [ForeignKey("supportSubCategory")]
+        public virtual int SupportSubCategoryId { get; set; }
+        public virtual SupportSubCategory supportSubCategory { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
     }
+
 }
+

@@ -27,7 +27,7 @@ namespace DataLayer.Enitities
         public virtual string Title { get; set; }
 
         public virtual ICollection<ArticleTranslation> Translations { get; set; }
-
+        public virtual CategoryType ArticleType { get; set; }
         /// <summary>
         /// The information about the post that has to be displayed in the &lt;meta&gt; tag (SEO).
         /// </summary>

@@ -244,6 +244,7 @@
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SupportCategoriesController.cs" />
+    <Compile Include="Controllers\SupportSubCategoriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserVerificationsController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
@@ -5339,6 +5340,14 @@
     <Content Include="Views\SupportCategories\Edit.cshtml" />
     <Content Include="Views\SupportCategories\Index.cshtml" />
     <Content Include="Views\SupportCategories\_successWindow.cshtml" />
+    <Content Include="Views\Article\Add.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\uploadPartial.cshtml" />
+    <Content Include="Views\SupportSubCategories\Add.cshtml" />
+    <Content Include="Views\SupportSubCategories\Edit.cshtml" />
+    <Content Include="Views\SupportSubCategories\Index.cshtml" />
+    <Content Include="Views\SupportSubCategories\_successWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5357,7 +5366,6 @@
     <Folder Include="Content\Admin\vendor\nvd3\build\" />
     <Folder Include="Content\Admin\vendor\prism\examples\" />
     <Folder Include="Content\Admin\vendor\select2\docs\dist\" />
-    <Folder Include="Views\Article\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Value\" />
   </ItemGroup>

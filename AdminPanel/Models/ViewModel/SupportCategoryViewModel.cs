@@ -12,6 +12,7 @@ namespace AdminPanel.Models.ViewModel
         public string Name { get; set; }
         public string Thumbnail { get; set; }
         public CategoryType categorytype { get; set; }
+        public int supportCategoryId { get; set; }
         public virtual ICollection<SupportCategoryTranslationViewModel> Translations { get; set; }
     }
 

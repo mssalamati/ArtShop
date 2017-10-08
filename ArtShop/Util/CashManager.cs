@@ -54,7 +54,7 @@ namespace ArtShop.Util
                         _Subjects = db.Subjects.Include("Translations").ToList();
                     }
                 }
-                return _Subjects.ToDictionary(x => x.Id, y => y.Current().Name);
+                return _Subjects.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x => x.name).ToDictionary(x => x.id, y => y.name);
             }
         }
 
@@ -69,7 +69,7 @@ namespace ArtShop.Util
                         _Mediums = db.Mediums.Where(x => x.AddedByAdmin).Include("Translations").ToList();
                     }
                 }
-                return _Mediums.ToDictionary(x => x.Id, y => y.Current().Name);
+                return _Mediums.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x => x.name).ToDictionary(x => x.id, y => y.name);
             }
         }
 
@@ -84,7 +84,7 @@ namespace ArtShop.Util
                         _Materials = db.Materials.Where(x => x.AddedByAdmin).Include("Translations").ToList();
                     }
                 }
-                return _Materials.ToDictionary(x => x.Id, y => y.Current().Name);
+                return _Materials.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x => x.name).ToDictionary(x => x.id, y => y.name);
             }
         }
 
@@ -99,7 +99,7 @@ namespace ArtShop.Util
                         _Styles = db.Styles.Where(x => x.AddedByAdmin).Include("Translations").ToList();
                     }
                 }
-                return _Styles.ToDictionary(x => x.Id, y => y.Current().Name);
+                return _Styles.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x => x.name).ToDictionary(x => x.id, y => y.name);
             }
         }
 
@@ -141,7 +141,7 @@ namespace ArtShop.Util
                     id = x.Id,
                     photo = ConfigurationManager.AppSettings["FileUrl"] + x.photo.Path,
                     name = x.Current().Name
-                }).ToList();
+                }).OrderBy(a=>a.name).ToList();
             }
         }
 
@@ -177,7 +177,7 @@ namespace ArtShop.Util
                         _countries = db.Countries.Include("Translations").ToList();
                     }
                 }
-                return _countries.ToDictionary(x => x.Id, y => y.Current().Name);
+                return _countries.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x=>x.name).ToDictionary(x => x.id, y => y.name);
             }
         }
 

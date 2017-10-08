@@ -1,0 +1,86 @@
+﻿@using DataLayer.Extentions;
+@model Article
+@{
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Support/_SupportLayout.cshtml";
+}
+
+<main role="main">
+    <nav class="sub-nav clearfix">
+        <ol class="breadcrumbs">
+
+            <li title="Artiscovery">
+
+                <a href="/support">Artiscovery</a>
+
+            </li>
+
+            <li title="Legal">
+                <a href="/hc/en-us/categories/115000684107-Legal">Legal</a>
+            </li>
+
+            <li title="Legal">
+
+                <a href="/hc/en-us/sections/115001093128-Legal">Legal</a>
+
+            </li>
+
+        </ol>
+
+    </nav>
+
+    <div class="clearfix">
+        <article class="main-column">
+            <header class="article-header clearfix">
+                <h1> @Model.Current().Title</h1>
+            </header>
+
+            <div class="subtle-wrap">
+                <div class="article-body markdown">
+
+                    @Html.Raw(Model.Current().Description);
+
+                </div>
+
+                <div class="article-attachments">
+                    <ul class="attachments"></ul>
+                </div>
+
+                <footer class="article-footer clearfix">
+
+                    <div class="article-vote">
+                        <small class="article-vote-count">
+                            <span class="article-vote-label">0 out of 0 found this helpful</span>
+                        </small>
+                    </div>
+
+                </footer>
+
+                <div class="article-more-questions">
+                    Have more questions? <a href="/hc/en-us/requests/new">Submit a request</a>
+                </div>
+            </div>
+
+            @*<section class="article-comments">
+                <h2>Comments</h2>
+                <div class="subtle-wrap">
+
+
+
+                </div>
+            </section>*@
+
+        </article>
+
+        <aside class="article-sidebar side-column">
+            <section class="related-articles">
+                <h3>Related articles</h3>
+                <ul></ul>
+            </section>
+
+
+        </aside>
+
+    </div>
+</main>
+

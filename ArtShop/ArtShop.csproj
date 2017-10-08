@@ -614,6 +614,7 @@
     <Content Include="Views\Support\_ViewStart.cshtml" />
     <Content Include="Views\Support\_SupportLayout.cshtml" />
     <Content Include="Views\Support\_Header.cshtml" />
+    <Content Include="Views\Support\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
