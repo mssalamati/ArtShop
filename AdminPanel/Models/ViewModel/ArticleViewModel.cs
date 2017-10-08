@@ -18,7 +18,8 @@ namespace AdminPanel.Models.ViewModel
             this.Description = translation.Description;
             this.Title = translation.Title;
             this.TitleDef = model.Title;
-            this.Category = model.Category.Id;
+            this.Category = model.SupportCategory.Id;
+            this.SubCategory = model.SupportSubCategory.Id;
             this.ShortDescription = translation.ShortDescription;
         }
 
@@ -38,8 +39,9 @@ namespace AdminPanel.Models.ViewModel
         public string Title { get; set; }
         [Required]
         public string TitleDef { get; set; }
-        public List<Article> ReletedArticles { get; set; }
-        public int Category { get; set; }        
+        public List<int> ReletedArticles { get; set; }
+        public int Category { get; set; }
+        public int SubCategory { get; set; }
         public string ThumbnailPath { get; set; }
         public Dictionary<int, string> HeaderPhotoPaths { get; set; }
     }
