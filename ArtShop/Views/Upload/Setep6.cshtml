@@ -16,7 +16,7 @@
                             LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
-                        }, new { enctype = "multipart/form-data" }))
+                        }, new { enctype = "multipart/form-data", id = "mform" }))
                         {
                             if (!string.IsNullOrEmpty(ViewBag.Error))
                             {
@@ -32,9 +32,9 @@
                                     <h1 class="animate-group-0-0">@UploadRes.step6_title</h1>
                                     <p class="descriptor animate-group-0-1" style="@rtlstl">@UploadRes.step6_description</p>
                                     <div class="form-group form-group--inline-block dimensions-input animate-group-0-2">
-                                        <div class="input-container"><label for="art_height" style="text-align: center;">@UploadRes.Height</label><input name="Height" type="number" value="0" class="h_num" id="art_height" min="0"></div>
-                                        <div class="input-container"><label for="art_width" style="text-align: center;">@UploadRes.Width</label><input name="Width" type="number" value="0" class="w_num" min="0"></div>
-                                        <div class="input-container"><label for="art_depth" style="text-align: center;">@UploadRes.Depth</label><input name="Depth" type="number" value="0" class="" step="0.1" min="0"></div>
+                                        <div class="input-container"><label for="art_height" style="text-align: center;">@UploadRes.Height</label><input name="Height" type="number" value="0" class="h_num" id="Height" min="0"></div>
+                                        <div class="input-container"><label for="art_width" style="text-align: center;">@UploadRes.Width</label><input name="Width" type="number" value="0" class="w_num" min="0" id="Width"></div>
+                                        <div class="input-container"><label for="art_depth" style="text-align: center;">@UploadRes.Depth</label><input name="Depth" type="number" value="0" class="" step="0.1" min="0" id="Depth"></div>
                                         <div class="form-group__info">@UploadRes.inches</div>
                                         <canvas id="myCanvas" class="dimensions-preview-canvas animate-group-0-2" height="400" width="400"></canvas>
                                     </div>
@@ -98,18 +98,36 @@
         }
 
         $(".h_num").change(function () {
-            var neww = parseInt($(".w_num").val());
-            var newh = parseInt( $(".h_num").val());
+            var neww = parseFloat($(".w_num").val());
+            var newh = parseFloat( $(".h_num").val());
             redraw(neww, newh);
         });
         $(".w_num").change(function () {
-            var neww = parseInt($(".w_num").val());
-            var newh = parseInt($(".h_num").val());
+            var neww = parseFloat($(".w_num").val());
+            var newh = parseFloat($(".h_num").val());
             redraw(neww, newh);
         });
 </script>
 
-
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+        $("#mform").validate({
+            rules: {
+                Height: {
+                    required: true,
+                    number: true
+                },
+                Width: {
+                    required: true,
+                    number: true
+                },
+                Depth: {
+                    required: true,
+                    number: true
+                }
+            }
+        });
+</script>
 
 <script>
     $("html, body").animate({ scrollTop: 0 }, "slow");

@@ -18,7 +18,7 @@
                             LoadingElementId = "loadingel",
                             OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
                             OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
-                        }, new { enctype = "multipart/form-data" }))
+                        }, new { enctype = "multipart/form-data" , id = "mform" }))
                         {
 
                             if (!string.IsNullOrEmpty(ViewBag.Error))
@@ -39,7 +39,7 @@
                                         </p>
                                         <div class="form-group shipping__artwork-weight animate-group-0-2 shipping__artwork-weight--artwork-only">
                                             <div class="shipping__artwork-weight__weight label-under-group">
-                                                <input type="text" name="weight" min="0">
+                                                <input type="text" id="weight" name="weight" min="0">
                                                 <label for="art_weight" class="" style="@rtldirection">@UploadRes.pounds</label>
                                             </div>
                                         </div>
@@ -94,6 +94,26 @@
         </div>
     </div>
 </div>
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $("#mform").validate({
+        rules: {
+            weight: {
+                required: true,
+                number: true
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
 
 <script>
 
