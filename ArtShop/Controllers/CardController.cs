@@ -115,9 +115,7 @@ namespace ArtShop.Controllers
             }
             else
             {
-                var config = paypal.ConfigManager.Instance.GetProperties();
-                var accessToken = new paypal.OAuthTokenCredential(config).GetAccessToken();
-                var apiContext = new paypal.APIContext(accessToken);
+                var apiContext = getPaypalApiContect();
                 var payment = paypal.Payment.Create(apiContext, new paypal.Payment
                 {
                     intent = "sale",
@@ -160,12 +158,14 @@ namespace ArtShop.Controllers
                     },
                     redirect_urls = new paypal.RedirectUrls
                     {
-                        return_url = "http://artiscovery.com/card/Verify",
-                        cancel_url = "http://artiscovery.com/card/Verify"
+                        return_url = "http://artiscovery.com/card/PaypalReturn",
+                        cancel_url = "http://artiscovery.com/card/PaypalCancel"
                     }
                 });
 
-                var paypalid = payment.id;
+                //paypal refrence id
+                o.TransactionDetail.Number = payment.id;
+                db.SaveChanges();
                 var approveurl = payment.links.FirstOrDefault(x => x.rel.Equals("approval_url", StringComparison.OrdinalIgnoreCase));
 
                 return Redirect(approveurl.href);
@@ -227,6 +227,24 @@ namespace ArtShop.Controllers
             {
                 return Content("not valid address");
             }
+        }
+
+
+        public ActionResult PaypalReturn(string payerId, string paymentId)
+        {
+            var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
+            var apiContext = getPaypalApiContect();
+            var paymentExecution = new paypal.PaymentExecution() { payer_id = payerId };
+            var payment = new paypal.Payment();
+            var executedpayment = payment.Execute(apiContext, paymentExecution);
+            var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+            var orderId = order.Id;
+            return RedirectToAction("paymentReport", new { id = orderId });
+        }
+
+        public ActionResult PaypalCancel(string payerId, string paymentId)
+        {
+            return null;
         }
 
         [Authorize]
@@ -351,6 +369,14 @@ namespace ArtShop.Controllers
                 email.total = order.TotalPrice;
                 email.Send();
             }
+        }
+
+        public paypal.APIContext getPaypalApiContect()
+        {
+            var config = paypal.ConfigManager.Instance.GetProperties();
+            var accessToken = new paypal.OAuthTokenCredential(config).GetAccessToken();
+            var apiContext = new paypal.APIContext(accessToken);
+            return apiContext;
         }
 
     }
