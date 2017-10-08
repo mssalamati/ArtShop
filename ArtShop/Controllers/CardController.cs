@@ -239,12 +239,26 @@ namespace ArtShop.Controllers
             var executedpayment = payment.Execute(apiContext, paymentExecution);
             var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
             var orderId = order.Id;
+            tran.Payed = true;
+            foreach (var item in order.OrderDetails)
+                item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
+            db.SaveChanges();
+            SendOrderDetail(order);
+            SendInvoice(order);
+            CartManager.GetCart(this.HttpContext).EmptyCart();
             return RedirectToAction("paymentReport", new { id = orderId });
         }
 
         public ActionResult PaypalCancel(string payerId, string paymentId)
         {
-            return null;
+            var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
+            var apiContext = getPaypalApiContect();
+            var paymentExecution = new paypal.PaymentExecution() { payer_id = payerId };
+            var payment = new paypal.Payment();
+            var executedpayment = payment.Execute(apiContext, paymentExecution);
+            var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+            var orderId = order.Id;
+            return RedirectToAction("paymentReport", new { id = orderId });
         }
 
         [Authorize]
