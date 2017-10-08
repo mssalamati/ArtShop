@@ -1,12 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Edit";
 }
 
-@using Blog.Objects
-
-@using Blog.Areas.Admin.Models.ViewModel
-@model PostViewModel
+@model ArticleViewModel
 
 <link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
 
@@ -73,63 +70,11 @@
                             <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="Category" style="width: 100%;">
-                                    @foreach (var item in ((List<Category>)ViewBag.caregories))
+                                    @foreach (var item in ((List<SupportCategory>)ViewBag.caregories))
                                     {
                                         if (Model.Category == item.Id)
                                         {
                                             <option selected="selected" value="@item.Id">@item.Name</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Id">@item.Name</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                            <label style="padding:5px;text-align:left" class="col-sm-2 control-label"> نوع مطلب </label>
-                            <div class="col-sm-4">
-                                <select class="form-control" name="postType" style="width: 100%;">
-                                    @if (Model.postType == PostType.Wide)
-                                    {
-                                        <option selected="selected" value="Wide">Wide</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="Wide">Wide</option>
-                                    }
-                                    @if (Model.postType == PostType.Sqr)
-                                    {
-                                        <option selected="selected" value="Sqr">Sqr</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="Sqr">Sqr</option>
-                                    }
-
-                                    @if (Model.postType == PostType.ShowCase)
-                                    {
-                                        <option selected="selected" value="ShowCase">ShowCase</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="ShowCase">ShowCase</option>
-                                    }
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12" style="margin-top:2px">
-                        <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> tags * </label>
-                            <div class="col-sm-10">
-                                <select data-placeholder="Choose your tags" multiple class="chosen" name="Tags" style="width: 100%;">
-                                    @foreach (var item in ((List<Tag>)ViewBag.tags))
-                                    {
-                                        if (Model.Tags.Any(x => x == item.Id))
-                                        {
-                                            <option selected value="@item.Id">@item.Name</option>
                                         }
                                         else
                                         {
@@ -150,7 +95,7 @@
                                     <i class="fa fa-plus text-success"></i>
                                 </button>
                             </label>
-                            <div class="col-sm-10" id="links">
+                            @*<div class="col-sm-10" id="links">
                                 @if (Model.Links != null)
                                 {
                                     foreach (var item in Model.Links)
@@ -159,7 +104,7 @@
                                     }
                                 }
                              
-                            </div>
+                            </div>*@
                         </div>
                     </div>
 
@@ -273,8 +218,8 @@
         CKEDITOR.replace('Content', {
             customConfig: '/config.js',
             height: 500,
-            filebrowserImageBrowseUrl: '/admin/posts/uploadPartial',
-            filebrowserImageUploadUrl: '/admin/posts/uploadnow',
+            filebrowserImageBrowseUrl: '/article/uploadPartial',
+            filebrowserImageUploadUrl: '/article/uploadnow',
         });
 
     </script>
@@ -301,7 +246,7 @@
         $('#lanselect').on('change', function (e) {
             var optionSelected = $("option:selected", this);
             var valueSelected = this.value;
-            document.location.href = '/admin/posts/edit?id=@Model.Id&language=' + valueSelected;
+            document.location.href = '/article/edit?id=@Model.Id&language=' + valueSelected;
         });
     </script>
 
@@ -310,7 +255,7 @@
             var r = confirm("are you sure to remove photo?");
             if (r == true) {
                 var holder = $('#heare_holder_' + photoid);
-                var removelink = '/admin/posts/RemovePhoto?postId=@Model.Id' + '&photoId=' + photoid;
+                var removelink = '/article/RemovePhoto?postId=@Model.Id' + '&photoId=' + photoid;
                 $.ajax({
                     method: "Get",
                     url: removelink

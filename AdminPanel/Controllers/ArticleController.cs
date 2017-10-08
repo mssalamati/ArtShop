@@ -19,7 +19,7 @@ namespace AdminPanel.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
-            
+
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
             var data = user.adminDetail.Articles
                  .Where(x => string.IsNullOrEmpty(search) || x.Title.Contains(search))
@@ -28,7 +28,7 @@ namespace AdminPanel.Controllers
             count = user.adminDetail.Articles.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
-            
+
             return View(data.ToList());
         }
 
@@ -47,16 +47,16 @@ namespace AdminPanel.Controllers
 
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
-            
+
             if (!ModelState.IsValid)
                 return View(model);
-    
+
             Article newPost = new Article();
-            
+
             newPost.Category = db.Categories.Find(model.Category);
             //if (model.ReletedArticles != null)
             //    newPost.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
-            
+
             newPost.Title = model.TitleDef;
             newPost.Translations = new List<ArticleTranslation>();
             newPost.Translations.Add(new ArticleTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description, ShortDescription = model.ShortDescription });
@@ -107,19 +107,19 @@ namespace AdminPanel.Controllers
 
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
-            
+
             var post = db.Articles.Find(model.Id);
 
             if (post.AuthorProfileId != userId)
                 return HttpNotFound();
 
             post.Category = db.Categories.Find(model.Category);
-            
+
             //if (model.ReletedArticles != null)
             //    post.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
-            
+
             post.Title = model.TitleDef;
-            
+
             var translation = post.Translations.Single(x => x.languageId == model.languageId);
             translation.Title = model.Title;
             translation.ShortDescription = model.ShortDescription;
@@ -154,6 +154,12 @@ namespace AdminPanel.Controllers
                 string path = Path.Combine(folder, ImageName);
                 upload.SaveAs(path);
             }
+        }
+
+        public ActionResult LoadSubCategories(int id)
+        {
+            return Json(db.SupportSubCategories.Where(x => x.supportCategory.Id == id).Select(x => new { x.Id, x.Name }).ToList(),
+                JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult uploadPartial()

@@ -28,7 +28,7 @@
 }
 <div class="row">
     <div class="col-lg-12 portlets">
-        @using (Html.BeginForm("add", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("add", "Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -62,20 +62,38 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> دسته بندی * </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> زیر دسته بندی * </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> نوع مطلب </label>
+                        </div>
+                    </div>
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
-                            <div class="col-sm-4">
-                                <select class="form-control" name="Category" style="width: 100%;">
+                            <div class="col-md-4">
+
+                                <select class="form-control" name="supportCategory" id="supportCategory" style="width: 100%;">
                                     @foreach (var item in ((List<SupportCategory>)ViewBag.caregories))
                                     {
                                         <option value="@item.Id">@item.Name</option>
                                     }
                                 </select>
                             </div>
-                            <label style="padding:5px;text-align:left" class="col-sm-2 control-label"> نوع مطلب </label>
-                            <div class="col-sm-4">
+
+                            <div class="col-md-4">
+
+                                <select class="form-control" name="supportSubCategory" id="supportSubCategory" style="width: 100%;">
+                                    <option value=""> </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+
                                 <select class="form-control" name="ArticleType" style="width: 100%;">
                                     <option value="Buyer">Buyer</option>
                                     <option value="Artis">Artists</option>
@@ -84,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12" style="margin-top:2px">
+                    <div class="col-md-12" style="margin-top:10px">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label">
                                 Related Articles *
@@ -179,6 +197,10 @@
     </script>
 
     <script>
+        $(document).on('change', '#supportCategory', function () {
+            changepro();
+        });
+
         $('.chosen').chosen({
             width: '100%'
         });
@@ -194,5 +216,19 @@
             });
         }
         initinputcss();
+    </script>
+    <script>
+        function changepro() {
+            $('#supportSubCategory option').remove();
+            $('#supportSubCategory').prop('disabled', true);
+            var iid = $("#supportCategory").val();
+            $.get("/Article/LoadSubCategories?id=" + iid, function (data) {
+                $('#supportSubCategory').prop('disabled', false);
+                $.each(data, function (key, value) {
+                    $("#supportSubCategory").append($("<option></option>").val(value.Id).html(value.Name));
+                });
+            });
+        }
+        changepro();
     </script>
 }
