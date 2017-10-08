@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Artiscovery.
+        ///   Looks up a localized string similar to Legal.
         /// </summary>
         public static string Artiscovery {
             get {

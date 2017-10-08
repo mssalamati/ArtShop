@@ -36,6 +36,7 @@ namespace AdminPanel.Controllers
         {
             ViewBag.caregories = db.SupportCategories.ToList();
             ViewBag.language = db.Languages.ToList();
+            ViewBag.articles = db.Articles.ToList();
 
             return View(new ArticleViewModel());
         }
@@ -45,17 +46,17 @@ namespace AdminPanel.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
 
-            ViewBag.caregories = db.Categories.ToList();
+            ViewBag.caregories = db.SupportCategories.ToList();
             ViewBag.language = db.Languages.ToList();
+            ViewBag.articles = db.Articles.ToList();
 
             if (!ModelState.IsValid)
                 return View(model);
 
             Article newPost = new Article();
-
-            newPost.Category = db.Categories.Find(model.Category);
-            //if (model.ReletedArticles != null)
-            //    newPost.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
+            newPost.SupportSubCategory= db.SupportSubCategories.Find(model.SubCategory);
+            newPost.SupportCategory = db.SupportCategories.Find(model.Category);
+            newPost.ReletedArticles = db.Articles.Where(x => model.ReletedArticles.Any(y => y == x.Id)).ToList();
 
             newPost.Title = model.TitleDef;
             newPost.Translations = new List<ArticleTranslation>();
@@ -79,8 +80,8 @@ namespace AdminPanel.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
-
-            ViewBag.caregories = db.Categories.ToList();
+            ViewBag.articles = db.Articles.ToList();
+            ViewBag.caregories = db.SupportCategories.ToList();
             ViewBag.language = db.Languages.ToList();
             var model = db.Articles.Find(id);
             if (model.AuthorProfileId != userId)
@@ -104,7 +105,7 @@ namespace AdminPanel.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
-
+            ViewBag.articles = db.Articles.ToList();
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
 
@@ -113,13 +114,11 @@ namespace AdminPanel.Controllers
             if (post.AuthorProfileId != userId)
                 return HttpNotFound();
 
-            post.Category = db.Categories.Find(model.Category);
-
-            //if (model.ReletedArticles != null)
-            //    post.ReletedArticles = model.ReletedArticles.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
-
+            post.SupportCategory = db.SupportCategories.Find(model.Category);
+            post.SupportSubCategory = db.SupportSubCategories.Find(model.SubCategory);
             post.Title = model.TitleDef;
-
+            post.ReletedArticles.Clear();
+            post.ReletedArticles = db.Articles.Where(x => model.ReletedArticles.Any(y => y == x.Id)).ToList();
             var translation = post.Translations.Single(x => x.languageId == model.languageId);
             translation.Title = model.Title;
             translation.ShortDescription = model.ShortDescription;

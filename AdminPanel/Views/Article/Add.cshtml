@@ -6,6 +6,7 @@
 @model ArticleViewModel
 
 <link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+<link rel="stylesheet" href="~/Content/Admin/vendor/select2/dist/css/select2.css">
 
 <div class="page-title">
     <div class="title"> Artiscovery</div>
@@ -76,7 +77,6 @@
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
                             <div class="col-md-4">
-
                                 <select class="form-control" name="supportCategory" id="supportCategory" style="width: 100%;">
                                     @foreach (var item in ((List<SupportCategory>)ViewBag.caregories))
                                     {
@@ -84,16 +84,13 @@
                                     }
                                 </select>
                             </div>
-
                             <div class="col-md-4">
 
                                 <select class="form-control" name="supportSubCategory" id="supportSubCategory" style="width: 100%;">
                                     <option value=""> </option>
                                 </select>
                             </div>
-
                             <div class="col-md-4">
-
                                 <select class="form-control" name="ArticleType" style="width: 100%;">
                                     <option value="Buyer">Buyer</option>
                                     <option value="Artis">Artists</option>
@@ -102,24 +99,25 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12" style="margin-top:10px">
+                    <div class="col-md-12" style="margin-top:10px;margin-bottom:5px">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label">
                                 Related Articles *
-                                <script> var temp = '<input type="text" name="Links[]" value="" class="form-control" />';</script>
-                                <button type="button" class="btn btn-xs" onclick="$('#links').append(temp);">
-                                    <i class="fa fa-plus text-success"></i>
-                                </button>
                             </label>
                             <div class="col-sm-10" id="links">
-                                <input type="text" name="Links[]" value="" class="form-control" />
+                                <select name="relatedArticles" class="selectx" multiple="multiple" style="width:100%">
+                                    @foreach (var item in (List<Article>)ViewBag.articles)
+                                    {
+                                        <option value="@item.Id">@item.Title.Substring(0, 7)</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label">(در URL مطلب نمایش داده می شود) موضوع * </label>
+                            <label style="padding:5px" class="col-sm-2 control-label"><span>موضوع  </span>(در URL مطلب نمایش داده می شود)  * </label>
                             <div class="col-sm-10">
                                 <input type="text" name="TitleDef" value="@Model.TitleDef" class="form-control" />
                             </div>
@@ -128,7 +126,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label">(وابسته به زبان) موضوع </label>
+                            <label style="padding:5px" class="col-sm-2 control-label"><span>موضوع  </span>(وابسته به زبان)  </label>
                             <div class="col-sm-10">
                                 <input type="text" name="Title" value="@Model.Title" class="form-control" />
                             </div>
@@ -174,7 +172,10 @@
 @section scripts{
     <script src="~/Content/admin/vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
 
-
+<script src="~/Content/admin/vendor/select2/dist/js/select2.js"></script>
+    <script>
+        $('.selectx').select2();
+    </script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>

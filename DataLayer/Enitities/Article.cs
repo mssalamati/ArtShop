@@ -18,7 +18,7 @@ namespace DataLayer.Enitities
         public string AuthorProfileId { get; set; }
         public virtual UserProfile AuthorProfile { get; set; }
 
-        public ICollection<Article> ReletedArticles { get; set; }
+        public virtual ICollection<Article> ReletedArticles { get; set; }
         /// <summary>
         /// The heading of the post.
         /// </summary>
@@ -56,7 +56,8 @@ namespace DataLayer.Enitities
         /// <summary>
         /// The category to which the post belongs to.
         /// </summary>
-        public virtual Category Category { get; set; }
+        public virtual SupportCategory SupportCategory { get; set; }
+        public virtual SupportSubCategory SupportSubCategory { get; set; }
 
         public virtual string Author { get; set; }
         public virtual string Thumbnail { get; set; }
