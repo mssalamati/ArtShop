@@ -2,9 +2,9 @@
 
 <div class="modal-header bg-primary">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
-    <h4 class="modal-title">دسته جدید</h4>
+    <h4 class="modal-title">زیر دسته جدید</h4>
 </div>
-@using (Ajax.BeginForm("Add", "SupportCategories", null, new AjaxOptions()
+@using (Ajax.BeginForm("Add", "SupportSubCategories", null, new AjaxOptions()
 {
     HttpMethod = "POST",
     UpdateTargetId = "dform",
@@ -32,16 +32,18 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label"> نوع دسته بندی </label>
-                        <select class="form-control" name="CategoryType" style="width: 100%;">
-                            <option value="buyer">Buyer</option>
-                            <option value="artist">Artists</option>
+                        <label class="form-label"> دسته بندی </label>
+                        <select class="form-control" name="supportCategoryId" id="supportCategoryId" style="width: 100%;">
+                            @foreach (var item in ((List<SupportCategory>)ViewBag.categories))
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                           
                         </select>
                     </div>
                 </div>
             </div>
         </div>
-
         <hr />
         <div class="row">
             @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
@@ -52,21 +54,6 @@
                         <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
                         <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
                         <input name="Translations[@i].Name" type="text" class="form-control" />
-                    </div>
-                </div>
-            }
-        </div>
-        <label class="form-label"> توضیحات</label>
-        <hr />
-        <div class="row">
-            @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
-            {
-                var item = ((List<Language>)ViewBag.language)[i];
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
-                        <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                        <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px" />
                     </div>
                 </div>
             }

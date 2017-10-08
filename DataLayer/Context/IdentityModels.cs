@@ -124,5 +124,6 @@ namespace DataLayer
         public DbSet<PayoutRequest> PayoutRequests { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<SupportCategory> SupportCategories { get; set; }
+        public DbSet<SupportSubCategory> SupportSubCategories { get; set; }
     }
 }

@@ -8,17 +8,17 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
-    public class SupportCategoriesController : BaseController
+    public class SupportSubCategoriesController : BaseController
     {
-        // GET: SupportCategories
+        // GET: SupportSubCategories
         public ActionResult Index(int page = 1, string search = "")
         {
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
-            var data = db.SupportCategories
+            var data = db.SupportSubCategories
                  .Where(x => string.IsNullOrEmpty(search) || x.Name.Contains(search))
                  .OrderByDescending(x => x.Name)
                  .Skip(skip).Take(take);
-            count = db.SupportCategories.Count();
+            count = db.SupportSubCategories.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
 
@@ -28,6 +28,7 @@ namespace AdminPanel.Controllers
         public ActionResult Add()
         {
             ViewBag.language = db.Languages.ToList();
+            ViewBag.categories = db.SupportCategories.ToList();
             return PartialView();
         }
 
@@ -38,15 +39,18 @@ namespace AdminPanel.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.language = db.Languages.ToList();
+                ViewBag.categories = db.SupportCategories.ToList();
                 return PartialView(model);
             }
 
-            SupportCategory c = new SupportCategory() { Name = model.Name, Thumbnail = model.Thumbnail, categoryType = model.categorytype };
-
-            c.Translations = new List<SupportCategoryTranslation>();
+            var supportCat = db.SupportCategories.Find(model.supportCategoryId);
+            SupportSubCategory c = new SupportSubCategory() { Name = model.Name,supportCategory = supportCat};
+            
+            supportCat.supportSubCategories.Add(c);
+            c.Translations = new List<SupportSubCategoryTranslation>();
             foreach (var item in model.Translations)
-                c.Translations.Add(new SupportCategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
-            db.SupportCategories.Add(c);
+                c.Translations.Add(new SupportSubCategoryTranslation() { languageId = item.languageId, Name = item.Name});
+            db.SupportSubCategories.Add(c);
             try
             {
                 db.SaveChanges();
@@ -60,14 +64,14 @@ namespace AdminPanel.Controllers
             }
         }
 
-
         public ActionResult Edit(int id)
         {
-            var finder = db.SupportCategories.Find(id);
+            var finder = db.SupportSubCategories.Find(id);
             ViewBag.language = db.Languages.ToList();
-            SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>(), Name = finder.Name, categorytype = finder.categoryType, Thumbnail = finder.Thumbnail };
+            ViewBag.categories = db.SupportCategories.ToList();
+            SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>(), Name = finder.Name};
             foreach (var item in finder.Translations)
-                cvm.Translations.Add(new SupportCategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+                cvm.Translations.Add(new SupportCategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name});
 
             return PartialView(cvm);
         }
@@ -75,10 +79,10 @@ namespace AdminPanel.Controllers
         [HttpPost]
         public ActionResult Edit(SupportCategoryViewModel model)
         {
-            var finder = db.SupportCategories.Find(model.Id);
+            var finder = db.SupportSubCategories.Find(model.Id);
             finder.Name = model.Name;
-            finder.categoryType = model.categorytype;
-            finder.Thumbnail = model.Thumbnail;
+            var supportCat = db.SupportCategories.Find(model.supportCategoryId);
+            finder.supportCategory = supportCat;
 
             foreach (var item in model.Translations)
             {
@@ -86,11 +90,11 @@ namespace AdminPanel.Controllers
                 if (curr != null)
                 {
                     curr.Name = item.Name;
-                    curr.Description = item.Description;
                 }
 
                 else
-                    finder.Translations.Add(new SupportCategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+                    finder.Translations.Add(new SupportSubCategoryTranslation() { languageId = item.languageId, Name = item.Name});
+
             }
 
             try
@@ -104,6 +108,7 @@ namespace AdminPanel.Controllers
             }
 
             ViewBag.language = db.Languages.ToList();
+            ViewBag.categories = db.SupportCategories.ToList();
             SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>() };
             foreach (var item in finder.Translations)
                 cvm.Translations.Add(new SupportCategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name });
@@ -113,8 +118,8 @@ namespace AdminPanel.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var finder = db.SupportCategories.Find(id);
-            db.SupportCategories.Remove(finder);
+            var finder = db.SupportSubCategories.Find(id);
+            db.SupportSubCategories.Remove(finder);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

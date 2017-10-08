@@ -16,9 +16,9 @@ namespace AdminPanel.Controllers
 
             var data = db.Countries
                  .Where(x => string.IsNullOrEmpty(search) || x.Translations.Any(t => t.Name.Contains(search)))
-                 .OrderBy(x => x.Code)
+                 .OrderBy(x => x.Translations.FirstOrDefault().Name)
                  .Skip(skip).Take(take);
-            count = data.Count();
+            count = db.Countries.Count();
 
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
