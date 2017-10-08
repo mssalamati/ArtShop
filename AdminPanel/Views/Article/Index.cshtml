@@ -3,9 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-@using Blog.Objects
-
-@model IEnumerable<Post>
+@model IEnumerable<Article>
 
 <div class="page-title">
     <div class="title"> Artiscovery</div>
@@ -24,7 +22,7 @@
 
 <div class="card bg-white m-b">
     <div class="card-header">
-        <form method="get" action="/admin/posts/index">
+        <form method="get" action="/article/index">
             <div class="input-group pull-right col-md-6">
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
@@ -34,7 +32,7 @@
                 <input type="search" placeholder="search..." name="search" value="@ViewBag.search" class="form-control bl0">
             </div>
         </form>
-        <a href="/admin/posts/add" class="pull-left btn btn-default">ثبت پست جدید</a>
+        <a href="/Article/add" class="pull-left btn btn-default">ثبت پست جدید</a>
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
