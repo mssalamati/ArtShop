@@ -246,6 +246,7 @@ namespace ArtShop.Controllers
                 return HttpNotFound();
             p.categoryId = model.categoryId;
             p.subjectId = model.subjectId;
+            p.ArtCreatedYear = model.ArtCreatedYear;
             p.Mediums.Clear();
             p.Styles.Clear();
             var medumsList = Request["Mediums"].Split(',');
@@ -290,6 +291,7 @@ namespace ArtShop.Controllers
             if (!mine)
                 return HttpNotFound();
 
+            p.Materials.Clear();
             foreach (var item in model.MaterialList)
             {
                 var temp = db.Materials.Find(item);

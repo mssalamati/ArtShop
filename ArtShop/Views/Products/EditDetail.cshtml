@@ -31,13 +31,36 @@
                             @if (!IsRighToLeft)
                             {
                                 @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Details", id = Model.Id, Status = Model.Status })
-                            }                            
+                            }
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="wizard-step">
                                     @if (!ViewData.ModelState.IsValid)
                                     {
                                         @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
                                     }
+
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-3">@UploadRes.step3_year_string</h1>
+                                        <div class="form-group form-group--block animate-group-0-4">
+                                            <div class="title-input">
+                                                <div class="title-input__title-wrapper">
+                                                    <select name="ArtCreatedYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" style="@rtlstl">
+                                                        @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
+                                                        {
+                                                            if (i == Model.ArtCreatedYear)
+                                                            {
+                                                                <option selected value="@i">@i</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@i">@i</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="pane__content__block">
                                         <h1 class="animate-group-0-0">@UploadRes.Category</h1>
@@ -85,10 +108,10 @@
                                     </div>
 
                                     <div class="pane__content__block">
-                                        <h1 class="animate-group-0-4">Mediums</h1>
+                                        <h1 class="animate-group-0-4">@ShareRes.Medium</h1>
                                         <div class="form-group form-group--block animate-group-0-4 z-index-fix-2">
                                             <div class="input-container z-index-fix-0 text-left animate-group-0-5">
-                                                <label  style="@rtlstl">@UploadRes.step5_mediums</label>
+                                                <label style="@rtlstl">@UploadRes.step5_mediums</label>
                                                 <div class="input-container animate-group-0-1 z-index-fix-0">
                                                     <input value="@string.Join(",",Model.Mediums.Select(x=>x.Current().Name))" name="Mediums" type="text" style="max-width:none" class="sMediums rw-combobox rw-widget" />
                                                 </div>
@@ -97,10 +120,10 @@
                                     </div>
 
                                     <div class="pane__content__block">
-                                        <h1 class="animate-group-0-6">Styles</h1>
+                                        <h1 class="animate-group-0-6">@ShareRes.Style</h1>
                                         <div class="form-group form-group--block animate-group-0-6 z-index-fix-3">
                                             <div class="input-container z-index-fix-2 text-left animate-group-0-7">
-                                                <label  style="@rtlstl">@UploadRes.step5_styles</label>
+                                                <label style="@rtlstl">@UploadRes.step5_styles</label>
                                                 <div class="input-container animate-group-0-1 z-index-fix-0 ">
                                                     <input value="@string.Join(",",Model.Styles.Select(x=>x.Current().Name))" name="Styleslist" type="text" style="max-width:none" class="sStyles  rw-combobox rw-widget" />
                                                 </div>
@@ -124,7 +147,7 @@
 
 
 @section scripts{
-  
+
 
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Content/select2/js/select2.min.js"></script>
