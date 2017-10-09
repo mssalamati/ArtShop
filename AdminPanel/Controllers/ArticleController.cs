@@ -56,13 +56,16 @@ namespace AdminPanel.Controllers
             Article newPost = new Article();
             string tempFolderName = "Upload/articles";
 
-            var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
-            if (!Thumbresult.ResultStatus)
+            if (model.Thumbnail != null)
             {
-                ModelState.AddModelError(string.Empty, Thumbresult.Error);
-                return View(model);
+                var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
+                if (!Thumbresult.ResultStatus)
+                {
+                    ModelState.AddModelError(string.Empty, Thumbresult.Error);
+                    return View(model);
+                }
+                newPost.Thumbnail = Thumbresult.FullPath;
             }
-            newPost.Thumbnail = Thumbresult.FullPath;
             newPost.isHandbook = model.isHandbook;
             newPost.SupportSubCategory = db.SupportSubCategories.Find(model.SubCategory);
             newPost.SupportCategory = db.SupportCategories.Find(model.Category);
@@ -124,19 +127,21 @@ namespace AdminPanel.Controllers
 
             //if (post.AuthorProfileId != userId)
             //    return HttpNotFound();
-            string tempFolderName = "Upload/articles";
             if (model.Thumbnail != null)
             {
-                
-                var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
-                if (!Thumbresult.ResultStatus)
+                string tempFolderName = "Upload/articles";
+                if (model.Thumbnail != null)
                 {
-                    ModelState.AddModelError(string.Empty, Thumbresult.Error);
-                    return View(model.FillPicture(post));
-                }
-                post.Thumbnail = Thumbresult.FullPath;
-            }
 
+                    var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
+                    if (!Thumbresult.ResultStatus)
+                    {
+                        ModelState.AddModelError(string.Empty, Thumbresult.Error);
+                        return View(model.FillPicture(post));
+                    }
+                    post.Thumbnail = Thumbresult.FullPath;
+                }
+            }
             post.isHandbook = model.isHandbook;
             post.SupportCategory = db.SupportCategories.Find(model.Category);
             post.SupportSubCategory = db.SupportSubCategories.Find(model.SubCategory);

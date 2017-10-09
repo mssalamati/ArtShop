@@ -15,6 +15,12 @@ namespace ArtShop.Controllers
             return View(data);
         }
 
+        public ActionResult Search(string keyword)
+        {
+
+            return View();
+        }
+
         public ActionResult Article(int id)
         {
             var article = db.Articles.Find(id);

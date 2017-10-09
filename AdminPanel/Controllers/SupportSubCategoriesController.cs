@@ -44,12 +44,12 @@ namespace AdminPanel.Controllers
             }
 
             var supportCat = db.SupportCategories.Find(model.supportCategoryId);
-            SupportSubCategory c = new SupportSubCategory() { Name = model.Name,supportCategory = supportCat};
-            
+            SupportSubCategory c = new SupportSubCategory() { Name = model.Name, supportCategory = supportCat };
+
             supportCat.supportSubCategories.Add(c);
             c.Translations = new List<SupportSubCategoryTranslation>();
             foreach (var item in model.Translations)
-                c.Translations.Add(new SupportSubCategoryTranslation() { languageId = item.languageId, Name = item.Name});
+                c.Translations.Add(new SupportSubCategoryTranslation() { languageId = item.languageId, Name = item.Name });
             db.SupportSubCategories.Add(c);
             try
             {
@@ -69,9 +69,9 @@ namespace AdminPanel.Controllers
             var finder = db.SupportSubCategories.Find(id);
             ViewBag.language = db.Languages.ToList();
             ViewBag.categories = db.SupportCategories.ToList();
-            SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>(), Name = finder.Name};
+            SupportCategoryViewModel cvm = new SupportCategoryViewModel() { Id = finder.Id, Translations = new List<SupportCategoryTranslationViewModel>(), Name = finder.Name, supportCategoryId = finder.supportCategory.Id };
             foreach (var item in finder.Translations)
-                cvm.Translations.Add(new SupportCategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name});
+                cvm.Translations.Add(new SupportCategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name });
 
             return PartialView(cvm);
         }
@@ -93,7 +93,7 @@ namespace AdminPanel.Controllers
                 }
 
                 else
-                    finder.Translations.Add(new SupportSubCategoryTranslation() { languageId = item.languageId, Name = item.Name});
+                    finder.Translations.Add(new SupportSubCategoryTranslation() { languageId = item.languageId, Name = item.Name });
 
             }
 

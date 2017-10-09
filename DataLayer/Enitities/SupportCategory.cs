@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enitities
 {
-    public enum CategoryType { Artist, Buyer, FirstPage }
+    public enum CategoryType { Artist, Buyer }
     public class SupportCategory : ITranslatable<SupportCategory, SupportCategoryTranslation>
     {
         [Key]
