@@ -13,7 +13,7 @@
 
             <li title="@Model.Current().Name">
 
-                <a href="@Url.Action("Category", "Support", new { id = @Model.GenerateSlug() })">@Model.supportCategory.Current().Name </a>
+                <a href="@Url.Action("Category", "Support", new { id = @Model.supportCategory.GenerateSlug() })">@Model.Current().Name </a>
 
             </li>
 

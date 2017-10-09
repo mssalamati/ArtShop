@@ -16,12 +16,12 @@
             </li>
 
             <li title="@Model.SupportCategory.Current().Name">
-                <a href="@Url.Action("Category", "Support", new { id = @Model.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
+                <a href="@Url.Action("Category", "Support", new { id = @Model.SupportCategory.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
             </li>
 
             <li title="@Model.SupportSubCategory.Current().Name">
 
-                <a href="@Url.Action("SubCategory", "Support", new { id = @Model.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
+                <a href="@Url.Action("SubCategory", "Support", new { id = @Model.SupportSubCategory.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
 
             </li>
 

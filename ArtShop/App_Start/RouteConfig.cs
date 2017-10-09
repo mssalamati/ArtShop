@@ -17,20 +17,20 @@ namespace ArtShop
             routes.MapMvcAttributeRoutes();
             routes.Canonicalize().NoWww().Lowercase().NoTrailingSlash();
             routes.Add("ProductDetails", new SeoFriendlyRoute("Artwork/{details}/{id}",
-       new RouteValueDictionary(new { controller = "Products", action = "single" }),
-       new MvcRouteHandler()));
+            new RouteValueDictionary(new { controller = "Products", action = "single" }),
+            new MvcRouteHandler()));
 
-            routes.Add("Articles", new SeoFriendlyRoute("Support/{Article}/{id}",
-new RouteValueDictionary(new { controller = "Support", action = "Article" }),
-new MvcRouteHandler()));
+            routes.Add("Articles", new SeoFriendlyRoute("Support/Article/{id}",
+            new RouteValueDictionary(new { controller = "Support", action = "Article" }),
+            new MvcRouteHandler()));
 
-            routes.Add("SubCategory", new SeoFriendlyRoute("Support/{SubCategory}/{id}",
-new RouteValueDictionary(new { controller = "Support", action = "SubCategory" }),
-new MvcRouteHandler()));
+            routes.Add("SubCategory", new SeoFriendlyRoute("Support/SubCategory/{id}",      
+            new RouteValueDictionary(new { controller = "Support", action = "SubCategory" }),
+            new MvcRouteHandler()));
 
-            routes.Add("Category", new SeoFriendlyRoute("Support/{Category}/{id}",
-new RouteValueDictionary(new { controller = "Support", action = "Category" }),
-new MvcRouteHandler()));
+            routes.Add("Category", new SeoFriendlyRoute("Support/Category/{id}",
+            new RouteValueDictionary(new { controller = "Support", action = "Category" }),
+            new MvcRouteHandler()));
 
             routes.MapRoute(
                 name: "Default",

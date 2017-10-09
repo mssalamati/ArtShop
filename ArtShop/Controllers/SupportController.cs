@@ -30,7 +30,7 @@ namespace ArtShop.Controllers
         public ActionResult SubCategory(int id)
         {
             var subCategory = db.SupportSubCategories.Find(id);
-            return View();
+            return View(subCategory);
         }
 
         public ActionResult Header()
