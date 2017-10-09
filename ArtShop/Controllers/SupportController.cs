@@ -18,14 +18,18 @@ namespace ArtShop.Controllers
         public ActionResult Article(int id)
         {
             var article = db.Articles.Find(id);
-
             return View(article);
         }
 
-        public ActionResult Categories()
+        public ActionResult Category(int id)
         {
+            var category = db.SupportCategories.Find(id);
+            return View(category);
+        }
 
-
+        public ActionResult SubCategory(int id)
+        {
+            var subCategory = db.SupportSubCategories.Find(id);
             return View();
         }
 

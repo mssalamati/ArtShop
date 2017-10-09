@@ -17,9 +17,9 @@
             <div class="topic-list">
                 @foreach (var item in Model)
                 {
-                    <a href="https://Artiscovery.com/support" class="topic-list-item">
+                    <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
                         <span class="topic-list-icon">
-                            <img src="@item.Thumbnail">
+                            <img src="https://admin.artiscovery.com/@item.Thumbnail">
                         </span>
                         <span class="topic-list-topic">
                             <h3>@item.Current().Title</h3>

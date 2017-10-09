@@ -15,13 +15,13 @@
 
             </li>
 
-            <li title="Legal">
-                <a href="/hc/en-us/categories/115000684107-Legal">Legal</a>
+            <li title="@Model.SupportCategory.Current().Name">
+                <a href="@Url.Action("Category", "Support", new { id = @Model.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
             </li>
 
-            <li title="Legal">
+            <li title="@Model.SupportSubCategory.Current().Name">
 
-                <a href="/hc/en-us/sections/115001093128-Legal">Legal</a>
+                <a href="@Url.Action("SubCategory", "Support", new { id = @Model.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
 
             </li>
 
@@ -48,11 +48,11 @@
 
                 <footer class="article-footer clearfix">
 
-                    <div class="article-vote">
+                    @*<div class="article-vote">
                         <small class="article-vote-count">
                             <span class="article-vote-label">0 out of 0 found this helpful</span>
                         </small>
-                    </div>
+                    </div>*@
 
                 </footer>
 
@@ -75,7 +75,16 @@
         <aside class="article-sidebar side-column">
             <section class="related-articles">
                 <h3>Related articles</h3>
-                <ul></ul>
+                <ul>
+
+                    @foreach (var item in Model.ReletedArticles)
+                    {
+                        <li>
+                            <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })">@item.Current().Title</a>
+                        </li>
+                    }
+
+                </ul>
             </section>
 
 

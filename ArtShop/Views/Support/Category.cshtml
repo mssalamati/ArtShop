@@ -1,0 +1,53 @@
+﻿@using DataLayer.Extentions;
+@model SupportCategory
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Support/_SupportLayout.cshtml";
+}
+
+<main role="main">
+    <nav class="sub-nav clearfix category-breadcrumbs">
+        <ol class="breadcrumbs">
+            <li title="Saatchi Art">
+                <a href="/Support">Artiscovery</a>
+            </li>
+            <li title="Getting Started ">
+
+                @Model.Current().Name
+
+            </li>
+        </ol>
+
+    </nav>
+
+    <section class="clearfix">
+        <h1 id="category-title">@Model.Current().Name </h1>
+        @*<a class="submit-a-request" href="/hc/en-us/requests/new">Submit a request</a>*@
+
+        <div class="section-tree">
+            @foreach (var item in Model.supportSubCategories)
+            {
+                <section class="section">
+                    <h3>
+                        <a href="@Url.Action("SubCategory", "Support", new { id = @item.GenerateSlug() })">@item.Current().Name</a>
+                    </h3>
+
+                    <ul class="article-list">
+
+                        @foreach (var article in item.Articles)
+                        {
+                            <li>
+
+                                <a href="@Url.Action("Article", "Support", new { id = @article.GenerateSlug() })">@article.Current().Title</a>
+                            </li>
+                        }
+
+                    </ul>
+                </section>
+            }
+
+        </div>
+
+
+    </section>
+</main>

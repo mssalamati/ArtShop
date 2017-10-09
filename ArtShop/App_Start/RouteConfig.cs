@@ -20,6 +20,18 @@ namespace ArtShop
        new RouteValueDictionary(new { controller = "Products", action = "single" }),
        new MvcRouteHandler()));
 
+            routes.Add("Articles", new SeoFriendlyRoute("Support/{Article}/{id}",
+new RouteValueDictionary(new { controller = "Support", action = "Article" }),
+new MvcRouteHandler()));
+
+            routes.Add("SubCategory", new SeoFriendlyRoute("Support/{SubCategory}/{id}",
+new RouteValueDictionary(new { controller = "Support", action = "SubCategory" }),
+new MvcRouteHandler()));
+
+            routes.Add("Category", new SeoFriendlyRoute("Support/{Category}/{id}",
+new RouteValueDictionary(new { controller = "Support", action = "Category" }),
+new MvcRouteHandler()));
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
