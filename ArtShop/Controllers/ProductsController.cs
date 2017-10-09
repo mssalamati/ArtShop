@@ -246,6 +246,7 @@ namespace ArtShop.Controllers
                 return HttpNotFound();
             p.categoryId = model.categoryId;
             p.subjectId = model.subjectId;
+            p.ArtCreatedYear = model.ArtCreatedYear;
             p.Mediums.Clear();
             p.Styles.Clear();
             var medumsList = Request["Mediums"].Split(',');
@@ -290,6 +291,7 @@ namespace ArtShop.Controllers
             if (!mine)
                 return HttpNotFound();
 
+            p.Materials.Clear();
             foreach (var item in model.MaterialList)
             {
                 var temp = db.Materials.Find(item);
@@ -343,11 +345,22 @@ namespace ArtShop.Controllers
 
             return View(p);
         }
+
         [HttpPost]
         [Authorize]
         public ActionResult EditPricing(Product model)
         {
-            return View(model);
+            var p = db.Products.Include("photo").Single(x => x.Id == model.Id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == model.Id);
+            if (!mine)
+                return HttpNotFound();
+
+            p.Price = model.Price;
+            db.SaveChanges();
+            return View(p);
         }
 
         [Authorize]
