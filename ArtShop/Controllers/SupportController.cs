@@ -11,7 +11,7 @@ namespace ArtShop.Controllers
         // GET: Support
         public ActionResult Index()
         {
-            var data = db.SupportCategories.Where(a=>a.categoryType == DataLayer.Enitities.CategoryType.Artist).ToList();
+            var data = db.Articles.Where(a=>a.isHandbook == true).ToList();
             return View(data);
         }
 

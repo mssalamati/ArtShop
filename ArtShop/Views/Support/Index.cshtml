@@ -1,5 +1,5 @@
 ﻿@using DataLayer.Extentions;
-@model ICollection<SupportCategory>
+@model ICollection<Article>
 <main role="main">
     <!--MAIN SECTION-->
     <section class="main-section">
@@ -17,13 +17,13 @@
             <div class="topic-list">
                 @foreach (var item in Model)
                 {
-                    <a href="https://https://Artiscovery.com/support" class="topic-list-item">
+                    <a href="https://Artiscovery.com/support" class="topic-list-item">
                         <span class="topic-list-icon">
                             <img src="@item.Thumbnail">
                         </span>
                         <span class="topic-list-topic">
-                            <h3>@item.Current().Name </h3>
-                            <p>@item.Current().Description</p>
+                            <h3>@item.Current().Title</h3>
+                            <p>@item.Current().ShortDescription</p>
                         </span>
                         <img src="~/Content/Images/Support/icon_chevron_right.png">
                     </a>

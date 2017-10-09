@@ -6,6 +6,7 @@
 @model ArticleViewModel
 
 <link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
+<link rel="stylesheet" href="~/Content/Admin/vendor/select2/dist/css/select2.css">
 
 <div class="page-title">
     <div class="title"> Artiscovery</div>
@@ -28,7 +29,7 @@
 }
 <div class="row">
     <div class="col-lg-12 portlets">
-        @using (Html.BeginForm("edit", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("edit", "article", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -64,47 +65,70 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> دسته بندی * </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> زیر دسته بندی * </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> Show on Artist Handbook </label>
+                        </div>
+                    </div>
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
-                            <div class="col-sm-4">
-                                <select class="form-control" name="Category" style="width: 100%;">
-                                    @foreach (var item in ((List<SupportCategory>)ViewBag.caregories))
+                            <div class="col-md-4">
+                                <select class="form-control" name="Category" id="supportCategory" style="width: 100%;">
+                                    @foreach (var item in ((List<SupportCategory>)ViewBag.categories))
                                     {
-                                        if (Model.Category == item.Id)
-                                        {
-                                            <option selected="selected" value="@item.Id">@item.Name</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Id">@item.Name</option>
-                                        }
+                                        <option value="@item.Id">@item.Name</option>
                                     }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="SubCategory" id="supportSubCategory" style="width: 100%;">
+                                    <option value=""> </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="isHandbook" id="isHandbook" style="width: 100%;">
+                                    @if (Model.isHandbook)
+                                    {
+                                        <option selected value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="false">No</option>
+                                        <option value="true">Yes</option>
+                                    }
+                                    
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-12" style="margin-top:2px">
+                    <div class="col-md-12" style="margin-top:10px;margin-bottom:5px">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label">
-                                Related Artworks *
-                                <script> var temp = '<input type="text" name="Links[]" value="" class="form-control" />';</script>
-                                <button type="button" class="btn btn-xs" onclick="$('#links').append(temp);">
-                                    <i class="fa fa-plus text-success"></i>
-                                </button>
+                                Related Articles *
                             </label>
-                            @*<div class="col-sm-10" id="links">
-                                @if (Model.Links != null)
-                                {
-                                    foreach (var item in Model.Links)
+                            <div class="col-sm-10" id="links">
+                                <select name="relatedArticles" class="selectx" multiple="multiple" style="width:100%">
+                                    @foreach (var item in (List<Article>)ViewBag.articles)
                                     {
-                                        <input type="text" name="Links[]" value="@item" class="form-control" />
+                                        if (item.Id == Model.ReletedArticles.SingleOrDefault())
+                                        {
+                                            <option selected value="@item.Id">@item.Title</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Title</option>
+                                        }
                                     }
-                                }
-                             
-                            </div>*@
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -167,39 +191,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="panel">
-                <div class="card-header">
-                    <div class="col-md-12">
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <p>طول تصاویر می بایست از عرض آنها بیشتر باشد</p>
-                                <label style="padding:5px" class="col-sm-2 control-label">
-                                    تصاویر *
-                                    <script> var c = 0; var e = ']" /> </div>'; var temp2 = '<div class="uploader blue"><input type="button" name="file" class="button" value="انتخاب.." /><input type="text" class="filename" readonly="readonly" /> <input type="file" id="Image" name="HeaderPhotos[';</script>
-                                    <button type="button" class="btn btn-xs" onclick="$('#photosdiv').append(temp2+c+e); initinputcss(); c++;">
-                                        <i class="fa fa-plus text-success"></i>
-                                    </button>
-                                </label>
-
-                                <div class="col-sm-10" id="photosdiv">
-                                    @foreach (var item in Model.HeaderPhotoPaths)
-                                    {
-                                        <div class="col-sm-3" id="heare_holder_@item.Key">
-                                            <button type="button" onclick="removephoto(@item.Key)" class="btn">
-                                                <i class="fa fa-remove text-danger"></i>
-                                            </button>
-                                            <img style="width:100px" src="@item.Value" />
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         }
     </div>
 </div>
@@ -207,7 +198,7 @@
 
 @section scripts{
     <script src="~/Content/admin/vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
-
+    <script src="~/Content/admin/vendor/select2/dist/js/select2.js"></script>
 
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
@@ -223,10 +214,15 @@
         });
 
     </script>
-
+    <script>
+        $('.selectx').select2();
+    </script>
     <script>
         $('.chosen').chosen({
             width: '100%'
+        });
+        $(document).on('change', '#supportCategory', function () {
+            changepro();
         });
     </script>
 
@@ -268,5 +264,25 @@
                 });
             }
         }
+    </script>
+    <script>
+        function changepro() {
+            $('#supportSubCategory option').remove();
+            $('#supportSubCategory').prop('disabled', true);
+            var iid = $("#supportCategory").val();
+            $.get("/Article/LoadSubCategories?id=" + iid, function (data) {
+                $('#supportSubCategory').prop('disabled', false);
+                $.each(data, function (key, value) {
+                    if (value.Id == '@Model.SubCategory') {
+                        $("#supportSubCategory").append($("<option selected></option>").val(value.Id).html(value.Name));
+                    }
+                    else {
+                        $("#supportSubCategory").append($("<option></option>").val(value.Id).html(value.Name));
+                    }
+
+                });
+            });
+        }
+        changepro();
     </script>
 }

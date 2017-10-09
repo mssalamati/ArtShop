@@ -54,9 +54,9 @@
                                 @item.Title
                             </th>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="/admin/posts/edit/@item.Id">ویرایش</a>
+                                <a class="btn btn-primary btn-sm" href="/article/edit/@item.Id">ویرایش</a>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
-                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/admin/posts/delete/@item.Id">آیا مطمئن هستید؟</a>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/Article/delete/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
                         </tr>
                     }
