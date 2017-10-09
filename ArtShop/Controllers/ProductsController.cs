@@ -345,11 +345,22 @@ namespace ArtShop.Controllers
 
             return View(p);
         }
+
         [HttpPost]
         [Authorize]
         public ActionResult EditPricing(Product model)
         {
-            return View(model);
+            var p = db.Products.Include("photo").Single(x => x.Id == model.Id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == model.Id);
+            if (!mine)
+                return HttpNotFound();
+
+            p.Price = model.Price;
+            db.SaveChanges();
+            return View(p);
         }
 
         [Authorize]

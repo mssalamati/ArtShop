@@ -73,53 +73,64 @@
         }
     }
 </style>
-
-<div id="upload">
-    <div class="app">
-        <div class="full-bleed full-bleed--background">
-            <div class="container artwork__container">
-                <span></span>
-                <div class="edit-page">
-                    @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Pricing", id = Model.Id, Status = Model.Status })
-                    <div class="edit-page__container">
-                        @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Pricing", id = Model.Id, Status = Model.Status })
-                        <div class="edit-page__content pane pane--inline pane--content pane--centered">
+@using (Html.BeginForm("EditPricing", "Products", FormMethod.Post, new { id = "mform", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div id="upload">
+        <div class="app">
+            <div class="full-bleed full-bleed--background">
+                <div class="container artwork__container">
+                    <span></span>
+                    <div class="edit-page">
+                        @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Pricing", id = Model.Id, Status = Model.Status })
+                        <div class="edit-page__container">
+                            @if (!IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Pricing", id = Model.Id, Status = Model.Status })
+                            }
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
-                                <div class="wizard-step">
-                                    <div class="pane__content__block">
-                                        <div class="pricing">
-                                            <h1 class="animate-group-0-0">@UploadRes.Pricing</h1>
-                                            <p class="descriptor animate-group-0-1" style="@rtldirection">
-                                            <p>@UploadRes.step10_description</p>
-                                            <div class="animate-group-0-2 z-index-fix-0 form-group form-group--inline" style="@rtldirection">
-                                                <label for="price" style="@rtlstl">
-                                                    @UploadRes.step10_l1
-                                                </label>
-                                                <div class="price__price-input-container">
-                                                    <input type="number" name="Price" class="" step="any" id="price">
-                                                    <div class="pricing__price-cta"></div>
+                                <div class="edit-page__content pane pane--inline pane--content pane--centered">
+                                    <div class="wizard-step">
+                                        <div class="pane__content__block">
+                                            <div class="pricing">
+                                                <h1 class="animate-group-0-0">@UploadRes.Pricing</h1>
+                                                <p class="descriptor animate-group-0-1" style="@rtldirection">
+                                                <p>@UploadRes.step10_description</p>
+                                                <div class="animate-group-0-2 z-index-fix-0 form-group form-group--inline" style="@rtldirection">
+                                                    <label for="price" style="@rtlstl">
+                                                        @UploadRes.step10_l1
+                                                    </label>
+                                                    <div class="price__price-input-container">
+                                                        <input type="number" name="Price" value="@Model.Price" class="" step="any" id="price">
+                                                        <div class="pricing__price-cta"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="animate-group-0-3 form-group form-group--inline pricing__profit" style="@rtldirection">
-                                                <label style="@rtlstl" for="profit">
-                                                    @UploadRes.step10_l2
-                                                </label>
-                                                <input type="text" value="$ --" readonly="" id="profit">
-                                            </div>
-                                            <div>
-                                                <div class="animate-group-0-4 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="shipping-cost">@UploadRes.step10_l3</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>
-                                                <div class="animate-group-0-5 pricing__separator"></div>
-                                                <div class="animate-group-0-6 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="allin">@UploadRes.step10_l4</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
+                                                <div class="animate-group-0-3 form-group form-group--inline pricing__profit" style="@rtldirection">
+                                                    <label style="@rtlstl" for="profit">
+                                                        @UploadRes.step10_l2
+                                                    </label>
+                                                    <input type="text" value="$ --" readonly="" id="profit">
+                                                </div>
+                                                <div>
+                                                    <div class="animate-group-0-4 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="shipping-cost">@UploadRes.step10_l3</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>
+                                                    <div class="animate-group-0-5 pricing__separator"></div>
+                                                    <div class="animate-group-0-6 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="allin">@UploadRes.step10_l4</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @if (IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Description", id = Model.Id, Status = Model.Status })
+                            }
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+}
