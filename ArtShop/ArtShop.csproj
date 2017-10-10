@@ -617,6 +617,7 @@
     <Content Include="Views\Support\Article.cshtml" />
     <Content Include="Views\Support\Category.cshtml" />
     <Content Include="Views\Support\SubCategory.cshtml" />
+    <Content Include="Views\Support\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

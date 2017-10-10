@@ -82,7 +82,14 @@
                                 <select class="form-control" name="Category" id="supportCategory" style="width: 100%;">
                                     @foreach (var item in ((List<SupportCategory>)ViewBag.categories))
                                     {
-                                        <option value="@item.Id">@item.Name</option>
+                                        if (item.Id == Model.Category)
+                                        {
+                                            <option selected value="@item.Id">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
                                     }
                                 </select>
                             </div>
@@ -103,7 +110,7 @@
                                         <option selected value="false">No</option>
                                         <option value="true">Yes</option>
                                     }
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -115,7 +122,7 @@
                                 Related Articles *
                             </label>
                             <div class="col-sm-10" id="links">
-                                <select name="relatedArticles" class="selectx" multiple="multiple" style="width:100%">
+                                <select name="ReletedArticles" class="selectx" multiple="multiple" style="width:100%">
                                     @foreach (var item in (List<Article>)ViewBag.articles)
                                     {
                                         if (item.Id == Model.ReletedArticles.SingleOrDefault())

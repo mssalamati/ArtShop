@@ -17,8 +17,9 @@ namespace ArtShop.Controllers
 
         public ActionResult Search(string keyword)
         {
-
-            return View();
+            ViewBag.keyword = keyword;
+            var result = db.Articles.Where(a => a.Title.Contains(keyword)).ToList();
+            return View(result);
         }
 
         public ActionResult Article(int id)
