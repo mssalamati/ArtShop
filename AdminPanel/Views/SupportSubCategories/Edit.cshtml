@@ -42,7 +42,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label"> نام <small>( این فیلد فقط درون پنل ادمین قابل مشاهده است)</small> </label>
-                        <input name="Name" id="Name" value="" class="form-control" />
+                        <input name="Name" id="Name" value="@Model.Name" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -51,7 +51,14 @@
                         <select class="form-control" name="supportCategoryId" id="supportCategoryId" style="width: 100%;">
                             @foreach (var item in ((List<SupportCategory>)ViewBag.categories))
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                if (Model.supportCategoryId == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             }
 
                         </select>

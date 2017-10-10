@@ -1,0 +1,56 @@
+﻿@using DataLayer.Extentions;
+@model ICollection<Article>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Support/_SupportLayout.cshtml";
+}
+
+<main role="main">
+    <nav class="sub-nav clearfix">
+        <ol class="breadcrumbs">
+
+            <li title="Artiscovery">
+
+                <a href="/support">Artiscovery</a>
+
+            </li>
+
+            <li title="Search results">
+
+                Search results
+
+            </li>
+
+        </ol>
+
+    </nav>
+
+    <div class="search-results clearfix">
+        <h1 class="search-results-heading">@Model.Count results for "@ViewBag.keyword"</h1>
+        <section class="search-results-column">
+            <h2 class="search-results-subheading">
+                Knowledge base
+            </h2>
+
+            <ul class="search-results-list">
+
+                @foreach (var item in Model)
+                {
+                    <li class="search-result">
+                        <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="search-result-link">@item.Current().Title</a>
+
+                        @* <span class="search-result-votes">7</span>*@
+
+                        <div class="search-result-meta">by @item.Author <time datetime="@item.PostedOn" title="2015-03-31 23:27" data-datetime="relative">@item.PostedOn</time> in <a href="@Url.Action("Category", "Support", new { id = @item.SupportCategory.GenerateSlug() })">@item.SupportCategory.Current().Name</a> &gt; <a href="@Url.Action("SubCategory", "Support", new { id = @item.SupportSubCategory.GenerateSlug() })">@item.SupportSubCategory.Current().Name</a></div>
+                        <div class="search-result-description">@item.Current().ShortDescription </div>
+                    </li>
+                }
+
+            </ul>
+        </section>
+
+
+    </div>
+
+
+</main>

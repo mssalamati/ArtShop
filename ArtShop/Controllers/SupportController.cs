@@ -11,22 +11,33 @@ namespace ArtShop.Controllers
         // GET: Support
         public ActionResult Index()
         {
-            var data = db.SupportCategories.Where(a=>a.categoryType == DataLayer.Enitities.CategoryType.Artist).ToList();
+            var data = db.Articles.Where(a=>a.isHandbook == true).ToList();
             return View(data);
+        }
+
+        public ActionResult Search(string keyword)
+        {
+            ViewBag.keyword = keyword;
+            var result = db.Articles.Where(a => a.Title.Contains(keyword)).ToList();
+            return View(result);
         }
 
         public ActionResult Article(int id)
         {
             var article = db.Articles.Find(id);
-
             return View(article);
         }
 
-        public ActionResult Categories()
+        public ActionResult Category(int id)
         {
+            var category = db.SupportCategories.Find(id);
+            return View(category);
+        }
 
-
-            return View();
+        public ActionResult SubCategory(int id)
+        {
+            var subCategory = db.SupportSubCategories.Find(id);
+            return View(subCategory);
         }
 
         public ActionResult Header()

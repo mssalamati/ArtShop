@@ -19,13 +19,22 @@ namespace AdminPanel.Models.ViewModel
             this.Title = translation.Title;
             this.TitleDef = model.Title;
             this.Category = model.SupportCategory.Id;
+            this.ThumbnailPath = "/" + model.Thumbnail;
+            this.ReletedArticles = model.ReletedArticles.Select(x => x.Id).ToList();
             this.SubCategory = model.SupportSubCategory.Id;
             this.ShortDescription = translation.ShortDescription;
+            this.isHandbook = model.isHandbook;
         }
 
         public ArticleViewModel()
         {
 
+        }
+
+        public ArticleViewModel FillPicture(Article model)
+        {
+            ThumbnailPath = "/" + model.Thumbnail;
+            return this;
         }
 
         public virtual int Id { get; set; }
@@ -39,9 +48,12 @@ namespace AdminPanel.Models.ViewModel
         public string Title { get; set; }
         [Required]
         public string TitleDef { get; set; }
+        public bool isHandbook { get; set; }
+        public CategoryType ArticleType { get; set; }
         public List<int> ReletedArticles { get; set; }
         public int Category { get; set; }
         public int SubCategory { get; set; }
+        public HttpPostedFileBase Thumbnail { get; set; }
         public string ThumbnailPath { get; set; }
         public Dictionary<int, string> HeaderPhotoPaths { get; set; }
     }

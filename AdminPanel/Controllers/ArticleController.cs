@@ -54,9 +54,23 @@ namespace AdminPanel.Controllers
                 return View(model);
 
             Article newPost = new Article();
-            newPost.SupportSubCategory= db.SupportSubCategories.Find(model.SubCategory);
+            string tempFolderName = "Upload/articles";
+
+            if (model.Thumbnail != null)
+            {
+                var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
+                if (!Thumbresult.ResultStatus)
+                {
+                    ModelState.AddModelError(string.Empty, Thumbresult.Error);
+                    return View(model);
+                }
+                newPost.Thumbnail = Thumbresult.FullPath;
+            }
+            newPost.isHandbook = model.isHandbook;
+            newPost.SupportSubCategory = db.SupportSubCategories.Find(model.SubCategory);
             newPost.SupportCategory = db.SupportCategories.Find(model.Category);
-            newPost.ReletedArticles = db.Articles.Where(x => model.ReletedArticles.Any(y => y == x.Id)).ToList();
+            if (model.ReletedArticles != null)
+                newPost.ReletedArticles = db.Articles.Where(x => model.ReletedArticles.Any(y => y == x.Id)).ToList();
 
             newPost.Title = model.TitleDef;
             newPost.Translations = new List<ArticleTranslation>();
@@ -80,12 +94,12 @@ namespace AdminPanel.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
-            ViewBag.articles = db.Articles.ToList();
-            ViewBag.caregories = db.SupportCategories.ToList();
+            ViewBag.articles = db.Articles.Where(x=>x.Id != id).ToList();
+            ViewBag.categories = db.SupportCategories.ToList();
             ViewBag.language = db.Languages.ToList();
             var model = db.Articles.Find(id);
-            if (model.AuthorProfileId != userId)
-                return HttpNotFound();
+            //if (model.AuthorProfileId != userId)
+            //    return HttpNotFound();
             ArticleTranslation modelTranslation;
             var curr = model.Translations.SingleOrDefault(x => x.languageId == language);
             if (curr == null)
@@ -106,19 +120,35 @@ namespace AdminPanel.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             ViewBag.articles = db.Articles.ToList();
-            ViewBag.caregories = db.Categories.ToList();
+            ViewBag.categories = db.SupportCategories.ToList();
             ViewBag.language = db.Languages.ToList();
 
             var post = db.Articles.Find(model.Id);
 
-            if (post.AuthorProfileId != userId)
-                return HttpNotFound();
+            //if (post.AuthorProfileId != userId)
+            //    return HttpNotFound();
+            if (model.Thumbnail != null)
+            {
+                string tempFolderName = "Upload/articles";
+                if (model.Thumbnail != null)
+                {
 
+                    var Thumbresult = ImageHelper.Saveimage(Server, model.Thumbnail, tempFolderName, ImageHelper.saveImageMode.Squre);
+                    if (!Thumbresult.ResultStatus)
+                    {
+                        ModelState.AddModelError(string.Empty, Thumbresult.Error);
+                        return View(model.FillPicture(post));
+                    }
+                    post.Thumbnail = Thumbresult.FullPath;
+                }
+            }
+            post.isHandbook = model.isHandbook;
             post.SupportCategory = db.SupportCategories.Find(model.Category);
             post.SupportSubCategory = db.SupportSubCategories.Find(model.SubCategory);
             post.Title = model.TitleDef;
             post.ReletedArticles.Clear();
-            post.ReletedArticles = db.Articles.Where(x => model.ReletedArticles.Any(y => y == x.Id)).ToList();
+            if (model.ReletedArticles != null)
+                post.ReletedArticles = db.Articles.Where(x => model.ReletedArticles.Any(y => y == x.Id)).ToList();
             var translation = post.Translations.Single(x => x.languageId == model.languageId);
             translation.Title = model.Title;
             translation.ShortDescription = model.ShortDescription;
@@ -178,8 +208,8 @@ namespace AdminPanel.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var post = db.Articles.Find(id);
-            if (post.AuthorProfileId != userId)
-                return HttpNotFound();
+            //if (post.AuthorProfileId != userId)
+            //    return HttpNotFound();
             db.Articles.Remove(post);
             db.SaveChanges();
             return RedirectToAction("Index");

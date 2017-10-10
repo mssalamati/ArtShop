@@ -71,13 +71,13 @@
                             <label style="padding:5px;width:100%" class="col-sm-2 control-label"> زیر دسته بندی * </label>
                         </div>
                         <div class="col-md-4">
-                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> نوع مطلب </label>
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> Show on Artist Handbook? </label>
                         </div>
                     </div>
                     <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <select class="form-control" name="supportCategory" id="supportCategory" style="width: 100%;">
+                                <select class="form-control" name="Category" id="supportCategory" style="width: 100%;">
                                     @foreach (var item in ((List<SupportCategory>)ViewBag.caregories))
                                     {
                                         <option value="@item.Id">@item.Name</option>
@@ -85,15 +85,14 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-
-                                <select class="form-control" name="supportSubCategory" id="supportSubCategory" style="width: 100%;">
+                                <select class="form-control" name="SubCategory" id="supportSubCategory" style="width: 100%;">
                                     <option value=""> </option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-control" name="ArticleType" style="width: 100%;">
-                                    <option value="Buyer">Buyer</option>
-                                    <option value="Artis">Artists</option>
+                                <select class="form-control" name="isHandbook" id="isHandbook" style="width: 100%;">
+                                    <option selected value="false">No</option>
+                                    <option value="true">Yes</option>
                                 </select>
                             </div>
                         </div>
@@ -151,7 +150,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label">
-                                تصویر مطلب *
+                                تصویر  
                             </label>
                             <div class="col-sm-10">
                                 <div class="uploader blue">

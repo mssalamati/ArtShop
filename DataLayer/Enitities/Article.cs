@@ -41,6 +41,7 @@ namespace DataLayer.Enitities
         /// Flag to represent whether the article is published or not.
         /// </summary>
         public virtual bool Published { get; set; }
+        public virtual bool isHandbook { get; set; }
 
         /// <summary>
         /// The post published date.
