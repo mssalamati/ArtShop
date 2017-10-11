@@ -1,8 +1,41 @@
-﻿<nav class="user-nav">
+﻿@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "margin-top:5px" : "";
+}
+
+
+<nav class="user-nav" style="width:100% !important">
     <div class="logo">
         <a title="Artiscovery" href="http://www.Artiscovery.com">
             <img style="height:auto;image-rendering:-webkit-optimize-contrast"src="~/Content/Images/logo.png" alt="Logo">
         </a>
+    </div>
+    <div>
+        <button type="button" class="btn btn-block dropdown-toggle" data-toggle="dropdown" style="margin-top:10px;float:right;background:none" aria-haspopup="true" aria-expanded="false">
+            @if (culture == "en-us")
+            {
+                <img style="margin-top:5px;width:20px;float:left;opacity:1" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">English <i class="fa fa-caret-down"></i></span>
+            }
+            else
+            {
+                <img style="margin-top:5px;width:20px;float:left;opacity:1;" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                <span class="lnsp" style="padding-left:5px;color:black;font-size:13px">فارسی<i class="fa fa-caret-down" style="margin-left:6px"></i></span>
+            }
+        </button>
+
+        <div class="dropdown-menu" style="right:0;left:unset;float:right;margin-top:45px">
+            <a href="/Home/SetCulture?culture=fa" style="display:block;margin-left:7px">
+                <img style="margin-top:5px;width:20px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                <span style="padding-left:17px;color:black;font-size:13px">فارسی</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="/Home/SetCulture?culture=en-us" style="display:block;margin-left:7px;margin-top:6px">
+                <img style="margin-top:5px;width:20px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                <span style="padding-left:17px;color:black;font-size:13px">English</span>
+            </a>
+        </div>
     </div>
     <a class="login" data-auth-action="signin" role="button" href="">Sign in</a>
 

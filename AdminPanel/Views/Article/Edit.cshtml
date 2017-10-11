@@ -125,7 +125,7 @@
                                 <select name="ReletedArticles" class="selectx" multiple="multiple" style="width:100%">
                                     @foreach (var item in (List<Article>)ViewBag.articles)
                                     {
-                                        if (item.Id == Model.ReletedArticles.SingleOrDefault())
+                                        if (Model.ReletedArticles.Any(a=>a == item.Id))
                                         {
                                             <option selected value="@item.Id">@item.Title</option>
                                         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtShop.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -44,6 +45,35 @@ namespace ArtShop.Controllers
         {
             
             return PartialView("_Header");
+        }
+
+        public ActionResult SetCulture(string culture)
+        {
+            HttpCookie popupCookie = Request.Cookies["isShown"];
+            if (popupCookie != null)
+                popupCookie.Value = "true";   // update cookie value
+            else
+            {
+                popupCookie = new HttpCookie("isShown");
+                popupCookie.Value = "true";
+                popupCookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(popupCookie);
+
+
+            culture = CultureHelper.GetImplementedCulture(culture);
+            HttpCookie cookie = Request.Cookies["_culture"];
+            if (cookie != null)
+                cookie.Value = culture;   // update cookie value
+            else
+            {
+                cookie = new HttpCookie("_culture");
+                cookie.Value = culture;
+                cookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(cookie);
+            string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
+            return Redirect(url);
         }
     }
 }

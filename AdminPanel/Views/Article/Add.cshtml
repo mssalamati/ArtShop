@@ -107,7 +107,14 @@
                                 <select name="relatedArticles" class="selectx" multiple="multiple" style="width:100%">
                                     @foreach (var item in (List<Article>)ViewBag.articles)
                                     {
-                                        <option value="@item.Id">@item.Title.Substring(0, 7)</option>
+                                        if (Model.ReletedArticles.Any(a => a == item.Id))
+                                        {
+                                            <option selected value="@item.Id">@item.Title</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Title</option>
+                                        }
                                     }
                                 </select>
                             </div>
