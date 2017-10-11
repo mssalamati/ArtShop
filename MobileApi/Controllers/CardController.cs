@@ -86,7 +86,7 @@ namespace MobileApi.Controllers
             var addedAlbum = db.Products.Find(id);
             var cart = CartManager.GetCart(User.Identity.Name);
             cart.AddToCart(addedAlbum, type);
-            return Request.CreateResponse(HttpStatusCode.OK, new { result = true }, formatter);
+            return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Added" }, formatter);
         }
 
         protected override void Dispose(bool disposing)
