@@ -9,6 +9,6 @@ CKEDITOR.editorConfig = function (config) {
     config.skin = 'moono-lisa';
     // config.uiColor = '#AADC6E';
     config.extraPlugins = 'uploadimage';
-    config.imageUploadUrl = '/admin/posts/uploadnow';
-    config.uploadUrl = '/admin/posts/uploadnow';
+    config.imageUploadUrl = '/upload/articles';
+    config.uploadUrl = '/upload/articles';
 };

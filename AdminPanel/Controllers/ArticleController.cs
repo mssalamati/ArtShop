@@ -175,7 +175,7 @@ namespace AdminPanel.Controllers
         public void uploadnow(HttpPostedFileWrapper upload)
         {
             var userId = User.Identity.GetUserId();
-            var folder = Server.MapPath("~/Upload/cms/" + userId);
+            var folder = Server.MapPath("~/Uploads/cms/" + userId);
             FileHelper.CreateFolderIfNeeded(folder);
             if (upload != null)
             {
@@ -194,11 +194,11 @@ namespace AdminPanel.Controllers
         public ActionResult uploadPartial()
         {
             var userId = User.Identity.GetUserId();
-            var appData = Server.MapPath("~/Upload/cms/" + userId);
+            var appData = Server.MapPath("~/Uploads/cms/" + userId);
             FileHelper.CreateFolderIfNeeded(appData);
             var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
             {
-                Url = Url.Content("/Upload/cms/" + userId + "/" + Path.GetFileName(x))
+                Url = Url.Content("/Uploads/cms/" + userId + "/" + Path.GetFileName(x))
             });
             return View(images);
         }
