@@ -601,7 +601,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagging your artwork with keywords allows collectors to find your artwork more easily. It’s best to enter simple, descriptive words that describe the key visual elements of the work, such as color, subject matter, and artistic style..
+        ///   Looks up a localized string similar to By tagging your artwork and using keywords, you raise the chance of your work being noticed. The best keywords are the ones which are simple, regularly used in search and describing the visual elements of your work such as subject, style, materials, and color. We recommend to use the strongest keywords first. For more information please see here..
         /// </summary>
         public static string step5_keywords_detail {
             get {

@@ -136,7 +136,7 @@
     <value>هنرمند</value>
   </data>
   <data name="Artworks" xml:space="preserve">
-    <value>آثار هنری</value>
+    <value>آثار هنری من</value>
   </data>
   <data name="Artworks_from" xml:space="preserve">
     <value>آثار هنری از</value>
@@ -253,7 +253,7 @@
     <value>شرایط استفاده</value>
   </data>
   <data name="Upload" xml:space="preserve">
-    <value>بارگذاری</value>
+    <value>بارگذاری اثر</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>خوش آمدید</value>

@@ -139,7 +139,7 @@ if (current == selected)
             {
                 <li class="list-item collection">
                     <div class="small-12 columns">
-                        <a href="/publicprofile/CollectionView?userid=7affbd41-6c92-4c43-a81b-e6c907de292e&amp;id=9" title="adb type test">
+                        <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" >
                             @if (item.Artworks != null && item.Artworks.Count() != 0 && item.Artworks.First().product != null)
                             {
                                 <img src="@item.Artworks.First().product.Widephoto.Path" alt="">
@@ -159,7 +159,7 @@ if (current == selected)
                             if (art == null)
                             {
                                 <div class="small-4 columns">
-                                    <a href="/publicprofile/CollectionView?userid=" title="">
+                                    <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
                                         <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
                                     </a>
                                 </div>
@@ -167,7 +167,7 @@ if (current == selected)
                             else
                             {
                                 <div class="small-4 columns">
-                                    <a href="/publicprofile/CollectionView?userid=" title="">
+                                    <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
                                         <img src="" alt="test collection item" nopin="nopin">
                                     </a>
                                 </div>
@@ -177,7 +177,7 @@ if (current == selected)
 
                     <div class="row collection-meta">
                         <h4 class="collection-title">
-                            <a href="/publicprofile/CollectionView?userid=7affbd41-6c92-4c43-a81b-e6c907de292e&amp;id=9" title="adb type test">
+                            <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" >
                                 <span class="ellipsis">@item.Title</span> <span class="count">(@item.Artworks.Count())</span>
                             </a>
                         </h4>

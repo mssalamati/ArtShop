@@ -245,10 +245,23 @@ namespace ArtShop.Controllers
             collection.Description = model.CollectionDescription;
             collection.IsPrivate = model.IsPrivate;
             collection.Type = model.CollectionType;
-
+            collection.Artworks = model.collectionProduct;
             db.SaveChanges();
 
             return RedirectToAction("Collection");
+        }
+
+        [HttpGet]
+        public ActionResult DeletArtwork(int CollectionId,int ArtworkId)
+        {
+            var userId = User.Identity.GetUserId();
+            var userProfile = db.UserProfiles.Find(userId);
+            var collection = userProfile.Collections.FirstOrDefault(x => x.Id == CollectionId);
+            var artwork = db.CollectionProduct.Include("collection").FirstOrDefault(a=>a.Id==ArtworkId);
+            collection.Artworks.Remove(artwork);
+            db.Entry(artwork).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return Content("done");
         }
 
         public ActionResult Favorites()

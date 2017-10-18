@@ -61,7 +61,7 @@ namespace ArtShop.Controllers
             ViewBag.count = count;
             ViewBag.pageSize = pageSize;
             p = p.Skip((page - 1) * pageSize).Take(pageSize);
-            var res = p.ToList();
+            var res = p.Where(a=>a.user_id != null).ToList();
             return View(res);
         }
     }

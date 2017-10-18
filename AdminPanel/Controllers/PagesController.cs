@@ -64,7 +64,7 @@ namespace AdminPanel.Controllers
             var appData = Server.MapPath("~/Uploads/cms");
             var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
             {
-                Url = Url.Content("http://file.artiscovery.com/Uploads/cms/" + Path.GetFileName(x))
+                Url = Url.Content("https://file.artiscovery.com/Uploads/cms/" + Path.GetFileName(x))
             });
             return View(images);
         }

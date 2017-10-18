@@ -2,6 +2,17 @@
 @{
     ViewBag.Title = "Privacy Policy | Artiscovery";
 }
+<style>
+    li {
+        list-style-type: unset !important;
+        list-style-position: inside !important;
+    }
+
+    ul {
+        list-style-type: unset !important;
+        list-style-position: inside !important;
+    }
+</style>
 
 @model SitePageTranslation
 
@@ -10,10 +21,10 @@
 
         <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="direction:rtl">
             <ul class="side-nav" style="height: 12602px;">
-                <li><a href="/pages/about">@ShareRes.About</a></li>
-                <li><a href="/pages/terms">@ShareRes.Terms</a></li>
-                <li><a href="/pages/privacypolicy" class="active">@ShareRes.Privacy_policy</a></li>
-                <li><a href="/pages/copyrightpolicy">@ShareRes.Copyright_policy</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/about">@ShareRes.About</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/terms">@ShareRes.Terms</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/privacypolicy" class="active">@ShareRes.Privacy_policy</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/copyrightpolicy">@ShareRes.Copyright_policy</a></li>
             </ul>
         </div>
         <div class="small-12 large-8 large-pull-4 columns bgtext content" style="direction:rtl">

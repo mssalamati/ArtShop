@@ -112,7 +112,7 @@ namespace ArtShop.Controllers
                     model.GooglePlus = userProfile.userLinks.GooglePlus;
                     model.Website = userProfile.userLinks.Website;
 
-                    model.country = userProfile.country;
+                    model.countryId = userProfile.country == null ? 0 : userProfile.country.Id;
                     model.City = userProfile.City;
                     model.Region = userProfile.Region;
                     model.ZipCode = userProfile.ZipCode;
@@ -168,9 +168,7 @@ namespace ArtShop.Controllers
             //item.Education = model.Education;
             //item.Events = model.Events;
             //item.Exhibitions = model.Exhibitions;
-
-
-
+            
             userProfile.countryId = model.countryId;
             userProfile.City = model.City;
             userProfile.Region = model.Region;

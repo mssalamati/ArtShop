@@ -107,14 +107,9 @@
                                 <select name="relatedArticles" class="selectx" multiple="multiple" style="width:100%">
                                     @foreach (var item in (List<Article>)ViewBag.articles)
                                     {
-                                        if (Model.ReletedArticles.Any(a => a == item.Id))
-                                        {
-                                            <option selected value="@item.Id">@item.Title</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Id">@item.Title</option>
-                                        }
+
+                                        <option value="@item.Id">@item.Title</option>
+
                                     }
                                 </select>
                             </div>
@@ -157,7 +152,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label style="padding:5px" class="col-sm-2 control-label">
-                                تصویر  
+                                تصویر
                             </label>
                             <div class="col-sm-10">
                                 <div class="uploader blue">
@@ -178,7 +173,7 @@
 @section scripts{
     <script src="~/Content/admin/vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
 
-<script src="~/Content/admin/vendor/select2/dist/js/select2.js"></script>
+    <script src="~/Content/admin/vendor/select2/dist/js/select2.js"></script>
     <script>
         $('.selectx').select2();
     </script>

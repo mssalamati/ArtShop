@@ -1753,10 +1753,10 @@ header .nav li.current-menu-item a {
 
 .main-logo h1 a {
     display: block;
-    width: 350px;
-    height: 70px;
+    width: 180px;
+    height: 130px;
     background: url(images/canvas-logo@2x.png) no-repeat;
-    background-size: 300px 63px;
+    background-size: 170px 117px;
     text-indent: -9999px;
     margin: 0 auto;
 }

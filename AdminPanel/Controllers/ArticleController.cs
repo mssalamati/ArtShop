@@ -198,7 +198,7 @@ namespace AdminPanel.Controllers
             FileHelper.CreateFolderIfNeeded(appData);
             var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
             {
-                Url = Url.Content("/Uploads/cms/" + userId + "/" + Path.GetFileName(x))
+                Url = Url.Content("https://file.artiscovery.com/Uploads/cms/" + userId + "/" + Path.GetFileName(x))
             });
             return View(images);
         }

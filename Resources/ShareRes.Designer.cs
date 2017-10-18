@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Artworks.
+        ///   Looks up a localized string similar to My Artworks.
         /// </summary>
         public static string Artworks {
             get {

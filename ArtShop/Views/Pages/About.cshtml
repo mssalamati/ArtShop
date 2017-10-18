@@ -2,6 +2,16 @@
 @{
     ViewBag.Title = "About | Artiscovery";
 }
+<style>
+    li {
+        list-style-type: unset !important;
+        list-style-position:inside !important;
+    }
+    ul {
+        list-style-type: unset !important;
+        list-style-position: inside !important;
+    }
+</style>
 
 @model SitePageTranslation
 @using DataLayer.Extentions
@@ -23,10 +33,10 @@ else
         </div>
         <div class="small-12 large-4 large-pull-8 columns bgtext side-nav-container">
             <ul class="side-nav" style="height:300px">
-                <li><a href="/pages/about" class="active">@ShareRes.About</a></li>
-                <li><a href="/pages/terms">@ShareRes.Terms</a></li>
-                <li><a href="/pages/privacypolicy">@ShareRes.Privacy_policy</a></li>
-                <li><a href="/pages/copyrightpolicy" >@ShareRes.Copyright_policy</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/about" class="active">@ShareRes.About</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/terms">@ShareRes.Terms</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/privacypolicy">@ShareRes.Privacy_policy</a></li>
+                <li style="list-style-type:none !important"><a href="/pages/copyrightpolicy" >@ShareRes.Copyright_policy</a></li>
             </ul>
         </div>
 
