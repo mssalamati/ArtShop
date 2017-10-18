@@ -4,10 +4,15 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Support/_SupportLayout.cshtml";
 }
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtlListType = IsRighToLeft ? "list-style-position:inside !important" : "";
+}
 
 <main role="main">
     <nav class="sub-nav clearfix">
-        <ol class="breadcrumbs">
+        <ol style="@rtlstl" class="breadcrumbs">
 
             <li title="Artiscovery">
 
@@ -17,7 +22,7 @@
 
             <li title="Search results">
 
-                Search results
+                @ShareRes.Search_results
 
             </li>
 
@@ -26,11 +31,14 @@
     </nav>
 
     <div class="search-results clearfix">
-        <h1 class="search-results-heading">@Model.Count results for "@ViewBag.keyword"</h1>
-        <section class="search-results-column">
-            <h2 class="search-results-subheading">
-                Knowledge base
-            </h2>
+        <h1 style="@rtlstl" class="search-results-heading">@Model.Count @ShareRes.Results_for "@ViewBag.keyword"</h1>
+        <section style="@rtlstl" class="search-results-column">
+            @if (!IsRighToLeft)
+            {
+                <h2 style="@rtlstl;@rtlListType" class="search-results-subheading">
+                    Knowledge base
+                </h2>
+            }
 
             <ul class="search-results-list">
 
@@ -40,8 +48,11 @@
                         <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="search-result-link">@item.Current().Title</a>
 
                         @* <span class="search-result-votes">7</span>*@
+                        @if (!IsRighToLeft)
+                        {
+                            <div class="search-result-meta">by @item.Author <time datetime="@item.PostedOn" title="2015-03-31 23:27" data-datetime="relative">@item.PostedOn</time> in <a href="@Url.Action("Category", "Support", new { id = @item.SupportCategory.GenerateSlug() })">@item.SupportCategory.Current().Name</a> &gt; <a href="@Url.Action("SubCategory", "Support", new { id = @item.SupportSubCategory.GenerateSlug() })">@item.SupportSubCategory.Current().Name</a></div>
+                        }
 
-                        <div class="search-result-meta">by @item.Author <time datetime="@item.PostedOn" title="2015-03-31 23:27" data-datetime="relative">@item.PostedOn</time> in <a href="@Url.Action("Category", "Support", new { id = @item.SupportCategory.GenerateSlug() })">@item.SupportCategory.Current().Name</a> &gt; <a href="@Url.Action("SubCategory", "Support", new { id = @item.SupportSubCategory.GenerateSlug() })">@item.SupportSubCategory.Current().Name</a></div>
                         <div class="search-result-description">@item.Current().ShortDescription </div>
                     </li>
                 }

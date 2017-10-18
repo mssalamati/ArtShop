@@ -1,43 +1,79 @@
 ﻿@using DataLayer.Extentions;
 @model ICollection<Article>
+@{var IsRighToLeft = CultureHelper.IsRighToLeft();}
 <main role="main">
     <!--MAIN SECTION-->
     <section class="main-section">
         <div class="wrapper">
             <div class="topic-title-bar">
-                <h1>Artist's Handbook</h1>
-                <p>
-                    Are you a buyer?
-                    <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
-                        Click here
-                    </a>
-                    to view Buyer FAQs
-                </p>
+                @if (IsRighToLeft)
+                {
+
+                    <p>
+                        @ShareRes.Are_You_Buyer
+                        @ShareRes.To_view_Buyer_FAQs
+                        <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
+                            @ShareRes.Click_here
+                        </a>
+                   
+                    </p>
+                    <h1>@FooterRes.Artist_Handbook</h1>
+
+                }
+                else
+                {
+                    <h1>@FooterRes.Artist_Handbook</h1>
+                    <p>
+                        @ShareRes.Are_You_Buyer
+                        <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
+                            @ShareRes.Click_here
+                        </a>
+                        @ShareRes.To_view_Buyer_FAQs
+                    </p>
+                }
+
             </div>
             <div class="topic-list">
                 @foreach (var item in Model)
                 {
-                    <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
-                        <span class="topic-list-icon">
-                            <img src="https://admin.artiscovery.com/@item.Thumbnail">
-                        </span>
-                        <span class="topic-list-topic">
-                            <h3>@item.Current().Title</h3>
-                            <p>@item.Current().ShortDescription</p>
-                        </span>
-                        <img src="~/Content/Images/Support/icon_chevron_right.png">
-                    </a>
+                    if (IsRighToLeft)
+                    {
+                        <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
+                            <img style="width:15px" src="~/Content/Images/caret-left.svg">
+                            <span class="topic-list-topic" style="text-align:right">
+                                <h3>@item.Current().Title</h3>
+                                <p>@item.Current().ShortDescription</p>
+                            </span>
+
+                            <span class="topic-list-icon">
+                                <img src="https://admin.artiscovery.com/@item.Thumbnail">
+                            </span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
+                            <span class="topic-list-icon">
+                                <img src="https://admin.artiscovery.com/@item.Thumbnail">
+                            </span>
+                            <span class="topic-list-topic">
+                                <h3>@item.Current().Title</h3>
+                                <p>@item.Current().ShortDescription</p>
+                            </span>
+                            <img src="~/Content/Images/Support/icon_chevron_right.png">
+                        </a>
+                    }
                 }
             </div>
             <!--END TOPIC LIST -->
             <div class="footer-nav">
-                <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">Buyer's FAQ</a>
+                <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">@FooterRes.Buyer_FAQ</a>
                 <span></span>
-                <a href="https://www.Artiscovery.com/">Home</a>
+                <a href="https://www.Artiscovery.com/">@ShareRes.Home</a>
                 <span></span>
                 <a href="https://eyes.Artiscovery.com/">Eyes Blog</a>
                 <span></span>
-                <a href="https://www.Artiscovery.com/pages/whysell">Why Sell</a>
+                <a href="https://www.Artiscovery.com/pages/whysell">@FooterRes.Why_Sell</a>
             </div>
         </div>
     </section>

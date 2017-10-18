@@ -288,4 +288,25 @@
   <data name="FavAddSuccess" xml:space="preserve">
     <value>Item Added to your Favorit</value>
   </data>
+  <data name="Are_You_Buyer" xml:space="preserve">
+    <value>Are you a buyer?</value>
+  </data>
+  <data name="Click_here" xml:space="preserve">
+    <value>Click here</value>
+  </data>
+  <data name="Have_Question" xml:space="preserve">
+    <value>Have a Question? Ask or enter a search term here.</value>
+  </data>
+  <data name="Related_articles" xml:space="preserve">
+    <value>RELATED ARTICLES</value>
+  </data>
+  <data name="To_view_Buyer_FAQs" xml:space="preserve">
+    <value>to view Buyer FAQs</value>
+  </data>
+  <data name="Results_for" xml:space="preserve">
+    <value>results for</value>
+  </data>
+  <data name="Search_results" xml:space="preserve">
+    <value>Search results</value>
+  </data>
 </root>

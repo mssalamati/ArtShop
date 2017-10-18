@@ -1,6 +1,7 @@
 ﻿using ArtShop.Helper;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,8 +19,9 @@ namespace ArtShop.Controllers
 
         public ActionResult Search(string keyword)
         {
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
             ViewBag.keyword = keyword;
-            var result = db.Articles.Where(a => a.Title.Contains(keyword)).ToList();
+            var result = db.Articles.Where(a => a.Translations.FirstOrDefault(x=>x.languageId == currentCultureName).Title.Contains(keyword)).ToList();
             return View(result);
         }
 

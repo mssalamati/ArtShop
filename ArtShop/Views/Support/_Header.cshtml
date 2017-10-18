@@ -2,6 +2,7 @@
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "margin-top:5px" : "";
+    var textAlign = IsRighToLeft ? "text-align:right" : "";
 }
 
 
@@ -45,7 +46,7 @@
 <header class="header" id="rotating-images" style="background-image: url(&quot;//p5.zdassets.com/hc/theme_assets/694809/200075888/img-1281-newton-scheufler-hero.jpg&quot;);">
     <div class="header-inner">
         <form role="search" class="search" data-search="" action="/support/search" accept-charset="UTF-8" method="get">
-            <input name="utf8" type="hidden" value="✓"><input type="search" name="keyword" id="keyword" placeholder="Have a Question? Ask or enter a search term here." aria-label="Search">
+            <input name="utf8" type="hidden" value="✓"><input type="search" name="keyword" style="@textAlign" id="keyword" placeholder="@ShareRes.Have_Question" aria-label="Search">
             <input type="submit" name="commit" value="Search">
         </form>
     </div>

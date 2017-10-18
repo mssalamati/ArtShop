@@ -4,36 +4,46 @@
     ViewBag.Title = "SubCategory";
     Layout = "~/Views/Support/_SupportLayout.cshtml";
 }
+
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtlListType = IsRighToLeft ? "list-style-position:inside !important" : "";
+}
 <main role="main">
     <nav class="sub-nav clearfix category-breadcrumbs">
-        <ol class="breadcrumbs">
-            <li title="Artiscovery">
-                <a href="/support">Artiscovery</a>
-            </li>
+        <ol style="@rtlstl" class="breadcrumbs">
 
-            <li title="@Model.Current().Name">
+                <li title="Artiscovery">
+                    <a href="/support">Artiscovery</a>
+                </li>
 
-                <a href="@Url.Action("Category", "Support", new { id = @Model.supportCategory.GenerateSlug() })">@Model.Current().Name </a>
+                <li title="@Model.Current().Name">
 
-            </li>
+                    <a href="@Url.Action("Category", "Support", new { id = @Model.supportCategory.GenerateSlug() })">@Model.Current().Name </a>
 
-            <li title="@Model.Current().Name">
+                </li>
 
-                @Model.Current().Name
+                <li title="@Model.Current().Name">
 
-            </li>
+                    @Model.Current().Name
+
+                </li>
+
+            
+
 
         </ol>
 
     </nav>
 
     <section class="clearfix section-area">
-        <h1>
+        <h1 style="@rtlstl">
             @Model.Current().Name
         </h1>
         <p class="section-description"></p>
         <div class="section-tree">
-            <ul class="article-list">
+            <ul style="@rtlstl;@rtlListType" class="article-list">
                 @foreach (var item in Model.Articles)
                 {
                     <li>

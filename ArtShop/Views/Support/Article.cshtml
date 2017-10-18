@@ -4,6 +4,12 @@
     ViewBag.Title = "Article";
     Layout = "~/Views/Support/_SupportLayout.cshtml";
 }
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rFloatDir = IsRighToLeft ? "float:right" : "";
+    var fFloatDir = IsRighToLeft ? "float:left" : "";
+}
 <style>
     li {
         list-style-type: unset !important;
@@ -16,32 +22,33 @@
 
 <main role="main">
     <nav class="sub-nav clearfix">
-        <ol class="breadcrumbs">
+        <ol style="@rtlstl" class="breadcrumbs">
+ 
+                <li title="Artiscovery">
 
-            <li title="Artiscovery">
+                    <a href="/support">Artiscovery</a>
 
-                <a href="/support">Artiscovery</a>
+                </li>
 
-            </li>
+                <li title="@Model.SupportCategory.Current().Name">
+                    <a href="@Url.Action("Category", "Support", new { id = @Model.SupportCategory.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
+                </li>
 
-            <li title="@Model.SupportCategory.Current().Name">
-                <a href="@Url.Action("Category", "Support", new { id = @Model.SupportCategory.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
-            </li>
+                <li title="@Model.SupportSubCategory.Current().Name">
 
-            <li title="@Model.SupportSubCategory.Current().Name">
+                    <a href="@Url.Action("SubCategory", "Support", new { id = @Model.SupportSubCategory.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
 
-                <a href="@Url.Action("SubCategory", "Support", new { id = @Model.SupportSubCategory.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
-
-            </li>
+                </li>
+            
 
         </ol>
 
     </nav>
 
     <div class="clearfix">
-        <article class="main-column">
+        <article style="@rFloatDir" class="main-column">
             <header class="article-header clearfix">
-                <h1> @Model.Current().Title</h1>
+                <h1 style="@rtlstl"> @Model.Current().Title</h1>
             </header>
 
             <div class="subtle-wrap">
@@ -58,37 +65,37 @@
                 <footer class="article-footer clearfix">
 
                     @*<div class="article-vote">
-                        <small class="article-vote-count">
-                            <span class="article-vote-label">0 out of 0 found this helpful</span>
-                        </small>
-                    </div>*@
+                            <small class="article-vote-count">
+                                <span class="article-vote-label">0 out of 0 found this helpful</span>
+                            </small>
+                        </div>*@
 
                 </footer>
 
                 @*<div class="article-more-questions">
-                    Have more questions? <a href="/hc/en-us/requests/new">Submit a request</a>
-                </div>*@
+                        Have more questions? <a href="/hc/en-us/requests/new">Submit a request</a>
+                    </div>*@
             </div>
 
             @*<section class="article-comments">
-                <h2>Comments</h2>
-                <div class="subtle-wrap">
+                    <h2>Comments</h2>
+                    <div class="subtle-wrap">
 
 
 
-                </div>
-            </section>*@
+                    </div>
+                </section>*@
 
         </article>
 
-        <aside class="article-sidebar side-column">
+        <aside style="@fFloatDir" class="article-sidebar side-column">
             <section class="related-articles">
-                <h3>Related articles</h3>
-                <ul>
+                <h3 style="@rtlstl">@ShareRes.Related_articles</h3>
+                <ul style="@rtlstl">
 
                     @foreach (var item in Model.ReletedArticles)
                     {
-                        <li>
+                        <li style="list-style-type:none !important">
                             <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })">@item.Current().Title</a>
                         </li>
                     }

@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you a buyer?.
+        /// </summary>
+        public static string Are_You_Buyer {
+            get {
+                return ResourceManager.GetString("Are_You_Buyer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Art.
         /// </summary>
         public static string Art {
@@ -147,6 +156,15 @@ namespace Resources {
         public static string Blog {
             get {
                 return ResourceManager.GetString("Blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here.
+        /// </summary>
+        public static string Click_here {
+            get {
+                return ResourceManager.GetString("Click_here", resourceCulture);
             }
         }
         
@@ -255,6 +273,15 @@ namespace Resources {
         public static string Forgot_password {
             get {
                 return ResourceManager.GetString("Forgot_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a Question? Ask or enter a search term here..
+        /// </summary>
+        public static string Have_Question {
+            get {
+                return ResourceManager.GetString("Have_Question", resourceCulture);
             }
         }
         
@@ -457,6 +484,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RELATED ARTICLES.
+        /// </summary>
+        public static string Related_articles {
+            get {
+                return ResourceManager.GetString("Related_articles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string Remove {
@@ -466,11 +502,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to results for.
+        /// </summary>
+        public static string Results_for {
+            get {
+                return ResourceManager.GetString("Results_for", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales Dashboard.
         /// </summary>
         public static string SalesDashboard {
             get {
                 return ResourceManager.GetString("SalesDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search results.
+        /// </summary>
+        public static string Search_results {
+            get {
+                return ResourceManager.GetString("Search_results", resourceCulture);
             }
         }
         
@@ -543,6 +597,15 @@ namespace Resources {
         public static string Terms_use {
             get {
                 return ResourceManager.GetString("Terms_use", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to view Buyer FAQs.
+        /// </summary>
+        public static string To_view_Buyer_FAQs {
+            get {
+                return ResourceManager.GetString("To_view_Buyer_FAQs", resourceCulture);
             }
         }
         

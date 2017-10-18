@@ -291,4 +291,25 @@
   <data name="FavAddSuccess" xml:space="preserve">
     <value>اثر به لیست علاقه مندی ها اضافه شد</value>
   </data>
+  <data name="Are_You_Buyer" xml:space="preserve">
+    <value>آیا خریدارید؟</value>
+  </data>
+  <data name="Click_here" xml:space="preserve">
+    <value>اینجا کلیک کنید</value>
+  </data>
+  <data name="Have_Question" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
+  <data name="Related_articles" xml:space="preserve">
+    <value>مقاله های مرتبط</value>
+  </data>
+  <data name="To_view_Buyer_FAQs" xml:space="preserve">
+    <value>برای دیدن سوالات متداول خریداران</value>
+  </data>
+  <data name="Results_for" xml:space="preserve">
+    <value>نتیجه برای</value>
+  </data>
+  <data name="Search_results" xml:space="preserve">
+    <value>نتایج جستجو</value>
+  </data>
 </root>
