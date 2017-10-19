@@ -116,7 +116,7 @@ namespace Blog.Areas.Admin.Controllers
             var finder = db.Categories.Find(id);
             db.Categories.Remove(finder);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToActionPermanent("Index");
         }
     }
 }

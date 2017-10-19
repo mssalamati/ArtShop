@@ -58,7 +58,7 @@ namespace Blog.Controllers
             }
             Response.Cookies.Add(cookie);
             string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
-            return Redirect(url);
+            return RedirectPermanent(url);
         }
 
         public ActionResult AddSubscriber(string email)

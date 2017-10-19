@@ -22,7 +22,7 @@ namespace Blog.Areas.Admin.Controllers
             if (db.NavigationCategories.Any(x => x.categoryId == id))
             {
                 ViewBag.error = "این دسته بندی تکراری است";
-                return Redirect("/admin/FirstPage/Index");
+                return RedirectPermanent("/admin/FirstPage/Index");
             }
             var priority = db.NavigationCategories.Count() == 0 ? 0 : db.NavigationCategories.Max(x => x.priority) + 1;
             var nav = new NavigationCategory()
@@ -33,7 +33,7 @@ namespace Blog.Areas.Admin.Controllers
             db.NavigationCategories.Add(nav);
             ViewBag.success = "ثبت شد";
             db.SaveChanges();
-            return Redirect("/admin/FirstPage/Index");
+            return RedirectPermanent("/admin/FirstPage/Index");
         }
 
         public ActionResult MoveUp(int id)
@@ -46,7 +46,7 @@ namespace Blog.Areas.Admin.Controllers
                 finder.priority += 1;
             }
             db.SaveChanges();
-            return Redirect("/admin/FirstPage/Index");
+            return RedirectPermanent("/admin/FirstPage/Index");
         }
 
         public ActionResult MoveDown(int id)
@@ -59,7 +59,7 @@ namespace Blog.Areas.Admin.Controllers
                 finder.priority -= 1;
             }
             db.SaveChanges();
-            return Redirect("/admin/FirstPage/Index");
+            return RedirectPermanent("/admin/FirstPage/Index");
         }
 
         public ActionResult Delete(int id)
@@ -67,7 +67,7 @@ namespace Blog.Areas.Admin.Controllers
             var finder = db.NavigationCategories.Find(id);
             db.NavigationCategories.Remove(finder);
             db.SaveChanges();
-            return Redirect("/admin/FirstPage/Index");
+            return RedirectPermanent("/admin/FirstPage/Index");
         }
 
     }

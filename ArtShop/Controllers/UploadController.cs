@@ -98,7 +98,7 @@ namespace ArtShop.Controllers
                 ViewBag.Error = Resources.UploadRes.Image_cannot_be_empty;
                 return PartialView();
             }
-            return RedirectToAction("Setep2");
+            return RedirectToActionPermanent("Setep2");
         }
 
         // category and subject
@@ -120,7 +120,7 @@ namespace ArtShop.Controllers
             }
             Session["category"] = model.category;
             Session["subject"] = model.subject;
-            return RedirectToAction("Setep3");
+            return RedirectToActionPermanent("Setep3");
         }
 
         //year,forsale,print and copyright
@@ -142,13 +142,13 @@ namespace ArtShop.Controllers
                 return PartialView();
             }
             if (Session["imageAddress"] == null)
-                return RedirectToAction("Setep1");
+                return RedirectToActionPermanent("Setep1");
 
             Session["copyright"] = model.copyright;
             Session["createYear"] = model.createYear;
             Session["isOrginal"] = model.isOrginal;
             Session["printAvable"] = false;// model.printAvable;
-            return RedirectToAction("Setep4");
+            return RedirectToActionPermanent("Setep4");
         }
 
         //RESIZE PICTURE
@@ -207,7 +207,7 @@ namespace ArtShop.Controllers
                 return PartialView();
             }
 
-            return RedirectToAction("Setep5");
+            return RedirectToActionPermanent("Setep5");
         }
 
         //medum,material,style and keywords
@@ -259,7 +259,7 @@ namespace ArtShop.Controllers
 
             Session["firstmedium"] = model.Mediums.Split(',').First();
             Session["firstmaterial"] = CashManager.Instance.Materials.SingleOrDefault(x => x.Key == model.Materials.First()).Value;
-            return RedirectToAction("Setep6");
+            return RedirectToActionPermanent("Setep6");
         }
 
         //get size with canvas
@@ -318,7 +318,7 @@ namespace ArtShop.Controllers
             Session["Width"] = model.Width;
             Session["Depth"] = model.Depth;
 
-            return RedirectToAction("Setep7");
+            return RedirectToActionPermanent("Setep7");
         }
 
         //title and description // done if nor fore sale
@@ -374,7 +374,7 @@ namespace ArtShop.Controllers
                 var error = uploadnow(out id);
                 if (error == string.Empty)
                 {
-                    return RedirectToAction("Stepfinish", new { id = id });
+                    return RedirectToActionPermanent("Stepfinish", new { id = id });
                 }
                 else
                 {
@@ -385,10 +385,10 @@ namespace ArtShop.Controllers
             }
             else if (!isforsale && printAvable)
             {
-                return RedirectToAction("Setep9_5");
+                return RedirectToActionPermanent("Setep9_5");
             }
             else
-                return RedirectToAction("Setep8");
+                return RedirectToActionPermanent("Setep8");
         }
 
         //Packaging and frame
@@ -408,7 +408,7 @@ namespace ArtShop.Controllers
             Session["Packaging"] = model.Packaging;
             Session["framed"] = model.framed;
             Session["multi_paneled"] = model.multi_paneled;
-            return RedirectToAction("Setep9");
+            return RedirectToActionPermanent("Setep9");
         }
 
         public ActionResult Setep9()
@@ -473,10 +473,10 @@ namespace ArtShop.Controllers
 
             if (printAvable)
             {
-                return RedirectToAction("Setep9_5");
+                return RedirectToActionPermanent("Setep9_5");
             }
             else
-                return RedirectToAction("Setep10");
+                return RedirectToActionPermanent("Setep10");
         }
 
         //print type options
@@ -498,7 +498,7 @@ namespace ArtShop.Controllers
             bool isforsale = (bool)Session["isOrginal"];
             if (isforsale)
             {
-                return RedirectToAction("Setep10");
+                return RedirectToActionPermanent("Setep10");
             }
             else
             {
@@ -506,7 +506,7 @@ namespace ArtShop.Controllers
                 var error = uploadnow(out id);
                 if (error == string.Empty)
                 {
-                    return RedirectToAction("Stepfinish", new { id = id });
+                    return RedirectToActionPermanent("Stepfinish", new { id = id });
                 }
                 else
                 {
@@ -534,7 +534,7 @@ namespace ArtShop.Controllers
             var error = uploadnow(out id);
             if (error == string.Empty)
             {
-                return RedirectToAction("Stepfinish", new { id = id });
+                return RedirectToActionPermanent("Stepfinish", new { id = id });
             }
             else
             {

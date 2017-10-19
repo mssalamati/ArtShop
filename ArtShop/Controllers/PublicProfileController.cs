@@ -131,8 +131,9 @@ namespace ArtShop.Controllers
             return View();
         }
 
-        public ActionResult Favorites(string id)
+        public ActionResult Favorites(string id,int page = 1)
         {
+            int pageSize = 18;
             var userProfile = db.UserProfiles.Find(id);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.collectionCount = userProfile.Collections.Count;
@@ -140,20 +141,43 @@ namespace ArtShop.Controllers
             ViewBag.id = id;
             ViewBag.PhotoPath = userProfile.PhotoPath;
             if (userProfile.Favorits != null)
-                return View(userProfile.Favorits);
+            {
+                var p = userProfile.Favorits;
+                var count = p.Count();
+                page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+                page = Math.Max(1, page);
+                ViewBag.page = page;
+                ViewBag.count = count;
+                ViewBag.pageSize = pageSize;
+
+                var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return View(res);
+            }
 
             return View();
         }
 
-        public ActionResult ArtWorks(string id)
+        public ActionResult ArtWorks(string id, int page = 1)
         {
+            int pageSize = 18;
             var userProfile = db.UserProfiles.Find(id);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.favoritesCount = userProfile.Favorits.Count;
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.id = id;
             ViewBag.PhotoPath = userProfile.PhotoPath;
-            return View(userProfile.Products);
+
+            var p = userProfile.Products;
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            ViewBag.page = page;
+            ViewBag.count = count;
+            ViewBag.pageSize = pageSize;
+            
+            var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            return View(res);
         }
     }
 }

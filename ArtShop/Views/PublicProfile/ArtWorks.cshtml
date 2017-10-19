@@ -1,4 +1,7 @@
 ﻿@model ICollection<Product>
+@{
+    ViewBag.Title = "Artworks | Artiscovery";
+}
 <div role="main" class="row row-layout profile-content">
 
 
@@ -86,14 +89,72 @@
                                 }
         </ul>
         <div class="clearfix"></div>
-        <div id="pageNav" class="hidden">
-            <a href="/account/artworks/id/994144/format/json/page/2">2</a>
+        <div class="clearfix"></div>
+
+
+        @{
+            int page = ViewBag.page;
+            int count = ViewBag.count;
+            int pageSize = ViewBag.pageSize;
+            bool haveNext = page * pageSize < count;
+            bool havePrev = page != 1;
+            int minpage = 1;
+            int maxpage = (int)Math.Ceiling((float)count / (float)pageSize);
+        }
+
+        <div class="so-pagination">
+            <div class="pagination">
+                <ul class="pull-right">
+                    @if (havePrev)
+                    {
+                        <li><a onclick="document.location.href = '/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@(page-1)'" href="/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                    }
+
+                    @for (int i = Math.Max(1,page-2); i < page; i++)
+                    {
+                        <li>
+                            <a onclick="document.location.href = '/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@i'" href="/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@i">@i</a>
+                        </li>
+                    }
+
+                    <li class="active">
+                        <a>@page</a>
+                    </li>
+
+                    @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
+                    {
+                        <li>
+                            <a onclick="document.location.href = '/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@i'" href="/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@i">@i</a>
+                        </li>
+                    }
+
+
+                    @if (haveNext)
+                    {
+                        <li><a onclick="document.location.href = '/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@(page+1)'" href="/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                    }
+
+                    @*
+                    <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
+                </ul>
+                <div class="so-pagination-count pull-right">
+                    <small>@ShareRes.Showing @((((page - 1) * pageSize) + 1) * (count == 0 ? 0 : 1)) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) @ShareRes.of @count  </small>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div id="pageLoading"></div>
 
 
     </div>
 
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
 </div>
 <script src="~/Content/fullview.js"></script>
 

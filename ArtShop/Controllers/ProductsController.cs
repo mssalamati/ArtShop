@@ -62,7 +62,7 @@ namespace ArtShop.Controllers
         [Route("search/{category}/{style}/{subject}/{medium}/{price}/{page?}")]
         public ActionResult Searchparameters(int category = 0, int style = 0, int subject = 0, int medium = 0, int price = 0, int page = 1)
         {
-            return RedirectToAction("search", new { category = category, style = style, subject = subject, medium = medium, price = price, page = page });
+            return RedirectToActionPermanent("search", new { category = category, style = style, subject = subject, medium = medium, price = price, page = page });
         }
 
         public ActionResult single(int id)
@@ -95,7 +95,7 @@ namespace ArtShop.Controllers
                 {
                     db.Products.Remove(p);
                     db.SaveChanges();
-                    return RedirectToAction("artworks", "profile", new { });
+                    return RedirectToActionPermanent("artworks", "profile", new { });
                 }
             }
             return Content("error");

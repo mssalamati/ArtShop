@@ -326,10 +326,10 @@ if (current == selected)
                     <li><a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
-                @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
+                @for (int i = Math.Max(1, page - 2); i < page; i++)
                 {
                     <li>
-                        <a href="/search/@ViewBag.categoryId/@ViewBag.styleId/@ViewBag.subjectId/@ViewBag.mediumId/@ViewBag.priceId/@i">@i</a>
+                        <a onclick="document.location.href = '/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@i'" href="/publicprofile/ArtWorks?id=@Model.FirstOrDefault().user_id&page=@i">@i</a>
                     </li>
                 }
 

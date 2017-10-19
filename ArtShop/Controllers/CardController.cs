@@ -105,7 +105,7 @@ namespace ArtShop.Controllers
                 db.SaveChanges();
                 if (Status == 100)
                 {
-                    Response.Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
+                    Response.RedirectPermanent("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
                     return View();
                 }
                 else
@@ -168,7 +168,7 @@ namespace ArtShop.Controllers
                 db.SaveChanges();
                 var approveurl = payment.links.FirstOrDefault(x => x.rel.Equals("approval_url", StringComparison.OrdinalIgnoreCase));
 
-                return Redirect(approveurl.href);
+                return RedirectPermanent(approveurl.href);
             }
         }
 
@@ -203,19 +203,19 @@ namespace ArtShop.Controllers
                             SendOrderDetail(order);
                             SendInvoice(order);
                             CartManager.GetCart(this.HttpContext).EmptyCart();
-                            return RedirectToAction("paymentReport", new { id = orderId });
+                            return RedirectToActionPermanent("paymentReport", new { id = orderId });
                         }
                         else
                         {
                             db.SaveChanges();
-                            return RedirectToAction("paymentReport", new { id = orderId });
+                            return RedirectToActionPermanent("paymentReport", new { id = orderId });
                         }
                     }
                     else
                     {
                         tran.Description = Request.QueryString["Status"].ToString();
                         db.SaveChanges();
-                        return RedirectToAction("paymentReport", new { id = orderId });
+                        return RedirectToActionPermanent("paymentReport", new { id = orderId });
                     }
                 }
                 else
@@ -246,7 +246,7 @@ namespace ArtShop.Controllers
             SendOrderDetail(order);
             SendInvoice(order);
             CartManager.GetCart(this.HttpContext).EmptyCart();
-            return RedirectToAction("paymentReport", new { id = orderId });
+            return RedirectToActionPermanent("paymentReport", new { id = orderId });
         }
 
         public ActionResult PaypalCancel(string payerId, string paymentId)
@@ -258,7 +258,7 @@ namespace ArtShop.Controllers
             var executedpayment = payment.Execute(apiContext, paymentExecution);
             var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
             var orderId = order.Id;
-            return RedirectToAction("paymentReport", new { id = orderId });
+            return RedirectToActionPermanent("paymentReport", new { id = orderId });
         }
 
         [Authorize]
@@ -278,7 +278,7 @@ namespace ArtShop.Controllers
             var addedAlbum = db.Products.Find(id);
             var cart = CartManager.GetCart(this.HttpContext);
             cart.AddToCart(addedAlbum, type);
-            return Redirect("/checkout");
+            return RedirectPermanent("/checkout");
         }
 
         [HttpPost]

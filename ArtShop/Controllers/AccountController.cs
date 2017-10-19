@@ -94,7 +94,7 @@ namespace ArtShop.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToActionPermanent("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -176,7 +176,7 @@ namespace ArtShop.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToActionPermanent("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -238,7 +238,7 @@ namespace ArtShop.Controllers
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                return RedirectToActionPermanent("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -276,12 +276,12 @@ namespace ArtShop.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("login", "Account");
+                return RedirectToActionPermanent("login", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("login", "Account");
+                return RedirectToActionPermanent("login", "Account");
             }
             AddErrors(result);
             return View();
@@ -338,7 +338,7 @@ namespace ArtShop.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToActionPermanent("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
         //
@@ -349,7 +349,7 @@ namespace ArtShop.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToActionPermanent("Login");
             }
 
             // Sign in the user with this external login provider if the user already has a login
@@ -361,7 +361,7 @@ namespace ArtShop.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    return RedirectToActionPermanent("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
@@ -371,7 +371,7 @@ namespace ArtShop.Controllers
 
                     if (User.Identity.IsAuthenticated)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToActionPermanent("Index", "Home");
                     }
 
                     if (ModelState.IsValid)
@@ -393,7 +393,7 @@ namespace ArtShop.Controllers
                             {
                                 AddSubscriber(user.Email);
                                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                                return RedirectToAction("Index", "Home");
+                                return RedirectToActionPermanent("Index", "Home");
                             }
                         }
                         else if (registerResult.Errors.FirstOrDefault().Contains("taken"))
@@ -402,7 +402,7 @@ namespace ArtShop.Controllers
                             user = db.Users.FirstOrDefault(a => a.Email == loginInfo.Email);
                             AddSubscriber(user.Email);
                             await SignInManager.SignInAsync(user, false, false);
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToActionPermanent("Index", "Home");
 
                         }
 
@@ -411,7 +411,7 @@ namespace ArtShop.Controllers
 
                     ViewBag.ReturnUrl = returnUrl;
 
-                    return RedirectToAction("Login");
+                    return RedirectToActionPermanent("Login");
 
                     //return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email});
             }
@@ -426,7 +426,7 @@ namespace ArtShop.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToActionPermanent("Index", "Manage");
             }
 
             if (ModelState.IsValid)
@@ -462,7 +462,7 @@ namespace ArtShop.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToActionPermanent("Index", "Home");
         }
 
         //
@@ -517,9 +517,9 @@ namespace ArtShop.Controllers
         {
             if (Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return RedirectPermanent(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToActionPermanent("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

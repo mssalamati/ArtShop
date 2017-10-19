@@ -83,7 +83,7 @@ namespace Blog.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToActionPermanent("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -99,7 +99,7 @@ namespace Blog.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToActionPermanent("Index", "Home");
         }
 
         //
@@ -154,9 +154,9 @@ namespace Blog.Controllers
         {
             if (Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return RedirectPermanent(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToActionPermanent("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

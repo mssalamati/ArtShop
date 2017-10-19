@@ -125,7 +125,7 @@ namespace Blog.Areas.Admin.Controllers
         {
 
 
-            return RedirectToAction("Index");
+            return RedirectToActionPermanent("Index");
         }
 
         private void AddErrors(IdentityResult result)

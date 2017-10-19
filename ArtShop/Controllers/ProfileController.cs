@@ -176,7 +176,7 @@ namespace ArtShop.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Collection");
+            return RedirectToActionPermanent("Collection");
         }
 
         public ActionResult CollectionView(int id)
@@ -208,7 +208,7 @@ namespace ArtShop.Controllers
             userProfile.Collections.Remove(collection);
             db.SaveChanges();
 
-            return RedirectToAction("Collection");
+            return RedirectToActionPermanent("Collection");
         }
 
         public ActionResult EditCollection(int id)
@@ -248,7 +248,7 @@ namespace ArtShop.Controllers
             collection.Artworks = model.collectionProduct;
             db.SaveChanges();
 
-            return RedirectToAction("Collection");
+            return RedirectToActionPermanent("Collection");
         }
 
         [HttpGet]
@@ -264,23 +264,35 @@ namespace ArtShop.Controllers
             return Content("done");
         }
 
-        public ActionResult Favorites()
+        public ActionResult Favorites(int page = 1)
         {
             var userId = User.Identity.GetUserId();
-
+            int pageSize = 18;
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.artworkCount = userProfile.Products.Count;
             ViewBag.PhotoPath = userProfile.PhotoPath;
             if (userProfile.Favorits != null)
-                return View(userProfile.Favorits);
+            {
+                var p = userProfile.Favorits;
+                var count = p.Count();
+                page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+                page = Math.Max(1, page);
+                ViewBag.page = page;
+                ViewBag.count = count;
+                ViewBag.pageSize = pageSize;
+
+                var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return View(res);
+            }
 
             return View();
         }
 
-        public ActionResult ArtWorks()
+        public ActionResult ArtWorks(int page =1)
         {
+            int pageSize = 18;
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
@@ -289,7 +301,17 @@ namespace ArtShop.Controllers
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.PhotoPath = userProfile.PhotoPath;
 
-            return View(userProfile.Products.OrderByDescending(a => a.CreateDate).ToList());
+            var p = userProfile.Products;
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            ViewBag.page = page;
+            ViewBag.count = count;
+            ViewBag.pageSize = pageSize;
+
+            var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            return View(res.OrderByDescending(a => a.CreateDate).ToList());
         }
 
         public ActionResult ManageArtWorks()

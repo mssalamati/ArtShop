@@ -212,7 +212,7 @@ namespace ArtShop.Controllers
                 db.SaveChanges();
                 throw;
             }
-            return RedirectToAction("Index", "profile");
+            return RedirectToActionPermanent("Index", "profile");
         }
 
         public ActionResult Billing()
@@ -317,7 +317,7 @@ namespace ArtShop.Controllers
                 userProfile.GovermentIdPath = result.FullPath;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", "profile");
+            return RedirectToActionPermanent("Index", "profile");
         }
     }
 

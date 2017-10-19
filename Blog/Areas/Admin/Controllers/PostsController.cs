@@ -98,7 +98,7 @@ namespace Blog.Areas.Admin.Controllers
                         ve.ErrorMessage);
                 return View(model);
             }
-            return RedirectToAction("index");
+            return RedirectToActionPermanent("index");
         }
 
         public ActionResult Edit(int id, string language = "en")
@@ -256,7 +256,7 @@ namespace Blog.Areas.Admin.Controllers
             db.HeaderPhotos.RemoveRange(post.HeaderPhotos);
             db.Posts.Remove(post);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToActionPermanent("Index");
         }
 
     }
