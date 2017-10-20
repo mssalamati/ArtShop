@@ -132,11 +132,11 @@ namespace ArtShop.Controllers
                             amount = new paypal.Amount
                             {
                                 currency = "USD",
-                                total = "100.00",
+                                total = orderTotal.ToString(),
                                 details = new paypal.Details
                                 {
-                                    tax = "15",
-                                    shipping = "10",
+                                    tax = "0",
+                                    shipping = "0",
                                     subtotal = "75"
                                 }
                             },
@@ -158,8 +158,8 @@ namespace ArtShop.Controllers
                     },
                     redirect_urls = new paypal.RedirectUrls
                     {
-                        return_url = "http://artiscovery.com/card/PaypalReturn",
-                        cancel_url = "http://artiscovery.com/card/PaypalCancel"
+                        return_url = "https://artiscovery.com/card/PaypalReturn",
+                        cancel_url = "https://artiscovery.com/card/PaypalCancel"
                     }
                 });
 
