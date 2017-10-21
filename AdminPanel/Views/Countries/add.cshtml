@@ -30,7 +30,23 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="form-label">code </label>
-                    <input name="code" value="@(Model==null ? "" : Model.code)"  class="form-control" />
+                    <input name="code" value="@(Model==null ? "" : Model.code)" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="form-label">Region </label>
+                    <select name="region" class="form-control">
+                        <option value="1">Region A</option>
+                        <option value="2">Region B</option>
+                        <option value="3">Region C</option>
+                        <option value="4">Region D</option>
+                        <option value="5">Region E</option>
+                        <option value="6">Region F</option>
+                        <option value="7">Region G</option>
+                        <option value="8">Region H</option>
+                    </select>
                 </div>
             </div>
 

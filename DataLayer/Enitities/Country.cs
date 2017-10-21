@@ -14,8 +14,24 @@ namespace DataLayer.Enitities
         [Key]
         public int Id { get; set; }
         public string Code { get; set; }
+        public CountryRegion region { get; set; }
         public virtual ICollection<CountryTranslation> Translations { get; set; }
         public virtual ICollection<UserProfile> users { get; set; }
+    }
+
+    public enum CountryRegion
+    {
+        A = 0,
+        B = 1,
+        C = 2,
+        D = 3,
+        E = 4,
+        F = 5,
+        G = 6,
+        H = 7,
+        I = 8,
+        J = 9,
+        K = 10
     }
 
     public class CountryTranslation : ITranslation<Country>

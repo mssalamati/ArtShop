@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DataLayer.Enitities;
 
 namespace AdminPanel.Models.ViewModel
 {
@@ -9,6 +10,7 @@ namespace AdminPanel.Models.ViewModel
     {
         public int Id { get; set; }
         public string code { get; set; }
+        public CountryRegion region { get; set; }
         public List<CountryTranslationViewModel> Translations { get; set; }
     }
     public class CountryTranslationViewModel

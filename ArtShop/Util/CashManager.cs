@@ -141,7 +141,7 @@ namespace ArtShop.Util
                     id = x.Id,
                     photo = ConfigurationManager.AppSettings["FileUrl"] + x.photo.Path,
                     name = x.Current().Name
-                }).OrderBy(a=>a.name).ToList();
+                }).OrderBy(a => a.name).ToList();
             }
         }
 
@@ -177,7 +177,7 @@ namespace ArtShop.Util
                         _countries = db.Countries.Include("Translations").ToList();
                     }
                 }
-                return _countries.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x=>x.name).ToDictionary(x => x.id, y => y.name);
+                return _countries.Select(x => new { id = x.Id, name = x.Current().Name }).OrderBy(x => x.name).ToDictionary(x => x.id, y => y.name);
             }
         }
 
@@ -287,6 +287,41 @@ namespace ArtShop.Util
                     }
                 }
                 return _footer.ToList();
+            }
+        }
+
+        public decimal GetShipingDHL(int country)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var region = db.Countries.Find(country).region;
+                switch (region)
+                {
+                    case CountryRegion.A:
+                        return 1000;
+                    case CountryRegion.B:
+                        return 1000;
+                    case CountryRegion.C:
+                        return 1000;
+                    case CountryRegion.D:
+                        return 1000;
+                    case CountryRegion.E:
+                        return 1000;
+                    case CountryRegion.F:
+                        return 1000;
+                    case CountryRegion.G:
+                        return 1000;
+                    case CountryRegion.H:
+                        return 1000;
+                    case CountryRegion.I:
+                        return 1000;
+                    case CountryRegion.J:
+                        return 1000;
+                    case CountryRegion.K:
+                        return 1000;
+                    default:
+                        return 0;
+                }
             }
         }
     }

@@ -32,6 +32,21 @@
                     <input name="code" value="@(Model==null ? "" : Model.code)" class="form-control" />
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="form-label">Region </label>
+                    <select name="region" class="form-control">
+                        <option value="1" @(Model.region == CountryRegion.A ? "selected" : "")>Region A</option>
+                        <option value="2" @(Model.region == CountryRegion.B ? "selected" : "")>Region B</option>
+                        <option value="3" @(Model.region == CountryRegion.C ? "selected" : "")>Region C</option>
+                        <option value="4" @(Model.region == CountryRegion.D ? "selected" : "")>Region D</option>
+                        <option value="5" @(Model.region == CountryRegion.E ? "selected" : "")>Region E</option>
+                        <option value="6" @(Model.region == CountryRegion.F ? "selected" : "")>Region F</option>
+                        <option value="7" @(Model.region == CountryRegion.G ? "selected" : "")>Region G</option>
+                        <option value="8" @(Model.region == CountryRegion.H ? "selected" : "")>Region H</option>
+                    </select>
+                </div>
+            </div>
             @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
             {
                 var item = ((List<Language>)ViewBag.language)[i];

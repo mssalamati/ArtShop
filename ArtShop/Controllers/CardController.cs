@@ -127,8 +127,8 @@ namespace ArtShop.Controllers
                     {
                         new paypal.Transaction
                         {
-                            description = "Transaction description.",
-                            invoice_number = "001",
+                            description = "Artiscovery shopping store",
+                            invoice_number = o.Id.ToString(),
                             amount = new paypal.Amount
                             {
                                 currency = "USD",
@@ -137,22 +137,19 @@ namespace ArtShop.Controllers
                                 {
                                     tax = "0",
                                     shipping = "0",
-                                    subtotal = "75"
+                                    subtotal = orderTotal.ToString()
                                 }
                             },
                             item_list = new paypal.ItemList
                             {
-                                items = new List<paypal.Item>
+                                items = o.OrderDetails.Select(x=>new paypal.Item()
                                 {
-                                    new paypal.Item
-                                    {
-                                        name = "Item Name",
+                                        name = x.Product.Title,
                                         currency = "USD",
-                                        price = "15",
-                                        quantity = "5",
+                                        price = x.Product.Price.ToString(),
+                                        quantity = x.Quantity.ToString(),
                                         sku = "sku"
-                                    }
-                                }
+                                }).ToList()
                             }
                         }
                     },

@@ -42,7 +42,7 @@ namespace AdminPanel.Controllers
                 return PartialView(model);
             }
 
-            Country newmodel = new Country() { Code = model.code };
+            Country newmodel = new Country() { Code = model.code, region = model.region };
             newmodel.Translations = new List<CountryTranslation>();
             foreach (var item in model.Translations)
                 newmodel.Translations.Add(new CountryTranslation() { languageId = item.languageId, Name = item.Name });
@@ -64,7 +64,7 @@ namespace AdminPanel.Controllers
         {
             var finder = db.Countries.Find(id);
             ViewBag.language = db.Languages.ToList();
-            CountryViewModel cvm = new CountryViewModel() { Id = finder.Id, code = finder.Code, Translations = new List<CountryTranslationViewModel>() };
+            CountryViewModel cvm = new CountryViewModel() { Id = finder.Id, code = finder.Code, region = finder.region, Translations = new List<CountryTranslationViewModel>() };
             foreach (var item in finder.Translations)
                 cvm.Translations.Add(new CountryTranslationViewModel() { languageId = item.languageId, Name = item.Name });
             return PartialView(cvm);
@@ -76,9 +76,11 @@ namespace AdminPanel.Controllers
             var finder = db.Countries.Find(model.Id);
 
             finder.Code = model.code;
+            finder.region = model.region;
             foreach (var item in model.Translations)
             {
                 var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
+   
                 if (curr != null)
                     curr.Name = item.Name;
                 else
