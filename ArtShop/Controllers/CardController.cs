@@ -96,6 +96,7 @@ namespace ArtShop.Controllers
             db.Orders.Add(o);
             db.SaveChanges();
 
+            var o2 = db.Orders.Include("OrderDetails").FirstOrDefault(x => x.Id == o.Id);
             if (model.paymentMethod == PaymentMethod.zarinpall)
             {
                 System.Net.ServicePointManager.Expect100Continue = false;
@@ -146,7 +147,7 @@ namespace ArtShop.Controllers
                             },
                             item_list = new paypal.ItemList
                             {
-                                items = o.OrderDetails.Select(x=>new paypal.Item()
+                                items = o2.OrderDetails.Select(x=>new paypal.Item()
                                 {
                                         name = x.Product.Title,
                                         currency = "USD",
