@@ -96,7 +96,6 @@ namespace ArtShop.Controllers
             db.Orders.Add(o);
             db.SaveChanges();
 
-            var o2 = db.OrderDetails.Where(x => x.orderId == o.Id);
             if (model.paymentMethod == PaymentMethod.zarinpall)
             {
                 System.Net.ServicePointManager.Expect100Continue = false;
@@ -144,6 +143,17 @@ namespace ArtShop.Controllers
                                     shipping = "0",
                                     subtotal = orderTotal.ToString()
                                 }
+                            },
+                            item_list = new paypal.ItemList
+                            {
+                                items = cartItems.Select(x=>new paypal.Item()
+                                {
+                                        name = x.Product.Title,
+                                        currency = "USD",
+                                        price = x.Product.Price.ToString(),
+                                        quantity = x.Quantity.ToString(),
+                                        sku = "sku"
+                                }).ToList()
                             }
                         }
                     },
