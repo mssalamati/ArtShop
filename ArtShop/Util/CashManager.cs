@@ -316,9 +316,7 @@ namespace ArtShop.Util
                     case CountryRegion.I:
                         return 1000;
                     case CountryRegion.J:
-                        return 1000;
-                    case CountryRegion.K:
-                        return 1000;
+                        return 1000;                    
                     default:
                         return 0;
                 }
