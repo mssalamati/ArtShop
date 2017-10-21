@@ -155,6 +155,35 @@ namespace Utilities
                 return new SaveImageResult() { Error = "file is null", FullPath = "", ResultStatus = false };
         }
 
+        //base 64
+        public static SaveImageResult Saveimage(HttpServerUtilityBase server, string file, string path, saveImageMode not = saveImageMode.Not)
+        {
+            string tempFolderPath = server.MapPath("~/" + path);
+
+            if (FileHelper.CreateFolderIfNeeded(tempFolderPath))
+            {
+                try
+                {
+                    string imageName = Guid.NewGuid().ToString()+ ".jpg";
+                    string imgPath = Path.Combine(path, imageName);
+                    byte[] imageBytes = Convert.FromBase64String(file);
+                    Image image;
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        image = Image.FromStream(ms);
+                    }
+                    File.WriteAllBytes(imgPath, imageBytes);
+                    return new SaveImageResult() { Error = "", FullPath = imgPath, ResultStatus = true, Width = image.Width, Height = image.Height };
+                }
+                catch (Exception ex)
+                {
+                    return new SaveImageResult() { Error = ex.ToString(), FullPath = "", ResultStatus = false };
+                }
+            }
+            else
+                return new SaveImageResult() { Error = "file is null", FullPath = "", ResultStatus = false }; 
+        }
+
         public enum saveImageMode { Not, Squre, portrait, wide }
         public class SaveImageResult
         {
