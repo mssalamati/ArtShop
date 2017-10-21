@@ -2,6 +2,7 @@
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;float:right;text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var textAlign = IsRighToLeft ? "text-align:right !important" : "";
     ViewBag.Title = Model.Title + " | " + Model.user.FirstName + " " + Model.user.LastName;
 }
 @model Product
@@ -163,7 +164,7 @@
                     }
 
                     <div class="row">
-                        <div class="small-12 medium-6 large-12 columns art-meta">
+                        <div class="small-12 medium-6 large-12 columns art-meta" style="@textAlign">
                             <h3 itemprop="name" class="title">@Model.Title</h3>
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
                                 <a href="/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
