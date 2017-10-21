@@ -145,11 +145,11 @@
                                                         </div>
                                                         <div class="input-group-container" style="display: block;">
                                                             <div class="input-group">
-                                                                <select name="country" placeholder="@CardRes.Country" id="country">
+                                                                <select name="country" onchange="location.href='/card/getinfo?c='+ this.value" placeholder="@CardRes.Country" id="country">
 
                                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                                     {
-                                                                        @if (ViewBag.Country != null && (int)ViewBag.Country == item.Key)
+                                                                        if (ViewBag.Country != null && (int)ViewBag.Country == item.Key)
                                                                         {
                                                                             <option selected value="@item.Key">@item.Value</option>
                                                                         }
@@ -213,8 +213,8 @@
                                                             <div>$@Model.CartTotal</div>
                                                         </div>
                                                         <div class="cart__total__row">
-                                                            <div>@CardRes.Subtotal</div>
-                                                            <div>$@Model.CartTotal</div>
+                                                            <div>Shipping</div>
+                                                            <div>$@ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country)</div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -29,7 +29,7 @@ namespace ArtShop.Controllers
         }
 
         [Authorize]
-        public ActionResult getinfo()
+        public ActionResult getinfo(int c = 0)
         {
             var user = db.UserProfiles.Find(User.Identity.GetUserId());
             ViewBag.name = user.FirstName;
@@ -42,6 +42,10 @@ namespace ArtShop.Controllers
                 ViewBag.Region = user.billingInfo.Region;
                 ViewBag.ZipCode = user.billingInfo.ZipCode;
                 ViewBag.PhoneNumber = user.billingInfo.PhoneNumber;
+            }
+            if (c != 0)
+            {
+                ViewBag.Country = c;
             }
             var cart = CartManager.GetCart(this.HttpContext);
             var viewModel = new ShoppingCartViewModel
