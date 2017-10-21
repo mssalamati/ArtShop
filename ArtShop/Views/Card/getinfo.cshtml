@@ -149,7 +149,7 @@
 
                                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                                     {
-                                                                        @if (ViewBag.Country != null && ViewBag.Country == item.Key)
+                                                                        @if (ViewBag.Country != null && (int)ViewBag.Country == item.Key)
                                                                         {
                                                                             <option selected value="@item.Key">@item.Value</option>
                                                                         }
@@ -212,7 +212,10 @@
                                                             <div>@CardRes.Subtotal</div>
                                                             <div>$@Model.CartTotal</div>
                                                         </div>
-
+                                                        <div class="cart__total__row">
+                                                            <div>@CardRes.Subtotal</div>
+                                                            <div>$@Model.CartTotal</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <button class="step-submission-button" type="submit">@CardRes.Checkout</button>
@@ -339,7 +342,6 @@
     <script>
         $('.list-group-select__item').click(function () {
             if ($(this).find('input:radio[name=paymentMethod]').is(":checked")) {
-                alert('s');
             }
             else {
                 $(this).find('input:radio[name=paymentMethod]').prop("checked", true);
