@@ -216,6 +216,11 @@
                                                             <div>Shipping</div>
                                                             <div>$@ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country)</div>
                                                         </div>
+                                                        <hr />
+                                                        <div class="cart__total__row">
+                                                            <div>Sum</div>
+                                                            <div>$@(ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country) + Model.CartTotal)</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <button class="step-submission-button" type="submit">@CardRes.Checkout</button>
