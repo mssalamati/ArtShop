@@ -345,8 +345,6 @@ namespace MobileApi.Controllers
 
             var fileName = Guid.NewGuid().ToString() + ".png";
             var contentType = "Image/png";
-            model.Image = new HttpPostedFileBaseCustom(GetSteamFromBase64String(model.imageUpload), contentType, fileName);
-
             var res = await uploadnow(model);
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
@@ -379,7 +377,7 @@ namespace MobileApi.Controllers
             try
             {
                 //upload picture
-                var UploadResult = await UploadImage(model.Image, iserver.Id);
+                var UploadResult = await UploadImage(model.imageUpload, iserver.Id);
                 if (!UploadResult.result)
                     return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
 
@@ -493,7 +491,7 @@ namespace MobileApi.Controllers
         {
             return db.ImageServers.FirstOrDefault();
         }
-        private async Task<ISUploadResult> UploadImage(HttpPostedFileBase model, int ImageServerId)
+        private async Task<ISUploadResult> UploadImage(string model, int ImageServerId)
         {
             ISUploadResult obj = null;
             var iserverid = ImageServerId;
@@ -501,11 +499,11 @@ namespace MobileApi.Controllers
             obj = await UploadImageSync(model, "https://" + iserver.Host);
             return obj;
         }
-        private async Task<ISUploadResult> UploadImageSync(HttpPostedFileBase model, string uri)
+        private async Task<ISUploadResult> UploadImageSync(string model, string uri)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(uri);
-            HttpResponseMessage response = await client.PostAsJsonAsync("upload/upload", model);
+            HttpResponseMessage response = await client.PostAsJsonAsync("upload/upload", new { raw = model });
             response.EnsureSuccessStatusCode();
             var res = await response.Content.ReadAsAsync<ISUploadResult>();
             return res;

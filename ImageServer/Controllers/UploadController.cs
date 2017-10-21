@@ -150,11 +150,13 @@ namespace ImageServer.Controllers
             }
         }
 
+        public class base64img { public string raw { get; set; } }
         [HttpPost]
-        public ActionResult uploadBase64(string file)
+        public ActionResult uploadBase64(base64img model)
         {
             try
             {
+                string file = model.raw;
                 var rootFolder = ConfigurationManager.AppSettings["rootFolder"];
                 var ImageServerName = ConfigurationManager.AppSettings["ImageServerName"];
                 var mainDomain = ConfigurationManager.AppSettings["mainDomain"];
