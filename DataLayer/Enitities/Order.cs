@@ -27,7 +27,7 @@ namespace DataLayer.Enitities
         public virtual int? TransactionDetailId { get; set; }
         public virtual TransactionDetail TransactionDetail { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public string Country { get; set; }
+        public int CountryCode { get; set; }
         public string City { get; set; }
         public string Region { get; set; }
         public string Address { get; set; }

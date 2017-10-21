@@ -71,7 +71,7 @@ namespace ArtShop.Controllers
                 OrderDetails = new List<OrderDetail>(),
                 ReceiverName = model.firstname + " " + model.lastname,
                 Address = model.address,
-                Country = model.country,
+                CountryCode = model.country,
                 City = model.city,
                 PhoneNumber = model.PhoneNumber,
             };
