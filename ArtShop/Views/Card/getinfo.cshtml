@@ -149,7 +149,14 @@
 
                                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                                     {
-                                                                        <option value="@item.Key">@item.Value</option>
+                                                                        @if (ViewBag.Country != null && ViewBag.Country == item.Key)
+                                                                        {
+                                                                            <option selected value="@item.Key">@item.Value</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@item.Key">@item.Value</option>
+                                                                        }
                                                                     }
 
                                                                 </select>

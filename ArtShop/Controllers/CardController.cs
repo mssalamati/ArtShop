@@ -38,7 +38,7 @@ namespace ArtShop.Controllers
             {
                 ViewBag.Street = user.billingInfo.Street;
                 ViewBag.City = user.billingInfo.City;
-                ViewBag.Country = user.billingInfo.country.Current().Name;
+                ViewBag.Country = user.billingInfo.country.Id;
                 ViewBag.Region = user.billingInfo.Region;
                 ViewBag.ZipCode = user.billingInfo.ZipCode;
                 ViewBag.PhoneNumber = user.billingInfo.PhoneNumber;
