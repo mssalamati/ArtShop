@@ -1,6 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "Artiscovery | Artworks";
+    ViewBag.Title = "Artworks | Artiscovery";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
 }
 
 @model  List<Product>
@@ -135,31 +140,62 @@ if (current == selected)
             <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
-                        <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" itemprop="url">
+                        <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" itemprop="url">
                             <img src="@item.photo.Path">
                         </a>
+
                     </div>
                     <div class="item-controls">
-                        <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
-                            <i class="fa fa-shopping-cart" style="color:white"></i>
-                        </a>
-                        <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
-                            <i class="fa fa-heart" style="color:white"></i>
-                        </a>
+                        @if (item.ISOrginalForSale && item.Status == ProductStatus.forSale)
+                        {
+                            <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                                <i class="fa fa-shopping-cart" style="color:white"></i>
+                            </a>
+                        }
+                        @if (User.Identity.IsAuthenticated && ViewBag.favorites != null)
+                        {
+                            if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == item.Id))
+                            {
+                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                    <i class="fa fa-heart"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                    <i class="fa fa-heart" style="color:white"></i>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                <i class="fa fa-heart" style="color:white"></i>
+                            </a>
+                        }
                         <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
                             <i class="fa fa-plus" style="color:white"></i>
                         </a>
                     </div>
-                    <div class="list-art-meta">
-                        <h4 class="list-art-title left ellipsis" itemprop="name">
-                            <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })">@item.Title</a>
+                    <div class="list-art-meta" style="height:auto; @rtlstl">
+                        <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                            <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })">@item.Title</a>
                         </h4>
-                        <small class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
+                        <small style="@rtlstl" class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
-                        <div class="list-author clear left">
-                            <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                                <a href="@Url.Action( @item.category.Current().Name,"Artwork", new { id = @item.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
+                        <div class="list-author clear left" style="@rtlstl">
+                            <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
+                                <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" class="artist-card" title="Profile page for @item.user.FirstName @item.user.LastName" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                             </h5>
+                            @if (item.ISOrginalForSale)
+                            {
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div itemprop="price">
+                                        $@item.Price
+                                    </div>
+                                </div>
+                            }
                             <h5 class="user-location ellipsis clear" itemprop="contentLocation">
                                 @if (item.user.country != null)
                                 {
@@ -168,17 +204,12 @@ if (current == selected)
                             </h5>
                         </div>
 
-                        <div class="list-art-price">
-                            @if (item.ISOrginalForSale)
-                            {
-                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                    <div itemprop="price">
-                                        $@item.Price
-                                    </div>
-                                </div>
-                            }
+                        <div class="list-art-price" style="@pricertl">
+
                             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
                                 <div class="sample-print-price" itemprop="price">
+
                                 </div>
                             </div>
                         </div>

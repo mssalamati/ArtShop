@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -43,6 +44,15 @@ namespace ArtShop.Controllers
             ViewBag.pageSize = pageSize;
             p = p.Skip((page - 1) * pageSize).Take(pageSize);
             var res = p.ToList();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                var currentUserProfile = db.UserProfiles.Find(userId);
+                ViewBag.favorites = currentUserProfile.Favorits;
+            }
+
             return View(res);
         }
 
