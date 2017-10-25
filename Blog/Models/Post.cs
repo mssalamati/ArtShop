@@ -67,7 +67,7 @@ namespace Blog.Objects
         /// The category to which the post belongs to.
         /// </summary>
         public virtual Category Category { get; set; }
-
+        public virtual SubCategory SubCategory { get; set; }
         /// <summary>
         /// Collection of tags labelled over the post.
         /// </summary>

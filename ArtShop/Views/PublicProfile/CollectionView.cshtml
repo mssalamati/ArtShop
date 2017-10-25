@@ -1,8 +1,13 @@
 ﻿@model  ICollection<CollectionProduct>
 @{
     ViewBag.Title = "Collection | Artiscovery";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
 }
-
+@using DataLayer.Extentions
 <div class="row-layout content">
 
     <!--<div style="max-height: 400px;overflow-x: none; overflow-y: auto;">
@@ -21,44 +26,34 @@
                 </table>
     </div>
     -->
+    @*<div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/art-collection/Painting-Printmaking/test-collection/994144/192521/view" style="display: block;">
+            <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview&amp;text=Check+out+this+collection+of+art+curated+by+adib+dehghan+%40SaatchiArt" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview&amp;media=%2F%2Fsaimg-a.akamaihd.net%2Fsaatchi%2F655665%2Fart%2F2164185%2F1223474-VTUWDLCP-6.jpg&amp;description=Check+out+this+collection+of+art+curated+by+adib+dehghan+at+Saatchi+Art+%23art" target="_blank">
+                <i class="fa fa-pinterest"></i>
+            </a>
+            <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/art-collection/Painting-Printmaking/test-collection/994144/192521/view&quot;,&quot;shareImage&quot;:&quot;//d3t95n9c6zzriw.cloudfront.net/email/share-page/eaf_default.jpg&quot;,&quot;pageTitle&quot;:&quot;this collection of art curated by adib dehghan&quot;}">
+                <i class="fa fa-envelope"></i>
+            </a>
+            <div id="totalShares" class="total-share"><span>0</span></div>
+        </div>*@
 
 
-    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/art-collection/Painting-Printmaking/test-collection/994144/192521/view" style="display: block;">
-        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview" target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview&amp;text=Check+out+this+collection+of+art+curated+by+adib+dehghan+%40SaatchiArt" target="_blank">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Fart-collection%2FPainting-Printmaking%2Ftest-collection%2F994144%2F192521%2Fview&amp;media=%2F%2Fsaimg-a.akamaihd.net%2Fsaatchi%2F655665%2Fart%2F2164185%2F1223474-VTUWDLCP-6.jpg&amp;description=Check+out+this+collection+of+art+curated+by+adib+dehghan+at+Saatchi+Art+%23art" target="_blank">
-            <i class="fa fa-pinterest"></i>
-        </a>
-        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/art-collection/Painting-Printmaking/test-collection/994144/192521/view&quot;,&quot;shareImage&quot;:&quot;//d3t95n9c6zzriw.cloudfront.net/email/share-page/eaf_default.jpg&quot;,&quot;pageTitle&quot;:&quot;this collection of art curated by adib dehghan&quot;}">
-            <i class="fa fa-envelope"></i>
-        </a>
-        <div id="totalShares" class="total-share"><span>0</span></div>
-    </div>
-
-
-    <script>
-    Saatchi.EmailToFriend.modalTrack = 'email-to-friend-page';
-    Saatchi.EmailToFriend.modalUrl = '/social/email/page';
-    Saatchi.EmailToFriend.modalTitle = 'Share this page';
-    Saatchi.EmailToFriend.init();
-    </script>
     <header>
         <nav class="row ">
             <div class="small-12 medium-6 columns">
                 <ul class="breadcrumbs ">
-                    <li><a class="so-quick-tip" href="/collections/browse" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">Collections</a></li>
+                    <li><a class="so-quick-tip" href="/publicprofile/collection?id=@ViewBag.id" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
                     <li>@ViewBag.CollectionName</li>
                 </ul>
-                
+
             </div>
             <div class="small-12 medium-6 columns hide-for-medium-down">
-                <ul class="breadcrumbs pull-right text-right">
-                    
-                </ul>
+                <ul class="breadcrumbs pull-right text-right"></ul>
             </div>
         </nav>
         <div class="row ">
@@ -67,19 +62,19 @@
             </div>
         </div>
         <div class="row ">
-            <div class="small-12 medium-8 columns ">
-                <a href="/account/profile/994144"><img class="avatar" src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="@ViewBag.ProfileFullName"></a>
-                <span class="collection-info">
-                    @Model.Count Artworks curated by
-                    <a href="/publicprofile?id=@ViewBag.id">@ViewBag.ProfileFullName</a>
+            @*<div class="small-12 medium-8 columns ">
+                    <a href="/account/profile/994144"><img class="avatar" src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt="@ViewBag.ProfileFullName"></a>
+                    <span class="collection-info">
+                        @Model.Count Artworks curated by
+                        <a href="/publicprofile?id=@ViewBag.id">@ViewBag.ProfileFullName</a>
 
-                </span>
-            </div>
+                    </span>
+                </div>*@
             <div class="small-12 medium-4 columns view-options">
-               @* <div>View:</div>*@
+                @* <div>View:</div>*@
                 @*<button data-view="fullView" class="view-option btn-round btn-masonry so-quick-tip active" oldtitle="View multiple items"></button>
-                <button data-view="pageWidthView" class="view-option btn-round btn-fullscroll so-quick-tip" oldtitle="View full-width, scrolling"><i class="fa fa-stop"></i></button>
-                <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>*@
+                    <button data-view="pageWidthView" class="view-option btn-round btn-fullscroll so-quick-tip" oldtitle="View full-width, scrolling"><i class="fa fa-stop"></i></button>
+                    <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>*@
             </div>
         </div>
     </header>
@@ -90,43 +85,75 @@
             <ul class="item-list masonry " style="position: relative; height: 453.688px;">
                 @foreach (CollectionProduct item in Model)
             {
-                    <li class="art-item fast-fade ">
-                        <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                    <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+                        <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                             <div class="list-art-image-wrapper">
-                                <a href="/products/single/@item.productId" itemprop="url">
-                                    <img src="@item.product.photo.Path" alt="Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
+                                <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" itemprop="url">
+                                    <img src="@item.product.photo.Path">
                                 </a>
 
                             </div>
-                            <div class="item-controls" data-id="2164185" data-artist="655665" data-art="1974334">
-                                <a href="/cart/add/P1-U655665-A1974334" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U655665-A1974334" data-title="Sticking together" data-price="5210" data-category="Painting" data-artist-id="655665" data-art-id="1974334">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </a>
-                                <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite" title="Add to Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
-                                <a href="#" data-collection-owner="655665" data-art-id="1974334" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>
-                            </div>
-                            <div class="list-art-meta">
-                                <h4 class="list-art-title left ellipsis" itemprop="name">
-                                    <a href="/products/single/@item.productId">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
-                                </h4>
-                                <small class="art-category clear left"><span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
-
-                                @{
-
-                                    var fullname = item.product.user.FirstName + " " + item.product.user.LastName;
-
+                            <div class="item-controls">
+                                @if (item.product.ISOrginalForSale && item.product.Status == ProductStatus.forSale)
+                                {
+                                    <a href="/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                                        <i class="fa fa-shopping-cart" style="color:white"></i>
+                                    </a>
                                 }
-                                <div class="list-author clear left">
-                                    <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                        <a href="/publicprofile?id=@item.product.user_id" class="artist-card" title="Profile page for @fullname" itemprop="url">@fullname</a>
+                                @if (User.Identity.IsAuthenticated && ViewBag.favorites != null)
+                                {
+                                    if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == item.product.Id))
+                                    {
+                                        <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                            <i class="fa fa-heart"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                            <i class="fa fa-heart" style="color:white"></i>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a onclick="addfav(this,@item.productId)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                        <i class="fa fa-heart" style="color:white"></i>
+                                    </a>
+                                }
+                            </div>
+                            <div class="list-art-meta" style="height:auto; @rtlstl">
+                                <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                                    <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })">@item.product.Title</a>
+                                </h4>
+                                <small style="@rtlstl" class="art-category clear left">@item.product.category.Current().Name, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
+
+                                <div class="list-author clear left" style="@rtlstl">
+                                    <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+                                        <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" class="artist-card" title="Profile page for @item.product.user.FirstName" itemprop="url">@item.product.user.FirstName  @item.product.user.LastName</a>
                                     </h5>
-                                    @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>*@
+                                    <h5 class="user-location ellipsis clear" itemprop="contentLocation">
+                                        @if (item.product.user.country != null)
+                                        {
+                                            <span>@item.product.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
+                                        }
+                                    </h5>
                                 </div>
-                                <div class="list-art-price">
-                                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+
+                                <div class="list-art-price" style="@pricertl">
+                                    @if (item.product.ISOrginalForSale)
+                                    {
+                                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                            <!-- internationalization testing -->
+                                            <div itemprop="price">
+                                                $@item.product.Price
+                                            </div>
+                                        </div>
+                                    }
+                                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                         <!-- internationalization testing -->
-                                        <div itemprop="price">
-                                         @item.product.Price
+                                        <div class="sample-print-price" itemprop="price">
+
                                         </div>
                                     </div>
                                 </div>
@@ -137,65 +164,82 @@
             </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="small-12 columns">
 
-        </div>
-    </div>
-    <div id="so-comments" class="row comments-section" style="display:none">
-        <div class="small-12 columns bd bgtext">
-            <ol>
-                <li class="no-comments">Be the first to leave a comment.</li>
-                <li class="new">
-                    <h3>Leave a Comment </h3>
 
-                    <form action="/comment/collection" method="post" id="so-comment-form">
-                        <fieldset class="comment">
-                            <legend>Enter your comment below</legend>
-                            <div class="avatar">
-                                <a href="/account/profile/994144"><img class="avatar" src="//d3t95n9c6zzriw.cloudfront.net/common/profile/avatar_tiny_square.jpg" alt=""></a>
-                            </div><textarea name="comment" id="so-comment-message" rows="5" maxlength="500" cols="80"></textarea>        <input type="hidden" name="collection" value="192521" id="so-collection-comment-collection">        <input type="hidden" name="owner" value="994144" id="so-collection-comment-owner">
-                        </fieldset>
-                        <fieldset class="submit">
-                            <legend>Click to submit your comment</legend>
-                            <input type="submit" name="" value="Post" class="button btn-info pull-right" id="so-comment-button">
-                            <input type="reset" value="Cancel" class="button btn-cancel pull-right">
-                            <em class="so-form-loader"></em>
-                        </fieldset>
+    @{
+        int page = ViewBag.page;
+        int count = ViewBag.count;
+        int pageSize = ViewBag.pageSize;
+        bool haveNext = page * pageSize < count;
+        bool havePrev = page != 1;
+        int minpage = 1;
+        int maxpage = (int)Math.Ceiling((float)count / (float)pageSize);
+    }
 
-                    </form>
+    <div class="so-pagination">
+        <div class="pagination">
+            <ul class="pull-right">
+                @if (havePrev)
+                {
+                    <li><a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page-1)'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                }
+
+                @for (int i = Math.Max(1, page - 2); i < page; i++)
+                {
+                    <li>
+                        <a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i">@i</a>
+                    </li>
+                }
+
+                <li class="active">
+                    <a>@page</a>
                 </li>
-            </ol>
+
+                @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
+                {
+                    <li>
+                        <a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i">@i</a>
+                    </li>
+                }
+
+
+                @if (haveNext)
+                {
+                    <li><a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page+1)'" href="/publicprofile/userid=@ViewBag.id&CollectionId?id=@ViewBag.collectionId&page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                }
+
+                @*
+                    <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>*@
+            </ul>
+            <div class="so-pagination-count pull-right">
+                <small>@ShareRes.Showing @((((page - 1) * pageSize) + 1) * (count == 0 ? 0 : 1)) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) @ShareRes.of @count  </small>
+            </div>
+            <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
     </div>
-
-
-    <script type="text/javascript">
-    Saatchi.Loader.load('fullview', {js:true}, function() {
+</div>
+<script src="~/Content/fullview.js"></script>
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
+    });
+    Saatchi.Loader.load('fullview', { js: true }, function () {
         Saatchi.Fullview.init();
         Saatchi.Fullview.SetView.init();
         Saatchi.Fullview.FullScreen.init();
     });
-    Saatchi.Loader.load('favorite', {js:true}, function() {
+    Saatchi.Loader.load('favorite', { js: true }, function () {
         Saatchi.Favorite.init();
     });
-    Saatchi.Loader.load('comment', {'js': true}, function () {
-        Saatchi.Comment.validator = '/comment/collection-validate';
-        Saatchi.Comment.init();
-    });
-    Saatchi.Loader.load('truncate', {js: true}, function () {
-        $('.expandable').truncate({
-            slicePoint: 450,
-            expandText: '[more]',
-            userCollapseText: '[less]'
-        });
-    });
 
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
 
-        $('.title-company:empty').remove();
+    var observer;
+    // stop observing
+    if (observer) {
+        observer.disconnect();
+    }
 
-        $('.joyride-tip-guide').delay(4000).fadeOut('slow');
-
-    </script>
-    <div class="clearfix"></div>
-</div>
+</script>

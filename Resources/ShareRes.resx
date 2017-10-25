@@ -309,4 +309,19 @@
   <data name="Search_results" xml:space="preserve">
     <value>Search results</value>
   </data>
+  <data name="Add_to_Favorites" xml:space="preserve">
+    <value>Add to Favorites</value>
+  </data>
+  <data name="View_Fullscreen" xml:space="preserve">
+    <value>View Fullscreen</value>
+  </data>
+  <data name="View_in_a_Room" xml:space="preserve">
+    <value>View in a Room</value>
+  </data>
+  <data name="Add_to_a_Collection" xml:space="preserve">
+    <value>Add to a Collection</value>
+  </data>
+  <data name="You_have_not_any_collection" xml:space="preserve">
+    <value>You have not any collection</value>
+  </data>
 </root>

@@ -34,6 +34,7 @@ namespace Blog.Models
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }

@@ -8,17 +8,16 @@ using System.Web.Mvc;
 
 namespace Blog.Areas.Admin.Controllers
 {
-    public class CategoriesController : BaseController
+    public class SubCategoriesController : BaseController
     {
-        // GET: Admin/Categories
         public ActionResult Index(int page = 1, string search = "")
         {
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
-            var data = db.Categories
+            var data = db.SubCategories
                  .Where(x => string.IsNullOrEmpty(search) || x.Name.Contains(search))
                  .OrderByDescending(x => x.Name)
                  .Skip(skip).Take(take);
-            count = data.Count();
+            count = db.SubCategories.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
 
@@ -28,6 +27,7 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult Add()
         {
             ViewBag.language = db.Languages.ToList();
+            ViewBag.categories = db.Categories.ToList();
             return PartialView();
         }
 
@@ -38,16 +38,18 @@ namespace Blog.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.language = db.Languages.ToList();
+                ViewBag.categories = db.Categories.ToList();
                 return PartialView(model);
             }
 
+            var supportCat = db.Categories.Find(model.CategoryId);
+            SubCategory c = new SubCategory() { Name = model.Name, Category = supportCat };
 
-            Category c = new Category() { Name = model.Name };
-
-            c.Translations = new List<CategoryTranslation>();
+            supportCat.SubCategories.Add(c);
+            c.Translations = new List<SubCategoryTranslation>();
             foreach (var item in model.Translations)
-                c.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
-            db.Categories.Add(c);
+                c.Translations.Add(new SubCategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+            db.SubCategories.Add(c);
             try
             {
                 db.SaveChanges();
@@ -61,12 +63,12 @@ namespace Blog.Areas.Admin.Controllers
             }
         }
 
-
         public ActionResult Edit(int id)
         {
-            var finder = db.Categories.Find(id);
+            var finder = db.SubCategories.Find(id);
             ViewBag.language = db.Languages.ToList();
-            CategoryViewModel cvm = new CategoryViewModel() { Id = finder.Id, Translations = new List<CategoryTranslationViewModel>(), Name = finder.Name };
+            ViewBag.categories = db.Categories.ToList();
+            CategoryViewModel cvm = new CategoryViewModel() { Id = finder.Id, Translations = new List<CategoryTranslationViewModel>(), Name = finder.Name, CategoryId = finder.Category.Id };
             foreach (var item in finder.Translations)
                 cvm.Translations.Add(new CategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name, Description = item.Description });
 
@@ -76,8 +78,10 @@ namespace Blog.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(CategoryViewModel model)
         {
-            var finder = db.Categories.Find(model.Id);
+            var finder = db.SubCategories.Find(model.Id);
             finder.Name = model.Name;
+            var supportCat = db.Categories.Find(model.CategoryId);
+            finder.Category = supportCat;
 
             foreach (var item in model.Translations)
             {
@@ -89,7 +93,7 @@ namespace Blog.Areas.Admin.Controllers
                 }
 
                 else
-                    finder.Translations.Add(new CategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+                    finder.Translations.Add(new SubCategoryTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
 
             }
 
@@ -104,6 +108,7 @@ namespace Blog.Areas.Admin.Controllers
             }
 
             ViewBag.language = db.Languages.ToList();
+            ViewBag.categories = db.Categories.ToList();
             CategoryViewModel cvm = new CategoryViewModel() { Id = finder.Id, Translations = new List<CategoryTranslationViewModel>() };
             foreach (var item in finder.Translations)
                 cvm.Translations.Add(new CategoryTranslationViewModel() { languageId = item.languageId, Name = item.Name });
@@ -113,18 +118,10 @@ namespace Blog.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var finder = db.Categories.Find(id);
-            
-            foreach (var item in finder.Posts)
-            {
-                db.Links.RemoveRange(item.Links);
-                db.HeaderPhotos.RemoveRange(item.HeaderPhotos);
-                db.SubCategories.RemoveRange(finder.SubCategories);
-            }
-            db.Posts.RemoveRange(finder.Posts);
-            db.Categories.Remove(finder);
+            var finder = db.SubCategories.Find(id);
+            db.SubCategories.Remove(finder);
             db.SaveChanges();
-            return RedirectToActionPermanent("Index");
+            return RedirectToAction("Index");
         }
     }
 }

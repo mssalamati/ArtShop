@@ -82,7 +82,7 @@
             <ul>
                 <li class="header"><a data-gtm-event="nav footer" href="/Pages/About" target="_parent" title="About Us">@FooterRes.About_Us</a></li>
                 @*<li><a data-gtm-event="nav footer" href="press.html" target="_parent" title="Press">@FooterRes.Press</a></li>
-                <li><a data-gtm-event="nav footer" href="" target="_blank" title="Careers">@FooterRes.Careers</a></li>*@
+                    <li><a data-gtm-event="nav footer" href="" target="_blank" title="Careers">@FooterRes.Careers</a></li>*@
                 <li><a data-gtm-event="nav footer" href="" target="_parent" title="Contact Us">@FooterRes.Contact_Us</a></li>
                 <li><a data-gtm-event="nav footer" href="https://eyes.artiscovery.com" target="_blank">@FooterRes.Blog</a></li>
             </ul>
@@ -100,57 +100,116 @@
 
         <div class="clear"></div>
         <hr>
-        <div class="row" style="color:white">
-            <div class="medium-6 columns">
-                <div id="footerSubscribe">
-                    <h2>@FooterRes.Email_header1</h2>
-                    <div>@FooterRes.Email_header2</div>
+        @if (IsRighToLeft)
+        {
+            <div class="row" style="color:white">
+                <div class="medium-6 columns">
+                    <div class="footer-icons" style="border-left:none !important;border-right:1px solid #e9e9e9 !important">
+                        <ul class="social-follow inline-list" style="margin:0 73px 0 0 !important">
+                            <li><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
+                            <li><a data-gtm-event="nav footer" href="http://www.twitter.com/artiscoverycom" target="_blank" title="Twitter"><i class="fa fa-twitter btn-round"></i></a></li>
+                            @*<li><a data-gtm-event="nav footer" href="http://pinterest.com/" target="_blank" title="Pinterest"><i class="fa fa-pinterest btn-round"></i></a></li>*@
+                            @*<li><a data-gtm-event="nav footer" href="" target="_blank" title="Tumblr"><i class="fa fa-tumblr btn-round"></i></a></li>*@
+                            <li><a data-gtm-event="nav footer" href="http://instagram.com/artiscovery" target="_blank" title="Instagram"><i class="fa fa-instagram btn-round"></i></a></li>
+                            <li><a data-gtm-event="nav footer" href="https://plus.google.com/" rel="publisher" target="_blank" title="Google Plus"><i class="fa fa-google-plus btn-round"></i></a></li>
+                            @*<li><a data-gtm-event="nav footer" href="https://www.youtube.com/" rel="publisher" target="_blank" title="YouTube"><i class="fa fa-youtube btn-round"></i></a></li>*@
+                        </ul>
+
+                        <div class="clear"></div>
+                        <div class="logo-Saatchi-Art" style="width:auto !important">
+                            <a data-gtm-event="nav footer" style="background:none;text-align:center;width:-webkit-fill-available !important;padding-left:0px !important;right:unset" href="/" title="Artiscovery">&copy; 2017 Artsicovery. All rights reserved.</a>
+                            <div class="trustpilot-widget" data-style-height="20px" data-style-width="100%" data-theme="light">
+                                <a data-gtm-event="nav footer" href="" target="_blank"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-6 columns">
+                    <div id="footerSubscribe">
+                        <h2 style="font-size:1.3rem !important">@FooterRes.Email_header1</h2>
+                        <div>@FooterRes.Email_header2</div>
 
 
-                    @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
-                    {
+                        @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="enter-email" >
+                                <input type="hidden" name="version" value="1">
+                                <input type="hidden" name="account_type" value="collector">
+                                <input type="hidden" name="user_type_id" value="1">
+                                <input type="text" name="email" id="email" value="" class="text" style="width:67% !important;" autocomplete="off" placeholder="Email Address">
+                                <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4;margin-left:0px !important;font-size:.68rem" value="@FooterRes.SignUp" class="button btn-info dark">
+                            </div>
+                        }
+
+
+                    </div>
+                    <div id="footerSubscribeThanks" class="thank-you hide">
+                        <h2>Thank you for signing up!</h2>
+                    </div>
+                    <script type="text/javascript">
+                        Saatchi.Loader.load('subscribe', { 'js': true }, function () {
+                        });
+                    </script>
+                </div>
+                
+            </div>
+        }
+        else
+        {
+            <div class="row" style="color:white">
+                <div class="medium-6 columns">
+                    <div id="footerSubscribe">
+                        <h2>@FooterRes.Email_header1</h2>
+                        <div>@FooterRes.Email_header2</div>
+
+
+                        @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
+                        {
                         @Html.AntiForgeryToken()
                         <div class="enter-email" style="padding-right:10px;">
                             <input type="hidden" name="version" value="1">
                             <input type="hidden" name="account_type" value="collector">
                             <input type="hidden" name="user_type_id" value="1">
                             <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
-                            <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4" value="@FooterRes.SignUp" class="button btn-info dark">
+                            <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4;margin-left:0px !important" value="@FooterRes.SignUp" class="button btn-info dark">
                         </div>
-                    }
+                        }
 
 
-                </div>
-                <div id="footerSubscribeThanks" class="thank-you hide">
-                    <h2>Thank you for signing up!</h2>
-                </div>
-                <script type="text/javascript">
+                    </div>
+                    <div id="footerSubscribeThanks" class="thank-you hide">
+                        <h2>Thank you for signing up!</h2>
+                    </div>
+                    <script type="text/javascript">
                     Saatchi.Loader.load('subscribe', { 'js': true }, function () {
                     });
-                </script>
-            </div>
-            <div class="medium-6 columns">
-                <div class="footer-icons">
-                    <ul class="social-follow inline-list">
-                        <li><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
-                        <li><a data-gtm-event="nav footer" href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter btn-round"></i></a></li>
-                        <li><a data-gtm-event="nav footer" href="http://pinterest.com/" target="_blank" title="Pinterest"><i class="fa fa-pinterest btn-round"></i></a></li>
-                        <li><a data-gtm-event="nav footer" href="" target="_blank" title="Tumblr"><i class="fa fa-tumblr btn-round"></i></a></li>
-                        <li><a data-gtm-event="nav footer" href="http://instagram.com/" target="_blank" title="Instagram"><i class="fa fa-instagram btn-round"></i></a></li>
-                        <li><a data-gtm-event="nav footer" href="https://plus.google.com/" rel="publisher" target="_blank" title="Google Plus"><i class="fa fa-google-plus btn-round"></i></a></li>
-                        <li><a data-gtm-event="nav footer" href="https://www.youtube.com/" rel="publisher" target="_blank" title="YouTube"><i class="fa fa-youtube btn-round"></i></a></li>
-                    </ul>
+                    </script>
+                </div>
+                <div class="medium-6 columns">
+                    <div class="footer-icons">
+                        <ul class="social-follow inline-list" style="width:auto !important;margin-right:162px !important">
+                            <li><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
+                            <li><a data-gtm-event="nav footer" href="http://www.twitter.com/artiscoverycom" target="_blank" title="Twitter"><i class="fa fa-twitter btn-round"></i></a></li>
+                            @*<li><a data-gtm-event="nav footer" href="http://pinterest.com/" target="_blank" title="Pinterest"><i class="fa fa-pinterest btn-round"></i></a></li>*@
+                            @*<li><a data-gtm-event="nav footer" href="" target="_blank" title="Tumblr"><i class="fa fa-tumblr btn-round"></i></a></li>*@
+                            <li><a data-gtm-event="nav footer" href="http://instagram.com/artiscovery" target="_blank" title="Instagram"><i class="fa fa-instagram btn-round"></i></a></li>
+                            <li><a data-gtm-event="nav footer" href="https://plus.google.com/" rel="publisher" target="_blank" title="Google Plus"><i class="fa fa-google-plus btn-round"></i></a></li>
+                            @*<li><a data-gtm-event="nav footer" href="https://www.youtube.com/" rel="publisher" target="_blank" title="YouTube"><i class="fa fa-youtube btn-round"></i></a></li>*@
+                        </ul>
 
-                    <div class="clear"></div>
-                    <div class="logo-Saatchi-Art">
-                        <a data-gtm-event="nav footer" style="background:none;text-align:left" href="/" title="Artiscovery">&copy; 2017 Artsicovery. All rights reserved.</a>
-                        <div class="trustpilot-widget" data-style-height="20px" data-style-width="100%" data-theme="light">
-                            <a data-gtm-event="nav footer" href="" target="_blank"></a>
+                        <div class="clear"></div>
+                        <div class="logo-Saatchi-Art">
+                            <a data-gtm-event="nav footer" style="background:none;text-align:left" href="/" title="Artiscovery">&copy; 2017 Artsicovery. All rights reserved.</a>
+                            <div class="trustpilot-widget" data-style-height="20px" data-style-width="100%" data-theme="light">
+                                <a data-gtm-event="nav footer" href="" target="_blank"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+
         @if (IsRighToLeft)
         {
             <div class="clear"></div>
@@ -158,10 +217,23 @@
             <div class="row">
                 <div class="medium-12 columns">
                     <p style="direction:rtl;font-size:16px">
-                        گروه آرتیسکاوری با هدف از بین بردن مرزها برای معرفی هنرمندان و فروش آثار هنری شروع به کار کرده و در حوزه ی هنرهای تجسمی از قبیل: نقاشی، طراحی، تصویر سازی، چاپ، کلاژ و مجسمه سازی تلاش می کند تا بهترین منبع برای دستیابی به اطلاعات، اخبار هنری و آثار اصیل باشد.
+                        گروه آرتیسکاوری با هدف از بین بردن مرزهای جغرافیای، نژادی و سیاسی برای معرفی هنرمندان و فروش آثار هنری شروع به کار کرده است و تلاش می کند تا در حوزه ی هنرهای تجسمی از قبیل نقاشی، طراحی، تصویرسازی، خوشنویسی، چاپ، کلاژ و مجسمه سازی، منبعی معتبر برای دسترسی سریع و آسان به اطلاعات، اخبار هنری و آثار اصیل باشد.
                     </p>
                 </div>
             </div>
+        }
+        else
+        {
+            <div class="clear"></div>
+            <hr>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <p style="font-size:16px">
+                        Artiscovery group aims to eliminate geographical, racial and political boundaries to introduce artists and sell their artworks. We try to be a reliable source for quick and easy access to art news, original works and information about visual arts such as painting, design, illustration, calligraphy, printing, collage and sculpture.
+                    </p>
+                </div>
+            </div>
+
         }
     </div>
 

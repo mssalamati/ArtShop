@@ -208,6 +208,16 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
+        [Authorize, Route("getArtworkList")]
+        public HttpResponseMessage getArtworkList()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            var result = profile.Products.ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
         [Authorize, Route("getOrders")]
         public HttpResponseMessage getOrders()
         {
@@ -503,7 +513,7 @@ namespace MobileApi.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(uri);
-            HttpResponseMessage response = await client.PostAsJsonAsync("upload/upload", new { raw = model });
+            HttpResponseMessage response = await client.PostAsJsonAsync("upload/uploadBase64", new { raw = model });
             response.EnsureSuccessStatusCode();
             var res = await response.Content.ReadAsAsync<ISUploadResult>();
             return res;

@@ -35,7 +35,7 @@ namespace ArtShop.Controllers
             var price_cash = manager.Pricethresholds.SingleOrDefault(x => x.Id == price);
             ViewBag.priceName = price_cash != null ? price_cash.Name : Resources.SearchRes.All_Prices;
             ViewBag.priceId = price;
-
+            
             var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
             p = p.Where(x => category == 0 || x.categoryId == category).AsQueryable();
             p = p.Where(x => style == 0 || x.Styles.FirstOrDefault(y => y.Id == style) != null);
@@ -45,6 +45,14 @@ namespace ArtShop.Controllers
                 p = p.Where(x => x.Price < price_cash.max.Value);
             if (price_cash != null && price_cash.min.HasValue)
                 p = p.Where(x => x.Price >= price_cash.min.Value && x.Price > 0);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                var userProfile = db.UserProfiles.Find(userId);
+                ViewBag.favorites = userProfile.Favorits;
+            }
 
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));

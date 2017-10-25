@@ -236,6 +236,7 @@
     <Compile Include="Areas\Admin\Controllers\FirstPageController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\AccountViewModels.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NavigationCategory.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -5226,6 +5228,10 @@
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\_successWindow.cshtml" />
     <Content Include="Content\font\IRANSans.ttf" />
+    <Content Include="Areas\Admin\Views\SubCategories\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategories\_successWindow.cshtml" />
     <None Include="Properties\PublishProfiles\Blog.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\froogaloop.js" />
@@ -5295,6 +5301,7 @@
     <Content Include="Views\Tag\Index.cshtml" />
     <Content Include="Views\Home\More.cshtml" />
     <Content Include="Views\Category\More.cshtml" />
+    <Content Include="Views\Category\SubCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5346,7 +5353,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59597</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59597/</IISUrl>
+          <IISUrl>http://localhost:59587/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

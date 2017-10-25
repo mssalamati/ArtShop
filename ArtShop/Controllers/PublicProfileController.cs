@@ -86,7 +86,7 @@ namespace ArtShop.Controllers
 
             int counter = 0;
 
-            foreach (var item in userProfile.Collections)
+            foreach (var item in userProfile.Collections.Where(a=>!a.IsPrivate))
             {
                 CollectionViewModel model = new CollectionViewModel();
                 model.CollectionId = item.Id;
@@ -115,23 +115,41 @@ namespace ArtShop.Controllers
             return View(collectionViewModel);
         }
 
-        public ActionResult CollectionView(string userId, int id)
+        public ActionResult CollectionView(string userId, int id,int page = 1)
         {
-
+            int pageSize = 18;
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.id = userId;
             var collection = userProfile.Collections.FirstOrDefault(x => x.Id == id);
             ViewBag.CollectionName = collection.Title;
             ViewBag.CollectionId = collection.Id;
-
             if (collection.Artworks != null)
-                return View(collection.Artworks);
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var currentUserId = User.Identity.GetUserId();
+
+                    var currentUserProfile = db.UserProfiles.Find(currentUserId);
+                    ViewBag.favorites = currentUserProfile.Favorits;
+                }
+
+                var p = collection.Artworks;
+                var count = p.Count();
+                page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+                page = Math.Max(1, page);
+                ViewBag.page = page;
+                ViewBag.count = count;
+                ViewBag.pageSize = pageSize;
+
+                var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return View(p);
+            }
 
             return View();
         }
 
-        public ActionResult Favorites(string id,int page = 1)
+        public ActionResult Favorites(string id, int page = 1)
         {
             int pageSize = 18;
             var userProfile = db.UserProfiles.Find(id);
@@ -142,6 +160,14 @@ namespace ArtShop.Controllers
             ViewBag.PhotoPath = userProfile.PhotoPath;
             if (userProfile.Favorits != null)
             {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var userId = User.Identity.GetUserId();
+
+                    var currentUserProfile = db.UserProfiles.Find(userId);
+                    ViewBag.favorites = currentUserProfile.Favorits;
+                }
+
                 var p = userProfile.Favorits;
                 var count = p.Count();
                 page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
@@ -167,6 +193,14 @@ namespace ArtShop.Controllers
             ViewBag.id = id;
             ViewBag.PhotoPath = userProfile.PhotoPath;
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                var currentUserProfile = db.UserProfiles.Find(userId);
+                ViewBag.favorites = currentUserProfile.Favorits;
+            }
+
             var p = userProfile.Products;
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
@@ -174,7 +208,7 @@ namespace ArtShop.Controllers
             ViewBag.page = page;
             ViewBag.count = count;
             ViewBag.pageSize = pageSize;
-            
+
             var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View(res);

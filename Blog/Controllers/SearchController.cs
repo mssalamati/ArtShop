@@ -1,6 +1,7 @@
 ﻿using Blog.Areas.Admin.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +13,8 @@ namespace Blog.Controllers
         // GET: Search
         public ActionResult Index(string Keyword)
         {
-            var posts = db.Posts.Where(x => x.Title.Contains(Keyword)).OrderByDescending(a => a.PostedOn).ToList();
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
+            var posts = db.Posts.Where(a => a.Translations.FirstOrDefault(x => x.languageId == currentCultureName).Title.Contains(Keyword)).OrderByDescending(a => a.PostedOn).ToList();
             ViewBag.keyword = Keyword;
             return View(posts);
 

@@ -400,4 +400,10 @@
   <data name="Private" xml:space="preserve">
     <value>Private</value>
   </data>
+  <data name="Community" xml:space="preserve">
+    <value>Community</value>
+  </data>
+  <data name="Portfolio" xml:space="preserve">
+    <value>Portfolio</value>
+  </data>
 </root>

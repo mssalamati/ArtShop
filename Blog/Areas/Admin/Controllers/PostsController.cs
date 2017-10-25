@@ -17,20 +17,34 @@ namespace Blog.Areas.Admin.Controllers
     public class PostsController : BaseController
     {
         // GET: Admin/Posts
-        public ActionResult Index(int page = 1, string search = "")
+        public ActionResult Index(int page = 1, string search = "", int? catId = null)
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
-
+            ViewBag.cats = db.Categories.ToList();
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
-            var data = user.userDetail.Posts
+            if (catId.HasValue)
+            {
+                ViewBag.catId = catId;
+                var data = user.userDetail.Posts.Where(a => a.Category.Id == catId)
+                 .Where(x => string.IsNullOrEmpty(search) || x.Title.Contains(search));
+                count = data.Count();
+                data = data.OrderByDescending(x => x.PostedOn).Skip(skip).Take(take);
+                int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
+                ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
+                return View(data.ToList());
+            }
+            else
+            {
+                var data = user.userDetail.Posts
                  .Where(x => string.IsNullOrEmpty(search) || x.Title.Contains(search))
                  .OrderByDescending(x => x.PostedOn)
                  .Skip(skip).Take(take);
-            count = user.userDetail.Posts.Count();
-            int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
-            ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
-            return View(data.ToList());
+                count = user.userDetail.Posts.Count();
+                int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
+                ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
+                return View(data.ToList());
+            }
         }
 
         public ActionResult Add()
@@ -38,7 +52,7 @@ namespace Blog.Areas.Admin.Controllers
             ViewBag.caregories = db.Categories.ToList();
             ViewBag.language = db.Languages.ToList();
             ViewBag.tags = db.Tags.ToList();
-            
+
             return View(new PostViewModel());
         }
         [HttpPost]
@@ -78,6 +92,8 @@ namespace Blog.Areas.Admin.Controllers
                 newPost.HeaderPhotos.Add(new HeaderPhoto() { Path = res.FullPath });
             }
             newPost.Category = db.Categories.Find(model.Category);
+            newPost.SubCategory = db.SubCategories.Find(model.SubCategory);
+
             if (model.Links != null)
                 newPost.Links = model.Links.Where(x => !string.IsNullOrEmpty(x)).Select(x => new Link() { URL = x }).ToList();
             newPost.Tags = db.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
@@ -87,6 +103,8 @@ namespace Blog.Areas.Admin.Controllers
             newPost.Translations = new List<PostTranslation>();
             newPost.Translations.Add(new PostTranslation() { languageId = model.languageId, Title = model.Title, Description = model.Description, ShortDescription = model.ShortDescription });
             newPost.Author = "Artiscovery Team";
+
+
             user.userDetail.Posts.Add(newPost);
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e)
@@ -167,6 +185,7 @@ namespace Blog.Areas.Admin.Controllers
                         post.HeaderPhotos.Add(new HeaderPhoto() { Path = res.FullPath });
                     }
             post.Category = db.Categories.Find(model.Category);
+            post.SubCategory = db.SubCategories.Find(model.SubCategory);
             if (post.Links != null)
                 db.Links.RemoveRange(post.Links);
 
@@ -245,6 +264,11 @@ namespace Blog.Areas.Admin.Controllers
             return View(images);
         }
 
+        public ActionResult LoadSubCategories(int id)
+        {
+            return Json(db.SubCategories.Where(x => x.Category.Id == id).Select(x => new { x.Id, x.Name }).ToList(),
+                JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Delete(int id)
         {
             var userId = User.Identity.GetUserId();

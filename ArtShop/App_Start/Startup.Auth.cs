@@ -61,8 +61,8 @@ namespace ArtShop
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "542554968650-o1h745n50flfc2ri12l54iu4mird2901.apps.googleusercontent.com",
-                ClientSecret = "ZksWOe8WGloeQpy02mP5HcnK"
+                ClientId = "654560290592-memv3r77qnc9l1c2rcsrn8hie9jt87a5.apps.googleusercontent.com",
+                ClientSecret = "WWhDbc39YFEmH--EQGTspqYu"
             });
         }
     }

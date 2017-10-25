@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to a Collection.
+        /// </summary>
+        public static string Add_to_a_Collection {
+            get {
+                return ResourceManager.GetString("Add_to_a_Collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Favorites.
+        /// </summary>
+        public static string Add_to_Favorites {
+            get {
+                return ResourceManager.GetString("Add_to_Favorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already have an account?.
         /// </summary>
         public static string Already_have {
@@ -619,6 +637,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Fullscreen.
+        /// </summary>
+        public static string View_Fullscreen {
+            get {
+                return ResourceManager.GetString("View_Fullscreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in a Room.
+        /// </summary>
+        public static string View_in_a_Room {
+            get {
+                return ResourceManager.GetString("View_in_a_Room", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome!.
         /// </summary>
         public static string Welcome {
@@ -633,6 +669,15 @@ namespace Resources {
         public static string Welcome_back {
             get {
                 return ResourceManager.GetString("Welcome_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not any collection.
+        /// </summary>
+        public static string You_have_not_any_collection {
+            get {
+                return ResourceManager.GetString("You_have_not_any_collection", resourceCulture);
             }
         }
     }

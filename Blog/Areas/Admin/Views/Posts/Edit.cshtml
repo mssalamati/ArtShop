@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Edit | Posts";
 }
 
 @using Blog.Objects
@@ -69,10 +69,22 @@
                     </div>
 
                     <div class="col-md-12" style="margin-top:2px">
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> دسته بندی * </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> زیر دسته بندی * </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="padding:5px;width:100%" class="col-sm-2 control-label"> نوع مطلب (ShowCase پست بالای صفحه ) </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:2px">
                         <div class="form-group">
-                            <label style="padding:5px" class="col-sm-2 control-label"> دسته بندی * </label>
+                            
                             <div class="col-sm-4">
-                                <select class="form-control" name="Category" style="width: 100%;">
+                                <select class="form-control" name="Category" id="Category" style="width: 100%;">
                                     @foreach (var item in ((List<Category>)ViewBag.caregories))
                                     {
                                         if (Model.Category == item.Id)
@@ -86,7 +98,11 @@
                                     }
                                 </select>
                             </div>
-                            <label style="padding:5px;text-align:left" class="col-sm-2 control-label"> نوع مطلب </label>
+                            <div class="col-md-4">
+                                <select class="form-control" name="SubCategory" id="SubCategory" style="width: 100%;">
+                                    <option value=""> </option>
+                                </select>
+                            </div>
                             <div class="col-sm-4">
                                 <select class="form-control" name="postType" style="width: 100%;">
                                     @if (Model.postType == PostType.Wide)
@@ -279,11 +295,15 @@
 
     </script>
 
-    <script>
+<script>
+        $(document).on('change', '#Category', function () {
+            changepro();
+        });
+
         $('.chosen').chosen({
             width: '100%'
         });
-    </script>
+</script>
 
     <script type="text/javascript">
         function initinputcss() {
@@ -324,4 +344,24 @@
             }
         }
     </script>
+<script>
+        function changepro() {
+            $('#SubCategory option').remove();
+            $('#SubCategory').prop('disabled', true);
+            var iid = $("#Category").val();
+            $.get("/admin/Posts/LoadSubCategories?id=" + iid, function (data) {
+                $('#SubCategory').prop('disabled', false);
+                $.each(data, function (key, value) {
+                    if (value.Id == '@Model.SubCategory') {
+                        $("#SubCategory").append($("<option selected></option>").val(value.Id).html(value.Name));
+                    }
+                    else {
+                        $("#SubCategory").append($("<option></option>").val(value.Id).html(value.Name));
+                    }
+
+                });
+            });
+        }
+        changepro();
+</script>
 }

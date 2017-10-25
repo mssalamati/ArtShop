@@ -60,11 +60,11 @@ namespace MobileApi
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "654560290592-memv3r77qnc9l1c2rcsrn8hie9jt87a5.apps.googleusercontent.com",
+                ClientSecret = "WWhDbc39YFEmH--EQGTspqYu"
+            });
         }
     }
 }

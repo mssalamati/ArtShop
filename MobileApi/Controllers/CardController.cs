@@ -50,7 +50,6 @@ namespace MobileApi.Controllers
         public HttpResponseMessage RemoveFromCart(int id)
         {
             var cart = CartManager.GetCart(User.Identity.Name);
-            string Pname = db.ShoppingCarts.Single(item => item.Id == id).Product.Title;
             decimal itemCount = cart.RemoveAllFromCart(id);
             var results = new
             {

@@ -107,7 +107,7 @@ namespace MobileApi.Controllers
             // Get the cart
             var cartItem = db.ShoppingCarts.Single(
                 cart => cart.CartNumber == ShoppingCartId
-                && cart.Id == id);
+                && cart.ProductId == id);
 
             decimal itemCount = 0;
 

@@ -77,8 +77,16 @@ else
                     </div><!-- .date-info -->
 
                     <div class="about-info">
-                        <h3>@Resources.ShareRes.About @Model.Category.Current().Name</h3>
+                        @if (Model.SubCategory != null)
+                        {
+                            <h3>@Resources.ShareRes.About @Model.SubCategory.Current().Name</h3>
+                            <p></p><p>@Model.SubCategory.Current().Description</p>
+                        }
+                        else
+                        { <h3>@Resources.ShareRes.About @Model.Category.Current().Name</h3>
                         <p></p><p>@Model.Category.Current().Description</p>
+                        }
+
                         <p></p>
                     </div>
                     <div class="tag-info">
@@ -99,7 +107,15 @@ else
 
                 <div class="@contentClass post-content">
                     <article>
-                        <h3 style="text-align: center !important"><a href="@Url.Action(Model.Category.Name,"Category", new { id = Model.Category.GenerateSlug()})">@Model.Category.Current().Name</a></h3>
+                        @if (Model.SubCategory != null)
+                        {
+                            <h3 style="text-align: center !important"><a href="@Url.Action(Model.Category.Name, "Category",new { id =Model.SubCategory.GenerateSlug() })">@Model.SubCategory.Current().Name</a></h3>
+                        }
+                        else
+                        {
+                            <h3 style="text-align: center !important"><a href="@Url.RouteUrl("Category", new { id = Model.Category.GenerateSlug() })">@Model.Category.Current().Name</a></h3>
+                        }
+                        
                         <h1 style="text-align:center !important">@Model.Current().Title</h1>
 
                         <div class="date-info hidden-lg">

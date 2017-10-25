@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Posts | Admin";
 }
 
 @using Blog.Objects
@@ -26,13 +26,33 @@
     <div class="card-header">
         <form method="get" action="/admin/posts/index">
             <div class="input-group pull-right col-md-6">
+
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
                 </span>
                 <input type="hidden" name="page" value="@ViewBag.page">
                 <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
                 <input type="search" placeholder="search..." name="search" value="@ViewBag.search" class="form-control bl0">
+
+
             </div>
+            <div class="input-group pull-right col-md-4">
+                <select class="form-control" name="Category" id="Category" style="width: 100%;">
+                    <option value="" >ALL Categories</option>
+                    @foreach (var item in ((List<Category>)ViewBag.cats))
+                    {
+                        if (ViewBag.catId == item.Id)
+                        {
+                            <option selected="selected" value="@item.Id">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
         </form>
         <a href="/admin/posts/add" class="pull-left btn btn-default">ثبت پست جدید</a>
     </div>
@@ -46,6 +66,9 @@
                         <th>
                             Title
                         </th>
+                        <th>
+                            Category
+                        </th>
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
@@ -54,6 +77,9 @@
                             <th><i class="fa fa-eye"></i></th>
                             <th>
                                 @item.Title
+                            </th>
+                            <th>
+                                @item.Category.Name
                             </th>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="/admin/posts/edit/@item.Id">ویرایش</a>
@@ -79,7 +105,7 @@
     @if (ViewBag.page != 1)
     {
         <li>
-            <a href="@Url.Action("index", new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+            <a href="@Url.Action("index", new { page = ViewBag.page - 1, search = ViewBag.search,catId=ViewBag.catId  })">→</a>
         </li>
     }
 
@@ -88,13 +114,13 @@
         if (ViewBag.page == i)
         {
             <li class="active">
-                <a class="" href="@Url.Action("index",new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                <a class="" href="@Url.Action("index",new { page = i, search = ViewBag.search,catId=ViewBag.catId })">@i</a>
             </li>
         }
         else
         {
             <li>
-                <a href="@Url.Action("index",new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                <a href="@Url.Action("index",new { page = i , search = ViewBag.search,catId=ViewBag.catId })">@i</a>
             </li>
         }
 
@@ -102,11 +128,28 @@
     @if (ViewBag.page != ViewBag.maxpage)
     {
         <li>
-            <a href="@Url.Action("index",new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+            <a href="@Url.Action("index",new { page = ViewBag.page + 1 , search = ViewBag.search,catId=ViewBag.catId })">←</a>
         </li>
     }
 
 
 </ul>
+@section scripts{
+    <script src="~/Content/admin/vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
 
 
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).on('change', '#Category', function () {            
+            var iid = $("#Category").val();
+             
+            document.location.href = "/admin/posts/index?page=@ViewBag.page&search=@ViewBag.search&catId=" + iid;
+            
+        });
+
+    </script>
+
+
+}

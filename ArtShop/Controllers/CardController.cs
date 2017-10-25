@@ -243,10 +243,10 @@ namespace ArtShop.Controllers
         public ActionResult PaypalReturn(string payerId, string paymentId)
         {
             var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
-            var apiContext = getPaypalApiContect();
-            var paymentExecution = new paypal.PaymentExecution() { payer_id = payerId };
-            var payment = new paypal.Payment();
-            var executedpayment = payment.Execute(apiContext, paymentExecution);
+            //var apiContext = getPaypalApiContect();
+            //var paymentExecution = new paypal.PaymentExecution() { payer_id = payerId };
+            //var payment = new paypal.Payment();
+            //var executedpayment = payment.Execute(apiContext, paymentExecution);
             var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
             var orderId = order.Id;
             tran.Payed = true;

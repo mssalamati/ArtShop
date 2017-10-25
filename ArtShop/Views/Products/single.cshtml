@@ -9,6 +9,18 @@
 
 @using DataLayer.Extentions
 
+
+@if (IsRighToLeft)
+{
+    <style>
+        span, p {
+            font-family: yj,"Helvetica",sans-serif !important;
+            font-size: .9rem !important;
+            line-height: 1.6rem !important;
+        }
+    </style>
+}
+
 <style>
     .artwithpic {
         background-image: url("/content/view_in_room_plant.jpg");
@@ -130,17 +142,18 @@
                                 {
                                     <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="View in a Room">
                                         <i id="viewroombtnicon" class="icn-view-in-a-room"></i>
-                                        <span id="viewroombtntxt">View in a Room</span>
+                                        <span id="viewroombtntxt">@ShareRes.View_in_a_Room</span>
                                     </a>
                                 }
 
                                 <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="@Model.photo.Path" title="View Fullscreen">
                                     <i class="fa fa-expand"></i>
-                                    <span>View Fullscreen</span>
+                                    <span>@ShareRes.View_Fullscreen</span>
                                 </a>
 
                                 <a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button">
-                                    <i class="fa fa-heart"></i> <span>Add to Favorites</span>
+                                    <i class="fa fa-heart"></i>
+                                    <span>@ShareRes.Add_to_Favorites</span>
                                 </a>
                             </div>
                         </li>
@@ -208,7 +221,7 @@
                                     </div>
                                 </div>
 
-                                <div style="width:inherit;padding-bottom:30px" class="art-detail-ribbon" >
+                                <div style="width:inherit;padding-bottom:30px" class="art-detail-ribbon">
                                     <div class="clearfix">
                                         <span class="price" style="margin-top:5px" itemprop="price">
                                             $@Model.Price

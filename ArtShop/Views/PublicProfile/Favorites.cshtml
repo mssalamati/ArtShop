@@ -2,26 +2,31 @@
 @using DataLayer.Extentions
 @{
     ViewBag.Title = "Favorites | Artiscovery";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
 }
 
 <div role="main" class="row row-layout profile-content">
 
 
-    <div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/favorite/994144" style="display: block;">
-        <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144" target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;text=View+Favorites+by+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;media=http:&amp;description=Favorites+by+adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
-            <i class="fa fa-pinterest"></i>
-        </a>
-        <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/favorite/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;Favorites by adib dehghan&quot;}">
-            <i class="fa fa-envelope"></i>
-        </a>
-        <div id="totalShares" class="total-share"><span>0</span></div>
-    </div>
+    @*<div id="shareArt" class="share-module" data-url="http://www.saatchiart.com/account/favorite/994144" style="display: block;">
+            <a class="share facebook" data-source="facebook" data-type="share" href="http://facebook.com/sharer.php?u=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a class="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;text=View+Favorites+by+adib+dehghan+on+Saatchi+Art+%40SaatchiArt" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a class="share pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.saatchiart.com%2Faccount%2Ffavorite%2F994144&amp;media=http:&amp;description=Favorites+by+adib+dehghan+on+Saatchi+Art+%23art" target="_blank">
+                <i class="fa fa-pinterest"></i>
+            </a>
+            <a class="email so-email-to-friend-open" href="#" data-type="emailToFriend" data-emailtofriend="{&quot;url&quot;:&quot;http://www.saatchiart.com/account/favorite/994144&quot;,&quot;shareImage&quot;:&quot;&quot;,&quot;pageTitle&quot;:&quot;Favorites by adib dehghan&quot;}">
+                <i class="fa fa-envelope"></i>
+            </a>
+            <div id="totalShares" class="total-share"><span>0</span></div>
+        </div>*@
 
 
     <script>
@@ -76,50 +81,86 @@
         <ul id="infinite" class="item-list masonry" style="position: relative; height: 372.891px;">
             @foreach (var item in Model)
             {
-                <li class="art-item fast-fade ">
-                    <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
+                <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+                    <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                         <div class="list-art-image-wrapper">
-                            <a href="/products/single/@item.productId" itemprop="url">
-                                <img src="@item.product.photo.Path" alt="Photography, “photo - Limited Edition 1 of 1” #art" itemprop="contentURL">
+                            <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" itemprop="url">
+                                <img src="@item.product.photo.Path">
                             </a>
 
                         </div>
-                        <div class="item-controls" data-id="3752244" data-artist="955468" data-art="3561261">
-                            <a href="/cart/add/P1-U955468-A3561261" class="btn-round btn-add-to-cart" title="Add to Cart" rel="nofollow" data-sku="P1-U955468-A3561261" data-title="Infinity Diptych - Limited Edition 50" data-price="1920" data-category="Printmaking" data-artist-id="955468" data-art-id="3561261">
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>
-                            <a href="#" data-user="994144" data-favorite="false" class="btn-round btn-favorite is-favorite" title="Remove from Favorites" rel="nofollow"><i class="fa fa-heart"></i></a>
-                            @*<a href="#" data-collection-owner="955468" data-art-id="3561261" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@
-                        </div>
-                        <div class="list-art-meta">
-                            <h4 class="list-art-title left ellipsis" itemprop="name">
-                                <a href="/products/single/@item.productId">@item.product.Title - Limited Edition @item.product.avaible of @item.product.AllEntity</a>
-                            </h4>
-                            <small class="art-category clear left">@item.product.category, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
-                            @{
-
-                                var fullname = item.product.user.FirstName + " " + item.product.user.LastName;
-
+                        <div class="item-controls">
+                            @if (item.product.ISOrginalForSale && item.product.Status == ProductStatus.forSale)
+                            {
+                                <a href="/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                                    <i class="fa fa-shopping-cart" style="color:white"></i>
+                                </a>
                             }
-                            <div class="list-author clear left">
-                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                    <a href="/publicprofile?id=@item.product.user_id" class="artist-card" title="Profile page for @fullname" itemprop="url">@fullname</a>
+                            @if (User.Identity.IsAuthenticated && ViewBag.favorites != null)
+                            {
+                                if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == item.product.Id))
+                                {
+                                    <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                        <i class="fa fa-heart" style="color:white"></i>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                    <i class="fa fa-heart" style="color:white"></i>
+                                </a>
+                            }
+                            <a onclick="addcollect(@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                                <i class="fa fa-plus" style="color:white"></i>
+                            </a>
+                        </div>
+                        <div class="list-art-meta" style="height:auto; @rtlstl">
+                            <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                                <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })">@item.product.Title</a>
+                            </h4>
+                            <small style="@rtlstl" class="art-category clear left">@item.product.category.Current().Name, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
+
+                            <div class="list-author clear left" style="@rtlstl">
+                                <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
+                                    <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" class="artist-card" title="Profile page for @item.user.FirstName @item.user.LastName" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                                 </h5>
-                                @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">@item.product.user.country.Current().Name</h5>*@
+                                @if (item.product.ISOrginalForSale)
+                                {
+                                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                        <!-- internationalization testing -->
+                                        <div itemprop="price">
+                                            $@item.product.Price
+                                        </div>
+                                    </div>
+                                }
+                                <h5 class="user-location ellipsis clear" itemprop="contentLocation">
+                                    @if (item.user.country != null)
+                                    {
+                                        <span>@item.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
+                                    }
+                                </h5>
                             </div>
 
-                            <div class="list-art-price">
-                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                            <div class="list-art-price" style="@pricertl">
+
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                     <!-- internationalization testing -->
-                                    <div itemprop="price">
-                                        @item.product.Price $
+                                    <div class="sample-print-price" itemprop="price">
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                                }
+            }
         </ul>
         <div class="clearfix"></div>
         @{
@@ -179,40 +220,27 @@
     </div>
 
 </div>
+<script src="~/Content/fullview.js"></script>
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
+    });
+    Saatchi.Loader.load('fullview', { js: true }, function () {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('favorite', { js: true }, function () {
+        Saatchi.Favorite.init();
+    });
 
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
 
-<div class="row">
-    <div class="col-md-12">
-        &nbsp;
-    </div>
-</div>
-    </div>
+    var observer;
+    // stop observing
+    if (observer) {
+        observer.disconnect();
+    }
 
-<script type="text/javascript">
-        Saatchi.Loader.load('profile', { js: true }, function () {
-            Saatchi.Profile.init();
-        });
-        Saatchi.Loader.load('favorite', { js: true }, function () {
-            Saatchi.Favorite.init();
-        });
-        Saatchi.Loader.load('fullview', { js: true }, function () {
-            Saatchi.Fullview.init();
-            Saatchi.Fullview.SetView.init();
-            Saatchi.Fullview.FullScreen.init();
-        });
-        Saatchi.Loader.load('infinitescroll');
-        Saatchi.Loader.load('pagination', { js: true }, function () {
-            Saatchi.Pagination.type = 'art';
-            Saatchi.Pagination.init();
-        });
-
-        $('body').bind('contextmenu', function (e) {
-            $('body').trigger("click");
-            return false;
-        });
-
-        $('.joyride-tip-guide').delay(5000).fadeOut('slow');
 </script>
-
-<div class="clearfix"></div>
-</div>

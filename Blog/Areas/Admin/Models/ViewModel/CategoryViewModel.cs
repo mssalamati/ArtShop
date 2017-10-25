@@ -9,6 +9,7 @@ namespace Blog.Areas.Admin.Models.ViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int CategoryId { get; set; }
         public virtual ICollection<CategoryTranslationViewModel> Translations { get; set; }
     }
 

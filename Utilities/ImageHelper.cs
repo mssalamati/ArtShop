@@ -165,7 +165,8 @@ namespace Utilities
                 try
                 {
                     string imageName = Guid.NewGuid().ToString()+ ".jpg";
-                    string imgPath = Path.Combine(path, imageName);
+                    string imgPath = Path.Combine(tempFolderPath, imageName);
+                    string filePath = string.Concat(path, "/", imageName);
                     byte[] imageBytes = Convert.FromBase64String(file);
                     Image image;
                     using (MemoryStream ms = new MemoryStream(imageBytes))
@@ -173,7 +174,7 @@ namespace Utilities
                         image = Image.FromStream(ms);
                     }
                     File.WriteAllBytes(imgPath, imageBytes);
-                    return new SaveImageResult() { Error = "", FullPath = imgPath, ResultStatus = true, Width = image.Width, Height = image.Height };
+                    return new SaveImageResult() { Error = "", FullPath = filePath, ResultStatus = true, Width = image.Width, Height = image.Height };
                 }
                 catch (Exception ex)
                 {

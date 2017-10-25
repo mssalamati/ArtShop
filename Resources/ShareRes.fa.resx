@@ -312,4 +312,19 @@
   <data name="Search_results" xml:space="preserve">
     <value>نتایج جستجو</value>
   </data>
+  <data name="Add_to_Favorites" xml:space="preserve">
+    <value>افزودن به علاقه مندی ها</value>
+  </data>
+  <data name="View_Fullscreen" xml:space="preserve">
+    <value>نمایش تمام صفحه</value>
+  </data>
+  <data name="View_in_a_Room" xml:space="preserve">
+    <value>نمایش در اتاق</value>
+  </data>
+  <data name="Add_to_a_Collection" xml:space="preserve">
+    <value>اضافه کردن به مجموعه</value>
+  </data>
+  <data name="You_have_not_any_collection" xml:space="preserve">
+    <value>شما تاکنون مجموعه ای نساختید</value>
+  </data>
 </root>

@@ -75,7 +75,7 @@ namespace ArtShop.Controllers
             }
             Response.Cookies.Add(cookie);
             string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
-            return RedirectPermanent(url);
+            return Redirect(url);
         }
     }
 }

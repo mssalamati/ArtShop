@@ -65,7 +65,7 @@ namespace ArtShop.Controllers
 
                 int counter = 0;
 
-                foreach (var item in userProfile.Products.OrderByDescending(a=>a.CreateDate))
+                foreach (var item in userProfile.Products.OrderByDescending(a => a.CreateDate))
                 {
                     if (counter < 4)
                     {
@@ -179,8 +179,10 @@ namespace ArtShop.Controllers
             return RedirectToActionPermanent("Collection");
         }
 
-        public ActionResult CollectionView(int id)
+        public ActionResult CollectionView(int id, int page = 1)
         {
+            ViewBag.collectionId = id;
+            int pageSize = 18;
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
@@ -191,8 +193,18 @@ namespace ArtShop.Controllers
             ViewBag.CollectionId = collection.Id;
 
             if (collection.Artworks != null)
-                return View(collection.Artworks);
+            {
+                var p = collection.Artworks;
+                var count = p.Count();
+                page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+                page = Math.Max(1, page);
+                ViewBag.page = page;
+                ViewBag.count = count;
+                ViewBag.pageSize = pageSize;
 
+                var res = p.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return View(p);
+            }
             return View();
         }
 
@@ -252,12 +264,12 @@ namespace ArtShop.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeletArtwork(int CollectionId,int ArtworkId)
+        public ActionResult DeletArtwork(int CollectionId, int ArtworkId)
         {
             var userId = User.Identity.GetUserId();
             var userProfile = db.UserProfiles.Find(userId);
             var collection = userProfile.Collections.FirstOrDefault(x => x.Id == CollectionId);
-            var artwork = db.CollectionProduct.Include("collection").FirstOrDefault(a=>a.Id==ArtworkId);
+            var artwork = db.CollectionProduct.Include("collection").FirstOrDefault(a => a.Id == ArtworkId);
             collection.Artworks.Remove(artwork);
             db.Entry(artwork).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
@@ -290,7 +302,7 @@ namespace ArtShop.Controllers
             return View();
         }
 
-        public ActionResult ArtWorks(int page =1)
+        public ActionResult ArtWorks(int page = 1)
         {
             int pageSize = 18;
             var userId = User.Identity.GetUserId();

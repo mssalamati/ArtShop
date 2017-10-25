@@ -42,7 +42,7 @@ namespace MobileApi
         public override void SaveAs(string filename)
         {
             using (var file = File.Open(filename, FileMode.CreateNew))
-                stream.WriteTo(file);
+                stream.CopyTo(file);
         }
     }
 }

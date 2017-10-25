@@ -1,22 +1,16 @@
-﻿
-#region Usings
-using Blog.Interfaces;
-using Blog.Models;
+﻿using Blog.Interfaces;
 using Blog.Objects;
-using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.RegularExpressions;
-#endregion
+using System.Web;
 
 namespace Blog.Objects
 {
-    /// <summary>
-    /// Represents a category that contains group of blog posts.
-    /// </summary>
-    public class Category : ITranslatable<Category, CategoryTranslation>
+    public class SubCategory : ITranslatable<SubCategory, SubCategoryTranslation>
     {
         [Key]
         public int Id { get; set; }
@@ -24,16 +18,9 @@ namespace Blog.Objects
         [Required(ErrorMessage = "Name: Field is required")]
         [StringLength(500, ErrorMessage = "Name: Length should not exceed 500 characters")]
         public virtual string Name { get; set; }
-
-        //[Required(ErrorMessage = "UrlSlug: Field is required")]
-        //[StringLength(500, ErrorMessage = "UrlSlug: Length should not exceed 500 characters")]
-        public virtual string UrlSlug { get; set; }
-
-        [JsonIgnore]
+        public virtual Category Category { get; set; }
         public virtual IList<Post> Posts { get; set; }
-        public virtual IList<SubCategory> SubCategories { get; set; }
-
-        public virtual ICollection<CategoryTranslation> Translations { get; set; }
+        public virtual ICollection<SubCategoryTranslation> Translations { get; set; }
 
         public override string ToString()
         {
@@ -60,18 +47,17 @@ namespace Blog.Objects
             return System.Text.Encoding.ASCII.GetString(bytes);
         }
     }
-}
-
-public class CategoryTranslation : ITranslation<Category>
-{
-    [Key, Column(Order = 0)]
-    [ForeignKey("language")]
-    public string languageId { get; set; }
-    public virtual Language language { get; set; }
-    [Key, Column(Order = 1)]
-    [ForeignKey("category")]
-    public virtual int categoryId { get; set; }
-    public virtual Category category { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public class SubCategoryTranslation : ITranslation<SubCategory>
+    {
+        [Key, Column(Order = 0)]
+        [ForeignKey("language")]
+        public string languageId { get; set; }
+        public virtual Language language { get; set; }
+        [Key, Column(Order = 1)]
+        [ForeignKey("subCategory")]
+        public virtual int SubCategoryId { get; set; }
+        public virtual SubCategory subCategory { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
 }

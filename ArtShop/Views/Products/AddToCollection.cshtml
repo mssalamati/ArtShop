@@ -1,4 +1,22 @@
 ﻿@model Product
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var toRight = IsRighToLeft ? "pull-right" : "pull-left";
+    var toLeft = IsRighToLeft ? "pull-left" : "pull-right";
+}
+
+@{
+    <style>
+        .so-collection-create-add .controls {
+            margin-right: 160px;
+            margin-left: auto;
+        }
+
+        .so-collection-create-add .control-label {
+            float: right;
+        }
+    </style>
+}
 
 <div class="ui-tooltip-content" id="ui-tooltip-3-content" aria-atomic="true">
     <div class="so-collections-list" style="width:auto">
@@ -7,14 +25,14 @@
             <div class="so-collection-create-add" style="width:auto;overflow:auto">
                 <div class="hd"></div>
                 <div class="bd">
-                    <img style="width:100px" class="alignLeft" src="@Model.Sqphoto.Path">
+                    <img style="width:100px" class="@(IsRighToLeft?"alignRight":"alignLeft")" src="@Model.Sqphoto.Path">
                     <form class="form-horizontal">
 
                         <input type="hidden" name="collection" value="" id="collection">
 
                         <input type="hidden" name="owner" value="994373" id="owner">
                         <div class="control-group">
-                            <label for="title" class="control-label required">Collection Title</label>
+                            <label for="title" class="control-label required">@ProfileRes.Collection_title</label>
                             <div class="controls">
                                 <input type="text" name="title" id="nctitle" value="" class="input-xlarge">
                             </div>
@@ -22,7 +40,7 @@
 
                         <div class="control-group">
                             <div class="controls">
-                                <input type="button" onclick="doAddTocollection(0,@ViewBag.productid,$('#nctitle').val())" name="create" id="so-collection-create-submit" value="Create Collection" class="button btn-info">
+                                <input type="button" onclick="doAddTocollection(0,@ViewBag.productid,$('#nctitle').val())" name="create" id="so-collection-create-submit" value="@ProfileRes.Create_collection" class="button btn-info">
                             </div>
                         </div>
                     </form>
@@ -32,13 +50,13 @@
             </div>
         </div>
 
-        <div id="selectcollectiondiv" >
+        <div id="selectcollectiondiv">
             <div class="hd">
-                <h6 class="pull-left">Add to a Collection</h6>
-                <div class="create pull-right">
+                <h3 class="@toRight">@ShareRes.Add_to_a_Collection</h3>
+                <div class="create @toLeft">
                     <a class="so-spr-add btn btn-mini ready" onclick="$('#selectcollectiondiv').hide(); $('#addcollectiondive').show();">
                         <i class="fa fa-plus"></i>
-                        New Collection
+                        @ProfileRes.Create_collection
                     </a>
                 </div>
                 <div class="clearfix"></div>
@@ -53,7 +71,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <p> you have not any collection </p>
+                                        <p> @ShareRes.You_have_not_any_collection </p>
                                     </td>
                                 </tr>
                             }

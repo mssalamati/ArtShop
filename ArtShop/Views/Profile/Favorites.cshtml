@@ -49,10 +49,7 @@
             <button id="firstStop" data-view="slideshowView" class="view-option btn-round btn-slideshow so-quick-tip" onclick="$('.joyride-tip-guide').fadeOut();" oldtitle="View as slideshow"><i class="fa fa-expand"></i></button>
         </div>
     </div>
-    <script>
-        // [art.id_user_art, art.id_user_art, art.id_user_art]
-        Saatchi.Favorite.users = [2633376, 3752244];
-    </script>
+
     <div class="row">
 
         <ul id="infinite" class="item-list masonry" style="position: relative; height: 372.891px;">
@@ -74,9 +71,21 @@
                                 </a>
                             }
 
-                            <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
-                                <i class="fa fa-heart"></i>
-                            </a>
+                            @if (User.Identity.IsAuthenticated && ViewBag.favorites != null)
+                            {
+                                if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == item.product.Id))
+                                {
+                                    <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="addfav(this,@item.product.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                        <i class="fa fa-heart" style="color:white"></i>
+                                    </a>
+                                }
+                            }
                             <a onclick="addcollect(@item.productId)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
                                 <i class="fa fa-plus" style="color:white"></i>
                             </a>
