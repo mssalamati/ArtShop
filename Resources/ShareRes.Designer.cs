@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Box.
+        /// </summary>
+        public static string Box {
+            get {
+                return ResourceManager.GetString("Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click here.
         /// </summary>
         public static string Click_here {
@@ -237,6 +246,15 @@ namespace Resources {
         public static string Copyright_policy {
             get {
                 return ResourceManager.GetString("Copyright_policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crate.
+        /// </summary>
+        public static string Crate {
+            get {
+                return ResourceManager.GetString("Crate", resourceCulture);
             }
         }
         
@@ -556,6 +574,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ships in a.
+        /// </summary>
+        public static string Ships_in {
+            get {
+                return ResourceManager.GetString("Ships_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Showing.
         /// </summary>
         public static string Showing {
@@ -624,6 +651,15 @@ namespace Resources {
         public static string To_view_Buyer_FAQs {
             get {
                 return ResourceManager.GetString("To_view_Buyer_FAQs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tube.
+        /// </summary>
+        public static string Tube {
+            get {
+                return ResourceManager.GetString("Tube", resourceCulture);
             }
         }
         

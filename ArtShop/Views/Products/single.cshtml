@@ -3,6 +3,9 @@
     var rtlstl = IsRighToLeft ? "direction:rtl;float:right;text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
     var textAlign = IsRighToLeft ? "text-align:right !important" : "";
+    var top = IsRighToLeft ? "top:.85rem !important" : "";
+    var paddingLeft = IsRighToLeft ? "Padding-left:6px !important" : "";
+    var marginBottom = IsRighToLeft ? "Margin-bottom:10px !important" : "";
     ViewBag.Title = Model.Title + " | " + Model.user.FirstName + " " + Model.user.LastName;
 }
 @model Product
@@ -98,26 +101,44 @@
 
         <div role="main" class="row">
             <header class="row" style="">
-                <div class="small-1 columns">
+                <div style="@rtlstl;@paddingLeft" class="small-1 columns">
                     @if (Model.user.country != null)
                     {
                         <i class="icn-artist-location flag-@Model.user.country.Code so-quick-tip" title="@Model.user.country.Current().Name"></i>
                     }
                 </div>
                 <div class="small-11 columns">
-                    <div class="row author-title">
+                    <div class="row author-title" style="@textAlign">
                         <h1>
                             <a href="">
-                                <span itemprop="name">@Model.Title</span>
-                                <span itemprop="category">@Model.category.Current().Name</span>
-                                @SearchRes.by
-                                <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
+                                @if (IsRighToLeft)
+                                {
+
+                                    <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
+                                    <span itemprop="category">@Model.category.Current().Name</span>
+                                    <span>  @SearchRes.by</span>
+                                    <span itemprop="name">@Model.Title</span>
+                                }
+                                else
+                                {
+                                    <span itemprop="name">@Model.Title</span>
+                                    <span itemprop="category">@Model.category.Current().Name</span>
+                                    @SearchRes.by
+                                    <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
+                                }
                             </a>
                         </h1>
                     </div>
                     <div class="row">
-                        <div class="small-12 columns breadcrumbs">
-                            @*<a href="#" rel="nofollow">Browse Art</a>*@ <a href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
+                        <div class="small-12 columns breadcrumbs" style="@rtlstl">
+                            @if (IsRighToLeft)
+                            {
+                                @Model.Title <a style="float:right !important" href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a><a style="float:right !important" href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a>
+                            }
+                            else
+                            {
+                                <a href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
+                            }
                         </div>
                     </div>
                 </div>
@@ -202,8 +223,23 @@
                             </p>
                             @if (Model.ISOrginalForSale)
                             {
+                                var package = "";
+                                switch (Model.Packaging)
+                                {
+                                    case Productpackage.box:
+                                        package = ShareRes.Box;
+                                        break;
+                                    case Productpackage.crate:
+                                        package = ShareRes.Crate;
+                                        break;
+                                    case Productpackage.tube:
+                                        package = ShareRes.Tube;
+                                        break;
+                                    default:
+                                        break;
+                                }
                                 <p class="packaging-info" style="@rtldirection">
-                                    Ships in a @Model.Packaging
+                                    @ShareRes.Ships_in @package
                                 </p>
                             }
                         </div>
@@ -226,7 +262,7 @@
                                         <span class="price" style="margin-top:5px" itemprop="price">
                                             $@Model.Price
                                         </span>
-                                        <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                                        <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
                                     </div>
                                 </div>
                             }
@@ -340,7 +376,7 @@
             <section itemprop="description" class="description">
                 <div class="row">
                     <div class="small-12 columns">
-                        <h3 style="@rtldirection" class="section-title">@SearchRes.Art_description</h3>
+                        <h3 style="@rtldirection;@marginBottom" class="section-title">@SearchRes.Art_description</h3>
                     </div>
                 </div>
                 <div class="row">

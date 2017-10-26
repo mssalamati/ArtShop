@@ -327,4 +327,16 @@
   <data name="You_have_not_any_collection" xml:space="preserve">
     <value>شما تاکنون مجموعه ای نساختید</value>
   </data>
+  <data name="Box" xml:space="preserve">
+    <value>جعبه</value>
+  </data>
+  <data name="Crate" xml:space="preserve">
+    <value>صندوقچه</value>
+  </data>
+  <data name="Ships_in" xml:space="preserve">
+    <value>تحویل در</value>
+  </data>
+  <data name="Tube" xml:space="preserve">
+    <value>لوله</value>
+  </data>
 </root>

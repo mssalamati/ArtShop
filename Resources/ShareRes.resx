@@ -324,4 +324,16 @@
   <data name="You_have_not_any_collection" xml:space="preserve">
     <value>You have not any collection</value>
   </data>
+  <data name="Box" xml:space="preserve">
+    <value>Box</value>
+  </data>
+  <data name="Crate" xml:space="preserve">
+    <value>Crate</value>
+  </data>
+  <data name="Ships_in" xml:space="preserve">
+    <value>Ships in a</value>
+  </data>
+  <data name="Tube" xml:space="preserve">
+    <value>Tube</value>
+  </data>
 </root>
