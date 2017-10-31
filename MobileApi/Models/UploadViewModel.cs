@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Enitities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
@@ -54,6 +55,7 @@ namespace MobileApi.Models
         public HttpPostedFileBase Image { get; set; }
         [Required]
         public string imageUpload { get; set; }
+        public Productpackage Packaging { get; set; }
     }
 
 

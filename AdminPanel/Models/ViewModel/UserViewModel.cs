@@ -22,7 +22,7 @@ namespace AdminPanel.Models.ViewModel
         [EmailAddress(ErrorMessage = ("فرمت پست الکترونیک  اشتیاه"))]
         [Display(Name = "پست الکترونیک")]
         public string Email { get; set; }
-
+        public string Username { get; set; }
         [Display(Name = "تاریخ ثبت")]
         public string RegisterDate { get; set; }
     }

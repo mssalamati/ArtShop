@@ -59,7 +59,7 @@ namespace ArtShop.Models
         }
         public class step8
         {
-            public string Packaging { get; set; }
+            public int Packaging { get; set; }
             public bool framed { get; set; }
             public bool multi_paneled { get; set; }
             public string type { get; set; }

@@ -90,6 +90,8 @@ namespace DataLayer.Enitities
                 isForSale = ISOrginalForSale,
                 isPrintAvaibled = IsPrintAvaibled,
                 keywords = Keywords,
+                author = user.FirstName +" "+user.LastName,
+                authorId = user_id,
                 photo = photo.Path,
                 price = Price,
                 sqphoto = Sqphoto.Path,

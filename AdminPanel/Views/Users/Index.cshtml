@@ -57,6 +57,9 @@
                                 <tr>
                                     <th></th>
                                     <th>
+                                        @Html.DisplayNameFor(model => model.Username)
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.Email)
                                     </th>
                                     <th>
@@ -75,6 +78,9 @@
                                 {
                                     <tr>
                                         <th><i class="fa fa-user"></i></th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Username)
+                                        </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Email)
                                         </td>

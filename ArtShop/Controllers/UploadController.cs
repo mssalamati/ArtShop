@@ -426,7 +426,7 @@ namespace ArtShop.Controllers
             UploadViewModel.step9 model = new UploadViewModel.step9();
             if (userProfile.billingInfo != null)
             {
-                model.Street_Address = userProfile.billingInfo.Street;
+                model.Street_Address = userProfile.billingInfo.Street + " " + userProfile.billingInfo.Unit; ;
                 model.City = userProfile.billingInfo.City;
                 model.Country = userProfile.billingInfo.country.Current().Name;
                 model.Region = userProfile.billingInfo.Region;
@@ -588,6 +588,7 @@ namespace ArtShop.Controllers
                     Height = (float)Session["Height"],
                     Width = (float)Session["Width"],
                     IsPrintAvaibled = false,
+                    Packaging = (Productpackage)Session["Packaging"],
                     Keywords = (string)Session["Keywords"],
                     categoryId = categoryId,
                     subjectId = subjectId,

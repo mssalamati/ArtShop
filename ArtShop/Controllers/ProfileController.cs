@@ -123,7 +123,7 @@ namespace ArtShop.Controllers
                     counter++;
                 }
 
-                if (counter < 3)
+                if (counter <= 3)
                 {
                     for (int i = 0; i < 4 - counter; i++)
                     {
@@ -134,6 +134,7 @@ namespace ArtShop.Controllers
                     counter = 0;
                 }
                 collectionViewModel.Add(model);
+                counter = 0;
             }
 
             return View(collectionViewModel);

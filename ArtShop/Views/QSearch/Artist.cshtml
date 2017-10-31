@@ -149,7 +149,7 @@ if (current == selected)
                     <div class="list-art-meta" style="height:auto">
                         <div class="list-author clear left">
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                                <a href="/publicprofile?id=@item.Id" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.FirstName  @item.LastName</a>
+                                <a href="/publicprofile?id=@item.Id" class="artist-card" title="Profile page for @item.FirstName  @item.LastName" itemprop="url">@item.FirstName  @item.LastName</a>
                             </h5>
                             <h5 class="user-location ellipsis clear" itemprop="contentLocation">
                                 @if (item.country != null)

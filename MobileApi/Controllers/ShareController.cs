@@ -18,6 +18,7 @@ using System.Data.Entity.Validation;
 using DataLayer.Enitities;
 using System.Web;
 using System.IO;
+using Utilities;
 
 namespace MobileApi.Controllers
 {
@@ -80,6 +81,7 @@ namespace MobileApi.Controllers
                 name = x.Translations.Any(t => t.languageId == language) ?
                  x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
             });
+
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
                 Pricelists = Pricelists,
@@ -171,6 +173,140 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
+        [Route("getProfileById")]
+        public HttpResponseMessage getProfileById(string id)
+        {
+            var user = db.Users.Find(id);
+            var profile = user.userDetail;
+            var result = new
+            {
+                profile.FirstName,
+                profile.LastName,
+                profile.Account,
+                profile.City,
+                profile.countryId,
+                profile.isIDConfirmed,
+                profile.PhotoPath,
+                profile.profileType,
+                profile.Region,
+                profile.RegisterDate,
+                profile.ZipCode,
+                ArtworksSummery = profile.Products.Take(3).Select(x => new
+                {
+                    widePhoto = x.Widephoto.Path,
+                    squarPhoto = x.Sqphoto.Path
+                }),
+                ArtworkSize = profile.Products.Count,
+                collectionSize = profile.Collections.Count,
+                favoritSize = profile.Favorits.Count
+            };
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
+        public class Avatar
+        {
+            public string image { get; set; }
+        }
+
+        [Authorize, HttpPost, Route("UploadAvatar")]
+        public async Task<upoadNowResult> UploadAvatar(Avatar avatar)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+
+            var iserver = getAvaibleServer();
+
+            //upload picture
+            var UploadResult = await UploadImage(avatar.image, iserver.Id);
+            if (!UploadResult.result)
+                return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
+
+            profile.PhotoPath = UploadResult.data;
+            db.SaveChanges();
+
+            return new upoadNowResult(0, "success", true);
+        }
+
+        public class GovId
+        {
+            public string image { get; set; }
+        }
+
+        [Authorize, HttpPost, Route("UploadID")]
+        public async Task<upoadNowResult> UploadID(GovId govId)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+
+            var iserver = getAvaibleServer();
+            //upload picture
+            var UploadResult = await UploadImage(govId.image, iserver.Id);
+            if (!UploadResult.result)
+                return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
+
+            profile.GovermentIdPath = UploadResult.data;
+            db.SaveChanges();
+
+            return new upoadNowResult(0, "success", true);
+        }
+
+
+        [HttpGet, Route("FavoritListByProfileId")]
+        public HttpResponseMessage FavoritListByProfileId(string id)
+        {
+            var user = db.Users.Find(id);
+            var profile = user.userDetail;
+            var result = profile.Favorits.Select(x => new
+            {
+                Id = x.product.Id,
+                Sqphoto = x.product.Sqphoto.Path,
+                Title = x.product.Title,
+                Description = x.product.Description,
+                Photo = x.product.photo.Path,
+                WidePhoto = x.product.Widephoto.Path,
+                Status = x.product.Status,
+                Price = x.product.Price,
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
+        [Route("getArtworksByProfileId")]
+        public HttpResponseMessage getArtworksByProfileId(string id, int page = 1)
+        {
+            int pageSize = 10;
+            var user = db.Users.Find(id);
+            var profile = user.userDetail;
+            var p = profile.Products.OrderByDescending(a => a.CreateDate).AsQueryable();
+
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+            var result = p.Select(x => new
+            {
+                Id = x.Id,
+                photo = x.photo.Path,
+                Title = x.Title,
+                Description = x.Description,
+                Author = x.user.FirstName + " " + x.user.LastName,
+                AuthorId = x.user_id,
+                country = x.user.countryId,
+                Price = x.Price,
+                isForSale = x.ISOrginalForSale,
+                status = x.Status
+            }).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = result
+            }, formatter);
+        }
+
         [Authorize, Route("getFavoritList")]
         public HttpResponseMessage getFavoritList()
         {
@@ -209,13 +345,39 @@ namespace MobileApi.Controllers
         }
 
         [Authorize, Route("getArtworkList")]
-        public HttpResponseMessage getArtworkList()
+        public HttpResponseMessage getArtworkList(int page = 1)
         {
+            int pageSize = 10;
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-            var result = profile.Products.ToList();
-            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+            var p = profile.Products.OrderByDescending(a => a.CreateDate).AsQueryable();
+
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+            var result = p.Select(x => new
+            {
+                Id = x.Id,
+                photo = x.photo.Path,
+                Title = x.Title,
+                Description = x.Description,
+                Author = x.user.FirstName + " " + x.user.LastName,
+                AuthorId = x.user_id,
+                country = x.user.countryId,
+                Price = x.Price,
+                isForSale = x.ISOrginalForSale,
+                status = x.Status
+            }).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = result
+            }, formatter);
         }
 
         [Authorize, Route("getOrders")]
@@ -249,11 +411,30 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
+        [Authorize, Route("IsIdConfirmed")]
+        public HttpResponseMessage IsIdConfirmed()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { isConfirmed = profile.isIDConfirmed }, formatter);
+        }
+
         [Route("getProduct")]
         public HttpResponseMessage getProduct(int id)
         {
             var product = db.Products.Find(id);
-            return Request.CreateResponse(HttpStatusCode.OK, product.tojason(), formatter);
+            bool isfavorite = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                var currentUserProfile = db.UserProfiles.Find(userId);
+                isfavorite = currentUserProfile.Favorits.Any(a => a.productId == id);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { Artwork = product.tojason(), isFavorite = isfavorite }, formatter);
         }
 
         [HttpGet, Route("Search")]
@@ -281,6 +462,7 @@ namespace MobileApi.Controllers
                 Title = x.Title,
                 Description = x.Description,
                 Author = x.user.FirstName + " " + x.user.LastName,
+                AuthorId = x.user_id,
                 country = x.user.countryId,
                 Price = x.Price,
                 isForSale = x.ISOrginalForSale,
@@ -293,6 +475,100 @@ namespace MobileApi.Controllers
                 count = count,
                 pageSize = pageSize,
                 result = result
+            }, formatter);
+        }
+
+        [HttpGet, Route("SearchArtist")]
+        public HttpResponseMessage SearchArtist(string query, int page = 1)
+        {
+
+            int pageSize = 18;
+            var p = db.UserProfiles.OrderByDescending(x => x.LastName).AsQueryable();
+            p = p.Where(x => string.IsNullOrEmpty(query) || (x.FirstName + " " + x.LastName).ToLower().Contains(query.ToLower())).AsQueryable();
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+            var result = p.Select(x => new
+            {
+                Id = x.Id,
+                Firstname = x.FirstName,
+                Lastname = x.LastName,
+                Country = x.country == null ? null : (int?)x.country.Id
+            }).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = result
+            }, formatter);
+        }
+
+        [HttpGet, Route("SearchArt")]
+        public HttpResponseMessage SearchArt(string query, int page = 1)
+        {
+
+            int pageSize = 18;
+            var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
+            p = p.Where(x => string.IsNullOrEmpty(query) || x.Title.Contains(query)).AsQueryable();
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+
+            var result = p.Select(x => new
+            {
+                Id = x.Id,
+                photo = x.photo.Path,
+                Title = x.Title,
+                Description = x.Description,
+                Author = x.user.FirstName + " " + x.user.LastName,
+                country = x.user.countryId,
+                Price = x.Price,
+                isForSale = x.ISOrginalForSale,
+                status = x.Status
+            }).ToList();
+
+
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    var userId = User.Identity.GetUserId();
+
+            //    var currentUserProfile = db.UserProfiles.Find(userId);
+            //    ViewBag.favorites = currentUserProfile.Favorits;
+            //}
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = result
+            }, formatter);
+        }
+
+        [HttpGet, Route("SearchCollection")]
+        public HttpResponseMessage SearchCollection(string query, int page = 1)
+        {
+
+            int pageSize = 18;
+            var p = db.Collections.Include("Artworks").OrderByDescending(x => x.Title).AsQueryable();
+            p = p.Where(x => string.IsNullOrEmpty(query) || x.Title.Contains(query)).AsQueryable();
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+            var res = p.Where(a => a.user_id != null).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = res
             }, formatter);
         }
 
@@ -436,6 +712,7 @@ namespace MobileApi.Controllers
                     avaible = model.Limitform,
                     Depth = model.Depth,
                     Height = model.Height,
+                    Packaging = model.Packaging,
                     Width = model.Width,
                     IsPrintAvaibled = false,
                     Keywords = model.keywords,

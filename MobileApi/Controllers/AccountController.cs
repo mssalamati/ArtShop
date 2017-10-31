@@ -17,6 +17,7 @@ using MobileApi.Models;
 using MobileApi.Providers;
 using MobileApi.Results;
 using DataLayer;
+using DataLayer.Enitities;
 
 namespace MobileApi.Controllers
 {
@@ -328,15 +329,12 @@ namespace MobileApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType, MailingList = true };
             var user = new ApplicationUser()
             {
                 UserName = model.Email,
                 Email = model.Email,
-                userDetail = new DataLayer.Enitities.UserProfile()
-                {
-                    RegisterDate = DateTime.Now,
-                }
+                userDetail = userDetail
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

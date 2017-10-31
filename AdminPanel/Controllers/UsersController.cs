@@ -38,6 +38,7 @@ namespace AdminPanel.Controllers
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     Email = x.ApplicationUserDetail.Email,
+                    Username = x.ApplicationUserDetail.UserName,
                     RegisterDate = x.RegisterDate.ToString()
                 }).ToList();
 
@@ -108,6 +109,7 @@ namespace AdminPanel.Controllers
 
                 if (!string.IsNullOrEmpty(model.NewPassword))
                 {
+                    await UserManager.RemovePasswordAsync(model.id);
                     var result = await UserManager.AddPasswordAsync(model.id, model.NewPassword);
 
                     if (result.Succeeded)

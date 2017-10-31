@@ -227,13 +227,13 @@
         packing_box.removeClass('image-radio__item--active');
         packing_tube.removeClass('image-radio__item--active');
         if (val == 1) {
-            inp.val('Crate');
+            inp.val('0');
             packing_crate.addClass('image-radio__item--active');
         } else if (val == 2) {
-            inp.val('Box');
+            inp.val('1');
             packing_box.addClass('image-radio__item--active');
         } else {
-            inp.val('Tube');
+            inp.val('2');
             packing_tube.addClass('image-radio__item--active');
         }
     }
