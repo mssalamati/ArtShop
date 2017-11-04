@@ -336,4 +336,13 @@
   <data name="Tube" xml:space="preserve">
     <value>Tube</value>
   </data>
+  <data name="Remove_from_favorites" xml:space="preserve">
+    <value>Remove from Favorites</value>
+  </data>
+  <data name="Add_to_cart" xml:space="preserve">
+    <value>Add to Cart</value>
+  </data>
+  <data name="Contactus" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
 </root>

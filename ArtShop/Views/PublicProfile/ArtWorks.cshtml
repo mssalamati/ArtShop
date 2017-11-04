@@ -31,13 +31,13 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/publicprofile/artworks?id=@ViewBag.id" class="active" title="link to artwork">
+        <a href="/publicprofile/artworks?id=@ViewBag.id" class="active" >
             <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.count)</span>
         </a>
-        <a href="/publicprofile/collection?id=@ViewBag.id" class="" title="link to Collections">
+        <a href="/publicprofile/collection?id=@ViewBag.id" class="" >
             <i class="fa fa-th"></i> Collections <span>(@ViewBag.collectionCount)</span>
         </a>
-        <a href="/publicprofile/favorites?id=@ViewBag.id" class="" title="link to Favorites">
+        <a href="/publicprofile/favorites?id=@ViewBag.id" class="" >
             <i class="fa fa-heart"></i> Favorites <span>(@ViewBag.favoritesCount)</span>
         </a>
     </div>
@@ -71,7 +71,7 @@
                         <div class="item-controls">
                             @if (item.ISOrginalForSale && item.Status == ProductStatus.forSale)
                             {
-                                <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                                <a href="/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="@ShareRes.Add_to_cart">
                                     <i class="fa fa-shopping-cart" style="color:white"></i>
                                 </a>
                             }
@@ -79,24 +79,24 @@
                             {
                                 if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == item.Id))
                                 {
-                                    <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                    <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="@ShareRes.Remove_from_favorites">
                                         <i class="fa fa-heart"></i>
                                     </a>
                                 }
                                 else
                                 {
-                                    <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                    <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="@ShareRes.Add_to_Favorites">
                                         <i class="fa fa-heart" style="color:white"></i>
                                     </a>
                                 }
                             }
                             else
                             {
-                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="@ShareRes.Add_to_Favorites">
                                     <i class="fa fa-heart" style="color:white"></i>
                                 </a>
                             }
-                            <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                            <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="@ShareRes.Add_to_a_Collection">
                                 <i class="fa fa-plus" style="color:white"></i>
                             </a>
                         </div>

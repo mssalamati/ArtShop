@@ -368,6 +368,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string GovermentID_p3_continue {
+            get {
+                return ResourceManager.GetString("GovermentID_p3_continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Policy..
         /// </summary>
         public static string GovermentID_privacyPolicy {

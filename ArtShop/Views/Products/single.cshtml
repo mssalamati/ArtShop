@@ -161,18 +161,18 @@
                             <div class="art-image-actions">
                                 @if (Model.category.Id != 6)
                                 {
-                                    <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="View in a Room">
+                                    <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="@ShareRes.View_in_a_Room">
                                         <i id="viewroombtnicon" class="icn-view-in-a-room"></i>
                                         <span id="viewroombtntxt">@ShareRes.View_in_a_Room</span>
                                     </a>
                                 }
 
-                                <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="@Model.photo.Path" title="View Fullscreen">
+                                <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="@Model.photo.Path" title="@ShareRes.View_Fullscreen">
                                     <i class="fa fa-expand"></i>
                                     <span>@ShareRes.View_Fullscreen</span>
                                 </a>
 
-                                <a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button">
+                                <a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
                                     <i class="fa fa-heart"></i>
                                     <span>@ShareRes.Add_to_Favorites</span>
                                 </a>

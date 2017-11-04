@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UploadViewModel.step7
+@{
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
@@ -43,6 +44,7 @@
                                 <div class="description">
                                     <div class="form-group animate-group-0-1">
                                         <h1>@UploadRes.step7_title</h1>
+                                        <p>@UploadRes.step7_title_desc</p>
                                         <div class="title-input title-input--limited-edition">
                                             <div class="title-input__title-wrapper" style="@rtldirection">
                                                 <input step="@rtlstl" type="text" name="Title" value="">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -52,6 +53,7 @@ namespace ArtShop.Models
         }
         public class step7
         {
+            [StringLength(35, ErrorMessage = "Title cannot be longer than 35 characters.")]
             public string Title { get; set; }
             public int avaible { get; set; }
             public int AllEntity { get; set; }

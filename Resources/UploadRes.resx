@@ -426,4 +426,10 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="TitleLenth_error" xml:space="preserve">
+    <value>Title cannot be longer than 35 characters</value>
+  </data>
+  <data name="step7_title_desc" xml:space="preserve">
+    <value>35 character limit</value>
+  </data>
 </root>

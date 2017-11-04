@@ -339,4 +339,13 @@
   <data name="Tube" xml:space="preserve">
     <value>لوله</value>
   </data>
+  <data name="Remove_from_favorites" xml:space="preserve">
+    <value>حذف از علاقه مندی ها</value>
+  </data>
+  <data name="Add_to_cart" xml:space="preserve">
+    <value>اضافه به کارت</value>
+  </data>
+  <data name="Contactus" xml:space="preserve">
+    <value>تماس با ما</value>
+  </data>
 </root>

@@ -618,6 +618,8 @@
     <Content Include="Views\Support\Category.cshtml" />
     <Content Include="Views\Support\SubCategory.cshtml" />
     <Content Include="Views\Support\Search.cshtml" />
+    <Content Include="Views\Pages\Contactus.cshtml" />
+    <Content Include="Views\Pages\ContactusRTL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
