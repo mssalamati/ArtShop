@@ -163,7 +163,7 @@ namespace MobileApi.Controllers
                 profile.Region,
                 profile.RegisterDate,
                 profile.ZipCode,
-                profile.MailingList,                
+                profile.MailingList,
                 ArtworksSummery = profile.Products.Take(3).Select(x => new
                 {
                     widePhoto = x.Widephoto.Path,
@@ -457,7 +457,13 @@ namespace MobileApi.Controllers
                .Where(x => x.user_id == userId)
                .OrderByDescending(o => o.BuyDate).Select(x => new
                {
-                   orderDeetail = x.OrderDetails,
+                   orderDetail = x.OrderDetails.Select(a => new
+                   {
+                       artworkName = a.Product.Title,
+                       artworkPhoto = a.Product.Sqphoto,
+                       quantity = a.Quantity,
+                       unitPrice = a.UnitPrice
+                   }),
                    Date = x.BuyDate,
                    Status = x.Status,
                    TotalPrice = x.TotalPrice,
@@ -474,7 +480,18 @@ namespace MobileApi.Controllers
             var profile = user.userDetail;
             var result = db.OrderDetails.Include("Product").Include("order")
              .Where(x => x.Product.user_id == userId)
-             .Where(x => x.order.TransactionDetail.Payed).ToList();
+             .Where(x => x.order.TransactionDetail.Payed).Select(a => new
+             {
+                 a.ProductId,
+                 a.Product.Title,
+                 a.Product.Sqphoto,
+                 a.Quantity,
+                 a.UnitPrice,
+                 a.type,
+                 a.order.ReceiverName,
+                 a.order.user_id
+
+             }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 

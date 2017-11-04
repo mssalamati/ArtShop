@@ -340,9 +340,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to prevent fraud and protect our artists and buyers we must receive a copy of a government issued
-        ///                photo ID (i.e. passport or drivers license) before your work can be displayed for sale. You may black out
-        ///                your ID number..
+        ///   Looks up a localized string similar to We checking ID for fraudulent, fake or defaced cards, so we must receive a copy of your government issued ID (for instance your passport or driver’s license) to be able to put your work for sale.
+        ///Do not worry! We protect the file you have sent us. The file will be encrypted from the moment that you sent it. We keep your encrypted file on our servers and can only our administrative team can view it..
         /// </summary>
         public static string GovermentID_p1 {
             get {
@@ -351,9 +350,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rest assured that we will protect the image that you send us. Your ID file is encrypted from the time that it
-        ///                leaves your computer. It is stored in an encrypted state on our servers and can only be viewed by our
-        ///                administrative team..
+        ///   Looks up a localized string similar to For more information, please check our .
         /// </summary>
         public static string GovermentID_p2 {
             get {
@@ -362,7 +359,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For more information, please read our.
+        ///   Looks up a localized string similar to If promoting your art under a pseudonym or nickname, you need to enter your LEGAL name below. We won&apos;t make this information public..
         /// </summary>
         public static string GovermentID_p3 {
             get {
@@ -371,7 +368,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Privacy Policy.
+        ///   Looks up a localized string similar to Privacy Policy..
         /// </summary>
         public static string GovermentID_privacyPolicy {
             get {
@@ -493,6 +490,15 @@ namespace Resources {
         public static string My_website {
             get {
                 return ResourceManager.GetString("My_website", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

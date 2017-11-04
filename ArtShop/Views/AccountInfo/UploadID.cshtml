@@ -1,12 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "Upload Id";
+    ViewBag.Title = "Upload Goverment ID | Artiscovery";
 }
 @{
     var IsRighToLeft = CultureHelper.IsRighToLeft();
-    
+
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
-    
+    var floatStyle = IsRighToLeft ? "float:right !important" : "";
+    var widthStyle = IsRighToLeft ? "width:69.4% !important" : "";
+    var textAlignStyle = !IsRighToLeft ? "text-align:left !important" : "";
+
 }
 <div class="row-layout content">
     <div class="guide-block" style="@rtldirection">
@@ -14,26 +17,26 @@
         <fieldset id="so-seller-identification">
             <legend>Seller Verification</legend>
             <p>
-            @ProfileRes.GovermentID_p1
+                @ProfileRes.GovermentID_p1
             </p>
 
             <p>
-                @ProfileRes.GovermentID_p2
+                @ProfileRes.GovermentID_p2 
             </p>
-
             
+
             <form id="upload-id" enctype="multipart/form-data" action="/accountinfo/uploadid" method="post">
                 <dl class="zend_form">
                     @*<dt id="id-label"><label for="id" class="required">File size must be less than 2MB.</label></dt>*@
-                    <dd id="id-element">
+                    <dd style="@floatStyle" id="id-element">
                         <input type="hidden" name="MAX_FILE_SIZE" value="16777216" id="MAX_FILE_SIZE">
-                        <input type="file" id="Image" name="Image">
+                        <input  type="file" id="Image" name="Image">
                     </dd>
                     <input type="hidden" name="url" value="" id="url">
-                    @*<dt id="photo_id_name-label"><label for="photo_id_name" class="optional">If you operate under a different name than what is on your government issued ID, enter your LEGAL name below. We won't make this information public.</label></dt>
-                        <dd id="photo_id_name-element">
-                            <input type="text" name="photo_id_name" id="photo_id_name" value="" placeholder="Enter Legal Name">
-                        </dd>*@
+                    <dt style="width:auto;@floatStyle" id="photo_id_name-label"><label style="@textAlignStyle" for="photo_id_name" class="optional">@ProfileRes.GovermentID_p3</label></dt>
+                    <dd style="@floatStyle" id="photo_id_name-element">
+                        <input type="text" name="legalname" id="legalname" value="" placeholder="@ProfileRes.Name">
+                    </dd>
 
 
                 </dl>

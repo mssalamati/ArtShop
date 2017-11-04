@@ -199,20 +199,17 @@
     <value>Google Plus</value>
   </data>
   <data name="GovermentID_p1" xml:space="preserve">
-    <value>In order to prevent fraud and protect our artists and buyers we must receive a copy of a government issued
-                photo ID (i.e. passport or drivers license) before your work can be displayed for sale. You may black out
-                your ID number.</value>
+    <value>We checking ID for fraudulent, fake or defaced cards, so we must receive a copy of your government issued ID (for instance your passport or driver’s license) to be able to put your work for sale.
+Do not worry! We protect the file you have sent us. The file will be encrypted from the moment that you sent it. We keep your encrypted file on our servers and can only our administrative team can view it.</value>
   </data>
   <data name="GovermentID_p2" xml:space="preserve">
-    <value>Rest assured that we will protect the image that you send us. Your ID file is encrypted from the time that it
-                leaves your computer. It is stored in an encrypted state on our servers and can only be viewed by our
-                administrative team.</value>
+    <value>For more information, please check our </value>
   </data>
   <data name="GovermentID_p3" xml:space="preserve">
-    <value>For more information, please read our</value>
+    <value>If promoting your art under a pseudonym or nickname, you need to enter your LEGAL name below. We won't make this information public.</value>
   </data>
   <data name="GovermentID_privacyPolicy" xml:space="preserve">
-    <value>Privacy Policy</value>
+    <value>Privacy Policy.</value>
   </data>
   <data name="GovermentID_title" xml:space="preserve">
     <value>Agreement</value>
@@ -405,5 +402,8 @@
   </data>
   <data name="Portfolio" xml:space="preserve">
     <value>Portfolio</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
 </root>
