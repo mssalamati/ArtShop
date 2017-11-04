@@ -480,7 +480,17 @@ namespace MobileApi.Controllers
             var profile = user.userDetail;
             var result = db.OrderDetails.Include("Product").Include("order")
              .Where(x => x.Product.user_id == userId)
-             .Where(x => x.order.TransactionDetail.Payed).ToList();
+             .Where(x => x.order.TransactionDetail.Payed).Select(a => new
+             {
+                 a.ProductId,
+                 a.Product.Title,
+                 a.Product.Sqphoto,
+                 a.Quantity,
+                 a.UnitPrice,
+                 a.type,
+                 a.order.ReceiverName
+
+             }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
