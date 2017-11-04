@@ -16,6 +16,7 @@ namespace ArtShop.Controllers
 {
     public class CardController : BaseController
     {
+        //checkout and get info
         [Route("checkout")]
         public ActionResult Index()
         {
@@ -56,6 +57,7 @@ namespace ArtShop.Controllers
             return View(viewModel);
         }
 
+        //payment segment
         [HttpPost]
         [Authorize]
         public ActionResult Pay(checkInfoViewModel model)
@@ -184,8 +186,6 @@ namespace ArtShop.Controllers
             }
         }
 
-
-
         public ActionResult verify()
         {
             if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
@@ -286,9 +286,8 @@ namespace ArtShop.Controllers
         }
 
 
-
+        //card segment
         [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
-        [NoCache]
         public ActionResult AddToCart(int id, Ordertype type)
         {
             var addedAlbum = db.Products.Find(id);
@@ -361,6 +360,7 @@ namespace ArtShop.Controllers
             return PartialView("CartSummary");
         }
 
+        //email segment
         private void SendInvoice(Order order)
         {
 
@@ -404,6 +404,7 @@ namespace ArtShop.Controllers
             }
         }
 
+        //functions
         public paypal.APIContext getPaypalApiContect()
         {
             var config = paypal.ConfigManager.Instance.GetProperties();
@@ -412,20 +413,5 @@ namespace ArtShop.Controllers
             return apiContext;
         }
 
-    }
-
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public sealed class NoCacheAttribute : ActionFilterAttribute
-    {
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
-        {
-            filterContext.HttpContext.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
-            filterContext.HttpContext.Response.Cache.SetValidUntilExpires(false);
-            filterContext.HttpContext.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
-            filterContext.HttpContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            filterContext.HttpContext.Response.Cache.SetNoStore();
-
-            base.OnResultExecuting(filterContext);
-        }
     }
 }
