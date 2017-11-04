@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to Cart.
+        /// </summary>
+        public static string Add_to_cart {
+            get {
+                return ResourceManager.GetString("Add_to_cart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to Favorites.
         /// </summary>
         public static string Add_to_Favorites {
@@ -237,6 +246,15 @@ namespace Resources {
         public static string Collector {
             get {
                 return ResourceManager.GetString("Collector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us.
+        /// </summary>
+        public static string Contactus {
+            get {
+                return ResourceManager.GetString("Contactus", resourceCulture);
             }
         }
         
@@ -534,6 +552,15 @@ namespace Resources {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove from Favorites.
+        /// </summary>
+        public static string Remove_from_favorites {
+            get {
+                return ResourceManager.GetString("Remove_from_favorites", resourceCulture);
             }
         }
         

@@ -320,11 +320,17 @@ namespace MobileApi.Controllers
 
 
         [HttpGet, Route("FavoritListByProfileId")]
-        public HttpResponseMessage FavoritListByProfileId(string id)
+        public HttpResponseMessage FavoritListByProfileId(string id, int page)
         {
+            int pageSize = 10;
             var user = db.Users.Find(id);
             var profile = user.userDetail;
-            var result = profile.Favorits.Select(x => new
+            var p = profile.Favorits.AsQueryable();
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+            var result = p.Select(x => new
             {
                 Id = x.product.Id,
                 Sqphoto = x.product.Sqphoto.Path,
@@ -334,8 +340,15 @@ namespace MobileApi.Controllers
                 WidePhoto = x.product.Widephoto.Path,
                 Status = x.product.Status,
                 Price = x.product.Price,
-            });
-            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+            }).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = result
+            }, formatter);
         }
 
         [Route("getArtworksByProfileId")]
@@ -374,12 +387,18 @@ namespace MobileApi.Controllers
         }
 
         [Authorize, Route("getFavoritList")]
-        public HttpResponseMessage getFavoritList()
+        public HttpResponseMessage getFavoritList(int page)
         {
+            int pageSize = 10;
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-            var result = profile.Favorits.Select(x => new
+            var p = profile.Favorits.AsQueryable();
+            var count = p.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            p = p.Skip((page - 1) * pageSize).Take(pageSize);
+            var result = p.Select(x => new
             {
                 Id = x.product.Id,
                 Sqphoto = x.product.Sqphoto.Path,
@@ -389,8 +408,15 @@ namespace MobileApi.Controllers
                 WidePhoto = x.product.Widephoto.Path,
                 Status = x.product.Status,
                 Price = x.product.Price,
-            });
-            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+            }).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                page = page,
+                count = count,
+                pageSize = pageSize,
+                result = result
+            }, formatter);
         }
 
         [Authorize, Route("getCollectionList")]
@@ -576,6 +602,7 @@ namespace MobileApi.Controllers
             var result = p.Select(x => new
             {
                 Id = x.Id,
+                photo = x.PhotoPath,
                 Firstname = x.FirstName,
                 Lastname = x.LastName,
                 Country = x.country == null ? null : (int?)x.country.Id

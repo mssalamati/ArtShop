@@ -772,6 +772,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 35 character limit.
+        /// </summary>
+        public static string step7_title_desc {
+            get {
+                return ResourceManager.GetString("step7_title_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is the artwork framed?.
         /// </summary>
         public static string step8_ask1 {
@@ -885,6 +894,15 @@ namespace Resources {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title cannot be longer than 35 characters.
+        /// </summary>
+        public static string TitleLenth_error {
+            get {
+                return ResourceManager.GetString("TitleLenth_error", resourceCulture);
             }
         }
         

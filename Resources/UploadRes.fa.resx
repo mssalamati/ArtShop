@@ -428,4 +428,10 @@
   <data name="Status" xml:space="preserve">
     <value>وضعیت</value>
   </data>
+  <data name="TitleLenth_error" xml:space="preserve">
+    <value>تعداد حروف عنوان از 35 عدد بیشتر است</value>
+  </data>
+  <data name="step7_title_desc" xml:space="preserve">
+    <value>حداکثر 35 حرف</value>
+  </data>
 </root>

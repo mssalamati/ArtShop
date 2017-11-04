@@ -259,24 +259,24 @@ if (current == selected)
                         {
                             if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == item.Id))
                             {
-                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="Remove from Favorites">
+                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite is-favorite" title="@ShareRes.Remove_from_favorites">
                                     <i class="fa fa-heart"></i>
                                 </a>
                             }
                             else
                             {
-                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                                <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="@ShareRes.Add_to_Favorites">
                                     <i class="fa fa-heart" style="color:white"></i>
                                 </a>
                             }
                         }
                         else
                         {
-                            <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="Add to Favorites">
+                            <a onclick="addfav(this,@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-favorite" title="@ShareRes.Add_to_Favorites">
                                 <i class="fa fa-heart" style="color:white"></i>
                             </a>
                         }
-                        <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="Add to Collection">
+                        <a onclick="addcollect(@item.Id)" style="background-color:rgba(0,0,0,0.6)" class="btn-round btn-add-to-collection hide-for-small-down" title="@ShareRes.Add_to_a_Collection">
                             <i class="fa fa-plus" style="color:white"></i>
                         </a>
                     </div>

@@ -344,9 +344,15 @@ namespace ArtShop.Controllers
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
             float current = 7;
 
-            if (string.IsNullOrEmpty(model.Title))
+            if (string.IsNullOrEmpty(model.Title) )
             {
                 ViewBag.error = Resources.UploadRes.titleNull_error;
+                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+                return PartialView();
+            }
+            if (model.Title.Length > 35)
+            {
+                ViewBag.error = Resources.UploadRes.TitleLenth_error;
                 ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
