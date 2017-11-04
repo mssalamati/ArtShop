@@ -125,55 +125,7 @@ namespace ArtShop.Controllers
             {
                 try
                 {
-                    var apiContext = getPaypalApiContect();
-
-                    var items = cartItems.Select(x => new paypal.Item()
-                    {
-                        name = x.Product.Title,
-                        currency = "USD",
-                        price = ((int)x.Product.Price).ToString(),
-                        quantity = ((int)x.Quantity).ToString(),
-                        sku = "sku"
-                    }).ToList();
-
-                    var payment = paypal.Payment.Create(apiContext, new paypal.Payment
-                    {
-                        intent = "sale",
-                        payer = new paypal.Payer
-                        {
-                            payment_method = "paypal"
-                        },
-                        transactions = new List<paypal.Transaction>
-                        {
-                        new paypal.Transaction
-                        {
-                            description = "Artiscovery shopping store",
-                            invoice_number = o.Id.ToString(),
-                            amount = new paypal.Amount
-                            {
-                                currency = "USD",
-                                total = orderTotal.ToString(),
-                                details = new paypal.Details
-                                {
-                                    tax = "0",
-                                    shipping = "0",
-                                    subtotal = orderTotal.ToString()
-                                }
-                            },
-                            item_list = new paypal.ItemList
-                            {
-                                items = items
-                            }
-
-                        }
-                    },
-                        redirect_urls = new paypal.RedirectUrls
-                        {
-                            return_url = "https://artiscovery.com/card/PaypalReturn",
-                            cancel_url = "https://artiscovery.com/card/PaypalCancel"
-                        }
-                    });
-                    //paypal refrence id
+                    var payment = CreatePayment(cartItems, orderTotal, o.Id.ToString());
                     o.TransactionDetail.Number = payment.id;
                     db.SaveChanges();
                     var approveurl = payment.links.FirstOrDefault(x => x.rel.Equals("approval_url", StringComparison.OrdinalIgnoreCase));
@@ -244,6 +196,59 @@ namespace ArtShop.Controllers
             }
         }
 
+        //paypal segment
+        private paypal.APIContext getPaypalApiContect()
+        {
+            var config = paypal.ConfigManager.Instance.GetProperties();
+            var accessToken = new paypal.OAuthTokenCredential(config).GetAccessToken();
+            var apiContext = new paypal.APIContext(accessToken);
+            return apiContext;
+        }
+
+        private paypal.Payment CreatePayment(List<ShoppingCart> cartItems, decimal orderTotal, string invoice_number)
+        {
+            var apiContext = getPaypalApiContect();
+            var items = cartItems.Select(x => new paypal.Item()
+            {
+                name = x.Product.Title,
+                currency = "USD",
+                price = ((int)x.Product.Price).ToString(),
+                quantity = ((int)x.Quantity).ToString(),
+                sku = "sku"
+            }).ToList();
+            var transactionList = new List<paypal.Transaction>();
+            var amount = new paypal.Amount
+            {
+                currency = "USD",
+                total = orderTotal.ToString(),
+                details = new paypal.Details
+                {
+                    tax = "0",
+                    shipping = "0",
+                    subtotal = orderTotal.ToString()
+                }
+            };
+            transactionList.Add(new paypal.Transaction()
+            {
+                description = "Artiscovery shopping store",
+                invoice_number = invoice_number,
+                amount = amount,
+                item_list = new paypal.ItemList { items = items }
+            });
+            var payer = new paypal.Payer() { payment_method = "paypal" };
+            return paypal.Payment.Create(apiContext, new paypal.Payment
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactionList,
+                redirect_urls = new paypal.RedirectUrls
+                {
+                    return_url = "https://artiscovery.com/card/PaypalReturn",
+                    cancel_url = "https://artiscovery.com/card/PaypalCancel"
+                }
+            });
+        }
+
         public ActionResult PaypalReturn(string payerId, string paymentId)
         {
             var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
@@ -275,6 +280,8 @@ namespace ArtShop.Controllers
             return RedirectToActionPermanent("paymentReport", new { id = orderId });
         }
 
+
+        //finish
         [Authorize]
         public ActionResult paymentReport(int id)
         {
@@ -402,15 +409,6 @@ namespace ArtShop.Controllers
                 email.total = order.TotalPrice;
                 email.Send();
             }
-        }
-
-        //functions
-        public paypal.APIContext getPaypalApiContect()
-        {
-            var config = paypal.ConfigManager.Instance.GetProperties();
-            var accessToken = new paypal.OAuthTokenCredential(config).GetAccessToken();
-            var apiContext = new paypal.APIContext(accessToken);
-            return apiContext;
         }
 
     }
