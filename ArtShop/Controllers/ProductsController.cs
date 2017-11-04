@@ -42,9 +42,9 @@ namespace ArtShop.Controllers
             p = p.Where(x => subject == 0 || x.subjectId == subject).AsQueryable();
             p = p.Where(x => medium == 0 || x.Mediums.FirstOrDefault(y => y.Id == medium) != null);
             if (price_cash != null && price_cash.max.HasValue)
-                p = p.Where(x => x.Price < price_cash.max.Value);
+                p = p.Where(x => x.Price < price_cash.max.Value && x.ISOrginalForSale);
             if (price_cash != null && price_cash.min.HasValue)
-                p = p.Where(x => x.Price >= price_cash.min.Value && x.Price > 0);
+                p = p.Where(x => x.Price >= price_cash.min.Value && x.Price > 0 && x.ISOrginalForSale);
 
             if (User.Identity.IsAuthenticated)
             {
