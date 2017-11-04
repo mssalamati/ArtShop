@@ -64,11 +64,9 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             var cart = CartManager.GetCart(this.HttpContext);
-            int amount = (int)cart.GetTotal();
-            decimal orderTotal = 0;
             var cartItems = cart.GetCartItems();
             var setting = db.SettingValues.FirstOrDefault();
-
+            decimal orderTotal = 0;
             Order o = new Order()
             {
                 user_id = userId,
@@ -92,7 +90,12 @@ namespace ArtShop.Controllers
                 o.OrderDetails.Add(orderDetail);
             }
             o.TotalPrice = (double)orderTotal;
-            o.TransactionDetail = new TransactionDetail() { amount = orderTotal, Method = model.paymentMethod, currencyRate = setting.IRRialRate };
+            o.TransactionDetail = new TransactionDetail()
+            {
+                amount = orderTotal,
+                Method = model.paymentMethod,
+                currencyRate = setting.IRRialRate
+            };
             db.Orders.Add(o);
             db.SaveChanges();
 
@@ -101,8 +104,7 @@ namespace ArtShop.Controllers
                 System.Net.ServicePointManager.Expect100Continue = false;
                 ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
                 string Authority;
-                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName,
-                    user.Email, user.PhoneNumber, "http://artiscovery.com/card/Verify", out Authority);
+                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/card/Verify", out Authority);
                 long longAuth = 0;
                 long.TryParse(Authority, out longAuth);
                 o.TransactionDetail.Number = longAuth.ToString();
@@ -182,6 +184,8 @@ namespace ArtShop.Controllers
             }
         }
 
+
+
         public ActionResult verify()
         {
             if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
@@ -193,14 +197,12 @@ namespace ArtShop.Controllers
                 var orderId = order.Id;
                 if (tran != null)
                 {
-
                     if (Request.QueryString["Status"].ToString().Equals("OK"))
                     {
                         decimal Amount = tran.amount * tran.currencyRate;
                         long RefID;
                         System.Net.ServicePointManager.Expect100Continue = false;
-                        ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp =
-                            new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
+                        ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
                         int Status = zp.PaymentVerification("e21e6fde-e5f6-11e6-bdac-000c295eb8fc", Request.QueryString["Authority"].ToString(), (int)Amount, out RefID);
                         tran.TransactionNumber = RefID.ToString();
                         tran.Description = Status.ToString();
@@ -208,7 +210,10 @@ namespace ArtShop.Controllers
                         {
                             tran.Payed = true;
                             foreach (var item in order.OrderDetails)
+                            {
                                 item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
+                                item.Product.AllEntity--;
+                            }
                             db.SaveChanges();
                             SendOrderDetail(order);
                             SendInvoice(order);
@@ -238,7 +243,6 @@ namespace ArtShop.Controllers
                 return Content("not valid address");
             }
         }
-
 
         public ActionResult PaypalReturn(string payerId, string paymentId)
         {
@@ -281,13 +285,17 @@ namespace ArtShop.Controllers
             return View(order);
         }
 
-      
+
+
         [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
         [NoCache]
         public ActionResult AddToCart(int id, Ordertype type)
         {
             var addedAlbum = db.Products.Find(id);
             var cart = CartManager.GetCart(this.HttpContext);
+            var basket = cart.GetCountProduct(id);
+            if (basket + 1 > addedAlbum.AllEntity)
+                return RedirectPermanent("/checkout");
             cart.AddToCart(addedAlbum, type);
             return RedirectPermanent("/checkout");
         }

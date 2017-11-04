@@ -154,6 +154,18 @@ namespace ArtShop.Util
             // Return 0 if all entries are null
             return count ?? 0;
         }
+
+        public int GetCountProduct(int id)
+        {
+            // Get the count of each item in the cart and sum them up
+            int? count = (from cartItems in db.ShoppingCarts
+                          where cartItems.CartNumber == ShoppingCartId
+                          where cartItems.ProductId == id
+                          select (int?)cartItems.Quantity).Sum();
+            // Return 0 if all entries are null
+            return count ?? 0;
+        }
+
         public decimal GetTotal()
         {
             // Multiply album price by count of that album to get 
