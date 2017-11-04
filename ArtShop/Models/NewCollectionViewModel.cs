@@ -11,7 +11,7 @@ namespace ArtShop.Models
     public class NewCollectionViewModel
     {
         public int CollectionId { get; set; }
-        
+        [Required]
         [Display(Name = nameof(ProfileRes.Collection_title), ResourceType = typeof(ProfileRes))]
         public string CollectionTitle { get; set; }
 

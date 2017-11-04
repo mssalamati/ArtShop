@@ -19,6 +19,7 @@ using DataLayer.Enitities;
 using System.Web;
 using System.IO;
 using Utilities;
+using RestSharp;
 
 namespace MobileApi.Controllers
 {
@@ -150,6 +151,7 @@ namespace MobileApi.Controllers
             var profile = user.userDetail;
             var result = new
             {
+                user.Email,
                 profile.FirstName,
                 profile.LastName,
                 profile.Account,
@@ -161,6 +163,7 @@ namespace MobileApi.Controllers
                 profile.Region,
                 profile.RegisterDate,
                 profile.ZipCode,
+                profile.MailingList,                
                 ArtworksSummery = profile.Products.Take(3).Select(x => new
                 {
                     widePhoto = x.Widephoto.Path,
@@ -171,6 +174,69 @@ namespace MobileApi.Controllers
                 favoritSize = profile.Favorits.Count
             };
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
+        }
+
+        public class ProfileModel
+        {
+
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public ProfileType UserType { get; set; }
+            public bool ReceiveMail { get; set; }
+        }
+
+        [Authorize, Route("EditProfile")]
+        public HttpResponseMessage EditProfile(ProfileModel obj)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+
+            profile.FirstName = obj.FirstName;
+            profile.LastName = obj.LastName;
+
+            if (obj.ReceiveMail && !profile.MailingList)
+            {
+                AddSubscriber(profile.ApplicationUserDetail.Email);
+            }
+            else if (!obj.ReceiveMail)
+            {
+                RemoveFromSubscribers(profile.ApplicationUserDetail.Email);
+            }
+
+            profile.MailingList = obj.ReceiveMail;
+            profile.profileType = obj.UserType;
+
+            db.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                success = true,
+                message = ""
+            }, formatter);
+        }
+
+        public void AddSubscriber(string email)
+        {
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            request.AddHeader("content-type", "application/json");
+            request.AddParameter("application/json", "{\"email\":\"" + email + "\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+        }
+
+        public void RemoveFromSubscribers(string email)
+        {
+
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers/" + email);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            //request.AddHeader("content-type", "application/json");
+            //request.AddParameter("application/json", "{\"" + email + "\"}", ParameterType.QueryString);
+            //request.AddQueryParameter("", email);
+
+            IRestResponse response = client.Delete(request);
         }
 
         [Route("getProfileById")]
@@ -391,6 +457,7 @@ namespace MobileApi.Controllers
                .Where(x => x.user_id == userId)
                .OrderByDescending(o => o.BuyDate).Select(x => new
                {
+                   orderDeetail = x.OrderDetails,
                    Date = x.BuyDate,
                    Status = x.Status,
                    TotalPrice = x.TotalPrice,
