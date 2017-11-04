@@ -250,6 +250,14 @@ namespace ArtShop.Controllers
             return Redirect(url);
         }
 
+        public ActionResult RelatedArtwork(int id)
+        {
+            var result = db.Products.FirstOrDefault(x => x.Id == id);
+
+            return PartialView(result);
+        }
+
+
         public ActionResult cashmanager(string id)
         {
             if (id == "soroosh1313")
