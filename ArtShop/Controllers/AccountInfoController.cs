@@ -168,7 +168,7 @@ namespace ArtShop.Controllers
             //item.Education = model.Education;
             //item.Events = model.Events;
             //item.Exhibitions = model.Exhibitions;
-            
+
             userProfile.countryId = model.countryId;
             userProfile.City = model.City;
             userProfile.Region = model.Region;
@@ -303,18 +303,25 @@ namespace ArtShop.Controllers
             return View();
         }
 
+        public class ID
+        {
+            public string LegalName { get; set; }
+            public HttpPostedFileBase Image { get; set; }
+        }
+
         [HttpPost]
-        public ActionResult UploadID(HttpPostedFileBase Image)
+        public ActionResult UploadID(ID model)
         {
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
 
             string tempFolderName = "Upload/goverment-ids";
-            var result = ImageHelper.Saveimage(Server, Image, tempFolderName, ImageHelper.saveImageMode.Not);
+            var result = ImageHelper.Saveimage(Server, model.Image, tempFolderName, ImageHelper.saveImageMode.Not);
             if (result.ResultStatus)
             {
                 userProfile.GovermentIdPath = result.FullPath;
+                userProfile.LegalName = model.LegalName;
                 db.SaveChanges();
             }
             return RedirectToActionPermanent("Index", "profile");

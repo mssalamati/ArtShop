@@ -488,7 +488,8 @@ namespace MobileApi.Controllers
                  a.Quantity,
                  a.UnitPrice,
                  a.type,
-                 a.order.ReceiverName
+                 a.order.ReceiverName,
+                 a.order.user_id
 
              }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
