@@ -1,0 +1,29 @@
+﻿@model Product
+@using DataLayer.Extentions;
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
+}
+<head>
+    <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<div class="col-lg-4 right-sidebar">
+    <div class="artwork">
+        <a href="@Url.Action(Model.category.Current().Name,"Artwork", new { id=@Model.GenerateSlug() })" target="_blank">
+            <img width="300" height="300" src="@Model.photo.Path" class="attachment-300x300 size-300x300" alt="">
+        </a>
+        <p>
+            <span style="font-style:italic;font-family:Helvetica,Arial,sans-serif">@Model.Title</span>
+            @if (Model.ISOrginalForSale)
+            {
+                <span>$@Model.Price</span>
+            }
+        </p>
+        <p>
+            <a style="color:#3399cc;font-weight:bold;text-decoration:none" href="/publicprofile?id=@Model.user_id" class="artist-url" target="_blank">@Model.user.FirstName @Model.user.LastName</a>
+        </p>
+    </div>
+</div>

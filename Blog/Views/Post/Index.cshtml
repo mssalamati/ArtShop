@@ -115,7 +115,7 @@ else
                         {
                             <h3 style="text-align: center !important"><a href="@Url.RouteUrl("Category", new { id = Model.Category.GenerateSlug() })">@Model.Category.Current().Name</a></h3>
                         }
-                        
+
                         <h1 style="text-align:center !important">@Model.Current().Title</h1>
 
                         <div class="date-info hidden-lg">
@@ -158,24 +158,11 @@ else
                 {
                     <div class="col-lg-4 right-sidebar">
 
-
-                        <h3>New This Week on Artiscovery</h3>
                         @foreach (var item in Model.Links)
                         {
-                            <div class="artwork">
-                                <a href="@item.URL" target="_blank">
-                                    <img width="300" height="300" src="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-300x300.jpeg" class="attachment-300x300 size-300x300" alt="" srcset="https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-300x300.jpeg 300w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-150x150.jpeg 150w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-768x768.jpeg 768w, https://canvas.saatchiart.com/wp-content/uploads/2017/08/view-22-500x500.jpeg 500w" sizes="(max-width: 300px) 100vw, 300px">
-                                </a>
-                                <p>
-                                    <span>Mon'd'UNtérieur îlien</span>
-                                    <span>3500</span>
-                                </p>
-                                <p>
-                                    <a href="https://www.saatchiart.com/cati.b" class="artist-url" target="_blank">Cati BURNOT</a>
 
-                                    <a href="https://www.saatchiart.com/art/Painting-Mon-d-UNt-rieur-lien/773238/3747126/view" class="artwork-url" target="_blank">View artwork</a>
-                                </p>
-                            </div>
+                            <iframe style="width:310px;height:400px;border-width:0px" src='https://artiscovery.com/home/relatedartwork?id=@item.URL' name="fram" id='fram'></iframe>
+
                         }
 
                     </div>
