@@ -273,7 +273,7 @@
                                             <span class="price" style="margin-top:5px" itemprop="price">
                                                 $@Model.Price
                                             </span>
-                                            <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                                            <a id="addOriginal" href="/Card/AddToCart?q=@DateTime.Now.Millisecond&id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
                                         </div>
                                     }
                                 </div>
