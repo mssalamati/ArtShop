@@ -258,12 +258,24 @@
                                 </div>
 
                                 <div style="width:inherit;padding-bottom:30px" class="art-detail-ribbon">
-                                    <div class="clearfix">
-                                        <span class="price" style="margin-top:5px" itemprop="price">
-                                            $@Model.Price
-                                        </span>
-                                        <a id="addOriginal" href="/Card/AddToCart?id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
-                                    </div>
+                                    @if (Model.AllEntity <= 0)
+                                    {
+                                        <span class="sold">Sold</span>
+                                        <div class="">
+                                            <p class="mt0" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                                This artwork is sold (<span itemprop="price">$@Model.Price</span>)
+                                            </p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="clearfix">
+                                            <span class="price" style="margin-top:5px" itemprop="price">
+                                                $@Model.Price
+                                            </span>
+                                            <a id="addOriginal" href="/Card/AddToCart?q=@DateTime.Now.Millisecond&id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                                        </div>
+                                    }
                                 </div>
                             }
                             else
