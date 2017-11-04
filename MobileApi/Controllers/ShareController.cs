@@ -163,7 +163,7 @@ namespace MobileApi.Controllers
                 profile.Region,
                 profile.RegisterDate,
                 profile.ZipCode,
-                profile.MailingList,                
+                profile.MailingList,
                 ArtworksSummery = profile.Products.Take(3).Select(x => new
                 {
                     widePhoto = x.Widephoto.Path,
@@ -457,7 +457,13 @@ namespace MobileApi.Controllers
                .Where(x => x.user_id == userId)
                .OrderByDescending(o => o.BuyDate).Select(x => new
                {
-                   orderDeetail = x.OrderDetails,
+                   orderDetail = x.OrderDetails.Select(a => new
+                   {
+                       artworkName = a.Product.Title,
+                       artworkPhoto = a.Product.Sqphoto,
+                       quantity = a.Quantity,
+                       unitPrice = a.UnitPrice
+                   }),
                    Date = x.BuyDate,
                    Status = x.Status,
                    TotalPrice = x.TotalPrice,
