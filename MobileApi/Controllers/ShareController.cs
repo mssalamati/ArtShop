@@ -56,7 +56,7 @@ namespace MobileApi.Controllers
             {
                 id = x.Id,
                 name = x.Translations.Any(t => t.languageId == language) ?
-               x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
+                x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
             });
             var Subjects = db.Subjects.Select(x => new
             {
@@ -82,7 +82,33 @@ namespace MobileApi.Controllers
                 name = x.Translations.Any(t => t.languageId == language) ?
                  x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
             });
-
+            var frames = new
+            {
+                Colors = db.ProductFrameColors.Select(x => new
+                {
+                    id = x.Id,
+                    name = x.Translations.Any(t => t.languageId == language) ?
+                    x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
+                }),
+                Materials = db.ProductFrameMaterials.Select(x => new
+                {
+                    id = x.Id,
+                    name = x.Translations.Any(t => t.languageId == language) ?
+                    x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
+                }),
+                Types = db.ProductFrameTypes.Select(x => new
+                {
+                    id = x.Id,
+                    name = x.Translations.Any(t => t.languageId == language) ?
+                    x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
+                }),
+            };
+            var packages = new List<object>()
+            {
+                new { id = (int)Productpackage.box  ,name = "box" } ,
+                new { id = (int)Productpackage.crate  ,name = "crate" } ,
+                new { id = (int)Productpackage.tube  ,name = "tube" } ,
+            };
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
                 Pricelists = Pricelists,
@@ -90,7 +116,9 @@ namespace MobileApi.Controllers
                 Subjects = Subjects,
                 Styles = Styles,
                 Categories = Categories,
-                material = material
+                material = material,
+                frame = frames,
+                packages = packages
             }, formatter);
         }
 
