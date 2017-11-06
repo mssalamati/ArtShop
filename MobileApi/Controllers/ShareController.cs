@@ -192,7 +192,7 @@ namespace MobileApi.Controllers
                 profile.City,
                 profile.countryId,
                 profile.isIDConfirmed,
-                profile.PhotoPath,
+                PhotoPath = "https://artiscovery.com/" + profile.PhotoPath,
                 profile.profileType,
                 profile.Region,
                 profile.RegisterDate,
@@ -286,7 +286,7 @@ namespace MobileApi.Controllers
                 profile.City,
                 profile.countryId,
                 profile.isIDConfirmed,
-                profile.PhotoPath,
+                PhotoPath = "https://artiscovery.com/" + profile.PhotoPath,
                 profile.profileType,
                 profile.Region,
                 profile.RegisterDate,
@@ -519,6 +519,7 @@ namespace MobileApi.Controllers
                {
                    orderDetail = x.OrderDetails.Select(a => new
                    {
+                       id = a.Product.Id,
                        artworkName = a.Product.Title,
                        artworkPhoto = a.Product.Sqphoto,
                        quantity = a.Quantity,
@@ -582,44 +583,92 @@ namespace MobileApi.Controllers
         }
 
         [HttpGet, Route("Search")]
-        public HttpResponseMessage Search(int CategoryId = 0, int StyleId = 0, int SubjectId = 0, int MediumId = 0, int PriceListId = 0, int page = 1)
+        public HttpResponseMessage Search(int CategoryId = 0, int StyleId = 0, int SubjectId = 0, int MediumId = 0, int PriceListId = 0, int page = 1, string query = "")
         {
-            int pageSize = 10;
-            var price_cash = db.Pricethresholds.SingleOrDefault(x => x.Id == PriceListId);
-            var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
-            p = p.Where(x => CategoryId == 0 || x.categoryId == CategoryId).AsQueryable();
-            p = p.Where(x => StyleId == 0 || x.Styles.FirstOrDefault(y => y.Id == StyleId) != null);
-            p = p.Where(x => SubjectId == 0 || x.subjectId == SubjectId).AsQueryable();
-            p = p.Where(x => MediumId == 0 || x.Mediums.FirstOrDefault(y => y.Id == MediumId) != null);
-            if (price_cash != null && price_cash.max.HasValue)
-                p = p.Where(x => x.Price < price_cash.max.Value);
-            if (price_cash != null && price_cash.min.HasValue)
-                p = p.Where(x => x.Price >= price_cash.min.Value && x.Price > 0);
-            var count = p.Count();
-            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
-            page = Math.Max(1, page);
-            p = p.Skip((page - 1) * pageSize).Take(pageSize);
-            var result = p.Select(x => new
+            if (string.IsNullOrEmpty(query))
             {
-                Id = x.Id,
-                photo = x.photo.Path,
-                Title = x.Title,
-                Description = x.Description,
-                Author = x.user.FirstName + " " + x.user.LastName,
-                AuthorId = x.user_id,
-                country = x.user.countryId,
-                Price = x.Price,
-                isForSale = x.ISOrginalForSale,
-                status = x.Status
-            }).ToList();
 
-            return Request.CreateResponse(HttpStatusCode.OK, new
+
+                int pageSize = 10;
+                var price_cash = db.Pricethresholds.SingleOrDefault(x => x.Id == PriceListId);
+                var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
+                p = p.Where(x => CategoryId == 0 || x.categoryId == CategoryId).AsQueryable();
+                p = p.Where(x => StyleId == 0 || x.Styles.FirstOrDefault(y => y.Id == StyleId) != null);
+                p = p.Where(x => SubjectId == 0 || x.subjectId == SubjectId).AsQueryable();
+                p = p.Where(x => MediumId == 0 || x.Mediums.FirstOrDefault(y => y.Id == MediumId) != null);
+                if (price_cash != null && price_cash.max.HasValue)
+                    p = p.Where(x => x.Price < price_cash.max.Value);
+                if (price_cash != null && price_cash.min.HasValue)
+                    p = p.Where(x => x.Price >= price_cash.min.Value && x.Price > 0);
+                var count = p.Count();
+                page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+                page = Math.Max(1, page);
+                p = p.Skip((page - 1) * pageSize).Take(pageSize);
+                var result = p.Select(x => new
+                {
+                    Id = x.Id,
+                    photo = x.photo.Path,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Author = x.user.FirstName + " " + x.user.LastName,
+                    AuthorId = x.user_id,
+                    country = x.user.countryId,
+                    Price = x.Price,
+                    isForSale = x.ISOrginalForSale,
+                    status = x.Status
+                }).ToList();
+
+                return Request.CreateResponse(HttpStatusCode.OK, new
+                {
+                    page = page,
+                    count = count,
+                    pageSize = pageSize,
+                    result = result
+                }, formatter);
+            }
+            else
             {
-                page = page,
-                count = count,
-                pageSize = pageSize,
-                result = result
-            }, formatter);
+
+                int pageSize = 18;
+                var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
+                p = p.Where(x => string.IsNullOrEmpty(query) || x.Title.Contains(query)).AsQueryable();
+                var count = p.Count();
+                page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+                page = Math.Max(1, page);
+
+                p = p.Skip((page - 1) * pageSize).Take(pageSize);
+
+                var result = p.Select(x => new
+                {
+                    Id = x.Id,
+                    photo = x.photo.Path,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Author = x.user.FirstName + " " + x.user.LastName,
+                    country = x.user.countryId,
+                    Price = x.Price,
+                    isForSale = x.ISOrginalForSale,
+                    status = x.Status
+                }).ToList();
+
+
+                //if (User.Identity.IsAuthenticated)
+                //{
+                //    var userId = User.Identity.GetUserId();
+
+                //    var currentUserProfile = db.UserProfiles.Find(userId);
+                //    ViewBag.favorites = currentUserProfile.Favorits;
+                //}
+
+                return Request.CreateResponse(HttpStatusCode.OK, new
+                {
+                    page = page,
+                    count = count,
+                    pageSize = pageSize,
+                    result = result
+                }, formatter);
+
+            }
         }
 
         [HttpGet, Route("SearchArtist")]
@@ -641,50 +690,6 @@ namespace MobileApi.Controllers
                 Lastname = x.LastName,
                 Country = x.country == null ? null : (int?)x.country.Id
             }).ToList();
-
-            return Request.CreateResponse(HttpStatusCode.OK, new
-            {
-                page = page,
-                count = count,
-                pageSize = pageSize,
-                result = result
-            }, formatter);
-        }
-
-        [HttpGet, Route("SearchArt")]
-        public HttpResponseMessage SearchArt(string query, int page = 1)
-        {
-
-            int pageSize = 18;
-            var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
-            p = p.Where(x => string.IsNullOrEmpty(query) || x.Title.Contains(query)).AsQueryable();
-            var count = p.Count();
-            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
-            page = Math.Max(1, page);
-
-            p = p.Skip((page - 1) * pageSize).Take(pageSize);
-
-            var result = p.Select(x => new
-            {
-                Id = x.Id,
-                photo = x.photo.Path,
-                Title = x.Title,
-                Description = x.Description,
-                Author = x.user.FirstName + " " + x.user.LastName,
-                country = x.user.countryId,
-                Price = x.Price,
-                isForSale = x.ISOrginalForSale,
-                status = x.Status
-            }).ToList();
-
-
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    var userId = User.Identity.GetUserId();
-
-            //    var currentUserProfile = db.UserProfiles.Find(userId);
-            //    ViewBag.favorites = currentUserProfile.Favorits;
-            //}
 
             return Request.CreateResponse(HttpStatusCode.OK, new
             {

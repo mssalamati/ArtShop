@@ -84,6 +84,7 @@ namespace DataLayer.Enitities
                 avaible = avaible,
                 categoryId = categoryId,
                 createDate = CreateDate,
+                package = Packaging,
                 depth = Depth,
                 country = user.country != null ? user.country.Id : 0,
                 description = Description,
@@ -97,8 +98,12 @@ namespace DataLayer.Enitities
                 price = Price,
                 sqphoto = Sqphoto.Path,
                 subjectId = subjectId,
+                styles = Styles.Select(x=>x.Id),
+                mediums = Mediums.Select(x => x.Id),
+                materials = Materials.Select(x => x.Id),
                 widephoto = Widephoto.Path,
                 width = Width,
+                totalWeight = TotalWeight,
                 title = Title,
             };
         }
