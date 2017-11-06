@@ -53,6 +53,8 @@ namespace DataLayer
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Article>().HasMany(m => m.ReletedArticles).WithMany();
+
             modelBuilder.Configurations.Add(new ShoppingCartConfig());
 
             base.OnModelCreating(modelBuilder);
