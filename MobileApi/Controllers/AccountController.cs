@@ -18,6 +18,8 @@ using MobileApi.Providers;
 using MobileApi.Results;
 using DataLayer;
 using DataLayer.Enitities;
+using System.Net;
+using System.Linq;
 
 namespace MobileApi.Controllers
 {
@@ -323,11 +325,17 @@ namespace MobileApi.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var rerror = new
+                {
+                    success = false,
+                    message = "The request is invalid.",
+                    error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, rerror);
             }
             var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType, MailingList = true };
             var user = new ApplicationUser()
@@ -341,10 +349,22 @@ namespace MobileApi.Controllers
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                if (result.Errors != null)
+                {
+                    foreach (string item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item);
+                    }
+                }
+                var error = new
+                {
+                    success = false,
+                    message = "The request is invalid.",
+                    error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, error);
             }
-
-            return Ok();
+            return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Registered" });
         }
 
         // POST api/Account/RegisterExternal

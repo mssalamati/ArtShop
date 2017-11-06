@@ -105,9 +105,14 @@ namespace MobileApi.Controllers
             };
             var packages = new List<object>()
             {
-                new { id = (int)Productpackage.box  ,name = "box" } ,
-                new { id = (int)Productpackage.crate  ,name = "crate" } ,
+                new { id = (int)Productpackage.box   ,name = "box" } ,
+                new { id = (int)Productpackage.crate ,name = "crate" } ,
                 new { id = (int)Productpackage.tube  ,name = "tube" } ,
+            };
+            var PaymentsMethods = new List<object>()
+            {
+                new { id = (int)PaymentMethod.paypall  , name = "paypall" } ,
+                new { id = (int)PaymentMethod.zarinpall, name = "zarinpall" }
             };
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
@@ -118,7 +123,8 @@ namespace MobileApi.Controllers
                 Categories = Categories,
                 material = material,
                 frame = frames,
-                packages = packages
+                packages = packages,
+                PaymentsMethods = PaymentsMethods
             }, formatter);
         }
 
