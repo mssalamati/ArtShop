@@ -21,7 +21,7 @@ namespace AdminPanel.Models.ViewModel
             this.Category = model.SupportCategory.Id;
             this.ThumbnailPath = "/" + model.Thumbnail;
             this.ReletedArticles = model.ReletedArticles.Select(x => x.Id).ToList();
-            this.SubCategory = model.SupportSubCategory.Id;
+            this.SubCategory = model.SupportSubCategory != null ? model.SupportSubCategory.Id : 0;
             this.ShortDescription = translation.ShortDescription;
             this.isHandbook = model.isHandbook;
         }
