@@ -3,8 +3,9 @@
     ViewBag.Title = "Index";
 }
 
-@model IEnumerable<MobileHomePage>
+@model List<MobileHomePage>
 
+<link rel="stylesheet" href="~/Content/Admin/styles/fakeFileInputs.css">
 
 @{
     ViewBag.Title = "index";
@@ -49,12 +50,13 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th><i class="fa fa-eye"></i></th>
+                            <th><img style="width:50px" src="/@item.PhotoPath"/></th>
                             <th>
                                 @item.Title
                             </th>
                             <td>
                                 <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
+                                <button class="btn btn-primary btn-sm" onclick="showProducts(@item.Id)">محصولات</button>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/@c_cntroller/@c_delet/@item.Id">آیا مطمئن هستید؟</a>
                             </td>
@@ -108,5 +110,31 @@
             $("#dform").html(loading);
             $("#dform").load("/@c_cntroller/@c_edit/" + id);
         }
+        function showProducts(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/@c_cntroller/Products/" + id);
+        }
+
+        function removeproduct(id) {
+            var link = '/MobileHomePage/RemoveProduct/' + id;
+            $.post(link,
+                {
+                },
+                function (data, status) {
+                    $("#dform").html(data);
+                });
+        }
+    </script>
+    <script type="text/javascript">
+        function initinputcss() {
+            $(document).ready(function () {
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") { $(this).parents(".uploader").find(".filename").val("فایلی انتخاب نشده"); }
+                });
+            });
+        }
+        initinputcss();
     </script>
 }

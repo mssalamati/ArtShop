@@ -12,7 +12,7 @@ namespace AdminPanel.Controllers
     {
         public ActionResult Index()
         {
-            var data = db.MobileHomePageItems;
+            var data = db.MobileHomePages;
             return View(data.ToList());
         }
 
@@ -82,7 +82,7 @@ namespace AdminPanel.Controllers
                 else
                     finder.PhotoPath = result.FullPath;
             }
-
+            finder.Title = model.Title;
             foreach (var item in model.Translations)
             {
                 var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
@@ -111,6 +111,7 @@ namespace AdminPanel.Controllers
             var finder = db.MobileHomePages.Find(id);
             return PartialView(finder);
         }
+        [HttpPost]
         public ActionResult AddProduct(int homeId, int productId)
         {
             var finder = db.MobileHomePages.Find(homeId);
@@ -119,14 +120,16 @@ namespace AdminPanel.Controllers
                 ProductId = productId
             });
             db.SaveChanges();
-            return PartialView();
+            return PartialView("Products", finder);
         }
+        [HttpPost]
         public ActionResult RemoveProduct(int id)
         {
             var finder = db.MobileHomePageItems.Find(id);
+            var m = finder.mobileHomePage;
             db.MobileHomePageItems.Remove(finder);
             db.SaveChanges();
-            return PartialView();
+            return PartialView("Products", m);
         }
         public ActionResult getProduct(int id)
         {

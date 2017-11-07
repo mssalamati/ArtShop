@@ -5354,6 +5354,7 @@
     <Content Include="Views\MobileHomePage\add.cshtml" />
     <Content Include="Views\MobileHomePage\edit.cshtml" />
     <Content Include="Views\MobileHomePage\_successWindow.cshtml" />
+    <Content Include="Views\MobileHomePage\Products.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
