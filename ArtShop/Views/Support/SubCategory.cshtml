@@ -1,7 +1,7 @@
 ﻿@using DataLayer.Extentions;
 @model SupportSubCategory
 @{
-    ViewBag.Title = "SubCategory";
+    ViewBag.Title = Model.Current().Name + " | Artiscovery";
     Layout = "~/Views/Support/_SupportLayout.cshtml";
 }
 
@@ -14,23 +14,23 @@
     <nav class="sub-nav clearfix category-breadcrumbs">
         <ol style="@rtlstl" class="breadcrumbs">
 
-                <li title="Artiscovery">
-                    <a href="/support">Artiscovery</a>
-                </li>
+            <li title="Artiscovery">
+                <a href="/support">Artiscovery</a>
+            </li>
 
-                <li title="@Model.Current().Name">
+            <li title="@Model.Current().Name">
 
-                    <a href="@Url.Action("Category", "Support", new { id = @Model.supportCategory.GenerateSlug() })">@Model.Current().Name </a>
+                <a href="@Url.Action("Category", "Support", new { id = @Model.supportCategory.GenerateSlug() })">@Model.Current().Name </a>
 
-                </li>
+            </li>
 
-                <li title="@Model.Current().Name">
+            <li title="@Model.Current().Name">
 
-                    @Model.Current().Name
+                @Model.Current().Name
 
-                </li>
+            </li>
 
-            
+
 
 
         </ol>

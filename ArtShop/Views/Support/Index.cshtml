@@ -1,6 +1,9 @@
 ﻿@using DataLayer.Extentions;
 @model ICollection<Article>
-@{var IsRighToLeft = CultureHelper.IsRighToLeft();}
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    ViewBag.Title = "Support | Artiscovery";
+}
 <main role="main">
     <!--MAIN SECTION-->
     <section class="main-section">
@@ -15,7 +18,7 @@
                         <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
                             @ShareRes.Click_here
                         </a>
-                   
+
                     </p>
                     <h1>@FooterRes.Artist_Handbook</h1>
 

@@ -1,7 +1,7 @@
 ﻿@using DataLayer.Extentions;
 @model Article
 @{
-    ViewBag.Title = "Article";
+    ViewBag.Title = Model.Current().Title + " | Artiscovery";
     Layout = "~/Views/Support/_SupportLayout.cshtml";
 }
 @{
@@ -23,23 +23,23 @@
 <main role="main">
     <nav class="sub-nav clearfix">
         <ol style="@rtlstl" class="breadcrumbs">
- 
-                <li title="Artiscovery">
 
-                    <a href="/support">Artiscovery</a>
+            <li title="Artiscovery">
 
-                </li>
+                <a href="/support">Artiscovery</a>
 
-                <li title="@Model.SupportCategory.Current().Name">
-                    <a href="@Url.Action("Category", "Support", new { id = @Model.SupportCategory.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
-                </li>
+            </li>
 
-                <li title="@Model.SupportSubCategory.Current().Name">
+            <li title="@Model.SupportCategory.Current().Name">
+                <a href="@Url.Action("Category", "Support", new { id = @Model.SupportCategory.GenerateSlug() })">@Model.SupportCategory.Current().Name</a>
+            </li>
 
-                    <a href="@Url.Action("SubCategory", "Support", new { id = @Model.SupportSubCategory.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
+            <li title="@Model.SupportSubCategory.Current().Name">
 
-                </li>
-            
+                <a href="@Url.Action("SubCategory", "Support", new { id = @Model.SupportSubCategory.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
+
+            </li>
+
 
         </ol>
 

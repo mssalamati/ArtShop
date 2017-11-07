@@ -15,6 +15,7 @@ using System.Globalization;
 
 namespace ArtShop.Controllers
 {
+    [Authorize]
     public class AccountInfoController : BaseController
     {
         // GET: AccountInfo
