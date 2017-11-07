@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -234,6 +235,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageServersController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
+    <Compile Include="Controllers\MobileHomePageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\PayoutsController.cs" />
@@ -5348,6 +5350,10 @@
     <Content Include="Views\SupportSubCategories\Edit.cshtml" />
     <Content Include="Views\SupportSubCategories\Index.cshtml" />
     <Content Include="Views\SupportSubCategories\_successWindow.cshtml" />
+    <Content Include="Views\MobileHomePage\Index.cshtml" />
+    <Content Include="Views\MobileHomePage\add.cshtml" />
+    <Content Include="Views\MobileHomePage\edit.cshtml" />
+    <Content Include="Views\MobileHomePage\_successWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

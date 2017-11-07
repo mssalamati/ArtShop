@@ -131,28 +131,28 @@ namespace MobileApi.Controllers
         [Route("getMainPages")]
         public HttpResponseMessage getMainPages(string language = "en")
         {
-            var thirdpictest = db.Products.Take(3).Select(x => x.Sqphoto.Path).ToList();
-            var fakedata = new List<object>()
+            var result = db.MobileHomePages.Select(x => new
             {
-                new { id = 1, title = "پر فروش ها", photo = thirdpictest },
-                new { id = 2, title = "ارزان ترین ها", photo = thirdpictest },
-                new { id = 3, title = "عکاسی", photo = thirdpictest },
-                new { id = 4, title = "نقاشی", photo = thirdpictest }
-            };
-            return Request.CreateResponse(HttpStatusCode.OK, fakedata, formatter);
+                id = x.Id,
+                title = x.Translations.Any(t => t.languageId == language) ?
+                x.Translations.FirstOrDefault(t => t.languageId == language).Title : string.Empty,
+                photo = x.PhotoPath
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
 
         [Route("getMainPageItems")]
         public HttpResponseMessage getMainPageItems(int id, int page = 1)
         {
-            var products = db.Products.OrderBy(x => x.CreateDate);
+            var home = db.MobileHomePages.Find(id);
+            var products = home.Items.Select(x => x.product).OrderBy(x => x.CreateDate);
             var t = products.Count();
             var result = products.Skip((page - 1) * 10).Take(10).Select(x => new
             {
                 id = x.Id,
                 title = x.Title,
                 photo = x.Widephoto.Path,
-                author = x.user.FirstName,
+                author = x.user.FirstName + " " + x.user.LastName,
                 price = x.Price
             }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, new { total = t, data = result }, formatter);
