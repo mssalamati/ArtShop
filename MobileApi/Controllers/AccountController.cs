@@ -18,6 +18,7 @@ using MobileApi.Providers;
 using MobileApi.Results;
 using DataLayer;
 using DataLayer.Enitities;
+using System.Linq;
 
 namespace MobileApi.Controllers
 {
@@ -235,7 +236,7 @@ namespace MobileApi.Controllers
             }
 
             if (!User.Identity.IsAuthenticated)
-            {
+             {
                 return new ChallengeResult(provider, this);
             }
 
@@ -273,6 +274,32 @@ namespace MobileApi.Controllers
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+                var info = await Authentication.GetExternalLoginInfoAsync();
+                //if (info == null)
+                //{
+                //    return View("ExternalLoginFailure");
+                //}
+                
+                //var userDetail = new UserProfile { FirstName = identity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(identity.Name.Split(' ')[1]) ? null : identity.Name.Split(' ')[1], profileType = ProfileType.Collector, MailingList = true };
+                //var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail };
+                //var registerResult = await UserManager.CreateAsync(user);
+                //if (registerResult.Succeeded)
+                //{
+                //    registerResult = await UserManager.AddLoginAsync(user.Id, info.Login);
+                //    if (registerResult.Succeeded)
+                //    {
+                //        //AddSubscriber(user.Email);
+                        
+                //    }
+                //}
+                //else if (registerResult.Errors.FirstOrDefault().Contains("taken"))
+                //{
+                //    ApplicationDbContext db = new ApplicationDbContext();
+                //    user = db.Users.FirstOrDefault(a => a.Email == loginInfo.Email);
+                //    //AddSubscriber(user.Email);
+                    
+
+                //}
                 Authentication.SignIn(identity);
             }
 
