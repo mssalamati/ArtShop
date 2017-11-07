@@ -18,6 +18,7 @@ using MobileApi.Providers;
 using MobileApi.Results;
 using DataLayer;
 using DataLayer.Enitities;
+using System.Net;
 using System.Linq;
 
 namespace MobileApi.Controllers
@@ -236,7 +237,7 @@ namespace MobileApi.Controllers
             }
 
             if (!User.Identity.IsAuthenticated)
-             {
+            {
                 return new ChallengeResult(provider, this);
             }
 
@@ -274,32 +275,6 @@ namespace MobileApi.Controllers
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                var info = await Authentication.GetExternalLoginInfoAsync();
-                //if (info == null)
-                //{
-                //    return View("ExternalLoginFailure");
-                //}
-                
-                //var userDetail = new UserProfile { FirstName = identity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(identity.Name.Split(' ')[1]) ? null : identity.Name.Split(' ')[1], profileType = ProfileType.Collector, MailingList = true };
-                //var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail };
-                //var registerResult = await UserManager.CreateAsync(user);
-                //if (registerResult.Succeeded)
-                //{
-                //    registerResult = await UserManager.AddLoginAsync(user.Id, info.Login);
-                //    if (registerResult.Succeeded)
-                //    {
-                //        //AddSubscriber(user.Email);
-                        
-                //    }
-                //}
-                //else if (registerResult.Errors.FirstOrDefault().Contains("taken"))
-                //{
-                //    ApplicationDbContext db = new ApplicationDbContext();
-                //    user = db.Users.FirstOrDefault(a => a.Email == loginInfo.Email);
-                //    //AddSubscriber(user.Email);
-                    
-
-                //}
                 Authentication.SignIn(identity);
             }
 
@@ -350,11 +325,17 @@ namespace MobileApi.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var rerror = new
+                {
+                    success = false,
+                    message = "The request is invalid.",
+                    error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, rerror);
             }
             var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType, MailingList = true };
             var user = new ApplicationUser()
@@ -368,10 +349,22 @@ namespace MobileApi.Controllers
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                if (result.Errors != null)
+                {
+                    foreach (string item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item);
+                    }
+                }
+                var error = new
+                {
+                    success = false,
+                    message = "The request is invalid.",
+                    error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, error);
             }
-
-            return Ok();
+            return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Registered" });
         }
 
         // POST api/Account/RegisterExternal

@@ -286,13 +286,9 @@ namespace ArtShop.Controllers
 
 
         //finish
-        [Authorize]
         public ActionResult paymentReport(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var user = db.Users.Find(userId);
-            var profile = user.userDetail;
-            var order = profile.Orders.SingleOrDefault(x => x.Id == id);
+            var order = db.Orders.SingleOrDefault(x => x.Id == id);
             return View(order);
         }
 

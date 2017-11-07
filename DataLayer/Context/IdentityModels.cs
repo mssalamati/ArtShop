@@ -127,5 +127,8 @@ namespace DataLayer
         public DbSet<Article> Articles { get; set; }
         public DbSet<SupportCategory> SupportCategories { get; set; }
         public DbSet<SupportSubCategory> SupportSubCategories { get; set; }
+        public DbSet<MobileHomePage> MobileHomePages { get; set; }
+        public DbSet<MobileHomePageItem> MobileHomePageItems { get; set; }
+        public DbSet<MobileHomePageTranslation> MobileHomePageTranslations { get; set; }
     }
 }
