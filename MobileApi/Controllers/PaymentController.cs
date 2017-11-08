@@ -15,7 +15,7 @@ using MobileApi.Models;
 
 namespace MobileApi.Controllers
 {
-    [Authorize]
+ 
     public class PaymentController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -37,10 +37,10 @@ namespace MobileApi.Controllers
         [HttpGet]
         public ActionResult Pay(checkInfoViewModel model)
         {
-            var userId = User.Identity.GetUserId();
+            var userId = model.userId;
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-            var cart = CartManager.GetCart(User.Identity.Name);
+            var cart = CartManager.GetCart(userId);
             var cartItems = cart.GetCartItems();
             var setting = db.SettingValues.FirstOrDefault();
             decimal orderTotal = 0;

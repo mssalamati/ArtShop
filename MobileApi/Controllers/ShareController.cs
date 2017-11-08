@@ -124,7 +124,8 @@ namespace MobileApi.Controllers
                 material = material,
                 frame = frames,
                 packages = packages,
-                PaymentsMethods = PaymentsMethods
+                PaymentsMethods = PaymentsMethods,
+                userId = User.Identity.GetUserId()
             }, formatter);
         }
 

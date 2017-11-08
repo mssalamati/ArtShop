@@ -12,7 +12,7 @@ using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-
+using Microsoft.AspNet.Identity;
 
 namespace MobileApi.Controllers
 {
@@ -39,7 +39,7 @@ namespace MobileApi.Controllers
         [HttpGet, Route("GetCard")]
         public HttpResponseMessage GetCard()
         {
-            var cart = CartManager.GetCart(User.Identity.Name);
+            var cart = CartManager.GetCart(User.Identity.GetUserId());
             var viewModel = new
             {
                 CartItems = cart.GetCartItems().Select(x => new { x.type, x.Quantity, product = x.Product.tojason() }),
@@ -51,7 +51,7 @@ namespace MobileApi.Controllers
         [HttpPost, Route("RemoveFromCart")]
         public HttpResponseMessage RemoveFromCart(int id)
         {
-            var cart = CartManager.GetCart(User.Identity.Name);
+            var cart = CartManager.GetCart(User.Identity.GetUserId());
             decimal itemCount = cart.RemoveAllFromCart(id);
             var results = new
             {
@@ -67,7 +67,7 @@ namespace MobileApi.Controllers
         [HttpPost, Route("ChangeQuantity")]
         public HttpResponseMessage ChangeQuantity(int id, int cnt)
         {
-            var cart = CartManager.GetCart(User.Identity.Name);
+            var cart = CartManager.GetCart(User.Identity.GetUserId());
             string Pname = db.ShoppingCarts.Single(item => item.Id == id).Product.Title;
             decimal itemCount = cart.newcnt(id, cnt);
             var results = new
@@ -85,7 +85,7 @@ namespace MobileApi.Controllers
         public HttpResponseMessage AddToCart(int id, Ordertype type)
         {
             var addedAlbum = db.Products.Find(id);
-            var cart = CartManager.GetCart(User.Identity.Name);
+            var cart = CartManager.GetCart(User.Identity.GetUserId());
             cart.AddToCart(addedAlbum, type);
             return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Added" }, formatter);
         }
