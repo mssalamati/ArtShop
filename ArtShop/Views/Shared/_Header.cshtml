@@ -139,11 +139,26 @@
                             int it = IsRighToLeft ? Model.Navigation.Count - i - 1 : i;
                             <div data-index="@j" class="desktop-navigation__site-link">
                                 <div class="desktop-navigation__site-link__title">
-                                    <a data-gtm-event="nav header"
-                                       href="/search/@Model.Navigation[it].Id/0/0/0/0"
-                                       class="desktop-navigation__site-link__title__link">
-                                        @Model.Navigation[it].Name
-                                    </a>
+
+                                    @if (i == 8)
+                                    {
+                                        <a style="color:#ef542c" data-gtm-event="nav header"
+                                           href="/search/@Model.Navigation[it].Id/0/0/0/0"
+                                           class="desktop-navigation__site-link__title__link">
+
+                                            @Model.Navigation[it].Name
+
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a data-gtm-event="nav header"
+                                           href="/search/@Model.Navigation[it].Id/0/0/0/0"
+                                           class="desktop-navigation__site-link__title__link">
+
+                                            @Model.Navigation[it].Name
+                                        </a>
+                                    }
                                 </div>
                             </div>
                         }

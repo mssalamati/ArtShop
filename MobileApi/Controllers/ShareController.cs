@@ -111,8 +111,8 @@ namespace MobileApi.Controllers
             };
             var PaymentsMethods = new List<object>()
             {
-                new { id = (int)PaymentMethod.paypall  , name = "paypall" } ,
-                new { id = (int)PaymentMethod.zarinpall, name = "zarinpall" }
+                new { id = (int)PaymentMethod.paypall  , name = "paypall" , photoPath = "https://artiscovery.com/Content/Images/zarrinpal.png"} ,
+                new { id = (int)PaymentMethod.zarinpall, name = "zarinpall", photoPath = "https://artiscovery.com/Content/Images/PayPal.png" }
             };
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
@@ -685,7 +685,7 @@ namespace MobileApi.Controllers
             var result = p.Select(x => new
             {
                 Id = x.Id,
-                photo = x.PhotoPath,
+                photo = "https://artiscovery.com/" + x.PhotoPath,
                 Firstname = x.FirstName,
                 Lastname = x.LastName,
                 Country = x.country == null ? null : (int?)x.country.Id

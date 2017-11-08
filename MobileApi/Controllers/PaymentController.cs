@@ -34,6 +34,7 @@ namespace MobileApi.Controllers
             return formatter;
         };
 
+        [HttpGet]
         public ActionResult Pay(checkInfoViewModel model)
         {
             var userId = User.Identity.GetUserId();

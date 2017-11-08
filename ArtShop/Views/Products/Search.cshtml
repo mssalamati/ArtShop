@@ -162,6 +162,23 @@ if (current == selected)
 
             </div>
         </div>
+        @*<hr>
+        <div class="row">
+            <div class="small-12">
+                <h1>
+                    Paintings for Sale: Originals and Prints
+                </h1>
+                <p class="expandable" style="display: block;">
+                    Whether you are looking for an original&nbsp;<a href="">abstract painting</a>, a&nbsp;<a href="">modern art painting</a>, or a limited edition&nbsp;<a href="">watercolor</a>&nbsp;print signed by the artist, Saatchi Art has over 370,000 original paintings and <span class="read-more">… <a href="#">Read More</a></span>
+                    <span class="details" style="display: none;">
+                        prints for sale.&nbsp;<br><br>
+                        Paintings both reflect the artist’s point-of-view and possess an independent voice which speaks a unique message to each beholder. &nbsp;Some collectors focus on media, such as oil paintings on canvas, or watercolors.&nbsp;&nbsp;Others specialize in a particular style, be it&nbsp;fine art,&nbsp;street art, or&nbsp;expressionist paintings.<br><br>
+                        As the world’s largest online art gallery, Saatchi Art is thrilled to help people everywhere discover, fall in love with, and own one-of-a-kind paintings by some of the most talented emerging artists from around the world.&nbsp;<br><br>
+                        For a bit more help finding the perfect artwork from our selection of original paintings for sale, we also invite you to take advantage of our expert Art Advisory service.&nbsp;As Vincent Van Gogh once said, “Paintings have a life of their own that derives from the painter’s soul.”            <span class="re-collapse"> <a href="#">Less</a></span>
+                    </span>
+                </p>
+            </div>
+        </div>*@
     </header>
     <div class="clear"></div>
     <form action="/search" method="get" style="@rtldirection">
@@ -387,7 +404,23 @@ if (current == selected)
 </div>
 
 <script src="~/Content/fullview.js"></script>
-
+@*<script>
+    if($().truncate === undefined) {
+        Saatchi.Loader.load('fullview', { js: true }, function () {
+            $('.expandable').truncate({
+                slicePoint: 300,
+                expandText: 'Read More',
+                userCollapseText: 'Less'
+            });
+        });
+    } else {
+        $('.expandable').truncate({
+            slicePoint: 300,
+            expandText: 'Read More',
+            userCollapseText: 'Less'
+        });
+    }
+</script>*@
 <script>
     Saatchi.Loader.load('hslpicker', { js: true });
     Saatchi.Loader.load('browse', { js: true }, function () {
@@ -397,6 +430,7 @@ if (current == selected)
         Saatchi.Fullview.init();
         Saatchi.Fullview.SetView.init();
         Saatchi.Fullview.FullScreen.init();
+
     });
     Saatchi.Loader.load('favorite', { js: true }, function () {
         Saatchi.Favorite.init();
