@@ -1,5 +1,10 @@
 ﻿
 
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var dir = IsRighToLeft ? "direction:rtl" : "";
+}
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -318,7 +323,7 @@
 
 </head>
 
-<body bgcolor="#e8e8e8">
+<body style="@dir" bgcolor="#e8e8e8">
 
     <!-- HEADER -->
     <table class="head-wrap">
@@ -364,7 +369,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        Name
+                                                        @ShareRes.Name
                                                     </td>
                                                     <td>
                                                         @ViewBag.ReceiverName
@@ -372,7 +377,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Order Date:
+                                                        @ShareRes.Order_date :
                                                     </td>
                                                     <td>
                                                         @ViewBag.orderdate
@@ -380,7 +385,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Invoice #
+                                                        @ShareRes.Receipt #
                                                     </td>
                                                     <td>
                                                         @ViewBag.orderid
@@ -414,22 +419,22 @@
                             <tbody>
                                 <tr>
                                     <th>
-                                        title
+                                        @ShareRes.Description
                                     </th>
                                     <th>
-                                        photo
+                                        
                                     </th>
                                     <th>
-                                        quantity
+                                        @ShareRes.Qty
                                     </th>
                                     <th>
-                                        package
+                                        @UploadRes.Packaging
                                     </th>
                                     <th>
-                                        unitPrice
+                                        @ShareRes.Unit_price
                                     </th>
                                     <th>
-                                        Total
+                                        @ShareRes.Total
                                     </th>
                                 </tr>
 
@@ -444,7 +449,7 @@
                                             <img src="@item.photo" style="width:50px"/>
                                         </td>
                                         <td>
-                                            @item.quantity
+                                            @item.quantity.ToString("#")
                                         </td>
                                         <td>
                                             @item.package.ToString()
@@ -457,31 +462,12 @@
                                         </td>
                                     </tr>
                                 }
-                                @*<tr class="no-border">
-                                        <td colspan="3"></td>
-
-                                        <td>
-                                            Subtotal
-                                        </td>
-                                        <td>
-                                            $20.00
-                                        </td>
-                                    </tr>
-                                    <tr class="no-border">
-                                        <td colspan="3"></td>
-
-                                        <td>
-                                            Tax
-                                        </td>
-                                        <td>
-                                            $20.00
-                                        </td>
-                                    </tr>*@
+                      
                                 <tr class="no-border">
                                     <td colspan="2"></td>
 
                                     <td>
-                                        Total
+                                        @ShareRes.Total_amount_paid
                                     </td>
                                     <td>
                                         $@ViewBag.subtotal
@@ -491,7 +477,38 @@
                             </tbody>
                         </table>
                         <br><br>
-                        <h4 style="text-align: center;">Thank You</h4>
+                        <br><br>
+
+                        <table class="invoice-info">
+                            <tbody>                  
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p3</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p4</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p5</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p6</h6>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br><br>
                     </div>
                     <!-- /content -->
 

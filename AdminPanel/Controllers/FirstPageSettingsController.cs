@@ -83,6 +83,9 @@ namespace AdminPanel.Controllers
         public ActionResult DeleteCatHeader(int id)
         {
             var finder = db.NavigationCategories.Find(id);
+            finder.FavMediums.Clear();
+            finder.FavStyles.Clear();
+            finder.FavSubjects.Clear();
             db.NavigationCategories.Remove(finder);
             db.SaveChanges();
             return RedirectToAction("Header");

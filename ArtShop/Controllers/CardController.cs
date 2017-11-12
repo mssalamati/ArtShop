@@ -373,7 +373,7 @@ namespace ArtShop.Controllers
 
             dynamic email = new Email("Invoice");
             email.To = User.Identity.GetUserName();
-            email.Subject = "Invoice";
+            email.Subject = "Invoice | " + order.Id.ToString();
             email.orderid = order.Id;
             email.fullname = order.ReceiverName;
             email.address = order.Address;
@@ -392,7 +392,7 @@ namespace ArtShop.Controllers
                 var user = item.Key;
                 dynamic email = new Email("Order");
                 email.To = user.ApplicationUserDetail.Email;
-                email.Subject = "Order";
+                email.Subject = "Order" + order.Id.ToString();
                 email.orderid = order.Id;
                 email.ReceiverName = order.ReceiverName;
                 email.orderdate = order.BuyDate.ToString();

@@ -47,6 +47,10 @@
         .side-nav-container {
             text-align: right;
         }
+
+        table, th, td {
+            text-align: center !important;
+        }
     </style>
 }
 
@@ -139,10 +143,10 @@
                     {
                         foreach (var item in (List<OrderDetail>)ViewBag.orders)
                         {
-                    <tr>
-                        <td>@item.order.BuyDate</td>
-                        <td>@item.Product.Title</td>
-                        <td>@item.Quantity</td>
+                            <tr>
+                                <td>@item.order.BuyDate</td>
+                                <td>@item.Product.Title</td>
+                                <td>@item.Quantity.ToString("#")</td>
                         <td>@item.type</td>
                         <td>@item.UnitPrice</td>
                         <td>@(item.UnitPrice * item.Quantity)</td>

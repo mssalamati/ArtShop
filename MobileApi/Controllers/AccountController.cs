@@ -20,6 +20,7 @@ using DataLayer;
 using DataLayer.Enitities;
 using System.Net;
 using System.Linq;
+using RestSharp;
 
 namespace MobileApi.Controllers
 {
@@ -253,9 +254,8 @@ namespace MobileApi.Controllers
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 return new ChallengeResult(provider, this);
             }
-
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
-                externalLogin.ProviderKey));
+            var loginInfo = await Authentication.GetExternalLoginInfoAsync();
+            ApplicationUser user = await UserManager.FindByEmailAsync(loginInfo.Email);
 
             bool hasRegistered = user != null;
 
@@ -273,12 +273,44 @@ namespace MobileApi.Controllers
             }
             else
             {
+                
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+
+                
+
+
+                var userDetail = new UserProfile { FirstName = loginInfo.ExternalIdentity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ')[1]) ? null : loginInfo.ExternalIdentity.Name.Split(' ')[1], profileType = ProfileType.Collector, MailingList = true };
+                var newUser = new ApplicationUser()
+                {
+                    UserName = loginInfo.Email,
+                    Email = loginInfo.Email,
+                    userDetail = userDetail
+                };
+
+                IdentityResult result = await UserManager.CreateAsync(newUser);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+                else
+                    AddSubscriber(loginInfo.Email);
+
                 Authentication.SignIn(identity);
             }
 
             return Ok();
+        }
+
+
+        public void AddSubscriber(string email)
+        {
+            var client = new RestClient("https://api.mailerlite.com/api/v2/groups/7737389/subscribers");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("x-mailerlite-apikey", "0e0ba56cc888feb4f4573cfe0a5f497c");
+            request.AddHeader("content-type", "application/json");
+            request.AddParameter("application/json", "{\"email\":\"" + email + "\", \"name\": \" \", \"fields\": {\"company\": \"Artiscovery\"}}", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
         }
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true

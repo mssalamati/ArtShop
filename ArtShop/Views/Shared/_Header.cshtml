@@ -3,7 +3,7 @@
 @{
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
     var IsRighToLeft = CultureHelper.IsRighToLeft();
-    var rtlstl = IsRighToLeft ? "margin-top:5px" : "";
+    var rtlstl = IsRighToLeft ? "margin-top:3px" : "";
     var menuRTL = IsRighToLeft ? "direction:rtl !important" : "";
     var menuPadding = IsRighToLeft ? "padding:0 50px 0 50px !important;width:auto !important" : "";
 }
@@ -27,7 +27,7 @@
         float: right;
         position: relative;
         display: inline-block;
-        padding: 10px 10px !important;
+        padding: 12px 10px !important;
         border-right: none;
     }
 
@@ -65,6 +65,41 @@
             text-decoration: none;
         }
 </style>
+<style>
+    @@keyframes blink {
+        0% {
+            opacity: 1;
+        }
+
+        9% {
+            opacity: .9;
+        }
+
+        19% {
+            opacity: .8;
+        }
+
+        29% {
+            opacity: .75;
+        }
+
+        39% {
+            opacity: .85;
+        }
+
+        49% {
+            opacity: .9;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    .blink {
+        animation: blink 4s infinite;
+    }
+</style>
 
 <header>
     <div class="desktop-navigation desktop-navigation--saatchiart">
@@ -72,17 +107,17 @@
             <div class="desktop-navigation__context-bar__inner">
                 <div class="desktop-navigation__context-bar__left">
                     <div class="desktop-navigation__context-links">
-                        <div class="dropdown dropdownx">
+                        <div class="dropdown dropdownx" style="background-color:rgba(84, 48, 70, 0.95);">
                             <a class="desktop-navigation__context-link" id="thethingy">
                                 @if (culture == "en-us")
                                 {
-                                    <img style="width:auto;float:left;opacity:1" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
-                                    <span class="lnsp" style="padding-left:5px;color:white;font-size:13px">English <i class="fa fa-caret-down"></i></span>
+                                    <img style="width:auto;float:left;opacity:1;height:24px;margin-top:2px" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
+                                    <span class="lnsp" style="padding-left:5px;color:white;font-size:13px"><i style="padding-top:7px" class="fa fa-caret-down"></i></span>
                                 }
                                 else
                                 {
-                                    <img style="width:auto;float:left;opacity:1;@rtlstl" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
-                                    <span class="lnsp" style="padding-left:5px;color:white;font-size:13px">فارسی</span>
+                                    <img style="width:auto;float:left;opacity:1;@rtlstl;height:24px" class="pchl desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
+                                    <span class="lnsp" style="padding-left:5px;color:white;font-size:13px"><i style="padding-top:7px" class="fa fa-caret-down"></i></span>
                                 }
 
                             </a>
@@ -97,6 +132,10 @@
                                 </a>
                             </div>
                         </div>
+
+                        <a title="Marked Prints" data-gtm-event="nav header" style="border-right:none !important;padding:9px 0 10px 11px" class="desktop-navigation__context-link" href="https://artiscovery.com/search?category=12&style=0&subject=0&medium=0&price=0&page=1">
+                            <img alt="Marked Prints" style="width:auto;float:left;opacity:1;height:32px" class="desktop-navigation__context-logo desktop-navigation__context-logo--limited blink" src="~/Content/Images/MarkedPrints.svg?d=@DateTime.Now.Second">
+                        </a>
                     </div>
                 </div>
                 <div class="desktop-navigation__context-bar__right">
@@ -142,7 +181,7 @@
 
                                     @if (i == 8)
                                     {
-                                        <a style="color:#ef542c" data-gtm-event="nav header"
+                                        <a style="color:#ec008c" data-gtm-event="nav header"
                                            href="/search/@Model.Navigation[it].Id/0/0/0/0"
                                            class="desktop-navigation__site-link__title__link">
 

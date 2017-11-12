@@ -16,6 +16,7 @@ namespace MobileApi.Models
         public string city { get; set; }
         public string zipcode { get; set; }
         public string PhoneNumber { get; set; }
+        public string OS { get; set; }
         public PaymentMethod paymentMethod { get; set; }
     }
 }

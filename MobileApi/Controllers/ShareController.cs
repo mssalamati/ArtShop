@@ -111,8 +111,8 @@ namespace MobileApi.Controllers
             };
             var PaymentsMethods = new List<object>()
             {
-                new { id = (int)PaymentMethod.paypall  , name = "paypall" , photoPath = "https://artiscovery.com/Content/Images/zarrinpal.png"} ,
-                new { id = (int)PaymentMethod.zarinpall, name = "zarinpall", photoPath = "https://artiscovery.com/Content/Images/PayPal.png" }
+                new { id = (int)PaymentMethod.paypall  , name = "paypall" , photoPath = "https://artiscovery.com/Content/Images/PayPal.png"} ,
+                new { id = (int)PaymentMethod.zarinpall, name = "zarinpall", photoPath = "https://artiscovery.com/Content/Images/zarrinpal.png" }
             };
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
@@ -137,7 +137,7 @@ namespace MobileApi.Controllers
                 id = x.Id,
                 title = x.Translations.Any(t => t.languageId == language) ?
                 x.Translations.FirstOrDefault(t => t.languageId == language).Title : string.Empty,
-                photo = x.PhotoPath
+                photo = x.Items.Take(3).Select(xx => xx.product.Sqphoto.Path)
             });
             return Request.CreateResponse(HttpStatusCode.OK, result, formatter);
         }
@@ -176,7 +176,7 @@ namespace MobileApi.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK,
                 db.Languages.Select(x => new { x.Code, x.Name }), formatter);
-        }
+        } 
 
         [Authorize, Route("getProfileDetail")]
         public HttpResponseMessage getProfileDetail()
@@ -193,7 +193,7 @@ namespace MobileApi.Controllers
                 profile.City,
                 profile.countryId,
                 profile.isIDConfirmed,
-                PhotoPath = "https://artiscovery.com/" + profile.PhotoPath,
+                PhotoPath = profile.PhotoPath != "" ? "https://artiscovery.com/" + profile.PhotoPath : "",
                 profile.profileType,
                 profile.Region,
                 profile.RegisterDate,
@@ -352,7 +352,6 @@ namespace MobileApi.Controllers
 
             return new upoadNowResult(0, "success", true);
         }
-
 
         [HttpGet, Route("FavoritListByProfileId")]
         public HttpResponseMessage FavoritListByProfileId(string id, int page)
@@ -686,9 +685,9 @@ namespace MobileApi.Controllers
             var result = p.Select(x => new
             {
                 Id = x.Id,
-                photo = "https://artiscovery.com/" + x.PhotoPath,
-                Firstname = x.FirstName,
-                Lastname = x.LastName,
+                photoPath = x.PhotoPath != "" ? "https://artiscovery.com/" + x.PhotoPath : "",
+                firstName = x.FirstName,
+                lastName = x.LastName,
                 Country = x.country == null ? null : (int?)x.country.Id
             }).ToList();
 

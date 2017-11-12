@@ -345,4 +345,52 @@
   <data name="Contactus" xml:space="preserve">
     <value>Contact us</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Email_p1" xml:space="preserve">
+    <value>Thank you for giving Artiscovery the opportunity to serve you.</value>
+  </data>
+  <data name="Email_p2" xml:space="preserve">
+    <value>Here is a list of the artwork(s) you purchased and details about your payment.</value>
+  </data>
+  <data name="Email_p3" xml:space="preserve">
+    <value>If you have any question or require clarification please email to Support@artiscovery.com. We look forward to serving you in the future.</value>
+  </data>
+  <data name="Email_p4" xml:space="preserve">
+    <value>Regards</value>
+  </data>
+  <data name="Email_p5" xml:space="preserve">
+    <value>Artiscovery Team</value>
+  </data>
+  <data name="Email_p6" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Order_date" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Receipt</value>
+  </data>
+  <data name="Shipping_price" xml:space="preserve">
+    <value>Shipping price</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Total_amount_paid" xml:space="preserve">
+    <value>Total amount paid</value>
+  </data>
+  <data name="Unit_price" xml:space="preserve">
+    <value>Unit price</value>
+  </data>
 </root>

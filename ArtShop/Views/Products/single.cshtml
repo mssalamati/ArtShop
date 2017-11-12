@@ -6,9 +6,12 @@
     var top = IsRighToLeft ? "top:.85rem !important" : "";
     var paddingLeft = IsRighToLeft ? "Padding-left:6px !important" : "";
     var marginBottom = IsRighToLeft ? "Margin-bottom:10px !important" : "";
+    var circleSize = IsRighToLeft ? "width:50px;height:50px !important" : "";
+    var favFontSize = IsRighToLeft ? "font-size: 12px !important" : "";
     ViewBag.Title = Model.Title + " | " + Model.user.FirstName + " " + Model.user.LastName;
 }
 @model Product
+    
 
 @using DataLayer.Extentions
 
@@ -109,15 +112,15 @@
                 </div>
                 <div class="small-11 columns">
                     <div class="row author-title" style="@textAlign">
-                        <h1>
+                        <h1 style="@rtldirection">
                             <a href="">
                                 @if (IsRighToLeft)
                                 {
-
-                                    <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
+                                    <span itemprop="name">@Model.Title</span>
+                                    
                                     <span itemprop="category">@Model.category.Current().Name</span>
                                     <span>  @SearchRes.by</span>
-                                    <span itemprop="name">@Model.Title</span>
+                                    <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
                                 }
                                 else
                                 {
@@ -174,7 +177,7 @@
 
                                 <a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
                                     <i class="fa fa-heart"></i>
-                                    <span>@ShareRes.Add_to_Favorites</span>
+                                    <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
                                 </a>
                             </div>
                         </li>
@@ -260,7 +263,7 @@
                                 <div style="width:inherit;padding-bottom:30px" class="art-detail-ribbon">
                                     @if (Model.AllEntity <= 0)
                                     {
-                                        <span class="sold">Sold</span>
+                                        <span style="@circleSize" class="sold">Sold</span>
                                         <div class="">
                                             <p class="mt0" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                                                 This artwork is sold (<span itemprop="price">$@Model.Price</span>)

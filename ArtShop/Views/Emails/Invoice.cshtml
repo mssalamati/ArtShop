@@ -1,5 +1,9 @@
 ﻿
-
+@{ 
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var dir = IsRighToLeft ? "direction:rtl" : "";
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <!-- If you delete this meta tag, Half Life 3 will never be released. -->
@@ -315,7 +319,7 @@
 
 </head>
 
-<body bgcolor="#e8e8e8">
+<body style="@dir" bgcolor="#e8e8e8">
 
     <!-- HEADER -->
     <table class="head-wrap">
@@ -361,7 +365,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        Name
+                                                        @ShareRes.Name
                                                     </td>
                                                     <td>
                                                         @ViewBag.fullname
@@ -369,7 +373,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Order Date:
+                                                        @ShareRes.Order_date :
                                                     </td>
                                                     <td>
                                                         @ViewBag.orderdate
@@ -377,7 +381,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Invoice #
+                                                        @ShareRes.Receipt #
                                                     </td>
                                                     <td>
                                                         @ViewBag.orderid
@@ -392,7 +396,7 @@
                                                 <tr>
                                                     <td align="right">
                                                         <p>
-                                                            Address<br>
+                                                            @ShareRes.Address<br>
                                                             @ViewBag.address<br>
 
                                                         </p>
@@ -409,16 +413,16 @@
                             <tbody>
                                 <tr>
                                     <th>
-                                        Description
+                                        @ShareRes.Description
                                     </th>
                                     <th>
-                                        Qty
+                                        @ShareRes.Qty
                                     </th>
                                     <th>
-                                        Price
+                                        @ShareRes.Unit_price
                                     </th>
                                     <th>
-                                        Total
+                                        @ShareRes.Total
                                     </th>
                                 </tr>
                                 @foreach (OrderDetail item in (List<OrderDetail>)ViewBag.products)
@@ -429,13 +433,13 @@
                                             @item.Product.Title
                                         </td>
                                         <td>
-                                            @item.Quantity
+                                            @item.Quantity.ToString("#")
                                         </td>
                                         <td>
                                             $@item.UnitPrice
                                         </td>
                                         <td>
-                                            $@((item.UnitPrice * item.Quantity).ToString("#,##"))
+                                            $@((item.UnitPrice * item.Quantity).ToString("#"))
                                         </td>
                                     </tr>
                                 }
@@ -463,7 +467,7 @@
                                     <td colspan="2"></td>
 
                                     <td>
-                                        Total
+                                        @ShareRes.Total_amount_paid
                                     </td>
                                     <td>
                                         $@ViewBag.subtotal
@@ -472,14 +476,58 @@
 
                             </tbody>
                         </table>
+                        <br><br>                
+                        
+                        <table class="invoice-info">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p1</h6>
+                                    </td>
+                               
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p2</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p3</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p4</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p5</h6>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 style="@rtlstl">@ShareRes.Email_p6</h6>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <br><br>
-                        <h4 style="text-align: center;">Thank You</h4>
+                        @*<h4 style="text-align: center;">Thank You</h4>*@
                     </div>
                     <!-- /content -->
 
                 </td>
                 <td></td>
             </tr>
+
         </tbody>
     </table>
     <!-- /BODY -->

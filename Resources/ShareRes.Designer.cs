@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already have an account?.
         /// </summary>
         public static string Already_have {
@@ -277,11 +286,74 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for giving Artiscovery the opportunity to serve you..
+        /// </summary>
+        public static string Email_p1 {
+            get {
+                return ResourceManager.GetString("Email_p1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here is a list of the artwork(s) you purchased and details about your payment..
+        /// </summary>
+        public static string Email_p2 {
+            get {
+                return ResourceManager.GetString("Email_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have any question or require clarification please email to Support@artiscovery.com. We look forward to serving you in the future..
+        /// </summary>
+        public static string Email_p3 {
+            get {
+                return ResourceManager.GetString("Email_p3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regards.
+        /// </summary>
+        public static string Email_p4 {
+            get {
+                return ResourceManager.GetString("Email_p4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artiscovery Team.
+        /// </summary>
+        public static string Email_p5 {
+            get {
+                return ResourceManager.GetString("Email_p5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  .
+        /// </summary>
+        public static string Email_p6 {
+            get {
+                return ResourceManager.GetString("Email_p6", resourceCulture);
             }
         }
         
@@ -403,6 +475,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New to Artiscovery.
         /// </summary>
         public static string New_artiscovery {
@@ -426,6 +507,15 @@ namespace Resources {
         public static string Or {
             get {
                 return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Date.
+        /// </summary>
+        public static string Order_date {
+            get {
+                return ResourceManager.GetString("Order_date", resourceCulture);
             }
         }
         
@@ -498,6 +588,24 @@ namespace Resources {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qty.
+        /// </summary>
+        public static string Qty {
+            get {
+                return ResourceManager.GetString("Qty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receipt.
+        /// </summary>
+        public static string Receipt {
+            get {
+                return ResourceManager.GetString("Receipt", resourceCulture);
             }
         }
         
@@ -601,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipping price.
+        /// </summary>
+        public static string Shipping_price {
+            get {
+                return ResourceManager.GetString("Shipping_price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ships in a.
         /// </summary>
         public static string Ships_in {
@@ -682,11 +799,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total amount paid.
+        /// </summary>
+        public static string Total_amount_paid {
+            get {
+                return ResourceManager.GetString("Total_amount_paid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tube.
         /// </summary>
         public static string Tube {
             get {
                 return ResourceManager.GetString("Tube", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit price.
+        /// </summary>
+        public static string Unit_price {
+            get {
+                return ResourceManager.GetString("Unit_price", resourceCulture);
             }
         }
         

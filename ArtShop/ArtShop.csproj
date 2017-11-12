@@ -322,6 +322,8 @@
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\mag-glass.svg" />
     <Content Include="Content\Images\mahex.png" />
+    <Content Include="Content\Images\Marked Prints.png" />
+    <Content Include="Content\Images\MarkedPrints.svg" />
     <Content Include="Content\Images\PayPal.png" />
     <Content Include="Content\Images\sa-logo.svg" />
     <Content Include="Content\Images\sa-logo2.svg" />
