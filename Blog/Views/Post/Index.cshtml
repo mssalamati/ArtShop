@@ -95,7 +95,8 @@ else
                             @foreach (var item in Model.Tags)
             {
                                 <li>
-                                    <a href="/Tag/@item.GenerateSlug()">
+                                    <a href="@Url.RouteUrl( "tag_details", new { id = item.GenerateSlug() })">
+                                        
                                         @item.Current().Name
                                     </a>
                                 </li>

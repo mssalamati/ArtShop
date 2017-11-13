@@ -28,11 +28,11 @@ namespace Blog
         new { controller = "Search", action = "Index" }
         );
 
-          routes.MapRoute(
-        "tag_details",
-        "Tag/{id}",
-        new { controller = "Tag", action = "Index" }
-         );
+            routes.MapRoute(
+          "tag_details",
+          "Tag/{id}",
+          new { controller = "Tag", action = "Index" }
+           );
 
             routes.Add("PostDetails", new SeoFriendlyRoute("post/{Index}/{id}",
                 new RouteValueDictionary(new { controller = "post", action = "Index", Index = UrlParameter.Optional }),
@@ -45,6 +45,13 @@ namespace Blog
               namespaces: new[] { "Blog.Controllers" }
             );
 
+            foreach (var route in routes.Cast<Route>().Where(route =>
+            route.GetType() == typeof(SeoFriendlyRoute) || route.GetType() == typeof(Route)))
+            {
+                route.Url = "{language}/" + route.Url;
+                route.Defaults.Add("language", "en-US");
+
+            }
         }
     }
 }

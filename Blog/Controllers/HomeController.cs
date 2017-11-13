@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -46,18 +47,33 @@ namespace Blog.Controllers
             Response.Cookies.Add(popupCookie);
 
 
-            culture = CultureHelper.GetImplementedCulture(culture);
-            HttpCookie cookie = Request.Cookies["_culture"];
-            if (cookie != null)
-                cookie.Value = culture;   // update cookie value
-            else
-            {
-                cookie = new HttpCookie("_culture");
-                cookie.Value = culture;
-                cookie.Expires = DateTime.Now.AddYears(1);
-            }
-            Response.Cookies.Add(cookie);
+            //culture = CultureHelper.GetImplementedCulture(culture);
+            //HttpCookie cookie = Request.Cookies["_culture"];
+            //if (cookie != null)
+            //    cookie.Value = culture;   // update cookie value
+            //else
+            //{
+            //    cookie = new HttpCookie("_culture");
+            //    cookie.Value = culture;
+            //    cookie.Expires = DateTime.Now.AddYears(1);
+            //}
+            //Response.Cookies.Add(cookie);
             string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
+
+            //if (url.Contains("en-US") || url.Contains("fa"))
+            //{
+            //    Regex re = new Regex("^/\\w{2,3}(-\\w{2})?");
+            //    url = re.Replace(url, "/" + culture.ToLower());
+            //}
+            //else if(culture != "en-US")
+            //{
+            //    url = url + "fa";
+            //}
+
+            culture = CultureHelper.GetImplementedCulture(culture);
+            RouteData.Values["language"] = culture;  // set culture
+
+
             return Redirect(url);
         }
 
