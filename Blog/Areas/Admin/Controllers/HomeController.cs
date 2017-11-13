@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Blog.Extentions;
 using System.Globalization;
+using Blog.Controllers;
 
 namespace Blog.Areas.Admin.Controllers
 {

@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Utilities;
 using Microsoft.AspNet.Identity;
+using Blog.Controllers;
 
 namespace Blog.Areas.Admin.Controllers
 {

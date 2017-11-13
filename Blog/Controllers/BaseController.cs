@@ -9,7 +9,7 @@ using Blog.Models;
 using Blog.Extentions;
 using System.Threading;
 
-namespace Blog.Areas.Admin.Controllers
+namespace Blog.Controllers
 {
     //[Authorize(Users = "admin")]
     public class BaseController : Controller
@@ -43,6 +43,18 @@ namespace Blog.Areas.Admin.Controllers
                         null;
             // Validate culture name
             cultureName = CultureHelper.GetImplementedCulture(cultureName); // This is safe
+
+
+            if (RouteData.Values["language"] as string != cultureName)
+            {
+
+                // Force a valid culture in the URL
+                RouteData.Values["language"] = cultureName.ToLowerInvariant(); // lower case too
+
+                // Redirect user
+                Response.RedirectToRoute(RouteData.Values);
+            }
+
 
             // Modify current thread's cultures            
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);

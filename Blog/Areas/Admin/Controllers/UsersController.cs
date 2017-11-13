@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Blog.Areas.Admin.Models.ViewModel;
 using Blog.Models;
 using System.Threading.Tasks;
+using Blog.Controllers;
 
 namespace Blog.Areas.Admin.Controllers
 {

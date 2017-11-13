@@ -176,7 +176,7 @@ namespace MobileApi.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK,
                 db.Languages.Select(x => new { x.Code, x.Name }), formatter);
-        } 
+        }
 
         [Authorize, Route("getProfileDetail")]
         public HttpResponseMessage getProfileDetail()
@@ -566,20 +566,43 @@ namespace MobileApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, new { isConfirmed = profile.isIDConfirmed }, formatter);
         }
 
+        [Authorize, Route("RemoveArtwork")]
+        public HttpResponseMessage RemoveArtwork(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+
+            var p = profile.Products.SingleOrDefault(x => x.Id == id);
+            if (p != null)
+            {
+                db.Products.Remove(p);
+                db.SaveChanges();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, new
+            {
+                success = true,
+                message = ""
+            }, formatter);
+        }
+
         [Route("getProduct")]
         public HttpResponseMessage getProduct(int id)
         {
             var product = db.Products.Find(id);
             bool isfavorite = false;
+            bool isMine = false;
             if (User.Identity.IsAuthenticated)
             {
                 var userId = User.Identity.GetUserId();
 
                 var currentUserProfile = db.UserProfiles.Find(userId);
                 isfavorite = currentUserProfile.Favorits.Any(a => a.productId == id);
+                isMine = currentUserProfile.Products.Any(a => a.Id == id);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, new { Artwork = product.tojason(), isFavorite = isfavorite }, formatter);
+            return Request.CreateResponse(HttpStatusCode.OK, new { Artwork = product.tojason(), isFavorite = isfavorite, isMine = isMine }, formatter);
         }
 
         [HttpGet, Route("Search")]
