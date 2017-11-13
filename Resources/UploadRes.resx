@@ -432,4 +432,7 @@
   <data name="step7_title_desc" xml:space="preserve">
     <value>35 character limit</value>
   </data>
+  <data name="upload_success" xml:space="preserve">
+    <value>upload successful</value>
+  </data>
 </root>

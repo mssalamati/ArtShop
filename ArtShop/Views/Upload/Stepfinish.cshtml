@@ -25,13 +25,22 @@
                             </div>
                             <div class="wizard-step">
                                 <h1 class="">
-                                    upload success
+                                    @UploadRes.upload_success
                                 </h1>
 
                                 <br />
                                 <a class="btn btn-success" href="/profile/artworks">
-                                    your artwork
+                                    @ShareRes.Artworks
                                 </a>
+
+                                <br />
+                                <p>@ProfileRes.Identification_p2</p>
+                                @if ((bool)Session["gotoConfirmPage"])
+                                {
+                                    <a class="btn btn-success" href="/accountinfo/uploadid">
+                                        @ProfileRes.Upload_id
+                                    </a>
+                                }
                             </div>
                         </div>
 

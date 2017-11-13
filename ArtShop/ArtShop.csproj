@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -624,6 +625,7 @@
     <Content Include="Views\Pages\Contactus.cshtml" />
     <Content Include="Views\Pages\ContactusRTL.cshtml" />
     <Content Include="Views\Home\RelatedArtwork.cshtml" />
+    <Content Include="Views\Upload\Stepfinish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

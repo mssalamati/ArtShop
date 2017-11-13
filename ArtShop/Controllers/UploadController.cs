@@ -550,8 +550,7 @@ namespace ArtShop.Controllers
         }
 
         public ActionResult Stepfinish(int id)
-        {
-
+        { 
             return PartialView();
         }
 
@@ -560,6 +559,11 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
+            if (profile.isIDConfirmed)
+            {
+                Session["gotoConfirmPage"] = true;
+                Session["isOrginal"] = false;
+            }
             try
             {
                 var widepath = (string)Session["WideFullPath"];
