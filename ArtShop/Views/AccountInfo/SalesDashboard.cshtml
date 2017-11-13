@@ -64,7 +64,7 @@
             <button class="btn btn-info" onclick="$(this).hide(); $('#sales').hide(); $('#payout').show('slow');" style="margin-bottom:5px;"> @ProfileRes.Requestpayout </button>
 
             <div id="payout" hidden>
-                @if (Model != null && Model.Count != 0 && Model.All(x => x.Seen) && ((int)ViewBag.account) != 0)
+                @if (Model != null && Model.All(x => x.Seen) && ((int)ViewBag.account) != 0)
                 {
                     using (Html.BeginForm("SalesDashboard", "accountinfo", FormMethod.Post, new { @class = "", role = "form", id = "payform" }))
                     {

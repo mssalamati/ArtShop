@@ -261,7 +261,7 @@ namespace ArtShop.Controllers
             if (executedpayment.state.ToLower() != "approved")
             {
                 return RedirectToActionPermanent("paymentReport", new { id = orderId });
-            }   
+            }
             tran.Payed = true;
             tran.Description = paymentId;
             foreach (var item in order.OrderDetails)
@@ -365,6 +365,107 @@ namespace ArtShop.Controllers
 
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
+        }
+
+
+
+
+        //for mobile application
+        public ActionResult Mobileverify()
+        {
+            if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
+            {
+                long longAuth = 0;
+                long.TryParse(Request.QueryString["Authority"], out longAuth);
+                var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == longAuth.ToString());
+                var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+                var orderId = order.Id;
+                if (tran != null)
+                {
+                    if (Request.QueryString["Status"].ToString().Equals("OK"))
+                    {
+                        decimal Amount = tran.amount * tran.currencyRate;
+                        long RefID;
+                        System.Net.ServicePointManager.Expect100Continue = false;
+                        ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
+                        int Status = zp.PaymentVerification("e21e6fde-e5f6-11e6-bdac-000c295eb8fc", Request.QueryString["Authority"].ToString(), (int)Amount, out RefID);
+                        tran.TransactionNumber = RefID.ToString();
+                        tran.Description = Status.ToString();
+                        if (Status == 100)
+                        {
+                            tran.Payed = true;
+                            foreach (var item in order.OrderDetails)
+                            {
+                                item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
+                                item.Product.AllEntity--;
+                            }
+                            db.SaveChanges();
+                            SendOrderDetail(order);
+                            SendInvoice(order);
+                            CartManager.GetCart(this.HttpContext).EmptyCart();
+                            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                        }
+                        else
+                        {
+                            db.SaveChanges();
+                            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                        }
+                    }
+                    else
+                    {
+                        tran.Description = Request.QueryString["Status"].ToString();
+                        db.SaveChanges();
+                        return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                    }
+                }
+                else
+                {
+                    return Content("not valid address");
+                }
+            }
+            else
+            {
+                return Content("not valid address");
+            }
+        }
+        public ActionResult MobilePaypalReturn(string payerId, string paymentId)
+        {
+            var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
+            var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+            var orderId = order.Id;
+            var apiContext = getPaypalApiContect();
+            var paymentExecution = new paypal.PaymentExecution() { payer_id = payerId };
+            var payment = new paypal.Payment() { id = paymentId };
+            var executedpayment = payment.Execute(apiContext, paymentExecution);
+            if (executedpayment.state.ToLower() != "approved")
+            {
+                return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+            }
+            tran.Payed = true;
+            tran.Description = paymentId;
+            foreach (var item in order.OrderDetails)
+            {
+                item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
+                item.Product.AllEntity--;
+            }
+            db.SaveChanges();
+            SendOrderDetail(order);
+            SendInvoice(order);
+            CartManager.GetCart(this.HttpContext).EmptyCart();
+            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+        }
+        public ActionResult MobilePaypalCancel(string payerId, string paymentId)
+        {
+            var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
+            var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
+            var orderId = order.Id;
+            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+        }
+        public ActionResult MobilePaymentReport(int id)
+        {
+            //artiscovery://payment/{status}/{orderid}
+            var order = db.Orders.SingleOrDefault(x => x.Id == id);
+            return Redirect("artiscovery://payment/" + order.TransactionDetail.Payed + "/" + id);
         }
 
         //email segment
