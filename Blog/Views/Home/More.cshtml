@@ -30,7 +30,7 @@
             {
                 <h3><a href="@Url.RouteUrl("Category", new { id = item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
             }
-            <h4>
+            <h4 style="@rtlstl">
                 <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
                     @item.Current().Title
                 </a>

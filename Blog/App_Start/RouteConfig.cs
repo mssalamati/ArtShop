@@ -14,49 +14,55 @@ namespace Blog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.Add("SubCategory", new SeoFriendlyRoute("Category/{Index}/{id}",
-          new RouteValueDictionary(new { controller = "Category", action = "SubCategory", Index = UrlParameter.Optional }),
+            routes.Add("SubCategory", new SeoFriendlyRoute("{culture}/Category/{Index}/{id}",
+          new RouteValueDictionary(new { controller = "Category", action = "SubCategory", culture = string.Empty, Index = UrlParameter.Optional }),
           new MvcRouteHandler()));
 
-            routes.Add("Category", new SeoFriendlyRoute("Category/{id}",
-          new RouteValueDictionary(new { controller = "Category", action = "Index", Index = UrlParameter.Optional }),
+            routes.Add("Category", new SeoFriendlyRoute("{culture}/Category/{id}",
+          new RouteValueDictionary(new { controller = "Category", action = "Index", culture = string.Empty, Index = UrlParameter.Optional }),
           new MvcRouteHandler()));
 
             routes.MapRoute(
-        "item_details",
-        "search/{id}",
-        new { controller = "Search", action = "Index" }
+              "item_details",
+              "{culture}/search/{id}",
+              new { controller = "Search", action = "Index", culture = string.Empty }
         );
 
             routes.MapRoute(
           "tag_details",
-          "Tag/{id}",
-          new { controller = "Tag", action = "Index" }
+          "{culture}/Tag/{id}",
+          new { controller = "Tag", action = "Index", culture = string.Empty }
            );
 
-            routes.Add("PostDetails", new SeoFriendlyRoute("post/{Index}/{id}",
-                new RouteValueDictionary(new { controller = "post", action = "Index", Index = UrlParameter.Optional }),
+            routes.Add("PostDetailsModified", new SeoFriendlyRoute("post/{Index}/{id}",
+        new RouteValueDictionary(new { controller = "post", action = "Index", Index = UrlParameter.Optional }),
+        new MvcRouteHandler()));
+
+            routes.Add("PostDetails", new SeoFriendlyRoute("{culture}/post/{Index}/{id}",
+                new RouteValueDictionary(new { controller = "post", action = "Index", culture = CultureHelper.GetCurrentCulture(), Index = UrlParameter.Optional }),
                 new MvcRouteHandler()));
+
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                url: "{culture}/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", culture = string.Empty, id = UrlParameter.Optional },
               namespaces: new[] { "Blog.Controllers" }
             );
 
 
-            foreach (var route in routes.Cast<Route>().Where(route =>
-            route.GetType() == typeof(SeoFriendlyRoute) || route.GetType() == typeof(Route)))
-            {
-                if (!route.Url.Contains("Admin"))
-                {
-                    route.Url = "{culture}/" + route.Url;
-                    route.Defaults.Add("culture", String.Empty);
 
-                }
-            }
+            //foreach (var route in routes.Cast<Route>().Where(route =>
+            //route.GetType() == typeof(SeoFriendlyRoute) || route.GetType() == typeof(Route)))
+            //{
+            //    if (!route.Url.Contains("Admin"))
+            //    {
+            //        route.Url = "{culture}/" + route.Url;
+            //        route.Defaults.Add("culture", String.Empty);
+
+            //    }
+            //}
+
         }
-
     }
 }

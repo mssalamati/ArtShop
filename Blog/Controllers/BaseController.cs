@@ -43,12 +43,21 @@ namespace Blog.Controllers
 
             if (RouteData.Values["culture"] as string != cultureName)
             {
-
                 // Force a valid culture in the URL
                 RouteData.Values["culture"] = cultureName.ToLowerInvariant(); // lower case too
 
-                // Redirect user
-                Response.RedirectToRoute("Default");
+                if (RouteData.Values.Values.Any(a => a.ToString().ToLower().Contains("post")))
+                {
+                    if (RouteData.Values.Values.Any(a => a.ToString().ToLower().Contains("en-us")))
+                    {                         
+                        Response.RedirectToRoute("PostDetails");
+                    }
+                    else
+                        Response.RedirectToRoute("PostDetailsModified");
+                }
+                else
+                    // Redirect user
+                    Response.RedirectToRoute("Default");
             }
 
 

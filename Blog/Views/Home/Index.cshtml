@@ -36,7 +36,7 @@
                             <h3><a href="@Url.RouteUrl("Category", new { id = showcasePost.Category.GenerateSlug() })">@showcasePost.Category.Current().Name</a></h3>
                         }
                         
-                        <h4>
+                        <h4 style="@rtlstl">
                             <a href="@Url.Action(@showcasePost.Category.Name, "Post", new { id = @showcasePost.GenerateSlug() })">
                                 @showcasePost.Current().Title
                             </a>
@@ -141,7 +141,7 @@
                             </div><!-- .img-holder -->
 
                             <h3><a href="@Url.Action(@widePost.Category.Name, "Category", new { id = @widePost.Category.GenerateSlug() })">@widePost.Category.Current().Name</a></h3>
-                            <h4>
+                            <h4 style="@rtlstl">
                                 <a href="@Url.Action(@widePost.Category.Name, "Post", new { id = @widePost.GenerateSlug() })">
                                     @widePost.Current().Title
                                 </a>
@@ -171,7 +171,7 @@
                             {
                                 <h3><a href="@Url.RouteUrl("Category", new { id = item.Category.GenerateSlug() })">@item.Category.Current().Name</a></h3>
                             }
-                            <h4>
+                            <h4 style="@rtlstl">
                                 <a href="@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug() })">
                                     @item.Current().Title
                                 </a>
@@ -242,7 +242,7 @@
         <div class="contentpopup" style="margin-top:45px">
             <div class="col-md-12" style="text-align:center;height:45px">
                 <div class="col-md-6">
-                    <a href="/Home/SetCulture?culture=en-us" style="display:block;margin-left:7px">
+                    <a href="/en-us/Home/SetCulture?culture=en-us" style="display:block;margin-left:7px">
                         <div style="height:35px;background-color:black;padding-top:7px">
                             <img style="width:20px;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
                             <span style="padding-left:5px;color:white;font-size:13px">English</span>
@@ -250,7 +250,7 @@
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <a href="/Home/SetCulture?culture=fa" style="display:block;margin-left:7px">
+                    <a href="/fa/Home/SetCulture?culture=fa" style="display:block;margin-left:7px">
                         <div style="height:35px;background-color:black;padding-top:7px">
                             <img style="width:20px;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
                             <span style="padding-left:5px;color:white;font-size:13px">فارسی</span>
