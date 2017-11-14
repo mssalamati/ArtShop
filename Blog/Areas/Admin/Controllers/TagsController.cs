@@ -1,5 +1,4 @@
 ﻿using Blog.Areas.Admin.Models.ViewModel;
-using Blog.Controllers;
 using Blog.Objects;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Blog.Areas.Admin.Controllers
 {
+    [Authorize(Users = "admin")]
     public class TagsController : BaseController
     {
         public ActionResult Index(int page = 1, string search = "")

@@ -8,10 +8,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Blog.Areas.Admin.Models.ViewModel;
 using Blog.Models;
 using System.Threading.Tasks;
-using Blog.Controllers;
 
 namespace Blog.Areas.Admin.Controllers
 {
+    [Authorize(Users = "admin")]
     public class UsersController : BaseController
     {
         public ActionResult Index(int page = 1, string search = "")

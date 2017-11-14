@@ -5,6 +5,7 @@
     var contentClass = Model.Links.Count == 0 ? "col-lg-10" : "col-lg-6";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl !important;text-align:justify !important" : "";
+    var dir = IsRighToLeft ? "direction:rtl !important" : "";
 }
 
 @model Post
@@ -117,7 +118,7 @@ else
                             <h3 style="text-align: center !important"><a href="@Url.RouteUrl("Category", new { id = Model.Category.GenerateSlug() })">@Model.Category.Current().Name</a></h3>
                         }
 
-                        <h1 style="text-align:center !important">@Model.Current().Title</h1>
+                        <h1 style="text-align:center !important;@dir">@Model.Current().Title</h1>
 
                         <div class="date-info hidden-lg">
                             <p><strong>@Model.PostedOn.ToString("dd MMM yyyy")</strong>Posted by <strong>@Model.Author</strong></p>

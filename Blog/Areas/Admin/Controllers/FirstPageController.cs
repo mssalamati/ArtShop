@@ -1,5 +1,4 @@
-﻿using Blog.Controllers;
-using Blog.Models;
+﻿using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,7 @@ namespace Blog.Areas.Admin.Controllers
 {
     public class FirstPageController : BaseController
     {
+        [Authorize(Users = "admin")]
         public ActionResult Index()
         {
             var model = db.NavigationCategories.Include("category").OrderBy(x => x.priority);

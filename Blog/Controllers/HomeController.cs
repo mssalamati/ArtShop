@@ -60,18 +60,15 @@ namespace Blog.Controllers
             //Response.Cookies.Add(cookie);
             string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
 
-            //if (url.Contains("en-US") || url.Contains("fa"))
-            //{
-            //    Regex re = new Regex("^/\\w{2,3}(-\\w{2})?");
-            //    url = re.Replace(url, "/" + culture.ToLower());
-            //}
-            //else if(culture != "en-US")
-            //{
-            //    url = url + "fa";
-            //}
+            if (url.Contains("en-us") || url.Contains("fa"))
+            {
+                Regex re = new Regex("^/\\w{2,3}(-\\w{2})?");
+                url = re.Replace(url, "/" + culture.ToLower());
+            }
+         
 
             culture = CultureHelper.GetImplementedCulture(culture);
-            RouteData.Values["language"] = culture;  // set culture
+            RouteData.Values["culture"] = culture;  // set culture
 
 
             return Redirect(url);

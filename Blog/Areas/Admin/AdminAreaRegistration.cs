@@ -11,15 +11,15 @@ namespace Blog.Areas.Admin
                 return "Admin";
             }
         }
-
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { action = "Index", controller = "Home", id = UrlParameter.Optional },
                 new[] { "Blog.Areas.Admin.Controllers" }
             );
+
         }
     }
 }

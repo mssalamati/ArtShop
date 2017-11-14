@@ -15,7 +15,7 @@
     <main id="main" class="site-main col-lg-12" role="main">
         <article id="post-42550" class="post-42550 page type-page status-publish hentry">
             <div class="form-container">
-                <form role="search" method="get" id="searchform" class="searchform" action="/search/index">
+                <form role="search" method="get" id="searchform" class="searchform" action="/@CultureHelper.GetCurrentCulture()/search/index">
                     <input type="text" value="" name="keyword" id="keyword" placeholder="@SearchRes.Search" style="max-width:none;@textAlign">
                     <button type="submit" style="@left" id="searchsubmit"><i class="fa fa-search"></i></button>
                 </form>
@@ -133,7 +133,7 @@
                             <div class="feedback">
                                 <span></span>
                             </div>
-                            @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "sign-up" }))
+                            @using (Ajax.BeginRouteForm("Default", new {  controller ="Home",action = "AddSubscriber" }, new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "sign-up" }))
                             {
                                 @Html.AntiForgeryToken()
 

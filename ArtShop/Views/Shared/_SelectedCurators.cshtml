@@ -17,7 +17,7 @@
     <ul class="item-list">
         <li class="list-item feature" style="@tar">
             <div class="feature-image">
-                <a href="@ViewBag.url1" title="See What's New This Week">
+                <a href="@ViewBag.url1" title="@Model.Current().title">
                     <img src="@ViewBag.pic1">
                 </a>
             </div>
@@ -36,7 +36,7 @@
         </li>
         <li class="list-item feature" style="@tar">
             <div class="feature-image">
-                <a href="@ViewBag.url2" title="Artiscovery Catalog">
+                <a href="@ViewBag.url2" title="@Model.Current().title2">
                     <img src="@ViewBag.pic2">
                 </a>
             </div>
@@ -55,7 +55,7 @@
         </li>
         <li class="list-item feature" style="@tar">
             <div class="feature-image">
-                <a href="@ViewBag.url3" title="Invest In Art: Spring 2017">
+                <a href="@ViewBag.url3" title="@Model.Current().title3">
                     <img src="@ViewBag.pic3">
                 </a>
             </div>
