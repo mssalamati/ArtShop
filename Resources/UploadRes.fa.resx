@@ -434,4 +434,7 @@
   <data name="step7_title_desc" xml:space="preserve">
     <value>حداکثر 35 حرف</value>
   </data>
+  <data name="upload_success" xml:space="preserve">
+    <value>آپلود با موفقیت انجام شد</value>
+  </data>
 </root>
