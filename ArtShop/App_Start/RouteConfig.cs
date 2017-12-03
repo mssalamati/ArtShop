@@ -16,27 +16,44 @@ namespace ArtShop
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
             routes.Canonicalize().NoWww().Lowercase().NoTrailingSlash();
-            routes.Add("ProductDetails", new SeoFriendlyRoute("Artwork/{details}/{id}",
-            new RouteValueDictionary(new { controller = "Products", action = "single" }),
+
+            routes.Add("ProductDetails", new SeoFriendlyRoute("{culture}/Artwork/{details}/{id}",
+            new RouteValueDictionary(new { controller = "Products", culture = string.Empty, action = "single" }),
             new MvcRouteHandler()));
 
-            routes.Add("Articles", new SeoFriendlyRoute("Support/Article/{id}",
+            routes.Add("Articles", new SeoFriendlyRoute("{culture}/Support/Article/{id}",
+            new RouteValueDictionary(new { controller = "Support", culture = string.Empty, action = "Article" }),
+            new MvcRouteHandler()));
+
+            routes.Add("ArticlesModified", new SeoFriendlyRoute("Support/Article/{id}",
             new RouteValueDictionary(new { controller = "Support", action = "Article" }),
             new MvcRouteHandler()));
 
-            routes.Add("SubCategory", new SeoFriendlyRoute("Support/SubCategory/{id}",      
-            new RouteValueDictionary(new { controller = "Support", action = "SubCategory" }),
+            routes.Add("SubCategory", new SeoFriendlyRoute("{culture}/Support/SubCategory/{id}",
+            new RouteValueDictionary(new { controller = "Support", culture = string.Empty, action = "SubCategory" }),
             new MvcRouteHandler()));
 
-            routes.Add("Category", new SeoFriendlyRoute("Support/Category/{id}",
-            new RouteValueDictionary(new { controller = "Support", action = "Category" }),
+            routes.Add("Category", new SeoFriendlyRoute("{culture}/Support/Category/{id}",
+            new RouteValueDictionary(new { controller = "Support", culture = string.Empty, action = "Category" }),
             new MvcRouteHandler()));
+
+            routes.MapRoute(
+             name: "Search",
+             url: "{culture}/Search/{id}",
+             defaults: new { controller = "Products", action = "Search", culture = string.Empty, id = UrlParameter.Optional }
+         );
+
+            routes.MapRoute(
+                name: "DefaultWithCulture",
+                url: "{culture}/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", culture = string.Empty, id = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+           );
         }
     }
 }

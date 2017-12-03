@@ -34,14 +34,14 @@ if (current == selected)
         <img class="side-navigation__hero__content" src="@(Model.Photo)">
     </div>
 
-    <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="/Products/Edit/@Model.id">@UploadRes.Artwork_Status</a>
+    <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/Edit/@Model.id">@UploadRes.Artwork_Status</a>
     @if (Model.Status == ProductStatus.forSale)
     {
         @*<a class="side-navigation__sub-level @selected("Packaging",(string)Model.menu)" href="/Products/EditPackag/@Model.id">@UploadRes.Packaging</a>*@
-        <a class="side-navigation__sub-level @selected("Pricing",(string)Model.menu)" href="/Products/EditPricing/@Model.id">@UploadRes.Pricing</a>
+        <a class="side-navigation__sub-level @selected("Pricing",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/EditPricing/@Model.id">@UploadRes.Pricing</a>
     }
-    <a class="side-navigation__top-level @selected("Artwork Details",(string)Model.menu)" href="/Products/Editdetail/@Model.id">@UploadRes.ArtworkDetail</a>
-    <a class="side-navigation__top-level @selected("Description",(string)Model.menu)" href="/Products/EditDescription/@Model.id">@UploadRes.description</a>
+    <a class="side-navigation__top-level @selected("Artwork Details",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/Editdetail/@Model.id">@UploadRes.ArtworkDetail</a>
+    <a class="side-navigation__top-level @selected("Description",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/EditDescription/@Model.id">@UploadRes.description</a>
     @*  <a class="side-navigation__top-level @selected("Prints Status",(string)Model.menu)" href="">Prints Status</a>
         <a class="side-navigation__top-level @selected("Artwork Image",(string)Model.menu)" href="">Artwork Image</a>*@
     <div>

@@ -39,12 +39,12 @@
                 <ul class="breadcrumbs">
                     @if (IsRighToLeft)
                     {
-                        <li><a class="so-quick-tip" href="/profile/collection" >@ProfileRes.My_collections</a></li>                        
+                        <li><a class="so-quick-tip" href="/@CultureHelper.GetCurrentCulture()/profile/collection" >@ProfileRes.My_collections</a></li>                        
                       
                     }
                     else
                     {
-                        <li><a class="so-quick-tip" href="/profile/collection" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
+                        <li><a class="so-quick-tip" href="/@CultureHelper.GetCurrentCulture()/profile/collection" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
                         
                     }
                   

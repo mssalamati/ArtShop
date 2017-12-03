@@ -47,7 +47,7 @@
         <nav class="row ">
             <div class="small-12 medium-6 columns">
                 <ul class="breadcrumbs ">
-                    <li><a class="so-quick-tip" href="/publicprofile/collection?id=@ViewBag.id" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
+                    <li><a class="so-quick-tip" href="/@CultureHelper.GetCurrentCulture()/publicprofile/collection?id=@ViewBag.id" oldtitle="Browse collections" aria-describedby="ui-tooltip-0">@ProfileRes.Collections</a></li>
                     <li>@ViewBag.CollectionName</li>
                 </ul>
 
@@ -96,7 +96,7 @@
                             <div class="item-controls">
                                 @if (item.product.ISOrginalForSale && item.product.Status == ProductStatus.forSale)
                                 {
-                                    <a href="/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
+                                    <a href="/@CultureHelper.GetCurrentCulture()/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="Add to Cart">
                                         <i class="fa fa-shopping-cart" style="color:white"></i>
                                     </a>
                                 }
@@ -181,13 +181,13 @@
             <ul class="pull-right">
                 @if (havePrev)
                 {
-                    <li><a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page-1)'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page-1)'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
                 @for (int i = Math.Max(1, page - 2); i < page; i++)
                 {
                     <li>
-                        <a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i">@i</a>
+                        <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i">@i</a>
                     </li>
                 }
 
@@ -198,14 +198,14 @@
                 @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                 {
                     <li>
-                        <a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i">@i</a>
+                        <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i'" href="/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@i">@i</a>
                     </li>
                 }
 
 
                 @if (haveNext)
                 {
-                    <li><a onclick="document.location.href = '/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page+1)'" href="/publicprofile/userid=@ViewBag.id&CollectionId?id=@ViewBag.collectionId&page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                    <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/publicprofile/collectionview?userid=@ViewBag.id&id=@ViewBag.CollectionId&page=@(page+1)'" href="/publicprofile/userid=@ViewBag.id&CollectionId?id=@ViewBag.collectionId&page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                 }
 
                 @*

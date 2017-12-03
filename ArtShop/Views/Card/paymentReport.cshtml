@@ -106,7 +106,7 @@
                     <div class="container">
                         <div class="checkout__header__container">
                             <div class="checkout__header__logo checkout__header__logo--large">
-                                <a href="/">
+                                <a href="/@CultureHelper.GetCurrentCulture()/">
                                     <img alt="Artiscovery" style="width:200px;" src="~/Content/Images/logo.png?d=@DateTime.Now.Second">
                                 </a>
                             </div><div class="checkout__header__logo checkout__header__logo--small">
@@ -115,7 +115,7 @@
                                 </a>
                             </div>
                             <nav class="checkout__breadcrumb">
-                                <a class="checkout__breadcrumb__item" href="/checkout"><!-- react-text: 15 -->1<!-- react-text: 16 -->. <!-- /react-text -->@CardRes.Cart<!-- /react-text --></a>
+                                <a class="checkout__breadcrumb__item" href="/@CultureHelper.GetCurrentCulture()/checkout"><!-- react-text: 15 -->1<!-- react-text: 16 -->. <!-- /react-text -->@CardRes.Cart<!-- /react-text --></a>
                                 <a class="checkout__breadcrumb__item "><!-- react-text: 19 -->2<!-- /react-text -->. <!-- /react-text --><!-- react-text: 21 -->@CardRes.Checkout<!-- /react-text --></a>
                                 <a class="checkout__breadcrumb__item checkout__breadcrumb__item--active"><!-- react-text: 23 -->3<!-- /react-text -->. <!-- /react-text --><!-- react-text: 25 -->@CardRes.Review<!-- /react-text --></a>
                             </nav>
@@ -125,7 +125,7 @@
                 <section class="checkout__container">
                     <div class="container">
                         <nav class="checkout__breadcrumb" style="padding:10px">
-                            <a class="checkout__breadcrumb__item" href="/checkout">
+                            <a class="checkout__breadcrumb__item" href="/@CultureHelper.GetCurrentCulture()/checkout">
                                 <!-- react-text: 30 -->1<!-- /react-text --><!-- react-text: 31 -->. <!-- /react-text --><!-- react-text: 32 -->@CardRes.Cart<!-- /react-text -->
                             </a>
                             <a class="checkout__breadcrumb__item ">
@@ -191,7 +191,7 @@
                                                 </div>
 
                                             </div>
-                                            <a href="/accountinfo/orders" class="step-submission-button" style="background:#2196F3" type="submit">@CardRes.Orders</a>
+                                            <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/orders" class="step-submission-button" style="background:#2196F3" type="submit">@CardRes.Orders</a>
                                             <div class="loading-block"></div>
                                         </div>
                                         <footer class="checkout__footer">
@@ -204,7 +204,7 @@
                                                 </span>
                                             </div>
                                             <div>
-                                                <a href="/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
+                                                <a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
                                             </div>
                                         </footer>
                                     </div>
@@ -225,8 +225,10 @@
                                         <hr>
                                         <div class="checkout__sidebar__payment-methods">
                                             <h5>@CardRes.PaymentMethods</h5>
-                                            <div class="checkout__sidebar__payment-methods__icons">
+                                            <div style="justify-content:unset" class="checkout__sidebar__payment-methods__icons">
                                                 <img alt="ZarrinPal" src="~/Content/Images/zarrinpal.png">
+                                                <img style="margin-left:5px;margin-right:5px" alt="paypal" src="~/Content/Images/PayPal.png">
+
                                             </div>
                                         </div>
                                         <hr>

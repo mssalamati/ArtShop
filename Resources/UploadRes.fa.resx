@@ -220,7 +220,7 @@
     <value>ارسال و هزینه حمل و نقل بر عهده مجموعه دار می باشد.</value>
   </data>
   <data name="step10_l4" xml:space="preserve">
-    <value>هزینه نهایی که گردآورنده مشاهده می کند.</value>
+    <value>هزینه نهایی که متقاضی مشاهده می کند.</value>
   </data>
   <data name="step10_next_click" xml:space="preserve">
     <value>پایان</value>
@@ -321,7 +321,7 @@
     <value>چرا این ابزار و این موضوع را انتخاب کرده اید؟</value>
   </data>
   <data name="step7_description" xml:space="preserve">
-    <value>توصیه می کنیم برای مجموعه داران و مخاطبانتان داستان اثر خود را بازگو کنید تا بهتر بتوانند  .اثر شما را درک کنند</value>
+    <value>توصیه می کنیم برای مجموعه داران و مخاطبانتان شرح اثر خود را بازگو کنید تا بهتر بتواننداثر شما را درک کنند</value>
   </data>
   <data name="step7_next_click" xml:space="preserve">
     <value>بسته بندی</value>
@@ -330,7 +330,7 @@
     <value>ابعاد</value>
   </data>
   <data name="step7_title" xml:space="preserve">
-    <value>موضوع</value>
+    <value>عنوان</value>
   </data>
   <data name="step8_ask1" xml:space="preserve">
     <value>اثر دارای قاب است؟</value>
@@ -363,7 +363,7 @@
     <value>آدرس ارسال</value>
   </data>
   <data name="step9_title" xml:space="preserve">
-    <value>هزینه حمل و نقل:</value>
+    <value>اطلاعات ارسال</value>
   </data>
   <data name="Street_Address" xml:space="preserve">
     <value>خیابان</value>
@@ -381,7 +381,7 @@
     <value>بارگذاری</value>
   </data>
   <data name="upload_string" xml:space="preserve">
-    <value>عکس آپلود شده باید حداقل 1200X1500 پیکسل باشد تا امکان پرینت فراهم شود و همچنین کمتر از 50MB باشد.</value>
+    <value>عکس آپلود شده باید حداقل 1200X1500 و همچنین کمتر از 50MB باشد.</value>
   </data>
   <data name="Width" xml:space="preserve">
     <value>عرض</value>

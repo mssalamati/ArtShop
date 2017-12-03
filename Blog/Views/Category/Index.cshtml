@@ -7,20 +7,20 @@
     var dir = IsRighToLeft ? "direction:rtl !important" : "";
 }
 @model IList<Post>
-@if (Model.Count > 0)
-{
-    <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 style="@rtlstl">@Model.FirstOrDefault().Category.Current().Name</h2>
-                    <p></p><p style="@rtlstl">@Model.FirstOrDefault().Category.Current().Description</p>
-                    <p></p>
-                    <br />
-                </div><!-- .col-lg-12 -->
-            </div>
 
+<div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 style="@rtlstl">@(((Category)ViewBag.Category).Current().Name)</h2>
+                <p></p><p style="@rtlstl">@(((Category)ViewBag.Category).Current().Description)</p>
+                <p></p>
+                <br />
+            </div><!-- .col-lg-12 -->
+        </div>
 
+        @if (Model.Count > 0)
+        {
             <div class="row holder">
 
 
@@ -53,26 +53,27 @@
                     </div><!-- .col-lg-4 -->
 
                 }
-
+                
                 <div class="append-post-container"></div>
             </div>
-
-
-
             <div class="row loader">
                 <div class="col-lg-12">
                     <a style="cursor:pointer" onclick="LoadMore();" class="load-more-btn" data-total="48">Load more</a>
                 </div>
             </div>
+        }
+
+
+          
         </main><!-- #main -->
     </div>
-}
-<script>
-    var page = 1;
-    function LoadMore() {
-        page++;
-        $.get("/category/more?id=" + @ViewBag.id +"&page=" + page, function (data) {
-            $(".holder").append(data);
-        });
-    }
-</script>
+
+    <script>
+        var page = 1;
+        function LoadMore() {
+            page++;
+            $.get("/category/more?id=" + @ViewBag.id +"&page=" + page, function (data) {
+                $(".holder").append(data);
+            });
+        }
+    </script>

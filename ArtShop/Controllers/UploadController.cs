@@ -22,7 +22,7 @@ namespace ArtShop.Controllers
     public class UploadController : BaseController
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        [Route("upload/start")]
+        [Route("{culture}/upload/start")]
         public ActionResult Index()
         {
             return View();
@@ -51,7 +51,7 @@ namespace ArtShop.Controllers
             return res;
         }
 
-        [Route("upload/review")]
+        [Route("{culture}/upload/review")]
         public ActionResult indexStart()
         {
             return View();
@@ -559,7 +559,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-            if (profile.isIDConfirmed)
+            if (!profile.isIDConfirmed)
             {
                 Session["gotoConfirmPage"] = true;
                 Session["isOrginal"] = false;

@@ -15,7 +15,7 @@ namespace ArtShop.Controllers
     public class ProductsController : BaseController
     {
 
-        [Route("search")]
+        [Route("{culture}/search")]
         public ActionResult Search(int category = 0, int style = 0, int subject = 0, int medium = 0, int price = 0, int page = 1)
         {
             int pageSize = 18;
@@ -67,7 +67,7 @@ namespace ArtShop.Controllers
             return View(res);
         }
 
-        [Route("search/{category}/{style}/{subject}/{medium}/{price}/{page?}")]
+        [Route("{culture}/search/{category}/{style}/{subject}/{medium}/{price}/{page?}")]
         public ActionResult Searchparameters(int category = 0, int style = 0, int subject = 0, int medium = 0, int price = 0, int page = 1)
         {
             return RedirectToActionPermanent("search", new { category = category, style = style, subject = subject, medium = medium, price = price, page = page });

@@ -29,7 +29,7 @@
                                 </h1>
 
                                 <br />
-                                <a class="btn btn-success" href="/profile/artworks">
+                                <a class="btn btn-success" href="/@CultureHelper.GetCurrentCulture()/profile/artworks">
                                     @ShareRes.Artworks
                                 </a>
 
@@ -37,7 +37,7 @@
                                 <p>@ProfileRes.Identification_p2</p>
                                 @if ((bool)Session["gotoConfirmPage"])
                                 {
-                                    <a class="btn btn-success" href="/accountinfo/uploadid">
+                                    <a class="btn btn-success" href="/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid">
                                         @ProfileRes.Upload_id
                                     </a>
                                 }

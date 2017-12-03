@@ -9,8 +9,8 @@ namespace ArtShop.Controllers
 {
     public class QSearchController : BaseController
     {
-        [Route("qsearch/artist/{query}/{page?}")]
-        [Route("qsearch/artist")]
+        [Route("{culture}/qsearch/artist/{query}/{page?}")]
+        [Route("{culture}/qsearch/artist")]
         public ActionResult Artist(string query, int page = 1)
         {
             int pageSize = 18;
@@ -28,8 +28,8 @@ namespace ArtShop.Controllers
             return View(res);
         }
 
-        [Route("qsearch/art/{query}/{page?}")]
-        [Route("qsearch/art")]
+        [Route("{culture}/qsearch/art/{query}/{page?}")]
+        [Route("{culture}/qsearch/art")]
         public ActionResult Art(string query, int page = 1)
         {
             int pageSize = 18;
@@ -56,8 +56,8 @@ namespace ArtShop.Controllers
             return View(res);
         }
 
-        [Route("qsearch/collection/{query}/{page?}")]
-        [Route("qsearch/collection")]
+        [Route("{culture}/qsearch/collection/{query}/{page?}")]
+        [Route("{culture}/qsearch/collection")]
         public ActionResult Collection(string query, int page = 1)
         {
             int pageSize = 18;

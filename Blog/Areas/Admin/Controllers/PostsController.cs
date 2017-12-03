@@ -256,10 +256,11 @@ namespace Blog.Areas.Admin.Controllers
         {
             var userId = User.Identity.GetUserId();
             var appData = Server.MapPath("~/Upload/cms/" + userId);
+            DirectoryInfo info = new DirectoryInfo(appData);
             FileHelper.CreateFolderIfNeeded(appData);
-            var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
+            var images = info.GetFiles().OrderByDescending(p => p.CreationTime).Select(x => new imagesviewmodel
             {
-                Url = Url.Content("/Upload/cms/" + userId + "/" + Path.GetFileName(x))
+                Url = Url.Content("/Upload/cms/" + userId + "/" + Path.GetFileName(x.Name))
             });
             return View(images);
         }

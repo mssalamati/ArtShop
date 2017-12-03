@@ -103,6 +103,7 @@ namespace Blog.Areas.Admin.Controllers
 
                 if (!string.IsNullOrEmpty(model.NewPassword))
                 {
+                    await UserManager.RemovePasswordAsync(model.id);
                     var result = await UserManager.AddPasswordAsync(model.id, model.NewPassword);
 
                     if (result.Succeeded)

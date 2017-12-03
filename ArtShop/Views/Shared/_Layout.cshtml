@@ -229,13 +229,13 @@
             modal.style.display = "block";
             $.ajax({
                 type: 'Get',
-                url: '/Products/AddToCollection/' + id,
+                url: '/@CultureHelper.GetCurrentCulture()/Products/AddToCollection/' + id,
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (data) {
                     if (data.IsAuthenticated == false) {
-                        location.href = '/account/login';
+                        location.href = '/@CultureHelper.GetCurrentCulture()/account/login';
                     } else {
                         $('#mainmodal').html(data);
                     }
@@ -249,7 +249,7 @@
             $.ajax({
                 contentType: "application/json; charset=utf-8",
                 type: 'POST',
-                url: '/Products/AddToCollection/',
+                url: '/@CultureHelper.GetCurrentCulture()/Products/AddToCollection/',
                 data: JSON.stringify(data0),
                 success: function (data) {
                     if (data.result == true) {
@@ -287,13 +287,13 @@
             $(obj).removeClass('is-favorite');
             $.ajax({
                 type: 'Get',
-                url: '/Products/AddOrRemoveFavorit/' + id,
+                url: '/@CultureHelper.GetCurrentCulture()/Products/AddOrRemoveFavorit/' + id,
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (data) {
                     if (data.IsAuthenticated == false) {
-                        location.href = '/account/login';
+                        location.href = '/@CultureHelper.GetCurrentCulture()/account/login';
                     } else {
                         if (data.isInMyFavList) {
                             $(obj).html(heart);

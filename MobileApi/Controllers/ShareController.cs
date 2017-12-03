@@ -193,7 +193,7 @@ namespace MobileApi.Controllers
                 profile.City,
                 profile.countryId,
                 profile.isIDConfirmed,
-                PhotoPath = profile.PhotoPath != "" ? "https://artiscovery.com/" + profile.PhotoPath : "",
+                PhotoPath = profile.PhotoPath,
                 profile.profileType,
                 profile.Region,
                 profile.RegisterDate,
@@ -525,6 +525,7 @@ namespace MobileApi.Controllers
                        quantity = a.Quantity,
                        unitPrice = a.UnitPrice
                    }),
+                   id = x.Id,
                    Date = x.BuyDate,
                    Status = x.Status,
                    TotalPrice = x.TotalPrice,

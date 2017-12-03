@@ -41,12 +41,12 @@
                     @if (IsRighToLeft)
                     {
                         <li><a href="#">@Model.CollectionTitle</a></li>
-                        <li><a class="so-quick-tip" href="/profile/collection" oldtitle="Browse collections">@ShareRes.Collections</a></li>
+                        <li><a class="so-quick-tip" href="/@CultureHelper.GetCurrentCulture()/profile/collection" oldtitle="Browse collections">@ShareRes.Collections</a></li>
 
                     }
                     else
                     {
-                        <li><a class="so-quick-tip" href="/profile/collection" oldtitle="Browse collections">@ShareRes.Collections</a></li>
+                        <li><a class="so-quick-tip" href="/@CultureHelper.GetCurrentCulture()/profile/collection" oldtitle="Browse collections">@ShareRes.Collections</a></li>
                         <li><a href="#">@Model.CollectionTitle</a></li>
                     }
                 </ul>
@@ -278,7 +278,7 @@
     function Remove(Cid,Aid) {
 
         if (confirm("Are you sure you want to remove that image?")) {
-            $.get('/profile/DeletArtwork?CollectionId=' + Cid + '&ArtworkId=' + Aid,
+            $.get('/@CultureHelper.GetCurrentCulture()/profile/DeletArtwork?CollectionId=' + Cid + '&ArtworkId=' + Aid,
                  function (response) {
                      
                      location.reload();

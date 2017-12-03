@@ -27,12 +27,12 @@
         </button>
 
         <div class="dropdown-menu" style="right:0;left:unset;float:right;margin-top:45px">
-            <a href="/Home/SetCulture?culture=fa" style="display:block;margin-left:7px">
+            <a href="/fa/Home/SetCulture?culture=fa" style="display:block;margin-left:7px">
                 <img style="margin-top:5px;width:20px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/iran.svg">
                 <span style="padding-left:17px;color:black;font-size:13px">فارسی</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="/Home/SetCulture?culture=en-us" style="display:block;margin-left:7px;margin-top:6px">
+            <a href="/en-us/Home/SetCulture?culture=en-us" style="display:block;margin-left:7px;margin-top:6px">
                 <img style="margin-top:5px;width:20px;float:left;opacity:1;" class="desktop-navigation__context-logo desktop-navigation__context-logo--saatchiart" src="~/Content/Images/united-states.svg">
                 <span style="padding-left:17px;color:black;font-size:13px">English</span>
             </a>
@@ -45,7 +45,7 @@
 </nav>
 <header class="header" id="rotating-images" style="background-image: url(&quot;//p5.zdassets.com/hc/theme_assets/694809/200075888/img-1281-newton-scheufler-hero.jpg&quot;);">
     <div class="header-inner">
-        <form role="search" class="search" data-search="" action="/support/search" accept-charset="UTF-8" method="get">
+        <form role="search" class="search" data-search="" action="/@CultureHelper.GetCurrentCulture()/support/search" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="✓"><input type="search" name="keyword" style="@textAlign" id="keyword" placeholder="@ShareRes.Have_Question" aria-label="Search">
             <input type="submit" name="commit" value="Search">
         </form>

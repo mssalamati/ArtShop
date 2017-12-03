@@ -120,6 +120,8 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             var finder = db.SubCategories.Find(id);
+            finder.Posts.Clear();
+            finder.Category = null;
             db.SubCategories.Remove(finder);
             db.SaveChanges();
             return RedirectToAction("Index");

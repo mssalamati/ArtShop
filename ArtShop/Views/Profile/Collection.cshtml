@@ -15,10 +15,17 @@
 
     <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
 
-        <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
             @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
             {
-                <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+                if (((string)ViewBag.PhotoPath).Contains("https"))
+                {
+                    <img src="@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+                }
+                else
+                {
+                    <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+                }
             }
             else
             {
@@ -34,13 +41,13 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/profile/artworks" class="" style="@rtldirection" title="link to artwork">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/artworks" class="" style="@rtldirection" title="link to artwork">
             <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@ViewBag.artworksCount)</span>
         </a>
-        <a href="/profile/collection" style="@rtldirection" class="active" title="link to Collections">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/collection" style="@rtldirection" class="active" title="link to Collections">
             <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@Model.Count)</span>
         </a>
-        <a href="/profile/favorites" style="@rtldirection" class="" title="link to Favorites">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/favorites" style="@rtldirection" class="" title="link to Favorites">
             <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@ViewBag.favoritesCount)</span>
         </a>
     </div>
@@ -48,7 +55,7 @@
     <div class="row">
         <ul id="infinite" class="item-list">
             <li class="list-item collection create-collection">
-                <a href="/profile/NewCollection" title="Create a New Collection" class="profile-new-collection">
+                <a href="/@CultureHelper.GetCurrentCulture()/profile/NewCollection" title="Create a New Collection" class="profile-new-collection">
                     <i class="fa fa-plus icn-bg" style="display:inline-table"></i>
                     <span style=" @rtldirectionMargin">@ProfileRes.Create_collection</span>
                 </a>
@@ -58,7 +65,7 @@
             {
                 <li class="list-item collection">
                     <div class="small-12 columns">
-                        <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                        <a href="/@CultureHelper.GetCurrentCulture()/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
                             @if (item.collectionProduct.First().product != null)
                             {
                                 <img src="@item.collectionProduct.First().product.Widephoto.Path" alt="">
@@ -79,7 +86,7 @@
                             if (art.product == null)
                             {
                                 <div class="small-4 columns">
-                                    <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                    <a href="/@CultureHelper.GetCurrentCulture()/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
                                         <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
                                     </a>
                                 </div>
@@ -88,7 +95,7 @@
                             {
 
                                 <div class="small-4 columns">
-                                    <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                                    <a href="/@CultureHelper.GetCurrentCulture()/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
                                         <img src="@art.product.Sqphoto.Path" alt="test collection item" nopin="nopin">
                                     </a>
                                 </div>
@@ -100,7 +107,7 @@
 
                     <div class="row collection-meta">
                         <h4 class="collection-title">
-                            <a href="/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
+                            <a href="/@CultureHelper.GetCurrentCulture()/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
                                 <span class="ellipsis">@item.CollectionName</span> <span class="count">(@item.CollectionProductCount)</span>
                             </a>
                         </h4>
@@ -112,7 +119,7 @@
         </ul>
         <div class="clearfix"></div>
         <div id="pageNav" class="hidden">
-            <a href="/account/collection/id/994144/format/json/page/2"></a>
+            <a href="/@CultureHelper.GetCurrentCulture()/account/collection/id/994144/format/json/page/2"></a>
         </div>
         <div id="pageLoading"></div>
     </div>

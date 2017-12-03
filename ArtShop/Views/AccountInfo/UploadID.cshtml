@@ -21,11 +21,11 @@
             </p>
 
             <p>
-                @ProfileRes.GovermentID_p2 <a href="/pages/privacypolicy"> @ProfileRes.GovermentID_privacyPolicy </a> @ProfileRes.GovermentID_p3_continue
+                @ProfileRes.GovermentID_p2 <a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy"> @ProfileRes.GovermentID_privacyPolicy </a> @ProfileRes.GovermentID_p3_continue
             </p>
             
 
-            <form id="upload-id" enctype="multipart/form-data" action="/accountinfo/uploadid" method="post">
+            <form id="upload-id" enctype="multipart/form-data" action="/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid" method="post">
                 <dl class="zend_form">
                     @*<dt id="id-label"><label for="id" class="required">File size must be less than 2MB.</label></dt>*@
                     <dd style="@floatStyle" id="id-element">

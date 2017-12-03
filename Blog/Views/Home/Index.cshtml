@@ -235,7 +235,7 @@
     </main><!-- #main -->
 </div><!-- #primary -->
 
-<div id="popup1" class="overlayPopup">
+@*<div id="popup1" class="overlayPopup">
     <div class="popupExt">
         <h3 style="margin-top:5px">Choose a language</h3>
         <a class="close" href="#">&times;</a>
@@ -261,7 +261,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <script>
     function parsContent(result) {
@@ -287,7 +287,7 @@
             $(".holder").append(data);
         });
     }
-    $(document).ready(function () {
+    @*$(document).ready(function () {
         @{
             string val = "";
             if (Request.Cookies["isShown"] != null) {
@@ -299,6 +299,6 @@
             }
             }
 
-    });
+    });*@
 
 </script>

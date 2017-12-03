@@ -140,11 +140,11 @@
                         <div class="small-12 columns breadcrumbs" style="@rtlstl">
                             @if (IsRighToLeft)
                             {
-                                @Model.Title <a style="float:right !important" href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a><a style="float:right !important" href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a>
+                                @Model.Title <a style="float:right !important" href="/@CultureHelper.GetCurrentCulture()/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a><a style="float:right !important" href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a>
                             }
                             else
                             {
-                                <a href="/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
+                                <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
                             }
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                         <div class="small-12 medium-6 large-12 columns art-meta" style="@textAlign">
                             <h3 itemprop="name" class="title">@Model.Title</h3>
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                <a href="/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
+                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
                                 @if (Model.user.country != null)
                                 {
                                     <span itemprop="nationality">@Model.user.country.Current().Name</span>
@@ -280,7 +280,7 @@
                                             <span class="price" style="margin-top:5px" itemprop="price">
                                                 $@Model.Price
                                             </span>
-                                            <a id="addOriginal" href="/Card/AddToCart?q=@DateTime.Now.Millisecond&id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                                            <a id="addOriginal" href="/@CultureHelper.GetCurrentCulture()/Card/AddToCart?q=@DateTime.Now.Millisecond&id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
                                         </div>
                                     }
                                 </div>
@@ -401,7 +401,7 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <p style="@rtldirection">
-                            <a href="/search/@Model.category.Id/0/0/0/0">@Model.category.Current().Name:</a>
+                            <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.category.Id/0/0/0/0">@Model.category.Current().Name:</a>
                             <span>
                                 @{bool first = true; int count = 0; }
                                 @foreach (var item in Model.Mediums)
@@ -420,7 +420,7 @@
                                     }
 
                                     first = false;
-                                    <a href="/search?category=0&style=0&subject=0&medium=@item.Id&price=0">@item.Current().Name</a>
+                                    <a href="/@CultureHelper.GetCurrentCulture()/search?category=0&style=0&subject=0&medium=@item.Id&price=0">@item.Current().Name</a>
                                 }
                             </span>
                             <span>@SearchRes.On</span>
@@ -469,7 +469,7 @@
                             <div id="artAdminSection">
                                 <menu id="edit-actions" class="inline-list">
 
-                                    <li><a class="btn btn-info" style="padding:5px 10px" href="/products/edit/@Model.Id">@ShareRes.Edit</a>&nbsp;|</li>
+                                    <li><a class="btn btn-info" style="padding:5px 10px" href="/@CultureHelper.GetCurrentCulture()/products/edit/@Model.Id">@ShareRes.Edit</a>&nbsp;|</li>
                                     <li><button class="btn btn-danger" style="padding:5px 10px" onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
                                 </menu>
                             </div>
@@ -495,7 +495,7 @@
         function remove() {
             var r = confirm("are you sure to delete ?");
             if (r == true) {
-                document.location.href = '/Products/remove/@Model.Id';
+                document.location.href = '/@CultureHelper.GetCurrentCulture()/Products/remove/@Model.Id';
             }
         }
     </script>
@@ -509,13 +509,13 @@
             $(obj).removeClass('is-favorite');
             $.ajax({
                 type: 'Get',
-                url: '/Products/AddOrRemoveFavorit/' + id,
+                url: '/@CultureHelper.GetCurrentCulture()/Products/AddOrRemoveFavorit/' + id,
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (data) {
                     if (data.IsAuthenticated == false) {
-                        location.href = '/account/login';
+                        location.href = '/@CultureHelper.GetCurrentCulture()/account/login';
                     } else {
                         if (data.isInMyFavList) {
                             $(obj).html(hearted);

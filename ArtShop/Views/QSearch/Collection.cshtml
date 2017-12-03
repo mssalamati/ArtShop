@@ -139,7 +139,7 @@ if (current == selected)
             {
                 <li class="list-item collection">
                     <div class="small-12 columns">
-                        <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" >
+                        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" >
                             @if (item.Artworks != null && item.Artworks.Count() != 0 && item.Artworks.First().product != null)
                             {
                                 <img src="@item.Artworks.First().product.Widephoto.Path" alt="">
@@ -159,7 +159,7 @@ if (current == selected)
                             if (art == null)
                             {
                                 <div class="small-4 columns">
-                                    <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
+                                    <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
                                         <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
                                     </a>
                                 </div>
@@ -167,7 +167,7 @@ if (current == selected)
                             else
                             {
                                 <div class="small-4 columns">
-                                    <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
+                                    <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
                                         <img src="" alt="test collection item" nopin="nopin">
                                     </a>
                                 </div>
@@ -177,7 +177,7 @@ if (current == selected)
 
                     <div class="row collection-meta">
                         <h4 class="collection-title">
-                            <a href="/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" >
+                            <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" >
                                 <span class="ellipsis">@item.Title</span> <span class="count">(@item.Artworks.Count())</span>
                             </a>
                         </h4>
@@ -215,13 +215,13 @@ if (current == selected)
             <ul class="pull-right">
                 @if (havePrev)
                 {
-                    <li><a href="/qsearch/Collection/@ViewBag.query/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="/@CultureHelper.GetCurrentCulture()/qsearch/Collection/@ViewBag.query/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
                 @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
                 {
                     <li>
-                        <a href="/qsearch/Collection/@ViewBag.query/@i">@i</a>
+                        <a href="/@CultureHelper.GetCurrentCulture()/qsearch/Collection/@ViewBag.query/@i">@i</a>
                     </li>
                 }
 
@@ -232,13 +232,13 @@ if (current == selected)
                 @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                 {
                     <li>
-                        <a href="/qsearch/Collection/@ViewBag.query/@i">@i</a>
+                        <a href="/@CultureHelper.GetCurrentCulture()/qsearch/Collection/@ViewBag.query/@i">@i</a>
                     </li>
                 }
 
                 @if (haveNext)
                 {
-                    <li><a href="/qsearch/Collection/@ViewBag.query/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="/@CultureHelper.GetCurrentCulture()/qsearch/Collection/@ViewBag.query/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                 }
             </ul>
             <div class="so-pagination-count pull-right">

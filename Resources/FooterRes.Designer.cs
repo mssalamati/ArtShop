@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Catalog.
+        ///   Looks up a localized string similar to Marked Prints.
         /// </summary>
         public static string Catalog {
             get {

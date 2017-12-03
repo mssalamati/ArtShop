@@ -130,21 +130,26 @@ else
 
                     <div class="row hidden-lg">
                         <div class="about-info">
-                            <h3>About Design Inspiration</h3>
-                            <p></p><p>
-                                Check out these photo spreads for ideas on howto add style, polish, and the perfect works of art to yo
-                                ur home décor.
-                            </p>
+                            @if (Model.SubCategory != null)
+                            {
+                                <h3>@Resources.ShareRes.About @Model.SubCategory.Current().Name</h3>
+                                <p></p><p>@Model.SubCategory.Current().Description</p>
+                            }
+                            else
+                            { <h3>@Resources.ShareRes.About @Model.Category.Current().Name</h3>
+                            <p></p><p>@Model.Category.Current().Description</p>
+                            }
+
                             <p></p>
                         </div>
                         <div class="tag-info">
-                            <h3>Tagged</h3>
-
+                            <h3>@Resources.ShareRes.Tagged</h3>
                             <ul class="tag-list">
                                 @foreach (var item in Model.Tags)
-                                {
+            {
                                     <li>
-                                        <a href="@Url.Action(@item.Name, "Tag", new { id = @item.GenerateSlug() })">
+                                        <a href="@Url.RouteUrl( "tag_details", new { id = item.GenerateSlug() })">
+
                                             @item.Current().Name
                                         </a>
                                     </li>

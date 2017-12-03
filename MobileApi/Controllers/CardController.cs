@@ -86,8 +86,15 @@ namespace MobileApi.Controllers
         {
             var addedAlbum = db.Products.Find(id);
             var cart = CartManager.GetCart(User.Identity.GetUserId());
-            cart.AddToCart(addedAlbum, type);
-            return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Added" }, formatter);
+            bool isExist = cart.GetCartItems().Any(a => a.ProductId == id);
+            if (!isExist)
+            {
+                cart.AddToCart(addedAlbum, type);
+
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Added" }, formatter);
+            }
+            else
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = "item is exist" }, formatter);
         }
 
         protected override void Dispose(bool disposing)

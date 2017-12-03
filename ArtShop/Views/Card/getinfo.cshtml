@@ -86,7 +86,7 @@
                     <div class="container">
                         <div class="checkout__header__container">
                             <div class="checkout__header__logo checkout__header__logo--large">
-                                <a href="/">
+                                <a href="/@CultureHelper.GetCurrentCulture()/">
                                     <img alt="Artiscovery" style="width:200px;image-rendering:-webkit-optimize-contrast" src="~/Content/Images/logo.png?d=@DateTime.Now.Second">
                                 </a>
                             </div><div class="checkout__header__logo checkout__header__logo--small">
@@ -144,7 +144,7 @@
                                                         </div>
                                                         <div class="input-group-container" style="display: block;">
                                                             <div class="input-group">
-                                                                <select name="country" onchange="location.href='/card/getinfo?c='+ this.value" placeholder="@CardRes.Country" id="country">
+                                                                <select name="country" onchange="location.href = '/@CultureHelper.GetCurrentCulture()/card/getinfo?c=' + this.value" placeholder="@CardRes.Country" id="country">
 
                                                                     @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
                                                                     {
@@ -243,7 +243,7 @@
                                                 </span>
                                             </div>
                                             <div>
-                                                <a href="/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
+                                                <a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
                                             </div>
                                         </footer>
                                     </div>
@@ -262,13 +262,15 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <div  class="checkout__sidebar__payment-methods">
-                                            <h5>@CardRes.PaymentMethods</h5>
-                                            <div style="justify-content:unset" class="checkout__sidebar__payment-methods__icons">
-                                                <img alt="ZarrinPal" src="~/Content/Images/zarrinpal.png">
-                                                <img style="margin-left:5px" alt="paypal" src="~/Content/Images/PayPal.png">
-                                                
-                                            </div>                                      
+                                        <div class="checkout__sidebar__two-column">
+                                            <div>
+                                                <div class="checkout__sidebar__shipping-providers">
+                                                    <h5>@CardRes.DeliveryPartners</h5>
+                                                    <div class="checkout__sidebar__shipping-providers__icons">
+                                                        <img style="width:80%;height:50%;margin-top:10px" alt="Mahex" src="~/Content/Images/mahex.png">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="checkout__sidebar__two-column">

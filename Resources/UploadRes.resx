@@ -202,7 +202,7 @@
     <value>Select Image</value>
   </data>
   <data name="select_category_str" xml:space="preserve">
-    <value>Select a category and subject to help collectors to find your work easily</value>
+    <value>Select a category to help collectors to find your work easily</value>
   </data>
   <data name="select_subject" xml:space="preserve">
     <value>select subject /category</value>
@@ -214,13 +214,13 @@
     <value>Price of artwork</value>
   </data>
   <data name="step10_l2" xml:space="preserve">
-    <value>Your Profit (65%)</value>
+    <value>Your Profit (90%)</value>
   </data>
   <data name="step10_l3" xml:space="preserve">
     <value>Shipping &amp; handling paid by collector</value>
   </data>
   <data name="step10_l4" xml:space="preserve">
-    <value>Price that collector will see</value>
+    <value>Price that seller will see</value>
   </data>
   <data name="step10_next_click" xml:space="preserve">
     <value>Finish</value>

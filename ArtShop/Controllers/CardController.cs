@@ -366,10 +366,7 @@ namespace ArtShop.Controllers
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
         }
-
-
-
-
+        
         //for mobile application
         public ActionResult Mobileverify()
         {

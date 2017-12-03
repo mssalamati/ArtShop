@@ -13,7 +13,7 @@ using DataLayer;
 using Microsoft.AspNet.Identity;
 using ArtShop.Util;
 using System.Text;
-
+using System.Text.RegularExpressions;
 
 namespace ArtShop.Controllers
 {
@@ -52,11 +52,11 @@ namespace ArtShop.Controllers
             return View(model);
         }
 
-        [Route("Blog")]
-        public ActionResult Blog()
-        {
-            return Redirect("http://blog.artiscovery.com/");
-        }
+        //[Route("Blog")]
+        //public ActionResult Blog()
+        //{
+        //    return Redirect("http://blog.artiscovery.com/");
+        //}
 
         //[OutputCache(Duration = 360)]
         public ActionResult _SelectedCurators(FirstPageSection model)
@@ -65,14 +65,14 @@ namespace ArtShop.Controllers
             {
                 var p1 = db.Products.Find(int.Parse(model.param1));
                 ViewBag.pic1 = p1.Sqphoto.Path;
-                ViewBag.url1 = "artwork/" + p1.category.Current().Name + "/" + p1.GenerateSlug();
+                ViewBag.url1 = CultureHelper.GetCurrentCulture()+ "/artwork/" + p1.category.Current().Name + "/" + p1.GenerateSlug();
 
                 var p2 = db.Products.Find(int.Parse(model.param2));
                 ViewBag.pic2 = p2.Sqphoto.Path;
-                ViewBag.url2 = "artwork/" + p2.category.Current().Name + "/" + p2.GenerateSlug();
+                ViewBag.url2 = CultureHelper.GetCurrentCulture() + "/artwork/" + p2.category.Current().Name + "/" + p2.GenerateSlug();
                 var p3 = db.Products.Find(int.Parse(model.param3));
                 ViewBag.pic3 = p3.Sqphoto.Path;
-                ViewBag.url3 = "artwork/" + p3.category.Current().Name + "/" + p3.GenerateSlug();
+                ViewBag.url3 = CultureHelper.GetCurrentCulture() + "/artwork/" + p3.category.Current().Name + "/" + p3.GenerateSlug();
             }
             catch
             {
@@ -235,18 +235,32 @@ namespace ArtShop.Controllers
 
         public ActionResult SetCulture(string culture)
         {
-            culture = CultureHelper.GetImplementedCulture(culture);
-            HttpCookie cookie = Request.Cookies["_culture"];
-            if (cookie != null)
-                cookie.Value = culture;   // update cookie value
-            else
-            {
-                cookie = new HttpCookie("_culture");
-                cookie.Value = culture;
-                cookie.Expires = DateTime.Now.AddYears(1);
-            }
-            Response.Cookies.Add(cookie);
+            //culture = CultureHelper.GetImplementedCulture(culture);
+            //HttpCookie cookie = Request.Cookies["_culture"];
+            //if (cookie != null)
+            //    cookie.Value = culture;   // update cookie value
+            //else
+            //{
+            //    cookie = new HttpCookie("_culture");
+            //    cookie.Value = culture;
+            //    cookie.Expires = DateTime.Now.AddYears(1);
+            //}
+            //Response.Cookies.Add(cookie);
+            //string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
+            //return Redirect(url);
+
             string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
+
+            if (url.Contains("en-us") || url.Contains("fa"))
+            {
+                Regex re = new Regex("^/\\w{2,3}(-\\w{2})?");
+                url = re.Replace(url, "/" + culture.ToLower());
+            }
+
+
+            culture = CultureHelper.GetImplementedCulture(culture);
+            RouteData.Values["culture"] = culture;  // set culture
+
             return Redirect(url);
         }
 

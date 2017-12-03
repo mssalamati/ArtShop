@@ -20,7 +20,7 @@ namespace Blog.Migrations
             var store = new UserStore<ApplicationUser>(context);
             var manager = new UserManager<ApplicationUser>(store);
             var user = new ApplicationUser { UserName = "admin", Email = "adb.dehghan@gmail.com", PhoneNumber = "09213175268", userDetail = new UserProfile() };
-            manager.Create(user, "Art123");
+            manager.Create(user, "Art123123");
         }
     }
 }

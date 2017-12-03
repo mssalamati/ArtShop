@@ -13,10 +13,17 @@
 
     <header class="small-12 columns" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
 
-        <a href="/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile" title="@ViewBag.ProfileFullName's profile" itemprop="url">
             @if (!String.IsNullOrEmpty(ViewBag.PhotoPath))
             {
-                <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+                if (((string)ViewBag.PhotoPath).Contains("https"))
+                {
+                    <img src="@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+                }
+                else
+                {
+                    <img src="/@ViewBag.PhotoPath" alt="avatar" class="avatar" itemprop="image">
+                }
             }
             else
             {
@@ -30,13 +37,13 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/profile/artworks" class="" style="@rtldirection" title="link to artwork">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/artworks" class="" style="@rtldirection" title="link to artwork">
             <i class="fa fa-suitcase"></i> @ProfileRes.Artwork <span>(@ViewBag.artworkCount)</span>
         </a>
-        <a href="/profile/collection" style="@rtldirection" class="" title="link to Collections">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/collection" style="@rtldirection" class="" title="link to Collections">
             <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@ViewBag.collectionCount)</span>
         </a>
-        <a href="/profile/favorites" style="@rtldirection" class="active" title="link to Favorites">
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/favorites" style="@rtldirection" class="active" title="link to Favorites">
             <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@Model.Count)</span>
         </a>
     </div>
@@ -66,7 +73,7 @@
                         <div class="item-controls">
                             @if (item.product.ISOrginalForSale && item.product.Status == ProductStatus.forSale)
                             {
-                                <a href="/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="@ShareRes.Add_to_cart">
+                                <a href="/@CultureHelper.GetCurrentCulture()/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="@ShareRes.Add_to_cart">
                                     <i class="fa fa-shopping-cart" style="color:white"></i>
                                 </a>
                             }
@@ -147,13 +154,13 @@
                 <ul class="pull-right">
                     @if (havePrev)
                     {
-                        <li><a onclick="document.location.href = '/Favorites?page=@(page-1)'" href="/Favorites?page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                        <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/Favorites?page=@(page-1)'" href="/@CultureHelper.GetCurrentCulture()/Favorites?page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                     }
 
                     @for (int i = Math.Max(1, page - 2); i < page; i++)
                     {
                         <li>
-                            <a onclick="document.location.href = '/Favorites?page=@i'" href="/Favorites?page=@i">@i</a>
+                            <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/Favorites?page=@i'" href="/@CultureHelper.GetCurrentCulture()/Favorites?page=@i">@i</a>
                         </li>
                     }
 
@@ -164,14 +171,14 @@
                     @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                     {
                         <li>
-                            <a onclick="document.location.href = '/Favorites?page=@i'" href="/Favorites?page=@i">@i</a>
+                            <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/Favorites?page=@i'" href="/@CultureHelper.GetCurrentCulture()/Favorites?page=@i">@i</a>
                         </li>
                     }
 
 
                     @if (haveNext)
                     {
-                        <li><a onclick="document.location.href = '/Favorites?page=@(page+1)'" href="/Favorites?page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                        <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/Favorites?page=@(page+1)'" href="/@CultureHelper.GetCurrentCulture()/Favorites?page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                     }
 
                     @*

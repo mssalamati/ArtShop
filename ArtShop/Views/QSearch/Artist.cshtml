@@ -135,7 +135,7 @@ if (current == selected)
             <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
                 <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="list-art-image-wrapper">
-                        <a href="/publicprofile?id=@item.Id" itemprop="url">
+                        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@item.Id" itemprop="url">
                             @if (string.IsNullOrEmpty(item.PhotoPath))
                             {
                                 <img src="~/Content/Images/300x300.jpg">
@@ -149,7 +149,7 @@ if (current == selected)
                     <div class="list-art-meta" style="height:auto">
                         <div class="list-author clear left">
                             <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                                <a href="/publicprofile?id=@item.Id" class="artist-card" title="Profile page for @item.FirstName  @item.LastName" itemprop="url">@item.FirstName  @item.LastName</a>
+                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@item.Id" class="artist-card" title="Profile page for @item.FirstName  @item.LastName" itemprop="url">@item.FirstName  @item.LastName</a>
                             </h5>
                             <h5 class="user-location ellipsis clear" itemprop="contentLocation">
                                 @if (item.country != null)
@@ -182,13 +182,13 @@ if (current == selected)
             <ul class="pull-right">
                 @if (havePrev)
                 {
-                    <li><a href="/qsearch/Artist/@ViewBag.query/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="/@CultureHelper.GetCurrentCulture()/qsearch/Artist/@ViewBag.query/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                 }
 
                 @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
                 {
                     <li>
-                        <a href="/qsearch/Artist/@ViewBag.query/@i">@i</a>
+                        <a href="/@CultureHelper.GetCurrentCulture()/qsearch/Artist/@ViewBag.query/@i">@i</a>
                     </li>
                 }
 
@@ -199,13 +199,13 @@ if (current == selected)
                 @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                 {
                     <li>
-                        <a href="/qsearch/Artist/@ViewBag.query/@i">@i</a>
+                        <a href="/@CultureHelper.GetCurrentCulture()/qsearch/Artist/@ViewBag.query/@i">@i</a>
                     </li>
                 }
 
                 @if (haveNext)
                 {
-                    <li><a href="/qsearch/Artist/@ViewBag.query/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="/@CultureHelper.GetCurrentCulture()/qsearch/Artist/@ViewBag.query/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                 }
             </ul>
             <div class="so-pagination-count pull-right">

@@ -123,7 +123,8 @@ namespace Blog.Areas.Admin.Controllers
                 db.SubCategories.RemoveRange(finder.SubCategories);
             }
             db.Posts.RemoveRange(finder.Posts);
-            db.Categories.Remove(finder);
+            finder.SubCategories.Clear();
+            db.Categories.Remove(finder);            
             db.SaveChanges();
             return RedirectToActionPermanent("Index");
         }
