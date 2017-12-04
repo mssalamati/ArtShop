@@ -50,18 +50,12 @@ namespace Blog
               namespaces: new[] { "Blog.Controllers" }
             );
 
-
-
-            //foreach (var route in routes.Cast<Route>().Where(route =>
-            //route.GetType() == typeof(SeoFriendlyRoute) || route.GetType() == typeof(Route)))
-            //{
-            //    if (!route.Url.Contains("Admin"))
-            //    {
-            //        route.Url = "{culture}/" + route.Url;
-            //        route.Defaults.Add("culture", String.Empty);
-
-            //    }
-            //}
+            //routes.MapRoute(
+            //           name: "Default",
+            //           url: "{controller}/{action}/{id}",
+            //           defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //         namespaces: new[] { "Blog.Controllers" }
+            //       );
 
         }
     }

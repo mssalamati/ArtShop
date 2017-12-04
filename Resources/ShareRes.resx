@@ -337,7 +337,7 @@
     <value>Tube</value>
   </data>
   <data name="Remove_from_favorites" xml:space="preserve">
-    <value>Remove from Favorites</value>
+    <value>Remove Favorite</value>
   </data>
   <data name="Add_to_cart" xml:space="preserve">
     <value>Add to Cart</value>

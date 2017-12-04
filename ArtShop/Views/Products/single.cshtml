@@ -144,7 +144,7 @@
                             }
                             else
                             {
-                                <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
+                                <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
                             }
                         </div>
                     </div>
@@ -179,10 +179,35 @@
                                     <span>@ShareRes.View_Fullscreen</span>
                                 </a>
 
-                                <a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
+                                @*<a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
                                     <i class="fa fa-heart"></i>
                                     <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
-                                </a>
+                                </a>*@
+
+                                @if (User.Identity.IsAuthenticated && ViewBag.favorites != null)
+                                {
+                                    if (((ICollection<Favorit>)ViewBag.favorites).Any(a => a.product.Id == Model.Id))
+                                    {
+                                        <a onclick="addfavsingle(this,@Model.Id)" style="background-color:rgba(0,0,0,0.6)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Remove_from_favorites">
+                                            <i class="fa fa-heart is-favorite"></i>
+                                            <span style="@favFontSize">@ShareRes.Remove_from_favorites</span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a onclick="addfavsingle(this,@Model.Id)" style="background-color:rgba(0,0,0,0.6)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
+                                            <i class="fa fa-heart" style="color:white"></i>
+                                            <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a onclick="addfavsingle(this,@Model.Id)" style="background-color:rgba(0,0,0,0.6)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
+                                        <i class="fa fa-heart" style="color:white"></i>
+                                        <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
+                                    </a>
+                                }
                             </div>
                         </li>
                     </ul>
@@ -265,7 +290,7 @@
                                 </div>
 
                                 <div style="width:inherit;padding-bottom:30px" class="art-detail-ribbon">
-                                    @if (Model.AllEntity <= 0)
+                                    @if (Model.avaible <= 0 || Model.Status == ProductStatus.Sold)
                                     {
                                         <span style="@circleSize" class="sold">Sold</span>
                                         <div class="">
@@ -502,8 +527,8 @@
 
     <script>
         function addfavsingle(obj, id) {
-            var heart = '<i class="fa fa-heart"></i> <span>Add to Favorites</span>';
-            var hearted = '<i class="fa fa-heart is-favorite"></i> <span>Add to Favorites</span>';
+            var heart = '<i class="fa fa-heart"></i> <span>@ShareRes.Add_to_Favorites</span>';
+            var hearted = '<i class="fa fa-heart is-favorite"></i> <span>@ShareRes.Remove_from_favorites</span>';
             var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
             $(obj).html(loadingspin);
             $(obj).removeClass('is-favorite');

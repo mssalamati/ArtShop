@@ -71,7 +71,7 @@
             $(".RemoveLink").click(function () {
                 var recordToDelete = $(this).attr("data-id");
                 if (recordToDelete != '') {
-                    $.post("/Card/RemoveFromCart", { "id": recordToDelete },
+                    $.post("/@CultureHelper.GetCurrentCulture()/Card/RemoveFromCart", { "id": recordToDelete },
                         function (data) {
                             if (data.ItemCount == 0) {
                                 $('#row-' + data.DeleteId).fadeOut('slow');
@@ -98,7 +98,7 @@
 
         function changecnt(id) {
             var val = $('#count-' + id).val();
-            $.post("/Card/changecnt", { "id": id, "cnt": val },
+            $.post("/@CultureHelper.GetCurrentCulture()/Card/changecnt", { "id": id, "cnt": val },
                  function (data) {
                      if (data.ItemCount == 0) {
                          $('#row-' + data.DeleteId).fadeOut('slow');
@@ -122,7 +122,7 @@
                     <div class="container">
                         <div class="checkout__header__container">
                             <div class="checkout__header__logo checkout__header__logo--large">
-                                <a href="/">
+                                <a href="/@CultureHelper.GetCurrentCulture()/">
                                     <img alt="Artiscovery" style="width:200px;image-rendering:-webkit-optimize-contrast" src="~/Content/Images/logo.png?d=@DateTime.Now.Second">
                                 </a>
                             </div>
@@ -293,18 +293,16 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="checkout__sidebar__two-column">
-                                            <div>
-                                                <div class="checkout__sidebar__shipping-providers">
-                                                    <h5>@CardRes.DeliveryPartners</h5>
-                                                    <div class="checkout__sidebar__shipping-providers__icons">
-                                                        <img style="width:80%;height:50%;margin-top:10px" alt="Mahex" src="~/Content/Images/mahex.png">
-                                                    </div>
-                                                </div>
+                                        <div class="checkout__sidebar__payment-methods">
+                                            <h5>@CardRes.PaymentMethods</h5>
+                                            <div style="justify-content:unset" class="checkout__sidebar__payment-methods__icons">
+                                                <img alt="ZarrinPal" src="~/Content/Images/zarrinpal.png">
+                                                <img style="margin-left:5px;margin-right:5px" alt="paypal" src="~/Content/Images/PayPal.png">
+
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="checkout__sidebar__two-column">
+                                        @*<div class="checkout__sidebar__two-column">
                                             <div>
                                                 <div class="checkout__sidebar__shipping-providers">
                                                     <h5>@CardRes.DeliveryPartners</h5>
@@ -315,7 +313,7 @@
                                             </div>
                                             <div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>

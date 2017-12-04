@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading;
 using ArtShop.Helper;
+using System.Web.Routing;
 
 namespace ArtShop.Controllers
 {
@@ -49,40 +50,26 @@ namespace ArtShop.Controllers
             //Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
             //return base.BeginExecuteCore(callback, state);
+            var routeData = RouteData;
+            if (routeData != null)
+            {
+                if (routeData.Values.ContainsKey("MS_DirectRouteMatches"))
+                {
+                    routeData = ((IEnumerable<RouteData>)routeData.Values["MS_DirectRouteMatches"]).First();
+                }
+            }
 
-            string cultureName = RouteData.Values["culture"] as string;
-
+            string cultureName = routeData.Values["culture"] as string;
+           
             // Attempt to read the culture cookie from Request
             if (cultureName == null)
                 cultureName = Request.UserLanguages != null && Request.UserLanguages.Length > 0 ? Request.UserLanguages[0] : null; // obtain it from HTTP header AcceptLanguages
 
+     
+
+
             // Validate culture name
             cultureName = CultureHelper.GetImplementedCulture(cultureName); // This is safe
-
-
-            //if (RouteData.Values["culture"] as string != cultureName.ToLower())
-            //{
-            //    // Force a valid culture in the URL
-            //    RouteData.Values["culture"] = cultureName.ToLowerInvariant(); // lower case too
-
-            //    if (RouteData.Values.Values.Any(a => a.ToString().ToLower().Contains("article")))
-            //    {
-            //        if (RouteData.Values.Values.Any(a => a.ToString().ToLower().Contains("en-us")))
-            //        {
-            //            Response.RedirectToRoute("Articles");
-            //        }
-
-            //        else
-            //            Response.RedirectToRoute("ArticlesModified");
-            //    }
-            //    else if (RouteData.Values.Values.Any(a => a.ToString().ToLower().Contains("products")))
-            //    {
-            //        Response.RedirectToRoute("Search");
-            //    }
-            //    else
-            //        //Redirect user
-            //        Response.RedirectToRoute("DefaultWithCulture");
-            //}
 
 
             // Modify current thread's cultures            

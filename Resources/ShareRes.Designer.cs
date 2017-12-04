@@ -664,7 +664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove from Favorites.
+        ///   Looks up a localized string similar to Remove Favorite.
         /// </summary>
         public static string Remove_from_favorites {
             get {

@@ -46,7 +46,7 @@ namespace ArtShop
             routes.MapRoute(
                 name: "DefaultWithCulture",
                 url: "{culture}/{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", culture = string.Empty, id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", culture = "en-us", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

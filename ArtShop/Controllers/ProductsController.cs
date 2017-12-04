@@ -83,6 +83,7 @@ namespace ArtShop.Controllers
                 var userId = User.Identity.GetUserId();
                 var user = db.Users.Find(userId);
                 var profile = user.userDetail;
+                ViewBag.favorites = profile.Favorits;
                 mine = profile.Products.Any(x => x.Id == id);
             }
             ViewBag.mine = mine;
@@ -206,7 +207,7 @@ namespace ArtShop.Controllers
             }
             p.Title = model.Title;
             p.Status = model.Status;
-            p.ISOrginalForSale = model.Status == ProductStatus.forSale;
+            //p.ISOrginalForSale = model.Status == ProductStatus.forSale;
             p.TotalWeight = model.TotalWeight;
             p.Height = model.Height;
             p.Width = model.Width;

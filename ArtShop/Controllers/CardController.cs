@@ -11,13 +11,14 @@ using DataLayer.Extentions;
 using Microsoft.AspNet.Identity;
 using Postal;
 using paypal = PayPal.Api;
+using ArtShop.Helper;
 
 namespace ArtShop.Controllers
 {
     public class CardController : BaseController
     {
         //checkout and get info
-        [Route("checkout")]
+        [Route("{culture}/checkout")]
         public ActionResult Index()
         {
             var cart = CartManager.GetCart(this.HttpContext);
@@ -106,7 +107,7 @@ namespace ArtShop.Controllers
                 System.Net.ServicePointManager.Expect100Continue = false;
                 ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
                 string Authority;
-                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/card/Verify", out Authority);
+                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/"+ CultureHelper.GetCurrentCulture() + "/card/Verify", out Authority);
                 long longAuth = 0;
                 long.TryParse(Authority, out longAuth);
                 o.TransactionDetail.Number = longAuth.ToString();
@@ -164,25 +165,29 @@ namespace ArtShop.Controllers
                             foreach (var item in order.OrderDetails)
                             {
                                 item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
-                                item.Product.AllEntity--;
+                                item.Product.avaible--;
+                                if (item.Product.avaible == 0)
+                                {
+                                    item.Product.Status = ProductStatus.Sold;
+                                }
                             }
                             db.SaveChanges();
                             SendOrderDetail(order);
                             SendInvoice(order);
                             CartManager.GetCart(this.HttpContext).EmptyCart();
-                            return RedirectToActionPermanent("paymentReport", new { id = orderId });
+                            return RedirectToActionPermanent("paymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
                         else
                         {
                             db.SaveChanges();
-                            return RedirectToActionPermanent("paymentReport", new { id = orderId });
+                            return RedirectToActionPermanent("paymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
                     }
                     else
                     {
                         tran.Description = Request.QueryString["Status"].ToString();
                         db.SaveChanges();
-                        return RedirectToActionPermanent("paymentReport", new { id = orderId });
+                        return RedirectToActionPermanent("paymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                     }
                 }
                 else
@@ -243,8 +248,8 @@ namespace ArtShop.Controllers
                 transactions = transactionList,
                 redirect_urls = new paypal.RedirectUrls
                 {
-                    return_url = "https://artiscovery.com/card/PaypalReturn",
-                    cancel_url = "https://artiscovery.com/card/PaypalCancel"
+                    return_url = "https://artiscovery.com/"+ CultureHelper.GetCurrentCulture() + "/card/PaypalReturn",
+                    cancel_url = "https://artiscovery.com/"+ CultureHelper.GetCurrentCulture() + "/card/PaypalCancel"
                 }
             });
         }
@@ -260,20 +265,24 @@ namespace ArtShop.Controllers
             var executedpayment = payment.Execute(apiContext, paymentExecution);
             if (executedpayment.state.ToLower() != "approved")
             {
-                return RedirectToActionPermanent("paymentReport", new { id = orderId });
+                return RedirectToActionPermanent("paymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
             }
             tran.Payed = true;
             tran.Description = paymentId;
             foreach (var item in order.OrderDetails)
             {
                 item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
-                item.Product.AllEntity--;
+                item.Product.avaible--;
+                if (item.Product.avaible == 0)
+                {
+                    item.Product.Status = ProductStatus.Sold;
+                }
             }
             db.SaveChanges();
             SendOrderDetail(order);
             SendInvoice(order);
             CartManager.GetCart(this.HttpContext).EmptyCart();
-            return RedirectToActionPermanent("paymentReport", new { id = orderId });
+            return RedirectToActionPermanent("paymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
         }
 
         public ActionResult PaypalCancel(string payerId, string paymentId)
@@ -281,7 +290,7 @@ namespace ArtShop.Controllers
             var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
             var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
             var orderId = order.Id;
-            return RedirectToActionPermanent("paymentReport", new { id = orderId });
+            return RedirectToActionPermanent("paymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
         }
 
 
@@ -301,9 +310,9 @@ namespace ArtShop.Controllers
             var cart = CartManager.GetCart(this.HttpContext);
             var basket = cart.GetCountProduct(id);
             if (basket + 1 > addedAlbum.AllEntity)
-                return RedirectPermanent("/checkout");
+                return RedirectPermanent("/" + CultureHelper.GetCurrentCulture() + "/checkout");
             cart.AddToCart(addedAlbum, type);
-            return RedirectPermanent("/checkout");
+            return RedirectPermanent("/" + CultureHelper.GetCurrentCulture() + "/checkout");
         }
 
         [HttpPost]
@@ -366,7 +375,7 @@ namespace ArtShop.Controllers
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
         }
-        
+
         //for mobile application
         public ActionResult Mobileverify()
         {
@@ -400,19 +409,19 @@ namespace ArtShop.Controllers
                             SendOrderDetail(order);
                             SendInvoice(order);
                             CartManager.GetCart(this.HttpContext).EmptyCart();
-                            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                            return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
                         else
                         {
                             db.SaveChanges();
-                            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                            return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
                     }
                     else
                     {
                         tran.Description = Request.QueryString["Status"].ToString();
                         db.SaveChanges();
-                        return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                        return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                     }
                 }
                 else
@@ -436,7 +445,7 @@ namespace ArtShop.Controllers
             var executedpayment = payment.Execute(apiContext, paymentExecution);
             if (executedpayment.state.ToLower() != "approved")
             {
-                return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+                return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
             }
             tran.Payed = true;
             tran.Description = paymentId;
@@ -449,14 +458,14 @@ namespace ArtShop.Controllers
             SendOrderDetail(order);
             SendInvoice(order);
             CartManager.GetCart(this.HttpContext).EmptyCart();
-            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+            return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
         }
         public ActionResult MobilePaypalCancel(string payerId, string paymentId)
         {
             var tran = db.TransactionDetails.FirstOrDefault(x => x.Number == paymentId);
             var order = db.Orders.FirstOrDefault(x => x.TransactionDetailId == tran.Id);
             var orderId = order.Id;
-            return RedirectToActionPermanent("MobilePaymentReport", new { id = orderId });
+            return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
         }
         public ActionResult MobilePaymentReport(int id)
         {
@@ -471,7 +480,7 @@ namespace ArtShop.Controllers
 
             dynamic email = new Email("Invoice");
             email.To = User.Identity.GetUserName();
-            email.Subject = "Invoice | " + order.Id.ToString();
+            email.Subject = "Artiscovery Invoice | " + order.Id.ToString();
             email.orderid = order.Id;
             email.fullname = order.ReceiverName;
             email.address = order.Address;

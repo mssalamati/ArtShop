@@ -286,9 +286,11 @@ namespace ArtShop.Controllers
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.artworkCount = userProfile.Products.Count;
             ViewBag.PhotoPath = userProfile.PhotoPath;
+          
             if (userProfile.Favorits != null)
             {
                 var p = userProfile.Favorits;
+                ViewBag.favorites = userProfile.Favorits;
                 var count = p.Count();
                 page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
                 page = Math.Max(1, page);

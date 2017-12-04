@@ -110,7 +110,7 @@
                                     <img alt="Artiscovery" style="width:200px;" src="~/Content/Images/logo.png?d=@DateTime.Now.Second">
                                 </a>
                             </div><div class="checkout__header__logo checkout__header__logo--small">
-                                <a href="/">
+                                <a href="/@CultureHelper.GetCurrentCulture()/">
                                     <a href="/"><img alt="Artiscovery" src="~/Content/Images/logo.png?d=@DateTime.Now.Second" style="height:auto;image-rendering:-webkit-optimize-contrast"></a>
                                 </a>
                             </div>
@@ -232,7 +232,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="checkout__sidebar__two-column">
+                                        @*<div class="checkout__sidebar__two-column">
                                             <div>
                                                 <div class="checkout__sidebar__shipping-providers">
                                                     <h5>@CardRes.DeliveryPartners</h5>
@@ -241,7 +241,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +256,7 @@
                                 </span>
                             </div>
                             <div>
-                                <a href="/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
+                                <a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">Copyright Policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/terms" target="_blank" rel="noopener noreferrer">Terms And Conditions</a>
                             </div>
                         </footer>
                     </div>

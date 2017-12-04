@@ -48,6 +48,7 @@ namespace ArtShop.Controllers
             HttpResponseMessage response = await client.PostAsJsonAsync("upload/resize", model);
             response.EnsureSuccessStatusCode();
             var res = await response.Content.ReadAsAsync<ISResizeViewModel>();
+            
             return res;
         }
 
