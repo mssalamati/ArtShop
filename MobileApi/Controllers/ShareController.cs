@@ -903,14 +903,16 @@ namespace MobileApi.Controllers
                     product.Materials.Add(db.Materials.FirstOrDefault(x => item == x.Id));
                 foreach (var item in stylelist)
                 {
-                    var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
+                    int id = int.Parse(item);
+                    var temp = db.StyleTranslations.FirstOrDefault(x => x.styleId == id);
                     if (temp != null)
                         product.Styles.Add(temp.style);
                 }
 
                 foreach (var item in medumsList)
                 {
-                    var temp = db.MediumTranslations.FirstOrDefault(x => x.Name == item);
+                    int id = int.Parse(item);
+                    var temp = db.MediumTranslations.FirstOrDefault(x => x.mediumId == id);
                     if (temp != null)
                         product.Mediums.Add(temp.medium);
                 }
