@@ -28,7 +28,7 @@
                     <li>@*<a class="so-quick-tip" href="#so-comment-message" oldtitle="Comment on this collection">Comment</a>*@</li>
                     <li><a class="so-quick-tip" href="/@CultureHelper.GetCurrentCulture()/profile/newCollection" oldtitle="Create a new collection">@ProfileRes.Create_collection</a></li>
 
-                    <li><a onclick="return confirm('Are you sure you want to delete this collection? This cannot be undone.')" href="/@CultureHelper.GetCurrentCulture()/profile/DeleteCollection?id=@ViewBag.CollectionId" class="delete so-quick-tip" oldtitle="Delete Collection">@ShareRes.Remove</a></li>
+                    <li><a onclick="return confirm('@ProfileRes.DeleteCollection_msg')" href="/@CultureHelper.GetCurrentCulture()/profile/DeleteCollection?id=@ViewBag.CollectionId" class="delete so-quick-tip" oldtitle="Delete Collection">@ShareRes.Remove</a></li>
                 </ul>
             </div>
         </nav>

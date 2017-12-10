@@ -409,4 +409,7 @@ Do not worry! We protect the file you have sent us. The file will be encrypted f
   <data name="GovermentID_p3_continue" xml:space="preserve">
     <value />
   </data>
+  <data name="DeleteCollection_msg" xml:space="preserve">
+    <value>Are you sure you want to delete this collection? This cannot be undone.</value>
+  </data>
 </root>

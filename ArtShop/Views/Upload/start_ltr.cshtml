@@ -68,7 +68,7 @@
                                 <div id="so-accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
                                     <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-so-accordion-header-0" aria-controls="ui-accordion-so-accordion-panel-0" aria-selected="false" tabindex="0">
                                         <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
-                                        <a href="#">Lighting<i class="fa lighting fa-angle-right"></i></a>
+                                        <a href="#">Lighting <i class="fa lighting fa-angle-right"></i></a>
                                     </h3>
 
                                     <div class="standards ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-so-accordion-panel-0" aria-labelledby="ui-accordion-so-accordion-header-0" role="tabpanel" aria-expanded="false" aria-hidden="true" style="height: 665px; display: none;">
@@ -101,7 +101,7 @@
 
                                     <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-so-accordion-header-2" aria-controls="ui-accordion-so-accordion-panel-2" aria-selected="false" tabindex="0">
                                         <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
-                                        <a href="#">Effects<i class="fa composition fa-angle-right"></i></a>
+                                        <a href="#">Effects <i class="fa quality fa-angle-right"></i></a>
                                     </h3>
 
                                     <div class="standards ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-so-accordion-panel-2" aria-labelledby="ui-accordion-so-accordion-header-2" role="tabpanel" aria-expanded="false" aria-hidden="true" style="height: 665px; display: none;">
@@ -166,35 +166,35 @@
                                          width 300px;
                                          background-repeat no-repeat;
                                          background-image url('//d3t95n9c6zzriw.cloudfront.net/upload-homepage/upload-diptych.jpg');">
-                                    </div>
                                 </div>
                             </div>
-                            <script>
-                                // controls the angle bracket direction for accordion
-                                $(function () {
-                                    $('.ui-corner-all').on('click', function () {
-                                        var icon = $(this).find('i');
-
-                                        if (icon.hasClass('fa-angle-down')) {
-                                            $(icon).removeClass('fa-angle-down').addClass('fa-angle-right');
-                                        } else {
-                                            $(icon).removeClass('fa-angle-right').addClass('fa-angle-down');
-                                        }
-                                    });
-
-                                });
-                            </script>
                         </div>
+                        <script>
+                            // controls the angle bracket direction for accordion
+                            $(function () {
+                                $('.ui-corner-all').on('click', function () {
+                                    var icon = $(this).find('i');
+
+                                    if (icon.hasClass('fa-angle-down')) {
+                                        $(icon).removeClass('fa-angle-down').addClass('fa-angle-right');
+                                    } else {
+                                        $(icon).removeClass('fa-angle-right').addClass('fa-angle-down');
+                                    }
+                                });
+
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
     </div>
-    <!-- The global progress bar -->
-    <div id="progress" class="progress progress-animated hidden">
-        <div class="progress-bar progress-bar-success"></div>
-    </div>
+</div>
+<!-- The global progress bar -->
+<div id="progress" class="progress progress-animated hidden">
+    <div class="progress-bar progress-bar-success"></div>
+</div>
 
-    <div class="clearfix"></div>
+<div class="clearfix"></div>
 </div>

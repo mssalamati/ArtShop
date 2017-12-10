@@ -396,4 +396,7 @@
   <data name="Email_p6" xml:space="preserve">
     <value>تیم آرتیسکاوری</value>
   </data>
+  <data name="Success_message" xml:space="preserve">
+    <value>با موفقیت انجام شد</value>
+  </data>
 </root>

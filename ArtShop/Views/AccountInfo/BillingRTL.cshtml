@@ -490,5 +490,24 @@
             }
         }
     </script>
+
+
     <div class="clearfix"></div>
 </div>
+@section scripts{
+    @if (ViewBag.ischanged)
+    {
+        <script>
+
+            $.toast({
+                heading: '@ShareRes.Success_message',
+                text: '',
+                icon: 'success',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 7000
+            })
+        </script>
+    }
+
+}

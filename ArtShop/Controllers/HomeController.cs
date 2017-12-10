@@ -256,6 +256,8 @@ namespace ArtShop.Controllers
                 Regex re = new Regex("^/\\w{2,3}(-\\w{2})?");
                 url = re.Replace(url, "/" + culture.ToLower());
             }
+            else
+                url += culture;
 
 
             culture = CultureHelper.GetImplementedCulture(culture);

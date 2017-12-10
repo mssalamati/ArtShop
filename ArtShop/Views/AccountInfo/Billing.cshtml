@@ -433,27 +433,27 @@ else
                             @ProfileRes.Profile_information
                         </a>
                     </li>
-     
-                        <li class="billing active">
-                            <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/billing">@ProfileRes.Address_Identification</a>
-                        </li>
 
-                        <li class="sold">
-                            <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
-                        </li>
-                        @*<li>
+                    <li class="billing active">
+                        <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/billing">@ProfileRes.Address_Identification</a>
+                    </li>
+
+                    <li class="sold">
+                        <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
+                    </li>
+                    @*<li>
                             <a style="padding-left:20px;" href="/accounts/upload-tax-form">
                                 Tax
                                 Form
                             </a>
                         </li>*@
-           
+
                     <li class="purchased">
                         <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/orders">@ProfileRes.Orders</a>
                     </li>
 
 
-                 @*   <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>*@
+                    @*   <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>*@
                 </ul>
 
                 <div class="clearfix"></div>
@@ -478,4 +478,23 @@ else
 
         <div class="clearfix"></div>
     </div>
+
+
+}
+@section scripts{
+    @if (ViewBag.ischanged)
+    {
+        <script>
+
+            $.toast({
+                heading: '@ShareRes.Success_message',
+                text: '',
+                icon: 'success',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 7000
+            })
+        </script>
+    }
+
 }

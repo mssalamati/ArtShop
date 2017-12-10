@@ -14,12 +14,16 @@ namespace Blog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.Add("MoreCategory", new SeoFriendlyRoute("{culture}/Category/More/{id}",
+      new RouteValueDictionary(new { controller = "Category", action = "More", culture = string.Empty, id = UrlParameter.Optional }),
+      new MvcRouteHandler()));
+
             routes.Add("SubCategory", new SeoFriendlyRoute("{culture}/Category/{Index}/{id}",
           new RouteValueDictionary(new { controller = "Category", action = "SubCategory", culture = string.Empty, Index = UrlParameter.Optional }),
           new MvcRouteHandler()));
 
             routes.Add("Category", new SeoFriendlyRoute("{culture}/Category/{id}",
-          new RouteValueDictionary(new { controller = "Category", action = "Index", culture = string.Empty, Index = UrlParameter.Optional }),
+          new RouteValueDictionary(new { controller = "Category", action = "Index", culture = string.Empty, Index = UrlParameter.Optional}),
           new MvcRouteHandler()));
 
             routes.MapRoute(

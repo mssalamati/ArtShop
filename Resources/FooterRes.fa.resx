@@ -186,4 +186,7 @@
   <data name="Artiscovery" xml:space="preserve">
     <value>شرایط و ضوابط</value>
   </data>
+  <data name="Copyright_msg" xml:space="preserve">
+    <value>کليه حقوق اين سايت متعلق به آرتیسکاوری می باشد</value>
+  </data>
 </root>

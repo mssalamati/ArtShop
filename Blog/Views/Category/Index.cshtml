@@ -53,27 +53,27 @@
                     </div><!-- .col-lg-4 -->
 
                 }
-                
+
                 <div class="append-post-container"></div>
             </div>
             <div class="row loader">
                 <div class="col-lg-12">
-                    <a style="cursor:pointer" onclick="LoadMore();" class="load-more-btn" data-total="48">Load more</a>
+                    <a style="cursor:pointer" onclick="LoadMore();" class="load-more-btn" data-total="48">@Resources.ShareRes.Load_more</a>
                 </div>
             </div>
         }
 
 
-          
-        </main><!-- #main -->
-    </div>
 
-    <script>
-        var page = 1;
-        function LoadMore() {
-            page++;
-            $.get("/@CultureHelper.GetCurrentCulture()/category/more?id=" + @ViewBag.id +"&page=" + page, function (data) {
-                $(".holder").append(data);
-            });
-        }
-    </script>
+    </main><!-- #main -->
+</div>
+
+<script>
+    var page = 1;
+    function LoadMore() {
+        page++;
+        $.get("/@CultureHelper.GetCurrentCulture()/category/more?id=" + @ViewBag.id +"&page=" + page , function (data) {
+            $(".holder").append(data);
+        });
+    }
+</script>

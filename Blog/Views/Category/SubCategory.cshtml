@@ -72,7 +72,7 @@
     var page = 1;
     function LoadMore() {
         page++;
-        $.get("/category/more?id=" + @ViewBag.id +"&page=" + page, function (data) {
+        $.get("/@CultureHelper.GetCurrentCulture()/category/more?id=" + @ViewBag.id +"&page=" + page + "&isSub=" + "@ViewBag.isSub", function (data) {
             $(".holder").append(data);
         });
     }

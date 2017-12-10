@@ -254,7 +254,7 @@
                 success: function (data) {
                     if (data.result == true) {
                         $.toast({
-                            heading: 'Success',
+                            heading: '@ShareRes.Success_message',
                             text: '@ShareRes.collectionAddSuccess',
                             icon: 'success',
                             showHideTransition: 'slide',
@@ -299,7 +299,7 @@
                             $(obj).html(heart);
                             $(obj).addClass('is-favorite');
                             $.toast({
-                                heading: 'Success',
+                                heading: '@ShareRes.Success_message',
                                 text: '@ShareRes.FavAddSuccess',
                                 icon: 'success',
                                 showHideTransition: 'slide',
@@ -310,7 +310,7 @@
                             $(obj).html(heart);
                             $(obj).removeClass('is-favorite');
                             $.toast({
-                                heading: 'Success',
+                                heading: 'error',
                                 text: '@ShareRes.FavAddFail',
                                 icon: 'success',
                                 showHideTransition: 'slide',

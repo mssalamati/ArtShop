@@ -268,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this collection? This cannot be undone..
+        /// </summary>
+        public static string DeleteCollection_msg {
+            get {
+                return ResourceManager.GetString("DeleteCollection_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Education.
         /// </summary>
         public static string Education {

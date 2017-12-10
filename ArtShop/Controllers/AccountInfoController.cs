@@ -32,7 +32,7 @@ namespace ArtShop.Controllers
             model.profileType = userProfile.profileType;
             model.ReceiveNewArtEmail = userProfile.ReceiveNewArtEmail;
             model.MailingList = userProfile.MailingList;
-
+            ViewBag.ischanged = false;
             return View(model);
         }
 
@@ -64,7 +64,7 @@ namespace ArtShop.Controllers
                 RemoveFromSubscribers(userProfile.ApplicationUserDetail.Email);
             }
             userProfile.MailingList = model.MailingList;
-
+            ViewBag.ischanged = true;
             db.SaveChanges();
 
             return View(model);
@@ -96,7 +96,7 @@ namespace ArtShop.Controllers
         public ActionResult ProfileInformation()
         {
             var userId = User.Identity.GetUserId();
-
+            ViewBag.ischanged = false;
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
             ProfileInformationViewModel model = new ProfileInformationViewModel();
@@ -176,6 +176,7 @@ namespace ArtShop.Controllers
             userProfile.ZipCode = model.ZipCode;
 
             db.SaveChanges();
+            ViewBag.ischanged = true;
 
             return View(model);
         }
@@ -222,13 +223,13 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-
+            ViewBag.ischanged = false;
             if (userProfile.billingInfo != null)
             {
                 ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "iran";
                 return View(userProfile.billingInfo);
             }
-
+         
 
             return View(new BillingInfo());
         }
@@ -252,17 +253,28 @@ namespace ArtShop.Controllers
 
             db.SaveChanges();
             ViewBag.country = CashManager.Instance.Countries.FirstOrDefault(a => a.Key == model.CountryId).Value;
-
+            ViewBag.ischanged = true;
             return View(model);
         }
 
         public ActionResult Orders(int page = 1)
         {
+            int pageSize = 10;
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
-            var data = db.Orders.Include("TransactionDetail").Where(x => x.user_id == userId).OrderByDescending(o => o.BuyDate).Skip(10 * (page - 1)).Take(10);
+            var data = db.Orders.Include("TransactionDetail").Where(x => x.user_id == userId).OrderByDescending(o => o.BuyDate).AsQueryable();
+
+
+            var count = data.Count();
+            page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
+            page = Math.Max(1, page);
+            ViewBag.page = page;
+            ViewBag.count = count;
+            ViewBag.pageSize = pageSize;
+
+            data = data.Skip((page - 1) * pageSize).Take(pageSize);
 
             return View(data);
         }

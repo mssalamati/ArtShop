@@ -69,9 +69,9 @@ else
                                 </div>
                                 @*<label for="art_upload_email" class="form-label optional">Receive Art Uploaded Email</label>*@
                                 @*@Html.LabelFor(m => m.ReceiveNewArtEmail, new { @class = "form-label optional", style = "line-height: 1rem !important;padding-top: 20px" })
-                                <div class="form-div">
-                                    @Html.CheckBoxFor(m => m.ReceiveNewArtEmail, new { @style = "display:inline-block" })
-                                </div>*@
+                                    <div class="form-div">
+                                        @Html.CheckBoxFor(m => m.ReceiveNewArtEmail, new { @style = "display:inline-block" })
+                                    </div>*@
                             </div>
 
                             <div class="small-12 large-3 columns fields">
@@ -116,22 +116,40 @@ else
                         <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
                     </li>
                     @*<li>
-                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                            Tax
-                            Form
-                        </a>
-                    </li>*@
+                            <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                                Tax
+                                Form
+                            </a>
+                        </li>*@
 
                     <li class="purchased">
                         <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/orders">@ProfileRes.Orders</a>
                     </li>
 
 
-           @*         <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>*@
+                    @*         <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>*@
                 </ul>
 
                 <div class="clearfix"></div>
             </div>
         </div>        <div class="clearfix"></div>
     </div>
+
+}
+@section scripts{
+    @if (ViewBag.ischanged)
+    {
+        <script>
+
+            $.toast({
+                heading: '@ShareRes.Success_message',
+                text: '',
+                icon: 'success',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 7000
+            })
+        </script>
+    }
+
 }

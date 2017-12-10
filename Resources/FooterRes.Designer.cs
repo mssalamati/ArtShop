@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to © 2017 Artsicovery. All rights reserved..
+        /// </summary>
+        public static string Copyright_msg {
+            get {
+                return ResourceManager.GetString("Copyright_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copyright Policy.
         /// </summary>
         public static string Copyright_Policy {

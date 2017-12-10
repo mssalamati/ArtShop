@@ -409,4 +409,7 @@
   <data name="Name" xml:space="preserve">
     <value>نام</value>
   </data>
+  <data name="DeleteCollection_msg" xml:space="preserve">
+    <value>آیا از حذف این مجموعه مطمئن هستید؟</value>
+  </data>
 </root>

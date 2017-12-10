@@ -186,4 +186,7 @@
   <data name="Artiscovery" xml:space="preserve">
     <value>Legal</value>
   </data>
+  <data name="Copyright_msg" xml:space="preserve">
+    <value>© 2017 Artsicovery. All rights reserved.</value>
+  </data>
 </root>
