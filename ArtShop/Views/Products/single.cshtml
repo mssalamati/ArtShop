@@ -279,7 +279,7 @@
                     <div id="original" class="row art-detail-original">
 
                         <div class="small-12 medium-6 large-12 columns">
-                            @if (Model.ISOrginalForSale)
+                            @if (Model.ISOrginalForSale && Model.Status != ProductStatus.NotForSale)
                             {
 
                                 <div class="art-detail__value-props" style="@rtldirection">
@@ -494,8 +494,8 @@
                             <div id="artAdminSection">
                                 <menu id="edit-actions" class="inline-list">
 
-                                    <li><a class="btn btn-info" style="padding:5px 10px;font-size:.75rem !important" href="/@CultureHelper.GetCurrentCulture()/products/edit/@Model.Id">@ShareRes.Edit</a>&nbsp;|</li>
-                                    <li><button class="btn btn-danger" style="padding:5px 10px;font-size:.75rem !important" onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
+                                    <li><a class="edit-image btn btn-link"  href="/@CultureHelper.GetCurrentCulture()/products/edit/@Model.Id">@ShareRes.Edit</a>&nbsp;|</li>
+                                    <li><button class="so-delete-art btn btn-link"  onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
                                 </menu>
                             </div>
                         </div>

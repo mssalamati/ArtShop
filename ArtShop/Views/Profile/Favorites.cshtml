@@ -203,7 +203,7 @@
 
                             <div class="list-author clear left" style="@rtlstl">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-                                    <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" class="artist-card" title="Profile page for Terri Dilling" itemprop="url">@item.product.user.FirstName  @item.product.user.LastName</a>
+                                    <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" class="artist-card"  itemprop="url">@item.product.user.FirstName  @item.product.user.LastName</a>
                                 </h5>
                                 <h5 class="user-location ellipsis clear" itemprop="contentLocation">
                                     @if (item.user.country != null)

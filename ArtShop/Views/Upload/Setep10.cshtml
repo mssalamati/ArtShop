@@ -55,12 +55,12 @@
                                             <label style="@rtlstl" for="profit">
                                                 @UploadRes.step10_l2
                                             </label>
-                                            <input type="text" value="$ --" readonly="" id="profit">
+                                            <input type="text" name="profit" value="$ --" readonly="" id="profit">
                                         </div>
                                         <div>
                                             @*<div class="animate-group-0-4 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="shipping-cost">@UploadRes.step10_l3</label><input type="text" value="$ --" readonly="" id="shipping-cost"></div>*@
                                             <div class="animate-group-0-5 pricing__separator"></div>
-                                            <div class="animate-group-0-6 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="allin">@UploadRes.step10_l4</label><input type="text" class="dark" value="$ --" readonly="" id="allin"></div>
+                                            <div class="animate-group-0-6 form-group form-group--inline" style="@rtldirection"><label style="@rtlstl" for="allin">@UploadRes.step10_l4</label><input type="text" name="total" class="dark" value="$ --" readonly="" id="total"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -86,15 +86,15 @@
 
 
 <script>
-  
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-      
- 
+
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+
+
 
     function callbackpage() {
         $.ajax({
             type: 'get',
-            url: '/upload/Setep9',
+            url: '/@CultureHelper.GetCurrentCulture()/upload/Setep9',
             cache: false,
             contentType: false,
             processData: false,
@@ -108,8 +108,11 @@
     }
 
     function OnAjaxComplete(arg) {
-        if (arg.result == 1313) {
-            //location.href = '/Products/single/' + arg.id;
+        if (arg.result == "artworks") {
+            location.href = '/@CultureHelper.GetCurrentCulture()/profile/artworks';
+        }
+        else if (arg.result == "id") {
+            location.href = '/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid';
         }
     }
 
@@ -121,5 +124,12 @@
         }
     });
 
+    $('#price').change(function () {
+
+        var price = $(this).val();
+        var profit = price * .9;
+        $('#profit').val(profit + '$');
+        $('#total').val(price + '$');
+    });
 
 </script>

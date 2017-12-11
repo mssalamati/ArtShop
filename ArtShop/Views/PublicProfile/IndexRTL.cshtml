@@ -21,7 +21,7 @@
             </div>
             <div class="small-7 medium-6 large-8 columns" >
                 <h1 class="ellipsis" style="float:right">
-                    <i class="icn-artist-location flag-@(Model.country == null ? "" : Model.country.Code) so-quick-tip" oldtitle="Iran" style="float:right"></i>
+                    <i class="icn-artist-location flag-@(Model.country == null ? "" : Model.country.Code.ToLower()) so-quick-tip" oldtitle="Iran" style="float:right"></i>
                     <span style="margin-right:8px" itemprop="name">@Model.fullName</span>
                 </h1>
             </div>

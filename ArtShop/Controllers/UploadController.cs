@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Data.Entity.Validation;
+using ArtShop.Helper;
 
 namespace ArtShop.Controllers
 {
@@ -48,7 +49,7 @@ namespace ArtShop.Controllers
             HttpResponseMessage response = await client.PostAsJsonAsync("upload/resize", model);
             response.EnsureSuccessStatusCode();
             var res = await response.Content.ReadAsAsync<ISResizeViewModel>();
-            
+
             return res;
         }
 
@@ -345,7 +346,7 @@ namespace ArtShop.Controllers
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
             float current = 7;
 
-            if (string.IsNullOrEmpty(model.Title) )
+            if (string.IsNullOrEmpty(model.Title))
             {
                 ViewBag.error = Resources.UploadRes.titleNull_error;
                 ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
@@ -536,12 +537,21 @@ namespace ArtShop.Controllers
         public ActionResult Setep10(UploadViewModel.step10 model)
         {
             Session["price"] = (int)model.Price;
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
 
             int id = 0;
             var error = uploadnow(out id);
             if (error == string.Empty)
             {
-                return RedirectToActionPermanent("Stepfinish", new { id = id });
+                if (!profile.isIDConfirmed && (bool)Session["gotoConfirmPage"])
+                    return Json(new { result = "id" }, JsonRequestBehavior.AllowGet);
+                else
+                    return Json(new { result = "artworks" }, JsonRequestBehavior.AllowGet);
+
+
+                //return RedirectToActionPermanent("Stepfinish", new { id = id });
             }
             else
             {
@@ -551,7 +561,7 @@ namespace ArtShop.Controllers
         }
 
         public ActionResult Stepfinish(int id)
-        { 
+        {
             return PartialView();
         }
 
@@ -560,7 +570,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
-            if (!profile.isIDConfirmed)
+            if (!profile.isIDConfirmed && (bool)Session["isOrginal"])
             {
                 Session["gotoConfirmPage"] = true;
                 Session["isOrginal"] = false;

@@ -17,6 +17,26 @@ namespace ArtShop
             routes.MapMvcAttributeRoutes();
             routes.Canonicalize().NoWww().Lowercase().NoTrailingSlash();
 
+            routes.MapRoute(
+            "Robots.txt",
+            "robots.txt",
+                new
+                {
+                    controller = "Home",
+                    action = "RobotsText"
+                }
+            );
+
+            routes.MapRoute(
+            "Sitemap.xml",
+            "sitemap.xml",
+                new
+                {
+                    controller = "Home",
+                    action = "SitemapXml"
+                }
+            );
+
             routes.Add("ProductDetails", new SeoFriendlyRoute("{culture}/Artwork/{details}/{id}",
             new RouteValueDictionary(new { controller = "Products", culture = string.Empty, action = "single" }),
             new MvcRouteHandler()));

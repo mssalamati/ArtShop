@@ -78,7 +78,7 @@
                 <li class="art-item fast-fade ">
                     <div class="list-art-image" itemscope="" itemtype="http://schema.org/ImageObject">
                         <div class="list-art-image-wrapper">
-                            <a href="/@CultureHelper.GetCurrentCulture()/products/single/@item.Id" itemprop="url">
+                            <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" itemprop="url">
                                 <img src="@item.photo.Path" itemprop="contentURL">
                             </a>
 

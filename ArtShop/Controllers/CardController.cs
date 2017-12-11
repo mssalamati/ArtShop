@@ -403,7 +403,11 @@ namespace ArtShop.Controllers
                             foreach (var item in order.OrderDetails)
                             {
                                 item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
-                                item.Product.AllEntity--;
+                                item.Product.avaible--;
+                                if (item.Product.avaible == 0)
+                                {
+                                    item.Product.Status = ProductStatus.Sold;
+                                }
                             }
                             db.SaveChanges();
                             SendOrderDetail(order);
@@ -452,7 +456,11 @@ namespace ArtShop.Controllers
             foreach (var item in order.OrderDetails)
             {
                 item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
-                item.Product.AllEntity--;
+                item.Product.avaible--;
+                if (item.Product.avaible == 0)
+                {
+                    item.Product.Status = ProductStatus.Sold;
+                }
             }
             db.SaveChanges();
             SendOrderDetail(order);

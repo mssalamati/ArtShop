@@ -288,7 +288,10 @@ namespace ArtShop.Controllers
 
             stringBuilder.AppendLine("user-agent: *");
             stringBuilder.AppendLine("disallow: /error/");
-            stringBuilder.AppendLine("allow: /error/foo");
+            stringBuilder.AppendLine("Disallow: /resources");
+            stringBuilder.AppendLine("Disallow: /Account/");
+            stringBuilder.AppendLine("Disallow: /upload/");
+            stringBuilder.AppendLine("allow: /fa/");
             stringBuilder.Append("sitemap: ");
             stringBuilder.AppendLine(this.Url.RouteUrl("GetSitemapXml", null, this.Request.Url.Scheme).TrimEnd('/'));
 
@@ -298,7 +301,7 @@ namespace ArtShop.Controllers
         [Route("sitemap.xml", Name = "GetSitemapXml"), OutputCache(Duration = 86400)]
         public ContentResult SitemapXml()
         {
-            // I'll talk about this in a later blog post.
+            
             return null;
         }
     }

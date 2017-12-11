@@ -142,7 +142,14 @@ if (current == selected)
                             }
                             else
                             {
-                                <img src="/@item.PhotoPath">
+                                if (item.PhotoPath.Contains("https"))
+                                {
+                                    <img src="@item.PhotoPath" itemprop="image">
+                                }
+                                else
+                                {
+                                    <img src="/@item.PhotoPath"  itemprop="image">
+                                }
                             }
                         </a>
                     </div>
