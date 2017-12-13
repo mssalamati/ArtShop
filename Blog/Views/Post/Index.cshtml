@@ -121,7 +121,7 @@ else
                         <h1 style="text-align:center !important;@dir">@Model.Current().Title</h1>
 
                         <div class="date-info hidden-lg">
-                            <p><strong>@Model.PostedOn.ToString("dd MMM yyyy")</strong>Posted by <strong>@Model.Author</strong></p>
+                            <p><strong>@Model.PostedOn.ToString("dd MMM yyyy")</strong> @Resources.ShareRes.Posted_by <strong>@Model.Author</strong></p>
                         </div><!-- .date-info -->
                         @Html.Raw(Model.Current().Description)
                     </article>
@@ -130,6 +130,7 @@ else
 
                     <div class="row hidden-lg">
                         <div class="about-info">
+
                             @if (Model.SubCategory != null)
                             {
                                 <h3>@Resources.ShareRes.About @Model.SubCategory.Current().Name</h3>

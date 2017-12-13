@@ -198,9 +198,9 @@ namespace ArtShop.Controllers
             bool mine = profile.Products.Any(x => x.Id == model.Id);
             if (!mine)
                 return HttpNotFound();
-            if (string.IsNullOrEmpty(model.Title) || model.Title.Length < 5)
+            if (string.IsNullOrEmpty(model.Title) || model.Title.Length < 3)
             {
-                ModelState.AddModelError(string.Empty, "Title Length can not be less than 5 character");
+                ModelState.AddModelError(string.Empty, "Title Length can not be less than 3 character");
                 if (model.productshippingDetail == null)
                     model.productshippingDetail = new ProductshippingDetail();
                 return View(model);

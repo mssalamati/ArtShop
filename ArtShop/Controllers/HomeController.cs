@@ -14,11 +14,17 @@ using Microsoft.AspNet.Identity;
 using ArtShop.Util;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
+using SimpleMvcSitemap;
+using SimpleMvcSitemap.Translations;
+using SimpleMvcSitemap.Images;
 
 namespace ArtShop.Controllers
 {
     public class HomeController : BaseController
     {
+
+
         public ActionResult Index()
         {
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
@@ -65,7 +71,7 @@ namespace ArtShop.Controllers
             {
                 var p1 = db.Products.Find(int.Parse(model.param1));
                 ViewBag.pic1 = p1.Sqphoto.Path;
-                ViewBag.url1 = CultureHelper.GetCurrentCulture()+ "/artwork/" + p1.category.Current().Name + "/" + p1.GenerateSlug();
+                ViewBag.url1 = CultureHelper.GetCurrentCulture() + "/artwork/" + p1.category.Current().Name + "/" + p1.GenerateSlug();
 
                 var p2 = db.Products.Find(int.Parse(model.param2));
                 ViewBag.pic2 = p2.Sqphoto.Path;
@@ -294,15 +300,218 @@ namespace ArtShop.Controllers
             stringBuilder.AppendLine("allow: /fa/");
             stringBuilder.Append("sitemap: ");
             stringBuilder.AppendLine(this.Url.RouteUrl("GetSitemapXml", null, this.Request.Url.Scheme).TrimEnd('/'));
+            stringBuilder.AppendLine(this.Url.RouteUrl("GetSitemapfaXml", null, this.Request.Url.Scheme).TrimEnd('/'));
 
             return this.Content(stringBuilder.ToString(), "text/plain", Encoding.UTF8);
         }
 
         [Route("sitemap.xml", Name = "GetSitemapXml"), OutputCache(Duration = 86400)]
-        public ContentResult SitemapXml()
+        public ActionResult SitemapXml()
         {
-            
-            return null;
+
+            List<SitemapNode> nodes = new List<SitemapNode>
+        {
+            new SitemapNode(Url.Action("Index", "Home", new { Culture ="en-us" }))
+        {
+            ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        },
+
+
+       new SitemapNode(Url.Action("about", "pages", new { Culture ="en-us" }))
+    {
+        ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+                   new SitemapNode(Url.Action("privacypolicy", "pages", new { Culture ="en-us" }))
+    {
+  ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+       new SitemapNode(Url.Action("terms", "pages", new { Culture ="en-us" }))
+    {
+  ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+        new SitemapNode(Url.Action("copyrightpolicy", "pages", new { Culture ="en-us" }))
+    {
+    ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+         new SitemapNode(Url.Action("contactus", "pages", new { Culture ="en-us" }))
+    {
+    ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        },
+                  new SitemapNode(Url.Action("whysell", "pages", new { Culture ="en-us" }))
+    {
+       ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        },
+                  new SitemapNode(Url.Action("category", "support", new { Culture ="en-us" }))
+    {
+    ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
         }
+
+        };
+
+            foreach (var item in db.SupportCategories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("Category", "Support", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+
+            foreach (var item in db.SupportSubCategories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("SubCategory", "Support", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            foreach (var item in db.Articles.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("Article", "Support", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+            
+            foreach (var item in db.Products.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action(item.category.Current().Name, "Artwork", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+
+        }
+
+        [Route("sitemapfa.xml", Name = "GetSitemapfaXml"), OutputCache(Duration = 86400)]
+        public ActionResult SitemapfaXml()
+        {
+
+            List<SitemapNode> nodes = new List<SitemapNode>
+        {
+            new SitemapNode(Url.Action("Index", "Home", new { Culture ="fa" }))
+        {
+            ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        },
+
+
+       new SitemapNode(Url.Action("about", "pages", new { Culture ="fa" }))
+    {
+        ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+                   new SitemapNode(Url.Action("privacypolicy", "pages", new { Culture ="fa" }))
+    {
+  ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+       new SitemapNode(Url.Action("terms", "pages", new { Culture ="fa" }))
+    {
+  ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+        new SitemapNode(Url.Action("copyrightpolicy", "pages", new { Culture ="fa" }))
+    {
+    ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+    },
+         new SitemapNode(Url.Action("contactus", "pages", new { Culture ="fa" }))
+    {
+    ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        },
+                  new SitemapNode(Url.Action("whysell", "pages", new { Culture ="fa" }))
+    {
+       ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        },
+                  new SitemapNode(Url.Action("category", "support", new { Culture ="fa" }))
+    {
+    ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        }
+
+        };
+
+            foreach (var item in db.SupportCategories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("Category", "Support", new { id = @item.GenerateSlug(), Culture = "fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+
+            foreach (var item in db.SupportSubCategories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("SubCategory", "Support", new { id = @item.GenerateSlug(),Culture ="fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            foreach (var item in db.Articles.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("Article", "Support", new { id = @item.GenerateSlug(), Culture = "fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            foreach (var item in db.Products.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action(item.category.Current().Name, "Artwork", new { id = @item.GenerateSlug(), Culture = "fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+        }
+
+
     }
 }
