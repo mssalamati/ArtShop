@@ -103,12 +103,28 @@ namespace MobileApi.Controllers
                     x.Translations.FirstOrDefault(t => t.languageId == language).Name : string.Empty,
                 }),
             };
-            var packages = new List<object>()
+
+            List<object> packages = new List<object>();
+
+            if (language.Contains("en"))
             {
-                new { id = (int)Productpackage.box   ,name = "box" } ,
-                new { id = (int)Productpackage.crate ,name = "crate" } ,
-                new { id = (int)Productpackage.tube  ,name = "tube" } ,
-            };
+                packages = new List<object>()
+                {
+                    new { id = (int)Productpackage.box   ,name = "box" } ,
+                    new { id = (int)Productpackage.crate ,name = "crate" } ,
+                    new { id = (int)Productpackage.tube  ,name = "tube" } ,
+                };
+            }
+            else
+            {
+                packages = new List<object>()
+                {
+                    new { id = (int)Productpackage.box   ,name = "جعبه" } ,
+                    new { id = (int)Productpackage.crate ,name = "صندوقچه" } ,
+                    new { id = (int)Productpackage.tube  ,name = "رول" } ,
+                };
+            }
+
             var PaymentsMethods = new List<object>()
             {
                 new { id = (int)PaymentMethod.paypall  , name = "paypall" , photoPath = "https://artiscovery.com/Content/Images/PayPal.png"} ,

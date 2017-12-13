@@ -183,8 +183,8 @@ namespace ArtShop.Controllers
             bool mine = profile.Products.Any(x => x.Id == id);
             if (!mine)
                 return HttpNotFound();
-            if (p.productshippingDetail == null)
-                p.productshippingDetail = new ProductshippingDetail();
+            if (profile.billingInfo == null)
+                profile.billingInfo = new BillingInfo();
             return View(p);
         }
         [Authorize]
@@ -214,19 +214,19 @@ namespace ArtShop.Controllers
             p.Depth = model.Depth;
             if (model.Status == ProductStatus.forSale)
             {
-                if (p.productshippingDetail == null)
-                    p.productshippingDetail = new ProductshippingDetail();
-                p.productshippingDetail.Street = model.productshippingDetail.Street;
-                p.productshippingDetail.City = model.productshippingDetail.City;
-                if (model.productshippingDetail.CountryId != 0)
-                    p.productshippingDetail.CountryId = model.productshippingDetail.CountryId;
-                p.productshippingDetail.PhoneNumber = model.productshippingDetail.PhoneNumber;
-                p.productshippingDetail.Region = model.productshippingDetail.Region;
-                p.productshippingDetail.ZipCode = model.productshippingDetail.ZipCode;
+                if (p.user.billingInfo == null)
+                    p.user.billingInfo = new BillingInfo();
+                p.user.billingInfo.Street = model.user.billingInfo.Street;
+                p.user.billingInfo.City = model.user.billingInfo.City;
+                if (model.user.billingInfo.CountryId != 0)
+                    p.user.billingInfo.CountryId = model.user.billingInfo.CountryId;
+                p.user.billingInfo.PhoneNumber = model.user.billingInfo.PhoneNumber;
+                p.user.billingInfo.Region = model.user.billingInfo.Region;
+                p.user.billingInfo.ZipCode = model.user.billingInfo.ZipCode;
             }
             db.SaveChanges();
-            if (p.productshippingDetail == null)
-                p.productshippingDetail = new ProductshippingDetail();
+            if (p.user.billingInfo == null)
+                p.user.billingInfo = new BillingInfo();
             return View(p);
         }
 

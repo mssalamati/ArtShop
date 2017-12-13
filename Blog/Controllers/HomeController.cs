@@ -1,9 +1,11 @@
 ﻿using Blog.Areas.Admin.Controllers;
 using Blog.Extentions;
+using SimpleMvcSitemap;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -84,6 +86,122 @@ namespace Blog.Controllers
             RestSharp.IRestResponse response = client.Execute(request);
 
             return Content("done");
+        }
+        [Route("robots.txt", Name = "GetRobotsText"), OutputCache(Duration = 86400)]
+        public ContentResult RobotsText()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("user-agent: *");
+            stringBuilder.AppendLine("disallow: /error/");
+            stringBuilder.AppendLine("Disallow: /resources");
+            stringBuilder.AppendLine("Disallow: /Account/");
+            stringBuilder.AppendLine("Disallow: /upload/");
+            stringBuilder.AppendLine("allow: /fa/");
+            stringBuilder.Append("sitemap: ");
+            stringBuilder.AppendLine(this.Url.RouteUrl("GetSitemapXml", null, this.Request.Url.Scheme).TrimEnd('/'));
+            stringBuilder.AppendLine(this.Url.RouteUrl("GetSitemapfaXml", null, this.Request.Url.Scheme).TrimEnd('/'));
+
+            return this.Content(stringBuilder.ToString(), "text/plain", Encoding.UTF8);
+        }
+
+        [Route("sitemap.xml", Name = "GetSitemapXml"), OutputCache(Duration = 86400)]
+        public ActionResult SitemapXml()
+        {
+
+            List<SitemapNode> nodes = new List<SitemapNode>
+        {
+            new SitemapNode(Url.Action("Index", "Home", new { Culture ="en-us" }))
+        {
+            ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        }
+
+        };
+
+            foreach (var item in db.Categories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("Index", "Category", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+
+            foreach (var item in db.SubCategories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("SubCategory", "Category", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            foreach (var item in db.Posts.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug(), Culture = "en-us" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+
+        }
+
+        [Route("sitemapfa.xml", Name = "GetSitemapfaXml"), OutputCache(Duration = 86400)]
+        public ActionResult SitemapfaXml()
+        {
+
+            List<SitemapNode> nodes = new List<SitemapNode>
+        {
+            new SitemapNode(Url.Action("Index", "Home", new { Culture ="fa" }))
+        {
+            ChangeFrequency = ChangeFrequency.Weekly,
+            LastModificationDate = DateTime.UtcNow,
+            Priority = 0.8M
+        }
+
+        };
+
+            foreach (var item in db.Categories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("Index", "Category", new { id = @item.GenerateSlug(), Culture = "fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+
+            foreach (var item in db.SubCategories.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action("SubCategory", "Category", new { id = @item.GenerateSlug(), Culture = "fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            foreach (var item in db.Posts.ToList())
+            {
+                nodes.Add(new SitemapNode(@Url.Action(@item.Category.Name, "Post", new { id = @item.GenerateSlug(), Culture = "fa" }))
+                {
+                    ChangeFrequency = ChangeFrequency.Weekly,
+                    LastModificationDate = DateTime.UtcNow,
+                    Priority = 0.8M
+                });
+            }
+
+            return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
         }
     }
 }

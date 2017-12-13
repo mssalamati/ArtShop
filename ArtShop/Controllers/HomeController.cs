@@ -23,8 +23,6 @@ namespace ArtShop.Controllers
 {
     public class HomeController : BaseController
     {
-
-
         public ActionResult Index()
         {
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
@@ -47,13 +45,6 @@ namespace ArtShop.Controllers
             }
 
 
-            //foreach (var item in db.Photos)
-            //{
-            //    item.Path = item.Path.Replace("http://", "https://");
-            //}
-
-
-            //db.SaveChanges();
 
             return View(model);
         }

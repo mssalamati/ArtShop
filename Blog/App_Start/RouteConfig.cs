@@ -13,6 +13,7 @@ namespace Blog
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //routes.MapMvcAttributeRoutes();
 
             routes.Add("MoreCategory", new SeoFriendlyRoute("{culture}/Category/More/{id}",
       new RouteValueDictionary(new { controller = "Category", action = "More", culture = string.Empty, id = UrlParameter.Optional }),
@@ -55,7 +56,7 @@ namespace Blog
             );
 
             //routes.MapRoute(
-            //           name: "Default",
+            //           name: "DefaultBase",
             //           url: "{controller}/{action}/{id}",
             //           defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
             //         namespaces: new[] { "Blog.Controllers" }

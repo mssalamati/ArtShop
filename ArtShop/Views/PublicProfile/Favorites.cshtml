@@ -97,7 +97,7 @@
 
                         </div>
                         <div class="item-controls">
-                            @if (item.product.ISOrginalForSale && item.product.Status == ProductStatus.forSale)
+                            @if (item.product.ISOrginalForSale || item.product.Status == ProductStatus.forSale)
                             {
                                 <a href="/@CultureHelper.GetCurrentCulture()/Card/AddToCart?id=@item.product.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="@ShareRes.Add_to_cart">
                                     <i class="fa fa-shopping-cart" style="color:white"></i>
@@ -138,7 +138,7 @@
                                 <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
                                     <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })" class="artist-card" title="Profile page for @item.user.FirstName @item.user.LastName" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
                                 </h5>
-                                @if (item.product.ISOrginalForSale)
+                                @if (item.product.ISOrginalForSale || item.product.Status == ProductStatus.forSale)
                                 {
                                     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                         <!-- internationalization testing -->

@@ -383,7 +383,11 @@ namespace ArtShop.Controllers
                             return View("ExternalLoginFailure");
                         }
 
-                        var userDetail = new UserProfile { FirstName = loginInfo.ExternalIdentity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ')[1]) ? null : loginInfo.ExternalIdentity.Name.Split(' ')[1], profileType = ProfileType.Collector,MailingList= true };
+
+                        var name = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ').FirstOrDefault()) ? null : loginInfo.ExternalIdentity.Name.Split(' ').FirstOrDefault();
+                        var lastname = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ').Count() > 1 ? loginInfo.ExternalIdentity.Name.Split(' ')[1] : null) ? null : loginInfo.ExternalIdentity.Name.Split(' ').LastOrDefault();
+
+                        var userDetail = new UserProfile { FirstName = name, LastName = lastname, profileType = ProfileType.Collector, MailingList = true };
                         var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail };
                         var registerResult = await UserManager.CreateAsync(user);
                         if (registerResult.Succeeded)

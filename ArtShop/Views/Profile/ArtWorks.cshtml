@@ -101,6 +101,15 @@
                             </div>
 
                             <div class="list-art-price">
+                                @if (item.ISOrginalForSale || item.Status == ProductStatus.forSale)
+                                {
+                                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                        <!-- internationalization testing -->
+                                        <div itemprop="price">
+                                            $@item.Price
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -123,13 +132,13 @@
                 <ul class="pull-right">
                     @if (havePrev)
                     {
-                        <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@(page-1)'" href="/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                        <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@(page-1)'" href="/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@(page-1)"><i class="fa fa-angle-left"></i></a></li>
                     }
 
                     @for (int i = Math.Max(1, page - 2); i < page; i++)
                     {
                         <li>
-                            <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@i'" href="/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@i">@i</a>
+                            <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@i'" href="/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@i">@i</a>
                         </li>
                     }
 
@@ -140,14 +149,14 @@
                     @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
                     {
                         <li>
-                            <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@i'" href="/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@i">@i</a>
+                            <a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@i'" href="/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@i">@i</a>
                         </li>
                     }
 
 
                     @if (haveNext)
                     {
-                        <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@(page+1)'" href="/@CultureHelper.GetCurrentCulture()/ArtWorks?page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                        <li><a onclick="document.location.href = '/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@(page+1)'" href="/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?page=@(page+1)"><i class="fa fa-angle-right"></i></a></li>
                     }
 
                     @*

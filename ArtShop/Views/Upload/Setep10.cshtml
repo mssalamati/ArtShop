@@ -119,6 +119,11 @@
 
     $(window).keydown(function (event) {
         if (event.keyCode == 13) {
+
+            var price = $('#price').val();
+            var profit = price * .9;
+            $('#profit').val(profit + '$');
+            $('#total').val(price + '$');
             event.preventDefault();
             return false;
         }

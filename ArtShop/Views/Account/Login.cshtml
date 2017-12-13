@@ -110,7 +110,7 @@
                                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <a class="authentication__sign-in__forgot" href="/Account/ForgotPassword">@ShareRes.Forgot_password</a><br>
+                                    <a class="authentication__sign-in__forgot" href="/@CultureHelper.GetCurrentCulture()/Account/ForgotPassword">@ShareRes.Forgot_password</a><br>
                                     <button class="btn btn--green btn--block" type="submit">@ShareRes.SignIn</button>
                                     <br />
                                     @Html.ValidationSummary("", new { @class = "text-danger" })

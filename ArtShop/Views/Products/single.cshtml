@@ -245,11 +245,11 @@
                                 @{
                                     if (IsRighToLeft)
                                     {
-                                        <span>@SearchRes.Size</span><span> (عمق * عرض * طول)&nbsp; <br /></span> <span>@Model.Depth </span><span>*</span><span> @Model.Width </span> <span>*</span> <span> @Model.Height </span> @UploadRes.inches
+                                        <span>@SearchRes.Size</span><span> (عمق * عرض * ارتفاع)&nbsp; <br /></span> <span>@Model.Depth </span><span>*</span><span> @Model.Width </span> <span>*</span> <span> @Model.Height </span><span> (@UploadRes.inches)</span>
                                     }
                                     else
                                     {
-                                        <span>@SearchRes.Size: </span><span>@Model.Height  H</span><span> x</span><span> @Model.Width  W</span> <span>x</span> <span> @Model.Depth </span> @UploadRes.inches
+                                        <span>@SearchRes.Size: </span><span>@Model.Height  H</span><span> x</span><span> @Model.Width  W</span> <span>x</span> <span> @Model.Depth </span><span> (@UploadRes.inches)</span>
                                     }
                                 }
                             </p>
@@ -279,7 +279,7 @@
                     <div id="original" class="row art-detail-original">
 
                         <div class="small-12 medium-6 large-12 columns">
-                            @if (Model.ISOrginalForSale && Model.Status != ProductStatus.NotForSale)
+                            @if (Model.ISOrginalForSale || Model.Status != ProductStatus.NotForSale)
                             {
 
                                 <div class="art-detail__value-props" style="@rtldirection">
