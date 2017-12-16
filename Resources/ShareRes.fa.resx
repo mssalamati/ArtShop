@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>درباره</value>
+    <value>درباره ما</value>
   </data>
   <data name="AccountInformation" xml:space="preserve">
     <value>حساب کاربری</value>
@@ -337,7 +337,7 @@
     <value>تحویل در</value>
   </data>
   <data name="Tube" xml:space="preserve">
-    <value>لوله</value>
+    <value>رول</value>
   </data>
   <data name="Remove_from_favorites" xml:space="preserve">
     <value>حذف از علاقه مندی ها</value>
@@ -398,5 +398,8 @@
   </data>
   <data name="Success_message" xml:space="preserve">
     <value>با موفقیت انجام شد</value>
+  </data>
+  <data name="Register_confirmationSent" xml:space="preserve">
+    <value>ثبت نام با موفقیت انجام شد و ایمیل تایید ارسال شد</value>
   </data>
 </root>

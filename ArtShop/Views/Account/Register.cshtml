@@ -35,13 +35,13 @@
     @if (IsRighToLeft)
     {
         <style>
-           @@font-face {
+            @@font-face {
                 font-family: 'YJ';
                 src: url('/Content/font/IRANSans.ttf');
             }
 
             html, tr, td, ul, span, h1, h2, h3, em, p, a, body, html, button, b, small, table, header, input, select, option, label, li, ol, div {
-                font-family: yj,"Helvetica",sans-serif  !important;
+                font-family: yj,"Helvetica",sans-serif !important;
             }
         </style>
     }
@@ -131,13 +131,13 @@
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
                                     <strong>
                                         <!-- react-text: 40 -->@ShareRes.Already_have <!-- /react-text -->
-                                        <a href="/Account/Login">@ShareRes.SignIn</a>
+                                        <a href="/@CultureHelper.GetCurrentCulture()/Account/Login">@ShareRes.SignIn</a>
                                     </strong>
 
                                 }
                             </div>
 
-                            <div class="authentication__section-footer animate-group-1-12 authentication__section-footer--light" style="@rtlstl"><!-- react-text: 43 -->@ShareRes.Register_des_p1 <!-- /react-text --><a href="/pages/terms">@ShareRes.Terms_use</a><!-- react-text: 45 --> @ShareRes.And&nbsp;<!-- /react-text --><a href="/pages/privacypolicy">@ShareRes.Privacy_policy</a><!-- react-text: 47 --> @ShareRes.Register_des_p2<!-- /react-text --></div><div class="authentication__loader"></div>
+                            <div class="authentication__section-footer animate-group-1-12 authentication__section-footer--light" style="@rtlstl"><!-- react-text: 43 -->@ShareRes.Register_des_p1 <!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/terms">@ShareRes.Terms_use</a><!-- react-text: 45 --> @ShareRes.And&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy">@ShareRes.Privacy_policy</a><!-- react-text: 47 --> @ShareRes.Register_des_p2<!-- /react-text --></div><div class="authentication__loader"></div>
                         </div>
                     </div>
                 </div>
@@ -145,23 +145,10 @@
         </div>
     </div>
 
-    @*<script>var Modernizr = false;</script>*@
-
-    @*    <script src="~/Content/js/dist/foundation/foundation5-5.min4baf.js?version=1468284677"></script>*@
-
-    @*<script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>*@
-
-    @* <div id="fb-root"></div>*@
-    @*<script type="text/javascript">
-            Saatchi.NewDesktopNavigation.init();
-            Saatchi.NewMobileNavigation.init();
-        </script>*@
-    @*@Scripts.Render("~/bundles/jqueryval")*@
     <script src="~/Content/js/dist/commons-b9e9ed3b8b77df9e315c.js"></script>
-    @*<script src="~/Content/js/dist/authentication-a8d44a3b2cd84d4b45f9.js"></script>*@
+
 
     <script>
-
         function ChangeState(id) {
             if (id == 1) {
                 $('#artistButton').removeClass('btn--selected');
@@ -183,43 +170,3 @@
 
 </body>
 </html>
-
-
-
-
-@*<h2>@ViewBag.Title.</h2>
-
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
-            </div>
-        </div>
-    }
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@

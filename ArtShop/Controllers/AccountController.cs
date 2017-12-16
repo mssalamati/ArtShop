@@ -76,15 +76,15 @@ namespace ArtShop.Controllers
                 return View(model);
             }
 
-            //var user = await UserManager.FindByNameAsync(model.Email);
-            //if (user != null)
-            //{
-            //    if (!await UserManager.IsEmailConfirmedAsync(user.Id))
-            //    {
-            //        ViewBag.errorMessage = "You must have a confirmed email to log on.";
-            //        return View("Error");
-            //    }
-            //}
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user != null)
+            {
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {              
+                    ModelState.AddModelError("", "You must have a confirmed email to log on.");
+                    return View(model);
+                }
+            }
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
@@ -150,6 +150,7 @@ namespace ArtShop.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+   
             return View();
         }
 
@@ -165,18 +166,21 @@ namespace ArtShop.Controllers
                 var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = model.profileType, MailingList = true };
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, userDetail = userDetail };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     AddSubscriber(user.Email);
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToActionPermanent("Index", "Home");
+                    Session["isSucceed"] = true;
+
+                    return RedirectToActionPermanent("login", "account");
                 }
                 AddErrors(result);
             }
@@ -388,7 +392,7 @@ namespace ArtShop.Controllers
                         var lastname = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ').Count() > 1 ? loginInfo.ExternalIdentity.Name.Split(' ')[1] : null) ? null : loginInfo.ExternalIdentity.Name.Split(' ').LastOrDefault();
 
                         var userDetail = new UserProfile { FirstName = name, LastName = lastname, profileType = ProfileType.Collector, MailingList = true };
-                        var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail };
+                        var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail,EmailConfirmed = true };
                         var registerResult = await UserManager.CreateAsync(user);
                         if (registerResult.Succeeded)
                         {

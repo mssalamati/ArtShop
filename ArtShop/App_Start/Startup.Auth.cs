@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using ArtShop.Models;
 using DataLayer;
+using ArtShop.Helper;
 
 namespace ArtShop
 {
@@ -26,7 +27,7 @@ namespace ArtShop
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/" + CultureHelper.GetCurrentCulture() + "/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.

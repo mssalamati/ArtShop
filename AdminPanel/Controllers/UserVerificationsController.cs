@@ -32,6 +32,16 @@ namespace AdminPanel.Controllers
             var obj = db.UserProfiles.Find(id);
             obj.isIDConfirmed = confirm;
             obj.IdConfirmedBy = User.Identity.Name;
+
+            if (confirm)
+            {
+                var artworks = obj.Products.Where(a => a.Status != ProductStatus.Sold && a.avaible >= 1);
+                foreach (var item in artworks)
+                {
+                    item.Status = ProductStatus.forSale;
+                }
+            }
+            
             db.SaveChanges();
             SendEmail(obj);
             return RedirectToAction("detail", new { id = id });

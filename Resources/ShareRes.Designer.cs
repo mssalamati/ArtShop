@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to About us.
         /// </summary>
         public static string About {
             get {
@@ -615,6 +615,15 @@ namespace Resources {
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank You! Please check your email to activate your account..
+        /// </summary>
+        public static string Register_confirmationSent {
+            get {
+                return ResourceManager.GetString("Register_confirmationSent", resourceCulture);
             }
         }
         

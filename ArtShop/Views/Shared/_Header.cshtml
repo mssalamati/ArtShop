@@ -140,7 +140,10 @@
                 </div>
                 <div class="desktop-navigation__context-bar__right">
                     @Html.Partial("_LoginPartial")
-
+                    <a data-gtm-event="nav header" href="/@CultureHelper.GetCurrentCulture()/checkout" class="navigation__cart-link">
+                        <div class="navigation__cart-link__count">@ViewBag.card</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 21"><g fill="none" fill-rule="evenodd" stroke="#ffffff" transform="translate(0 1)"><path stroke="#ffffff" stroke-linecap="round" d="M0 .478h4.667l3.734 13.077H23.35l2.804-8.635"></path><circle cx="21.25" cy="17.669" r="1.635" fill="#333"></circle><circle cx="10.232" cy="17.924" r="1.635" fill="#333"></circle></g></svg>
+                    </a>
                 
 
                 </div>

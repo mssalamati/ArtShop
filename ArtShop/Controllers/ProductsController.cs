@@ -35,7 +35,7 @@ namespace ArtShop.Controllers
             var price_cash = manager.Pricethresholds.SingleOrDefault(x => x.Id == price);
             ViewBag.priceName = price_cash != null ? price_cash.Name : Resources.SearchRes.All_Prices;
             ViewBag.priceId = price;
-            
+
             var p = db.Products.OrderByDescending(x => x.CreateDate).AsQueryable();
             p = p.Where(x => category == 0 || x.categoryId == category).AsQueryable();
             p = p.Where(x => style == 0 || x.Styles.FirstOrDefault(y => y.Id == style) != null);
@@ -206,7 +206,11 @@ namespace ArtShop.Controllers
                 return View(model);
             }
             p.Title = model.Title;
-            p.Status = model.Status;
+            if (profile.isIDConfirmed)
+                p.Status = model.Status;
+            else
+                p.Status = ProductStatus.NotForSale;
+
             //p.ISOrginalForSale = model.Status == ProductStatus.forSale;
             p.TotalWeight = model.TotalWeight;
             p.Height = model.Height;
