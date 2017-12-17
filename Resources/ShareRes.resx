@@ -402,4 +402,85 @@
   <data name="Account_confirmed" xml:space="preserve">
     <value>Your account successfuly activated</value>
   </data>
+  <data name="FAQ_ArtistName" xml:space="preserve">
+    <value>Artist Name</value>
+  </data>
+  <data name="FAQ_ArtworkTitle" xml:space="preserve">
+    <value>Artwork Title</value>
+  </data>
+  <data name="FAQ_Attachment" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="FAQ_Captcha" xml:space="preserve">
+    <value>Please verify that you are human</value>
+  </data>
+  <data name="FAQ_description" xml:space="preserve">
+    <value>Please provide details of your request below.</value>
+  </data>
+  <data name="FAQ_email" xml:space="preserve">
+    <value>Your email address</value>
+  </data>
+  <data name="FAQ_Name" xml:space="preserve">
+    <value>Your Name</value>
+  </data>
+  <data name="FAQ_PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="FAQ_question" xml:space="preserve">
+    <value>Please select your question</value>
+  </data>
+  <data name="FAQ_subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="FAQ_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="FAQ_Title" xml:space="preserve">
+    <value>SUBMIT A REQUEST</value>
+  </data>
+  <data name="FAQ_Type" xml:space="preserve">
+    <value>Please choose a request type below</value>
+  </data>
+  <data name="FAQ_URL" xml:space="preserve">
+    <value>Profile URL</value>
+  </data>
+  <data name="FAQ_Artist_questions" xml:space="preserve">
+    <value>How do I cancel my account? ,
+How do I increase my visibility on Saatchi Art? ,
+How do I price my artwork? ,
+How do I request a payout? ,
+How do I upload and edit an image? ,
+I am experiencing technical issues ,
+I am having issues uploading an image ,
+I have a question on Showdown? ,
+I have a question on the tax form ,
+What are the requirements to sell with Saatchi Art? ,
+Who pays for shipping costs? ,
+Why is my artwork not for sale? ,
+How do I get started to sell my artwork? ,
+Where is my payout? ,
+Other Question</value>
+  </data>
+  <data name="FAQ_Collector_questions" xml:space="preserve">
+    <value>Assistance placing an order ,
+Question about my recent purchase ,
+Returns and refund policy ,
+How do I cancel an order? ,
+How can I work with a curator? ,
+I am having Technical issues and need assistance ,
+Can Saatchi Art appraise and/or sell artwork I own? ,
+Other</value>
+  </data>
+  <data name="FAQ_Type_0" xml:space="preserve">
+    <value>I am an Artist and have a question</value>
+  </data>
+  <data name="FAQ_Type_1" xml:space="preserve">
+    <value>I am a Collector and have a question</value>
+  </data>
+  <data name="FAQ_Type_2" xml:space="preserve">
+    <value>Contact The Artist</value>
+  </data>
+  <data name="FAQ_Type_3" xml:space="preserve">
+    <value>Commission Request</value>
+  </data>
 </root>

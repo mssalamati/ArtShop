@@ -2,8 +2,15 @@
 @{
     ViewBag.Title = "requests";
 }
-
+@model FAQRequest
 @using reCaptcha
+@helper typeselector(int type)
+{
+if (Model.type == type)
+{ @("selected=\"selected\"")}
+else
+{  @("")}
+}
 <style>
     .selectx {
         width: 100%;
@@ -18,97 +25,108 @@
     <nav class="sub-nav clearfix">
         <ol class="breadcrumbs">
             <li title="Saatchi Art">
-                <a href="/hc/en-us">Saatchi Art</a>
+                <a href="/hc/en-us">Artiscovery</a>
             </li>
             <li title="Submit a request">
-                Submit a request
+                @ShareRes.FAQ_Title
             </li>
         </ol>
     </nav>
 
     <div class="clearfix">
         <section class="main-column">
-            <h1>Submit a request</h1>
+            <h1>@ShareRes.FAQ_Title</h1>
             <div class="form">
-                <form id="new_request" data-form="" class="request-form" action="/hc/en-us/requests" accept-charset="UTF-8" method="post">
+                @using (Html.BeginForm("requests", "Support", FormMethod.Post, new { enctype = "multipart/form-data", @class = "request-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    if (!ViewData.ModelState.IsValid)
+                    {
+                        @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                    }
                     <div class="form-field select optional request_ticket_form_id">
-                        <label for="type">Please choose a request type below</label>
+                        <label for="type">@ShareRes.FAQ_Type</label>
                         <select class="selectx" name="type" id="type">
-                            <option data-url="https://support.saatchiart.com/hc/en-us/requests/new" value="-">-</option>
-                            <option data-url="https://support.saatchiart.com/hc/en-us/requests/new?ticket_form_id=147488" selected="selected">I am an Artist and have a question</option>
-                            <option data-url="https://support.saatchiart.com/hc/en-us/requests/new?ticket_form_id=147498">I am a Collector and have a question</option>
-                            <option data-url="https://support.saatchiart.com/hc/en-us/requests/new?ticket_form_id=579407">Contact The Artist</option>
-                            <option data-url="https://support.saatchiart.com/hc/en-us/requests/new?ticket_form_id=580367">Commission Request</option>
+                            <option value="0" @typeselector(0)>@ShareRes.FAQ_Type_0</option>
+                            <option value="1" @typeselector(1)>@ShareRes.FAQ_Type_1</option>
+                            <option value="2" @typeselector(2)>@ShareRes.FAQ_Type_2</option>
+                            <option value="3" @typeselector(3)>@ShareRes.FAQ_Type_3</option>
                         </select>
                     </div>
-
                     <div class="form-field string required request_anonymous_requester_email">
-                        <label for="email">Your email address</label>
-                        <input type="text" name="email" id="email" required>
+                        @Html.LabelFor(x => x.email)
+                        @Html.TextBoxFor(x => x.email)
                     </div>
-
                     <div class="form-field string  required  request_subject">
-                        <label for="subject">Subject</label>
-                        <input type="text" name="subject" id="subject" maxlength="150" size="150" required>
+                        @Html.LabelFor(x => x.subject)
+                        @Html.TextBoxFor(x => x.subject)
                     </div>
-
                     <div class="form-field text  required  request_description">
-                        <label for="description">Please provide details of your request below.</label>
-                        <textarea name="description" id="description" style="margin-top: 0px; margin-bottom: 0px; height: 98px;"></textarea>
-                        <p>One of our curators will be in touch as soon as possible.</p>
+                        @Html.LabelFor(x => x.description)
+                        @Html.TextAreaFor(x => x.description, new { style = "margin-top: 0px; margin-bottom: 0px; height: 98px;" })
                     </div>
-
-                    <div class="form-field string  required  request_custom_fields_25932247">
-                        <label for="question">Please select your question</label>
-                        <select class="selectx" name="question" id="question">
-                            <option>-</option>
-                            <option selected="selected">I am an Artist and have a question</option>
-                            <option>I am a Collector and have a question</option>
-                            <option>Contact The Artist</option>
-                            <option>Commission Request</option>
-                        </select>
-                    </div>
-
+                    if (Model.type == 1 || Model.type == 0)
+                    {
+                        <div class="form-field string  required  request_custom_fields_25932247">
+                            @Html.LabelFor(x => x.question)
+                            @Html.DropDownList("question", null, htmlAttributes: new { @class = "selectx" })
+                        </div>
+                    }
                     <div class="form-field string  required  request_custom_fields_25921668">
-                        <label for="Name">Your Name</label>
-                        <input type="text" name="Name" id="Name">
+                        @Html.LabelFor(x => x.Name)
+                        @Html.TextBoxFor(x => x.Name)
                     </div>
+                    if (Model.type == 0)
+                    {
+                        <div class="form-field string optional request_custom_fields_31926307">
+                            @Html.LabelFor(x => x.URL)
+                            @Html.TextBoxFor(x => x.URL)
+                        </div>
+                    }
+                    if (Model.type == 0 || Model.type == 1)
+                    {
+                        <div class="form-field string  required  request_custom_fields_25931907">
+                            @Html.LabelFor(x => x.PhoneNumber)
+                            @Html.TextBoxFor(x => x.PhoneNumber)
+                        </div>
+                    }
 
-                    <div class="form-field string optional request_custom_fields_31926307">
-                        <label for="URL">Profile URL</label>
-                        <input type="text" name="URL" id="URL">
-                    </div>
-
-                    <div class="form-field string  required  request_custom_fields_25931907">
-                        <label for="PhoneNumber">Phone Number</label>
-                        <input type="number" name="PhoneNumber" id="PhoneNumber" step="1">
-                        <p>Please only include numbers: XXXXXXXXXX</p>
-                    </div>
-
+                    if (Model.type == 2 || Model.type == 3)
+                    {
+                        <div class="form-field string  required  request_custom_fields_25931907">
+                            @Html.LabelFor(x => x.ArtistName)
+                            @Html.TextBoxFor(x => x.ArtistName)
+                        </div>
+                        <div class="form-field string  required  request_custom_fields_25931907">
+                            @Html.LabelFor(x => x.ArtworkTitle)
+                            @Html.TextBoxFor(x => x.ArtworkTitle)
+                        </div>
+                    }
                     <div class="form-field">
-                        <label>Attachments</label>
+                        <label>@ShareRes.FAQ_Attachment</label>
                         <div id="upload-dropzone" class="upload-dropzone" data-hc-focus="false">
-                            <input type="file" name="file">
+                            <input type="file" name="Attachments">
                             <span>
                                 <a>Add file</a> or drop files here
                             </span>
                         </div>
-
                     </div>
-
                     <div class="form-field required">
-                        <label>Please verify that you are human</label>                        
+                        <label>@ShareRes.FAQ_Captcha</label>
                         @ReCaptcha.GetHtml(@ViewBag.publicKey)
                     </div>
-
                     <footer><input type="submit" name="commit" value="Submit"></footer>
-                </form>
-
-
+                }
             </div>
         </section>
 
     </div>
-
-
 </main>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    $("#type").on('change', function () {
+        location.href = '/@CultureHelper.GetCurrentCulture()/support/requests?type=' + this.value;
+    });
+</script>

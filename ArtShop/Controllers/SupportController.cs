@@ -1,6 +1,7 @@
 ﻿using ArtShop.Helper;
 using DataLayer.Enitities;
 using reCaptcha;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,7 +17,7 @@ namespace ArtShop.Controllers
         // GET: Support
         public ActionResult Index()
         {
-            var data = db.Articles.Where(a=>a.isHandbook == true).ToList();
+            var data = db.Articles.Where(a => a.isHandbook == true).ToList();
             return View(data);
         }
 
@@ -24,7 +25,7 @@ namespace ArtShop.Controllers
         {
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
             ViewBag.keyword = keyword;
-            var result = db.Articles.Where(a => a.Translations.FirstOrDefault(x=>x.languageId == currentCultureName).Title.Contains(keyword)).ToList();
+            var result = db.Articles.Where(a => a.Translations.FirstOrDefault(x => x.languageId == currentCultureName).Title.Contains(keyword)).ToList();
             return View(result);
         }
 
@@ -48,7 +49,7 @@ namespace ArtShop.Controllers
 
         public ActionResult Header()
         {
-            
+
             return PartialView("_Header");
         }
 
@@ -81,11 +82,21 @@ namespace ArtShop.Controllers
             return Redirect(url);
         }
 
-        public ActionResult requests()
+        public ActionResult requests(int type = 0)
         {
             ViewBag.Recaptcha = ReCaptcha.GetHtml(ConfigurationManager.AppSettings["ReCaptcha:SiteKey"]);
             ViewBag.publicKey = ConfigurationManager.AppSettings["ReCaptcha:SiteKey"];
-            return View();
+            if (type == 0)
+            {
+                var questions = ShareRes.FAQ_Artist_questions.Split(',').Select(x => new { name = x });
+                ViewBag.question = new SelectList(questions, "name", "name");
+            }
+            else if (type == 1)
+            {
+                var questions = ShareRes.FAQ_Collector_questions.Split(',').Select(x => new { name = x });
+                ViewBag.question = new SelectList(questions, "name", "name");
+            }
+            return View(new FAQRequest() { type = type });
         }
 
         [HttpPost]
@@ -94,10 +105,20 @@ namespace ArtShop.Controllers
         {
             if (ModelState.IsValid && ReCaptcha.Validate(ConfigurationManager.AppSettings["ReCaptcha:SecretKey"]))
             {
-                
+
             }
             ViewBag.RecaptchaLastErrors = ReCaptcha.GetLastErrors(this.HttpContext);
             ViewBag.publicKey = ConfigurationManager.AppSettings["ReCaptcha:SiteKey"];
+            if (model.type == 0)
+            {
+                var questions = ShareRes.FAQ_Artist_questions.Split(',').Select(x => new { name = x });
+                ViewBag.question = new SelectList(questions, "name", "name");
+            }
+            else if (model.type == 1)
+            {
+                var questions = ShareRes.FAQ_Collector_questions.Split(',').Select(x => new { name = x });
+                ViewBag.question = new SelectList(questions, "name", "name");
+            }
             return View(model);
         }
 

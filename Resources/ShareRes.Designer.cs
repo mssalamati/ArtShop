@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ShareRes {
@@ -363,6 +363,206 @@ namespace Resources {
         public static string Email_p6 {
             get {
                 return ResourceManager.GetString("Email_p6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How do I cancel my account? ,
+        ///How do I increase my visibility on Saatchi Art? ,
+        ///How do I price my artwork? ,
+        ///How do I request a payout? ,
+        ///How do I upload and edit an image? ,
+        ///I am experiencing technical issues ,
+        ///I am having issues uploading an image ,
+        ///I have a question on Showdown? ,
+        ///I have a question on the tax form ,
+        ///What are the requirements to sell with Saatchi Art? ,
+        ///Who pays for shipping costs? ,
+        ///Why is my artwork not for sale? ,
+        ///How do I get started to sell my artwork? ,
+        ///Where is my payo [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string FAQ_Artist_questions {
+            get {
+                return ResourceManager.GetString("FAQ_Artist_questions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artist Name.
+        /// </summary>
+        public static string FAQ_ArtistName {
+            get {
+                return ResourceManager.GetString("FAQ_ArtistName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artwork Title.
+        /// </summary>
+        public static string FAQ_ArtworkTitle {
+            get {
+                return ResourceManager.GetString("FAQ_ArtworkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attachments.
+        /// </summary>
+        public static string FAQ_Attachment {
+            get {
+                return ResourceManager.GetString("FAQ_Attachment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please verify that you are human.
+        /// </summary>
+        public static string FAQ_Captcha {
+            get {
+                return ResourceManager.GetString("FAQ_Captcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assistance placing an order ,
+        ///Question about my recent purchase ,
+        ///Returns and refund policy ,
+        ///How do I cancel an order? ,
+        ///How can I work with a curator? ,
+        ///I am having Technical issues and need assistance ,
+        ///Can Saatchi Art appraise and/or sell artwork I own? ,
+        ///Other.
+        /// </summary>
+        public static string FAQ_Collector_questions {
+            get {
+                return ResourceManager.GetString("FAQ_Collector_questions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide details of your request below..
+        /// </summary>
+        public static string FAQ_description {
+            get {
+                return ResourceManager.GetString("FAQ_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email address.
+        /// </summary>
+        public static string FAQ_email {
+            get {
+                return ResourceManager.GetString("FAQ_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Name.
+        /// </summary>
+        public static string FAQ_Name {
+            get {
+                return ResourceManager.GetString("FAQ_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string FAQ_PhoneNumber {
+            get {
+                return ResourceManager.GetString("FAQ_PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select your question.
+        /// </summary>
+        public static string FAQ_question {
+            get {
+                return ResourceManager.GetString("FAQ_question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        public static string FAQ_subject {
+            get {
+                return ResourceManager.GetString("FAQ_subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string FAQ_Submit {
+            get {
+                return ResourceManager.GetString("FAQ_Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SUBMIT A REQUEST.
+        /// </summary>
+        public static string FAQ_Title {
+            get {
+                return ResourceManager.GetString("FAQ_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a request type below.
+        /// </summary>
+        public static string FAQ_Type {
+            get {
+                return ResourceManager.GetString("FAQ_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I am an Artist and have a question.
+        /// </summary>
+        public static string FAQ_Type_0 {
+            get {
+                return ResourceManager.GetString("FAQ_Type_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I am a Collector and have a question.
+        /// </summary>
+        public static string FAQ_Type_1 {
+            get {
+                return ResourceManager.GetString("FAQ_Type_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact The Artist.
+        /// </summary>
+        public static string FAQ_Type_2 {
+            get {
+                return ResourceManager.GetString("FAQ_Type_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission Request.
+        /// </summary>
+        public static string FAQ_Type_3 {
+            get {
+                return ResourceManager.GetString("FAQ_Type_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile URL.
+        /// </summary>
+        public static string FAQ_URL {
+            get {
+                return ResourceManager.GetString("FAQ_URL", resourceCulture);
             }
         }
         
