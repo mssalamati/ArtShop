@@ -31,18 +31,15 @@ namespace DataLayer.Enitities
         public string description { get; set; }
 
         [Display(Name = "FAQ_question", ResourceType = typeof(ShareRes))]
-        [Required]
         public string question { get; set; }
 
         [Display(Name = "FAQ_Name", ResourceType = typeof(ShareRes))]
-        [Required]
         public string Name { get; set; }
 
         [Display(Name = "FAQ_URL", ResourceType = typeof(ShareRes))]
         public string URL { get; set; }
 
         [Display(Name = "FAQ_PhoneNumber", ResourceType = typeof(ShareRes))]
-        [Required]
         [Phone]
         public string PhoneNumber { get; set; }
     

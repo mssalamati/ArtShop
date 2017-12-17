@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "requests";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
 }
 @model FAQRequest
 @using reCaptcha
@@ -10,6 +11,18 @@ if (Model.type == type)
 { @("selected=\"selected\"")}
 else
 {  @("")}
+}
+
+@if(IsRighToLeft)
+{
+    <style>
+        .mainrt {
+            direction: rtl;
+        }
+        .main-column{
+            float:right;
+        }
+    </style>
 }
 <style>
     .selectx {
@@ -21,7 +34,7 @@ else
     }
 </style>
 
-<main role="main">
+<main role="main" class="mainrt">
     <nav class="sub-nav clearfix">
         <ol class="breadcrumbs">
             <li title="Saatchi Art">
@@ -115,7 +128,7 @@ else
                         <label>@ShareRes.FAQ_Captcha</label>
                         @ReCaptcha.GetHtml(@ViewBag.publicKey)
                     </div>
-                    <footer><input type="submit" name="commit" value="Submit"></footer>
+                    <footer><input type="submit" name="commit" value="@ShareRes.FAQ_Submit"></footer>
                 }
             </div>
         </section>
