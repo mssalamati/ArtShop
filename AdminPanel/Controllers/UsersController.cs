@@ -65,7 +65,7 @@ namespace AdminPanel.Controllers
                 string postfix = "@artiscovery.com";
                 string fullEmail = prefix + model.FirstName + model.LastName + postfix;
                 var userDetail = new UserProfile { FirstName = model.FirstName, LastName = model.LastName, profileType = ProfileType.Artist, MailingList = true };
-                var user = new ApplicationUser { UserName = fullEmail, Email = fullEmail, userDetail = userDetail };
+                var user = new ApplicationUser { UserName = fullEmail, Email = fullEmail, userDetail = userDetail,EmailConfirmed = true };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

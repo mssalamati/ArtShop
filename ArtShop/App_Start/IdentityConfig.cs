@@ -31,11 +31,19 @@ namespace ArtShop
             #endregion
 
             MailMessage msg = new MailMessage();
+            msg.Subject = message.Subject;
+            string body = "Hello ";
+            body += "<br /><br />Please click the following link to activate your account";
+            body += "<br />" + message.Body;
+            body += "<br /><br />Thanks";
+            msg.Body = body;
+            msg.IsBodyHtml = true;
+
             msg.From = new MailAddress("noreply@artiscovery.com");
             msg.To.Add(new MailAddress(message.Destination));
             msg.Subject = message.Subject;
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+            //msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+            //msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
 
             SmtpClient smtpClient = new SmtpClient("smtp.artiscovery.com.netsolmail.net", Convert.ToInt32(587));
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("noreply@artiscovery.com", "QWErty@321");
@@ -65,7 +73,7 @@ namespace ArtShop
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -106,7 +114,7 @@ namespace ArtShop
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"))
                     {
                         TokenLifespan = TimeSpan.FromHours(3)
