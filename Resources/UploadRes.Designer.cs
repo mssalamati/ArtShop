@@ -610,11 +610,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By tagging your artwork and using keywords, you raise the chance of your work being noticed. The best keywords are the ones which are simple, regularly used in search and describing the visual elements of your work such as subject, style, materials, and color. We recommend to use the strongest keywords first. For more information please see here..
+        ///   Looks up a localized string similar to By tagging your artwork and using keywords, you raise the chance of your work being noticed. The best keywords are the ones which are simple, regularly used in search and describing the visual elements of your work such as subject, style, materials, and color. We recommend to use the strongest keywords first. For more information please see.
         /// </summary>
         public static string step5_keywords_detail {
             get {
                 return ResourceManager.GetString("step5_keywords_detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to here.
+        /// </summary>
+        public static string step5_keywords_detail_here {
+            get {
+                return ResourceManager.GetString("step5_keywords_detail_here", resourceCulture);
             }
         }
         

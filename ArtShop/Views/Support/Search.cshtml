@@ -50,7 +50,15 @@
                         @* <span class="search-result-votes">7</span>*@
                         @if (!IsRighToLeft)
                         {
-                            <div class="search-result-meta">by @item.Author <time datetime="@item.PostedOn" title="2015-03-31 23:27" data-datetime="relative">@item.PostedOn</time> in <a href="@Url.Action("Category", "Support", new { id = @item.SupportCategory.GenerateSlug() })">@item.SupportCategory.Current().Name</a> &gt; <a href="@Url.Action("SubCategory", "Support", new { id = @item.SupportSubCategory.GenerateSlug() })">@item.SupportSubCategory.Current().Name</a></div>
+                            <div class="search-result-meta">
+                                by @item.Author <time datetime="@item.PostedOn" title="2015-03-31 23:27" data-datetime="relative">@item.PostedOn</time> in <a href="@Url.Action("Category", "Support", new { id = @item.SupportCategory.GenerateSlug() })">@item.SupportCategory.Current().Name</a>
+                                @if (item.SupportSubCategory != null)
+                                {
+                                    <span>&gt; </span> <a href="@Url.Action("SubCategory", "Support", new { id = @item.SupportSubCategory.GenerateSlug() })">@item.SupportSubCategory.Current().Name</a>
+                                }
+                                
+                            </div>
+
                         }
 
                         <div class="search-result-description">@item.Current().ShortDescription </div>
