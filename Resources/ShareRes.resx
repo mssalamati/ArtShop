@@ -399,4 +399,7 @@
   <data name="Register_confirmationSent" xml:space="preserve">
     <value>Thank You! Please check your email to activate your account.</value>
   </data>
+  <data name="Account_confirmed" xml:space="preserve">
+    <value>Your account successfuly activated</value>
+  </data>
 </root>

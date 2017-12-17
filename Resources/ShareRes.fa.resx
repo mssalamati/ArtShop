@@ -402,4 +402,7 @@
   <data name="Register_confirmationSent" xml:space="preserve">
     <value>ثبت نام با موفقیت انجام شد و ایمیل تایید ارسال شد</value>
   </data>
+  <data name="Account_confirmed" xml:space="preserve">
+    <value>حساب کاربری شما با موفقیت فعال شد</value>
+  </data>
 </root>

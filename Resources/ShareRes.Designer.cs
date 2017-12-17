@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account successfuly activated.
+        /// </summary>
+        public static string Account_confirmed {
+            get {
+                return ResourceManager.GetString("Account_confirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Information.
         /// </summary>
         public static string AccountInformation {
