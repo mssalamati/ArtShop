@@ -105,7 +105,7 @@ namespace ArtShop.Controllers
         {
             if (ModelState.IsValid && ReCaptcha.Validate(ConfigurationManager.AppSettings["ReCaptcha:SecretKey"]))
             {
-
+                return RedirectToActionPermanent("index");
             }
             ViewBag.RecaptchaLastErrors = ReCaptcha.GetLastErrors(this.HttpContext);
             ViewBag.publicKey = ConfigurationManager.AppSettings["ReCaptcha:SiteKey"];
