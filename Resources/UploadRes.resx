@@ -435,4 +435,7 @@
   <data name="upload_success" xml:space="preserve">
     <value>upload successful</value>
   </data>
+  <data name="Frame_description" xml:space="preserve">
+    <value>Choose the specifications of the artwork frame</value>
+  </data>
 </root>

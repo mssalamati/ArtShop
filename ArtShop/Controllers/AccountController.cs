@@ -209,7 +209,12 @@ namespace ArtShop.Controllers
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            if (result.Succeeded)            
+                Session["isconfirmed"] = true;            
+            else
+                Session["isconfirmed"] = false;
+
+            return RedirectToActionPermanent("login", "account");
         }
 
         //

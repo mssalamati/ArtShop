@@ -223,6 +223,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the specifications of the artwork frame.
+        /// </summary>
+        public static string Frame_description {
+            get {
+                return ResourceManager.GetString("Frame_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         public static string Height {

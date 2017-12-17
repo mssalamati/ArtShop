@@ -437,4 +437,7 @@
   <data name="upload_success" xml:space="preserve">
     <value>آپلود با موفقیت انجام شد</value>
   </data>
+  <data name="Frame_description" xml:space="preserve">
+    <value>مشخصات قاب اثر خود را انتخاب نمایید.</value>
+  </data>
 </root>
