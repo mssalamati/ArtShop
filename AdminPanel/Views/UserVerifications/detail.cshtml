@@ -69,10 +69,18 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="form-label">Upload</label>
-                            <img style="width:100%" src="http://artiscovery.com/@Model.GovermentIdPath" />
+                            @if (Model.GovermentIdPath.Contains("https"))
+                            {
+                                <img style="width:100%" src="@Model.GovermentIdPath" />
+                            }
+                            else
+                            {
+                                <img style="width:100%" src="http://artiscovery.com/@Model.GovermentIdPath" />
+                            }
+                            
                         </div>
                     </div>
-                   
+
 
                     <div class="col-md-12">
                         <a href="/UserVerifications/index" class="btn btn-primary">back</a>
@@ -86,5 +94,3 @@
 
     </div>
 </div>
-
-

@@ -25,6 +25,21 @@ namespace ArtShop.Controllers
     {
         public ActionResult Index()
         {
+            //var articles = db.Articles.Include("Translations").ToList();
+            //foreach (var item in articles)
+            //{
+            //    var translation = item.Translations.Single(a => a.languageId == "en");
+            //    translation.Description = translation.Description.Replace("https://artiscovery.com", "/en-us");
+            //    db.SaveChanges();
+            //}
+
+            //foreach (var item in articles)
+            //{
+            //    var translation = item.Translations.Single(a => a.languageId == "fa");
+            //    translation.Description = translation.Description.Replace("اثرهنری", "اثر هنری");
+            //    db.SaveChanges();
+            //}
+
             string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
             HomeIndexViewModel model = new HomeIndexViewModel();
             var count = db.sliderImages.Count();
@@ -44,7 +59,8 @@ namespace ArtShop.Controllers
                 model.FirstPageSections = db.FirstPageSections.Include("Translations").ToList();
             }
 
-
+     
+            
 
             return View(model);
         }
@@ -385,7 +401,7 @@ namespace ArtShop.Controllers
                     Priority = 0.8M
                 });
             }
-            
+
             foreach (var item in db.Products.ToList())
             {
                 nodes.Add(new SitemapNode(@Url.Action(item.category.Current().Name, "Artwork", new { id = @item.GenerateSlug(), Culture = "en-us" }))
@@ -472,7 +488,7 @@ namespace ArtShop.Controllers
 
             foreach (var item in db.SupportSubCategories.ToList())
             {
-                nodes.Add(new SitemapNode(@Url.Action("SubCategory", "Support", new { id = @item.GenerateSlug(),Culture ="fa" }))
+                nodes.Add(new SitemapNode(@Url.Action("SubCategory", "Support", new { id = @item.GenerateSlug(), Culture = "fa" }))
                 {
                     ChangeFrequency = ChangeFrequency.Weekly,
                     LastModificationDate = DateTime.UtcNow,

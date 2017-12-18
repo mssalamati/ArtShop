@@ -412,4 +412,10 @@ Do not worry! We protect the file you have sent us. The file will be encrypted f
   <data name="DeleteCollection_msg" xml:space="preserve">
     <value>Are you sure you want to delete this collection? This cannot be undone.</value>
   </data>
+  <data name="Payout_Error" xml:space="preserve">
+    <value>There is a pending payout request. Please complete the prior request before applying a new one.</value>
+  </data>
+  <data name="Payouts" xml:space="preserve">
+    <value>Payouts</value>
+  </data>
 </root>

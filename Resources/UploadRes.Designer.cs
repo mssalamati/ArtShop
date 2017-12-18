@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string step5_keywords_detail_here_continue {
+            get {
+                return ResourceManager.GetString("step5_keywords_detail_here_continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter 5-12 Keywords.
         /// </summary>
         public static string step5_keywords_lable {

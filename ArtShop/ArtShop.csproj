@@ -640,6 +640,7 @@
     <Content Include="Views\Home\RelatedArtwork.cshtml" />
     <Content Include="Views\Upload\Stepfinish.cshtml" />
     <Content Include="Views\Support\requests.cshtml" />
+    <Content Include="Views\Emails\Ticket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

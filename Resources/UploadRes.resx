@@ -441,4 +441,7 @@
   <data name="step5_keywords_detail_here" xml:space="preserve">
     <value>here</value>
   </data>
+  <data name="step5_keywords_detail_here_continue" xml:space="preserve">
+    <value />
+  </data>
 </root>

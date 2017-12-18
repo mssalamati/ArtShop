@@ -412,4 +412,10 @@
   <data name="DeleteCollection_msg" xml:space="preserve">
     <value>آیا از حذف این مجموعه مطمئن هستید؟</value>
   </data>
+  <data name="Payout_Error" xml:space="preserve">
+    <value>لطفا تا تکمیل پردازش درخواست فعلی خود، درخواست جدید ثبت نکنید.</value>
+  </data>
+  <data name="Payouts" xml:space="preserve">
+    <value>پرداخت ها</value>
+  </data>
 </root>

@@ -35,13 +35,13 @@ namespace AdminPanel.Controllers
 
             if (confirm)
             {
-                var artworks = obj.Products.Where(a => a.Status != ProductStatus.Sold && a.avaible >= 1);
+                var artworks = obj.Products.Where(a => a.Status != ProductStatus.Sold && a.avaible >= 1 && a.Price > 0);
                 foreach (var item in artworks)
                 {
                     item.Status = ProductStatus.forSale;
                 }
             }
-            
+
             db.SaveChanges();
             SendEmail(obj);
             return RedirectToAction("detail", new { id = id });
@@ -51,7 +51,7 @@ namespace AdminPanel.Controllers
             dynamic email = new Email("IdVerification");
             email.To = userProfile.ApplicationUserDetail.UserName;
             email.Subject = "Id Verification Status";
-            email.Status = userProfile.isIDConfirmed ;
+            email.Status = userProfile.isIDConfirmed;
             email.Send();
         }
     }

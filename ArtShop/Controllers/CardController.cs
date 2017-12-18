@@ -485,8 +485,7 @@ namespace ArtShop.Controllers
         //email segment
         private void SendInvoice(Order order)
         {
-
-            dynamic email = new Email("Invoice");
+            dynamic email = new Email("Invoice");           
             email.To = User.Identity.GetUserName();
             email.Subject = "Artiscovery Invoice | " + order.Id.ToString();
             email.orderid = order.Id;
@@ -498,7 +497,6 @@ namespace ArtShop.Controllers
             email.subtotal = order.TotalPrice;
             email.total = order.TotalPrice;
             email.Send();
-
         }
         private void SendOrderDetail(Order order)
         {

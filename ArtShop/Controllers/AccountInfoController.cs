@@ -289,8 +289,8 @@ namespace ArtShop.Controllers
             ViewBag.orders = db.OrderDetails.Include("Product").Include("order")
                 .Where(x => x.Product.user_id == userId)
                 .Where(x => x.order.TransactionDetail.Payed).ToList();
-
-            return View(userProfile.PayoutRequests.ToList());
+            ViewBag.Seen = true;
+            return View(userProfile.PayoutRequests.OrderByDescending(a=>a.date).ToList());
         }
 
         [HttpPost]
@@ -301,11 +301,14 @@ namespace ArtShop.Controllers
             ViewBag.account = userProfile.Account;
             if (!userProfile.PayoutRequests.Any(x => x.Seen == false))
             {
+                ViewBag.Seen = true;
                 model.Value = userProfile.Account;
                 model.date = DateTime.Now;
                 userProfile.PayoutRequests.Add(model);
                 db.SaveChanges();
             }
+            else
+                ViewBag.Seen = false;
             return View(userProfile.PayoutRequests.ToList());
         }
 

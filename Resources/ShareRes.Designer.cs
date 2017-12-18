@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ShareRes {
@@ -368,19 +368,17 @@ namespace Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to How do I cancel my account? ,
-        ///How do I increase my visibility on Saatchi Art? ,
         ///How do I price my artwork? ,
         ///How do I request a payout? ,
         ///How do I upload and edit an image? ,
         ///I am experiencing technical issues ,
         ///I am having issues uploading an image ,
-        ///I have a question on Showdown? ,
         ///I have a question on the tax form ,
-        ///What are the requirements to sell with Saatchi Art? ,
         ///Who pays for shipping costs? ,
         ///Why is my artwork not for sale? ,
         ///How do I get started to sell my artwork? ,
-        ///Where is my payo [rest of string was truncated]&quot;;.
+        ///Where is my payout? ,
+        ///Other Question.
         /// </summary>
         public static string FAQ_Artist_questions {
             get {
@@ -431,7 +429,7 @@ namespace Resources {
         ///How do I cancel an order? ,
         ///How can I work with a curator? ,
         ///I am having Technical issues and need assistance ,
-        ///Can Saatchi Art appraise and/or sell artwork I own? ,
+        ///Can Artiscovery appraise and/or sell artwork I own? ,
         ///Other.
         /// </summary>
         public static string FAQ_Collector_questions {
@@ -977,6 +975,15 @@ namespace Resources {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit a request.
+        /// </summary>
+        public static string Submit_request {
+            get {
+                return ResourceManager.GetString("Submit_request", resourceCulture);
             }
         }
         

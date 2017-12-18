@@ -61,7 +61,7 @@
             <h3 class="hd-title">@ProfileRes.Sales</h3>
             <p class="mb2" style="margin-bottom:5px !important;">@(string.Format(ProfileRes.accountValue, "$" + ViewBag.account)) </p>
 
-            <button class="btn btn-info" onclick="$(this).hide(); $('#sales').hide(); $('#payout').show('slow');" style="margin-bottom:5px;"> @ProfileRes.Requestpayout </button>
+            <button class="btn btn-info" onclick="$(this).hide(); $('#sales').hide(); $('#payout').show('slow');" style="margin-bottom:5px;"> @ProfileRes.Payouts </button>
 
             <div id="payout" hidden>
                 @if (Model != null && Model.All(x => x.Seen) && ((int)ViewBag.account) != 0)
@@ -210,13 +210,15 @@
             rules: {
                 BankName: {
                     required: true,
-                    number: true,
+                    
                 },
                 CardNumber: {
                     required: true,
+                    number: true,
                 },
                 AccountNumber: {
                     required: true,
+                    number: true,
                 },
                 AccountHolder: {
                     required: true,
@@ -225,5 +227,20 @@
             errorPlacement: function (error, element) { }
         });
     </script>
+
+    @*@if (!ViewBag.Seen)
+    {
+        <script>
+
+            $.toast({
+                heading: '@ShareRes.Success_message',
+                text: '@ProfileRes.Payout_Error',
+                icon: 'success',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 7000
+            })
+        </script>
+    }*@
 
 }

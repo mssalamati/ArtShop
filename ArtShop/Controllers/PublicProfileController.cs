@@ -25,7 +25,7 @@ namespace ArtShop.Controllers
             model.favoritesCount = userProfile.Favorits.Count;
             model.city = userProfile.City == null ? " " : userProfile.City;
             model.region = userProfile.Region == null ? " " : userProfile.Region;
-            model.country = userProfile.country;
+            model.country = userProfile.country == null ? new Country() : userProfile.country;
             model.photoPath = userProfile.PhotoPath;
             if (userProfile.userLinks != null)
             {

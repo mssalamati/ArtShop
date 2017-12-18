@@ -1,5 +1,6 @@
 ﻿using ArtShop.Helper;
 using DataLayer.Enitities;
+using Postal;
 using reCaptcha;
 using Resources;
 using System;
@@ -103,8 +104,10 @@ namespace ArtShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult requests(FAQRequest model)
         {
+            SendTicket(model);
             if (ModelState.IsValid && ReCaptcha.Validate(ConfigurationManager.AppSettings["ReCaptcha:SecretKey"]))
             {
+                SendTicket(model);
                 return RedirectToActionPermanent("index");
             }
             ViewBag.RecaptchaLastErrors = ReCaptcha.GetLastErrors(this.HttpContext);
@@ -120,6 +123,14 @@ namespace ArtShop.Controllers
                 ViewBag.question = new SelectList(questions, "name", "name");
             }
             return View(model);
+        }
+        private void SendTicket(FAQRequest model)
+        {
+            dynamic email = new Email("Ticket");
+            email.To = "support@artiscovery.freshdesk.com";
+            email.Subject = model.subject;
+            
+            email.Send();
         }
 
     }

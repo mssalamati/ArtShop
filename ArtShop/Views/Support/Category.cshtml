@@ -9,6 +9,7 @@
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
     var rtlListType = IsRighToLeft ? "list-style-position:inside !important" : "";
+    var rtlFloat = IsRighToLeft ? "float:left !important" : "";
 
 }
 <main role="main">
@@ -28,7 +29,7 @@
 
     <section class="clearfix">
         <h1 style="@rtlstl" id="category-title">@Model.Current().Name </h1>
-        @*<a class="submit-a-request" href="/hc/en-us/requests/new">Submit a request</a>*@
+        <a style="@rtlFloat" class="submit-a-request" href="/@CultureHelper.GetCurrentCulture()/support/requests">@ShareRes.Submit_request</a>
 
         <div style="@rtlstl" class="section-tree">
             @foreach (var item in Model.supportSubCategories)

@@ -18,6 +18,10 @@
     ul {
         list-style-type: unset !important;
     }
+
+    p img {
+        text-align: center !important;
+    }
 </style>
 
 <main role="main">
@@ -41,7 +45,7 @@
                     <a href="@Url.Action("SubCategory", "Support", new { id = @Model.SupportSubCategory.GenerateSlug() })">@Model.SupportSubCategory.Current().Name</a>
 
                 </li>
-            }    
+            }
         </ol>
 
     </nav>
@@ -109,4 +113,7 @@
 
     </div>
 </main>
+
+
+
 

@@ -593,6 +593,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is a pending payout request. Please complete the prior request before applying a new one..
+        /// </summary>
+        public static string Payout_Error {
+            get {
+                return ResourceManager.GetString("Payout_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payouts.
+        /// </summary>
+        public static string Payouts {
+            get {
+                return ResourceManager.GetString("Payouts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to pending.
         /// </summary>
         public static string pending {
