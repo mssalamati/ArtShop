@@ -11,11 +11,7 @@
     <script async="" src="//static.hotjar.com/c/hotjar-59940.js?sv=5"></script>
     <script async="" src="https://script.hotjar.com/modules-3cbd664d083dea3465a4170278205ab1.js"></script>
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("img").parent().css({ "text-align": "center" });
-        });
-    </script>
+ 
     @if (IsRighToLeft)
     {
         <style>
@@ -29,16 +25,7 @@
             }
         </style>
     }
-    <style>
-        p, span,li {
-            text-align: justify;
-        }
 
-        img {
-            margin-bottom: 15px;
-            margin-top: 15px;
-        }
-    </style>
 </head>
 <body>
     @Html.Action("Header", "Support", null)
