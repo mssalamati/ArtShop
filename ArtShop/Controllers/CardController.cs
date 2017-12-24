@@ -309,7 +309,7 @@ namespace ArtShop.Controllers
             var addedAlbum = db.Products.Find(id);
             var cart = CartManager.GetCart(this.HttpContext);
             var basket = cart.GetCountProduct(id);
-            if (basket + 1 > addedAlbum.AllEntity)
+            if (basket + 1 > addedAlbum.avaible)
                 return RedirectPermanent("/" + CultureHelper.GetCurrentCulture() + "/checkout");
             cart.AddToCart(addedAlbum, type);
             return RedirectPermanent("/" + CultureHelper.GetCurrentCulture() + "/checkout");
