@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -103,8 +104,7 @@ namespace ArtShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult requests(FAQRequest model)
-        {
-            SendTicket(model);
+        {      
             if (ModelState.IsValid && ReCaptcha.Validate(ConfigurationManager.AppSettings["ReCaptcha:SecretKey"]))
             {
                 SendTicket(model);
@@ -126,10 +126,44 @@ namespace ArtShop.Controllers
         }
         private void SendTicket(FAQRequest model)
         {
+            var artistQuestions = ShareRes.FAQ_Artist_questions.Split(',').Select(x => new { name = x });
+            var collectorQuestions = ShareRes.FAQ_Collector_questions.Split(',').Select(x => new { name = x });
+
             dynamic email = new Email("Ticket");
             email.To = "support@artiscovery.freshdesk.com";
             email.Subject = model.subject;
             
+            string type = "";
+            switch (model.type)
+            {
+                case 0:
+                    type = ShareRes.FAQ_Type_0;
+                    break;
+                case 1:
+                    type = ShareRes.FAQ_Type_1;
+                    break;
+                case 2:
+                    type = ShareRes.FAQ_Type_2;
+                    break;
+                case 3:
+                    type = ShareRes.FAQ_Type_3;
+                    break;
+                default:
+                    break;
+            }
+
+            email.email = model.email;
+            email.subject = model.subject;
+            email.question = model.question;
+            email.name = model.Name;
+            email.profileURL = model.URL;
+            email.artistName = model.ArtistName;
+            email.artworkTitle = model.ArtworkTitle;
+            email.phoneNumber = model.PhoneNumber;
+            email.detail = model.description;
+            email.requestType = type;
+            email.type = model.type;
+            email.Attach(new Attachment(model.Attachments.InputStream,model.Attachments.FileName));
             email.Send();
         }
 
