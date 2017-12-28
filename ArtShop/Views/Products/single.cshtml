@@ -426,7 +426,7 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <p style="@rtldirection">
-                            <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.category.Id/0/0/0/0">@Model.category.Current().Name:</a>
+                            <a target="_blank" href="/@CultureHelper.GetCurrentCulture()/search/@Model.category.Id/0/0/0/0">@Model.category.Current().Name:</a>
                             <span>
                                 @{bool first = true; int count = 0; }
                                 @foreach (var item in Model.Mediums)
@@ -445,7 +445,7 @@
                                     }
 
                                     first = false;
-                                    <a href="/@CultureHelper.GetCurrentCulture()/search?category=0&style=0&subject=0&medium=@item.Id&price=0">@item.Current().Name</a>
+                                    <a target="_blank" href="/@CultureHelper.GetCurrentCulture()/search?category=0&style=0&subject=0&medium=@item.Id&price=0">@item.Current().Name</a>
                                 }
                             </span>
                             <span>@SearchRes.On</span>

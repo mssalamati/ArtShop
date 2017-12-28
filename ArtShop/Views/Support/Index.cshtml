@@ -15,7 +15,7 @@
                     <p>
                         @ShareRes.Are_You_Buyer
                         @ShareRes.To_view_Buyer_FAQs
-                        <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
+                        <a target="_blank" href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
                             @ShareRes.Click_here
                         </a>
 
@@ -28,7 +28,7 @@
                     <h1>@FooterRes.Artist_Handbook</h1>
                     <p>
                         @ShareRes.Are_You_Buyer
-                        <a href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
+                        <a target="_blank" href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
                             @ShareRes.Click_here
                         </a>
                         @ShareRes.To_view_Buyer_FAQs
@@ -41,7 +41,7 @@
                 {
                     if (IsRighToLeft)
                     {
-                        <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
+                        <a target="_blank" href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
                             <img style="width:15px" src="~/Content/Images/caret-left.svg">
                             <span class="topic-list-topic" style="text-align:right">
                                 <h3>@item.Current().Title</h3>
@@ -55,7 +55,7 @@
                     }
                     else
                     {
-                        <a href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
+                        <a target="_blank" href="@Url.Action("Article", "Support", new { id = @item.GenerateSlug() })" class="topic-list-item">
                             <span class="topic-list-icon">
                                 <img src="https://admin.artiscovery.com/@item.Thumbnail">
                             </span>

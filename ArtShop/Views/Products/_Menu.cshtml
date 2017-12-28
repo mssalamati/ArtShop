@@ -17,11 +17,12 @@ if (current == selected)
 @if (IsRighToLeft)
 {
     <style>
-        .side-navigation__top-level{
-            text-align:right;
+        .side-navigation__top-level {
+            text-align: right;
         }
+
         .side-navigation__sub-level {
-             text-align:right;
+            text-align: right;
         }
     </style>
 }
@@ -31,6 +32,7 @@ if (current == selected)
         <div class="image-upload-dragover">
             <div class="image-upload-dragover__message"></div>
         </div>
+
         <img class="side-navigation__hero__content" src="@(Model.Photo)">
     </div>
 

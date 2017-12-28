@@ -334,6 +334,7 @@ namespace ArtShop.Controllers
 
             return View(p);
         }
+
         [HttpPost]
         [Authorize]
         public ActionResult EditPackag(Product model)

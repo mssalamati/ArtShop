@@ -81,7 +81,10 @@
                             <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" itemprop="url">
                                 <img src="@item.photo.Path" itemprop="contentURL">
                             </a>
-
+                            @if (item.Status == ProductStatus.Sold)
+                            {
+                                <div class="right sold">sold</div>
+                            }
                         </div>
                         <div class="item-controls" data-id="3863434" data-artist="994144" data-art="3672399">
                             @*<a href="#" data-collection-owner="994144" data-art-id="3672399" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@

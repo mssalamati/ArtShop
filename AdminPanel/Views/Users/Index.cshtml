@@ -95,6 +95,8 @@
                                         </td>
                                         <td>
                                             @*@Html.ActionLink("سفارشات", "UsersOrders", "Orders", new { id = item.id }, new { @class = "text-info" }) |*@
+                                            <button class="btn btn-danger btn-sm" onclick="$('#c_@item.id').show('fast');$(this).hide('fast');">حذف</button>
+                                            <a id="c_@item.id" class="btn btn-danger btn-sm" style="display:none" href="/Users/Delete/@item.id">آیا مطمئن هستید؟</a>
                                             <button class="btn btn-primary btn-sm" onclick="showEdit('@item.id')">ویرایش</button>
                                         </td>
                                     </tr>

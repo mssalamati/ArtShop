@@ -95,6 +95,20 @@ namespace AdminPanel.Controllers
             return PartialView(data);
         }
 
+        public ActionResult Delete(string id)
+        {
+            var user = db.Users.Find(id);
+            db.Collections.RemoveRange(user.userDetail.Collections);
+            db.Favorits.RemoveRange(user.userDetail.Favorits);
+            db.PayoutRequests.RemoveRange(user.userDetail.PayoutRequests);
+            db.Products.RemoveRange(user.userDetail.Products);
+            db.Orders.RemoveRange(user.userDetail.Orders);
+            db.UserProfiles.Remove(user.userDetail);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditUserViewModel model)
