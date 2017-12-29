@@ -10,6 +10,7 @@ namespace MobileApi.Models
 {
     public class UploadViewModel
     {
+        public int id { get; set; }
         [Required]
         public string LanguageCode { get; set; }
         [Required]
@@ -56,6 +57,7 @@ namespace MobileApi.Models
         [Required]
         public string imageUpload { get; set; }
         public Productpackage Packaging { get; set; }
+        public ProductStatus Status { get; set; }
     }
 
 

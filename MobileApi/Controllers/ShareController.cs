@@ -623,13 +623,14 @@ namespace MobileApi.Controllers
         }
 
         [Authorize, Route("EditProduct")]
-        public HttpResponseMessage EditProduct(Product model)
+        public HttpResponseMessage EditProduct(UploadViewModel model)
         {
-            var p = db.Products.Include("photo").Include("productshippingDetail").Single(x => x.Id == model.Id);
+            var p = db.Products.Include("photo").Include("productshippingDetail").Single(x => x.Id == model.id);
             bool isMine = false;
             var userId = User.Identity.GetUserId();
             var currentUserProfile = db.UserProfiles.Find(userId);            
-            isMine = currentUserProfile.Products.Any(a => a.Id == model.Id);
+            isMine = currentUserProfile.Products.Any(a => a.Id == model.id);
+
             if (isMine)
             {
                 p.Title = model.Title;
@@ -638,7 +639,7 @@ namespace MobileApi.Controllers
                 else
                     p.Status = ProductStatus.NotForSale;
                 
-                p.TotalWeight = model.TotalWeight;
+                p.TotalWeight = model.weight;
                 p.Height = model.Height;
                 p.Width = model.Width;
                 p.Depth = model.Depth;
@@ -646,45 +647,42 @@ namespace MobileApi.Controllers
                 {
                     if (p.user.billingInfo == null)
                         p.user.billingInfo = new BillingInfo();
-                    p.user.billingInfo.Street = model.user.billingInfo.Street;
-                    p.user.billingInfo.City = model.user.billingInfo.City;
-                    if (model.user.billingInfo.CountryId != 0)
-                        p.user.billingInfo.CountryId = model.user.billingInfo.CountryId;
-                    p.user.billingInfo.PhoneNumber = model.user.billingInfo.PhoneNumber;
-                    p.user.billingInfo.Region = model.user.billingInfo.Region;
-                    p.user.billingInfo.ZipCode = model.user.billingInfo.ZipCode;
+                    p.user.billingInfo.Street = model.StreetAddress;
+                    p.user.billingInfo.City = model.City;
+                    if (model.Country != 0)
+                        p.user.billingInfo.CountryId = model.Country;
+                    p.user.billingInfo.PhoneNumber = model.Phonenumber;
+                    p.user.billingInfo.Region = model.Region;
+                    p.user.billingInfo.ZipCode = model.Zipcode;
                     
                 }
 
-                p.Price = model.Price;
+                p.Price = (int)model.Price;
                 p.categoryId = model.categoryId;
-                p.subjectId = model.subjectId;
-                p.ArtCreatedYear = model.ArtCreatedYear;
+                p.subjectId = model.SubjectId;
+                p.ArtCreatedYear = model.createDate;
                 p.Mediums.Clear();
                 p.Styles.Clear();
-                //var medumsList = model.Mediums.Split(',');
-                //foreach (var item in medumsList)
-                //{
-                //    var temp = db.MediumTranslations.FirstOrDefault(x => x.Name == item);
-                //    if (temp != null)
-                //        p.Mediums.Add(temp.medium);
-                //}
-                //var styeList = Request["Styleslist"].Split(',');
-                //foreach (var item in styeList)
-                //{
-                //    var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
-                //    if (temp != null)
-                //        p.Styles.Add(temp.style);
-                //}
+                int[] Materials = (int[])model.materials;
+
+                foreach (var item in Materials)
+                    p.Materials.Add(db.Materials.FirstOrDefault(x => item == x.Id));
+                var styeList = model.styles.Split(',');
+                foreach (var item in styeList)
+                {
+                    var temp = db.StyleTranslations.FirstOrDefault(x => x.Name == item);
+                    if (temp != null)
+                        p.Styles.Add(temp.style);
+                }
                 p.Materials.Clear();
-                foreach (var item in model.MaterialList)
+                foreach (var item in model.materials)
                 {
                     var temp = db.Materials.Find(item);
                     if (temp != null)
                         p.Materials.Add(temp);
                 }
                 p.Description = model.Description;
-                p.Keywords = model.Keywords;
+                p.Keywords = model.keywords;
                 p.Packaging = model.Packaging;
 
                 db.SaveChanges();
