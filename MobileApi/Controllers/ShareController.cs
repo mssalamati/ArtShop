@@ -685,7 +685,7 @@ namespace MobileApi.Controllers
                 }
                 p.Description = model.Description;
                 p.Keywords = model.Keywords;
-                
+                p.Packaging = model.Packaging;
 
                 db.SaveChanges();
                 if (p.user.billingInfo == null)
@@ -982,8 +982,11 @@ namespace MobileApi.Controllers
                     categoryId = categoryId,
                     subjectId = subjectId,
                     TotalWeight = model.weight,
-                    Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale
+                    Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale                    
                 };
+                ///TODO
+                user.userDetail.billingInfo = new BillingInfo();
+
                 product.Materials = new List<Material>();
                 product.Styles = new List<Style>();
                 product.Mediums = new List<Medium>();
