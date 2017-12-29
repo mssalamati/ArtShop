@@ -984,7 +984,7 @@ namespace MobileApi.Controllers
                     TotalWeight = model.weight,
                     Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale                    
                 };
-                ///TODO
+                ////TODO
                 user.userDetail.billingInfo = new BillingInfo();
 
                 product.Materials = new List<Material>();
