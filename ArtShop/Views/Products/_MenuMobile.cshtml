@@ -29,7 +29,7 @@ if (current == selected)
         <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/Edit/@Model.id">@UploadRes.Artwork_Status</a>
        @if (Model.Status == ProductStatus.forSale)
        {
-            @*<a class="side-navigation__sub-level @selected("Packaging",(string)Model.menu)" href="/Products/EditPackag/@Model.id">@UploadRes.Packaging</a>*@
+            <a class="side-navigation__sub-level @selected("Packaging",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/EditPackag/@Model.id">@UploadRes.Packaging</a>
             <a class="side-navigation__sub-level @selected("Pricing",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/EditPricing/@Model.id">@UploadRes.Pricing</a>
         }
         <a class="side-navigation__top-level @selected("Artwork Details",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/Editdetail/@Model.id">@UploadRes.ArtworkDetail</a>

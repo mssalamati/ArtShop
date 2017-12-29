@@ -339,8 +339,27 @@ namespace ArtShop.Controllers
         [Authorize]
         public ActionResult EditPackag(Product model)
         {
-            return View(model);
-            ////TODO
+            var p = db.Products.Include("photo").Single(x => x.Id == model.Id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            bool mine = profile.Products.Any(x => x.Id == model.Id);
+            if (!mine)
+                return HttpNotFound();
+
+            p.Packaging = model.Packaging;
+            p.multiPaneled = model.multiPaneled;
+            p.framed = model.framed;
+
+            if (model.frameMaterial != null)
+                p.frameMaterial = db.ProductFrameMaterials.Find(model.frameMaterial.Id);
+            if (model.frameColor != null)
+                p.frameColor = db.ProductFrameColors.Find(model.frameColor.Id);
+            if (model.frameType != null)
+                p.frameType = db.ProductFrameTypes.Find(model.frameType.Id);
+
+            db.SaveChanges();
+            return View(p);
         }
 
         [Authorize]
