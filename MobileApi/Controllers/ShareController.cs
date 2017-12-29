@@ -627,8 +627,9 @@ namespace MobileApi.Controllers
         {
             var p = db.Products.Include("photo").Include("productshippingDetail").Single(x => x.Id == model.id);
             bool isMine = false;
+            bool isSucceed = false;
             var userId = User.Identity.GetUserId();
-            var currentUserProfile = db.UserProfiles.Find(userId);            
+            var currentUserProfile = db.UserProfiles.Find(userId);
             isMine = currentUserProfile.Products.Any(a => a.Id == model.id);
 
             if (isMine)
@@ -638,24 +639,21 @@ namespace MobileApi.Controllers
                     p.Status = model.Status;
                 else
                     p.Status = ProductStatus.NotForSale;
-                
+
                 p.TotalWeight = model.weight;
                 p.Height = model.Height;
                 p.Width = model.Width;
                 p.Depth = model.Depth;
-                if (model.Status == ProductStatus.forSale)
-                {
-                    if (p.user.billingInfo == null)
-                        p.user.billingInfo = new BillingInfo();
-                    p.user.billingInfo.Street = model.StreetAddress;
-                    p.user.billingInfo.City = model.City;
-                    if (model.Country != 0)
-                        p.user.billingInfo.CountryId = model.Country;
-                    p.user.billingInfo.PhoneNumber = model.Phonenumber;
-                    p.user.billingInfo.Region = model.Region;
-                    p.user.billingInfo.ZipCode = model.Zipcode;
-                    
-                }
+
+                if (p.user.billingInfo == null)
+                    p.user.billingInfo = new BillingInfo();
+                p.user.billingInfo.Street = model.StreetAddress;
+                p.user.billingInfo.City = model.City;
+                if (model.Country != 0)
+                    p.user.billingInfo.CountryId = model.Country;
+                p.user.billingInfo.PhoneNumber = model.Phonenumber;
+                p.user.billingInfo.Region = model.Region;
+                p.user.billingInfo.ZipCode = model.Zipcode;
 
                 p.Price = (int)model.Price;
                 p.categoryId = model.categoryId;
@@ -686,11 +684,15 @@ namespace MobileApi.Controllers
                 p.Packaging = model.Packaging;
 
                 db.SaveChanges();
+                isSucceed = true;
+
                 if (p.user.billingInfo == null)
                     p.user.billingInfo = new BillingInfo();
             }
+            else
+                isSucceed = true;
 
-            return Request.CreateResponse(HttpStatusCode.OK, new { Artwork = p.tojason()}, formatter);
+            return Request.CreateResponse(HttpStatusCode.OK, new { Artwork = p.tojason(), IsSucceed = isSucceed }, formatter);
         }
 
         [HttpGet, Route("Search")]
@@ -980,10 +982,18 @@ namespace MobileApi.Controllers
                     categoryId = categoryId,
                     subjectId = subjectId,
                     TotalWeight = model.weight,
-                    Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale                    
+                    Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale
                 };
-                ////TODO
-                user.userDetail.billingInfo = new BillingInfo();
+
+                if (product.user.billingInfo == null)
+                    product.user.billingInfo = new BillingInfo();
+                product.user.billingInfo.Street = model.StreetAddress;
+                product.user.billingInfo.City = model.City;
+                if (model.Country != 0)
+                    product.user.billingInfo.CountryId = model.Country;
+                product.user.billingInfo.PhoneNumber = model.Phonenumber;
+                product.user.billingInfo.Region = model.Region;
+                product.user.billingInfo.ZipCode = model.Zipcode;
 
                 product.Materials = new List<Material>();
                 product.Styles = new List<Style>();
