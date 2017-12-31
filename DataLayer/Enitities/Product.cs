@@ -86,7 +86,7 @@ namespace DataLayer.Enitities
                 createDate = CreateDate,
                 package = Packaging,
                 depth = Depth,
-                country = user.country != null ? user.country.Id : 0,
+                country = user.billingInfo != null ? user.billingInfo.country.Id : 0,
                 description = Description,
                 height = Height,
                 isForSale = ISOrginalForSale,

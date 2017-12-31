@@ -81,7 +81,7 @@ namespace MobileApi.Controllers
                 System.Net.ServicePointManager.Expect100Continue = false;
                 ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
                 string Authority;
-                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/card/Mobileverify", out Authority);
+                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/en-us/card/Mobileverify", out Authority);
                 long longAuth = 0;
                 long.TryParse(Authority, out longAuth);
                 o.TransactionDetail.Number = longAuth.ToString();
@@ -160,8 +160,8 @@ namespace MobileApi.Controllers
                 transactions = transactionList,
                 redirect_urls = new paypal.RedirectUrls
                 {
-                    return_url = "https://artiscovery.com/card/MobilePaypalReturn",
-                    cancel_url = "https://artiscovery.com/card/MobilePaypalCancel"
+                    return_url = "https://artiscovery.com/en-us/card/MobilePaypalReturn",
+                    cancel_url = "https://artiscovery.com/en-us/card/MobilePaypalCancel"
                 }
             });
         }

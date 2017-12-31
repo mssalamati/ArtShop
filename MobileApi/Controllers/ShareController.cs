@@ -110,18 +110,18 @@ namespace MobileApi.Controllers
             {
                 packages = new List<object>()
                 {
-                    new { id = (int)Productpackage.box   ,name = "box" } ,
-                    new { id = (int)Productpackage.crate ,name = "crate" } ,
-                    new { id = (int)Productpackage.tube  ,name = "tube" } ,
+                    new { id = (int)Productpackage.box   ,name = "box" ,hasFrame = true} ,
+                    new { id = (int)Productpackage.crate ,name = "crate",hasFrame = true } ,
+                    new { id = (int)Productpackage.tube  ,name = "tube" ,hasFrame = false} ,
                 };
             }
             else
             {
                 packages = new List<object>()
                 {
-                    new { id = (int)Productpackage.box   ,name = "جعبه" } ,
-                    new { id = (int)Productpackage.crate ,name = "صندوقچه" } ,
-                    new { id = (int)Productpackage.tube  ,name = "رول" } ,
+                    new { id = (int)Productpackage.box   ,name = "جعبه" ,hasFrame = true} ,
+                    new { id = (int)Productpackage.crate ,name = "صندوقچه" ,hasFrame = true} ,
+                    new { id = (int)Productpackage.tube  ,name = "رول" ,hasFrame = false} ,
                 };
             }
 
@@ -929,6 +929,9 @@ namespace MobileApi.Controllers
                 var UploadResult = await UploadImage(model.imageUpload, iserver.Id);
                 if (!UploadResult.result)
                     return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
+
+                if (!profile.isIDConfirmed)
+                    model.isforsale = false;
 
                 //reize picture
                 var ResizeResult = await resize(new ResizeViewModel()

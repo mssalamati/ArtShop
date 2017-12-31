@@ -412,7 +412,7 @@ namespace ArtShop.Controllers
                             db.SaveChanges();
                             SendOrderDetail(order);
                             SendInvoice(order);
-                            CartManager.GetCart(this.HttpContext).EmptyCart();
+                            //CartManager.GetCart(this.HttpContext).EmptyCart();
                             return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
                         else
