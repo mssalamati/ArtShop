@@ -7,7 +7,7 @@ using System.Web;
 namespace ArtShop.Models
 {
     public class EditProductMenuViewModel
-    {
+    {   
         public string Photo { get; set; }
         public int id { get; set; }
         public string menu { get; set; }

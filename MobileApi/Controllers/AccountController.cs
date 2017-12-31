@@ -374,7 +374,8 @@ namespace MobileApi.Controllers
             {
                 UserName = model.Email,
                 Email = model.Email,
-                userDetail = userDetail
+                userDetail = userDetail,
+               EmailConfirmed = true
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

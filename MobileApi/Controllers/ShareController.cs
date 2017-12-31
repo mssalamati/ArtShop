@@ -645,15 +645,15 @@ namespace MobileApi.Controllers
                 p.Width = model.Width;
                 p.Depth = model.Depth;
 
-                if (p.user.billingInfo == null)
-                    p.user.billingInfo = new BillingInfo();
-                p.user.billingInfo.Street = model.StreetAddress;
-                p.user.billingInfo.City = model.City;
+                if (currentUserProfile.billingInfo == null)
+                    currentUserProfile.billingInfo = new BillingInfo();
+                currentUserProfile.billingInfo.Street = model.StreetAddress;
+                currentUserProfile.billingInfo.City = model.City;
                 if (model.Country != 0)
-                    p.user.billingInfo.CountryId = model.Country;
-                p.user.billingInfo.PhoneNumber = model.Phonenumber;
-                p.user.billingInfo.Region = model.Region;
-                p.user.billingInfo.ZipCode = model.Zipcode;
+                    currentUserProfile.billingInfo.CountryId = model.Country;
+                currentUserProfile.billingInfo.PhoneNumber = model.Phonenumber;
+                currentUserProfile.billingInfo.Region = model.Region;
+                currentUserProfile.billingInfo.ZipCode = model.Zipcode;
 
                 p.Price = (int)model.Price;
                 p.categoryId = model.categoryId;
