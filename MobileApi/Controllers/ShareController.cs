@@ -985,15 +985,16 @@ namespace MobileApi.Controllers
                     Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale
                 };
 
-                if (product.user.billingInfo == null)
-                    product.user.billingInfo = new BillingInfo();
-                product.user.billingInfo.Street = model.StreetAddress;
-                product.user.billingInfo.City = model.City;
+                //change today
+                if (profile.billingInfo == null)
+                    profile.billingInfo = new BillingInfo();
+                profile.billingInfo.Street = model.StreetAddress;
+                profile.billingInfo.City = model.City;
                 if (model.Country != 0)
-                    product.user.billingInfo.CountryId = model.Country;
-                product.user.billingInfo.PhoneNumber = model.Phonenumber;
-                product.user.billingInfo.Region = model.Region;
-                product.user.billingInfo.ZipCode = model.Zipcode;
+                    profile.billingInfo.CountryId = model.Country;
+                profile.billingInfo.PhoneNumber = model.Phonenumber;
+                profile.billingInfo.Region = model.Region;
+                profile.billingInfo.ZipCode = model.Zipcode;
 
                 product.Materials = new List<Material>();
                 product.Styles = new List<Style>();
