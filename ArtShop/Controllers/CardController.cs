@@ -107,7 +107,7 @@ namespace ArtShop.Controllers
                 System.Net.ServicePointManager.Expect100Continue = false;
                 ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
                 string Authority;
-                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/"+ CultureHelper.GetCurrentCulture() + "/card/Verify", out Authority);
+                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/" + CultureHelper.GetCurrentCulture() + "/card/Verify", out Authority);
                 long longAuth = 0;
                 long.TryParse(Authority, out longAuth);
                 o.TransactionDetail.Number = longAuth.ToString();
@@ -248,8 +248,8 @@ namespace ArtShop.Controllers
                 transactions = transactionList,
                 redirect_urls = new paypal.RedirectUrls
                 {
-                    return_url = "https://artiscovery.com/"+ CultureHelper.GetCurrentCulture() + "/card/PaypalReturn",
-                    cancel_url = "https://artiscovery.com/"+ CultureHelper.GetCurrentCulture() + "/card/PaypalCancel"
+                    return_url = "https://artiscovery.com/" + CultureHelper.GetCurrentCulture() + "/card/PaypalReturn",
+                    cancel_url = "https://artiscovery.com/" + CultureHelper.GetCurrentCulture() + "/card/PaypalCancel"
                 }
             });
         }
@@ -410,8 +410,8 @@ namespace ArtShop.Controllers
                                 }
                             }
                             db.SaveChanges();
-                            //SendOrderDetail(order);
-                            //SendInvoice(order);
+                            SendOrderDetail(order);
+                            SendInvoice(order);
                             CartManager.GetCart(order.user_id).EmptyCart();
                             return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
@@ -485,8 +485,8 @@ namespace ArtShop.Controllers
         //email segment
         private void SendInvoice(Order order)
         {
-            dynamic email = new Email("Invoice");           
-            email.To = User.Identity.GetUserName();
+            dynamic email = new Email("Invoice");
+            email.To = order.user.ApplicationUserDetail.UserName;
             email.Subject = "Artiscovery Invoice | " + order.Id.ToString();
             email.orderid = order.Id;
             email.fullname = order.ReceiverName;
