@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group animate-group-0-3">
+                                        <div id="frameoption" class="form-group animate-group-0-3">
                                             <h3>@UploadRes.step8_ask1</h3>
                                             <div class="input-container">
                                                 <div class="button-radio">
@@ -214,7 +214,7 @@
         } else {
             inp.val('false');
             btnno.addClass('button--active');
-            btnyes.removeClass('button--active');
+            btnyes.removeClass('button--active');   
         }
     }
     function change_pack(val) {
@@ -229,12 +229,19 @@
         if (val == 1) {
             inp.val('0');
             packing_crate.addClass('image-radio__item--active');
+            $('#frameoption').show();
+            
         } else if (val == 2) {
             inp.val('1');
             packing_box.addClass('image-radio__item--active');
+            $('#frameoption').show();
+            
         } else {
             inp.val('2');
             packing_tube.addClass('image-radio__item--active');
+            $('#frameoption').hide();
+            $('#framedetail').hide();
+            
         }
     }
 </script>
