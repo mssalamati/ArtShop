@@ -399,7 +399,7 @@ namespace ArtShop.Controllers
                         tran.Description = Status.ToString();
                         if (Status == 100)
                         {
-                            //tran.Payed = true;
+                            tran.Payed = true;
                             //foreach (var item in order.OrderDetails)
                             //{
                             //    item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
@@ -409,9 +409,9 @@ namespace ArtShop.Controllers
                             //        item.Product.Status = ProductStatus.Sold;
                             //    }
                             //}
-                            //db.SaveChanges();
-                            //SendOrderDetail(order);
-                            //SendInvoice(order);
+                            db.SaveChanges();
+                            SendOrderDetail(order);
+                            SendInvoice(order);
                             //CartManager.GetCart(this.HttpContext).EmptyCart();
                             return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
