@@ -400,19 +400,19 @@ namespace ArtShop.Controllers
                         if (Status == 100)
                         {
                             tran.Payed = true;
-                            //foreach (var item in order.OrderDetails)
-                            //{
-                            //    item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
-                            //    item.Product.avaible--;
-                            //    if (item.Product.avaible == 0)
-                            //    {
-                            //        item.Product.Status = ProductStatus.Sold;
-                            //    }
-                            //}
+                            foreach (var item in order.OrderDetails)
+                            {
+                                item.Product.user.Account += (item.UnitPrice * item.Quantity) * (decimal)((100d - 10d) / 100d);
+                                item.Product.avaible--;
+                                if (item.Product.avaible == 0)
+                                {
+                                    item.Product.Status = ProductStatus.Sold;
+                                }
+                            }
                             db.SaveChanges();
-                            SendOrderDetail(order);
-                            SendInvoice(order);
-                            //CartManager.GetCart(this.HttpContext).EmptyCart();
+                            //SendOrderDetail(order);
+                            //SendInvoice(order);
+                            CartManager.GetCart(order.user_id).EmptyCart();
                             return RedirectToActionPermanent("MobilePaymentReport", new { culture = CultureHelper.GetCurrentCulture(), id = orderId });
                         }
                         else

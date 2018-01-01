@@ -26,6 +26,12 @@ namespace ArtShop.Util
             return GetCart(controller.HttpContext);
         }
 
+        public static CartManager GetCart(string identityname)
+        {
+            var cart = new CartManager();
+            cart.ShoppingCartId = identityname;
+            return cart;
+        }
 
         public void AddToCart(Product p, Ordertype type)
         {
