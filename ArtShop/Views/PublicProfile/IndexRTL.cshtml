@@ -17,9 +17,9 @@
     <article class="profile">
         <header>
             <div class="small-5 medium-6 large-4 columns">
-           
+
             </div>
-            <div class="small-7 medium-6 large-8 columns" >
+            <div class="small-7 medium-6 large-8 columns">
                 <h1 class="ellipsis" style="float:right">
                     <i class="icn-artist-location flag-@(Model.country.Code == null ? "" : Model.country.Code.ToLower()) so-quick-tip" oldtitle="Iran" style="float:right"></i>
                     <span style="margin-right:8px" itemprop="name">@Model.fullName</span>
@@ -143,10 +143,10 @@
             {
                 <section itemprop="description">
                     <h3 style="text-align:right;margin-right:8px">
-                       @ProfileRes.About
-                        
+                        @ProfileRes.About
+
                     </h3>
-                    <p class="expandable" style="display: block;text-align:right">@Model.aboutme</p>
+                    <p class="expandable" style="display: block;text-align:justify;direction:rtl !important">@Model.aboutme</p>
                 </section>
             }
 
@@ -155,10 +155,10 @@
             {
                 <section itemprop="description">
                     <h3 style="text-align:right;margin-right:8px">
-                       : @ProfileRes.Education
+                        : @ProfileRes.Education
                         |
                     </h3>
-                    <p class="expandable" style="display:block;text-align:right">@Model.aboutme</p>
+                    <p class="expandable" style="display: block;text-align:justify;direction:rtl !important">@Model.aboutme</p>
                 </section>
             }
 
@@ -166,10 +166,10 @@
             {
                 <section class="events">
                     <h3 style="text-align:right;margin-right:8px">
-                       : @ProfileRes.Events
-                        
+                        : @ProfileRes.Events
+
                     </h3>
-                    <p class="expandable" style="display: block;text-align:right">@Model.events</p>
+                    <p class="expandable" style="display: block;text-align:justify;direction:rtl !important">@Model.events</p>
 
                 </section>
             }
@@ -178,10 +178,10 @@
             {
                 <section class="events">
                     <h3 style="text-align:right;margin-right:8px">
-                       : @ProfileRes.Exhibitions
-                        
+                        : @ProfileRes.Exhibitions
+
                     </h3>
-                    <p class="expandable" style="display: block;text-align:right">@Model.Exhibitions</p>
+                    <p class="expandable" style="display: block;text-align:justify;direction:rtl !important">@Model.Exhibitions</p>
 
                 </section>
             }
@@ -189,7 +189,7 @@
             <div class="clearfix"></div>
 
         </div>
-        <aside role="complementary" class="aside-portfolio small-12 medium-6 large-8 columns"  style="float:left">
+        <aside role="complementary" class="aside-portfolio small-12 medium-6 large-8 columns" style="float:left">
 
             @if (Model.artworkCount == 0)
             {
@@ -198,48 +198,48 @@
             else
             {
 
-            <div id="hero-image-mask" class="small-12 medium-12 large-10 columns editable fast-fade portfolio-hero" style="background-image: url(@Model.artworks.FirstOrDefault().photo.Path)" itemscope="" itemtype="http://schema.org/CreativeWork">
-                <img id="hero-image-container" src="" width="100%" height="100%" itemprop="image" class="hidden">
-                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
-                    <img id="hero-image-crop" class="" src="https://dfcdths9j2gip.cloudfront.net/media/images/blank.gif" width="100%" height="100%" itemprop="image">
-                </a>
+                <div id="hero-image-mask" class="small-12 medium-12 large-10 columns editable fast-fade portfolio-hero" style="background-image: url(@Model.artworks.FirstOrDefault().photo.Path)" itemscope="" itemtype="http://schema.org/CreativeWork">
+                    <img id="hero-image-container" src="" width="100%" height="100%" itemprop="image" class="hidden">
+                    <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
+                        <img id="hero-image-crop" class="" src="https://dfcdths9j2gip.cloudfront.net/media/images/blank.gif" width="100%" height="100%" itemprop="image">
+                    </a>
 
-            </div>
+                </div>
 
-            <div class="small-12 medium-12 large-2 columns">
+                <div class="small-12 medium-12 large-2 columns">
 
-                @for (int i = 1; i <= Model.artworks.Count - 1; i++)
+                    @for (int i = 1; i <= Model.artworks.Count - 1; i++)
+                    {
+
+                        var item = Model.artworks[i];
+
+                        if (item.photo == null)
                         {
 
-                            var item = Model.artworks[i];
-
-                            if (item.photo == null)
-                            {
-
-                        <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                            <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
-                                <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
-                            </a>
-                        </div>
-
-                            }
-                            else
-                            {
-
-                        <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
-                            <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
-                                <img src="@item.Sqphoto.Path" alt="" itemprop="image">
-                            </a>
-
-                        </div>
-                            }
+                            <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
+                                    <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" itemprop="image">
+                                </a>
+                            </div>
 
                         }
+                        else
+                        {
 
-            </div>
+                            <div class="small-tn" itemscope="" itemtype="http://schema.org/CreativeWork">
+                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" itemprop="url">
+                                    <img src="@item.Sqphoto.Path" alt="" itemprop="image">
+                                </a>
+
+                            </div>
+                        }
+
+                    }
+
+                </div>
             }
             <h5 style="text-align:right">
-                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork" >
+                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork">
                     <i class="fa fa-suitcase"></i> @ProfileRes.Artwork @*<span>(@Model.artworkCount)</span>*@
                 </a>
             </h5>
@@ -247,7 +247,7 @@
             <div class="heroSaveCancel" style="display:none;">
                 <a href="#" class="btn-info" onclick="Saatchi.Profile.heroPositionSave();return false;">
                     Save
-                   @* <img id="loading-indicator" class="loading" src="/media/images/status/loading/button.gif" style="display: none;">*@
+                    @* <img id="loading-indicator" class="loading" src="/media/images/status/loading/button.gif" style="display: none;">*@
                 </a>
                 <a href="#" class="btn-cancel" onclick="Saatchi.Profile.heroPositionCancel();return false;">@ProfileRes.Cancel</a>
             </div>
