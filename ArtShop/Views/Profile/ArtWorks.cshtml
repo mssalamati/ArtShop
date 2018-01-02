@@ -32,6 +32,9 @@
             <h1 class="profile-subpage-name ellipsis" itemprop="name">@ViewBag.ProfileFullName</h1>
             <i class="fa fa-caret-left"></i> @ProfileRes.Back_to_profile
         </a>
+        <a href="/@CultureHelper.GetCurrentCulture()/profile/ArtWorks?archive=true" itemprop="url">
+            <i class="fa fa-archive"></i> @ShareRes.archive
+        </a>
 
         <div class="artist-manage-links">
             @*<a href="/account/manage-art" title="@ProfileRes.Manage_artworks" itemprop="url">@ProfileRes.Manage_artworks</a>

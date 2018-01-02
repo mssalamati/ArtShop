@@ -286,7 +286,7 @@ namespace ArtShop.Controllers
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.artworkCount = userProfile.Products.Count;
             ViewBag.PhotoPath = userProfile.PhotoPath;
-          
+
             if (userProfile.Favorits != null)
             {
                 var p = userProfile.Favorits;
@@ -305,7 +305,7 @@ namespace ArtShop.Controllers
             return View();
         }
 
-        public ActionResult ArtWorks(int page = 1)
+        public ActionResult ArtWorks(int page = 1, bool archive = false)
         {
             int pageSize = 18;
             var userId = User.Identity.GetUserId();
@@ -316,7 +316,7 @@ namespace ArtShop.Controllers
             ViewBag.collectionCount = userProfile.Collections.Count;
             ViewBag.PhotoPath = userProfile.PhotoPath;
 
-            var p = userProfile.Products;
+            var p = userProfile.Products.Where(x => x.IsArchive == archive);
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
             page = Math.Max(1, page);

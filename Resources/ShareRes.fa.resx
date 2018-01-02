@@ -483,4 +483,7 @@
   <data name="Submit_request" xml:space="preserve">
     <value>ثبت درخواست</value>
   </data>
+  <data name="archive" xml:space="preserve">
+    <value>آرشیو</value>
+  </data>
 </root>

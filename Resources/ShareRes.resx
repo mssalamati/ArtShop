@@ -483,4 +483,7 @@ Other</value>
   <data name="Submit_request" xml:space="preserve">
     <value>Submit a request</value>
   </data>
+  <data name="archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
 </root>
