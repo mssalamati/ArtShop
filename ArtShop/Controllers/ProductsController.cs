@@ -85,9 +85,10 @@ namespace ArtShop.Controllers
                 var profile = user.userDetail;
                 ViewBag.favorites = profile.Favorits;
                 mine = profile.Products.Any(x => x.Id == id);
+                var candeleted = !db.Orders.Where(x => x.TransactionDetail != null).Where(x => x.TransactionDetail.Payed).SelectMany(x => x.OrderDetails).Select(x => x.ProductId).Any(x => x == id);
+                ViewBag.candeleted = candeleted;
             }
             ViewBag.mine = mine;
-
             return View(p);
         }
 
@@ -102,8 +103,35 @@ namespace ArtShop.Controllers
                 var p = profile.Products.SingleOrDefault(x => x.Id == id);
                 if (p != null)
                 {
-                    db.Products.Remove(p);
-                    db.SaveChanges();
+                    var candeleted = !db.Orders.Where(x => x.TransactionDetail != null).Where(x => x.TransactionDetail.Payed).SelectMany(x => x.OrderDetails).Select(x => x.ProductId).Any(x => x == id);
+                    if (candeleted)
+                    {
+                        db.Products.Remove(p);
+                        db.SaveChanges();
+                    }
+                    return RedirectToActionPermanent("artworks", "profile", new { });
+                }
+            }
+            return Content("error");
+        }
+
+        [HttpGet]
+        public ActionResult archive(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                var p = profile.Products.SingleOrDefault(x => x.Id == id);
+                if (p != null)
+                {
+                    var candeleted = !db.Orders.Where(x => x.TransactionDetail != null).Where(x => x.TransactionDetail.Payed).SelectMany(x => x.OrderDetails).Select(x => x.ProductId).Any(x => x == id);
+                    if (candeleted)
+                    {
+                        db.Products.Remove(p);
+                        db.SaveChanges();
+                    }
                     return RedirectToActionPermanent("artworks", "profile", new { });
                 }
             }

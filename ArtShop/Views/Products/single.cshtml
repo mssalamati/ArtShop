@@ -11,7 +11,7 @@
     ViewBag.Title = Model.Title + " | " + Model.user.FirstName + " " + Model.user.LastName;
 }
 @model Product
-    
+
 
 @using DataLayer.Extentions
 
@@ -24,6 +24,7 @@
             font-size: .9rem !important;
             line-height: 1.6rem !important;
         }
+
         #artAdminSection menu.inline-list > li {
             margin: 0px 4px 5px 0;
         }
@@ -42,7 +43,6 @@
         background-repeat: no-repeat;
         background-color: transparent;
     }
-
 </style>
 
 <style>
@@ -121,7 +121,7 @@
                                 @if (IsRighToLeft)
                                 {
                                     <span itemprop="name">@Model.Title</span>
-                                    
+
                                     <span itemprop="category">@Model.category.Current().Name</span>
                                     <span>  @SearchRes.by</span>
                                     <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
@@ -180,9 +180,9 @@
                                 </a>
 
                                 @*<a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
-                                    <i class="fa fa-heart"></i>
-                                    <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
-                                </a>*@
+                                        <i class="fa fa-heart"></i>
+                                        <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
+                                    </a>*@
 
                                 @if (User.Identity.IsAuthenticated && ViewBag.favorites != null)
                                 {
@@ -494,8 +494,15 @@
                             <div id="artAdminSection">
                                 <menu id="edit-actions" class="inline-list">
 
-                                    <li><a class="edit-image btn btn-link"  href="/@CultureHelper.GetCurrentCulture()/products/edit/@Model.Id">@ShareRes.Edit</a>&nbsp;|</li>
-                                    <li><button class="so-delete-art btn btn-link"  onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
+                                    <li><a class="edit-image btn btn-link" href="/@CultureHelper.GetCurrentCulture()/products/edit/@Model.Id">@ShareRes.Edit</a>&nbsp;|</li>
+                                    @if (ViewBag.candeleted)
+                                    {
+                                        <li><button class="so-delete-art btn btn-link" onclick="remove()"><i class="fa fa-trash"></i> @ShareRes.Remove</button></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a class="so-delete-art btn btn-link" href="/@CultureHelper.GetCurrentCulture()/products/archive/@Model.Id"><i class="fa fa-check"></i> Archive</a></li>
+                                    }
                                 </menu>
                             </div>
                         </div>
