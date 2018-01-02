@@ -34,6 +34,7 @@ namespace DataLayer.Enitities
         public DateTime CreateDate { get; set; }
         public int ArtCreatedYear { get; set; }
         public bool ISOrginalForSale { get; set; }
+        public bool IsArchive { get; set; }
         public bool IsPrintAvaibled { get; set; }
         public bool framed { get; set; }
         public bool multiPaneled { get; set; }
@@ -96,6 +97,7 @@ namespace DataLayer.Enitities
                 authorId = user_id,
                 photo = photo.Path,
                 price = Price,
+                status = Status,
                 sqphoto = Sqphoto.Path,
                 subjectId = subjectId,
                 styles = Styles.Select(x => x.Id),

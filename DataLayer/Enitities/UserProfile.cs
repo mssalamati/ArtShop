@@ -25,6 +25,7 @@ namespace DataLayer.Enitities
         public virtual string GovermentIdPath { get; set; }
         public virtual bool isIDConfirmed { get; set; }
         public virtual string IdConfirmedBy { get; set; }
+        public virtual string IdRejectionReason { get; set; }
         public virtual string Region { get; set; }
         public virtual decimal Account { get; set; }
         public virtual string ZipCode { get; set; }
