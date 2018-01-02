@@ -126,12 +126,8 @@ namespace ArtShop.Controllers
                 var p = profile.Products.SingleOrDefault(x => x.Id == id);
                 if (p != null)
                 {
-                    var candeleted = !db.Orders.Where(x => x.TransactionDetail != null).Where(x => x.TransactionDetail.Payed).SelectMany(x => x.OrderDetails).Select(x => x.ProductId).Any(x => x == id);
-                    if (candeleted)
-                    {
-                        db.Products.Remove(p);
-                        db.SaveChanges();
-                    }
+                    p.IsArchive = true;
+                    db.SaveChanges();
                     return RedirectToActionPermanent("artworks", "profile", new { });
                 }
             }
