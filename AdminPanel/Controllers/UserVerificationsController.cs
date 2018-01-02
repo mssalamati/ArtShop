@@ -27,11 +27,12 @@ namespace AdminPanel.Controllers
             return View(obj);
         }
 
-        public ActionResult SetConfitm(string id, bool confirm)
+        public ActionResult SetConfitm(string id, bool confirm, string Reason)
         {
             var obj = db.UserProfiles.Find(id);
             obj.isIDConfirmed = confirm;
             obj.IdConfirmedBy = User.Identity.Name;
+
 
             if (confirm)
             {
@@ -41,6 +42,8 @@ namespace AdminPanel.Controllers
                     item.Status = ProductStatus.forSale;
                 }
             }
+            else
+                obj.IdRejectionReason = Reason;
 
             db.SaveChanges();
             SendEmail(obj);

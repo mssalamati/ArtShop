@@ -79,6 +79,32 @@ namespace MobileApi.Controllers
             return Ok();
         }
 
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = await UserManager.FindByNameAsync(model.Email);
+        //        if (user == null)
+        //        {
+        //            // Don't reveal that the user does not exist or is not confirmed
+        //            ModelState.AddModelError("", "User does not exist!");
+        //            return View();
+        //        }
+
+        //        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+        //        // Send an email with this link
+        //        string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+        //        var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //        await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+        //        return RedirectToActionPermanent("ForgotPasswordConfirmation", "Account");
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
+
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)

@@ -369,6 +369,32 @@ namespace MobileApi.Controllers
             return new upoadNowResult(0, "success", true);
         }
 
+        [Authorize, HttpGet, Route("GetNationalId")]
+        public HttpResponseMessage GetNationalId(string language)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            if (!string.IsNullOrEmpty(profile.GovermentIdPath))
+            {
+                string url = "";
+                if (profile.GovermentIdPath.Contains("https"))
+                    url = profile.GovermentIdPath;
+                else
+                    url = "https://artiscovery.com/" + profile.GovermentIdPath;
+
+
+                return Request.CreateResponse(HttpStatusCode.OK, new {  image = url, isConfirmd = profile.isIDConfirmed, message = profile.IdRejectionReason }, formatter);
+            }
+            else
+            {
+                if (language.Contains("en"))
+                    return Request.CreateResponse(HttpStatusCode.OK, new { message = "There is no id uploaded yet" }, formatter);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, new { message = "کارت شناسایی بارگزاری نشده است" }, formatter);
+            }
+        }
+
         [HttpGet, Route("FavoritListByProfileId")]
         public HttpResponseMessage FavoritListByProfileId(string id, int page)
         {

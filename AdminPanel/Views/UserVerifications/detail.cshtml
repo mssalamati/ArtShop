@@ -26,7 +26,7 @@
 <div class="clearfix"></div>
 
 
-<div class="row">
+<div class="row" ng-app="myApp" ng-controller="myCtrl">
     <div class="col-md-8 col-md-offset-2">
         <div class="card bg-white m-b">
             <div class="card-header">
@@ -65,6 +65,12 @@
                             <input type="text" readonly value="@Model.IdConfirmedBy" class="form-control" />
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <input type="text" ng-model="myVar" value="" class="form-control" />
+                        </div>
+                    </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
@@ -77,15 +83,15 @@
                             {
                                 <img style="width:100%" src="http://artiscovery.com/@Model.GovermentIdPath" />
                             }
-                            
+
                         </div>
                     </div>
 
 
                     <div class="col-md-12">
                         <a href="/UserVerifications/index" class="btn btn-primary">back</a>
-                        <a href="/UserVerifications/SetConfitm?id=@Model.Id&confirm=true" class="btn btn-success">Qualify</a>
-                        <a href="/UserVerifications/SetConfitm?id=@Model.Id&confirm=false" class="btn btn-danger">DisQualify</a>
+                        <a href="/UserVerifications/SetConfitm?id=@Model.Id&confirm=true&reason=" class="btn btn-success">Qualify</a>
+                        <a href="/UserVerifications/SetConfitm?id=@Model.Id&confirm=false&reason={{myVar}}" class="btn btn-danger">DisQualify</a>
                     </div>
 
                 </div>
@@ -94,3 +100,16 @@
 
     </div>
 </div>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/angular")
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.myVar = "@Model.IdRejectionReason";
+        });
+    </script>
+}
