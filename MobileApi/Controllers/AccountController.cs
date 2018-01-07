@@ -21,6 +21,7 @@ using DataLayer.Enitities;
 using System.Net;
 using System.Linq;
 using RestSharp;
+using Postal;
 
 namespace MobileApi.Controllers
 {
@@ -79,31 +80,37 @@ namespace MobileApi.Controllers
             return Ok();
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = await UserManager.FindByNameAsync(model.Email);
-        //        if (user == null)
-        //        {
-        //            // Don't reveal that the user does not exist or is not confirmed
-        //            ModelState.AddModelError("", "User does not exist!");
-        //            return View();
-        //        }
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("ForgetPassword")]
+        public async Task<HttpResponseMessage> ForgetPassword(string Email, string Language)
+        {
 
-        //        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-        //        // Send an email with this link
-        //        string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-        //        var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        //        await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-        //        return RedirectToActionPermanent("ForgotPasswordConfirmation", "Account");
-        //    }
+            var user = await UserManager.FindByNameAsync(Email);
+            if (user == null)
+            {
+                var error = new
+                {
+                    success = false,
+                    message = "The request is invalid.",
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, error);
+            }
 
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
+            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+            // Send an email with this link
+            string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            var callbackUrl = "https://artiscovery.com/en-us/Account/ResetPassword?userId=" + user.Id + "&code=" + code;
+           // callbackUrl = HttpUtility.UrlEncode(callbackUrl);
+            await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            var rerror = new
+            {
+                success = true                
+            };
+            return Request.CreateResponse(HttpStatusCode.OK, rerror);
+
+
+        }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
@@ -294,16 +301,16 @@ namespace MobileApi.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName,user.EmailConfirmed.ToString());
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
             {
-                
+
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
 
-                
+
 
 
                 var userDetail = new UserProfile { FirstName = loginInfo.ExternalIdentity.Name.Split(' ')[0], LastName = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ')[1]) ? null : loginInfo.ExternalIdentity.Name.Split(' ')[1], profileType = ProfileType.Collector, MailingList = true };
@@ -401,7 +408,7 @@ namespace MobileApi.Controllers
                 UserName = model.Email,
                 Email = model.Email,
                 userDetail = userDetail,
-               EmailConfirmed = true
+                EmailConfirmed = false
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
@@ -423,7 +430,26 @@ namespace MobileApi.Controllers
                 };
                 return Request.CreateResponse(HttpStatusCode.OK, error);
             }
-            return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Registered" });
+            else
+            {
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+                var callbackUrl = "https://artiscovery.com/en-us/Account/ConfirmEmail?userId=" + user.Id + "&code=" + code;
+
+                SendEmail(user.Email, callbackUrl);
+
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = true, message = "Registered" });
+            }            
+        }
+
+        private void SendEmail(string userEmail, string link)
+        {
+            dynamic email = new Email("ConfirmationEmail");
+            email.To = userEmail;
+            email.Subject = "Confirmation Email";
+            email.Link = link;
+            email.Send();
+
         }
 
         // POST api/Account/RegisterExternal
@@ -443,7 +469,7 @@ namespace MobileApi.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email};
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)

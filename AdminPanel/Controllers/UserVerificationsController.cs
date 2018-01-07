@@ -36,6 +36,7 @@ namespace AdminPanel.Controllers
 
             if (confirm)
             {
+                obj.IDStatus = IDCardStatus.Confirmed;
                 var artworks = obj.Products.Where(a => a.Status != ProductStatus.Sold && a.avaible >= 1 && a.Price > 0);
                 foreach (var item in artworks)
                 {
@@ -43,8 +44,10 @@ namespace AdminPanel.Controllers
                 }
             }
             else
+            {
+                obj.IDStatus = IDCardStatus.NotConfirmed;
                 obj.IdRejectionReason = Reason;
-
+            }
             db.SaveChanges();
             SendEmail(obj);
             return RedirectToAction("detail", new { id = id });

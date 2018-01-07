@@ -413,6 +413,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your ID has been confirmed.
+        /// </summary>
+        public static string IDConfirmText {
+            get {
+                return ResourceManager.GetString("IDConfirmText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artwork Pick Up Address.
         /// </summary>
         public static string Identification_header {

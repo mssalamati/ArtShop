@@ -418,4 +418,7 @@ Do not worry! We protect the file you have sent us. The file will be encrypted f
   <data name="Payouts" xml:space="preserve">
     <value>Payouts</value>
   </data>
+  <data name="IDConfirmText" xml:space="preserve">
+    <value>Your ID has been confirmed</value>
+  </data>
 </root>

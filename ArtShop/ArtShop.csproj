@@ -641,6 +641,8 @@
     <Content Include="Views\Upload\Stepfinish.cshtml" />
     <Content Include="Views\Support\requests.cshtml" />
     <Content Include="Views\Emails\Ticket.cshtml" />
+    <Content Include="Views\Emails\TicketRecieved.cshtml" />
+    <Content Include="Views\Emails\ConfirmationEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

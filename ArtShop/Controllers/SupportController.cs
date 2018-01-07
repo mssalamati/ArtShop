@@ -104,7 +104,7 @@ namespace ArtShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult requests(FAQRequest model)
-        {      
+        {
             if (ModelState.IsValid && ReCaptcha.Validate(ConfigurationManager.AppSettings["ReCaptcha:SecretKey"]))
             {
                 SendTicket(model);
@@ -132,7 +132,7 @@ namespace ArtShop.Controllers
             dynamic email = new Email("Ticket");
             email.To = "support@artiscovery.freshdesk.com";
             email.Subject = model.subject;
-            
+
             string type = "";
             switch (model.type)
             {
@@ -163,7 +163,19 @@ namespace ArtShop.Controllers
             email.detail = model.description;
             email.requestType = type;
             email.type = model.type;
-            email.Attach(new Attachment(model.Attachments.InputStream,model.Attachments.FileName));
+            if (model.Attachments != null)
+            {
+                email.Attach(new Attachment(model.Attachments.InputStream, model.Attachments.FileName));
+            }
+
+            email.Send();
+            TicketRecieved(model.email,model.subject);
+        }
+        private void TicketRecieved(string IssuerEmail,string subject)
+        {
+            dynamic email = new Email("TicketRecieved");
+            email.To = IssuerEmail;
+            email.Subject = subject;
             email.Send();
         }
 

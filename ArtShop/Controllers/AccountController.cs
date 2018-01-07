@@ -12,6 +12,7 @@ using ArtShop.Models;
 using DataLayer;
 using DataLayer.Enitities;
 using RestSharp;
+using Postal;
 
 namespace ArtShop.Controllers
 {
@@ -80,7 +81,7 @@ namespace ArtShop.Controllers
             if (user != null)
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
-                {              
+                {
                     ModelState.AddModelError("", "You must have a confirmed email to log on.");
                     return View(model);
                 }
@@ -150,7 +151,7 @@ namespace ArtShop.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-   
+
             return View();
         }
 
@@ -176,8 +177,8 @@ namespace ArtShop.Controllers
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    SendEmail(user.Email, callbackUrl);
                     Session["isSucceed"] = true;
 
                     return RedirectToActionPermanent("login", "account");
@@ -187,6 +188,16 @@ namespace ArtShop.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private void SendEmail(string userEmail, string link)
+        {
+            dynamic email = new Email("ConfirmationEmail");
+            email.To = userEmail;
+            email.Subject = "Confirmation Email";
+            email.Link = link;
+            email.Send();
+
         }
 
         public void AddSubscriber(string email)
@@ -209,8 +220,8 @@ namespace ArtShop.Controllers
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            if (result.Succeeded)            
-                Session["isconfirmed"] = true;            
+            if (result.Succeeded)
+                Session["isconfirmed"] = true;
             else
                 Session["isconfirmed"] = false;
 
@@ -397,7 +408,7 @@ namespace ArtShop.Controllers
                         var lastname = String.IsNullOrEmpty(loginInfo.ExternalIdentity.Name.Split(' ').Count() > 1 ? loginInfo.ExternalIdentity.Name.Split(' ')[1] : null) ? null : loginInfo.ExternalIdentity.Name.Split(' ').LastOrDefault();
 
                         var userDetail = new UserProfile { FirstName = name, LastName = lastname, profileType = ProfileType.Collector, MailingList = true };
-                        var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail,EmailConfirmed = true };
+                        var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, userDetail = userDetail, EmailConfirmed = true };
                         var registerResult = await UserManager.CreateAsync(user);
                         if (registerResult.Succeeded)
                         {

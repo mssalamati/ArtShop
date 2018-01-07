@@ -1,0 +1,407 @@
+﻿
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Verification</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .collapse {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: none;
+            width: 100% !important;
+            height: 100%;
+        }
+
+        /* -------------------------------------
+                ELEMENTS
+        ------------------------------------- */
+        a {
+            color: #757575;
+            text-decoration: none;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #FFF;
+            background-color: #3CC562;
+            padding: 10px 16px;
+            font-weight: bold;
+            margin-right: 10px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        p.callout {
+            padding: 15px;
+            background-color: #ECF8FF;
+            margin-bottom: 15px;
+        }
+
+        .callout a {
+            font-weight: bold;
+            color: #2BA6CB;
+        }
+
+        table.social {
+            background-color: #ebebeb;
+        }
+
+        .social .soc-btn {
+            padding: 3px 7px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #FFF;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+        }
+
+        a.fb {
+            background-color: #3B5998 !important;
+        }
+
+        a.tw {
+            background-color: #1daced !important;
+        }
+
+        a.gp {
+            background-color: #DB4A39 !important;
+        }
+
+        a.ms {
+            background-color: #000 !important;
+        }
+
+        .sidebar .soc-btn {
+            display: block;
+            width: 100%;
+        }
+
+        /* -------------------------------------
+                HEADER
+        ------------------------------------- */
+        table.head-wrap {
+            width: 100%;
+        }
+
+        .header.container table td.logo {
+            padding: 15px;
+        }
+
+        .header.container table td.label {
+            padding: 15px;
+            padding-left: 0px;
+        }
+
+
+        /* -------------------------------------
+                BODY
+        ------------------------------------- */
+        table.body-wrap {
+            width: 100%;
+        }
+
+
+        /* -------------------------------------
+                FOOTER
+        ------------------------------------- */
+        table.footer-wrap {
+            width: 100%;
+            clear: both !important;
+            margin-top: -5px;
+        }
+
+        .footer-wrap .container td.content p {
+            border-top: 1px solid rgb(215,215,215);
+        }
+
+        .footer-wrap .container td.content p {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+
+        /* -------------------------------------
+                TYPOGRAPHY
+        ------------------------------------- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Raleway;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: #2BA6CB;
+        }
+
+            h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+                font-size: 60%;
+                color: #2BA6CB;
+                line-height: 0;
+                text-transform: none;
+            }
+
+        h1 {
+            font-weight: 200;
+            font-size: 44px;
+        }
+
+        h2 {
+            font-weight: 200;
+            font-size: 37px;
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 27px;
+        }
+
+        h4 {
+            font-weight: 500;
+            font-size: 23px;
+        }
+
+        h5 {
+            font-weight: 900;
+            font-size: 17px;
+        }
+
+        h6 {
+            font-weight: 900;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #444;
+        }
+
+        .collapse {
+            margin: 0 !important;
+        }
+
+        p, ul {
+            margin-bottom: 10px;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+            p.lead {
+                font-size: 17px;
+            }
+
+            p.last {
+                margin-bottom: 0px;
+            }
+
+            ul li {
+                margin-left: 5px;
+                list-style-position: inside;
+            }
+
+
+
+
+        .container {
+            display: block !important;
+            max-width: 600px !important;
+            margin: 0 auto !important; /* makes it centered */
+            clear: both !important;
+        }
+
+        /* This should also be a block element, so that it will fill 100% of the .container */
+        .content {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+        }
+
+            /* Let's make sure tables in the content area are 100% wide */
+            .content table {
+                width: 100%;
+            }
+
+
+        /* Odds and ends */
+        .column {
+            width: 300px;
+            float: left;
+        }
+
+            .column tr td {
+                padding: 15px;
+            }
+
+        .column-wrap {
+            padding: 0 !important;
+            margin: 0 auto;
+            max-width: 600px !important;
+        }
+
+        .column table {
+            width: 100%;
+        }
+
+        .social .column {
+            width: 280px;
+            min-width: 279px;
+            float: left;
+        }
+
+        /* Be sure to place a .clear element after each set of columns, just to be safe */
+        .clear {
+            display: block;
+            clear: both;
+        }
+
+        .header h6 {
+            color: #fff;
+        }
+
+        .heading-style {
+            border-spacing: 0;
+        }
+
+            .heading-style tr td {
+                border-bottom: 1px solid #CEC7C7;
+                font-size: 15px;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .heading-style th {
+                background-color: #2cc2fb;
+                padding: 10px;
+                color: #fff;
+            }
+
+        .invoice-info tr td {
+            padding: 2px;
+            font-size: 14px;
+            color: #757575;
+        }
+
+        tr.no-border td {
+            border: 0px;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body bgcolor="#e8e8e8">
+    <!-- HEADER -->
+    <table class="head-wrap">
+        <tbody>
+            <tr>
+                <td></td>
+                <td class="header container">
+                    <div class="content" style="background-color: #f3f3f3;">
+                        <table class="header-padding">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img style="width:200px;height:auto;image-rendering:-webkit-optimize-contrast" src="http://artiscovery.com/content/images/logo.png">
+
+                                    </td>
+                                    <td align="right">
+                                        @*<h6 class="collapse">Artiscovery</h6>*@
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /HEADER -->
+    <!-- BODY -->
+    <table class="body-wrap" style="margin-top: -3px;">
+        <tbody>
+            <tr>
+                <td></td>
+                <td class="container" bgcolor="#FFFFFF">
+
+                    <div class="content">
+
+                        <h4> You’ve successfully signed up!</h4>
+
+                        <p> so honored that you have joined Us! You are one step away from becoming an Artiscovery member. All you have left to do is activate your account by clicking the link below:</p>
+
+                        <a href="@ViewBag.Link">@ViewBag.Link</a><br />                        
+
+                        <p> and Thanks for signing up to keep in touch with Artiscovery Group.</p>
+
+
+                        <br><br>
+                        <h4 style="text-align: center;">Thanks for joining us!</h4>
+                    </div>
+                    <!-- /content -->
+
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /BODY -->
+    <!-- FOOTER -->
+    <table class="footer-wrap">
+        <tbody>
+            <tr>
+                <td></td>
+                <td class="container">
+                    <!-- content -->
+                    <div class="content" style="background-color: #fff">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td align="center">
+                                        <p>
+                                            <a href="http://artiscovery.com/pages/terms">Terms</a> |
+
+                                            <a href="http://artiscovery.com/pages/privacypolicy">Privacy</a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /content -->
+
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- /FOOTER -->
+
+
+
+</body>
+
+</html>

@@ -467,7 +467,21 @@
                         <p class="mb2">
                            @ProfileRes.Identification_p2
                         </p>
-                        <a class="button btn-info" href="/accountinfo/uploadid">@ProfileRes.Upload_id</a>
+                        @{ var status = ((IDCardStatus)ViewBag.ConfirmationStatus);}
+                        @if (status == IDCardStatus.Pending)
+                        {
+                            <a class="button btn-info" href="/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid">دریافت شد</a>
+                        }
+                        @if (status != IDCardStatus.Confirmed)
+                        {
+                            <a class="button btn-info" href="/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid">@ProfileRes.Upload_id</a>
+                        }
+                        else if (status == IDCardStatus.Confirmed)
+                        {
+                            <h1 style="color:forestgreen;text-align:right">@ProfileRes.IDConfirmText</h1>
+
+                        }
+                        
                     </div>
                 </fieldset>
             </div>

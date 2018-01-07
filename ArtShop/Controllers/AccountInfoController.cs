@@ -144,7 +144,9 @@ namespace ArtShop.Controllers
 
             var userProfile = db.UserProfiles.Find(userId);
             userProfile.userLinks = new UserLink();
-            userProfile.personalInformation = new PersonalInformation();
+
+            if (userProfile.personalInformation == null)
+                userProfile.personalInformation = new PersonalInformation();
             userProfile.userLinks.Facebook = model.Facebook != null ? (model.Facebook.Contains("http") ? model.Facebook : "https://" + model.Facebook) : model.Facebook;
             userProfile.userLinks.Twitter = model.Twitter != null ? (model.Twitter.Contains("http") ? model.Twitter : "https://" + model.Twitter) : model.Twitter;
             userProfile.userLinks.Pinterest = model.Pinterest != null ? (model.Pinterest.Contains("http") ? model.Pinterest : "https://" + model.Pinterest) : model.Pinterest;
@@ -224,12 +226,13 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(userId);
             ViewBag.profileType = userProfile.profileType;
             ViewBag.ischanged = false;
+            ViewBag.ConfirmationStatus = userProfile.IDStatus;
             if (userProfile.billingInfo != null)
             {
                 ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "iran";
                 return View(userProfile.billingInfo);
             }
-         
+
 
             return View(new BillingInfo());
         }
@@ -254,6 +257,7 @@ namespace ArtShop.Controllers
             db.SaveChanges();
             ViewBag.country = CashManager.Instance.Countries.FirstOrDefault(a => a.Key == model.CountryId).Value;
             ViewBag.ischanged = true;
+            ViewBag.ConfirmationStatus = userProfile.IDStatus;
             return View(model);
         }
 
@@ -290,7 +294,7 @@ namespace ArtShop.Controllers
                 .Where(x => x.Product.user_id == userId)
                 .Where(x => x.order.TransactionDetail.Payed).ToList();
             ViewBag.Seen = true;
-            return View(userProfile.PayoutRequests.OrderByDescending(a=>a.date).ToList());
+            return View(userProfile.PayoutRequests.OrderByDescending(a => a.date).ToList());
         }
 
         [HttpPost]
@@ -331,7 +335,7 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
 
             var userProfile = db.UserProfiles.Find(userId);
-
+            userProfile.IDStatus = IDCardStatus.Pending;
             string tempFolderName = "Upload/goverment-ids";
             var result = ImageHelper.Saveimage(Server, model.Image, tempFolderName, ImageHelper.saveImageMode.Not);
             if (result.ResultStatus)

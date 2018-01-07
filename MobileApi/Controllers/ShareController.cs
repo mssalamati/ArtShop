@@ -170,6 +170,7 @@ namespace MobileApi.Controllers
                 title = x.Title,
                 photo = x.Widephoto.Path,
                 author = x.user.FirstName + " " + x.user.LastName,
+                authorID = x.user_id,
                 price = x.Price
             }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, new { total = t, data = result }, formatter);
@@ -342,7 +343,7 @@ namespace MobileApi.Controllers
             profile.PhotoPath = UploadResult.data;
             db.SaveChanges();
 
-            return new upoadNowResult(0, "success", true);
+            return new upoadNowResult(0, null, true);
         }
 
         public class GovId
@@ -364,9 +365,11 @@ namespace MobileApi.Controllers
                 return new upoadNowResult(0, "Image Server Upload Error: " + UploadResult.data, false);
 
             profile.GovermentIdPath = UploadResult.data;
+            profile.isIDConfirmed = false;
+            profile.IDStatus = IDCardStatus.Pending;
             db.SaveChanges();
 
-            return new upoadNowResult(0, "success", true);
+            return new upoadNowResult(0, null, true);
         }
 
         [Authorize, HttpGet, Route("GetNationalId")]
@@ -384,7 +387,7 @@ namespace MobileApi.Controllers
                     url = "https://artiscovery.com/" + profile.GovermentIdPath;
 
 
-                return Request.CreateResponse(HttpStatusCode.OK, new {  image = url, isConfirmd = profile.isIDConfirmed, message = profile.IdRejectionReason }, formatter);
+                return Request.CreateResponse(HttpStatusCode.OK, new { image = url, Status = profile.IDStatus, isConfirmd = profile.isIDConfirmed, message = profile.IdRejectionReason }, formatter);
             }
             else
             {
@@ -747,6 +750,7 @@ namespace MobileApi.Controllers
                 {
                     Id = x.Id,
                     photo = x.photo.Path,
+                    Widephoto = x.Widephoto.Path,
                     Title = x.Title,
                     Description = x.Description,
                     Author = x.user.FirstName + " " + x.user.LastName,
@@ -816,7 +820,7 @@ namespace MobileApi.Controllers
 
             int pageSize = 18;
             var p = db.UserProfiles.OrderByDescending(x => x.LastName).AsQueryable();
-            p = p.Where(x => string.IsNullOrEmpty(query) || (x.FirstName + " " + x.LastName).ToLower().Contains(query.ToLower())).AsQueryable();
+            p = p.Where(x => string.IsNullOrEmpty(query) || (x.FirstName + " " + x.LastName).ToLower().Contains(query.ToLower()) && x.profileType == ProfileType.Artist).AsQueryable();
             var count = p.Count();
             page = Math.Min(page, (int)Math.Ceiling((float)count / (float)pageSize));
             page = Math.Max(1, page);
@@ -824,7 +828,7 @@ namespace MobileApi.Controllers
             var result = p.Select(x => new
             {
                 Id = x.Id,
-                photoPath = x.PhotoPath != "" ? "https://artiscovery.com/" + x.PhotoPath : "",
+                photoPath = x.PhotoPath.Contains("Https") ? x.PhotoPath : "https://artiscovery.com/" + x.PhotoPath,
                 firstName = x.FirstName,
                 lastName = x.LastName,
                 Country = x.country == null ? null : (int?)x.country.Id

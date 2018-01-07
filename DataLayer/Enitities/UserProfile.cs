@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enitities
 {
-    public enum ProfileType{Artist,Collector}
+    public enum ProfileType { Artist, Collector }
+    public enum IDCardStatus { None, Confirmed, Pending, NotConfirmed }
     public class UserProfile
     {
         [Key, ForeignKey("ApplicationUserDetail")]
@@ -24,6 +25,7 @@ namespace DataLayer.Enitities
         public virtual string City { get; set; }
         public virtual string GovermentIdPath { get; set; }
         public virtual bool isIDConfirmed { get; set; }
+        public virtual IDCardStatus IDStatus { get; set; }
         public virtual string IdConfirmedBy { get; set; }
         public virtual string IdRejectionReason { get; set; }
         public virtual string Region { get; set; }

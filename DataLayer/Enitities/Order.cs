@@ -92,7 +92,8 @@ namespace DataLayer.Enitities
         NoSeen = 0,
         Seen = 1,
         Delivered = 2,
-        Posted = 3
+        Posted = 3,
+        Canceled = 4
     }
 
     public static class ErrorLevelExtensions
