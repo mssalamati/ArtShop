@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using Postal;
 using paypal = PayPal.Api;
 using ArtShop.Helper;
+using System.Data.Entity;
 
 namespace ArtShop.Controllers
 {
@@ -58,11 +59,36 @@ namespace ArtShop.Controllers
             return View(viewModel);
         }
 
-        //payment segment
         [HttpPost]
         [Authorize]
-        public ActionResult Pay(checkInfoViewModel model)
+        public ActionResult getinfo(checkInfoViewModel model)
         {
+            var cart = CartManager.GetCart(this.HttpContext);
+            var cartItems = cart.GetCartItems();
+            var allProductId = cartItems.ToDictionary(x => x.ProductId, y => y.Quantity);
+            foreach (var item in allProductId)
+            {
+                var p = db.Products.Find(item.Key);
+                var avaible = p.avaible;
+                var reserve = p.reservedlist.Where(x => (x.datetime.AddMinutes(15)) > DateTime.Now).Sum(x => x.quantity);
+                if (item.Value > avaible)
+                {
+                    ModelState.AddModelError("", "product has been sold");
+                    return View();
+                }
+                p.reservedlist.Add(new ReserveList((int)item.Value));
+            }
+            db.SaveChanges();
+            Session["cvm"] = model;
+            return RedirectPermanent("/" + CultureHelper.GetCurrentCulture() + "/card/pay");
+        }
+
+        //payment segment
+        [HttpGet]
+        [Authorize]
+        public ActionResult Pay()
+        {
+            var model = (checkInfoViewModel)Session["cvm"];
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;

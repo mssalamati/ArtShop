@@ -121,10 +121,11 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-8">
                                     <div>
-                                        @using (Html.BeginForm("pay", "Card", FormMethod.Post, new { id = "mform" }))
+                                        @using (Html.BeginForm("getinfo", "Card", FormMethod.Post, new { id = "mform" }))
                                         {
                                             <div class="cart checkout__content-section">
                                                 <h1>@CardRes.CheckInfo</h1>
+                                                @Html.ValidationSummary()
                                                 <div class="cart__items">
 
                                                     <div class="form">
@@ -212,20 +213,20 @@
                                                             <div>$@Model.CartTotal</div>
                                                         </div>
                                                         @*<div class="cart__total__row">
-                                                            <div>Shipping</div>
-                                                            @if (ViewBag.Country != null)
-                                                            {
-                                                                <div>$@ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country)</div>
-                                                            }
+                                                                <div>Shipping</div>
+                                                                @if (ViewBag.Country != null)
+                                                                {
+                                                                    <div>$@ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country)</div>
+                                                                }
 
-                                                        </div>*@
+                                                            </div>*@
                                                         <hr />
                                                         <div class="cart__total__row">
                                                             <div>Sum</div>
                                                             @*@if (ViewBag.Country != null)
-                                                            {
-                                                                <div>$@(ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country) + Model.CartTotal)</div>
-                                                            }*@
+                                                                {
+                                                                    <div>$@(ArtShop.Util.CashManager.Instance.GetShipingDHL(ViewBag.Country) + Model.CartTotal)</div>
+                                                                }*@
                                                             @if (ViewBag.Country != null)
                                                             {
                                                                 <div>$@Model.CartTotal</div>
@@ -239,13 +240,13 @@
                                         }
                                         <footer class="checkout__footer">
                                             @*<div>
-                                                <span>
-                                                    © 2017  Artiscovery Online, Inc. Arena Group Commerce. All rights reserved.
-                                                </span>
-                                                <span class="checkout__footer__support">
-                                                    Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp; <a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
-                                                </span>
-                                            </div>*@
+                                                    <span>
+                                                        © 2017  Artiscovery Online, Inc. Arena Group Commerce. All rights reserved.
+                                                    </span>
+                                                    <span class="checkout__footer__support">
+                                                        Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp; <a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
+                                                    </span>
+                                                </div>*@
                                             <div>
                                                 <a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy" target="_blank" rel="noopener noreferrer">@ShareRes.Privacy_policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">@ShareRes.Copyright_policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/terms" target="_blank" rel="noopener noreferrer">@ShareRes.Terms</a>
                                             </div>
@@ -276,30 +277,30 @@
                                         </div>
                                         <hr>
                                         @*<div class="checkout__sidebar__two-column">
-                                            <div>
-                                                <div class="checkout__sidebar__shipping-providers">
-                                                    <h5>@CardRes.DeliveryPartners</h5>
-                                                    <div class="checkout__sidebar__shipping-providers__icons">
-                                                        <img style="width:80%;height:50%;margin-top:10px" alt="Mahex" src="~/Content/Images/mahex.png">
+                                                <div>
+                                                    <div class="checkout__sidebar__shipping-providers">
+                                                        <h5>@CardRes.DeliveryPartners</h5>
+                                                        <div class="checkout__sidebar__shipping-providers__icons">
+                                                            <img style="width:80%;height:50%;margin-top:10px" alt="Mahex" src="~/Content/Images/mahex.png">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                            </div>
-                                        </div>*@
+                                                <div>
+                                                </div>
+                                            </div>*@
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <footer class="checkout__footer checkout__footer--mobile">
                             @*<div>
-                                <span>
-                                    <!-- react-text: 2286 -->© <!-- /react-text --><!-- react-text: 2287 -->2017<!-- /react-text --><!-- react-text: 2288 --> Artiscovery Online, Inc. Arena Group Commerce. All rights reserved. <!-- /react-text --><!-- react-text: 2289 --> <!-- /react-text -->
-                                </span>
-                                <span class="checkout__footer__support">
-                                    <!-- react-text: 2291 -->Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp;<!-- /react-text --><a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
-                                </span>
-                            </div>*@
+                                    <span>
+                                        <!-- react-text: 2286 -->© <!-- /react-text --><!-- react-text: 2287 -->2017<!-- /react-text --><!-- react-text: 2288 --> Artiscovery Online, Inc. Arena Group Commerce. All rights reserved. <!-- /react-text --><!-- react-text: 2289 --> <!-- /react-text -->
+                                    </span>
+                                    <span class="checkout__footer__support">
+                                        <!-- react-text: 2291 -->Need&nbsp;help?&nbsp;Contact&nbsp;us&nbsp;at&nbsp;<!-- /react-text --><a href="mailto:support@artiscovery.com">support@artiscovery.com</a>
+                                    </span>
+                                </div>*@
                             <div>
                                 <a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy" target="_blank" rel="noopener noreferrer">@ShareRes.Privacy_policy</a><!-- react-text: 2295 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy" target="_blank" rel="noopener noreferrer">@ShareRes.Copyright_policy</a><!-- react-text: 2297 --> |&nbsp;<!-- /react-text --><a href="/@CultureHelper.GetCurrentCulture()/pages/terms" target="_blank" rel="noopener noreferrer">@ShareRes.Terms</a>
                             </div>

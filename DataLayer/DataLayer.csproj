@@ -108,6 +108,7 @@
     <Compile Include="Enitities\PrintOptions.cs" />
     <Compile Include="Enitities\Product.cs" />
     <Compile Include="Enitities\ProductFrameOption.cs" />
+    <Compile Include="Enitities\ReserveList.cs" />
     <Compile Include="Enitities\SettingValue.cs" />
     <Compile Include="Enitities\ShoppingCart.cs" />
     <Compile Include="Enitities\SiteObjectParam.cs" />
