@@ -246,7 +246,7 @@ namespace ArtShop.Controllers
             return Content("done");
         }
 
-        public ActionResult SetCulture(string culture)
+        public ActionResult SetCulture(string culture,string requestUrl)
         {
             culture = CultureHelper.GetImplementedCulture(culture);
             HttpCookie cookie = Request.Cookies["_culture"];
@@ -259,10 +259,10 @@ namespace ArtShop.Controllers
                 cookie.Expires = DateTime.Now.AddYears(1);
             }
             Response.Cookies.Add(cookie);
-            //string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
-            //return Redirect(url);
 
-            string url = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
+            string url = requestUrl;// this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
+
+            string url2 = this.Request.UrlReferrer.AbsolutePath + this.Request.UrlReferrer.Query ?? "";
 
             if (url.ToLower().Contains("en-us") || url.ToLower().Contains("fa"))
             {

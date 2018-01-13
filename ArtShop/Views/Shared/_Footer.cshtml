@@ -75,12 +75,12 @@
                 <li style="list-style-type:none !important" class="header">@FooterRes.For_Artists</li>
                 <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="/@CultureHelper.GetCurrentCulture()/pages/whysell" target="_parent">@FooterRes.Why_Sell</a></li>
                 <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="/@CultureHelper.GetCurrentCulture()/support" target="_parent">@FooterRes.Artist_Handbook</a></li>
-                
+
             </ul>
         </div>
         <div class="large-3 medium-3 small-6 columns">
             <ul>
-                <li style="list-style-type:none !important" class="header"><a data-gtm-event="nav footer" href="/@CultureHelper.GetCurrentCulture()/Pages/About" target="_parent" title="About Us" >@FooterRes.About_Us</a></li>
+                <li style="list-style-type:none !important" class="header"><a data-gtm-event="nav footer" href="/@CultureHelper.GetCurrentCulture()/Pages/About" target="_parent" title="About Us">@FooterRes.About_Us</a></li>
                 @*<li><a data-gtm-event="nav footer" href="press.html" target="_parent" title="Press">@FooterRes.Press</a></li>
                     <li><a data-gtm-event="nav footer" href="" target="_blank" title="Careers">@FooterRes.Careers</a></li>*@
                 <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="/@CultureHelper.GetCurrentCulture()/pages/contactus" target="_parent" title="Contact Us">@FooterRes.Contact_Us</a></li>
@@ -104,27 +104,6 @@
         {
             <div class="row" style="color:white">
                 <div class="medium-6 columns">
-                    <div class="footer-icons" style="border-left:none !important;border-right:1px solid #e9e9e9 !important">
-                        <ul class="social-follow inline-list" style="margin:0 73px 0 0 !important">
-                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
-                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="http://www.twitter.com/artiscoverycom" target="_blank" title="Twitter"><i class="fa fa-twitter btn-round"></i></a></li>
-                            @*<li><a data-gtm-event="nav footer" href="http://pinterest.com/" target="_blank" title="Pinterest"><i class="fa fa-pinterest btn-round"></i></a></li>*@
-                            @*<li><a data-gtm-event="nav footer" href="" target="_blank" title="Tumblr"><i class="fa fa-tumblr btn-round"></i></a></li>*@
-                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="http://instagram.com/artiscovery" target="_blank" title="Instagram"><i class="fa fa-instagram btn-round"></i></a></li>
-                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="https://plus.google.com/" rel="publisher" target="_blank" title="Google Plus"><i class="fa fa-google-plus btn-round"></i></a></li>
-                            @*<li><a data-gtm-event="nav footer" href="https://www.youtube.com/" rel="publisher" target="_blank" title="YouTube"><i class="fa fa-youtube btn-round"></i></a></li>*@
-                        </ul>
-
-                        <div class="clear"></div>
-                        <div class="logo-Saatchi-Art" style="width:auto !important">
-                            <a data-gtm-event="nav footer" style="background:none;text-align:center;width:-webkit-fill-available !important;padding-left:0px !important;right:unset" href="/@CultureHelper.GetCurrentCulture()/" title="Artiscovery">@FooterRes.Copyright_msg</a>
-                            <div class="trustpilot-widget" data-style-height="20px" data-style-width="100%" data-theme="light">
-                                <a data-gtm-event="nav footer" href="" target="_blank"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="medium-6 columns">
                     <div id="footerSubscribe">
                         <h2 style="font-size:1.3rem !important">@FooterRes.Email_header1</h2>
                         <div>@FooterRes.Email_header2</div>
@@ -133,7 +112,7 @@
                         @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
                         {
                             @Html.AntiForgeryToken()
-                            <div class="enter-email" >
+                            <div class="enter-email">
                                 <input type="hidden" name="version" value="1">
                                 <input type="hidden" name="account_type" value="collector">
                                 <input type="hidden" name="user_type_id" value="1">
@@ -152,7 +131,30 @@
                         });
                     </script>
                 </div>
-                
+
+                <div class="medium-6 columns">
+                    <div class="footer-icons" style="margin-left:24px">
+                        <ul class="social-follow inline-list" style="margin-bottom:10px">
+                            <li style="list-style-type:none !important;margin-left:53px"><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
+                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="http://www.twitter.com/artiscoverycom" target="_blank" title="Twitter"><i class="fa fa-twitter btn-round"></i></a></li>
+                            @*<li><a data-gtm-event="nav footer" href="http://pinterest.com/" target="_blank" title="Pinterest"><i class="fa fa-pinterest btn-round"></i></a></li>*@
+                            @*<li><a data-gtm-event="nav footer" href="" target="_blank" title="Tumblr"><i class="fa fa-tumblr btn-round"></i></a></li>*@
+                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="http://instagram.com/artiscovery" target="_blank" title="Instagram"><i class="fa fa-instagram btn-round"></i></a></li>
+                            <li style="list-style-type:none !important"><a data-gtm-event="nav footer" href="https://plus.google.com/" rel="publisher" target="_blank" title="Google Plus"><i class="fa fa-google-plus btn-round"></i></a></li>
+                            @*<li><a data-gtm-event="nav footer" href="https://www.youtube.com/" rel="publisher" target="_blank" title="YouTube"><i class="fa fa-youtube btn-round"></i></a></li>*@
+                        </ul>
+
+                        <div class="clear"></div>
+                        <div style="text-align:center">
+                            <a data-gtm-event="nav footer" style="background:none;text-align:center;width:-webkit-fill-available !important;padding-left:0px !important;right:unset" href="/@CultureHelper.GetCurrentCulture()/" title="Artiscovery">@FooterRes.Copyright_msg</a>
+                            <div class="trustpilot-widget" data-style-height="20px" data-style-width="100%" data-theme="light">
+                                <a data-gtm-event="nav footer" href="" target="_blank"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         }
         else
@@ -166,14 +168,14 @@
 
                         @using (Ajax.BeginForm("AddSubscriber", "Home", new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
                         {
-                        @Html.AntiForgeryToken()
-                        <div class="enter-email" style="padding-right:10px;">
-                            <input type="hidden" name="version" value="1">
-                            <input type="hidden" name="account_type" value="collector">
-                            <input type="hidden" name="user_type_id" value="1">
-                            <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
-                            <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4;margin-left:0px !important" value="@FooterRes.SignUp" class="button btn-info dark">
-                        </div>
+                            @Html.AntiForgeryToken()
+                            <div class="enter-email" style="padding-right:10px;">
+                                <input type="hidden" name="version" value="1">
+                                <input type="hidden" name="account_type" value="collector">
+                                <input type="hidden" name="user_type_id" value="1">
+                                <input type="text" name="email" id="email" value="" class="text" autocomplete="off" placeholder="Email Address">
+                                <input id="so-subscribe-submit" type="submit" name="subscribe" style="background:#3189e4;margin-left:0px !important" value="@FooterRes.SignUp" class="button btn-info dark">
+                            </div>
                         }
 
 
@@ -182,14 +184,14 @@
                         <h2>Thank you for signing up!</h2>
                     </div>
                     <script type="text/javascript">
-                    Saatchi.Loader.load('subscribe', { 'js': true }, function () {
-                    });
+                        Saatchi.Loader.load('subscribe', { 'js': true }, function () {
+                        });
                     </script>
                 </div>
                 <div class="medium-6 columns">
                     <div class="footer-icons">
-                        <ul class="social-follow inline-list" style="width:auto !important;margin-right:162px !important">
-                            <li><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
+                        <ul class="social-follow inline-list">
+                            <li style="margin-left:60px"><a data-gtm-event="nav footer" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook btn-round"></i></a></li>
                             <li><a data-gtm-event="nav footer" href="http://www.twitter.com/artiscoverycom" target="_blank" title="Twitter"><i class="fa fa-twitter btn-round"></i></a></li>
                             @*<li><a data-gtm-event="nav footer" href="http://pinterest.com/" target="_blank" title="Pinterest"><i class="fa fa-pinterest btn-round"></i></a></li>*@
                             @*<li><a data-gtm-event="nav footer" href="" target="_blank" title="Tumblr"><i class="fa fa-tumblr btn-round"></i></a></li>*@
@@ -199,7 +201,7 @@
                         </ul>
 
                         <div class="clear"></div>
-                        <div class="logo-Saatchi-Art">
+                        <div style="text-align:center">
                             <a data-gtm-event="nav footer" style="background:none;text-align:left" href="/@CultureHelper.GetCurrentCulture()/" title="Artiscovery">@FooterRes.Copyright_msg</a>
                             <div class="trustpilot-widget" data-style-height="20px" data-style-width="100%" data-theme="light">
                                 <a data-gtm-event="nav footer" href="" target="_blank"></a>

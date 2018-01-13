@@ -124,23 +124,23 @@ if (current == selected)
                     links.Add("/", ShareRes.Home);
                     if (ViewBag.categoryId != 0)
                     {
-                        links.Add("/search/" + ViewBag.categoryId + "/0/0/0/0", ViewBag.categoryName);
+                        links.Add("/" + CultureHelper.GetCurrentCulture() + "/search/" + ViewBag.categoryId + "/0/0/0/0", ViewBag.categoryName);
                     }
                     if (ViewBag.styleId != 0)
                     {
-                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/0/0/0", ViewBag.styleName);
+                        links.Add("/" + CultureHelper.GetCurrentCulture() + "/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/0/0/0", ViewBag.styleName);
                     }
                     if (ViewBag.subjectId != 0)
                     {
-                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/0/0", ViewBag.subjectName);
+                        links.Add("/" + CultureHelper.GetCurrentCulture() + "/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/0/0", ViewBag.subjectName);
                     }
                     if (ViewBag.mediumId != 0)
                     {
-                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/" + ViewBag.mediumId + "/0", ViewBag.mediumName);
+                        links.Add("/" + CultureHelper.GetCurrentCulture() + "/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/" + ViewBag.mediumId + "/0", ViewBag.mediumName);
                     }
                     if (ViewBag.priceId != 0)
                     {
-                        links.Add("/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/" + ViewBag.mediumId + "/" + ViewBag.priceId, ViewBag.priceName);
+                        links.Add("/" + CultureHelper.GetCurrentCulture() + "/search/" + ViewBag.categoryId + "/" + ViewBag.styleId + "/" + ViewBag.subjectId + "/" + ViewBag.mediumId + "/" + ViewBag.priceId, ViewBag.priceName);
                     }
                 }
 
@@ -148,9 +148,7 @@ if (current == selected)
                 {
                     if (item.Key == links.Last().Key)
                     {
-                        <span style="@rtlstl">
-                            @item.Value
-                        </span>
+                        <span style="@rtlstl">@item.Value</span>                        
                     }
                     else
                     {
@@ -162,6 +160,7 @@ if (current == selected)
 
             </div>
         </div>
+    
         @*<hr>
             <div class="row">
                 <div class="small-12">
@@ -183,6 +182,12 @@ if (current == selected)
     <div class="clear"></div>
     <form action="/@CultureHelper.GetCurrentCulture()/search" method="get" style="@rtldirection">
         <div class="row filters-main" style="padding: 20px 20px 0;margin-bottom:10px">
+            @if (IsRighToLeft)
+            {
+                <div class="small-6 medium-2 columns">
+                    <button class="btn btn-info btn-block">@SearchRes.Search <i class="fa fa-search"></i></button>
+                </div>
+            }
             <div class="small-6 medium-2 columns">
                 <select name="category" id="selectCategory" class="filter-options">
                     <option value="0">@SearchRes.All_Categories</option>
@@ -238,9 +243,13 @@ if (current == selected)
                     }
                 </select>
             </div>
-            <div class="small-6 medium-2 columns">
-                <button class="btn btn-info btn-block">@SearchRes.Search <i class="fa fa-search"></i></button>
-            </div>
+            @if (!IsRighToLeft)
+            {
+                <div class="small-6 medium-2 columns">
+                    <button class="btn btn-info btn-block">@SearchRes.Search <i class="fa fa-search"></i></button>
+                </div>
+            }
+            
         </div>
     </form>
     <div class="clear"></div>
@@ -265,7 +274,7 @@ if (current == selected)
                         </a>
                         @if (item.Status == ProductStatus.Sold)
                         {
-                            <div class="right sold">sold</div>
+                            <div style="margin-right:5px" class="right sold">sold</div>
                         }
 
                     </div>

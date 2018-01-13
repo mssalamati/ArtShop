@@ -7,7 +7,8 @@
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
-    var rtldirectionMargin = IsRighToLeft ? "display:table-caption;margin-left:-89.5%;direction:rtl !important" : "";
+    var rtlPadding = IsRighToLeft ? "padding-top: .4em !important" : "";
+    var rtldirectionMargin = IsRighToLeft ? "display:table-caption;margin-left:-56.5%;direction:rtl !important" : "";
 }
 
 <div role="main" class="row row-layout profile-content">
@@ -105,7 +106,7 @@
                     </div>
 
 
-                    <div class="row collection-meta">
+                    <div style="@rtlPadding" class="row collection-meta">
                         <h4 class="collection-title">
                             <a href="/@CultureHelper.GetCurrentCulture()/profile/CollectionView?id=@item.CollectionId" title="@item.CollectionName">
                                 <span class="ellipsis">@item.CollectionName</span> <span class="count">(@item.CollectionProductCount)</span>

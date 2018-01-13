@@ -241,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7 days momey back guarantee.
+        ///   Looks up a localized string similar to 7 days money back guarantee.
         /// </summary>
         public static string r1 {
             get {
