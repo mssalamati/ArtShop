@@ -20,6 +20,7 @@ namespace ArtShop.Controllers
         public ActionResult Index()
         {
             var data = db.Articles.Where(a => a.isHandbook == true).ToList();
+           
             return View(data);
         }
 
@@ -107,7 +108,18 @@ namespace ArtShop.Controllers
         {
             if (ModelState.IsValid && ReCaptcha.Validate(ConfigurationManager.AppSettings["ReCaptcha:SecretKey"]))
             {
-                SendTicket(model);
+                HttpCookie popupCookie = Request.Cookies["isShown"];
+            if (popupCookie != null)
+                popupCookie.Value = "true";   // update cookie value
+            else
+            {
+                popupCookie = new HttpCookie("isShown");
+                popupCookie.Value = "true";
+                popupCookie.Expires = DateTime.Now.AddSeconds(10);
+            }
+            Response.Cookies.Add(popupCookie);
+
+            SendTicket(model);
                 return RedirectToActionPermanent("index");
             }
             ViewBag.RecaptchaLastErrors = ReCaptcha.GetLastErrors(this.HttpContext);
@@ -122,6 +134,7 @@ namespace ArtShop.Controllers
                 var questions = ShareRes.FAQ_Collector_questions.Split(',').Select(x => new { name = x });
                 ViewBag.question = new SelectList(questions, "name", "name");
             }
+            
             return View(model);
         }
         private void SendTicket(FAQRequest model)

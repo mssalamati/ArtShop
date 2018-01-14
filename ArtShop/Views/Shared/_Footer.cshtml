@@ -165,8 +165,7 @@
                         <h2>@FooterRes.Email_header1</h2>
                         <div>@FooterRes.Email_header2</div>
 
-
-                        @using (Ajax.BeginForm("AddSubscriber", "Home", null, new AjaxOptions { OnSuccess = "parsContent" }, new { @id = "formsend", @class = "footer-newsletter-subscribe" }))
+                        @using (Ajax.BeginForm("AddSubscriber", "Home",  new AjaxOptions { OnSuccess = "parsContent" }))
                         {
                             @Html.AntiForgeryToken()
                             <div class="enter-email" style="padding-right:10px;">

@@ -240,7 +240,7 @@ namespace ArtShop.Controllers
             ViewBag.ConfirmationStatus = userProfile.IDStatus;
             if (userProfile.billingInfo != null)
             {
-                ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "iran";
+                ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "Iran";
                 return View(userProfile.billingInfo);
             }
 

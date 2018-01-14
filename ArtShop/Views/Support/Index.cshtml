@@ -47,7 +47,7 @@
                     </div>
                 }
 
-                    </div>
+            </div>
             <div class="topic-list">
                 @foreach (var item in Model)
                 {
@@ -93,3 +93,35 @@
         </div>
     </section>
 </main>
+
+@section scripts{
+    
+        <script>
+
+            $(document).ready(function () {
+                @{
+            string val = "";
+            if (Request.Cookies["isShown"] != null) {
+                val = Request.Cookies["isShown"].Value;
+            }
+            if (val == "true")
+            {
+                <text>       $.toast({
+                    heading: '@ShareRes.Success_message',
+                    text: '',
+                    icon: 'success',
+                    showHideTransition: 'slide',
+                    position: 'top-right',
+                    hideAfter: 7000
+                })</text>
+                        Request.Cookies["isShown"].Value = "false";
+                    }
+        }
+
+            });
+
+
+        </script>
+    
+
+}
