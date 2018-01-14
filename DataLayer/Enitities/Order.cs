@@ -110,6 +110,8 @@ namespace DataLayer.Enitities
                     return ShareRes.OrderStatus_Delivered;
                 case OrderStatus.Posted:
                     return ShareRes.OrderStatus_Posted;
+                case OrderStatus.Canceled:
+                    return ShareRes.OrderStatus_Canceled;
                 default:
                     return "";
             }

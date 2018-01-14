@@ -165,9 +165,9 @@ namespace DataLayer.Enitities
         public string City { get; set; }
         public string Region { get; set; }
         public string ZipCode { get; set; }
-        public string PhoneNumber { get; set; }
-        [ForeignKey("country")]
+        public string PhoneNumber { get; set; }       
         public int CountryId { get; set; }
+        [ForeignKey("CountryId")]
         public virtual Country country { get; set; }
     }
 

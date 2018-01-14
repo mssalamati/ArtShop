@@ -99,6 +99,7 @@
                     <!-- The file input field used as target for the file upload widget -->
                     <input type="file" id="Image" name="Image">
                 </span>
+                <a class="btn btn-link" style="color:red;float:right" href="#" onclick="Remove()">@ShareRes.Remove</a>
                 <br><br>
                 <img id="preview" class="hidden" src="" style="float:right;width:100px;height:100px">
                 <!-- The global progress bar -->
@@ -134,3 +135,36 @@
     $("#Image").change(function () {
         readURL(this);
     });</script>
+<script>
+
+    function Remove(Cid,Aid) {
+
+        if (confirm("Are you sure you want to remove that image?")) {
+            $.get('/@CultureHelper.GetCurrentCulture()/accountinfo/DeleteAvatar',
+                 function (response) {
+
+                     location.reload();
+                 }
+             );
+        }
+    }
+</script>
+<script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview').attr('class', '');
+                    $('#preview').attr('src', e.target.result);
+                    $('#submit').removeAttr('disabled');
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#Image").change(function () {
+            readURL(this);
+        });</script>

@@ -2,6 +2,7 @@
 using DataLayer.Enitities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -107,7 +108,8 @@ namespace AdminPanel.Controllers
         public ActionResult Delete(int id)
         {
             var finder = db.Countries.Find(id);
-            db.Countries.Remove(finder);
+            db.Countries.Remove(finder);            
+            db.Entry(finder).State = EntityState.Deleted;
             db.SaveChanges();
             return RedirectToAction("index");
         }

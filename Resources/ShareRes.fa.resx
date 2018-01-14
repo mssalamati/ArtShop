@@ -486,4 +486,7 @@
   <data name="archive" xml:space="preserve">
     <value>آرشیو</value>
   </data>
+  <data name="OrderStatus_Canceled" xml:space="preserve">
+    <value>لغو شد</value>
+  </data>
 </root>

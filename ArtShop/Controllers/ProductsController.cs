@@ -231,7 +231,13 @@ namespace ArtShop.Controllers
             }
             p.Title = model.Title;
             if (profile.isIDConfirmed)
+            {
                 p.Status = model.Status;
+                if (p.avaible < 1)
+                {
+                    p.Status = ProductStatus.Sold;
+                }
+            }
             else
                 p.Status = ProductStatus.NotForSale;
 

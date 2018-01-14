@@ -10,6 +10,7 @@
     var rFloatDir = IsRighToLeft ? "float:right" : "";
     var fFloatDir = IsRighToLeft ? "float:left" : "";
 }
+
 <style>
     li {
         list-style-type: unset !important;
@@ -34,9 +35,36 @@
     }
 </style>
 <script>
-        $(document).ready(function () {
-            $("img").parent().css({ "text-align": "center" });
-        });
+    $(document).ready(function () {
+        $("img").parent().css({ "text-align": "center" });
+    });
+</script>
+<script type="text/javascript">
+
+    /*
+    * Hide Scan button if Page is loaded in Desktop Browser
+    */
+    function hideScanButtonForDesktop() {
+
+        if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
+
+            // Hide scan button for Desktop
+            document.getElementById('article').style.width = "100%";
+            document.getElementById('related').style.marginTop = "14px";
+            @if (!IsRighToLeft) {
+                       <text> document.getElementById('related').style.float = "left";</text>
+            }
+            else
+            {
+       <text> document.getElementById('related').style.float = "right";</text>
+                }
+
+
+        }
+    }
+
+    //toggle scanButton for Desktop on page load
+    window.onload = hideScanButtonForDesktop;
 </script>
 
 <main role="main">
@@ -66,7 +94,7 @@
     </nav>
 
     <div class="clearfix">
-        <article style="@rFloatDir" class="main-column">
+        <article style="@rFloatDir" id="article" name="article" class="main-column">
             <header class="article-header clearfix">
                 <h1 style="@rtlstl"> @Model.Current().Title</h1>
             </header>
@@ -108,7 +136,8 @@
 
         </article>
 
-        <aside style="@fFloatDir" class="article-sidebar side-column">
+
+        <aside style="@fFloatDir" id="related" class="article-sidebar side-column">
             <section class="related-articles">
                 <h3 style="@rtlstl">@ShareRes.Related_articles</h3>
                 <ul style="@rtlstl">
@@ -125,8 +154,8 @@
 
 
         </aside>
-
     </div>
+
 </main>
 
 

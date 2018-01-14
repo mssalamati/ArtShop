@@ -219,6 +219,17 @@ namespace ArtShop.Controllers
             return RedirectToActionPermanent("Index", "profile");
         }
 
+        public ActionResult DeleteAvatar()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userProfile = db.UserProfiles.Find(userId);
+            userProfile.PhotoPath = "";
+            db.SaveChanges();
+
+            return View();
+        }
+
         public ActionResult Billing()
         {
             var userId = User.Identity.GetUserId();

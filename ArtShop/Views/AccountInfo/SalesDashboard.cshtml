@@ -135,7 +135,7 @@
                         <td>@UploadRes.Date</td>
                         <td>@ProfileRes.Title</td>
                         <td>@ProfileRes.Quantity</td>
-                        <td>@ProfileRes.Type</td>
+                        @*<td>@ProfileRes.Type</td>*@
                         <td>@ProfileRes.UnitPrice</td>
                         <td>@ProfileRes.TotalPrice</td>
                     </tr>
@@ -147,9 +147,9 @@
                                 <td>@item.order.BuyDate</td>
                                 <td><a href="@Url.Action(item.Product.category.Current().Name,"Artwork", new { id=@item.Product.GenerateSlug() })">@item.Product.Title</a></td>
                                 <td>@item.Quantity.ToString("#")</td>
-                        <td>@item.type</td>
-                        <td>@item.UnitPrice</td>
-                        <td>@(item.UnitPrice * item.Quantity)</td>
+                        @*<td>@item.type</td>*@
+                        <td>@item.UnitPrice.ToString("#,##") $</td>
+                        <td>@((item.UnitPrice * item.Quantity).ToString("#,##")) $</td>
                     </tr>
                         }
                     }

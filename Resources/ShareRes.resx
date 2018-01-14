@@ -486,4 +486,7 @@ Other</value>
   <data name="archive" xml:space="preserve">
     <value>Archive</value>
   </data>
+  <data name="OrderStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
 </root>

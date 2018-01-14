@@ -7,35 +7,47 @@
 <main role="main">
     <!--MAIN SECTION-->
     <section class="main-section">
-        <div class="wrapper">
+        <div class="wrapper" style="width:100%">
             <div class="topic-title-bar">
                 @if (IsRighToLeft)
                 {
+                    <div class="row" style="width:100%">
+                        <div class="medium-6 columns" style="float:right;text-align:right">
+                            <h1>@FooterRes.Artist_Handbook</h1>
+                        </div>
+                        <div class="medium-6 columns" style="float:left;text-align:right;margin-top:7px">
+                            <p>
+                                @ShareRes.Are_You_Buyer
+                                @ShareRes.To_view_Buyer_FAQs
+                                <a target="_blank" href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
+                                    @ShareRes.Click_here
+                                </a>
 
-                    <p>
-                        @ShareRes.Are_You_Buyer
-                        @ShareRes.To_view_Buyer_FAQs
-                        <a target="_blank" href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
-                            @ShareRes.Click_here
-                        </a>
+                            </p>
+                        </div>
 
-                    </p>
-                    <h1>@FooterRes.Artist_Handbook</h1>
+                    </div>
 
                 }
                 else
                 {
-                    <h1>@FooterRes.Artist_Handbook</h1>
-                    <p>
-                        @ShareRes.Are_You_Buyer
-                        <a target="_blank" href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
-                            @ShareRes.Click_here
-                        </a>
-                        @ShareRes.To_view_Buyer_FAQs
-                    </p>
+                    <div class="row" style="width:100%">
+                        <div class="medium-6 columns" style="float:left;text-align:right">
+                            <h1>@FooterRes.Artist_Handbook</h1>
+                        </div>
+                        <div class="medium-6 columns" style="float:right;text-align:right;margin-top:7px">
+                            <p>
+                                @ShareRes.Are_You_Buyer
+                                <a target="_blank" href="@Url.Action("Category", "Support", new { id = "12-for-buyers" })">
+                                    @ShareRes.Click_here
+                                </a>
+                                @ShareRes.To_view_Buyer_FAQs
+                            </p>
+                        </div>
+                    </div>
                 }
 
-            </div>
+                    </div>
             <div class="topic-list">
                 @foreach (var item in Model)
                 {

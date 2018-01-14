@@ -53,6 +53,13 @@ namespace DataLayer
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ProductshippingDetail>()
+              .HasRequired(s => s.country)
+              .WithMany()
+              .WillCascadeOnDelete(false);
+
+
+
             modelBuilder.Entity<Article>().HasMany(m => m.ReletedArticles).WithMany();
 
             modelBuilder.Configurations.Add(new ShoppingCartConfig());
