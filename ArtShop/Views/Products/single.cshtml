@@ -534,8 +534,8 @@
 
     <script>
         function addfavsingle(obj, id) {
-            var heart = '<i class="fa fa-heart"></i> <span>@ShareRes.Add_to_Favorites</span>';
-            var hearted = '<i class="fa fa-heart is-favorite"></i> <span>@ShareRes.Remove_from_favorites</span>';
+            var heart = '<i class="fa fa-heart"></i> <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>';
+            var hearted = '<i class="fa fa-heart is-favorite"></i> <span style="@favFontSize">@ShareRes.Remove_from_favorites</span>';
             var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
             $(obj).html(loadingspin);
             $(obj).removeClass('is-favorite');

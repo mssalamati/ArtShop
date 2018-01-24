@@ -276,7 +276,7 @@ namespace ArtShop.Controllers
             culture = CultureHelper.GetImplementedCulture(culture);
             RouteData.Values["culture"] = culture;  // set culture
 
-            return Redirect(url);
+            return RedirectPermanent(url);
         }
 
         public ActionResult RelatedArtwork(int id)
