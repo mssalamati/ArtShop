@@ -15,7 +15,23 @@
         .so-collection-create-add .control-label {
             float: right;
         }
+
+        .so-available-collections .ellipsis {
+            width: auto !important;
+        }
     </style>
+    if (IsRighToLeft)
+    {
+        <style>
+            .so-available-collections td a.add {
+                margin-right: 1px !important;
+            }
+
+            .so-available-collections .ellipsis {
+                text-align: right !important;
+            }
+        </style>
+    }
 }
 
 <div class="ui-tooltip-content" id="ui-tooltip-3-content" aria-atomic="true">
