@@ -4,6 +4,7 @@
     ViewBag.Title = "Favorites | Artiscovery";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtlstlForSize = IsRighToLeft ? "direction:ltr;float:right !important; text-align:right !important; margin-top:7px" : "margin-top:7px";
     var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
     var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
     var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
@@ -60,14 +61,14 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@ViewBag.id" class="" title="link to artwork">
-            <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.artworkCount)</span>
+        <a style="@rtldirection" href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@ViewBag.id" class="">
+            <i class="fa fa-suitcase"></i> @ProfileRes.Artwork  <span>(@ViewBag.artworkCount)</span>
         </a>
-        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/collection?id=@ViewBag.id" class="" title="link to Collections">
-            <i class="fa fa-th"></i> Collections <span>(@ViewBag.collectionCount)</span>
+        <a style="@rtldirection" href="/@CultureHelper.GetCurrentCulture()/publicprofile/collection?id=@ViewBag.id" class="">
+            <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@ViewBag.collectionCount)</span>
         </a>
-        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/favorites?id=@ViewBag.id" class="active" title="link to Favorites">
-            <i class="fa fa-heart"></i> Favorites <span>(@Model.Count)</span>
+        <a style="@rtldirection" href="/@CultureHelper.GetCurrentCulture()/publicprofile/favorites?id=@ViewBag.id" class="active">
+            <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@ViewBag.count)</span>
         </a>
     </div>
     <div class="row sort">

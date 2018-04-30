@@ -1,6 +1,11 @@
 ﻿@model List<CollectionViewModel>
 @{
     ViewBag.Title = "Collection | Artiscovery";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
 }
 
 <div role="main" class="row row-layout profile-content">
@@ -32,14 +37,14 @@
     </header>
 
     <div class="profile-nav large-12 columns">
-        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@ViewBag.id" class="" title="link to artwork">
-            <i class="fa fa-suitcase"></i> Artwork <span>(@ViewBag.artworksCount)</span>
+        <a style="@rtldirection" href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@ViewBag.id" class="">
+            <i class="fa fa-suitcase"></i> @ProfileRes.Artwork  <span>(@ViewBag.artworksCount)</span>
         </a>
-        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/collections?id=@ViewBag.id" class="active" title="link to Collections">
-            <i class="fa fa-th"></i> Collections <span>(@Model.Count)</span>
+        <a style="@rtldirection" href="/@CultureHelper.GetCurrentCulture()/publicprofile/collection?id=@ViewBag.id" class="active">
+            <i class="fa fa-th"></i> @ProfileRes.Collections <span>(@Model.Count)</span>
         </a>
-        <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/favorites?id=@ViewBag.id" class="" title="link to Favorites">
-            <i class="fa fa-heart"></i> Favorites <span>(@ViewBag.favoritesCount)</span>
+        <a style="@rtldirection" href="/@CultureHelper.GetCurrentCulture()/publicprofile/favorites?id=@ViewBag.id" class="">
+            <i class="fa fa-heart"></i> @ProfileRes.Favorites <span>(@ViewBag.favoritesCount)</span>
         </a>
     </div>
     <div class="clearfix"></div>

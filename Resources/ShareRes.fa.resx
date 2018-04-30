@@ -286,7 +286,7 @@
     <value>اثر به مجموعه اضافه شد</value>
   </data>
   <data name="FavAddFail" xml:space="preserve">
-    <value>اثر از لیست علاقه مندی ها حذف</value>
+    <value>اثر از لیست علاقه مندی ها حذف شد</value>
   </data>
   <data name="FavAddSuccess" xml:space="preserve">
     <value>اثر به لیست علاقه مندی ها اضافه شد</value>

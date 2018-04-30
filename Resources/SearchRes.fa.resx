@@ -181,7 +181,7 @@
     <value>سایز را انتخاب کنید</value>
   </data>
   <data name="Shipping_included" xml:space="preserve">
-    <value>همراه با حمل و نقل</value>
+    <value>هزینه حمل و نقل با خریدار است</value>
   </data>
   <data name="Ships_in" xml:space="preserve">
     <value>حمل و نقل درون</value>
