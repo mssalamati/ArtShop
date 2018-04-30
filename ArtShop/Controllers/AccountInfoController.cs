@@ -40,6 +40,7 @@ namespace ArtShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(AccountInfoViewModel model)
         {
+            ViewBag.ischanged = true;
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -64,7 +65,7 @@ namespace ArtShop.Controllers
                 RemoveFromSubscribers(userProfile.ApplicationUserDetail.Email);
             }
             userProfile.MailingList = model.MailingList;
-            ViewBag.ischanged = true;
+          
             db.SaveChanges();
 
             return View(model);

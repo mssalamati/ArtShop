@@ -312,10 +312,6 @@ namespace ArtShop.Controllers
                 return PartialView();
             }
 
-
-
-
-
             Session["Height"] = model.Height;
             Session["Width"] = model.Width;
             Session["Depth"] = model.Depth;
@@ -329,7 +325,8 @@ namespace ArtShop.Controllers
             ViewBag.Keywords = Session["Keywords"];
             ViewBag.firstmedium = Session["firstmedium"];
             ViewBag.firstmaterial = Session["firstmaterial"];
-
+            int category = (int)Session["category"];
+            ViewBag.categoryString = CashManager.Instance.Categories.FirstOrDefault(a=>a.id == category).name;
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
@@ -430,7 +427,7 @@ namespace ArtShop.Controllers
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
             float current = 9;
             ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
-
+            var count = CashManager.Instance.Countries;
             UploadViewModel.step9 model = new UploadViewModel.step9();
             if (userProfile.billingInfo != null)
             {
@@ -440,6 +437,10 @@ namespace ArtShop.Controllers
                 model.Region = userProfile.billingInfo.Region;
                 model.Zip_code = userProfile.billingInfo.ZipCode;
                 model.phoneNumber = userProfile.billingInfo.PhoneNumber;
+            }
+            else
+            {
+                model.Country = CashManager.Instance.Countries.FirstOrDefault(a => a.Key == 2).Value;
             }
 
             return PartialView(model);

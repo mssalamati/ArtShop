@@ -138,17 +138,17 @@ namespace Utilities
                 {
                     try
                     {
-                        foreach (var prop in img.PropertyItems)
-                        {
-                            if (prop.Id == 0x0112) //value of EXIF
-                            {
-                                int orientationValue = img.GetPropertyItem(prop.Id).Value[0];
-                                RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
-                                img.RotateFlip(rotateFlipType);
-                                img.RemovePropertyItem(0x0112);
-                                break;
-                            }
-                        }
+                        //foreach (var prop in img.PropertyItems)
+                        //{
+                        //    if (prop.Id == 0x0112) //value of EXIF
+                        //    {
+                        //        int orientationValue = img.GetPropertyItem(prop.Id).Value[0];
+                        //        RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
+                        //        img.RotateFlip(rotateFlipType);
+                        //        img.RemovePropertyItem(0x0112);
+                        //        break;
+                        //    }
+                        //}
 
                         string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                         file.SaveAs(Path.Combine(tempFolderPath, filename));
@@ -186,18 +186,18 @@ namespace Utilities
                         image = Image.FromStream(ms);
                     }
 
-                    foreach (var prop in image.PropertyItems)
-                    {
-                        if (prop.Id == 0x0112) //value of EXIF
-                        {
-                            int orientationValue = image.GetPropertyItem(prop.Id).Value[0];
-                            RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
-                            image.RotateFlip(rotateFlipType);
-                            image.RemovePropertyItem(0x0112);
-                            
-                            break;
-                        }
-                    }
+                    //foreach (var prop in image.PropertyItems)
+                    //{
+                    //    if (prop.Id == 0x0112) //value of EXIF
+                    //    {
+                    //        int orientationValue = image.GetPropertyItem(prop.Id).Value[0];
+                    //        RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
+                    //        image.RotateFlip(rotateFlipType);
+                    //        image.RemovePropertyItem(0x0112);
+
+                    //        break;
+                    //    }
+                    //}
 
                     File.WriteAllBytes(imgPath, imageBytes);
                     return new SaveImageResult() { Error = "", FullPath = filePath, ResultStatus = true, Width = image.Width, Height = image.Height };
@@ -250,25 +250,25 @@ namespace Utilities
                         var jpegCodec = GetEncoderInfo("image/jpeg");
                         var encoderParams = new EncoderParameters(1);
                         encoderParams.Param[0] = qualityParam;
-                    
-                        
-                        foreach (var prop in image.PropertyItems)
-                        {
-                            if (prop.Id == 0x0112) //value of EXIF
-                            {
-                                int orientationValue = image.GetPropertyItem(prop.Id).Value[0];
-                                RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
-                                image.RotateFlip(rotateFlipType);
-                                image.RemovePropertyItem(0x0112);
-                                var size = ResizeKeepAspect(image.Size, 1000, 2000);
-                                Image thumb = image.GetThumbnailImage(size.Width, size.Height, () => false, IntPtr.Zero);
-                                var bm = new Bitmap(thumb);                                
-                                bm.SetResolution(72, 72);
-                                bm.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
-                                //image.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
-                                break;
-                            }
-                        }
+                        image.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
+
+                        //foreach (var prop in image.PropertyItems)
+                        //{
+                        //    if (prop.Id == 0x0112) //value of EXIF
+                        //    {
+                        //        int orientationValue = image.GetPropertyItem(prop.Id).Value[0];
+                        //        RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
+                        //        image.RotateFlip(rotateFlipType);
+                        //        image.RemovePropertyItem(0x0112);
+                        //        //var size = ResizeKeepAspect(image.Size, 1000, 2000);
+                        //        //Image thumb = image.GetThumbnailImage(size.Width, size.Height, () => false, IntPtr.Zero);
+                        //        //var bm = new Bitmap(thumb);                                
+                        //        //bm.SetResolution(72, 72);
+                        //        //bm.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
+                        //        image.Save(tempFolderPath + "/" + Path.GetFileName(Orginalpath), jpegCodec, encoderParams);
+                        //        break;
+                        //    }
+                        //}
 
                         
                         return new SaveImageResult() { ResultStatus = true, FullPath = thumbPath + "/" + Path.GetFileName(Orginalpath) };
@@ -290,22 +290,22 @@ namespace Utilities
             var encoderParams = new EncoderParameters(1);
             encoderParams.Param[0] = qualityParam;
             img.Save(path, jpegCodec, encoderParams);
-            foreach (var prop in img.PropertyItems)
-            {
-                if (prop.Id == 0x0112) //value of EXIF
-                {
-                    int orientationValue = img.GetPropertyItem(prop.Id).Value[0];
-                    RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
-                    img.RotateFlip(rotateFlipType);
-                    img.RemovePropertyItem(0x0112);
-                    var size = ResizeKeepAspect(img.Size, 300, 600);
-                    Image thumb = img.GetThumbnailImage(size.Width, size.Height, () => false, IntPtr.Zero);
-                    var bm = new Bitmap(thumb);
-                    bm.SetResolution(72, 72);
-                    bm.Save(path, jpegCodec, encoderParams);
-                    break;
-                }
-            }
+            //foreach (var prop in img.PropertyItems)
+            //{
+            //    if (prop.Id == 0x0112) //value of EXIF
+            //    {
+            //        int orientationValue = img.GetPropertyItem(prop.Id).Value[0];
+            //        RotateFlipType rotateFlipType = GetOrientationToFlipType(orientationValue);
+            //        img.RotateFlip(rotateFlipType);
+            //        img.RemovePropertyItem(0x0112);
+            //        //var size = ResizeKeepAspect(img.Size, 300, 600);
+            //        Image thumb = img.GetThumbnailImage(img.Size.Width, img.Size.Height, () => false, IntPtr.Zero);
+            //        var bm = new Bitmap(thumb);
+            //        //bm.SetResolution(72, 72);
+            //        bm.Save(path, jpegCodec, encoderParams);
+            //        break;
+            //    }
+            //}
 
         }     
         public static ImageCodecInfo GetEncoderInfo(string mimeType)
