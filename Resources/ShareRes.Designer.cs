@@ -574,7 +574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item Removed from your Favorit.
+        ///   Looks up a localized string similar to Item Removed from your favorites.
         /// </summary>
         public static string FavAddFail {
             get {
@@ -583,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item Added to your Favorit.
+        ///   Looks up a localized string similar to Item Added to your favorites.
         /// </summary>
         public static string FavAddSuccess {
             get {

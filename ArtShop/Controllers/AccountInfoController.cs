@@ -114,7 +114,7 @@ namespace ArtShop.Controllers
                     model.GooglePlus = userProfile.userLinks.GooglePlus;
                     model.Website = userProfile.userLinks.Website;
 
-                    model.countryId = userProfile.country == null ? 0 : userProfile.country.Id;
+                    model.countryId = userProfile.country == null ? 2 : userProfile.country.Id;
                     model.City = userProfile.City;
                     model.Region = userProfile.Region;
                     model.ZipCode = userProfile.ZipCode;
@@ -241,7 +241,7 @@ namespace ArtShop.Controllers
             ViewBag.ConfirmationStatus = userProfile.IDStatus;
             if (userProfile.billingInfo != null)
             {
-                ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : "Iran";
+                ViewBag.country = userProfile.billingInfo.country != null ? userProfile.billingInfo.country.Current().Name : CashManager.Instance.Countries.FirstOrDefault(a => a.Key == 2).Value;
                 return View(userProfile.billingInfo);
             }
 

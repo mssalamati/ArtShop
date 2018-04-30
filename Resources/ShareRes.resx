@@ -283,10 +283,10 @@
     <value>Item Added to your Collection</value>
   </data>
   <data name="FavAddFail" xml:space="preserve">
-    <value>Item Removed from your Favorit</value>
+    <value>Item Removed from your favorites</value>
   </data>
   <data name="FavAddSuccess" xml:space="preserve">
-    <value>Item Added to your Favorit</value>
+    <value>Item Added to your favorites</value>
   </data>
   <data name="Are_You_Buyer" xml:space="preserve">
     <value>Are you a buyer?</value>
