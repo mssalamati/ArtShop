@@ -3,6 +3,7 @@
     ViewBag.Title = "Favorites | Artiscovery";
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtlstlForSize = IsRighToLeft ? "direction:ltr;float:right !important; text-align:right !important; margin-top:7px" : "margin-top:7px";
     var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
     var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
     var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
@@ -199,7 +200,8 @@
                             <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
                                 <a href="@Url.Action(item.product.category.Current().Name,"Artwork", new { id=@item.product.GenerateSlug() })">@item.product.Title</a>
                             </h4>
-                            <small style="@rtlstl" class="art-category clear left">@item.product.category.Current().Name, <span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
+                            <small style="@rtlstl" class="art-category clear left">@item.product.category.Current().Name</small>
+                            <small style="@rtlstlForSize" class="art-category clear left"><span>@item.product.Height  H</span> x <span> @item.product.Width  W</span> x <span> @item.product.Depth </span> cm</small>
 
                             <div class="list-author clear left" style="@rtlstl">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope itemtype="http://schema.org/Person">

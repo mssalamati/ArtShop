@@ -3,6 +3,7 @@
 @{
     var IsRighToLeft = CultureHelper.IsRighToLeft();
     var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtlstlForSize = IsRighToLeft ? "direction:ltr;float:right !important; text-align:right !important; margin-top:7px" : "margin-top:7px";
     var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
     var rtldirectionMargin = IsRighToLeft ? "display:-webkit-inline-box;direction:rtl !important" : "";
 }
@@ -94,7 +95,8 @@
                             <h4 class="list-art-title left ellipsis" itemprop="name">
                                 <a href="/@CultureHelper.GetCurrentCulture()/products/single/@item.Id">@item.Title @*- Limited Edition @item.avaible of @item.AllEntity*@</a>
                             </h4>
-                            <small style="@rtldirection" class="art-category clear left">@item.category.Current().Name, <span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> @UploadRes.inches</small>
+                            <small style="@rtlstl" class="art-category clear left">@item.category.Current().Name</small>
+                            <small style="@rtlstlForSize" class="art-category clear left"><span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
                             <div class="list-author clear left">
                                 <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">

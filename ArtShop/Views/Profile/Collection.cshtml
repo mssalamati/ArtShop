@@ -10,6 +10,15 @@
     var rtlPadding = IsRighToLeft ? "padding-top: .4em !important" : "";
     var rtldirectionMargin = IsRighToLeft ? "display:table-caption;margin-left:-56.5%;direction:rtl !important" : "";
 }
+@if (IsRighToLeft)
+{
+    <style>
+        .collection-title {
+            font-size: 14px !important;
+        }
+    </style>
+}
+
 
 <div role="main" class="row row-layout profile-content">
 
