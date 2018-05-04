@@ -364,7 +364,7 @@
     <value>Shipping</value>
   </data>
   <data name="Street_Address" xml:space="preserve">
-    <value>Street Address</value>
+    <value>Postal Address</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>

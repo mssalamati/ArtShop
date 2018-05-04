@@ -1,6 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "Artiscovery | Collections";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
+}
+
+@if (IsRighToLeft)
+{
+    <style>
+        .collection-title {
+            font-size: 14px !important;
+        }
+    </style>
 }
 
 @model  List<Collection>
@@ -152,7 +166,7 @@ if (current == selected)
                         </a>
                     </div>
                     <div class="row">
-                        @for (int i = 1; i <= 3; i++)
+                        @for (int i = 2; i <= 4; i++)
                         {
                             var art = item.Artworks.Skip(i - 1).FirstOrDefault();
 
@@ -168,7 +182,7 @@ if (current == selected)
                             {
                                 <div class="small-4 columns">
                                     <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/CollectionView?userid=@item.user_id&id=@item.Id" title="">
-                                        <img src="" alt="test collection item" nopin="nopin">
+                                        <img src="@art.product.Sqphoto.Path" alt="test collection item" nopin="nopin">
                                     </a>
                                 </div>
                             }
@@ -186,7 +200,7 @@ if (current == selected)
                     <div class="row collection-meta" style="padding-top:1px">
                         @if (item.user != null)
                         {
-                            <a>@item.user.FirstName @item.user.LastName </a>
+                            <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@item.user_id">@item.user.FirstName @item.user.LastName </a>
                         }
                         <div class="clearfix"></div>
                     </div>

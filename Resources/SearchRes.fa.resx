@@ -175,13 +175,13 @@
     <value>جستجو</value>
   </data>
   <data name="Select_material" xml:space="preserve">
-    <value>یک جنس انتخاب کنید</value>
+    <value>متریال استفاده شده را انتخاب کنید</value>
   </data>
   <data name="Select_size" xml:space="preserve">
     <value>سایز را انتخاب کنید</value>
   </data>
   <data name="Shipping_included" xml:space="preserve">
-    <value>هزینه حمل و نقل با خریدار است</value>
+    <value>هزینه ارسال با خریدار است</value>
   </data>
   <data name="Ships_in" xml:space="preserve">
     <value>حمل و نقل درون</value>

@@ -2,10 +2,14 @@
 @using DataLayer.Extentions
 @{
     var IsRighToLeft = CultureHelper.IsRighToLeft();
-    var rtlstl = IsRighToLeft ? "direction:rtl;text-align:right !important" : "";
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
     var rtlstlForSize = IsRighToLeft ? "direction:ltr;float:right !important; text-align:right !important; margin-top:7px" : "margin-top:7px";
-    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
     var rtldirectionMargin = IsRighToLeft ? "display:-webkit-inline-box;direction:rtl !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
+    
+
 }
 <div role="main" class="row row-layout profile-content">
 
@@ -91,21 +95,20 @@
                             @*<a href="#" data-collection-owner="994144" data-art-id="3672399" class="btn-round btn-add-to-collection hide-for-small-down" rel="nofollow" oldtitle="Add to Collection"><i class="fa fa-plus"></i></a>*@
                             @*<a href="/upload/edit/art/3672399/artist/994144" class="btn-round btn-edit" title="Edit" rel="nofollow"><i class="fa fa-pencil"></i></a>*@
                         </div>
-                        <div class="list-art-meta">
-                            <h4 class="list-art-title left ellipsis" itemprop="name">
-                                <a href="/@CultureHelper.GetCurrentCulture()/products/single/@item.Id">@item.Title @*- Limited Edition @item.avaible of @item.AllEntity*@</a>
+      
+
+
+                        <div class="list-art-meta" style="height:auto; @rtlstl">
+                            <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                                <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })">@item.Title</a>
                             </h4>
                             <small style="@rtlstl" class="art-category clear left">@item.category.Current().Name</small>
                             <small style="@rtlstlForSize" class="art-category clear left"><span>@item.Height  H</span> x <span> @item.Width  W</span> x <span> @item.Depth </span> cm</small>
 
-                            <div class="list-author clear left">
-                                <h5 class="artist-name left ellipsis" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                    <a href="/@CultureHelper.GetCurrentCulture()/profile" class="artist-card" title="Profile page for @ViewBag.profileFullName" itemprop="url">@ViewBag.profileFullName</a>
-                                </h5>
-                                @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">Iran</h5>*@
-                            </div>
-
-                            <div class="list-art-price">
+                            <div class="list-author clear left" style="@rtlstl">
+                                @*<h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
+                                    <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" class="artist-card" title="Profile page for @item.user.FirstName @item.user.LastName" itemprop="url">@item.user.FirstName  @item.user.LastName</a>
+                                </h5>*@
                                 @if (item.ISOrginalForSale || item.Status == ProductStatus.forSale)
                                 {
                                     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -115,8 +118,28 @@
                                         </div>
                                     </div>
                                 }
+                                @*<h5 class="user-location ellipsis clear" itemprop="contentLocation">
+                                    @if (item.user.country != null)
+                                    {
+                                        <span>@item.user.country.Translations.SingleOrDefault(x => x.languageId == System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2)).Name</span>
+                                    }
+                                </h5>*@
+                            </div>
+
+                            <div class="list-art-price" style="@pricertl">
+
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <!-- internationalization testing -->
+                                    <div class="sample-print-price" itemprop="price">
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+
+
+
                     </div>
                 </li>
             }

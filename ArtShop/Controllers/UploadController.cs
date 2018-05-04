@@ -355,12 +355,12 @@ namespace ArtShop.Controllers
                 ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
-            if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 10)
-            {
-                ViewBag.error = Resources.UploadRes.descriptionnull_error;
-                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
-                return PartialView();
-            }
+            //if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 10)
+            //{
+            //    ViewBag.error = Resources.UploadRes.descriptionnull_error;
+            //    ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+            //    return PartialView();
+            //}
             if (model.AllEntity < model.avaible)
             {
                 ViewBag.error = Resources.UploadRes.avaibleEntity_error;
@@ -600,7 +600,7 @@ namespace ArtShop.Controllers
                     Widephoto = new Photo() { Path = widepath },
                     Sqphoto = new Photo() { Path = sqpath },
                     Title = (string)Session["Title"],
-                    Description = (string)Session["Description"],
+                    Description = (string)Session["Description"] ?? "",
                     Price = (int)(Session["price"] ?? 0),
                     ISOrginalForSale = (bool)Session["isOrginal"],
                     AllEntity = (int)Session["AllEntity"],

@@ -43,14 +43,19 @@ if (p == x)
                     <div class="edit-page">
                         @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })
                         <div class="edit-page__container">
-                            @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })
+                            @if (!IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })
+                            }
+                            
+                            @*@Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })*@
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                     <div class="wizard-step">
                                         <div class="pane__content__block">
                                             <div class="packaging">
-                                                <h1 class="animate-group-0-0">Packaging</h1>
-                                                <p class="descriptor animate-group-0-1">Tell us how you'd like to package your artwork</p>
+                                                <h1 class="animate-group-0-0">@UploadRes.Packaging</h1>
+                                                <p class="descriptor animate-group-0-1" style="@rtldirection">@UploadRes.step8_description</p>
                                                 <div class="form-group form-group--block">
                                                     <div class="image-radio animate-group-0-2 packaging__shipping-type">
                                                         <div>
@@ -161,6 +166,10 @@ if (p == x)
                                     </div>
                                 </div>
                             </div>
+                            @if (IsRighToLeft)
+                            {
+                                @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })
+                            }
                         </div>
                     </div>
                 </div>

@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shipping included.
+        ///   Looks up a localized string similar to Shipping cost by customer.
         /// </summary>
         public static string Shipping_included {
             get {

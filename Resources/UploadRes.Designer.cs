@@ -907,7 +907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Street Address.
+        ///   Looks up a localized string similar to Postal Address.
         /// </summary>
         public static string Street_Address {
             get {

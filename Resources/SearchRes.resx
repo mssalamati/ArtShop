@@ -181,7 +181,7 @@
     <value>Select a Size</value>
   </data>
   <data name="Shipping_included" xml:space="preserve">
-    <value>Shipping included</value>
+    <value>Shipping cost by customer</value>
   </data>
   <data name="Ships_in" xml:space="preserve">
     <value>Ships in a</value>
