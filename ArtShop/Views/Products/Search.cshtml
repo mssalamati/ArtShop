@@ -7,6 +7,7 @@
     var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
     var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
     var rtlFontSize = IsRighToLeft ? "font-size:.7rem;padding:13px 10px 10px 5px !important" : "";
+    var rtlSoldItem = IsRighToLeft ? "float:left !important" : "";
 }
 
 @model  List<Product>
@@ -121,8 +122,8 @@ if (current == selected)
 
                 @{
                     Dictionary<string, string>
-                                links = new Dictionary<string, string>
-                                    ();
+                                        links = new Dictionary<string, string>
+                                            ();
                     links.Add("/"+ CultureHelper.GetCurrentCulture()+"/", ShareRes.Home);
                     if (ViewBag.categoryId != 0)
                     {
@@ -276,7 +277,7 @@ if (current == selected)
                         </a>
                         @if (item.Status == ProductStatus.Sold)
                         {
-                            <div style="margin-right:5px;@rtlFontSize" class="right sold">sold</div>
+                            <div style="@rtlSoldItem;margin-right:5px;@rtlFontSize" class="right sold">sold</div>
                         }
 
                     </div>
@@ -312,8 +313,9 @@ if (current == selected)
                             <i class="fa fa-plus" style="color:white"></i>
                         </a>
                     </div>
+                    
                     <div class="list-art-meta" style="height:auto; @rtlstl">
-                        <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                        <h4 class="list-art-title left ellipsis" itemprop="name" style="width:95%;@rtlstl">
                             <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })">@item.Title</a>
                         </h4>
                         <small style="@rtlstl" class="art-category clear left">@item.category.Current().Name</small>

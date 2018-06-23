@@ -1015,6 +1015,7 @@ namespace MobileApi.Controllers
                     categoryId = categoryId,
                     subjectId = subjectId,
                     TotalWeight = model.weight,
+                    frameType = model.frameType,
                     Status = model.isforsale ? ProductStatus.forSale : ProductStatus.NotForSale
                 };
 

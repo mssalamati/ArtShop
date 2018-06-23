@@ -286,6 +286,7 @@
     <Compile Include="Helper\SeoFriendlyRoute.cs" />
     <Compile Include="Models\AccountInfoViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ArtistViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\checkInfoViewModel.cs" />
     <Compile Include="Models\CollectionViewModel.cs" />

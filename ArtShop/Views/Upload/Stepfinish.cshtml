@@ -35,11 +35,14 @@
 
                                 <br />
                                 <p>@ProfileRes.Identification_p2</p>
-                                @if ((bool)Session["gotoConfirmPage"])
+                                @if ((bool)Session["isOrginal"])
                                 {
-                                    <a class="btn btn-success" href="/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid">
-                                        @ProfileRes.Upload_id
-                                    </a>
+                                    if ((bool)Session["gotoConfirmPage"])
+                                    {
+                                        <a class="btn btn-success" href="/@CultureHelper.GetCurrentCulture()/accountinfo/uploadid">
+                                            @ProfileRes.Upload_id
+                                        </a>
+                                    }
                                 }
                             </div>
                         </div>

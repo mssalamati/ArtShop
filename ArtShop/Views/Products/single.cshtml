@@ -117,6 +117,21 @@
                 <div class="small-11 columns">
                     <div class="row author-title" style="@textAlign">
                         <h1 style="@rtldirection">
+                            @{
+                                string fullName;
+
+                                if (Model.artist_id == null)
+                                {
+                                    fullName = Model.user.FirstName + " " + Model.user.LastName;
+                                }
+                                else
+                                {
+                                    var Artist = ViewBag.Artist;
+                                    fullName = (Artist.FirstName ?? Model.user.FirstName) + " " + (Artist.LastName ?? Model.user.LastName);
+                                }
+
+                                string userId = Model.artist_id ?? Model.user_id;
+                            }
                             <a href="">
                                 @if (IsRighToLeft)
                                 {
@@ -124,7 +139,7 @@
 
                                     <span itemprop="category">@Model.category.Current().Name</span>
                                     <span>  @SearchRes.by</span>
-                                    <span itemprop="creator">@Model.user.FirstName @Model.user.LastName</span>
+                                    <span itemprop="creator">@fullName</span>
                                 }
                                 else
                                 {
@@ -233,14 +248,29 @@
                         <div class="small-12 medium-6 large-12 columns art-meta" style="@textAlign">
                             <h3 itemprop="name" class="title">@Model.Title</h3>
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id" itemprop="url">@Model.user.FirstName @Model.user.LastName</a><br>
+                   
+                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@userId" itemprop="url">@fullName</a><br>
                                 @if (Model.user.country != null)
                                 {
                                     <span itemprop="nationality">@Model.user.country.Current().Name</span>
                                 }
                             </p>
-                            <p class="category-size" style="@rtldirection">
-                                @Model.category.Current().Name<br>
+                            <p>
+                                @{
+                                    var year = Model.ArtCreatedYear == 0 ? Model.ArtCreatedYearString : Model.ArtCreatedYear.ToString();
+                                }
+
+
+                                <span>@year</span>
+                            </p>
+                            <p>
+                                <span>@Model.category.Current().Name<br></span>
+                            </p>
+                            <p>
+                                <span>@UploadRes.Limited_Edition: </span> <span>@Model.avaible @UploadRes.of @Model.AllEntity  <br /></span>
+                            </p>
+                            <p class="" style="@rtldirection">
+
 
                                 @{
                                     if (IsRighToLeft)

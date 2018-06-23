@@ -835,7 +835,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign up.
+        ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string Register {
             get {

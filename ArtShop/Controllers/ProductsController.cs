@@ -89,6 +89,7 @@ namespace ArtShop.Controllers
                 ViewBag.candeleted = candeleted;
             }
             ViewBag.mine = mine;
+            ViewBag.Artist = p.artist_id == null ? null : db.UserProfiles.Where(a => a.Id == p.artist_id);
             return View(p);
         }
 

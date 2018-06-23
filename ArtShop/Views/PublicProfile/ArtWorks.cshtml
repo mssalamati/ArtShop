@@ -164,11 +164,14 @@
                             <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" itemprop="url">
                                 <img src="@item.photo.Path">
                             </a>
-
+                            @if (item.Status == ProductStatus.Sold)
+                            {
+                                <div class="right sold">sold</div>
+                            }
                         </div>
                         <div class="item-controls">
-                            @if (item.ISOrginalForSale || item.Status == ProductStatus.forSale)
-                            {
+                            @if ((item.ISOrginalForSale || item.Status == ProductStatus.forSale) && item.Status != ProductStatus.Sold)                            
+                                {
                                 <a href="/@CultureHelper.GetCurrentCulture()/Card/AddToCart?id=@item.Id&type=@((int)Ordertype.Orginal)" class="btn-round btn-add-to-cart" style="background-color:rgba(0,0,0,0.6)" title="@ShareRes.Add_to_cart">
                                     <i class="fa fa-shopping-cart" style="color:white"></i>
                                 </a>

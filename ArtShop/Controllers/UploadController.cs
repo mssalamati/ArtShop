@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Data.Entity.Validation;
 using ArtShop.Helper;
+using static ArtShop.Models.UploadViewModel;
 
 namespace ArtShop.Controllers
 {
@@ -138,7 +139,7 @@ namespace ArtShop.Controllers
                 ViewBag.Error = Resources.UploadRes.copyright_error;
                 return PartialView();
             }
-            if (model.createYear == 0)
+            if (model.createYearString.Length == 0)
             {
                 ViewBag.Error = Resources.UploadRes.step3_year_string;
                 return PartialView();
@@ -147,7 +148,7 @@ namespace ArtShop.Controllers
                 return RedirectToActionPermanent("Setep1");
 
             Session["copyright"] = model.copyright;
-            Session["createYear"] = model.createYear;
+            Session["createYear"] = model.createYearString;
             Session["isOrginal"] = model.isOrginal;
             Session["printAvable"] = false;// model.printAvable;
             return RedirectToActionPermanent("Setep4");
@@ -325,8 +326,16 @@ namespace ArtShop.Controllers
             ViewBag.Keywords = Session["Keywords"];
             ViewBag.firstmedium = Session["firstmedium"];
             ViewBag.firstmaterial = Session["firstmaterial"];
+            ViewBag.Artists = db.UserProfiles.Where(x => x.profileType == ProfileType.Artist && (x.FirstName != null && x.LastName != null)).Select(a => new ArtistViewModel
+            {
+                Id = a.Id,
+                Firstname = a.FirstName,
+                Lastname = a.LastName
+
+            }).ToList();
+
             int category = (int)Session["category"];
-            ViewBag.categoryString = CashManager.Instance.Categories.FirstOrDefault(a=>a.id == category).name;
+            ViewBag.categoryString = CashManager.Instance.Categories.FirstOrDefault(a => a.id == category).name;
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
@@ -371,7 +380,7 @@ namespace ArtShop.Controllers
             Session["avaible"] = model.avaible;
             Session["Description"] = model.Description;
             Session["AllEntity"] = model.AllEntity;
-
+            Session["ArtistId"] = model.ArtistId;
 
             if (!isforsale && !printAvable)
             {
@@ -590,6 +599,7 @@ namespace ArtShop.Controllers
                 string Mediums = (string)Session["Mediums"];
                 int[] Materials = (int[])Session["Materials"];
                 string Styles = (string)Session["Styles"];
+                string artistId = (string)Session["ArtistId"];
 
                 var medumsList = Mediums.Split(',');
                 var stylelist = Styles.Split(',');
@@ -604,16 +614,19 @@ namespace ArtShop.Controllers
                     Price = (int)(Session["price"] ?? 0),
                     ISOrginalForSale = (bool)Session["isOrginal"],
                     AllEntity = (int)Session["AllEntity"],
-                    ArtCreatedYear = (int)Session["createYear"],
+                    //ArtCreatedYear = (int)Session["createYear"],
+                    ArtCreatedYearString = (string)Session["createYear"],
                     avaible = (int)Session["avaible"],
                     Depth = (float)Session["Depth"],
                     Height = (float)Session["Height"],
                     Width = (float)Session["Width"],
                     IsPrintAvaibled = false,
-                    Packaging = (Productpackage)Session["Packaging"],
+                    Packaging = Session["Packaging"] == null ? Productpackage.box : (Productpackage)Session["Packaging"],
                     Keywords = (string)Session["Keywords"],
                     categoryId = categoryId,
                     subjectId = subjectId,
+                    artist_id = artistId,
+                    user_id = userId,
                     TotalWeight = Session["weight"] == null ? 0 : (float)Session["weight"],
                     Status = ((bool)Session["isOrginal"]) ? ProductStatus.forSale : ProductStatus.NotForSale
                 };

@@ -22,6 +22,7 @@ namespace ArtShop.Models
         public class step3
         {
             public int createYear { get; set; }
+            public string createYearString { get; set; }
             public bool isOrginal { get; set; }
             public bool printAvable { get; set; }
             public bool copyright { get; set; }
@@ -58,7 +59,9 @@ namespace ArtShop.Models
             public int avaible { get; set; }
             public int AllEntity { get; set; }
             public string Description { get; set; }
+            public string ArtistId { get; set; }
         }
+
         public class step8
         {
             public int Packaging { get; set; }

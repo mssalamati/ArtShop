@@ -49,7 +49,7 @@
             .checkout__breadcrumb__item:last-child {
                 margin-right: 20px;
             }
-
+          
             @@media (min-width: 992px) {
                 .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
                     float: left;
@@ -76,6 +76,13 @@
             }
         </style>
     }
+
+    <style>
+          .error {
+                color: #f05028 !important;
+            }
+    </style>
+
 </head>
 <body>
 
@@ -131,16 +138,16 @@
                                                     <div class="form">
                                                         <div class="input-group">
                                                             <div class="input-with-placeholder">
-                                                                <input type="text" placeholder="@CardRes.firstname" name="firstname" value="@ViewBag.name" class="input-with-placeholder__input " id="firstname">
+                                                                <input type="text" placeholder="@CardRes.firstname *" name="firstname" value="@ViewBag.name" class="input-with-placeholder__input " id="firstname">
                                                             </div>
                                                             <div class="input-with-placeholder">
-                                                                <input type="text" placeholder="@CardRes.lastname" name="lastname" value="@ViewBag.lastname" class="input-with-placeholder__input " id="lastname">
+                                                                <input type="text" placeholder="@CardRes.lastname *" name="lastname" value="@ViewBag.lastname" class="input-with-placeholder__input " id="lastname">
                                                             </div>
                                                         </div>
                                                         <div class="input-group">
                                                             <span class="fa fa-map-marker input-group__icon input-group__icon--right" aria-hidden="true"></span>
                                                             <div class="input-with-placeholder">
-                                                                <input type="text" placeholder="@CardRes.Address" value="@ViewBag.Street" name="address" class="input-with-placeholder__input " id="address" autocomplete="off">
+                                                                <input type="text" placeholder="@CardRes.Address *" value="@ViewBag.Street" name="address" class="input-with-placeholder__input " id="address" autocomplete="off">
                                                             </div>
                                                         </div>
                                                         <div class="input-group-container" style="display: block;">
@@ -161,18 +168,18 @@
 
                                                                 </select>
                                                                 <div class="input-with-placeholder">
-                                                                    <input type="text" placeholder="@CardRes.City" value="@ViewBag.City" name="City" class="input-with-placeholder__input " id="city">
+                                                                    <input type="text" placeholder="@CardRes.City *" value="@ViewBag.City" name="City" class="input-with-placeholder__input " id="city">
                                                                 </div>
                                                             </div>
                                                             <div class="input-group">
                                                                 <div class="input-with-placeholder">
-                                                                    <input type="text" placeholder="@CardRes.zipcode" value="@ViewBag.ZipCode" name="zipcode" class="input-with-placeholder__input " id="zipcode">
+                                                                    <input type="text" placeholder="@CardRes.zipcode *" value="@ViewBag.ZipCode" name="zipcode" class="input-with-placeholder__input " id="zipcode">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-with-placeholder">
-                                                                <input type="tel" value="@ViewBag.PhoneNumber" name="PhoneNumber" placeholder="@CardRes.Phone" class="input-with-placeholder__input " id="PhoneNumber">
+                                                                <input type="tel" value="@ViewBag.PhoneNumber" name="PhoneNumber" placeholder="@CardRes.Phone *" class="input-with-placeholder__input " id="PhoneNumber">
                                                             </div>
                                                         </div>
                                                         <div class="input-group">

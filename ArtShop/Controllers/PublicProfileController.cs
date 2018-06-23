@@ -21,7 +21,7 @@ namespace ArtShop.Controllers
             model.id = userProfile.Id;
             model.fullName = userProfile.FirstName + " " + userProfile.LastName;
             model.artworkCount = userProfile.Products.Count;
-            model.collectionsCount = userProfile.Collections.Count;
+            model.collectionsCount = userProfile.Collections.Where(a=>!a.IsPrivate).Count();
             model.favoritesCount = userProfile.Favorits.Count;
             model.city = userProfile.City == null ? " " : userProfile.City;
             model.region = userProfile.Region == null ? " " : userProfile.Region;
@@ -154,7 +154,7 @@ namespace ArtShop.Controllers
             int pageSize = 18;
             var userProfile = db.UserProfiles.Find(id);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
-            ViewBag.collectionCount = userProfile.Collections.Count;
+            ViewBag.collectionCount = userProfile.Collections.Where(a => !a.IsPrivate).Count();
             ViewBag.artworkCount = userProfile.Products.Count;
             ViewBag.id = id;
             ViewBag.PhotoPath = userProfile.PhotoPath;
@@ -189,7 +189,7 @@ namespace ArtShop.Controllers
             var userProfile = db.UserProfiles.Find(id);
             ViewBag.ProfileFullName = userProfile.FirstName + " " + userProfile.LastName;
             ViewBag.favoritesCount = userProfile.Favorits.Count;
-            ViewBag.collectionCount = userProfile.Collections.Count;
+            ViewBag.collectionCount = userProfile.Collections.Where(a => !a.IsPrivate).Count();
             ViewBag.id = id;
             ViewBag.PhotoPath = userProfile.PhotoPath;
 

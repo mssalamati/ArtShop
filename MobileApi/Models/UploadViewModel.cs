@@ -48,6 +48,9 @@ namespace MobileApi.Models
         public string Region { get; set; }
         public string Zipcode { get; set; }
         public string Phonenumber { get; set; }
+        public ProductFrameType frameType { get; set; }
+        public ProductFrameMaterial frameMaterial { get; set; }
+        public ProductFrameColor frameColor { get; set; }
         public decimal Price { get; set; }
         [Required]
         public sizeMV SqrResizeRect { get; set; }

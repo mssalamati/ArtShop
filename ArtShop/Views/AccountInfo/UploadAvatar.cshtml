@@ -33,7 +33,7 @@ else
                     <span class="btn btn-success fileinput-button">
                         <span>@ProfileRes.Select_file</span>
                         <!-- The file input field used as target for the file upload widget -->
-                        <input type="file" id="Image" name="Image">
+                        <input type="file" id="Image" name="Image" accept="image/*">
                     </span>
                     <a class="btn btn-link" style="color:red" href="#" onclick="Remove()">@ShareRes.Remove</a>
                     <br><br>
@@ -74,18 +74,18 @@ else
                         <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/salesdashboard">@ProfileRes.Sales_Dashboard</a>
                     </li>
                     @*<li>
-                        <a style="padding-left:20px;" href="/accounts/upload-tax-form">
-                            Tax
-                            Form
-                        </a>
-                    </li>*@
+                            <a style="padding-left:20px;" href="/accounts/upload-tax-form">
+                                Tax
+                                Form
+                            </a>
+                        </li>*@
 
                     <li class="purchased">
                         <a href="/@CultureHelper.GetCurrentCulture()/accountinfo/orders">@ProfileRes.Orders</a>
                     </li>
 
 
-              @*      <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>*@
+                    @*      <li class="account-sign-out"><a href="/sign-out">@ProfileRes.Logout</a></li>*@
                 </ul>
 
                 <div class="clearfix"></div>
@@ -112,5 +112,20 @@ else
 
         $("#Image").change(function () {
             readURL(this);
-        });</script>
+        });
+    </script>
+
+    <script>
+        function Remove(Cid, Aid) {
+
+            if (confirm("Are you sure you want to remove that image?")) {
+                $.get('/@CultureHelper.GetCurrentCulture()/accountinfo/DeleteAvatar',
+                     function (response) {
+
+                         location.reload();
+                     }
+                 );
+            }
+        }
+    </script>
 }

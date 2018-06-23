@@ -58,7 +58,7 @@ namespace DataLayer
               .WithMany()
               .WillCascadeOnDelete(false);
 
-
+            //modelBuilder.Entity<Product>().HasRequired<UserProfile>(s => s.user).WithMany(a => a.Products);
 
             modelBuilder.Entity<Article>().HasMany(m => m.ReletedArticles).WithMany();
 

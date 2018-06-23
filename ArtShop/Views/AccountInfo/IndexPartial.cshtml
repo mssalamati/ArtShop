@@ -88,9 +88,9 @@
                             @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", style = "color:red;font-size:small;display" })
 
 
-                            <div class="form-div" style="direction:rtl;margin-right:20px">
+                            <div class="form-div" style="direction:rtl;float:right;width:100%">
                                 <input type="hidden" name="passwordinfo" value="" id="passwordinfo">
-                                <p class="description"></p><ul class="disc">
+                                <p class="description"></p><ul class="disc" style="margin:0 !important">
                                     <li>@ProfileRes.Password_desc_1</li>
                                     <li>@ProfileRes.Password_desc_2</li>
                                     <li>@ProfileRes.Password_desc_3</li>
@@ -105,16 +105,13 @@
                                         <li>Your URL will look like this: http://www.saatchiart.com/<em><strong>username</strong></em></li>
                                     </ul><p></p>
                                 </div>*@
-
-                            @Html.LabelFor(m => m.MailingList, new { @class = "form-label optional" })
-                            <div class="form-div" style="float:right">
-                                @Html.CheckBoxFor(m => m.MailingList, new { @style = "display:inline-block" })
+                            <div>
+                                @Html.LabelFor(m => m.MailingList, new { @class = "form-label optional" })
+                                <div class="form-div" style="float:right;margin-top:0px">
+                                    @Html.CheckBoxFor(m => m.MailingList, new { @style = "display:inline-block" })
+                                </div>
                             </div>
-                            @*<label for="art_upload_email" class="form-label optional">Receive Art Uploaded Email</label>*@
-                            @*@Html.LabelFor(m => m.ReceiveNewArtEmail, new { @class = "form-label optional", style = "line-height: 1rem !important;padding-top: 20px" })
-                            <div class="form-div" style="float:right">
-                                @Html.CheckBoxFor(m => m.ReceiveNewArtEmail, new { @style = "display:inline-block" })
-                            </div>*@
+                            
                         </div>
 
 

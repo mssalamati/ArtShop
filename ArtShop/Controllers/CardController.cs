@@ -39,7 +39,7 @@ namespace ArtShop.Controllers
             ViewBag.lastname = user.LastName;
             if (user.billingInfo != null)
             {
-                ViewBag.Street = user.billingInfo.Street + " " + user.billingInfo.Unit;
+                ViewBag.Street = user.billingInfo.Street == "" ? user.billingInfo.Street + " " + user.billingInfo.Unit : "";
                 ViewBag.City = user.billingInfo.City;
                 ViewBag.Country = user.billingInfo.CountryId;
                 ViewBag.Region = user.billingInfo.Region;

@@ -17,6 +17,7 @@ namespace DataLayer.Enitities
         public virtual String user_id { get; set; }
         [Display(Name = "کاربر")]
         public virtual UserProfile user { get; set; }
+        public virtual String artist_id { get; set; }
         public virtual ICollection<ProductTranslation> Translations { get; set; }
         public virtual ICollection<ReserveList> reservedlist { get; set; }
         public int Price { get; set; }
@@ -34,6 +35,7 @@ namespace DataLayer.Enitities
         public virtual Photo Widephoto { get; set; }
         public DateTime CreateDate { get; set; }
         public int ArtCreatedYear { get; set; }
+        public string ArtCreatedYearString { get; set; }
         public bool ISOrginalForSale { get; set; }
         public bool IsArchive { get; set; }
         public bool IsPrintAvaibled { get; set; }
@@ -83,6 +85,7 @@ namespace DataLayer.Enitities
                 id = Id,
                 allEntity = AllEntity,
                 createdYear = ArtCreatedYear,
+                createdYearString = ArtCreatedYearString,
                 avaible = avaible,
                 categoryId = categoryId,
                 createDate = CreateDate,

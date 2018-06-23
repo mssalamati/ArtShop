@@ -35,13 +35,14 @@
                                     <div>
                                         <div class="form-group animate-group-0-2 z-index-fix">
                                             <h3>@UploadRes.step3_year_string</h3>
-                                            <select name="createYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" style="@rtlstl">
+                                            @*<select name="createYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" style="@rtlstl">
                                                 <option value="0"></option>
                                                 @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
                                                 {
                                                     <option value="@i">@i</option>
                                                 }
-                                            </select>
+                                            </select>*@
+                                            <input step="@rtlstl" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" type="text" name="createYearString" value="">
                                         </div>
                                         <div class="form-group animate-group-0-3">
                                             <h3>@UploadRes.step3_forsale_string</h3>

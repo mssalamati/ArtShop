@@ -62,7 +62,7 @@
                                         <div class="form-group form-group--block animate-group-0-4">
                                             <div class="title-input">
                                                 <div class="title-input__title-wrapper">
-                                                    <input type="text" id="Title" name="Title" value="@Model.Title">
+                                                    <input type="text" id="Title" name="Title" value="@Model.Title" style="text-align:center">
                                                 </div>
                                             </div>
                                         </div>
@@ -91,30 +91,30 @@
 
                                     <div id="billingInfo" hidden>
                                         <div class="pane__content__block">
-                                            <h1 class="animate-group-0-7">Weight</h1>
+                                            <h1 style="@rtldirection" class="animate-group-0-7">@UploadRes.step9_description</h1>
                                             <div class="form-group shipping__artwork-weight animate-group-0-9 shipping__artwork-weight--artwork-only">
                                                 <div class="shipping__artwork-weight__weight label-under-group">
                                                     <input type="number" class="" name="TotalWeight" value="@Model.TotalWeight" min="0.1">
                                                     <div class="react-tooltip" style="bottom: 60px;"></div>
-                                                    <label for="art_weight" class="">kg</label>
+                                                    <label for="art_weight" class="">@UploadRes.pounds</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="pane__content__block">
-                                            <h1 class="animate-group-0-10">Shipping Address</h1>
-                                            <p class="descriptor animate-group-0-10">Tell us where your artwork will be picked up</p>
+                                            <h1 class="animate-group-0-10">@UploadRes.step9_tilte2</h1>
+                                            <p class="descriptor animate-group-0-10">@UploadRes.step9_description2</p>
                                             <div class="form-group form-group--block animate-group-0-10">
                                                 <div>
                                                     <div class="input-container text-left animate-group-1-1">
-                                                        <label class="block">Street Address</label>
+                                                        <label style="@rtldirectionWithTextAlign" class="block">@UploadRes.Street_Address</label>
                                                         <input type="text" name="user.billingInfo.Street" value="@Model.user.billingInfo.Street" maxlength="35" class="">
                                                     </div>
                                                     <div class="input-container text-left animate-group-1-3">
-                                                        <label class="block">City</label>
+                                                        <label style="@rtldirectionWithTextAlign" class="block">@UploadRes.City</label>
                                                         <input type="text" name="user.billingInfo.City" value="@Model.user.billingInfo.City" class="">
                                                     </div>
                                                     <div class="input-container text-left animate-group-1-4 z-index-fix-0">
-                                                        <label class="block">Country</label>
+                                                        <label style="@rtldirectionWithTextAlign" class="block">@UploadRes.Country</label>
 
                                                         <select name="user.billingInfo.CountryId" class="rw-combobox rw-widget">
                                                             @foreach (var item in ArtShop.Util.CashManager.Instance.Countries)
@@ -131,15 +131,15 @@
                                                         </select>
                                                     </div>
                                                     <div class="input-container text-left animate-group-1-5">
-                                                        <label class="block">Region</label>
+                                                        <label style="@rtldirectionWithTextAlign" class="block">@UploadRes.Region</label>
                                                         <input type="text" name="user.billingInfo.Region" value="@Model.user.billingInfo.Region" class="">
                                                     </div>
                                                     <div class="input-container text-left animate-group-1-6">
-                                                        <label class="block">Zip/Postal Code</label>
+                                                        <label style="@rtldirectionWithTextAlign" class="block">@UploadRes.ZipCode</label>
                                                         <input type="text" name="user.billingInfo.ZipCode" value="@Model.user.billingInfo.ZipCode" class="">
                                                     </div>
                                                     <div class="input-container text-left animate-group-1-7">
-                                                        <label class="block">Phone Number</label>
+                                                        <label style="@rtldirectionWithTextAlign" class="block">@UploadRes.PhoneNumber</label>
                                                         <input type="text" name="user.billingInfo.PhoneNumber" value="@Model.user.billingInfo.PhoneNumber" class="">
                                                     </div>
                                                 </div>
