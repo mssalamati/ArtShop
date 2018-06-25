@@ -427,22 +427,22 @@
                         </div>
                     </div>
 
-                    @*<div class="row ">
+                    <div class="row ">
                             <div class="view-room-fav-stats">
                                 <div class="art-detail-stats">
                                     <ul class="inline-list">
                                         <li>
-                                            0<br>
+                                            @Model.ViewCount<br>
                                             <span>Views</span>
                                         </li>
                                         <li>
-                                            <div id="favoriteCount">0</div>
+                                            <div id="favoriteCount">@Model.FavoritedCount</div>
                                             <span>Favorites</span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>*@
+                        </div>
 
                 </div>
             </div>
@@ -552,7 +552,7 @@
 @Scripts.Render("~/bundles/singleproduct")
 
 @section scripts{
-
+    
     <script>
         function remove() {
             var r = confirm("are you sure to delete ?");

@@ -68,6 +68,7 @@ namespace DataLayer
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<VisitorLog> VisitorLogs { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<SubjectTranslation> SubjectTranslations { get; set; }

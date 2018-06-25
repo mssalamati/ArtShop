@@ -38,5 +38,10 @@ namespace ArtShop.Controllers
             var page = db.SitePages.Include("Translations").SingleOrDefault(x => x.DefaultTitle == "Contact us");
             return View(page.Current());
         }
+        public ActionResult Logo()
+        {
+            var page = db.SitePages.Include("Translations").SingleOrDefault(x => x.DefaultTitle == "Logo");
+            return View(page.Current());
+        }
     }
 }

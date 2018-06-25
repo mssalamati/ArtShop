@@ -240,7 +240,7 @@
             }
             <h5 style="text-align:right">
                 <a href="/@CultureHelper.GetCurrentCulture()/publicprofile/artworks?id=@Model.id" title="Link to Artwork">
-                    <i class="fa fa-suitcase"></i> @ProfileRes.Artwork @*<span>(@Model.artworkCount)</span>*@
+                    <i class="fa fa-suitcase"></i><span>(@Model.artworkCount)</span> @ProfileRes.Artwork 
                 </a>
             </h5>
 
@@ -256,11 +256,11 @@
         <div class="small-12 medium-6 large-8 columns buckets" style="float:left">
 
             <aside role="complementary" class="row aside-collections ">
-                <h5 class="editable fast-fade" style="text-align:right"><a href="/@CultureHelper.GetCurrentCulture()/publicprofile/collection?id=@Model.id" title="Link to Collections" style="left:0;right:auto !important"><i class="fa fa-th"></i> @ProfileRes.Collections @*<span>(@Model.collectionsCount)</span>*@</a></h5>
+                <h5 class="editable fast-fade" style="text-align:right"><a href="/@CultureHelper.GetCurrentCulture()/publicprofile/collection?id=@Model.id" title="Link to Collections" style="left:0;right:auto !important"><i class="fa fa-th"></i><span>(@Model.collectionsCount)</span> @ProfileRes.Collections </a></h5>
             </aside>
 
             <aside role="complementary" class="row aside-favorites">
-                <h5 class="editable fast-fade" style="text-align:right"><a href="/@CultureHelper.GetCurrentCulture()/publicprofile/favorites?id=@Model.id" title="Link to Favorites" style="left:0;right:auto !important"><i class="fa fa-heart"></i> @ProfileRes.Favorites @*<span>(@Model.favoritesCount)</span>*@</a></h5>
+                <h5 class="editable fast-fade" style="text-align:right"><a href="/@CultureHelper.GetCurrentCulture()/publicprofile/favorites?id=@Model.id" title="Link to Favorites" style="left:0;right:auto !important"><i class="fa fa-heart"></i><span>(@Model.favoritesCount)</span> @ProfileRes.Favorites </a></h5>
 
             </aside>
 

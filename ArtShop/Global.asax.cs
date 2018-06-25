@@ -19,6 +19,5 @@ namespace ArtShop
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //GlobalFilters.Filters.Add(new RequireHttpsAttribute());
         }
- 
     }
 }

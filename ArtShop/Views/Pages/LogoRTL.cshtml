@@ -1,6 +1,7 @@
 ﻿
+
 @{
-    ViewBag.Title = "Copyright Policy | Artiscovery";
+    ViewBag.Title = "Logo | Artiscovery";
 }
 <style>
     li {
@@ -19,22 +20,23 @@
 <div class="row-layout content">
     <div class="row">
         <div class="small-12 large-4 large-push-8 columns bgtext side-nav-container" style="direction:rtl">
-            <ul class="side-nav" >
-                <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/about">@ShareRes.About</a></li>
+            <ul class="side-nav">
+                <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/about" >@ShareRes.About</a></li>
                 <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/terms">@ShareRes.Terms</a></li>
                 <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/privacypolicy">@ShareRes.Privacy_policy</a></li>
-                <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy" class="active">@ShareRes.Copyright_policy</a></li>
+                <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/copyrightpolicy">@ShareRes.Copyright_policy</a></li>
                 <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/contactus">@ShareRes.Contactus</a></li>
-                <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/logo">@ShareRes.Logo</a></li>
+                <li style="list-style-type:none !important"><a href="/@CultureHelper.GetCurrentCulture()/pages/logo" class="active">@ShareRes.Logo</a></li>
             </ul>
         </div>
-        <div class="small-12 large-8 large-pull-4 columns bgtext content" style="direction:rtl">
-            <div id="so-terms-page" class="row">
-                @*<h1 class="page-title">Artiscovery Copyright Policy</h1>*@
+        <div class="small-12 large-8 large-pull-4 columns bgtext content" style="direction:rtl !important">
+            <div class="row mb1">
                 @Html.Raw(Model.Content)
             </div>
+
         </div>
+
+
         <script>if ($(window).width() > 1023) { $('.bgtext.content').imagesLoaded(function () { var sidebarHeight = $('.bgtext.content').height(); $('.side-nav').height(sidebarHeight); }); }</script>
-    </div>
-    <div class="clearfix"></div>
+    </div>        <div class="clearfix"></div>
 </div>

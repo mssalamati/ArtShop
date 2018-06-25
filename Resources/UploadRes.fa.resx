@@ -446,4 +446,10 @@
   <data name="step5_keywords_detail_here_continue" xml:space="preserve">
     <value>را ببینید.</value>
   </data>
+  <data name="step7_artist_description" xml:space="preserve">
+    <value>در صورتیکه اسم هنرمند در لیست یافت نشد، از طریق ایمیل ما را مطلع کنید تا اسم موردنظر شما به لیست اضافه شود.</value>
+  </data>
+  <data name="step7_artist" xml:space="preserve">
+    <value>هنرمند</value>
+  </data>
 </root>

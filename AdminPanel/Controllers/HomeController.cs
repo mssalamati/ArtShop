@@ -22,6 +22,8 @@ namespace AdminPanel.Controllers
             ViewBag.artist = db.UserProfiles.Count();
             ViewBag.coolector = db.UserProfiles.Count();
 
+
+
             return View();
         }
 

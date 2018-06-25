@@ -444,4 +444,10 @@
   <data name="step5_keywords_detail_here_continue" xml:space="preserve">
     <value />
   </data>
+  <data name="step7_artist_description" xml:space="preserve">
+    <value>If you do not find artist name in the list of artists, please contact us via email in order to add it to the list.</value>
+  </data>
+  <data name="step7_artist" xml:space="preserve">
+    <value>Artist</value>
+  </data>
 </root>

@@ -736,6 +736,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artist.
+        /// </summary>
+        public static string step7_artist {
+            get {
+                return ResourceManager.GetString("step7_artist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you do not find artist name in the list of artists, please contact us via email in order to add it to the list..
+        /// </summary>
+        public static string step7_artist_description {
+            get {
+                return ResourceManager.GetString("step7_artist_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What/who inspired the work?.
         /// </summary>
         public static string step7_ask_1 {

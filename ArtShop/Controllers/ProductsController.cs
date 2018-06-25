@@ -76,7 +76,16 @@ namespace ArtShop.Controllers
         public ActionResult single(int id)
         {
             var p = db.Products.Find(id);
-
+            string ip = Request.UserHostAddress;
+            string browser = Request.UserAgent;
+            
+            if (!db.VisitorLogs.Any(x => x.LocationIP == ip && x.BrowserName == browser))
+            {
+                db.VisitorLogs.Add(new VisitorLog { BrowserName = browser, LocationIP = ip });
+                p.ViewCount++;
+                db.SaveChanges();
+            }
+        
             bool mine = false;
             if (User.Identity.IsAuthenticated)
             {
@@ -89,7 +98,7 @@ namespace ArtShop.Controllers
                 ViewBag.candeleted = candeleted;
             }
             ViewBag.mine = mine;
-            ViewBag.Artist = p.artist_id == null ? null : db.UserProfiles.Where(a => a.Id == p.artist_id);
+            ViewBag.Artist = p.artist_id == null ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
             return View(p);
         }
 
@@ -142,10 +151,15 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
+            var art = db.Products.FirstOrDefault(x => x.Id == id);
+
             if (profile.Favorits.Any(x => x.productId == id))
                 profile.Favorits.Remove(profile.Favorits.First(x => x.productId == id));
             else
+            {
                 profile.Favorits.Add(new DataLayer.Enitities.Favorit() { productId = id });
+                art.FavoritedCount++;
+            }
             db.SaveChanges();
             bool isInMylist = profile.Favorits.Any(x => x.productId == id);
             return Json(new { IsAuthenticated = true, isInMyFavList = isInMylist }, JsonRequestBehavior.AllowGet);

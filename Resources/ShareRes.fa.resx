@@ -489,4 +489,7 @@
   <data name="OrderStatus_Canceled" xml:space="preserve">
     <value>لغو شد</value>
   </data>
+  <data name="Logo" xml:space="preserve">
+    <value>لوگو آرتیسکاوری</value>
+  </data>
 </root>

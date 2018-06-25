@@ -489,4 +489,7 @@ Other</value>
   <data name="OrderStatus_Canceled" xml:space="preserve">
     <value>Canceled</value>
   </data>
+  <data name="Logo" xml:space="preserve">
+    <value>Artiscovery Logo</value>
+  </data>
 </root>

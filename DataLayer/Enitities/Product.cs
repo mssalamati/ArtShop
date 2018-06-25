@@ -59,6 +59,8 @@ namespace DataLayer.Enitities
         public float BoxWeight { get; set; }
         public float TotalWeight { get; set; }
         public string Title { get; set; }
+        public int ViewCount { get; set; }
+        public int FavoritedCount { get; set; }
         public int avaible { get; set; }
         public int AllEntity { get; set; }
         public string Description { get; set; }
