@@ -492,4 +492,13 @@ Other</value>
   <data name="Logo" xml:space="preserve">
     <value>Artiscovery Logo</value>
   </data>
+  <data name="Created_in" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="Submitted_on" xml:space="preserve">
+    <value>Submitted On</value>
+  </data>
+  <data name="With_specification" xml:space="preserve">
+    <value>With specification</value>
+  </data>
 </root>

@@ -19,10 +19,12 @@ namespace AdminPanel.Controllers
             ViewBag.Mediums = db.Mediums.Count();
             ViewBag.Styles = db.Styles.Count();
             ViewBag.Users = db.Users.Count();
-            ViewBag.artist = db.UserProfiles.Count();
-            ViewBag.coolector = db.UserProfiles.Count();
+            ViewBag.artist = db.UserProfiles.Where(a => a.profileType == DataLayer.Enitities.ProfileType.Artist).Count();
+            ViewBag.coolector = db.UserProfiles.Where(a => a.profileType == DataLayer.Enitities.ProfileType.Collector).Count();
 
-
+            ViewBag.RecentIDs = db.UserProfiles.Where(x => !string.IsNullOrEmpty(x.GovermentIdPath))
+                  .OrderByDescending(x => x.isIDConfirmed).Take(6).ToList();
+            ViewBag.RecentArtworks = db.Products.OrderByDescending(x => x.CreateDate).Take(8).ToList();
 
             return View();
         }

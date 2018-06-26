@@ -450,4 +450,7 @@
   <data name="step7_artist" xml:space="preserve">
     <value>Artist</value>
   </data>
+  <data name="Select_Artist" xml:space="preserve">
+    <value>Select Artist</value>
+  </data>
 </root>

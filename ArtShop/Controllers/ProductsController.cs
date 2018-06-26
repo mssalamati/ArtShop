@@ -9,6 +9,8 @@ using ArtShop.Util;
 using Microsoft.AspNet.Identity;
 using ArtShop.Models;
 using DataLayer.Enitities;
+using DataLayer.Extentions;
+using System.Globalization;
 
 namespace ArtShop.Controllers
 {
@@ -78,14 +80,17 @@ namespace ArtShop.Controllers
             var p = db.Products.Find(id);
             string ip = Request.UserHostAddress;
             string browser = Request.UserAgent;
-            
-            if (!db.VisitorLogs.Any(x => x.LocationIP == ip && x.BrowserName == browser))
+
+
+            ViewBag.metaDescription = GenerateMeta(p);
+
+            if (!db.VisitorLogs.Any(x => x.LocationIP == ip && x.ArtID == id))
             {
-                db.VisitorLogs.Add(new VisitorLog { BrowserName = browser, LocationIP = ip });
+                db.VisitorLogs.Add(new VisitorLog { BrowserName = browser, LocationIP = ip, ArtID = id });
                 p.ViewCount++;
                 db.SaveChanges();
             }
-        
+
             bool mine = false;
             if (User.Identity.IsAuthenticated)
             {
@@ -100,6 +105,31 @@ namespace ArtShop.Controllers
             ViewBag.mine = mine;
             ViewBag.Artist = p.artist_id == null ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
             return View(p);
+        }
+
+        public string GenerateMeta(Product p)
+        {
+            string meta = "";
+            string mediums = "";
+            string material = "";
+            bool first = true;
+            string currentCultureName = CultureInfo.CurrentCulture.Name.Substring(0, 2);
+
+            foreach (var item in p.Mediums)
+            {
+                mediums += (first == true ? " " : ",") + item.Translations.FirstOrDefault(x => x.languageId == currentCultureName).Name;
+                first = false;
+            }
+
+            first = true;
+
+            foreach (var item in p.Materials)
+            {
+                material += (first == true ? " " : ",") + item.Translations.FirstOrDefault(x => x.languageId == currentCultureName).Name;
+                first = false;
+            }
+
+            return meta = (p.Title + " " + Resources.SearchRes.by + " " + p.user.FirstName ?? " " + " " + p.user.LastName ?? " ") + " " + Resources.ShareRes.With_specification + mediums + " " + Resources.SearchRes.On + "" + material + " " + Resources.ShareRes.Created_in + " " + (p.ArtCreatedYear == 0 ? p.ArtCreatedYearString : p.ArtCreatedYear.ToString()) + " " + Resources.ShareRes.Submitted_on + " " + p.CreateDate;
         }
 
         [HttpGet]
@@ -219,6 +249,14 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
+            ViewBag.Artists = db.UserProfiles.Where(x => x.profileType == ProfileType.Artist && (x.FirstName != null && x.LastName != null)).Select(a => new ArtistViewModel
+            {
+                Id = a.Id,
+                Firstname = a.FirstName,
+                Lastname = a.LastName
+
+            }).ToList();
+
             bool mine = profile.Products.Any(x => x.Id == id);
             if (!mine)
                 return HttpNotFound();

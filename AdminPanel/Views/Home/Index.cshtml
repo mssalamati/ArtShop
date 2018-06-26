@@ -11,13 +11,95 @@
     <div class="row post-header text-white">
         <div class="col p-b-lg col-xs-11 col-xs-offset-2">
             <h1>Artiscovery </h1>
-            <h4> آینده مجازی آرنا</h4>
-            <div class="meta">
-                <span class="author">@User.Identity.Name</span>
+            <h4>Noxel Group</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card bg-white">
+                <div class="card-header bg-primary text-white">
+                    <div class="pull-left">Recent Uploaded ids</div>
+                    <div class="card-controls">
+                        <a href="javascript:;" class="card-collapse" data-toggle="card-collapse">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="table-responsive">
+                        <table class="table m-b-0">
+                            <tr>
+                                <th></th>
+                                <th>
+                                    UserName
+                                </th>
+                                <th>isIDConfirmed</th>                                
+                            </tr>
+
+                            @foreach (var item in (ICollection<UserProfile>)ViewBag.RecentIDs)
+                            {
+                                <tr>
+                                    <th><i class="fa fa-eye"></i></th>
+                                    <th>
+                                        @item.ApplicationUserDetail.UserName
+                                    </th>
+                                    <th>
+                                        @if (item.isIDConfirmed)
+                                        {
+                                            <span>yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span>no</span>
+                                        }
+                                    </th>                               
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-white">
+                <div class="card-header bg-primary text-white">
+                    <div class="pull-left">Recent Uploaded Artworks</div>
+                    <div class="card-controls">
+                        <a href="javascript:;" class="card-collapse" data-toggle="card-collapse">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        @foreach (var item in (ICollection<Product>)ViewBag.RecentArtworks)
+                        {
+                            <div class="col-md-3">
+                                <a href="/Products/detail/@item.Id">
+                                    <div class="card m-t m-b-0 bg-white">
+                                        @if (item.Sqphoto.Path.Contains("artiscovery.com"))
+                                        {
+                                            <img class="card-img-top img-responsive" alt="Project 0" src="@item.Sqphoto.Path">
+
+                                        }
+                                        else
+                                        {
+                                            <img class="card-img-top img-responsive" alt="Project 0" src="http://artiscovery.com/@item.Sqphoto.Path">
+                                        }
+
+                                        @*<div class="card-block">
+                    <div><a href="/Products/detail/@item.Id">@item.user.FirstName @item.user.LastName </a></div>
+                </div>*@
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="row">

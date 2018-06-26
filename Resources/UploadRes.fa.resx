@@ -452,4 +452,7 @@
   <data name="step7_artist" xml:space="preserve">
     <value>هنرمند</value>
   </data>
+  <data name="Select_Artist" xml:space="preserve">
+    <value>انتخاب هنرمند</value>
+  </data>
 </root>

@@ -304,6 +304,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created Date.
+        /// </summary>
+        public static string Created_in {
+            get {
+                return ResourceManager.GetString("Created_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -1015,6 +1024,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Submitted On.
+        /// </summary>
+        public static string Submitted_on {
+            get {
+                return ResourceManager.GetString("Submitted_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string Success_message {
@@ -1137,6 +1155,15 @@ namespace Resources {
         public static string Welcome_back {
             get {
                 return ResourceManager.GetString("Welcome_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With specification.
+        /// </summary>
+        public static string With_specification {
+            get {
+                return ResourceManager.GetString("With_specification", resourceCulture);
             }
         }
         

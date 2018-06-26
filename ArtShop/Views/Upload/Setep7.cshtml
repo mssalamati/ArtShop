@@ -66,12 +66,12 @@
                                         <h1>@UploadRes.step7_artist</h1>
                                         <p>@UploadRes.step7_artist_description</p>
                                         <select id="ArtistId" class="title-input__title-wrapper" name="ArtistId">
+                                            <option selected>@UploadRes.Select_Artist</option>
                                             @foreach (var item in (List<ArtistViewModel>)ViewBag.Artists)
                                             {
                                                 var fullName = item.Firstname + " " + item.Lastname;
-
+                                              
                                                 <option value="@item.Id">@fullName</option>
-
                                             }
                                         </select>
                                     </div>

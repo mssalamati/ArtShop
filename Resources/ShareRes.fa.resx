@@ -492,4 +492,13 @@
   <data name="Logo" xml:space="preserve">
     <value>لوگو آرتیسکاوری</value>
   </data>
+  <data name="Created_in" xml:space="preserve">
+    <value>خلق شده در</value>
+  </data>
+  <data name="Submitted_on" xml:space="preserve">
+    <value>ارسال شده در</value>
+  </data>
+  <data name="With_specification" xml:space="preserve">
+    <value>با مشخصات</value>
+  </data>
 </root>

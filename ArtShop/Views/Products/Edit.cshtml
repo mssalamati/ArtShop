@@ -24,12 +24,12 @@
                 <div class="container artwork__container">
                     <span></span>
                     <div class="edit-page">
-                        @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Status", id = Model.Id , Status = Model.Status })
+                        @Html.Partial("_MenuMobile", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Status", id = Model.Id, Status = Model.Status })
                         <div class="edit-page__container">
                             @if (!IsRighToLeft)
                             {
                                 @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Status", id = Model.Id, Status = Model.Status })
-                            }                 
+                            }
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="wizard-step">
                                     @if (!ViewData.ModelState.IsValid)
@@ -39,7 +39,7 @@
 
                                     <div class="pane__content__block">
                                         <h1 class="animate-group-0-0">@UploadRes.Artwork_Status</h1>
-                                        <p class="descriptor animate-group-0-1"  style="@rtldirection">@UploadRes.step3_forsale_string</p>
+                                        <p class="descriptor animate-group-0-1" style="@rtldirection">@UploadRes.step3_forsale_string</p>
                                         <div class="sold-status-input animate-group-0-2">
                                             <div onclick="changestatus('forSale')" id="forsale" class="sold-status-input__option">
                                                 <i class="sold-status-input__option__svg"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 82.4 63.6" enable-background="new 0 0 82.4 63.6" xml:space="preserve"><polygon class="path" fill="#333333" points="82.4,6 76.4,0 24.9,51.5 6,32.6 0,38.6 18.9,57.5 18.9,57.5 24.9,63.6 24.9,63.5 25,63.6 31,57.5 30.9,57.5 "></polygon></svg></i>
@@ -67,7 +67,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="pane__content__block">
+                                        <h1 class="animate-group-0-3">@UploadRes.step7_artist</h1>
+                                        <div class="form-group form-group--block animate-group-0-4">
+                                            <select id="ArtistId" class="title-input__title-wrapper" name="ArtistId">
+                                                <option selected >@UploadRes.Select_Artist</option>
+                                                @foreach (var item in (List<ArtistViewModel>)ViewBag.Artists)
+                                                {
+                                                    var fullName = item.Firstname + " " + item.Lastname;
+                                                    if (item.Id == Model.artist_id)
+                                                    {
+                                                        <option selected value="@item.Id">@fullName</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@fullName</option>
+                                                    }
+                                                }
+                                            </select>
 
+                                        </div>
+                                    </div>
                                     <div class="pane__content__block">
                                         <h1 class="animate-group-0-5">@UploadRes.step6_title</h1>
                                         <div class="form-group form-group--block animate-group-0-6">
@@ -152,7 +172,7 @@
                             {
                                 @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Artwork Status", id = Model.Id, Status = Model.Status })
                             }
-                            
+
                         </div>
                     </div>
                 </div>

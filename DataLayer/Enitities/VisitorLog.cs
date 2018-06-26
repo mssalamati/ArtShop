@@ -12,6 +12,7 @@ namespace DataLayer.Enitities
         public DateTime VisitedOn { get; set; }
         public string LocationIP { get; set; }
         public string BrowserName { get; set; }
+        public int ArtID { get; set; }
 
         public VisitorLog()
         {

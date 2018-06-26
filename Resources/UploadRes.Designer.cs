@@ -367,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Artist.
+        /// </summary>
+        public static string Select_Artist {
+            get {
+                return ResourceManager.GetString("Select_Artist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a category to help collectors to find your work easily.
         /// </summary>
         public static string select_category_str {
