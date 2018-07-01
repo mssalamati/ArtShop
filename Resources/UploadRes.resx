@@ -453,4 +453,7 @@
   <data name="Select_Artist" xml:space="preserve">
     <value>Select Artist</value>
   </data>
+  <data name="ArtistName_Null_error" xml:space="preserve">
+    <value>Artist can not be left blank</value>
+  </data>
 </root>

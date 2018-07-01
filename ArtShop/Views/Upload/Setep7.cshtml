@@ -61,21 +61,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @*TODO*@
-                                    <div class="form-group animate-group-0-1">
-                                        <h1>@UploadRes.step7_artist</h1>
-                                        <p>@UploadRes.step7_artist_description</p>
-                                        <select id="ArtistId" class="title-input__title-wrapper" name="ArtistId">
-                                            <option selected>@UploadRes.Select_Artist</option>
-                                            @foreach (var item in (List<ArtistViewModel>)ViewBag.Artists)
-                                            {
-                                                var fullName = item.Firstname + " " + item.Lastname;
-                                              
-                                                <option value="@item.Id">@fullName</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    @*ENDTODO*@
+                                    @if (((ProfileType)ViewBag.profileType) == ProfileType.Collector)
+                                    {
+                                        <div class="form-group animate-group-0-1">
+                                            <h1>@UploadRes.step7_artist</h1>
+                                            <input name="ArtistName" list="ArtistName" type="text" style="max-width:none" class="aArtists" />
+                                            <datalist id="ArtistName">
+                                                @foreach (var item in (List<ArtistViewModel>)ViewBag.Artists)
+                                                {
+                                                    var fullName = item.Firstname + " " + item.Lastname;
+                                                    <option value="@fullName"></option>
+                                                }
+                                            </datalist>
+                                        </div>
+                                    }
+                            
                                     <h1 class="animate-group-0-3">@UploadRes.description</h1>
                                     <div class="descriptor text-left animate-group-0-3" style="@rtlstl">
                                         <p>@UploadRes.step7_description</p>
@@ -116,6 +116,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    @*$(".aArtists").select2({
+        tags: [@(Html.Raw(string.Join(",", ((List<ArtistViewModel>)ViewBag.Artists).Select(x =>("'" + x.Firstname+" "+x.Lastname + "'")))))],
+        maximumSelectionLength: 2
+    });*@
+</script>
+
 
 <script>
     $("html, body").animate({ scrollTop: 0 }, "slow");

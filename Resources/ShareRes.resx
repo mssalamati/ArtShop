@@ -501,4 +501,16 @@ Other</value>
   <data name="With_specification" xml:space="preserve">
     <value>With specification</value>
   </data>
+  <data name="Return_to_Art_Details" xml:space="preserve">
+    <value>Return to Art Details</value>
+  </data>
+  <data name="Visit_description" xml:space="preserve">
+    <value>Thank you for your decision to visit! We will assist you in scheduling a visit.
+Requests are processed Saturday through Wednesday from 9:30am-5:30pm.  If submitted after these posted times, your request will be processed on the next business day.  Once received, a representative will contact you within 2 business days to confirm the details of your visit. 
+
+For questions or additional information, please feel free to contact us at (+98) 222-2222 or email info@artiscovery.com</value>
+  </data>
+  <data name="Visit_request" xml:space="preserve">
+    <value>Visit request</value>
+  </data>
 </root>

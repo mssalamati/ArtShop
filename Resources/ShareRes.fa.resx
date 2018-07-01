@@ -501,4 +501,17 @@
   <data name="With_specification" xml:space="preserve">
     <value>با مشخصات</value>
   </data>
+  <data name="Return_to_Art_Details" xml:space="preserve">
+    <value>بازگشت</value>
+  </data>
+  <data name="Visit_description" xml:space="preserve">
+    <value>از اینکه تصمیم به بازدید کارهای ما را گرفته اید متشکریم. ما به شما کمک می کنیم تا زمان مناسبی برای بازدید پیدا کنید.
+درخواست شما در طول هفته از شنبه تا چهارشنبه بین ساعت های 9:30 صبح تا 5:30 عصر پیگیری و ظرف مدت 2 روز کاری  برای هماهنگی با شما تماس گرفته خواهد شد. 
+برای هرگونه اطلاعات بیشتر با ما از طرق زیر در تماس باشید.
+تلفن: (+98) 222-2222
+ایمیل: info@artiscovery.com</value>
+  </data>
+  <data name="Visit_request" xml:space="preserve">
+    <value>درخواست بازدید</value>
+  </data>
 </root>

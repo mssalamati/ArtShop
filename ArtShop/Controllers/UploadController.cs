@@ -323,9 +323,12 @@ namespace ArtShop.Controllers
         //title and description // done if nor fore sale
         public ActionResult Setep7()
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
             ViewBag.Keywords = Session["Keywords"];
             ViewBag.firstmedium = Session["firstmedium"];
             ViewBag.firstmaterial = Session["firstmaterial"];
+            ViewBag.profileType = user.userDetail.profileType;
             ViewBag.Artists = db.UserProfiles.Where(x => x.profileType == ProfileType.Artist && (x.FirstName != null && x.LastName != null)).Select(a => new ArtistViewModel
             {
                 Id = a.Id,
@@ -347,23 +350,26 @@ namespace ArtShop.Controllers
         [HttpPost]
         public ActionResult Setep7(UploadViewModel.step7 model)
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
             bool printAvable = (bool)Session["printAvable"];
             bool isforsale = (bool)Session["isOrginal"];
             float total = 7 + (isforsale ? 3 : 0) + (printAvable ? 1 : 0);
             float current = 7;
 
-            if (string.IsNullOrEmpty(model.Title))
+            if (string.IsNullOrEmpty(model.ArtistName) && user.userDetail.profileType == ProfileType.Collector)
             {
-                ViewBag.error = Resources.UploadRes.titleNull_error;
+                ViewBag.error = Resources.UploadRes.ArtistName_Null_error;
                 ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
                 return PartialView();
             }
-            if (model.Title.Length > 35)
-            {
-                ViewBag.error = Resources.UploadRes.TitleLenth_error;
-                ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
-                return PartialView();
-            }
+            //if (model.Title.Length > 35)
+            //{
+            //    ViewBag.error = Resources.UploadRes.TitleLenth_error;
+            //    ViewBag.progress = ((current / total) * 740f).ToString(CultureInfo.CreateSpecificCulture("en-US")) + "px";
+            //    return PartialView();
+            //}
             //if (string.IsNullOrEmpty(model.Description) || model.Description.Length < 10)
             //{
             //    ViewBag.error = Resources.UploadRes.descriptionnull_error;
@@ -380,7 +386,7 @@ namespace ArtShop.Controllers
             Session["avaible"] = model.avaible;
             Session["Description"] = model.Description;
             Session["AllEntity"] = model.AllEntity;
-            Session["ArtistId"] = model.ArtistId;
+            Session["ArtistName"] = model.ArtistName;
 
             if (!isforsale && !printAvable)
             {
@@ -599,8 +605,14 @@ namespace ArtShop.Controllers
                 string Mediums = (string)Session["Mediums"];
                 int[] Materials = (int[])Session["Materials"];
                 string Styles = (string)Session["Styles"];
-                string artistId = (string)Session["ArtistId"];
+                string artistName = (string)Session["ArtistName"];
 
+                var artist = db.UserProfiles.FirstOrDefault(x => (x.FirstName + " " + x.LastName) == artistName);
+                string artistId = "";
+                if (artist != null)
+                {
+                    artistId = artist.Id;
+                }
                 var medumsList = Mediums.Split(',');
                 var stylelist = Styles.Split(',');
 
@@ -609,7 +621,7 @@ namespace ArtShop.Controllers
                     photo = new Photo() { Path = orginalpic, width = img_width, Height = img_height },
                     Widephoto = new Photo() { Path = widepath },
                     Sqphoto = new Photo() { Path = sqpath },
-                    Title = (string)Session["Title"],
+                    Title = (string)Session["Title"] == null ? "" : (string)Session["Title"],
                     Description = (string)Session["Description"] ?? "",
                     Price = (int)(Session["price"] ?? 0),
                     ISOrginalForSale = (bool)Session["isOrginal"],
@@ -626,6 +638,7 @@ namespace ArtShop.Controllers
                     categoryId = categoryId,
                     subjectId = subjectId,
                     artist_id = artistId,
+                    artistName = artistName,
                     user_id = userId,
                     TotalWeight = Session["weight"] == null ? 0 : (float)Session["weight"],
                     Status = ((bool)Session["isOrginal"]) ? ProductStatus.forSale : ProductStatus.NotForSale

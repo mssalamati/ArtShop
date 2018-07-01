@@ -1,0 +1,153 @@
+﻿@model VisitRequestViewModel
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right;text-align:justify !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var textAlign = IsRighToLeft ? "text-align:right !important" : "";
+    var validationAlign = IsRighToLeft ? "float:left !important" : "";
+    var top = IsRighToLeft ? "top:.85rem !important" : "";
+    var paddingLeft = IsRighToLeft ? "Padding-left:6px !important" : "";
+    var marginBottom = IsRighToLeft ? "Margin-bottom:10px !important" : "";
+    var circleSize = IsRighToLeft ? "width:50px;height:50px !important" : "";
+    var favFontSize = IsRighToLeft ? "font-size: 12px !important" : "";
+    ViewBag.Title = "Request Visit" + " | " + "Artiscovery";
+}
+
+
+@using DataLayer.Extentions
+
+<style>
+    input.input-validation-error {
+    border: 1px solid #e80c4d !important;
+}
+</style>
+
+@if (IsRighToLeft)
+{
+    <style>
+        label {
+            float: right !important;
+            text-align: right;
+        }
+    </style>
+
+    <style>
+        span, p {
+            font-family: yj,"Helvetica",sans-serif !important;
+            font-size: .9rem !important;
+            line-height: 1.6rem !important;
+        }
+
+        #artAdminSection menu.inline-list > li {
+            margin: 0px 4px 5px 0;
+        }
+    </style>
+}
+
+<div class="row-layout content">
+    <div class="row steps">
+        <div class="small-6 columns" style="float:right">
+            @{
+                Product product = ViewBag.artwork;
+            }
+            <a href="@Url.Action(product.category.Current().Name,"Artwork", new { id=@product.GenerateSlug() })" title="" scarlet="" sky""="" class="link-back" rel="nofollow">@ShareRes.Return_to_Art_Details</a>
+        </div>
+        <hr>
+    </div>
+    <div class="row page-header">
+        <div class="small-12 columns">
+            <h1 style="@textAlign">@ShareRes.Visit_request</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="main_border-right small-12 medium-8 columns bgtext" style="height: 769px;">
+            <div class="row">
+
+                <p style="@rtlstl">
+                    @ShareRes.Visit_description
+                </p>
+                <br />
+
+                @using (Html.BeginForm("RequestVisit", "Products", FormMethod.Post, new { id = "mform", @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.AntiForgeryToken()
+                    <div class="form ">
+                   
+                        <div id="addressGroup">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "form-label required", requiredprefix = "*" })
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "wide", id = "firstName", name = "firstName", requiredprefix = "*", placeholder = "First Name *", type = "text" })
+                            
+
+                            @Html.LabelFor(m => m.LastName, new { @class = "form-label required", requiredprefix = "*" })
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "wide", id = "lastName", name = "lastName", requiredprefix = "*", placeholder = "Last Name *", type = "text" })
+                            @*@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger", style = "color:red;font-size:small;" + validationAlign })*@
+
+                            <div class="form-div">
+                                @Html.LabelFor(m => m.PhoneNumber, new { @class = "form-label required", requiredprefix = "*" })
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "wide", id = "PhoneNumber", name = "PhoneNumber", requiredprefix = "*", placeholder = "Phone number *", type = "text" })
+                             @*   @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger", style = "color:red;font-size:small;" + validationAlign })*@
+                            </div>
+                            <div class="form-div">
+                                @Html.TextAreaFor(m => m.Description, new { @class = "wide", id = "Description", name = "Description", requiredprefix = "", placeholder = "Description", type = "text", style = "min-height: 200px" })
+                            </div>
+                        </div>                  
+                              
+                        <input type="submit" name="submit" id="submit" value="@ProfileRes.Submit" class="button">
+                    </div>
+                }
+
+            </div>
+        </div>
+        <aside class="summary small-12 medium-4 columns bgtext" style="min-height:unset">
+            <h2 style="@textAlign">@ProfileRes.Artwork</h2>
+            <hr>
+            <div class="summary-item">
+                <a href="@Url.Action(product.category.Current().Name,"Artwork", new { id=@product.GenerateSlug() })" title="" scarlet="" sky""="" rel="nofollow">
+                    <img src="@product.photo.Path" alt="" scarlet="" sky""="" class="pull-left">
+                </a>
+                <h3 class="summary-item-title">
+                    <a href="@Url.Action(product.category.Current().Name,"Artwork", new { id=@product.GenerateSlug() })" title="" scarlet="" sky""="" rel="nofollow">@product.Title</a>
+                </h3>
+                @{
+                    string fullName;
+
+                    if (product.artist_id == null)
+                    {
+                        if (product.user.profileType == ProfileType.Artist || ViewBag.artistName == null)
+                        {
+                            fullName = product.user.FirstName + " " + product.user.LastName;
+                        }
+                        else
+                        {
+                            fullName = ViewBag.artistName;
+                        }
+
+                    }
+                    else
+                    {
+                        var Artist = ViewBag.Artist;
+                        fullName = (Artist.FirstName ?? product.user.FirstName) + " " + (Artist.LastName ?? product.user.LastName);
+                    }
+
+                    string userId = product.artist_id ?? product.user_id;
+                }
+                @*<span>Original</span>*@
+                <h3 class="summary-item-artist">
+                    <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@userId" rel="nofollow">@fullName</a>
+                </h3>
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        Saatchi.Loader.load('validate');
+        Saatchi.Loader.load('offer', { 'js': true }, function () {
+            Saatchi.Offer.min = 1996.4;
+            Saatchi.Offer.init();
+        });
+    </script>
+    <div class="clearfix"></div>
+</div>

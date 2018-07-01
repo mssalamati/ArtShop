@@ -455,4 +455,7 @@
   <data name="Select_Artist" xml:space="preserve">
     <value>انتخاب هنرمند</value>
   </data>
+  <data name="ArtistName_Null_error" xml:space="preserve">
+    <value>اسم هنرمند نمی تواند خالی باشد</value>
+  </data>
 </root>

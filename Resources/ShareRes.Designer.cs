@@ -934,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return to Art Details.
+        /// </summary>
+        public static string Return_to_Art_Details {
+            get {
+                return ResourceManager.GetString("Return_to_Art_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales Dashboard.
         /// </summary>
         public static string SalesDashboard {
@@ -1137,6 +1146,27 @@ namespace Resources {
         public static string View_in_a_Room {
             get {
                 return ResourceManager.GetString("View_in_a_Room", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for your decision to visit! We will assist you in scheduling a visit.
+        ///Requests are processed Saturday through Wednesday from 9:30am-5:30pm.  If submitted after these posted times, your request will be processed on the next business day.  Once received, a representative will contact you within 2 business days to confirm the details of your visit. 
+        ///
+        ///For questions or additional information, please feel free to contact us at (+98) 222-2222 or email info@artiscovery.com.
+        /// </summary>
+        public static string Visit_description {
+            get {
+                return ResourceManager.GetString("Visit_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visit request.
+        /// </summary>
+        public static string Visit_request {
+            get {
+                return ResourceManager.GetString("Visit_request", resourceCulture);
             }
         }
         

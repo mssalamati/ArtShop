@@ -122,6 +122,7 @@
     <Compile Include="Enitities\UserLink.cs" />
     <Compile Include="Enitities\UserProfile.cs" />
     <Compile Include="Enitities\VisitorLog.cs" />
+    <Compile Include="Enitities\VisitRequest.cs" />
     <Compile Include="Enitities\Word.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Context\IdentityModels.cs" />

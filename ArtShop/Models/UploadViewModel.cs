@@ -59,7 +59,7 @@ namespace ArtShop.Models
             public int avaible { get; set; }
             public int AllEntity { get; set; }
             public string Description { get; set; }
-            public string ArtistId { get; set; }
+            public string ArtistName { get; set; }
         }
 
         public class step8

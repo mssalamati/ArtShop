@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artist can not be left blank.
+        /// </summary>
+        public static string ArtistName_Null_error {
+            get {
+                return ResourceManager.GetString("ArtistName_Null_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artwork Image.
         /// </summary>
         public static string Artwork_Image {

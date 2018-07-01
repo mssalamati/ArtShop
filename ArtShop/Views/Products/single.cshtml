@@ -122,7 +122,15 @@
 
                                 if (Model.artist_id == null)
                                 {
-                                    fullName = Model.user.FirstName + " " + Model.user.LastName;
+                                    if (Model.user.profileType == ProfileType.Artist)
+                                    {
+                                        fullName = Model.user.FirstName + " " + Model.user.LastName;
+                                    }
+                                    else
+                                    {
+                                        fullName = ViewBag.artistName;
+                                    }
+
                                 }
                                 else
                                 {
@@ -246,10 +254,22 @@
 
                     <div class="row">
                         <div class="small-12 medium-6 large-12 columns art-meta" style="@textAlign">
-                            <h3 itemprop="name" class="title">@Model.Title</h3>
+                            @if (!string.IsNullOrEmpty(Model.Title))
+                            {
+                                <h3 itemprop="name" class="title">@Model.Title</h3>
+                            }
+
                             <p itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
-                   
-                                <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@userId" itemprop="url">@fullName</a><br>
+                                @if (!string.IsNullOrEmpty(fullName))
+                                {
+                                    <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@userId" itemprop="url">@fullName</a><br>
+                                }
+
+                                @if (Model.user.profileType == ProfileType.Collector)
+                                {
+                                    var collectorName = Model.user.FirstName + " " + Model.user.LastName;
+                                    <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id" itemprop="url">@collectorName</a><br>
+                                }
                                 @if (Model.user.country != null)
                                 {
                                     <span itemprop="nationality">@Model.user.country.Current().Name</span>
@@ -336,6 +356,7 @@
                                                 $@Model.Price USD
                                             </span>
                                             <a id="addOriginal" href="/@CultureHelper.GetCurrentCulture()/Card/AddToCart?q=@DateTime.Now.Millisecond&id=@Model.Id&type=@((int)Ordertype.Orginal)" class="button" style="@top" rel="nofollow">@SearchRes.Add_to_Cart</a>
+                                            <a id="makeOffer" class="make-offer-button cta-shipping-included" href="/@CultureHelper.GetCurrentCulture()/Products/RequestVisit?id=@Model.Id" rel="nofollow"><i class="fa fa-comments"></i> @ShareRes.Visit_request</a>
                                         </div>
                                     }
                                 </div>
@@ -428,21 +449,21 @@
                     </div>
 
                     <div class="row ">
-                            <div class="view-room-fav-stats">
-                                <div class="art-detail-stats">
-                                    <ul class="inline-list">
-                                        <li>
-                                            @Model.ViewCount<br>
-                                            <span>Views</span>
-                                        </li>
-                                        <li>
-                                            <div id="favoriteCount">@Model.FavoritedCount</div>
-                                            <span>Favorites</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <div class="view-room-fav-stats">
+                            <div class="art-detail-stats">
+                                <ul class="inline-list">
+                                    <li>
+                                        @Model.ViewCount<br>
+                                        <span>Views</span>
+                                    </li>
+                                    <li>
+                                        <div id="favoriteCount">@Model.FavoritedCount</div>
+                                        <span>Favorites</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
 
                 </div>
             </div>
@@ -552,7 +573,7 @@
 @Scripts.Render("~/bundles/singleproduct")
 
 @section scripts{
-    
+
     <script>
         function remove() {
             var r = confirm("are you sure to delete ?");

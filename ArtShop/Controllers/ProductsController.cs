@@ -103,10 +103,70 @@ namespace ArtShop.Controllers
                 ViewBag.candeleted = candeleted;
             }
             ViewBag.mine = mine;
-            ViewBag.Artist = p.artist_id == null ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
+            var artist = p.artist_id == "" ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
+            ViewBag.Artist = artist;
+            if (artist == null)
+            {
+                ViewBag.artistName = p.artistName;
+            }
             return View(p);
         }
+        [Authorize]
+        public ActionResult RequestVisit(int id)
+        {
+            var p = db.Products.Find(id);
+            ViewBag.artwork = p;
+            ViewBag.metaDescription = GenerateMeta(p);
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+
+            }
+
+            VisitRequestViewModel model = new VisitRequestViewModel();
+            model.Id = id;
+
+            var artist = p.artist_id == "" ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
+            ViewBag.Artist = artist;
+            if (artist == null)
+            {
+                ViewBag.artistName = p.artistName;
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RequestVisit(VisitRequestViewModel model)
+        {
+            var p = db.Products.Find(model.Id);
+            ViewBag.artwork = p;
+            ViewBag.metaDescription = GenerateMeta(p);
+
+            var artist = p.artist_id == "" ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
+            ViewBag.Artist = artist;
+            if (artist == null)
+            {
+                ViewBag.artistName = p.artistName;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+            }
+
+            return RedirectToActionPermanent("single", new { id = p.Id });
+        }
         public string GenerateMeta(Product p)
         {
             string meta = "";
@@ -273,16 +333,23 @@ namespace ArtShop.Controllers
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
             bool mine = profile.Products.Any(x => x.Id == model.Id);
+            ViewBag.Artists = db.UserProfiles.Where(x => x.profileType == ProfileType.Artist && (x.FirstName != null && x.LastName != null)).Select(a => new ArtistViewModel
+            {
+                Id = a.Id,
+                Firstname = a.FirstName,
+                Lastname = a.LastName
+
+            }).ToList();
             if (!mine)
                 return HttpNotFound();
-            if (string.IsNullOrEmpty(model.Title) || model.Title.Length < 3)
+            if (string.IsNullOrEmpty(model.artistName) && user.userDetail.profileType == ProfileType.Collector)
             {
-                ModelState.AddModelError(string.Empty, "Title Length can not be less than 3 character");
+                ModelState.AddModelError(string.Empty, "Artist name can not be empty.");
                 if (model.productshippingDetail == null)
                     model.productshippingDetail = new ProductshippingDetail();
                 return View(model);
             }
-            p.Title = model.Title;
+            p.Title = model.Title ?? "";
             if (profile.isIDConfirmed)
             {
                 p.Status = model.Status;
@@ -294,6 +361,17 @@ namespace ArtShop.Controllers
             else
                 p.Status = ProductStatus.NotForSale;
 
+
+            string artistName = model.artistName;
+
+            var artist = db.UserProfiles.FirstOrDefault(x => (x.FirstName + " " + x.LastName) == artistName);
+            string artistId = "";
+            if (artist != null)
+            {
+                artistId = artist.Id;
+            }
+            p.artist_id = artistId;
+            p.artistName = artistName;
             //p.ISOrginalForSale = model.Status == ProductStatus.forSale;
             p.TotalWeight = model.TotalWeight;
             p.Height = model.Height;
