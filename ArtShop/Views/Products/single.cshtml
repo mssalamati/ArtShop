@@ -8,7 +8,29 @@
     var marginBottom = IsRighToLeft ? "Margin-bottom:10px !important" : "";
     var circleSize = IsRighToLeft ? "width:50px;height:50px !important" : "";
     var favFontSize = IsRighToLeft ? "font-size: 12px !important" : "";
-    ViewBag.Title = Model.Title + " | " + Model.user.FirstName + " " + Model.user.LastName;
+    string fullName;
+
+    if (string.IsNullOrEmpty(Model.artist_id))
+    {
+        if (Model.user.profileType == ProfileType.Artist)
+        {
+            fullName = Model.user.FirstName + " " + Model.user.LastName;
+        }
+        else
+        {
+            fullName = ViewBag.artistName;
+        }
+
+    }
+    else
+    {
+        var Artist = ViewBag.Artist;
+        fullName = (Artist.FirstName ?? Model.user.FirstName) + " " + (Artist.LastName ?? Model.user.LastName);
+    }
+
+    string userId = string.IsNullOrEmpty(Model.artist_id) ? Model.user_id : Model.artist_id;
+
+    ViewBag.Title = (string.IsNullOrEmpty(Model.Title) ? fullName : Model.Title) + " | " + Model.user.FirstName + " " + Model.user.LastName;
 }
 @model Product
 
@@ -117,29 +139,7 @@
                 <div class="small-11 columns">
                     <div class="row author-title" style="@textAlign">
                         <h1 style="@rtldirection">
-                            @{
-                                string fullName;
 
-                                if (Model.artist_id == null)
-                                {
-                                    if (Model.user.profileType == ProfileType.Artist)
-                                    {
-                                        fullName = Model.user.FirstName + " " + Model.user.LastName;
-                                    }
-                                    else
-                                    {
-                                        fullName = ViewBag.artistName;
-                                    }
-
-                                }
-                                else
-                                {
-                                    var Artist = ViewBag.Artist;
-                                    fullName = (Artist.FirstName ?? Model.user.FirstName) + " " + (Artist.LastName ?? Model.user.LastName);
-                                }
-
-                                string userId = Model.artist_id ?? Model.user_id;
-                            }
                             <a href="">
                                 @if (IsRighToLeft)
                                 {
@@ -167,7 +167,7 @@
                             }
                             else
                             {
-                                <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @Model.Title
+                                <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.categoryId/0/0/0/0">@Model.category.Current().Name</a>  <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.user_id">@Model.user.FirstName @Model.user.LastName</a> @fullName
                             }
                         </div>
                     </div>

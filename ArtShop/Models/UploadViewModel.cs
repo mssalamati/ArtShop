@@ -67,9 +67,9 @@ namespace ArtShop.Models
             public int Packaging { get; set; }
             public bool framed { get; set; }
             public bool multi_paneled { get; set; }
-            public string type { get; set; }
-            public string matter { get; set; }
-            public string color { get; set; }
+            public string frameType { get; set; }
+            public string frameMaterial { get; set; }
+            public string frameColor { get; set; }
         }
         public class step9
         {

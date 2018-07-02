@@ -59,7 +59,7 @@ if (p == x)
                                                 <div class="form-group form-group--block">
                                                     <div class="image-radio animate-group-0-2 packaging__shipping-type">
                                                         <div>
-                                                            <input id="packing" type="hidden" name="Packaging" value="Crate" />
+                                                            <input id="packing" type="hidden" name="Packaging" value="@Model.Packaging" />
                                                             <div class="image-radio__item @selectPackage(Productpackage.crate)" id="packing_crate" onclick="change_pack(1);">
                                                                 <div class="image-radio__item__image">
                                                                     <div class="image-radio__item__image__elem">
@@ -112,11 +112,19 @@ if (p == x)
                                                     </div>
                                                 </div>
                                                 <div class="form-group animate-group-0-3">
+                                                    @{ 
+                                                        if (Model.framed)
+                                                        {
+                                                            <script>
+                                                                change_framedBtn(1);
+                                                            </script>
+                                                        }
+                                                    }
                                                     <h3>@UploadRes.step8_ask1</h3>
                                                     <div class="input-container">
                                                         <div class="button-radio">
                                                             <div class="button-radio__button-container">
-                                                                <input id="frame" type="hidden" name="framed" value="true" />
+                                                                <input id="framed" type="hidden" name="framed" value="@Model.framed" />
                                                                 <button id="frame_yes" onclick="change_framedBtn(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
                                                                 <button id="frame_no" onclick="change_framedBtn(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                             </div>
@@ -151,7 +159,7 @@ if (p == x)
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group animate-group-0-5">
+                                                @*<div class="form-group animate-group-0-5">
                                                     <h3>@UploadRes.step8_ask2</h3>
                                                     <div class="button-radio">
                                                         <div class="button-radio__button-container">
@@ -160,7 +168,7 @@ if (p == x)
                                                             <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +190,7 @@ if (p == x)
 
     <script>
         function change_framedBtn(val) {
-            var inp = $('#frame');
+            var inp = $('#framed');
             var btnyes = $('#frame_yes');
             var btnno = $('#frame_no');
             if (val == 1) {
@@ -197,20 +205,20 @@ if (p == x)
                 $('#framedetail').hide();
             }
         }
-        function change_multipanel(val) {
-            var inp = $('#multipanel');
-            var btnyes = $('#multipanel_yes');
-            var btnno = $('#multipanel_no');
-            if (val == 1) {
-                inp.val('true');
-                btnyes.addClass('button--active');
-                btnno.removeClass('button--active');
-            } else {
-                inp.val('false');
-                btnno.addClass('button--active');
-                btnyes.removeClass('button--active');
-            }
-        }
+        //function change_multipanel(val) {
+        //    var inp = $('#multipanel');
+        //    var btnyes = $('#multipanel_yes');
+        //    var btnno = $('#multipanel_no');
+        //    if (val == 1) {
+        //        inp.val('true');
+        //        btnyes.addClass('button--active');
+        //        btnno.removeClass('button--active');
+        //    } else {
+        //        inp.val('false');
+        //        btnno.addClass('button--active');
+        //        btnyes.removeClass('button--active');
+        //    }
+        //}
         function change_pack(val) {
             var inp = $('#packing');
             var packing_crate = $('#packing_crate');

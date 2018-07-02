@@ -372,7 +372,23 @@ namespace ArtShop.Controllers
             }
             p.artist_id = artistId;
             p.artistName = artistName;
-            //p.ISOrginalForSale = model.Status == ProductStatus.forSale;
+            if (model.TotalWeight == 0)
+                model.TotalWeight = float.Parse(Request["TotalWeight"].Replace(".", "/"));
+
+            if (model.Depth == 0)
+            {
+                model.Depth = float.Parse(Request["Depth"].Replace(".", "/"));
+            }
+            if (model.Height == 0)
+            {
+                model.Height = float.Parse(Request["Height"].Replace(".", "/"));
+
+            }
+            if (model.Width == 0)
+            {
+                model.Width = float.Parse(Request["Width"].Replace(".", "/"));
+            }
+
             p.TotalWeight = model.TotalWeight;
             p.Height = model.Height;
             p.Width = model.Width;

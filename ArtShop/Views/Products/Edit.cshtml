@@ -32,10 +32,10 @@
                             }
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="wizard-step">
-                                    @if (!ViewData.ModelState.IsValid)
+                                    @*@if (!ViewData.ModelState.IsValid)
                                     {
                                         @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
-                                    }
+                                    }*@
 
                                     <div class="pane__content__block">
                                         <h1 class="animate-group-0-0">@UploadRes.Artwork_Status</h1>
@@ -74,7 +74,7 @@
                                             <div class="form-group form-group--block animate-group-0-4">
                                                 <div class="title-input">
                                                     <div class="title-input__title-wrapper">
-                                                        <input name="artistName" list="ArtistName" type="text" style="text-align:center" value="@Model.artistName" />
+                                                        <input name="artistName" list="ArtistName" id="artistName" type="text" style="text-align:center" value="@Model.artistName" />
                                                         <datalist id="ArtistName">
                                                             @foreach (var item in (List<ArtistViewModel>)ViewBag.Artists)
                                                             {
@@ -95,15 +95,15 @@
                                             <div class="form-group form-group--inline-block dimensions-input">
                                                 <div class="input-container">
                                                     <label for="art_height">@UploadRes.Height</label>
-                                                    <input type="text" class="" name="Height" value="@Model.Height" id="Height" min="0">
+                                                    <input type="text" class="" name="Height" value="@Model.Height.ToString().Replace("/", ".")" id="Height" min="0">
                                                 </div>
                                                 <div class="input-container">
                                                     <label for="art_width">@UploadRes.Width</label>
-                                                    <input type="text" class="" name="Width" id="Width" value="@Model.Width" min="0">
+                                                    <input type="text" class="" name="Width" id="Width" value="@Model.Width.ToString().Replace("/", ".")" min="0">
                                                 </div>
                                                 <div class="input-container">
                                                     <label for="art_depth">@UploadRes.Depth</label>
-                                                    <input type="text" class="" name="Depth" id="Depth" step="0.1" value="@Model.Depth" min="0">
+                                                    <input type="text" class="" name="Depth" id="Depth" step="0.1" value="@Model.Depth.ToString().Replace("/", ".")" min="0">
                                                 </div>
                                                 <div class="form-group__info">@UploadRes.inches</div>
                                             </div>
@@ -115,7 +115,7 @@
                                             <h1 style="@rtldirection" class="animate-group-0-7">@UploadRes.step9_description</h1>
                                             <div class="form-group shipping__artwork-weight animate-group-0-9 shipping__artwork-weight--artwork-only">
                                                 <div class="shipping__artwork-weight__weight label-under-group">
-                                                    <input type="number" class="" name="TotalWeight" value="@Model.TotalWeight" min="0.1">
+                                                    <input type="number" class="" name="TotalWeight" value="@Model.TotalWeight.ToString().Replace("/", ".")" min="0.1">
                                                     <div class="react-tooltip" style="bottom: 60px;"></div>
                                                     <label for="art_weight" class="">@UploadRes.pounds</label>
                                                 </div>
@@ -200,9 +200,9 @@
                     required: true,
                     number: true
                 },
-                Title: {
+                artistName: {
                     required: true,
-                    minlength: 3
+                    minlength: 1
                 }
             }
         });

@@ -280,11 +280,19 @@ namespace ArtShop.Controllers
         public ActionResult Setep6(UploadViewModel.step6 model)
         {
             if (model.Depth == 0)
-            {
-                //model.Height = float.Parse(Request["Height"].Replace(".", "/"));
-                //model.Width = float.Parse(Request["Width"].Replace(".", "/"));
+            {                
                 model.Depth = float.Parse(Request["Depth"].Replace(".", "/"));
             }
+            if (model.Height == 0)
+            {
+                model.Height = float.Parse(Request["Height"].Replace(".", "/"));
+
+            }
+            if (model.Width == 0)
+            {
+                model.Width = float.Parse(Request["Width"].Replace(".", "/"));
+            }
+
 
             bool error = false;
             if (model.Height == 0)
@@ -428,6 +436,10 @@ namespace ArtShop.Controllers
             Session["Packaging"] = model.Packaging;
             Session["framed"] = model.framed;
             Session["multi_paneled"] = model.multi_paneled;
+            Session["frameMaterial"] = model.frameMaterial;
+            Session["frameColor"] = model.frameColor;
+            Session["frameType"] = model.frameType;
+
             return RedirectToActionPermanent("Setep9");
         }
 
@@ -593,6 +605,26 @@ namespace ArtShop.Controllers
             }
             try
             {
+                if (profile.billingInfo != null)
+                {
+                    profile.billingInfo.Street = (string)Session["Street_Address"];
+                    profile.billingInfo.City = (string)Session["City"];
+                    profile.billingInfo.CountryId = int.Parse((string)Session["Country"]);
+                    profile.billingInfo.Region = (string)Session["Region"];
+                    profile.billingInfo.ZipCode = (string)Session["Zip_code"];
+                    profile.billingInfo.PhoneNumber = (string)Session["phoneNumber"];
+                }
+                else
+                {
+                    profile.billingInfo = new BillingInfo();
+                    profile.billingInfo.Street = (string)Session["Street_Address"];
+                    profile.billingInfo.City = (string)Session["City"];
+                    profile.billingInfo.CountryId = int.Parse((string)Session["Country"]);
+                    profile.billingInfo.Region = (string)Session["Region"];
+                    profile.billingInfo.ZipCode = (string)Session["Zip_code"];
+                    profile.billingInfo.PhoneNumber = (string)Session["phoneNumber"];
+                }
+
                 var widepath = (string)Session["WideFullPath"];
                 var sqpath = (string)Session["SqureFullPath"];
                 var orginalpic = (string)Session["imageAddress"];
@@ -631,7 +663,7 @@ namespace ArtShop.Controllers
                     avaible = (int)Session["avaible"],
                     Depth = (float)Session["Depth"],
                     Height = (float)Session["Height"],
-                    Width = (float)Session["Width"],
+                    Width = (float)Session["Width"],                    
                     IsPrintAvaibled = false,
                     Packaging = Session["Packaging"] == null ? Productpackage.box : (Productpackage)Session["Packaging"],
                     Keywords = (string)Session["Keywords"],
@@ -663,6 +695,20 @@ namespace ArtShop.Controllers
                         product.Mediums.Add(temp.medium);
                 }
 
+                int frameTypeId;
+                int frameColorId;
+                int frameMaterialId;
+
+                if ((bool)Session["framed"])
+                {
+                    frameTypeId = int.Parse((string)Session["frameType"]);
+                    frameColorId = int.Parse((string)Session["frameColor"]);
+                    frameMaterialId = int.Parse((string)Session["frameMaterial"]);
+                    product.frameType = db.ProductFrameTypes.FirstOrDefault(x => x.Id == frameTypeId);
+                    product.frameMaterial = db.ProductFrameMaterials.FirstOrDefault(x => x.Id == frameMaterialId);
+                    product.frameColor = db.ProductFrameColors.FirstOrDefault(x => x.Id == frameColorId);
+                }
+                
                 profile.Products.Add(product);
 
                 db.SaveChanges();

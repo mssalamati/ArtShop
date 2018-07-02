@@ -123,7 +123,7 @@ namespace DataLayer.Enitities
 
         public string GenerateSlug()
         {
-            string phrase = string.Format("{0}-{1}", Id, Title);
+            string phrase = string.Format("{0}-{1}", Id, string.IsNullOrEmpty(Title) ? artistName : Title);
 
             string str = phrase.ToLower();//RemoveAccent(phrase).ToLower();
             // invalid chars           
@@ -171,7 +171,7 @@ namespace DataLayer.Enitities
         public string City { get; set; }
         public string Region { get; set; }
         public string ZipCode { get; set; }
-        public string PhoneNumber { get; set; }       
+        public string PhoneNumber { get; set; }
         public int CountryId { get; set; }
         [ForeignKey("CountryId")]
         public virtual Country country { get; set; }

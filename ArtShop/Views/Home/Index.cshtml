@@ -31,7 +31,7 @@
             string active = isFirst == true ? "active" : "";
             <div class="item @active">
                 <img src="@item.Slider_Image" style="width:100%;">
-                <div class="carousel-caption">
+                <div class="carousel-caption" style="top:0;margin-top:30px">
                     <h1 style="font-size: 50px;color:@item.slider_text_color;@rtlstl">@item.slider_H1</h1>
                     <h2 style="color:@item.slider_text_color;@rtlstl" class="sa-hero-subtitle">@item.slider_H2</h2>
                     @if (!string.IsNullOrEmpty(item.slider_P))
@@ -50,14 +50,14 @@
     </div>
 
     <!-- Left and right controls -->
-    @*<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"><</span>
             <span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">></span>
             <span class="sr-only">Next</span>
-        </a>*@
+        </a>
 </div>
 
 @*<div class="sa-hero video-hero">
