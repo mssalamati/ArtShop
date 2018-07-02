@@ -316,6 +316,8 @@
     <Content Include="Content\2220741194.js" />
     <Content Include="Content\app-99c5613a7fbb0f5f16e645bc204d000d.css" />
     <Content Include="Content\app-Cart.css" />
+    <Content Include="Content\Bootstrap-carousel.css" />
+    <Content Include="Content\Bootstrap-carousel.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

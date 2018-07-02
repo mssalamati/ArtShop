@@ -8,6 +8,13 @@ namespace ArtShop.Models
 {
     public class HomeIndexViewModel
     {
+        public ICollection<Slide> SliderItems { get; set; }
+        public List<IdNameViewModel> Navigation { get; set; }
+        public List<FirstPageSection> FirstPageSections { get; set; }
+    }
+
+    public class Slide
+    {
         public string slider_H1 { get; set; }
         public string slider_H2 { get; set; }
         public string slider_Button_Text { get; set; }
@@ -17,8 +24,6 @@ namespace ArtShop.Models
         public string Slider_Image { get; set; }
         public string slider_text_color { get; set; }
         public string slider_Button_text_color { get; set; }
-        public List<IdNameViewModel> Navigation { get; set; }
-        public List<FirstPageSection> FirstPageSections { get; set; }
     }
 
     public class IdNameViewModel

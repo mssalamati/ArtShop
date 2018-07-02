@@ -18,17 +18,21 @@
     @*<link rel="stylesheet" href="~/Content/Vendor/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />*@
     @*<link href="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="~/Content/main-1497066374081.css" />*@
-
+    
     <link rel="stylesheet" href="~/Content/jquery.toast.min.css" />
     <link rel="stylesheet" href="~/Content/js/upload/css/jquery.fileupload-ui.css" />
     <link rel="stylesheet" href="~/Content/js/upload/css/jquery.fileupload.css" />
     @Styles.Render("~/Content/scss")
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    
+    <link rel="stylesheet" href="~/Content/Bootstrap-carousel.css" />
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="~/Content/Vendor/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="~/Content/Vendor/code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="~/Content/Vendor/cdn.optimizely.com/js/2220741194.js"></script>
     <script type="text/javascript" src="~/Content/js/dist/core-1497066375653.min.js"></script>
+    <script type="text/javascript" src="~/Content/Bootstrap-carousel.js"></script>
 
     
 
@@ -192,7 +196,20 @@
             </p>
         </div>
     </div>
+    <script>
+        $heroSlides = $('.orbit-item');
+        $heroSlides.click(function () {
+            var $this = $(this);
+            var href = $this.find('a').attr('href');
+            if ($this.data('is-promo')) {
+                window.open(href);
+            } else {
+                window.location = href;
+            }
+            return false;
+        });
 
+    </script>
     <script>
         $(".dropdown").click(function () {
             if ($('.dropdown-content').hasClass('show'))

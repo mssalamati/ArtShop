@@ -45,22 +45,26 @@ namespace ArtShop.Controllers
             var count = db.sliderImages.Count();
             if (count != 0)
             {
-                var randomNumber = new Random().Next(0, count);
-                var sl = db.sliderImages.Include("Translations").ToList().Skip(randomNumber).Take(1).FirstOrDefault();
-                model.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + "/" + sl.path;
-                model.slider_H1 = sl.Current().H1;
-                model.slider_H2 = sl.Current().H2;
-                model.slider_Button_Text = sl.Current().ButtonText;
-                model.slider_Button_Url = sl.ButtonURL;
-                model.slider_text_color = sl.TextColor;
-                model.slider_Button_color = sl.ButtonColor;
-                model.slider_Button_text_color = sl.ButtonTextColor;
-                model.slider_P = sl.Current().P1;
+                
+                var sl = db.sliderImages.Include("Translations").ToList();
+                model.SliderItems = new List<Slide>();
+                foreach (var item in sl)
+                {
+                    Slide slideItem = new Slide();
+                    slideItem.Slider_Image = ConfigurationManager.AppSettings["FileUrl"] + "/" + item.path;
+                    slideItem.slider_H1 = item.Current().H1;
+                    slideItem.slider_H2 = item.Current().H2;
+                    slideItem.slider_Button_Text = item.Current().ButtonText;
+                    slideItem.slider_Button_Url = item.ButtonURL;
+                    slideItem.slider_text_color = item.TextColor;
+                    slideItem.slider_Button_color = item.ButtonColor;
+                    slideItem.slider_Button_text_color = item.ButtonTextColor;
+                    slideItem.slider_P = item.Current().P1;
+                                  
+                    model.SliderItems.Add(slideItem);
+                }
                 model.FirstPageSections = db.FirstPageSections.Include("Translations").ToList();
-            }
-
-     
-            
+            }         
 
             return View(model);
         }
