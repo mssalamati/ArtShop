@@ -82,6 +82,7 @@ namespace ArtShop.Controllers
                 //else
                 //    ViewBag.iserver = "http://" + iserver.Host + "/upload/upload";
                 ViewBag.lastpic = (string)Session["imageAddress"];
+              
                 return PartialView();
             }
             else
@@ -573,6 +574,7 @@ namespace ArtShop.Controllers
             var error = uploadnow(out id);
             if (error == string.Empty)
             {
+                Session["imageAddress"] = "";
                 if (!profile.isIDConfirmed && (bool)Session["gotoConfirmPage"])
                     return Json(new { result = "id" }, JsonRequestBehavior.AllowGet);
                 else

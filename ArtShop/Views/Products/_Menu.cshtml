@@ -33,7 +33,7 @@ if (current == selected)
             <div class="image-upload-dragover__message"></div>
         </div>
 
-        <img class="side-navigation__hero__content" src="@(Model.Photo)">
+        <a href="https://artiscovery.com/en/products/single/@Model.id"><img class="side-navigation__hero__content" src="@(Model.Photo)"></a> 
     </div>
 
     <a class="side-navigation__top-level @selected("Artwork Status",(string)Model.menu)" href="/@CultureHelper.GetCurrentCulture()/Products/Edit/@Model.id">@UploadRes.Artwork_Status</a>

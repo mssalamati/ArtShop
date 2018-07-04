@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Detail | Visit Requests";
+}
+@using DataLayer.Extentions
+
+
+@model VisitRequest
+
+
+<div class="page-title">
+    <div class="title"> Visit Requests</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">Artiscovery</a>
+        </li>
+        <li>
+            <a href="/payouts/index"> Visit Requests</a>
+        </li>
+        <li>
+            <a href="javascript:;">@Model.user.ApplicationUserDetail.Email </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+                <a class="btn btn-sm " href="/visitrequests/index"><i class="fa fa-arrow-right"></i></a>  @Model.user.ApplicationUserDetail.Email
+            </div>
+            <div class="card-block">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Account Holder </label>
+                            <input type="text" readonly value="@Model.user.ApplicationUserDetail.UserName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Full Name </label>
+                            @{var fullName = Model.FirstName + " " + Model.LastName; }
+                            <input type="text" readonly value="@fullName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number </label>
+                            <input type="text" readonly value="@Model.PhoneNumber" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Description </label>
+                            <textarea type="text" readonly class="form-control">@Model.Description</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Submitted Date </label>
+                            <input type="text" readonly value="@Model.SubmittedOn" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Status </label>
+                            @if (!Model.Seen)
+                            {
+                                <input type="text" readonly value="pending" class="form-control" />
+                            }
+                            else if (Model.isConfirmed)
+                            {
+                                <input type="text" readonly value="Confirmed" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="text" readonly value="Not Confirmed" class="form-control" />
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @{
+                                var artwork = ((Product)ViewBag.Artwork);
+                                var artName = string.IsNullOrEmpty(artwork.artistName) ? (artwork.user.FirstName + artwork.user.LastName) : artwork.artistName;
+                            }
+                            <div class="card bg-white">
+                                <div class="card-header bg-primary text-white">
+                                    <div class="pull-left"><a href="https://artiscovery.com/en/products/single/@artwork.Id" )>@artName</a> </div>
+                                    <div class="card-controls">
+                                        <a href="javascript:;" class="card-collapse" data-toggle="card-collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <a href="https://artiscovery.com/en/products/single/@artwork.Id" )>
+                                              
+                                                <div class="card m-t m-b-0 bg-white">
+                                                    @if (artwork.Sqphoto.Path.Contains("https"))
+                                                    {
+                                                        <img class="card-img-top img-responsive" alt="Project 0" src="@artwork.Sqphoto.Path">
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="card-img-top img-responsive" alt="Project 0" src="http://artiscovery.com/@artwork.Sqphoto.Path">
+                                                    }
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a href="/visitrequests/index" class="btn btn-primary">back</a>
+                        <a href="/visitrequests/setPayStatus?id=@Model.Id&payed=true" class="btn btn-success">Confirm</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

@@ -5357,6 +5357,7 @@
     <Content Include="Views\MobileHomePage\_successWindow.cshtml" />
     <Content Include="Views\MobileHomePage\Products.cshtml" />
     <Content Include="Views\VisitRequests\Index.cshtml" />
+    <Content Include="Views\VisitRequests\detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

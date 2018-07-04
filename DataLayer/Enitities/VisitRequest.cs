@@ -21,7 +21,7 @@ namespace DataLayer.Enitities
         public string PhoneNumber { get; set; }
         public bool isConfirmed { get; set; }
         public bool Seen { get; set; }
-        public DateTime VisitDate { get; set; }
+        public DateTime? VisitDate { get; set; }
         public VisitRequest()
         {
             SubmittedOn = DateTime.Now;

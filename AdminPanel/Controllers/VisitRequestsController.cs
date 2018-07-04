@@ -19,8 +19,9 @@ namespace AdminPanel.Controllers
             return View(data.OrderByDescending(x => x.SubmittedOn).Skip(skip).Take(take).ToList());
         }
         public ActionResult detail(int id)
-        {
+        {            
             var obj = db.VisitRequests.Find(id);
+            ViewBag.Artwork = db.Products.Find(obj.ArtworkID);
             return View(obj);
         }
 
@@ -28,7 +29,8 @@ namespace AdminPanel.Controllers
         {
             var obj = db.VisitRequests.Find(id);
             obj.Seen = true;
-            obj.isConfirmed = payed;    
+            obj.isConfirmed = payed;
+            ViewBag.Artwork = db.Products.Find(obj.ArtworkID);
             db.SaveChanges();            
             return RedirectToAction("detail", new { id = id });
         }

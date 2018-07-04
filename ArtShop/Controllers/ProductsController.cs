@@ -167,8 +167,10 @@ namespace ArtShop.Controllers
             vr.FirstName = model.FirstName;
             vr.LastName = model.LastName;
             vr.PhoneNumber = model.PhoneNumber;
+            vr.Description = model.Description;
             vr.user_id = userId;
             vr.user = profile;
+            vr.SubmittedOn = DateTime.Now;
             db.VisitRequests.Add(vr);
             db.SaveChanges();
             
