@@ -44,19 +44,7 @@
                                         <div class="form-group form-group--block animate-group-0-4">
                                             <div class="title-input">
                                                 <div class="title-input__title-wrapper">
-                                                    <select name="ArtCreatedYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" >
-                                                        @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
-                                                        {
-                                                            if (i == Model.ArtCreatedYear)
-                                                            {
-                                                                <option selected value="@i">@i</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@i">@i</option>
-                                                            }
-                                                        }
-                                                    </select>
+                                                    <input style="text-align:center"  tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" type="text" name="ArtCreatedYearString" value="@Model.ArtCreatedYearString">
                                                 </div>
                                             </div>
                                         </div>

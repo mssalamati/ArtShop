@@ -1,28 +1,29 @@
 ﻿
+
 @{
     ViewBag.Title = "Index";
 }
 
 
-@model IEnumerable<PayoutRequest>
+@model IEnumerable<VisitRequest>
 
 
 @{
     ViewBag.Title = "index";
 
     var c_action = "index";
-    var c_cntroller = "Payouts";
+    var c_cntroller = "VisitRequests";
     var noentity = "هیچ درخواستی وجود ندارد";
 }
 
 <div class="page-title">
-    <div class="title"> PayoutRequest</div>
+    <div class="title"> Visit Requests</div>
     <ol class="breadcrumb no-bg pl0">
         <li>
             <a href="javascript:;">Artiscovery</a>
         </li>
         <li>
-            <a href="javascript:;">PayoutRequest </a>
+            <a href="javascript:;">Visit Requests </a>
         </li>
     </ol>
 </div>
@@ -31,7 +32,7 @@
 
 <div class="card bg-white m-b">
     <div class="card-header">
-        Payout Requests
+        Visit Requests
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
@@ -39,19 +40,20 @@
             {
                 <table class="table m-b-0">
                     <tr>
-                        <th></th>
+                        <th></th>                  
                         <th>
-                            Value
+                            Full Name
                         </th>
                         <th>
-                            Email
+                            Phone number
                         </th>
                         <th>
                             Seen
                         </th>
                         <th>
-                            Payed
+                            Is Confirmed
                         </th>
+
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
@@ -59,10 +61,11 @@
                         <tr>
                             <th><i class="fa fa-eye"></i></th>
                             <th>
-                                @item.Value
+                                @{var fullName = item.FirstName + "" + item.LastName;}
+                                @fullName
                             </th>
                             <th>
-                                @item.user.ApplicationUserDetail.Email
+                                @item.PhoneNumber
                             </th>
                             <th>
                                 @if (item.Seen)
@@ -71,7 +74,7 @@
                                 }
                             </th>
                             <th>
-                                @if (item.Payed)
+                                @if (item.isConfirmed)
                                 {
                                     <span>Yes</span>
                                 }
@@ -84,15 +87,15 @@
                                 <a class="btn btn-primary btn-sm" href="/@c_cntroller/detail/@item.Id">نمایش</a>
                             </td>
                         </tr>
-                    }
+                                    }
                 </table>
-            }
-            else
-            {
-                <div class="alert alert-warning ">
-                    @noentity
-                </div>
-            }
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-warning ">
+                                            @noentity
+                                        </div>
+                                    }
         </div>
     </div>
 </div>

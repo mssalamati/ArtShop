@@ -158,13 +158,20 @@ namespace ArtShop.Controllers
                 return View(model);
             }
 
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = User.Identity.GetUserId();
-                var user = db.Users.Find(userId);
-                var profile = user.userDetail;
-            }
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
 
+            VisitRequest vr = new VisitRequest();
+            vr.ArtworkID = model.Id;
+            vr.FirstName = model.FirstName;
+            vr.LastName = model.LastName;
+            vr.PhoneNumber = model.PhoneNumber;
+            vr.user_id = userId;
+            vr.user = profile;
+            db.VisitRequests.Add(vr);
+            db.SaveChanges();
+            
             return RedirectToActionPermanent("single", new { id = p.Id });
         }
         public string GenerateMeta(Product p)
@@ -418,6 +425,12 @@ namespace ArtShop.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
             var profile = user.userDetail;
+
+            if (p.ArtCreatedYear != 0)
+            {
+                p.ArtCreatedYearString = p.ArtCreatedYear.ToString();
+            }
+
             bool mine = profile.Products.Any(x => x.Id == id);
             if (!mine)
                 return HttpNotFound();
@@ -436,7 +449,7 @@ namespace ArtShop.Controllers
                 return HttpNotFound();
             p.categoryId = model.categoryId;
             p.subjectId = model.subjectId;
-            p.ArtCreatedYear = model.ArtCreatedYear;
+            p.ArtCreatedYearString = model.ArtCreatedYearString;
             p.Mediums.Clear();
             p.Styles.Clear();
             var medumsList = Request["Mediums"].Split(',');

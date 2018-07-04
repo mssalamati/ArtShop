@@ -250,6 +250,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserVerificationsController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
+    <Compile Include="Controllers\VisitRequestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5355,6 +5356,7 @@
     <Content Include="Views\MobileHomePage\edit.cshtml" />
     <Content Include="Views\MobileHomePage\_successWindow.cshtml" />
     <Content Include="Views\MobileHomePage\Products.cshtml" />
+    <Content Include="Views\VisitRequests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
