@@ -513,4 +513,10 @@ For questions or additional information, please feel free to contact us at (+98)
   <data name="Visit_request" xml:space="preserve">
     <value>Visit request</value>
   </data>
+  <data name="View_more" xml:space="preserve">
+    <value>View More</value>
+  </data>
+  <data name="Art_print" xml:space="preserve">
+    <value>Art Print</value>
+  </data>
 </root>

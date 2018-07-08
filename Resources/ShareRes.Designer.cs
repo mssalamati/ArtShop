@@ -169,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Art Print.
+        /// </summary>
+        public static string Art_print {
+            get {
+                return ResourceManager.GetString("Art_print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artist.
         /// </summary>
         public static string Artist {
@@ -1146,6 +1155,15 @@ namespace Resources {
         public static string View_in_a_Room {
             get {
                 return ResourceManager.GetString("View_in_a_Room", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View More.
+        /// </summary>
+        public static string View_more {
+            get {
+                return ResourceManager.GetString("View_more", resourceCulture);
             }
         }
         

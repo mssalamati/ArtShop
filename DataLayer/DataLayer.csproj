@@ -89,12 +89,16 @@
     <Compile Include="Configurations\ShoppingCartConfig.cs" />
     <Compile Include="Enitities\AdminProfile.cs" />
     <Compile Include="Enitities\Article.cs" />
+    <Compile Include="Enitities\AuctionInfo.cs" />
+    <Compile Include="Enitities\Bid.cs" />
     <Compile Include="Enitities\BillingInfo.cs" />
     <Compile Include="Enitities\Category.cs" />
+    <Compile Include="Enitities\ClosingHistory.cs" />
     <Compile Include="Enitities\Collection.cs" />
     <Compile Include="Enitities\Country.cs" />
     <Compile Include="Enitities\FAQRequest.cs" />
     <Compile Include="Enitities\Favorit.cs" />
+    <Compile Include="Enitities\Listing.cs" />
     <Compile Include="Enitities\Log.cs" />
     <Compile Include="Enitities\MobileHomePage.cs" />
     <Compile Include="Enitities\Order.cs" />
@@ -123,6 +127,7 @@
     <Compile Include="Enitities\UserProfile.cs" />
     <Compile Include="Enitities\VisitorLog.cs" />
     <Compile Include="Enitities\VisitRequest.cs" />
+    <Compile Include="Enitities\Watch.cs" />
     <Compile Include="Enitities\Word.cs" />
     <Compile Include="Extentions\ExtensionsForITranslatable.cs" />
     <Compile Include="Context\IdentityModels.cs" />

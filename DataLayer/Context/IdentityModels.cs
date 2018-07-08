@@ -66,7 +66,10 @@ namespace DataLayer
 
             base.OnModelCreating(modelBuilder);
         }
-
+        public DbSet<Bid> Bids { get; set; }
+        public DbSet<ClosingHistory> ClosingHistories { get; set; }
+        public DbSet<Listing> Listings { get; set; }        
+        public DbSet<Watch> Watches { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<VisitRequest> VisitRequests { get; set; }
         public DbSet<VisitorLog> VisitorLogs { get; set; }

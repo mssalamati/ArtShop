@@ -43,5 +43,10 @@ namespace ArtShop.Controllers
             var page = db.SitePages.Include("Translations").SingleOrDefault(x => x.DefaultTitle == "Logo");
             return View(page.Current());
         }
+        public ActionResult MediaKit()
+        {
+            var page = db.SitePages.Include("Translations").SingleOrDefault(x => x.DefaultTitle == "Media Kit");
+            return View(page.Current());
+        }
     }
 }

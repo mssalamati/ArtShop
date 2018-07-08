@@ -650,6 +650,8 @@
     <Content Include="Views\Pages\Logo.cshtml" />
     <Content Include="Views\Pages\LogoRTL.cshtml" />
     <Content Include="Views\Products\RequestVisit.cshtml" />
+    <Content Include="Views\Pages\MediaKit.cshtml" />
+    <Content Include="Views\Products\Bid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

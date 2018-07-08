@@ -31,6 +31,7 @@
                     <select  name="type" id="typeselector" class="form-control">
                         <option value="_SelectedCurators">Selected Curators</option>
                         <option value="_SalebyPrice">Sale by Price</option>
+                        <option value="_StoriesCanvas">Art Prints</option>
                         <option value="_RecentlySold">Recently Sold</option>
                         <option value="_SalebyStyle">Sale by Style</option>
                         <option value="_SalebyCategory">Sale by Category</option>
@@ -84,7 +85,12 @@
         else if (this.value == '_SalebyPrice') {
             $("#selectedartparams").hide();
             $("#searchparameters").hide();
-        } else {
+        }
+        else if (this.value == '_StoriesCanvas') {
+            $("#selectedartparams").hide();
+            $("#searchparameters").hide();
+        }
+        else {
             $("#selectedartparams").hide();
             $("#searchparameters").show();
         }

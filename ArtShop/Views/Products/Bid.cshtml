@@ -12,11 +12,6 @@
 
     if (string.IsNullOrEmpty(Model.artist_id))
     {
-        if (!string.IsNullOrEmpty(Model.Title))
-        {
-            fullName = Model.Title;
-        }
-
         if (Model.user.profileType == ProfileType.Artist)
         {
             fullName = Model.user.FirstName + " " + Model.user.LastName;
@@ -26,7 +21,10 @@
             fullName = ViewBag.artistName;
         }
 
-
+        if (!string.IsNullOrEmpty(Model.Title))
+        {
+            fullName = Model.Title;
+        }
 
     }
     else
@@ -367,7 +365,7 @@
                                             {
                                                 <a id="makeOffer" class="make-offer-button cta-shipping-included" href="/@CultureHelper.GetCurrentCulture()/Products/RequestVisit?id=@Model.Id" rel="nofollow"><i class="fa fa-comments"></i> @ShareRes.Visit_request</a>
                                             }
-                                            
+
                                         </div>
                                     }
                                 </div>

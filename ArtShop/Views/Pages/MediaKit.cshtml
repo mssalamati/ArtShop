@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Media Kit | Artiscovery";
+}
+<style>
+    .fsw-watermark-url {
+        height: 153px;
+        width: 272px;
+        position: relative;
+        overflow: hidden;
+          display:none;
+    }
+
+    #fsw-watermark {
+        height: 262px;
+        width: 272px;
+        position: absolute;
+        margin-top: -55px;
+        display:none;
+    }
+</style>
+
+<div class="row-layout content">
+    <div class="row">
+        
+            @*@Html.Raw(Model.Content)*@
+            <iframe id="myFrame" src="https://cdn.flipsnack.com/widget/v2/widget.html?hash=f1nsvsaak&bgcolor=EEEEEE&t=1530964652" width="1024px" height="300px" seamless="seamless" scrolling="no" frameBorder="0" allowFullScreen="true"></iframe>
+
+        
+    </div>        <div class="clearfix"></div>
+</div>
+
+
+
+

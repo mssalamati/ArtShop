@@ -514,4 +514,10 @@
   <data name="Visit_request" xml:space="preserve">
     <value>درخواست بازدید</value>
   </data>
+  <data name="Art_print" xml:space="preserve">
+    <value>آرت پرینت</value>
+  </data>
+  <data name="View_more" xml:space="preserve">
+    <value>بیشتر</value>
+  </data>
 </root>

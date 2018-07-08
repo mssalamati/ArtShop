@@ -111,6 +111,44 @@ namespace ArtShop.Controllers
             }
             return View(p);
         }
+
+        public ActionResult Bid(int id)
+        {
+            var p = db.Products.Find(id);
+            string ip = Request.UserHostAddress;
+            string browser = Request.UserAgent;
+
+
+            ViewBag.metaDescription = GenerateMeta(p);
+
+            if (!db.VisitorLogs.Any(x => x.LocationIP == ip && x.ArtID == id))
+            {
+                db.VisitorLogs.Add(new VisitorLog { BrowserName = browser, LocationIP = ip, ArtID = id });
+                p.ViewCount++;
+                db.SaveChanges();
+            }
+
+            bool mine = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var profile = user.userDetail;
+                ViewBag.favorites = profile.Favorits;
+                mine = profile.Products.Any(x => x.Id == id);
+                var candeleted = !db.Orders.Where(x => x.TransactionDetail != null).Where(x => x.TransactionDetail.Payed).SelectMany(x => x.OrderDetails).Select(x => x.ProductId).Any(x => x == id);
+                ViewBag.candeleted = candeleted;
+            }
+            ViewBag.mine = mine;
+            var artist = p.artist_id == "" ? null : db.UserProfiles.FirstOrDefault(a => a.Id == p.artist_id);
+            ViewBag.Artist = artist;
+            if (artist == null)
+            {
+                ViewBag.artistName = p.artistName;
+            }
+            return View(p);
+        }
+
         [Authorize]
         public ActionResult RequestVisit(int id)
         {

@@ -1,23 +1,29 @@
-﻿<div class="row canvas-section">
+﻿@using DataLayer.Extentions
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var tar = IsRighToLeft ? "text-align:right" : "";
+}
+<div class="row canvas-section">
     <div class="small-12 columns">
-        <h2 class="section-title mt0">Stories from Canvas</h2>
-        <div class="section-details">Visit Artiscovery’s magazine to learn about emerging artists and news from the art world</div>
+        <h2 style="@tar" class="section-title mt0">@ShareRes.Art_print</h2>
+        @*<div class="section-details">Visit Artiscovery’s magazine to learn about emerging artists and news from the art world</div>*@
     </div>
 </div>
 <div class="row">
     <ul class="item-list canvas-stories">
-        @for (int i = 0; i < 4; i++)
+        @{ var products = (List<Product>)(ViewBag.products);}
+        @foreach (var item in products)        
         {
             <li class="list-item feature">
                 <div class="feature-image">
-                    <a href="https://canvas.saatchiart.com/art/one-to-watch/oliver-curtis" title="One to Watch ">
-                        <img src="~/Content/Images/250x143.jpg" alt="One to Watch ">
+                    <a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" >
+                        <img src="@item.Sqphoto.Path" alt="@item.Title">
                     </a>
                 </div>
                 <div class="row feature-meta">
-                    <h3 class="feature-title ellipsis"><a href="" title="One to Watch ">One to Watch </a></h3>
-                    <span class="feature-subtitle ellipsis"><a href="" title="Oliver Curtis, U.K.">Oliver Curtis, U.K.</a></span>
-                    <span class="feature-subtitle2 ellipsis"><a href="" title="View More">View More</a></span>
+                    <h3 style="@tar" class="feature-title ellipsis"><a href="" title="@item.Title">@item.Title </a></h3>
+                    <span style="@tar" class="feature-subtitle ellipsis"><a href="@Url.Action(item.category.Current().Name,"Artwork", new { id=@item.GenerateSlug() })" title="Profile page for @item.user.FirstName @item.user.LastName">@item.user.FirstName  @item.user.LastName</a></span>
+                    <span style="@tar" class="feature-subtitle2 ellipsis"><a href="https://artiscovery.com/@CultureHelper.GetCurrentCulture()/search?category=12&style=0&subject=0&medium=0&price=0&page=1" title="@ShareRes.View_more">@ShareRes.View_more</a></span>
                 </div>
             </li>
         }

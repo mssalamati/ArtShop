@@ -45,7 +45,7 @@ namespace ArtShop.Controllers
             var count = db.sliderImages.Count();
             if (count != 0)
             {
-                
+
                 var sl = db.sliderImages.Include("Translations").ToList();
                 model.SliderItems = new List<Slide>();
                 foreach (var item in sl)
@@ -60,11 +60,11 @@ namespace ArtShop.Controllers
                     slideItem.slider_Button_color = item.ButtonColor;
                     slideItem.slider_Button_text_color = item.ButtonTextColor;
                     slideItem.slider_P = item.Current().P1;
-                                  
+
                     model.SliderItems.Add(slideItem);
                 }
-                model.FirstPageSections = db.FirstPageSections.Include("Translations").ToList();
-            }         
+                model.FirstPageSections = db.FirstPageSections.Include("Translations").OrderBy(x=>x.priority).ToList();
+            }
 
             return View(model);
         }
@@ -90,6 +90,21 @@ namespace ArtShop.Controllers
                 var p3 = db.Products.Find(int.Parse(model.param3));
                 ViewBag.pic3 = p3.Sqphoto.Path;
                 ViewBag.url3 = CultureHelper.GetCurrentCulture() + "/artwork/" + p3.category.Current().Name + "/" + p3.GenerateSlug();
+            }
+            catch
+            {
+
+            }
+            return PartialView(model);
+        }
+
+        public ActionResult _StoriesCanvas(FirstPageSection model)
+        {
+            try
+            {
+                var p1 = db.Products.Where(a => a.categoryId == 12).OrderByDescending(a=>a.ViewCount).Take(4).ToList();
+                ViewBag.products = p1;
+ 
             }
             catch
             {
@@ -250,7 +265,7 @@ namespace ArtShop.Controllers
             return Content("done");
         }
 
-        public ActionResult SetCulture(string culture,string requestUrl)
+        public ActionResult SetCulture(string culture, string requestUrl)
         {
             culture = CultureHelper.GetImplementedCulture(culture);
             HttpCookie cookie = Request.Cookies["_culture"];
