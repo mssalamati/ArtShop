@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using DataLayer.Enitities;
 using DataLayer.Configurations;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace DataLayer
 {
@@ -58,6 +59,8 @@ namespace DataLayer
               .WithMany()
               .WillCascadeOnDelete(false);
 
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             //modelBuilder.Entity<Product>().HasRequired<UserProfile>(s => s.user).WithMany(a => a.Products);
 
             modelBuilder.Entity<Article>().HasMany(m => m.ReletedArticles).WithMany();
@@ -68,7 +71,8 @@ namespace DataLayer
         }
         public DbSet<Bid> Bids { get; set; }
         public DbSet<ClosingHistory> ClosingHistories { get; set; }
-        public DbSet<Listing> Listings { get; set; }        
+        public DbSet<Listing> Listings { get; set; }
+        public DbSet<AuctionInfo> Auctions { get; set; }
         public DbSet<Watch> Watches { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<VisitRequest> VisitRequests { get; set; }

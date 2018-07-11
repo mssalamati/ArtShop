@@ -130,6 +130,10 @@ namespace ArtShop.Controllers
         //year,forsale,print and copyright
         public ActionResult Setep3()
         {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var profile = user.userDetail;
+            ViewBag.auction = profile.AuctionCapability;
             return PartialView();
         }
         [HttpPost]
@@ -151,6 +155,7 @@ namespace ArtShop.Controllers
             Session["copyright"] = model.copyright;
             Session["createYear"] = model.createYearString;
             Session["isOrginal"] = model.isOrginal;
+            Session["auction"] = model.auction;
             Session["printAvable"] = false;// model.printAvable;
             return RedirectToActionPermanent("Setep4");
         }
@@ -640,6 +645,7 @@ namespace ArtShop.Controllers
                 int[] Materials = (int[])Session["Materials"];
                 string Styles = (string)Session["Styles"];
                 string artistName = (string)Session["ArtistName"];
+                var isAuction = (bool)Session["auction"];
 
                 var artist = db.UserProfiles.FirstOrDefault(x => (x.FirstName + " " + x.LastName) == artistName);
                 string artistId = "";
@@ -675,7 +681,8 @@ namespace ArtShop.Controllers
                     artistName = artistName,
                     user_id = userId,
                     TotalWeight = Session["weight"] == null ? 0 : (float)Session["weight"],
-                    Status = ((bool)Session["isOrginal"]) ? ProductStatus.forSale : ProductStatus.NotForSale
+                    Status = ((bool)Session["isOrginal"]) ? ProductStatus.forSale : ProductStatus.NotForSale,
+                    IsAuctionAvailable = isAuction
                 };
                 product.Materials = new List<Material>();
                 product.Styles = new List<Style>();

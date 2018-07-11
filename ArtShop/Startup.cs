@@ -8,6 +8,7 @@ namespace ArtShop
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
         }
     }

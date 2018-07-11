@@ -42,6 +42,7 @@ namespace DataLayer.Enitities
         public bool IsPrintAvaibled { get; set; }
         public bool framed { get; set; }
         public bool multiPaneled { get; set; }
+        public bool IsAuctionAvailable { get; set; }
         public virtual ProductFrameType frameType { get; set; }
         public virtual ProductFrameMaterial frameMaterial { get; set; }
         public virtual ProductFrameColor frameColor { get; set; }
@@ -71,7 +72,7 @@ namespace DataLayer.Enitities
         public virtual ICollection<Material> Materials { get; set; }
         public virtual ICollection<Medium> Mediums { get; set; }
         public virtual ProductshippingDetail productshippingDetail { get; set; }
-        public virtual ProductPrintDetail productPrintDetail { get; set; }
+        public virtual ProductPrintDetail productPrintDetail { get; set; }        
 
         [NotMapped]
         public List<int> MaterialList { get; set; }
@@ -117,7 +118,7 @@ namespace DataLayer.Enitities
                 frameMaterial = frameMaterial != null ? frameMaterial.Id : 0,
                 isFramed = framed,
                 totalWeight = TotalWeight,
-                title = Title,
+                title = Title                
             };
         }
 

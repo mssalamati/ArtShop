@@ -18,6 +18,7 @@ namespace DataLayer.Enitities
         public virtual string FirstName { get; set; }
         public virtual string LegalName { get; set; }
         public virtual string LastName { get; set; }
+        public bool AuctionCapability { get; set; }
         public virtual string PhotoPath { get; set; }
         [ForeignKey("country")]
         public int? countryId { get; set; }

@@ -34,13 +34,15 @@ namespace AdminPanel
                           "~/Content/Admin/styles/webfont.css",
                           "~/Content/Admin/styles/climacons-font.css",
                           "~/Content/Admin/vendor/bootstrap/dist/css/bootstrap.css",
-                          "~/Content/Admin/styles/bootstrap-rtl.css",
+                          "~/Content/Admin/vendor/checkbo/src/0.1.4/css/checkBo.min.css",
+                          "~/Content/image-picker.css",
                           "~/Content/Admin/styles/font-awesome.css",
                           "~/Content/Admin/styles/card.css",
                           "~/Content/Admin/styles/sli.css",
                           "~/Content/Admin/styles/animate.css",
                           "~/Content/Admin/styles/app.css",
-                          "~/Content/Admin/styles/app.skins.css"));
+                          "~/Content/Admin/styles/app.skins.css"
+                          ));
         }
     }
 }

@@ -228,6 +228,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
@@ -3138,6 +3139,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image-picker.css" />
+    <Content Include="Content\image-picker.min.js" />
     <Content Include="Content\Images\en.svg" />
     <Content Include="Content\Images\fa.svg" />
     <Content Include="Content\jvector\jquery-jvectormap-2.0.3.css" />
@@ -5358,6 +5361,13 @@
     <Content Include="Views\MobileHomePage\Products.cshtml" />
     <Content Include="Views\VisitRequests\Index.cshtml" />
     <Content Include="Views\VisitRequests\detail.cshtml" />
+    <Content Include="Views\Auction\Index.cshtml" />
+    <Content Include="Views\Auction\addAuction.cshtml" />
+    <Content Include="Views\Auction\editAuction.cshtml" />
+    <Content Include="Views\Auction\ArtworkPartial.cshtml" />
+    <Content Include="Views\Auction\AuctionInfo.cshtml" />
+    <Content Include="Views\Auction\addAuctionInfo.cshtml" />
+    <Content Include="Views\Auction\editAuctionInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

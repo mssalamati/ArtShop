@@ -1,0 +1,130 @@
+﻿
+@model IEnumerable<Product>
+@{Layout = null;}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div.gallery {
+            border: 1px solid #ccc;
+        }
+
+            div.gallery:hover {
+                border: 1px solid #777;
+            }
+
+            div.gallery img {
+                width: 100%;
+                height: auto;
+            }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .responsive {
+            padding: 0 6px;
+            float: left;
+            width: 24.99999%;
+        }
+
+        @@media only screen and (max-width: 700px) {
+            .responsive {
+                width: 49.99999%;
+                margin: 6px 0;
+            }
+        }
+
+        @@media only screen and (max-width: 500px) {
+            .responsive {
+                width: 100%;
+            }
+        }
+
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+   
+    <title></title>
+
+    <style>
+        .panel {
+            display: block;
+            position: relative;
+            background-color: #ffffff;
+        }
+
+            .panel > .heading {
+                padding: .625rem 20px;
+                color: #ffffff;
+                background-color: #1ba1e2;
+                cursor: default;
+                vertical-align: middle;
+                z-index: 2;
+                height: 2.625rem;
+                box-shadow: -1px 6px 6px -6px rgba(0, 0, 0, 0.35);
+                font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            .panel > .content {
+                padding: 10px;
+                background-color: #f1f1f1;
+                z-index: 1;
+                font-size: 0.875rem;
+            }
+    </style>
+</head>
+<body style="margin:0px; background-color: #f1f1f1;">
+
+    <div class="panel">
+        <div class="heading">
+            <span class="title"> @User.Identity.Name </span>
+        </div>
+        <div class="content">
+            <select multiple="multiple" class="image-picker show-labels">
+                @foreach (var item in Model)
+                {
+                    if (item.Sqphoto.Path.Contains("artiscovery.com"))
+                    {
+                        <option data-img-src="@item.Sqphoto.Path" value="1">@item.Title</option>
+
+                    }
+                    else
+                    {
+                        <option data-img-src="http://artiscovery.com/@item.Sqphoto.Path" value="@item.Id">@item.Title</option>
+                    }
+
+                }
+            </select>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("select").imagepicker({
+                hide_select: true,
+                show_label: true
+            })
+        });        
+    </script>
+</body>
+</html>

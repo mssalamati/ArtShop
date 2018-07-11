@@ -36,12 +36,12 @@
                                         <div class="form-group animate-group-0-2 z-index-fix">
                                             <h3>@UploadRes.step3_year_string</h3>
                                             @*<select name="createYear" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" style="@rtlstl">
-                                                <option value="0"></option>
-                                                @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
-                                                {
-                                                    <option value="@i">@i</option>
-                                                }
-                                            </select>*@
+                                                    <option value="0"></option>
+                                                    @for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+                                                </select>*@
                                             <input step="@rtlstl" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" type="text" name="createYearString" value="">
                                         </div>
                                         <div class="form-group animate-group-0-3">
@@ -75,6 +75,19 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @if ((bool)ViewBag.auction)
+                                        {
+                                            <div class="form-group animate-group-0-5">
+                                                <h3>Auction</h3>
+                                                <div class="button-radio">
+                                                    <div class="button-radio__button-container">
+                                                        <input id="auction" type="hidden" name="auction" value="true" />
+                                                        <button onclick="change_auction(1)" id="auction_yes" class="button-radio__button button button--active" type="button">@UploadRes.Yes</button>
+                                                        <button onclick="change_auction(0)" id="auction_no" class="button-radio__button button" type="button">@UploadRes.No</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <div class="wizard-button wizard-button--left" onclick="callbackpage();"><i class="wizard-button__icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 215 370.8" style="enable-background:new 0 0 215 370.8;" xml:space="preserve"><g><g><polygon points="215,24.8 190.9,0 0,185.4 190.9,370.8 215,346 49.7,185.4 "></polygon></g></g></svg></i><div class="wizard-button__text"><span>@UploadRes.step3_pre_click</span></div></div>
@@ -153,6 +166,20 @@
         var inp = $('#copyright');
         var btnyes = $('#copyright_yes');
         var btnno = $('#copyright_no');
+        if (val == 1) {
+            inp.val('true');
+            btnyes.addClass('button--active');
+            btnno.removeClass('button--active');
+        } else {
+            inp.val('false');
+            btnno.addClass('button--active');
+            btnyes.removeClass('button--active');
+        }
+    }
+    function change_auction(val) {
+        var inp = $('#auction');
+        var btnyes = $('#auction_yes');
+        var btnno = $('#auction_no');
         if (val == 1) {
             inp.val('true');
             btnyes.addClass('button--active');

@@ -26,6 +26,7 @@ namespace ArtShop.Models
             public bool isOrginal { get; set; }
             public bool printAvable { get; set; }
             public bool copyright { get; set; }
+            public bool auction { get; set; }
         }
         public class step4
         {

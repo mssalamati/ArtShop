@@ -89,6 +89,7 @@ namespace AdminPanel.Controllers
                 Email = user.Email,
                 FirstName = user.userDetail.FirstName,
                 LastName = user.userDetail.LastName,
+                AuctionCapability = user.userDetail.AuctionCapability,
                 profileType = ProfileType.Artist,
             };
 
@@ -120,7 +121,7 @@ namespace AdminPanel.Controllers
                 user.Email = model.Email;
                 user.userDetail.FirstName = model.FirstName;
                 user.userDetail.LastName = model.LastName;
-
+                user.userDetail.AuctionCapability = model.AuctionCapability;
                 if (!string.IsNullOrEmpty(model.NewPassword))
                 {
                     await UserManager.RemovePasswordAsync(model.id);

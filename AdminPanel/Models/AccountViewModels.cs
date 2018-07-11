@@ -112,6 +112,7 @@ namespace AdminPanel.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string NewPassword { get; set; }
+        public bool AuctionCapability { get; set; }
     }
 
     public class ResetPasswordViewModel

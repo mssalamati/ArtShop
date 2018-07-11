@@ -63,6 +63,15 @@
                     <p>کلمه ی عبور می بایست حداقل 6 رقم باشد</p>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">                    
+                    <div class="cs-checkbox m-b">
+                        @{ var ischecked = Model.AuctionCapability == true ? "checked" : "";}
+                        <input type="checkbox" name="AuctionCapability" @ischecked  id="r2" value="@Model.AuctionCapability" onclick="AuctionClicked()">
+                        <label for="r2">توانایی حراجی</label>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -81,6 +90,14 @@
 
 
 <script>
+    function AuctionClicked() {
+        if ($('#r2').val() == 'true') {
+            $('#r2').val('false');
+        }
+        else {
+            $('#r2').val('true');
+        }
+    }
     initinputcss();
 
     window.addEventListener("submit", function (e) {
@@ -106,3 +123,4 @@
         }
     }, true);
 </script>
+

@@ -5,8 +5,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <title>Artiscovery | Management Panel</title>
+    <link rel="stylesheet" href="~/Content/admin/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="~/Content/admin/vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     @Styles.Render("~/Content/default")
     @Scripts.Render("~/bundles/modernizr")
+    
 
     @RenderSection("angular", required: false)
 </head>
@@ -82,16 +85,20 @@
 
     </div>
 
-
     @Scripts.Render("~/Content/Admin/scripts/helpers/modernizr.js")
+    @*@Scripts.Render("~/Content/Admin/scripts/forms/plugins.js")*@
     @Scripts.Render("~/Content/Admin/vendor/jquery/dist/jquery.js")
     @Scripts.Render("~/Content/Admin/vendor/bootstrap/dist/js/bootstrap.js")
     @Scripts.Render("~/Content/Admin/vendor/fastclick/lib/fastclick.js")
     @Scripts.Render("~/Content/Admin/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js")
     @Scripts.Render("~/Content/Admin/scripts/helpers/smartresize.js")
-    @Scripts.Render("~/Content/Admin/scripts/constants.js")
+    @Scripts.Render("~/Content/Admin/scripts/constants.js")    
     @Scripts.Render("~/Content/Admin/scripts/main.js")
-
+    @Scripts.Render("~/Content/Admin/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js")
+    @Scripts.Render("~/Content/Admin/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js")    
+    @Scripts.Render("~/Content/Admin/vendor/checkbo/src/0.1.4/js/checkBo.min.js")
+    @Scripts.Render("~/Content/image-picker.min.js")    
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

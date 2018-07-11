@@ -1,0 +1,153 @@
+﻿@model AuctionInfo
+
+@{
+    ViewBag.Title = "Add Auction | Artiscovery Management";
+}
+
+<div class="page-title">
+    <div class="title"> حراجی جدید</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">Artiscovery</a>
+        </li>
+        <li>
+            <a href="/Auction/index"> Auctions</a>
+        </li>
+        <li>
+            <a href="javascript:;">حراجی جدید </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+                <i class="fa fa-arrow-right"></i> حراجی جدید
+            </div>
+            <div class="card-block">
+                @using (Ajax.BeginForm("addAuctionInfo", "Auction", null, new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                }, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        @Html.AntiForgeryToken()
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                        }
+
+                        @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+                        {
+                            var item = ((List<Language>)ViewBag.language)[i];
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                                    <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                    <input name="Translations[@i].Name" type="text" class="form-control" />
+                                </div>
+                            </div>
+                        }
+
+                        <label class="form-label"> توضیحات</label>
+                        <hr />
+
+                        @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+                        {
+                            var item = ((List<Language>)ViewBag.language)[i];
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                                    <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                    <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px"></textarea>
+                                </div>
+                            </div>
+                        }
+                        <hr />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input name="EndTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input name="StartTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
+                            </div>
+                        </div>     
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control time-picker" name="EndTime" placeholder="ساعت ‍‍‍‍‍‍‍‍‍‍‍پایان" />
+                                    <span class="input-group-addon add-on">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control time-picker" name="StartTime" placeholder="ساعت شروع" />
+                                    <span class="input-group-addon add-on">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>                                    
+                        <hr />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="cs-checkbox m-b">
+                                    <input type="checkbox" name="Active" id="r1" value="false">
+                                    <label for="r1">فعال</label>
+                                </div>
+                            </div>
+                        </div>                                                
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+                                <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                </span>&nbsp;  ثبت  &nbsp;
+                            </button>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.time-picker').timepicker({
+                minuteStep: 1,
+                showMeridian: false
+            });
+            
+            $('#r1').click(function () {
+                if ($('#r1').val() == 'true') {
+                    $('#r1').val('false');
+                }
+                else {
+                    $('#r1').val('true');
+                }
+            });      
+        });
+
+    </script>
+}
+
+
+
+
+
