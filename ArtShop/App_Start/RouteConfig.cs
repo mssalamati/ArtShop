@@ -41,6 +41,14 @@ namespace ArtShop
             new RouteValueDictionary(new { controller = "Products", culture = string.Empty, action = "single" }),
             new MvcRouteHandler()));
 
+            routes.Add("AuctionArts", new SeoFriendlyRoute("{culture}/Auction/AuctionArts/{id}",
+            new RouteValueDictionary(new { controller = "Auction", culture = string.Empty, action = "AuctionArts" }),
+            new MvcRouteHandler()));
+
+            routes.Add("AuctionArt", new SeoFriendlyRoute("{culture}/Auction/Art/{id}",
+            new RouteValueDictionary(new { controller = "Auction", culture = string.Empty, action = "Art" }),
+            new MvcRouteHandler()));
+
             routes.Add("Articles", new SeoFriendlyRoute("{culture}/Support/Article/{id}",
             new RouteValueDictionary(new { controller = "Support", culture = string.Empty, action = "Article" }),
             new MvcRouteHandler()));

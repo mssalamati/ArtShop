@@ -1,0 +1,593 @@
+﻿@model Listing
+@{
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right;text-align:right !important" : "";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important" : "";
+    var textAlign = IsRighToLeft ? "text-align:right !important" : "";
+    var top = IsRighToLeft ? "top:.85rem !important" : "";
+    var paddingLeft = IsRighToLeft ? "Padding-left:6px !important" : "";
+    var marginBottom = IsRighToLeft ? "Margin-bottom:10px !important" : "";
+    var circleSize = IsRighToLeft ? "width:50px;height:50px !important" : "";
+    var favFontSize = IsRighToLeft ? "font-size: 12px !important" : "";
+    string fullName;
+
+    if (string.IsNullOrEmpty(Model.Artwork.artist_id))
+    {
+        if (!string.IsNullOrEmpty(Model.Title))
+        {
+            fullName = Model.Title;
+        }
+
+        if (Model.Artwork.user.profileType == ProfileType.Artist)
+        {
+            fullName = Model.Artwork.user.FirstName + " " + Model.Artwork.user.LastName;
+        }
+        else
+        {
+            fullName = ViewBag.artistName;
+        }
+    }
+    else
+    {
+        var Artist = ViewBag.Artist;
+        fullName = (Artist.FirstName ?? Model.Artwork.user.FirstName) + " " + (Artist.LastName ?? Model.Artwork.user.LastName);
+    }
+
+    string userId = string.IsNullOrEmpty(Model.Artwork.artist_id) ? Model.Artwork.user_id : Model.Artwork.artist_id;
+
+    ViewBag.Title = (string.IsNullOrEmpty(Model.Title) ? fullName : Model.Title) + " | " + Model.Artwork.user.FirstName + " " + Model.Artwork.user.LastName;
+}
+
+
+
+@using DataLayer.Extentions
+
+
+@if (IsRighToLeft)
+{
+    <style>
+        span, p {
+            font-family: yj,"Helvetica",sans-serif !important;
+            font-size: .9rem !important;
+            line-height: 1.6rem !important;
+        }
+
+        #artAdminSection menu.inline-list > li {
+            margin: 0px 4px 5px 0;
+        }
+    </style>
+}
+
+<style>
+    .artwithpic {
+        background-image: url("/content/view_in_room_plant.jpg");
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+
+    .artwhitprint {
+        background-image: url("/content/view_in_room_couch_plant.jpg");
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+</style>
+
+<style>
+    .tab-two .active a {
+        background: rgba(0, 0, 0, 0.00);
+        color: white;
+        border-bottom: 10px solid rgba(0, 0, 0, 0.00);
+    }
+
+        .tab-two .active a:hover {
+            background-color: rgba(0, 0, 0, 0.10);
+            border-bottom: 10px solid rgba(0, 0, 0, 0.00);
+        }
+
+    .art-detail-ribbon:after {
+        content: "";
+        position: absolute;
+        display: none;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.00) transparent transparent #000;
+        border-width: 0px;
+        bottom: 0rem;
+        right: 0;
+    }
+
+    .art-detail-original {
+        padding: 0 0px;
+    }
+
+    .art-detail__value-props {
+        padding: 0 20px;
+    }
+
+    .tab-two div:first-child a {
+        border-left: 0;
+        border-right: 10px solid rgba(255, 255, 255, 0.00);
+    }
+
+    .tab-two div:last-child a {
+        border-left: 10px solid rgba(255, 255, 255, 0.00);
+    }
+
+    .tab-two a {
+        background-color: rgba(245, 245, 245, 0.75);
+        border-bottom: 10px solid rgba(255, 255, 255, 0.00);
+    }
+
+    .tab-two div:first-child.active a {
+        border-left: 0;
+        border-right: 10px solid rgba(255, 255, 255, 0.00);
+        z-index: 9;
+    }
+
+    .tab-two div:last-child.active a {
+        border-left: 10px solid rgba(255, 255, 255, 0.00);
+        margin-right: 0;
+    }
+</style>
+
+<div class="row-layout content">
+
+    <article class="art-detail">
+
+        <div role="main" class="row">
+            <header class="row" style="">
+                <div style="@rtlstl;@paddingLeft" class="small-1 columns">
+                    @if (Model.Artwork.user.country != null)
+                    {
+                        <i class="icn-artist-location flag-@Model.Artwork.user.country.Code so-quick-tip" title="@Model.Artwork.user.country.Current().Name"></i>
+                    }
+                </div>
+                <div class="small-11 columns">
+                    <div class="row author-title" style="@textAlign">
+                        <h1 style="@rtldirection">
+
+                            <a href="">
+                                @if (IsRighToLeft)
+                                {
+                                    <span itemprop="name">@Model.Title</span>
+
+                                    <span itemprop="category">@Model.Artwork.category.Current().Name</span>
+                                    <span>  @SearchRes.by</span>
+                                    <span itemprop="creator">@fullName</span>
+                                }
+                                else
+                                {
+                                    <span itemprop="name">@Model.Title</span>
+                                    <span itemprop="category">@Model.Artwork.category.Current().Name</span>
+                                    @SearchRes.by
+                                    <span itemprop="creator">@Model.Artwork.user.FirstName @Model.Artwork.user.LastName</span>
+                                }
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns breadcrumbs" style="@rtlstl">
+                            @if (IsRighToLeft)
+                            {
+                                @fullName <a style="float:right !important" href="/@CultureHelper.GetCurrentCulture()/search/@Model.Artwork.categoryId/0/0/0/0">@Model.Artwork.category.Current().Name</a><a style="float:right !important" href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.Artwork.user_id">@Model.Artwork.user.FirstName @Model.Artwork.user.LastName</a>
+                            }
+                            else
+                            {
+                                <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.Artwork.categoryId/0/0/0/0">@Model.Artwork.category.Current().Name</a>  <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.Artwork.user_id">@Model.Artwork.user.FirstName @Model.Artwork.user.LastName</a> @fullName
+                            }
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="row art-detail-body" id="bodmain">
+                <div class="small-12 large-8 columns pr">
+                    <ul class="small-12 large-8 columns art-detail-image" data-orbit
+                        data-options="animation:fade;
+                      pause_on_hover:false;
+                      next_on_click:false;
+                      animation_speed:0;
+                      navigation_arrows:false;
+                      bullets:false;
+                      slide_number:false;
+                      swipe:true;
+                      timer:false;
+                      variable_height:true;">
+                        <li id="theArtwork" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject" class="selector-item" data-orbit-slide="slide-1">
+                            <img src="@Model.Artwork.photo.Path" id="mainmage" itemprop="image">
+                            <div class="art-image-actions">
+                                @if (Model.Artwork.category.Id != 6)
+                                {
+                                    <a class="view-in-a-room btn art-image-actions__button" onclick="view_in_room()" title="@ShareRes.View_in_a_Room">
+                                        <i id="viewroombtnicon" class="icn-view-in-a-room"></i>
+                                        <span id="viewroombtntxt">@ShareRes.View_in_a_Room</span>
+                                    </a>
+                                }
+
+                                <a class="fullscreen btn art-image-actions__button" rel="nofollow" href="@Model.Artwork.photo.Path" title="@ShareRes.View_Fullscreen">
+                                    <i class="fa fa-expand"></i>
+                                    <span>@ShareRes.View_Fullscreen</span>
+                                </a>
+
+                                @*<a onclick="addfavsingle(this,@Model.Id)" class="sa-add-to-favorites btn art-image-actions__button" title="@ShareRes.Add_to_Favorites">
+                                        <i class="fa fa-heart"></i>
+                                        <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>
+                                    </a>*@
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- /share module -->
+                <div class="small-12 large-4 columns art-detail-description" style="background: rgba(0, 0, 0, 0.51);color:white;">
+
+                    @if (Model.Artwork.IsPrintAvaibled)
+                    {
+                        <div id="productTabs" class="row tab-two">
+                            <div id="orginalTabTitle" class="small-6 columns active">
+                                <a onclick="changetab(0);" class="tab-original" title="Original">@SearchRes.Orginal</a>
+                            </div>
+                            <div id="printTabTitle" class="small-6 columns">
+                                <a onclick="changetab(1);" class="tab-prints" title="Prints">@SearchRes.Prints</a>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="small-12 medium-6 large-12 columns art-meta" style="text-align:center">
+                            @{
+                                var currentPrice = Model.Bids.Count > 0 ? Model.Bids.FirstOrDefault().CurrentPrice : 0;
+                            }
+
+                            <h3 itemprop="name" class="title">Current Price: @currentPrice $</h3>
+
+                            <table style="width: 95%;" id="bidHistory">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Bid Amount</th>
+                                        <th>Bid Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Bids.OrderByDescending(b => b.Timestamp).Take(10))
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.User.ApplicationUserDetail.Email)</td>
+                                            <td>PHP @Html.DisplayFor(modelItem => item.Amount).00</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Timestamp)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div id="original" class="row art-detail-original">
+
+                        <div class="small-12 medium-6 large-12 columns">
+                            @if (Model.Artwork.ISOrginalForSale || Model.Artwork.Status != ProductStatus.NotForSale)
+                            {
+                                <div style="padding-bottom:30px;width:100%" class="art-detail-ribbon">
+                                    @if (Model.Artwork.avaible <= 0 || Model.Artwork.Status == ProductStatus.Sold)
+                                    {
+                                        <span style="@circleSize" class="sold">Sold</span>
+                                        <div class="">
+                                            <p class="mt0" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                                This artwork is sold (<span itemprop="price">$@Model.Artwork.Price</span>)
+                                            </p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="clearfix">
+                                            
+                                                <div class="price" style="margin-top:5px" id="clockdiv">
+                                                    <span class="days"></span> :
+                                                    <span class="hours"></span> :
+                                                    <span class="minutes"></span> :
+                                                    <span class="seconds"></span> 
+                                                </div>
+                                            
+
+                                            @if (Model.EndTimestamp.Subtract(DateTime.Now).Seconds > 0)
+                                            {
+                                                using (Html.BeginForm())
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.ValidationSummary(true)
+                                                    <input id="amount" name="amount" hidden type="text" placeholder="" style="display: none;" value="@Model.BidStep">
+
+                                                    <button type="submit" class="button" style="@top">Bid (@Model.BidStep $)</button>
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="clearfix">&nbsp;</div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div id="prints" class="row art-detail-prints hidden">
+                        <div class="small-12 medium-6 large-12 columns">
+
+                            <div class="buy-prints">
+                                <h4 style="@rtldirection">
+                                    @SearchRes.Product_print_header
+                                </h4>
+                                <div style="@rtlstl">
+                                    <h5 style="@rtlstl">1. @SearchRes.Select_material</h5>
+                                    <select id="selectMaterial" class="print-options" style="background:white">
+                                        <option value="">Choose from List</option>
+                                        @foreach (var item in ArtShop.Util.CashManager.Instance.PrintMaterial)
+                                        {
+                                            <option value="@item.Id" data-size='@item.toJson()'>@item.Current().title</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="photo-print hidden">
+                                </div>
+                                <div class="rag-print hidden">
+                                    <div>
+                                        <h5 style="@rtlstl">2. @SearchRes.Select_size</h5>
+                                        <select id="rag-selectSize" style="background:white" class="print-options product-select">
+                                            <option value="" data-width="" data-height="">Choose from List</option>
+                                            @*
+                                                <option value="1" data-price="" data-width="14" data-height="21" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>14 x 21</option>
+                                                <option value="2" data-price="" data-width="16" data-height="24" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>16 x 24</option>
+                                                <option value="3" data-price="" data-width="20" data-height="30" data-frames='[{"color":"#fff","size":"1","val":"1","desc":"white"},{"color":"#333","size":"1","val":"1","desc":"black"}]'>20 x 30</option>*@
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="canvas-print hidden">
+                                </div>
+                                <div class="no-frame hidden">
+                                    <div class="selected-frame pull-left">
+                                        <i class="icon-frame"></i> No frame available for selected size.
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="select-frame hidden" style="@rtlstl">
+                                    <h5 style="@rtlstl">3. @SearchRes.Add_frame</h5>
+                                    <select id="selectFrame" class="print-options" style="background:white">
+                                        <option value="">Choose from List</option>
+                                    </select>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="art-detail__value-props">
+
+                                    <div style="@rtldirection">
+                                        <i class="fa fa-check" aria-hidden="true"></i> @SearchRes.Money_back
+                                        <a href="#" data-color="blue" class="so-more-tip"
+                                           onclick="window.open($(this).attr('href'), '_blank');" rel="nofollow"><i class="fa fa-info-circle"></i></a>
+                                        <span style="display:none;">
+                                            <span class="float-left-margin">
+                                                @*<img src="../../../../../d3t95n9c6zzriw.cloudfront.net/common/7-day-money-back.png" width="75" nopin="nopin">*@
+                                            </span>
+                                            <span>
+                                                We offer a 7-day money-back guarantee on all works purchased through Artiscovery, except for limited
+                                                editions printed specially for you. Framed prints cannot be refunded nor&nbsp;exchanged.
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div itemprop="offers" style="width:inherit;margin:0px -20px" class="art-detail-ribbon">
+                                    <div class="clearfix">
+                                        <span class="price" itemprop="price">
+                                            <span class="so-subtotal-price">
+                                                -
+                                            </span>
+                                        </span>
+                                        <a class="so-art-buy btn btn-success pull-right disabled" data-type="" style="color: #fff;">@SearchRes.Add_to_Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="view-room-fav-stats">
+                            <div class="art-detail-stats">
+                                <ul class="inline-list">
+                                    <li>
+                                        @Model.Artwork.ViewCount<br>
+                                        <span>Views</span>
+                                    </li>
+                                    <li>
+                                        <div id="favoriteCount">@Model.StartingPrice $</div>
+                                        <span>Starting Price</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <section itemprop="description" class="description">
+                <div class="row">
+                    <div class="small-12 columns">
+                        <h3 style="@rtldirection;@marginBottom" class="section-title">@SearchRes.Art_description</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <p style="@rtldirection">
+                            <a target="_blank" href="/@CultureHelper.GetCurrentCulture()/search/@Model.Artwork.category.Id/0/0/0/0">@Model.Artwork.category.Current().Name:</a>
+                            <span>
+                                @{bool first = true; int count = 0; }
+                                @foreach (var item in Model.Artwork.Mediums)
+                                {
+                                    count++;
+                                    if (!first)
+                                    {
+                                        if (count == Model.Artwork.Mediums.Count)
+                                        {
+                                            <span>@SearchRes.And</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@SearchRes.Comma</span>
+                                        }
+                                    }
+
+                                    first = false;
+                                    <a target="_blank" href="/@CultureHelper.GetCurrentCulture()/search?category=0&style=0&subject=0&medium=@item.Id&price=0">@item.Current().Name</a>
+                                }
+                            </span>
+                            <span>@SearchRes.On</span>
+                            <span>
+                                @{first = true; count = 0;}
+
+                                @foreach (var item in Model.Artwork.Materials)
+                                {
+                                    count++;
+                                    if (!first)
+                                    {
+                                        if (count == Model.Artwork.Materials.Count)
+                                        {
+                                            <span>@SearchRes.And</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@SearchRes.Comma</span>
+                                        }
+                                    }
+                                    first = false;
+
+                                    @item.Current().Name
+                                }
+                            </span>.
+                        </p>
+                        <p style="@rtldirection">
+                            @Model.Artwork.Description
+                        </p>
+                        <p style="@rtldirection">
+                            @SearchRes.Keywords: @Model.Artwork.Keywords
+                        </p>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </article>
+
+    <div class="clearfix"></div>
+</div>
+
+<div id="mframe" hidden style="box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 3px; position: absolute; z-index: 1;"></div>
+
+@Scripts.Render("~/bundles/singleproduct")
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            view_in_room();
+        });
+
+         function getTimeRemaining(endtime) {
+            var t = Date.parse(endtime) - Date.parse(new Date());
+            var seconds = Math.floor((t / 1000) % 60);
+            var minutes = Math.floor((t / 1000 / 60) % 60);
+            var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            return {
+                'total': t,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+            };
+        }
+
+        function initializeClock(id, endtime) {
+            var clock = document.getElementById(id);
+            var daysSpan = clock.querySelector('.days');
+            var hoursSpan = clock.querySelector('.hours');
+            var minutesSpan = clock.querySelector('.minutes');
+            var secondsSpan = clock.querySelector('.seconds');
+
+            function updateClock() {
+                var t = getTimeRemaining(endtime);
+
+                daysSpan.innerHTML = t.days;
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                    alert("Auction has ended! Please refresh the page.");
+                }
+            }
+
+            updateClock();
+            var timeinterval = setInterval(updateClock, 1000);
+        }
+
+        var deadline = @Html.Raw(Json.Encode(Model.EndTimestamp.ToString()))
+        initializeClock('clockdiv', deadline);
+
+    </script>
+    <script>
+        function remove() {
+            var r = confirm("are you sure to delete ?");
+            if (r == true) {
+                document.location.href = '/@CultureHelper.GetCurrentCulture()/Products/remove/@Model.Artwork.Id';
+            }
+        }
+    </script>
+
+    <script>
+        function addfavsingle(obj, id) {
+            var heart = '<i class="fa fa-heart"></i> <span style="@favFontSize">@ShareRes.Add_to_Favorites</span>';
+            var hearted = '<i class="fa fa-heart is-favorite"></i> <span style="@favFontSize">@ShareRes.Remove_from_favorites</span>';
+            var loadingspin = ' <i class="fa fa-spinner fa-spin"></i>';
+            $(obj).html(loadingspin);
+            $(obj).removeClass('is-favorite');
+            $.ajax({
+                type: 'Get',
+                url: '/@CultureHelper.GetCurrentCulture()/Products/AddOrRemoveFavorit/' + id,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.IsAuthenticated == false) {
+                        location.href = '/@CultureHelper.GetCurrentCulture()/account/login';
+                    } else {
+                        if (data.isInMyFavList) {
+                            $(obj).html(hearted);
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Added to your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        } else {
+                            $(obj).html(heart);
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Item Removed from your Favorit',
+                                icon: 'success',
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                hideAfter: 7000
+                            })
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}

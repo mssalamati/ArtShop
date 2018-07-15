@@ -51,7 +51,7 @@ namespace AdminPanel.Controllers
             newmodel.Translations = new List<AuctionInfoTranslation>();
             foreach (var item in model.Translations)
                 newmodel.Translations.Add(new AuctionInfoTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
-
+            newmodel.Title = newmodel.Translations.FirstOrDefault().Name;
             db.Auctions.Add(newmodel);
 
             try
@@ -118,10 +118,8 @@ namespace AdminPanel.Controllers
             newmodel.Translations = new List<ListingTranslation>();
             foreach (var item in model.Translations)
                 newmodel.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
-
-            newmodel.Artwork = db.Products.FirstOrDefault(x => x.Id == model.ArtworkId);
-
-
+            newmodel.ArtworkId = model.ArtworkId;
+            newmodel.Title = newmodel.Translations.FirstOrDefault().Name;
             db.Listings.Add(newmodel);
 
             try
