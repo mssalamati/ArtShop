@@ -519,4 +519,16 @@ For questions or additional information, please feel free to contact us at (+98)
   <data name="Art_print" xml:space="preserve">
     <value>Art Print</value>
   </data>
+  <data name="Bid" xml:space="preserve">
+    <value>Bid</value>
+  </data>
+  <data name="Bids" xml:space="preserve">
+    <value>Bids</value>
+  </data>
+  <data name="Current_Price" xml:space="preserve">
+    <value>Current Price</value>
+  </data>
+  <data name="Starting_price" xml:space="preserve">
+    <value>Starting Price</value>
+  </data>
 </root>

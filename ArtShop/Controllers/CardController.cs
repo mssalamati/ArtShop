@@ -133,14 +133,14 @@ namespace ArtShop.Controllers
                 System.Net.ServicePointManager.Expect100Continue = false;
                 ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient zp = new ZPServiceReference.PaymentGatewayImplementationServicePortTypeClient();
                 string Authority;
-                int Status = zp.PaymentRequest("test", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/" + CultureHelper.GetCurrentCulture() + "/card/Verify", out Authority);
+                int Status = zp.PaymentRequest("d0e193da-75d0-11e7-b744-000c295eb8fc", (int)(orderTotal * setting.IRRialRate), profile.FirstName + " " + profile.LastName, user.Email, user.PhoneNumber, "http://artiscovery.com/" + CultureHelper.GetCurrentCulture() + "/card/Verify", out Authority);
                 long longAuth = 0;
                 long.TryParse(Authority, out longAuth);
                 o.TransactionDetail.Number = longAuth.ToString();
                 db.SaveChanges();
                 if (Status == 100)
                 {
-                    Response.RedirectPermanent("https://sandbox.zarinpal.com/pg/StartPay/" + Authority);
+                    Response.RedirectPermanent("https://zarinpal.com/pg/StartPay/" + Authority);
                     return View();
                 }
                 else

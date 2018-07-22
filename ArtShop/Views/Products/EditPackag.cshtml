@@ -47,7 +47,7 @@ if (p == x)
                             {
                                 @Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })
                             }
-                            
+
                             @*@Html.Partial("_Menu", new EditProductMenuViewModel() { Photo = Model.photo.Path, menu = "Packaging", id = Model.Id, Status = Model.Status })*@
                             <div class="edit-page__content pane pane--inline pane--content pane--centered">
                                 <div class="edit-page__content pane pane--inline pane--content pane--centered">
@@ -112,14 +112,7 @@ if (p == x)
                                                     </div>
                                                 </div>
                                                 <div class="form-group animate-group-0-3">
-                                                    @{ 
-                                                        if (Model.framed)
-                                                        {
-                                                            <script>
-                                                                change_framedBtn(1);
-                                                            </script>
-                                                        }
-                                                    }
+
                                                     <h3>@UploadRes.step8_ask1</h3>
                                                     <div class="input-container">
                                                         <div class="button-radio">
@@ -160,15 +153,15 @@ if (p == x)
                                                     </div>
                                                 </div>
                                                 @*<div class="form-group animate-group-0-5">
-                                                    <h3>@UploadRes.step8_ask2</h3>
-                                                    <div class="button-radio">
-                                                        <div class="button-radio__button-container">
-                                                            <input id="multipanel" type="hidden" name="multiPaneled" value="true" />
-                                                            <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
-                                                            <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
+                                                        <h3>@UploadRes.step8_ask2</h3>
+                                                        <div class="button-radio">
+                                                            <div class="button-radio__button-container">
+                                                                <input id="multipanel" type="hidden" name="multiPaneled" value="true" />
+                                                                <button id="multipanel_yes" onclick="change_multipanel(1);" class="button-radio__button button" type="button">@UploadRes.Yes</button>
+                                                                <button id="multipanel_no" onclick="change_multipanel(0);" class="button-radio__button button" type="button">@UploadRes.No</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>*@
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -186,8 +179,16 @@ if (p == x)
     </div>
 }
 @section scripts{
+    <script>
+        $(document).ready(function () {
+            if (Model.framed) {
 
+                change_framedBtn(1);
 
+            };
+        });
+        
+    </script>
     <script>
         function change_framedBtn(val) {
             var inp = $('#framed');

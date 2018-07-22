@@ -146,7 +146,7 @@ if (current == selected)
                         </a>
 
                     </div>
-                
+
                     <div class="list-art-meta" style="height:auto; @rtlstl">
                         <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
                             <a href="@Url.Action("Art","Auction", new { id=@item.GenerateSlug() })">@item.Title</a>
@@ -155,21 +155,20 @@ if (current == selected)
                         <small style="@rtlstlForSize" class="art-category clear left"><span>@item.Artwork.Height  H</span> x <span> @item.Artwork.Width  W</span> x <span> @item.Artwork.Depth </span> cm</small>
 
                         <div class="list-author clear left" style="@rtlstl">
-                            <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person">
-                                
-                            </h5>
-                            
-                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                    <!-- internationalization testing -->
-                                    <div itemprop="price">
-                                        $@item.StartingPrice
-                                    </div>
+                            <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person"></h5>
+
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
+                                <div itemprop="price">
+                                    $@item.StartingPrice
                                 </div>
-                            
+                            </div>
+
                             <h5 class="user-location ellipsis clear" itemprop="contentLocation">
-                             
-                                    <span>@item.StartTimestamp.ToShortDateString()</span>
-                             
+
+                                <span>@item.StartTimestamp.ToShortDateString()</span><br />
+                                <span>@item.EndTimestamp.ToShortDateString()</span>
+
                             </h5>
                         </div>
 

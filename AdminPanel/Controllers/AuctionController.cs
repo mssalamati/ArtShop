@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize]
     public class AuctionController : BaseController
     {
         public ActionResult AuctionInfo(int page = 1, string search = "")
@@ -65,6 +66,64 @@ namespace AdminPanel.Controllers
                 ModelState.AddModelError(string.Empty, ex.ToString());
                 return View(model);
             }
+        }
+
+        public ActionResult editAuctionInfo(int id)
+        {
+            var finder = db.Auctions.Find(id);
+
+            ViewBag.language = db.Languages.ToList();
+            AuctionInfo cvm = new AuctionInfo() { Id = finder.Id, StartTimestamp = finder.StartTimestamp, Title = finder.Title, EndTimestamp = finder.EndTimestamp, Active = finder.Active, Translations = new List<AuctionInfoTranslation>() };
+            foreach (var item in finder.Translations)
+                cvm.Translations.Add(new AuctionInfoTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+            return View(cvm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult editAuctionInfo(AuctionInfo model)
+        {
+            var finder = db.Auctions.Find(model.Id);
+
+            var startTime = model.StartTime.Split(':');
+            var endTime = model.EndTime.Split(':');
+            DateTime start = new DateTime(model.StartTimestamp.Year, model.StartTimestamp.Month, model.StartTimestamp.Day, int.Parse(startTime[0]), int.Parse(startTime[1]), 0);
+            DateTime end = new DateTime(model.EndTimestamp.Year, model.EndTimestamp.Month, model.EndTimestamp.Day, int.Parse(endTime[0]), int.Parse(endTime[1]), 0);
+
+            finder.StartTimestamp = start;
+            finder.EndTimestamp = end;
+            finder.Active = model.Active;
+            finder.Title = model.Title;
+
+
+            foreach (var item in model.Translations)
+            {
+                var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
+                if (curr != null)
+                {
+                    curr.Name = item.Name;
+                    curr.Description = item.Description;
+                }
+                else
+                    finder.Translations.Add(new AuctionInfoTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("AuctionInfo");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+                ModelState.AddModelError(string.Empty, ex.ToString());
+            }
+
+            ViewBag.language = db.Languages.ToList();
+            AuctionInfo cvm = new AuctionInfo() { Id = finder.Id, StartTimestamp = finder.StartTimestamp, Title = finder.Title, EndTimestamp = finder.EndTimestamp, Active = finder.Active, Translations = new List<AuctionInfoTranslation>() };
+            foreach (var item in finder.Translations)
+                cvm.Translations.Add(new AuctionInfoTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
+            return View(cvm);
         }
 
         // GET: Auction
@@ -138,31 +197,56 @@ namespace AdminPanel.Controllers
         public ActionResult editAuction(int id)
         {
             var finder = db.Listings.Find(id);
+            ViewBag.Auctions = db.Auctions;
             ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
             ViewBag.language = db.Languages.ToList();
-            Listing cvm = new Listing() { ListingID = finder.ListingID, Active = finder.Active, Translations = new List<ListingTranslation>() };
+            Listing cvm = new Listing() { ListingID = finder.ListingID, StartingPrice = finder.StartingPrice, StartTimestamp = finder.StartTimestamp, EndTimestamp = finder.EndTimestamp, BidStep = finder.BidStep, ArtworkId = finder.ArtworkId, auctionInfoId = finder.auctionInfoId, Title = finder.Title, Active = finder.Active, ShowWinner = finder.ShowWinner, Translations = new List<ListingTranslation>() };
             foreach (var item in finder.Translations)
-                cvm.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name });
+                cvm.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
             return View(cvm);
         }
+
         [HttpPost]
         public ActionResult editAuction(Listing model)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Auctions = db.Auctions;
+                ViewBag.language = db.Languages.ToList();
+                ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+                return View(model);
+            }
+
             var finder = db.Listings.Find(model.ListingID);
+
+            var startTime = model.StartTime.Split(':');
+            var endTime = model.EndTime.Split(':');
+            DateTime start = new DateTime(model.StartTimestamp.Year, model.StartTimestamp.Month, model.StartTimestamp.Day, int.Parse(startTime[0]), int.Parse(startTime[1]), 0);
+            DateTime end = new DateTime(model.EndTimestamp.Year, model.EndTimestamp.Month, model.EndTimestamp.Day, int.Parse(endTime[0]), int.Parse(endTime[1]), 0);
+
+            finder.StartTimestamp = start;
+            finder.EndTimestamp = end;
+            finder.Active = model.Active;
+            finder.Title = model.Title;
+            finder.ShowWinner = model.ShowWinner;
+            finder.ArtworkId = model.ArtworkId;
 
             foreach (var item in model.Translations)
             {
                 var curr = finder.Translations.SingleOrDefault(x => x.languageId == item.languageId);
                 if (curr != null)
+                {
                     curr.Name = item.Name;
+                    curr.Description = item.Description;
+                }
                 else
-                    finder.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name });
+                    finder.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
             }
 
             try
             {
                 db.SaveChanges();
-                return PartialView("_successWindow");
+                return RedirectToAction("Index", new { id = model.auctionInfoId });
             }
             catch (Exception ex)
             {
@@ -171,9 +255,9 @@ namespace AdminPanel.Controllers
             }
 
             ViewBag.language = db.Languages.ToList();
-            Listing cvm = new Listing() { ListingID = finder.ListingID, Active = finder.Active, Translations = new List<ListingTranslation>() };
+            Listing cvm = new Listing() { ListingID = finder.ListingID, Active = finder.Active, ShowWinner = finder.ShowWinner, auctionInfoId = finder.auctionInfoId, StartingPrice = finder.StartingPrice, EndTimestamp = finder.EndTimestamp, ArtworkId = finder.ArtworkId, Title = finder.Title, Translations = new List<ListingTranslation>() };
             foreach (var item in finder.Translations)
-                cvm.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name });
+                cvm.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
             return View(cvm);
         }
         [HttpGet]

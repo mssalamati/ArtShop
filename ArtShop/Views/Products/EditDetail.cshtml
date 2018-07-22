@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title ="Detail | Artiscovery";
+    ViewBag.Title = "Detail | Artiscovery";
 }
 
 @model Product
@@ -38,13 +38,26 @@
                                     {
                                         @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
                                     }
-
+                                    @if (Model.user.AuctionCapability)
+                                    {
+                                        <div class="pane__content__block">
+                                            <h3>Auction</h3>
+                                            <div class="button-radio">
+                                                <div class="button-radio__button-container">
+                                                    @{ var isAvailable = Model.IsAuctionAvailable == true ? "true" : "false"; }
+                                                    <input id="IsAuctionAvailable" type="hidden" name="IsAuctionAvailable" value="@isAvailable" />
+                                                    <button onclick="change_auction(1)" id="auction_yes" class="button-radio__button button button--active" type="button">@UploadRes.Yes</button>
+                                                    <button onclick="change_auction(0)" id="auction_no" class="button-radio__button button" type="button">@UploadRes.No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                     <div class="pane__content__block">
                                         <h1 class="animate-group-0-3">@UploadRes.step3_year_string</h1>
                                         <div class="form-group form-group--block animate-group-0-4">
                                             <div class="title-input">
                                                 <div class="title-input__title-wrapper">
-                                                    <input style="text-align:center"  tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" type="text" name="ArtCreatedYearString" value="@Model.ArtCreatedYearString">
+                                                    <input style="text-align:center" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" type="text" name="ArtCreatedYearString" value="@Model.ArtCreatedYearString">
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +152,23 @@
 
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Content/select2/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var btnyes = $('#auction_yes');
+            var btnno = $('#auction_no');
 
+            var isAuctionAvailable = @Model.IsAuctionAvailable;
+            if (isAuctionAvailable) {
+                btnyes.addClass('button--active');
+                btnno.removeClass('button--active');
+            }
+            else
+            {
+                btnno.addClass('button--active');
+                btnyes.removeClass('button--active');;
+            }
+        });
+    </script>
     <script>
         $(".sMediums").select2({
             tags: [@(Html.Raw(string.Join(",", (ArtShop.Util.CashManager.Instance.Mediums).Select(x =>("'" + x.Value + "'")))))]
@@ -147,6 +176,25 @@
         $(".sStyles").select2({
             tags: [@(Html.Raw(string.Join(",", (ArtShop.Util.CashManager.Instance.Styles).Select(x =>("'" + x.Value + "'")))))]
         });
+
+        function change_auction(val) {
+            var inp = $('#auction');
+
+            var btnyes = $('#auction_yes');
+            var btnno = $('#auction_no');
+            if (val == 1) {
+                inp.val('true');
+                btnyes.addClass('button--active');
+                btnno.removeClass('button--active');
+
+            } else {
+                inp.val('false');
+                btnno.addClass('button--active');
+                btnyes.removeClass('button--active');
+
+            }
+        }
+
     </script>
 
 

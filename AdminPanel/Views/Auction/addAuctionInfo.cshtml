@@ -3,7 +3,11 @@
 @{
     ViewBag.Title = "Add Auction | Artiscovery Management";
 }
-
+<style>
+    table {
+        direction: ltr;
+    }
+</style>
 <div class="page-title">
     <div class="title"> حراجی جدید</div>
     <ol class="breadcrumb no-bg pl0">
@@ -73,12 +77,12 @@
                         <hr />
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input name="EndTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
+                                <input id="EndTimestamp" name="EndTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input name="StartTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
+                                <input id="StartTimestamp" name="StartTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
                             </div>
                         </div>     
                         <div class="col-md-6">
@@ -134,6 +138,9 @@
                 showMeridian: false
             });
             
+            $("#StartTimestamp").datepicker({ startDate: new Date() });
+            $("#EndTimestamp").datepicker({ startDate: new Date() });
+
             $('#r1').click(function () {
                 if ($('#r1').val() == 'true') {
                     $('#r1').val('false');

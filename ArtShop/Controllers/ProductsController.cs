@@ -450,7 +450,15 @@ namespace ArtShop.Controllers
             bool mine = profile.Products.Any(x => x.Id == model.Id);
             if (!mine)
                 return HttpNotFound();
+
             p.categoryId = model.categoryId;
+
+            if (p.IsAuctionAvailable)
+            {
+                p.Status = ProductStatus.NotForSale;
+            }
+
+            p.IsAuctionAvailable = model.IsAuctionAvailable;
             p.subjectId = model.subjectId;
             p.ArtCreatedYearString = model.ArtCreatedYearString;
             p.Mediums.Clear();

@@ -44,7 +44,7 @@
                                                 </select>*@
                                             <input step="@rtlstl" tabindex="-1" class="artwork-status__year z-index-fix rw-combobox rw-widget" type="text" name="createYearString" value="">
                                         </div>
-                                        <div class="form-group animate-group-0-3">
+                                        <div id="isOrginalDiv" class="form-group animate-group-0-3">
                                             <h3>@UploadRes.step3_forsale_string</h3>
                                             <div class="button-radio">
                                                 <div class="button-radio__button-container">
@@ -178,16 +178,29 @@
     }
     function change_auction(val) {
         var inp = $('#auction');
+        var inpIsOrginal = $('#isOrginal');
+        var orginalDiv = $('#isOrginalDiv');
+
+        var btnyesOrginal = $('#isOrginal_yes');
+        var btnnoOrginal = $('#isOrginal_no');
+
         var btnyes = $('#auction_yes');
         var btnno = $('#auction_no');
         if (val == 1) {
             inp.val('true');
             btnyes.addClass('button--active');
             btnno.removeClass('button--active');
-        } else {
-            inp.val('false');
+            orginalDiv.hide();
+            inpIsOrginal.val('false');
             btnno.addClass('button--active');
             btnyes.removeClass('button--active');
+        } else {
+            inp.val('false');
+            orginalDiv.show();
+            btnno.addClass('button--active');
+            btnyes.removeClass('button--active');
+            btnnoOrginal.addClass('button--active');
+            btnyesOrginal.removeClass('button--active');
         }
     }
 </script>

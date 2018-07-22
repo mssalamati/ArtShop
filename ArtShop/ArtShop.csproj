@@ -343,6 +343,7 @@
     <Content Include="Content\Images\660x300.jpg" />
     <Content Include="Content\Images\aa-hero-6-2.jpg" />
     <Content Include="Content\Images\artwork_lighting_diagram.jpg" />
+    <Content Include="Content\Images\auction.svg" />
     <Content Include="Content\Images\caret-left.svg" />
     <Content Include="Content\Images\caret-right.svg" />
     <Content Include="Content\Images\iran.svg" />
@@ -524,7 +525,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Service References\ZPServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ZPServiceReference\configuration.svcinfo" />
-    <None Include="Service References\ZPServiceReference\PaymentGatewayImplementationService1.wsdl" />
+    <None Include="Service References\ZPServiceReference\PaymentGatewayImplementationService.wsdl" />
     <None Include="Service References\ZPServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

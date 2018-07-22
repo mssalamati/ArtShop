@@ -520,4 +520,16 @@
   <data name="View_more" xml:space="preserve">
     <value>بیشتر</value>
   </data>
+  <data name="Bid" xml:space="preserve">
+    <value>پیشنهاد</value>
+  </data>
+  <data name="Bids" xml:space="preserve">
+    <value>پیشنهادها</value>
+  </data>
+  <data name="Current_Price" xml:space="preserve">
+    <value>قیمت فعلی</value>
+  </data>
+  <data name="Starting_price" xml:space="preserve">
+    <value>قیمت اولیه</value>
+  </data>
 </root>

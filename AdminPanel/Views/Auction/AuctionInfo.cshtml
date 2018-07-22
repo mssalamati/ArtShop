@@ -98,7 +98,7 @@
                               
                             </th>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="showEdit(@item.Id)">ویرایش</button>
+                                <a class="btn btn-primary btn-sm" href="/auction/editAuctionInfo?id=@item.Id">ویرایش</a>
                                 <a class="btn btn-warning btn-sm" href="/auction/Index?id=@item.Id">آثار</a>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/@c_cntroller/@c_delet/@item.Id">آیا مطمئن هستید؟</a>

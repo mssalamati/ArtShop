@@ -185,6 +185,9 @@
                 showMeridian: false
             });
 
+            $("#StartTimestamp").datepicker({ startDate: new Date() });
+            $("#EndTimestamp").datepicker({ startDate: new Date() });
+
             $(".image_picker_image").css({ 'width': "135px", 'height': '135px', });
 
             $('#r1').click(function () {

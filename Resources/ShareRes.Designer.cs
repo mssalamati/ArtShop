@@ -214,6 +214,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bid.
+        /// </summary>
+        public static string Bid {
+            get {
+                return ResourceManager.GetString("Bid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bids.
+        /// </summary>
+        public static string Bids {
+            get {
+                return ResourceManager.GetString("Bids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blog.
         /// </summary>
         public static string Blog {
@@ -318,6 +336,15 @@ namespace Resources {
         public static string Created_in {
             get {
                 return ResourceManager.GetString("Created_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Price.
+        /// </summary>
+        public static string Current_Price {
+            get {
+                return ResourceManager.GetString("Current_Price", resourceCulture);
             }
         }
         
@@ -1011,6 +1038,15 @@ namespace Resources {
         public static string SignIn {
             get {
                 return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting Price.
+        /// </summary>
+        public static string Starting_price {
+            get {
+                return ResourceManager.GetString("Starting_price", resourceCulture);
             }
         }
         

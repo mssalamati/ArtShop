@@ -199,7 +199,7 @@ if (current == selected)
                             if (art == null)
                             {
                                 <div class="small-4 columns">
-                                    <a href="/@CultureHelper.GetCurrentCulture()/" title="">
+                                    <a href="@Url.Action("AuctionArts","Auction", new { id=@item.GenerateSlug() })" title="">
                                         <img src="//d3t95n9c6zzriw.cloudfront.net/common/placeholder-square-93.jpg" alt="" nopin="nopin">
                                     </a>
                                 </div>
@@ -207,7 +207,7 @@ if (current == selected)
                             else
                             {
                                 <div class="small-4 columns">
-                                    <a href="/@CultureHelper.GetCurrentCulture()/" title="">
+                                    <a href="@Url.Action("AuctionArts","Auction", new { id=@item.GenerateSlug() })" title="">
                                         <img src="@art.Artwork.Sqphoto.Path" alt="test collection item" nopin="nopin">
                                     </a>
                                 </div>
@@ -217,7 +217,7 @@ if (current == selected)
 
                     <div class="row collection-meta">
                         <h4 class="collection-title">
-                            <a href="/@CultureHelper.GetCurrentCulture()/">
+                            <a href="@Url.Action("AuctionArts","Auction", new { id=@item.GenerateSlug() })">
                                 <span class="ellipsis">@item.Current().Name</span>
                             </a>
                         </h4>
@@ -228,6 +228,8 @@ if (current == selected)
                             {
                                 <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@item.user_id">@item.user.FirstName @item.user.LastName </a>
                             }*@
+                        <span>@item.StartTimestamp</span><br />
+                        <span>@item.EndTimestamp</span>
                         <div class="clearfix"></div>
                     </div>
                 </li>
