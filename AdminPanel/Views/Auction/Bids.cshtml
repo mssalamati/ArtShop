@@ -1,27 +1,27 @@
-﻿@model ICollection<AuctionInfo>
+﻿@model ICollection<Bid>
 
 
 @{
-    ViewBag.Title = "Auctions | Artiscovery";
+    ViewBag.Title = "Bids | Artiscovery";
 
-    var c_action = "Index";
+    var c_action = "Bids";
     var c_cntroller = "Auction";
     var c_add = "addAuction";
     var c_edit = "editAuction";
-    var c_delet = "deleteAuctionInfo";
-    var noentity = "هیچ حراجی ای  ثبت نشده";
-    var searchbox = "Auctions...";
-    var addbtn = "Auction";
+    var c_delet = "deleteAuction";
+    var noentity = "No Bids";
+    var searchbox = "Email";
+    var addbtn = "اثر";
 }
 
 <div class="page-title">
-    <div class="title"> Auctions</div>
+    <div class="title"> Bids</div>
     <ol class="breadcrumb no-bg pl0">
         <li>
             <a href="javascript:;">Artiscovery</a>
         </li>
         <li>
-            <a href="javascript:;">Auctions</a>
+            <a href="javascript:;">Bids</a>
         </li>
     </ol>
 </div>
@@ -40,7 +40,6 @@
                 <input type="search" placeholder="@searchbox" name="search" value="@ViewBag.search" class="form-control bl0">
             </div>
         </form>
-        <a href="/auction/addAuctionInfo" class="pull-left btn btn-default">ثبت @addbtn جدید</a>
     </div>
     <div class="card-block p-a-0">
         <div class="table-responsive">
@@ -50,60 +49,41 @@
                     <tr>
                         <th></th>
                         <th>
+                            Email
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
                             Name
                         </th>
                         <th>
-
+                            Time
                         </th>
                         <th>
-
-                        </th>
-                        <th>
-                            Active
-                        </th>
-                        <th>
-                            
+                            Amount
                         </th>
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <th><i class="fa fa-eye"></i></th>
+                    <tr>
+                        <th><i class="fa fa-eye"></i></th>
+                        <th>@item.User.ApplicationUserDetail.Email</th>
+                        @{ var fullName = item.User.FirstName + " " + item.User.LastName;}
+                        <th></th>
+                        <th>@fullName </th>
+                        <th>
+                            @item.Timestamp
+                        </th>
+                        <th>
+                            @item.Amount $
+                        </th>
+                        <th>
 
-                            @if (item.Translations.Count() == 0)
-                            {
-                                <td colspan="3"><span>No Name</span></td>
-                            }
-                            else
-                            {
-                                foreach (var trans in item.Translations.Take(3))
-                                {
-                                    <td>
-                                        <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Name   <span>&nbsp;</span>
-                                    </td>
-                                }
-                                for (int i = 0; i < 3 - item.Translations.Take(3).Count(); i++)
-                                {
-                                    <td></td>
-                                }
-                            }
-                            <th>
-                                @if (item.Active)
-                                {
-                                    <i class="fa fa-check"></i>
-                                }
-                            </th>
-                            <th>
-                              
-                            </th>
-                            <td>
-                                <a class="btn btn-primary btn-sm" href="/auction/editAuctionInfo?id=@item.Id">ویرایش</a>
-                                <a class="btn btn-warning btn-sm" href="/auction/Index?id=@item.Id">آثار</a>
-                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
-                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/@c_cntroller/@c_delet/@item.Id">آیا مطمئن هستید؟</a>
-                            </td>
-                        </tr>
+                        </th>
+
+                    </tr>
                     }
                 </table>
             }
@@ -122,7 +102,7 @@
     @if (ViewBag.page != 1)
     {
         <li>
-            <a href="@Url.Action(c_action, new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+            <a href="@Url.Action(c_action, new { id =ViewBag.Id,page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
         </li>
     }
 
@@ -131,13 +111,13 @@
         if (ViewBag.page == i)
         {
             <li class="active">
-                <a class="" href="@Url.Action(c_action,new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                <a class="" href="@Url.Action(c_action,new {id =ViewBag.Id, page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
             </li>
         }
         else
         {
             <li>
-                <a href="@Url.Action(c_action,new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+                <a href="@Url.Action(c_action,new {id =ViewBag.Id, page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
             </li>
         }
 
@@ -145,7 +125,7 @@
     @if (ViewBag.page != ViewBag.maxpage)
     {
         <li>
-            <a href="@Url.Action(c_action,new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+            <a href="@Url.Action(c_action,new {id =ViewBag.Id, page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
         </li>
     }
 
@@ -189,7 +169,6 @@
         }
     </script>
 }
-
 
 
 

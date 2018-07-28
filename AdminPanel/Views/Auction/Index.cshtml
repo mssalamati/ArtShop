@@ -99,6 +99,7 @@
                                 
                             </th>
                             <td>
+                                <a class="btn btn-warning btn-sm" href="/auction/bids?id=@item.ListingID">Bids</a>
                                 <a class="btn btn-primary btn-sm" href="/auction/editauction?id=@item.ListingID">ویرایش</a>
                                 <button class="btn btn-danger btn-sm" onclick="$('#c_@item.ListingID').show('fast');$(this).hide('fast');">حذف</button>
                                 <a id="c_@item.ListingID" class="btn btn-danger btn-sm" style="display:none" href="/@c_cntroller/@c_delet/@item.ListingID">آیا مطمئن هستید؟</a>

@@ -12,10 +12,9 @@ namespace AdminPanel.Controllers
         public ActionResult Index(int page = 1)
         {
             int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
-            var data = db.Orders
-                 .OrderByDescending(x => x.BuyDate)
+            var data = db.Orders.OrderByDescending(x => x.BuyDate)
                  .Skip(skip).Take(take);
-            count = data.Count();
+            count = db.Orders.Count();
             int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
             ViewBag.page = page; ViewBag.maxpage = maxpage;
             return View(data.ToList());

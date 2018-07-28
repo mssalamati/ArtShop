@@ -5368,6 +5368,7 @@
     <Content Include="Views\Auction\AuctionInfo.cshtml" />
     <Content Include="Views\Auction\addAuctionInfo.cshtml" />
     <Content Include="Views\Auction\editAuctionInfo.cshtml" />
+    <Content Include="Views\Auction\Bids.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

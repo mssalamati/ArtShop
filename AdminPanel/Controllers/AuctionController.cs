@@ -126,6 +126,17 @@ namespace AdminPanel.Controllers
             return View(cvm);
         }
 
+        [HttpGet]
+        public ActionResult DeleteAuctionInfo(int id)
+        {
+            var finder = db.Auctions.Find(id);
+            finder.Translations.Clear();
+            db.Listings.RemoveRange(finder.Listings);
+            db.Auctions.Remove(finder);
+            db.SaveChanges();
+            return RedirectToAction("AuctionInfo");
+        }
+
         // GET: Auction
         public ActionResult Index(int id, int page = 1, string search = "")
         {
@@ -146,7 +157,7 @@ namespace AdminPanel.Controllers
         public ActionResult addAuction(int id)
         {
             ViewBag.Auctions = db.Auctions.ToList();
-            ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+            ViewBag.Artworks = db.Products.Where(a=>a.IsAuctionAvailable).OrderByDescending(x => x.CreateDate);
             ViewBag.language = db.Languages.ToList();
 
             var model = new Listing { auctionInfoId = id };
@@ -162,7 +173,7 @@ namespace AdminPanel.Controllers
             {
                 ViewBag.Auctions = db.Auctions;
                 ViewBag.language = db.Languages.ToList();
-                ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+                ViewBag.Artworks = db.Products.Where(a => a.IsAuctionAvailable).OrderByDescending(x => x.CreateDate);
                 return View(model);
             }
 
@@ -173,7 +184,7 @@ namespace AdminPanel.Controllers
             DateTime start = new DateTime(model.StartTimestamp.Year, model.StartTimestamp.Month, model.StartTimestamp.Day, int.Parse(startTime[0]), int.Parse(startTime[1]), 0);
             DateTime end = new DateTime(model.EndTimestamp.Year, model.EndTimestamp.Month, model.EndTimestamp.Day, int.Parse(endTime[0]), int.Parse(endTime[1]), 0);
 
-            Listing newmodel = new Listing() { Active = model.Active, StartTimestamp = start, ShowWinner = model.ShowWinner, StartingPrice = model.StartingPrice, EndTimestamp = end, BidStep = model.BidStep, auctionInfoId = model.auctionInfoId };
+            Listing newmodel = new Listing() {Title = model.Title, Active = model.Active, StartTimestamp = start, ShowWinner = model.ShowWinner, StartingPrice = model.StartingPrice, EndTimestamp = end, BidStep = model.BidStep, auctionInfoId = model.auctionInfoId };
             newmodel.Translations = new List<ListingTranslation>();
             foreach (var item in model.Translations)
                 newmodel.Translations.Add(new ListingTranslation() { languageId = item.languageId, Name = item.Name, Description = item.Description });
@@ -198,7 +209,7 @@ namespace AdminPanel.Controllers
         {
             var finder = db.Listings.Find(id);
             ViewBag.Auctions = db.Auctions;
-            ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+            ViewBag.Artworks = db.Products.Where(a => a.IsAuctionAvailable).OrderByDescending(x => x.CreateDate);
             ViewBag.language = db.Languages.ToList();
             Listing cvm = new Listing() { ListingID = finder.ListingID, StartingPrice = finder.StartingPrice, StartTimestamp = finder.StartTimestamp, EndTimestamp = finder.EndTimestamp, BidStep = finder.BidStep, ArtworkId = finder.ArtworkId, auctionInfoId = finder.auctionInfoId, Title = finder.Title, Active = finder.Active, ShowWinner = finder.ShowWinner, Translations = new List<ListingTranslation>() };
             foreach (var item in finder.Translations)
@@ -213,7 +224,7 @@ namespace AdminPanel.Controllers
             {
                 ViewBag.Auctions = db.Auctions;
                 ViewBag.language = db.Languages.ToList();
-                ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+                ViewBag.Artworks = db.Products.Where(a => a.IsAuctionAvailable).OrderByDescending(x => x.CreateDate);
                 return View(model);
             }
 
@@ -250,7 +261,7 @@ namespace AdminPanel.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Artworks = db.Products.OrderByDescending(x => x.CreateDate).Take(10);
+                ViewBag.Artworks = db.Products.Where(a => a.IsAuctionAvailable).OrderByDescending(x => x.CreateDate);
                 ModelState.AddModelError(string.Empty, ex.ToString());
             }
 
@@ -264,9 +275,26 @@ namespace AdminPanel.Controllers
         public ActionResult DeleteAuction(int id)
         {
             var finder = db.Listings.Find(id);
+            finder.Translations.Clear();
+            db.Bids.RemoveRange(finder.Bids);
             db.Listings.Remove(finder);
+
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = finder.auctionInfoId });
+        }
+
+        public ActionResult Bids(int id, int page = 1, string search = "")
+        {
+            int count = 0, pagesize = 15, take = pagesize, skip = (page - 1) * pagesize;
+            ViewBag.Id = id;
+            var data = db.Bids
+                .Where(x => string.IsNullOrEmpty(search) || x.User.ApplicationUserDetail.Email.ToLower().Contains(search.ToLower().Trim())).Where(a => a.ListingID == id);
+            count = data.Count();
+            data = data.OrderBy(x => x.CurrentPrice).Skip(skip).Take(take);
+
+            int maxpage = count % pagesize != 0 ? (count / pagesize) + 1 : (count / pagesize);
+            ViewBag.page = page; ViewBag.maxpage = maxpage; ViewBag.search = search;
+            return View(data.ToList());
         }
 
         public ActionResult ArtworkPartial()

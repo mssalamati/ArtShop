@@ -35,7 +35,7 @@
 
     string userId = string.IsNullOrEmpty(Model.Artwork.artist_id) ? Model.Artwork.user_id : Model.Artwork.artist_id;
 
-    ViewBag.Title = (string.IsNullOrEmpty(Model.Title) ? fullName : Model.Title) + " | " + Model.Artwork.user.FirstName + " " + Model.Artwork.user.LastName;
+    ViewBag.Title = "Auction" + " | " + Model.Artwork.user.FirstName + " " + Model.Artwork.user.LastName;
 }
 
 
@@ -169,7 +169,7 @@
                             </a>
                         </h1>
                     </div>
-                    <div class="row">
+                    @*<div class="row">
                         <div class="small-12 columns breadcrumbs" style="@rtlstl">
                             @if (IsRighToLeft)
                             {
@@ -180,7 +180,7 @@
                                 <a href="/@CultureHelper.GetCurrentCulture()/search/@Model.Artwork.categoryId/0/0/0/0">@Model.Artwork.category.Current().Name</a>  <a href="/@CultureHelper.GetCurrentCulture()/publicprofile?id=@Model.Artwork.user_id">@Model.Artwork.user.FirstName @Model.Artwork.user.LastName</a> @fullName
                             }
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </header>
             <div class="row art-detail-body" id="bodmain">
@@ -272,32 +272,41 @@
                         <div class="small-12 medium-6 large-12 columns">
                             <div style="width:100%" class="art-detail-ribbon">
                                 <div class="clearfix">
-                                    @if (Model.EndTimestamp.Subtract(DateTime.Now).Seconds > 0 || !Model.Active)
+                                    @if (DateTime.Compare(DateTime.Now, Model.StartTimestamp) > 0)
                                     {
-                                        <div class="price" style="margin-top:17px" id="clockdiv">
-                                            <span class="days"></span> :
-                                            <span class="hours"></span> :
-                                            <span class="minutes"></span> :
-                                            <span class="seconds"></span>
-                                        </div>
-
-
-                                        using (Html.BeginForm())
+                                        if (DateTime.Compare(DateTime.Now,Model.EndTimestamp) < 0 && Model.Active)
                                         {
-                                            @Html.AntiForgeryToken()
-                                            @Html.ValidationSummary(true)
+                                            <div class="price" style="margin-top:17px" id="clockdiv">
+                                                <span class="days"></span> :
+                                                <span class="hours"></span> :
+                                                <span class="minutes"></span> :
+                                                <span class="seconds"></span>
+                                            </div>
 
-                                            var amount = Model.BidStep + ViewBag.CurrentPrice;
 
-                                            <input id="amount" name="amount" hidden type="text" placeholder="" style="display: none;" value="@amount">
+                                            using (Html.BeginForm())
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.ValidationSummary(true)
 
-                                            <button type="submit" class="button" style="@top">@ShareRes.Bid -> @Model.BidStep$</button>
+                                                var amount = Model.BidStep + ViewBag.CurrentPrice;
+
+                                                <input id="amount" name="amount" hidden type="text" placeholder="" style="display: none;" value="@amount">
+
+                                                <button type="submit" class="button" style="@top">@ShareRes.Bid -> @Model.BidStep$</button>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="price" style="margin-top:17px" id="">
+                                                Auction is ended!
+                                            </div>
                                         }
                                     }
                                     else
                                     {
                                         <div class="price" style="margin-top:17px" id="">
-                                         This Auction has ended!
+                                            Auction is not begin yet!
                                         </div>
                                     }
                                 </div>

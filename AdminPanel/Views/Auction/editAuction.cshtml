@@ -41,142 +41,148 @@
                     OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
                 }, new { enctype = "multipart/form-data" }))
                 {
-                    <div class="row">
-                        @Html.AntiForgeryToken()
+                <div class="row">
+                    @Html.AntiForgeryToken()
 
-                        @if (!ViewData.ModelState.IsValid)
-                        {
-                            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
-                        }
-                        <input hidden name="auctionInfoId" value="@Model.auctionInfoId" />
-                        <input hidden name="ListingID" value="@Model.ListingID" />
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                    }
+                    <input hidden name="auctionInfoId" value="@Model.auctionInfoId" />
+                    <input hidden name="ListingID" value="@Model.ListingID" />
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Title</label>
+                            <input name="Title" type="text" class="form-control" value="@Model.Title" />
+                        </div>
+                    </div>
 
-                        @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
-                        {
-                            var item = ((List<Language>)ViewBag.language)[i];
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
-                                    <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                    <input name="Translations[@i].Name" value="@Model.Translations.FirstOrDefault(a=>a.languageId == item.Code).Name" type="text" class="form-control" />
-                                </div>
-                            </div>
-                        }
-
-                        <label class="form-label"> توضیحات</label>
-                        <hr />
-
-                        @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
-                        {
-                            var item = ((List<Language>)ViewBag.language)[i];
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
-                                    <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
-                                    <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px">@Model.Translations.FirstOrDefault(a => a.languageId == item.Code).Description</textarea>
-                                </div>
-                            </div>
-                        }
-                        <hr />
+                    @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+                    {
+                        var item = ((List<Language>)ViewBag.language)[i];
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input name="EndTimestamp" type="text" value="@Model.EndTimestamp.ToShortDateString()" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <input name="Translations[@i].Name" value="@Model.Translations.FirstOrDefault(a=>a.languageId == item.Code).Name" type="text" class="form-control" />
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input name="StartTimestamp" type="text" value="@Model.StartTimestamp.ToShortDateString()" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
-                            </div>
-                        </div>
+                    }
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control time-picker" value="@Model.EndTimestamp.ToShortTimeString()" name="EndTime" placeholder="ساعت ‍‍‍‍‍‍‍‍‍‍‍پایان" />
-                                    <span class="input-group-addon add-on">
-                                        <i class="fa fa-clock-o"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control time-picker" value="@Model.StartTimestamp.ToShortTimeString()" name="StartTime" placeholder="ساعت شروع" />
-                                    <span class="input-group-addon add-on">
-                                        <i class="fa fa-clock-o"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input name="BidStep" type="number" value="@Model.BidStep" class="form-control m-b" placeholder="قیمت در هر مرحله">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input name="StartingPrice" type="number" value="@Model.StartingPrice" class="form-control m-b" placeholder="قیمت پایه">
-                            </div>
-                        </div>
+                    <label class="form-label"> توضیحات</label>
+                    <hr />
 
-                        <hr />
+                    @for (int i = 0; i < ((List<Language>)ViewBag.language).Count; i++)
+                    {
+                        var item = ((List<Language>)ViewBag.language)[i];
                         <div class="col-md-6">
                             <div class="form-group">
-                                @{var active = Model.Active == true ? "checked" : ""; }
-                                <div class="cs-checkbox m-b">
-                                    <input type="checkbox" @active name="Active" id="r1" value="@Model.Active">
-                                    <label for="r1">فعال</label>
-                                </div>
+                                <label class="form-label"><img width="20" src='~/Content/Images/@(item.Code + ".svg")' /> @item.Name </label>
+                                <input name="Translations[@i].languageId" value="@item.Code" type="hidden" class="form-control" />
+                                <textarea name="Translations[@i].description" type="text" class="form-control" style="height:90px">@Model.Translations.FirstOrDefault(a => a.languageId == item.Code).Description</textarea>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @{var winner = Model.ShowWinner == true ? "checked" : ""; }
-                                <div class="cs-checkbox m-b">
-                                    <input type="checkbox" @winner name="ShowWinner" id="r2" value="@Model.ShowWinner">
-                                    <label for="r2">برنده نشان داده شود</label>
-                                </div>
-                            </div>
+                    }
+                    <hr />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input name="EndTimestamp" type="text" value="@Model.EndTimestamp.ToShortDateString()" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input name="StartTimestamp" type="text" value="@Model.StartTimestamp.ToShortDateString()" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
+                        </div>
+                    </div>
 
-                            <select name="ArtworkId" class="image-picker masonry show-labels">
-                                @foreach (var item in (IEnumerable<Product>)ViewBag.Artworks)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control time-picker" value="@Model.EndTimestamp.ToShortTimeString()" name="EndTime" placeholder="ساعت ‍‍‍‍‍‍‍‍‍‍‍پایان" />
+                                <span class="input-group-addon add-on">
+                                    <i class="fa fa-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control time-picker" value="@Model.StartTimestamp.ToShortTimeString()" name="StartTime" placeholder="ساعت شروع" />
+                                <span class="input-group-addon add-on">
+                                    <i class="fa fa-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input name="BidStep" type="number" value="@Model.BidStep" class="form-control m-b" placeholder="قیمت در هر مرحله">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input name="StartingPrice" type="number" value="@Model.StartingPrice" class="form-control m-b" placeholder="قیمت پایه">
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @{var active = Model.Active == true ? "checked" : ""; }
+                            <div class="cs-checkbox m-b">
+                                <input type="checkbox" @active name="Active" id="r1" value="@Model.Active">
+                                <label for="r1">فعال</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @{var winner = Model.ShowWinner == true ? "checked" : ""; }
+                            <div class="cs-checkbox m-b">
+                                <input type="checkbox" @winner name="ShowWinner" id="r2" value="@Model.ShowWinner">
+                                <label for="r2">برنده نشان داده شود</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+
+                        <select name="ArtworkId" class="image-picker masonry show-labels">
+                            @foreach (var item in (IEnumerable<Product>)ViewBag.Artworks)
+                            {
+                                if (item.Sqphoto.Path.Contains("artiscovery.com"))
                                 {
-                                    if (item.Sqphoto.Path.Contains("artiscovery.com"))
+                                    if (item.Id == Model.ArtworkId)
                                     {
-                                        if (item.Id == Model.ArtworkId)
-                                        {
-                                            <option data-img-src="@item.Sqphoto.Path" value="@item.Id" selected></option>
-                                        }
-                                        else
-                                        {
-
-                                            <option data-img-src="@item.Sqphoto.Path" value="@item.Id"></option>
-                                        }
+                                        <option data-img-src="@item.Sqphoto.Path" value="@item.Id" selected></option>
                                     }
                                     else
                                     {
-                                        <option data-img-src="http://artiscovery.com/@item.Sqphoto.Path" value="@item.Id"></option>
+
+                                        <option data-img-src="@item.Sqphoto.Path" value="@item.Id"></option>
                                     }
-
                                 }
-                            </select>
+                                else
+                                {
+                                    <option data-img-src="http://artiscovery.com/@item.Sqphoto.Path" value="@item.Id"></option>
+                                }
 
+                            }
+                        </select>
 
-                        </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
-                                <span class="spinner" hidden id="submit_spin" style="padding:5px">
-                                    <i class="fa fa-spinner fa-spin"></i>
-                                </span>&nbsp;  ثبت  &nbsp;
-                            </button>
-
-                        </div>
 
                     </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+                            <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </span>&nbsp;  ثبت  &nbsp;
+                        </button>
+
+                    </div>
+
+                </div>
                                     }
             </div>
         </div>
