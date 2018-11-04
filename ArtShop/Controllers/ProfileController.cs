@@ -18,7 +18,7 @@ namespace ArtShop.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-
+            
             var userProfile = db.UserProfiles.FirstOrDefault(x => x.ApplicationUserDetail.Id == userId);
             ProfileIndexViewModel model = new ProfileIndexViewModel();
             try

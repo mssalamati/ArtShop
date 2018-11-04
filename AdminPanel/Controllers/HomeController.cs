@@ -11,6 +11,7 @@ namespace AdminPanel.Controllers
 {
     public class HomeController : BaseController
     {
+        [Authorize(Roles = "Superadmin,Administrator,Manager")]
         public ActionResult Index()
         {
             ViewBag.product = db.Products.Count();

@@ -8,6 +8,7 @@ namespace AdminPanel.Controllers
 {
     public class languagesController : BaseController
     {
+        [Authorize(Roles = "Superadmin")]
         public ActionResult Index()
         {
             var data = db.Languages;

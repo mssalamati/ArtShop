@@ -10,7 +10,7 @@ using Utilities;
 
 namespace AdminPanel.Controllers
 {
-    [Authorize(Users = "superadmin")]
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class FirstPageSettingsController : Controller
     {
         protected ApplicationDbContext db = new ApplicationDbContext();

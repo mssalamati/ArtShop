@@ -13,6 +13,7 @@ using DataLayer;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator")]
     public class UsersController : BaseController
     {
         public ActionResult Index(int page = 1, string search = "")

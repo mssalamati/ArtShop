@@ -10,6 +10,7 @@ using Utilities;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator")]
     public class CategoriesController : BaseController
     {
         // GET: Categories

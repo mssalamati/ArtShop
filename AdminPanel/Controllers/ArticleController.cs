@@ -12,6 +12,7 @@ using Utilities;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class ArticleController : BaseController
     {
         // GET: Article

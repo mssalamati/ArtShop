@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator")]
     public class CountriesController : BaseController
     {
         public ActionResult Index(int page = 1, string search = "")

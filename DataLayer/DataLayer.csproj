@@ -98,6 +98,7 @@
     <Compile Include="Enitities\Country.cs" />
     <Compile Include="Enitities\FAQRequest.cs" />
     <Compile Include="Enitities\Favorit.cs" />
+    <Compile Include="Enitities\Gallery.cs" />
     <Compile Include="Enitities\Listing.cs" />
     <Compile Include="Enitities\Log.cs" />
     <Compile Include="Enitities\MobileHomePage.cs" />

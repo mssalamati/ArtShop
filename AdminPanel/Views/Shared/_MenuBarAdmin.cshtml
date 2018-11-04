@@ -80,19 +80,21 @@
                 </a>
             </li>
 
-            <li class="menu-accordion">
-                <a href="/Categories">
-                    <i class="fa fa-paperclip"></i>
-                    <span>دسته بندی ها</span>
-                </a>
-            </li>
-
-            <li class="menu-accordion">
-                <a href="/ProductTypes/IndexStyles">
-                    <i class="fa fa-tint"></i>
-                    <span>نوع محصولات</span>
-                </a>
-            </li>
+            @if (User.IsInRole("Administrator") || User.IsInRole("Superadmin"))
+            {
+                <li class="menu-accordion">
+                    <a href="/Categories">
+                        <i class="fa fa-paperclip"></i>
+                        <span>دسته بندی ها</span>
+                    </a>
+                </li>
+                <li class="menu-accordion">
+                    <a href="/ProductTypes/IndexStyles">
+                        <i class="fa fa-tint"></i>
+                        <span>نوع محصولات</span>
+                    </a>
+                </li>
+            }
 
             <li class="menu-accordion">
                 <a href="/Products">
@@ -107,21 +109,24 @@
                     <span> پارامتر ها</span>
                 </a>
             </li>
-
-            <li class="menu-accordion">
-                <a href="/ImageServers">
-                    <i class="fa fa-server"></i>
-                    <span> سرور ها</span>
-                </a>
-            </li>
-
-            <li class="menu-accordion">
-                <a href="/pages/index">
-                    <i class="fa fa-pencil"></i>
-                    <span> صفحات سایت </span>
-                </a>
-            </li>
-
+            @if (User.IsInRole("Superadmin"))
+            {
+                <li class="menu-accordion">
+                    <a href="/ImageServers">
+                        <i class="fa fa-server"></i>
+                        <span> سرور ها</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Superadmin") || User.IsInRole("Administrator"))
+            {
+                <li class="menu-accordion">
+                    <a href="/pages/index">
+                        <i class="fa fa-pencil"></i>
+                        <span> صفحات سایت </span>
+                    </a>
+                </li>
+            }
             <li class="menu-accordion">
                 <a href="/payouts/index">
                     <i class="fa fa-list"></i>
@@ -148,52 +153,56 @@
                     <span> حراجی ها </span>
                 </a>
             </li>
-
-            <li class="menu-accordion">
-                <a href="/MobileHomePage/index">
-                    <i class="fa fa-phone"></i>
-                    <span> اپلیکیشن </span>
-                </a>
-            </li>
-
+            @if (User.IsInRole("Superadmin") || User.IsInRole("Administrator"))
+            {
+                <li class="menu-accordion">
+                    <a href="/MobileHomePage/index">
+                        <i class="fa fa-phone"></i>
+                        <span> اپلیکیشن </span>
+                    </a>
+                </li>
+            }
             <li class="menu-accordion">
                 <a href="/UserVerifications/index">
                     <i class="fa fa-list"></i>
                     <span> تایید کاربران </span>
                 </a>
             </li>
-            <li class="menu-accordion">
-                <a href="#">
-                    <i class="fa fa-support"></i>
-                    <span> پشتیبانی </span>
-                </a>                
-                <ul class="sub-menu">
-                    <li >
-                        <a href="/Article/index">
-                            <span> مقالات </span>
-                        </a>
-                    </li>
-                    <li >
-                        <a href="/supportCategories/index">
-                            <span> دسته بندی  </span>
-                        </a>
-                    </li>
-                    <li >
-                        <a href="/supportSubCategories/index">
-                            <span> زیر دسته بندی  </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-    
+            @if (User.IsInRole("Superadmin") || User.IsInRole("Administrator"))
+            {
+                <li class="menu-accordion">
+                    <a href="#">
+                        <i class="fa fa-support"></i>
+                        <span> پشتیبانی </span>
+                    </a>
 
-            <li class="menu-accordion">
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="/Article/index">
+                                <span> مقالات </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/supportCategories/index">
+                                <span> دسته بندی  </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/supportSubCategories/index">
+                                <span> زیر دسته بندی  </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            }
+            @*<li class="menu-accordion">
                 <a href="#">
                     <i class="fa fa-line-chart"></i>
                     <span> گزارشات  *</span>
                 </a>
-            </li>
->
+            </li>*@
+            
         </ul>
     </nav>
     <!-- /main navigation -->

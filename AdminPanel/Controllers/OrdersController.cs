@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class OrdersController : BaseController
     {
         public ActionResult Index(int page = 1)

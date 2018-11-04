@@ -1,0 +1,194 @@
+﻿@model ICollection<Gallery>
+
+
+@{
+    ViewBag.Title = "Galleries | Artiscovery";
+
+    var c_action = "Index";
+    var c_cntroller = "Auction";
+    var c_add = "add";
+    var c_edit = "edit";
+    var c_delet = "delete";
+    var noentity = "هیچ گالری ای  ثبت نشده";
+    var searchbox = "Galleries...";
+    var addbtn = "گالری";
+}
+
+<div class="page-title">
+    <div class="title"> Auctions</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">Artiscovery</a>
+        </li>
+        <li>
+            <a href="javascript:;">Galleries</a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="card bg-white m-b">
+    <div class="card-header">
+        <form method="get" action="/@c_cntroller/@c_action">
+            <div class="input-group pull-right col-md-6">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو <i class="fa fa-search"></i></button>
+                </span>
+                <input type="hidden" name="page" value="@ViewBag.page">
+                <input type="hidden" name="roledusers" value="@ViewBag.roledusers">
+                <input type="search" placeholder="@searchbox" name="search" value="@ViewBag.search" class="form-control bl0">
+            </div>
+        </form>
+        <a href="/Gallery/add" class="pull-left btn btn-default">ثبت @addbtn جدید</a>
+    </div>
+    <div class="card-block p-a-0">
+        <div class="table-responsive">
+            @if (Model.Count() != 0)
+            {
+                <table class="table m-b-0">
+                    <tr>
+                        <th></th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+                            Active
+                        </th>
+                        <th>
+                            
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><i class="fa fa-eye"></i></th>
+
+                            @if (item.Translations.Count() == 0)
+                            {
+                                <td colspan="3"><span>No Name</span></td>
+                            }
+                            else
+                            {
+                                foreach (var trans in item.Translations.Take(3))
+                                {
+                                    <td>
+                                        <img width="20" src='~/Content/Images/@(trans.language.Code + ".svg")' />  @trans.Title   <span>&nbsp;</span>
+                                    </td>
+                                }
+                                for (int i = 0; i < 3 - item.Translations.Take(3).Count(); i++)
+                                {
+                                    <td></td>
+                                }
+                            }
+                            <th>
+                                @if (item.Active)
+                                {
+                                    <i class="fa fa-check"></i>
+                                }
+                            </th>
+                            <th>
+                              
+                            </th>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/gallery/edit?id=@item.Id">ویرایش</a>                 
+                                <button class="btn btn-danger btn-sm" onclick="$('#c_@item.Id').show('fast');$(this).hide('fast');">حذف</button>
+                                <a id="c_@item.Id" class="btn btn-danger btn-sm" style="display:none" href="/@c_cntroller/@c_delet/@item.Id">آیا مطمئن هستید؟</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning ">
+                    @noentity
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<ul class="pagination clearfix block">
+    @if (ViewBag.page != 1)
+    {
+        <li>
+            <a href="@Url.Action(c_action, new { page = ViewBag.page - 1, search = ViewBag.search,roledusers=ViewBag.roledusers  })">→</a>
+        </li>
+    }
+
+    @for (int i = 1; i <= ViewBag.maxpage; i++)
+    {
+        if (ViewBag.page == i)
+        {
+            <li class="active">
+                <a class="" href="@Url.Action(c_action,new { page = i, search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action(c_action,new { page = i , search = ViewBag.search,roledusers=ViewBag.roledusers })">@i</a>
+            </li>
+        }
+
+    }
+    @if (ViewBag.page != ViewBag.maxpage)
+    {
+        <li>
+            <a href="@Url.Action(c_action,new { page = ViewBag.page + 1 , search = ViewBag.search,roledusers=ViewBag.roledusers })">←</a>
+        </li>
+    }
+
+
+</ul>
+
+<div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="dform">
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Content/Admin/vendor/jquery-labelauty/source/jquery-labelauty.js")
+
+    <script>
+        var loading =
+            '<div class="modal-header bg-primary">' +
+            '   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>' +
+            '   <h4 class="modal-title">...</h4>' +
+            '</div>' +
+            '<div class="modal-body" style="padding:20px;text-align:center">' +
+            '   <p style="text-align:center">در حال بارگذاری</p>' +
+            '   <p style="text-align:center"><i class="fa fa-spinner fa-spin"></i></p>' +
+            '</div>';
+
+        function showAdd() {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/@c_cntroller/@c_add");
+        }
+        function showEdit(id) {
+            $('#modal-basic').modal('show');
+            $("#dform").html(loading);
+            $("#dform").load("/@c_cntroller/@c_edit/" + id);
+        }
+    </script>
+}
+
+
+
+

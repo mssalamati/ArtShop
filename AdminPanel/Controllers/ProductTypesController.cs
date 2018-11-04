@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator")]
     public class ProductTypesController : BaseController
     {
         public ActionResult IndexStyles(int page = 1, string search = "")

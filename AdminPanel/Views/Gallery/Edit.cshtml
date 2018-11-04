@@ -1,0 +1,186 @@
+﻿@model GalleryViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "Edit Gallery | Artiscovery Management";
+}
+<style>
+    table {
+        direction: ltr;
+    }
+</style>
+<div class="page-title">
+    <div class="title"> ویرایش گالری</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">Artiscovery</a>
+        </li>
+        <li>
+            <a href="/Auction/index"> Auctions</a>
+        </li>
+        <li>
+            <a href="javascript:;">ویرایش گالری </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+                <i class="fa fa-arrow-right"></i> ویرایش گالری
+            </div>
+            <div class="card-block">
+                @using (Ajax.BeginForm("edit", "gallery", null, new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                }, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        @Html.AntiForgeryToken()
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                        }
+                        @Html.HiddenFor(x => x.Id)
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="EndTimestamp" name="EndTimestamp" type="text" value="@Model.EndTimestamp.ToShortDateString()" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="StartTimestamp" name="StartTimestamp" value="@Model.StartTimestamp.ToShortDateString()" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control time-picker" value="@Model.EndTimestamp.ToShortTimeString()" name="EndTime" placeholder="ساعت ‍‍‍‍‍‍‍‍‍‍‍پایان" />
+                                    <span class="input-group-addon add-on">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control time-picker" value="@Model.StartTimestamp.ToShortTimeString()" name="StartTime" placeholder="ساعت شروع" />
+                                    <span class="input-group-addon add-on">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="padding:5px" class="col-sm-2 control-label"> موضوع </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="Title" value="@Model.Title" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="padding:5px" class="col-sm-2 control-label"> زبان </label>
+                                <div class="col-sm-5">
+                                    <select id="lanselect" name="languageId" class="form-control">
+                                        @foreach (var item in ((List<Language>)ViewBag.language))
+                                        {
+                                            if (Model.languageId == item.Code)
+                                            {
+                                                <option selected="selected" value="@item.Code">@item.Code</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Code">@item.Code</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="submit" value="ثبت" class="btn btn-default pull-left" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top:10px">
+                            <div class="form-group">
+                                <textarea name="Description" id="Content">@Model.Content</textarea>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/admin/vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
+    <script src="~/Content/admin/vendor/select2/dist/js/select2.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('Content', {
+            customConfig: '/config.js',
+            height: 500,
+            filebrowserImageBrowseUrl: '/gallery/uploadPartial',
+            filebrowserImageUploadUrl: '/gallery/uploadnow',
+        });
+
+    </script>
+    <script>
+        $('#lanselect').on('change', function (e) {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            document.location.href = '/gallery/edit?id=@Model.Id&language=' + valueSelected;
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.time-picker').timepicker({
+                minuteStep: 1,
+                showMeridian: false
+            });
+
+            $("#StartTimestamp").datepicker({ startDate: new Date() });
+            $("#EndTimestamp").datepicker({ startDate: new Date() });
+
+            $('#r1').click(function () {
+                if ($('#r1').val() == 'true' || $('#r1').val() == 'True') {
+                    $('#r1').val('false');
+                }
+                else {
+                    $('#r1').val('true');
+                }
+            });
+        });
+
+    </script>
+}
+
+
+
+
+
+
+

@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "Auction Artworks | Artiscovery";
+    var IsRighToLeft = CultureHelper.IsRighToLeft();
+    var rtlstl = IsRighToLeft ? "direction:rtl;float:right !important; text-align:right !important" : "";
+    var rtlstlForSize = IsRighToLeft ? "direction:ltr;float:right !important; text-align:right !important; margin-top:7px" : "margin-top:7px";
+    var rtldirection = IsRighToLeft ? "direction:rtl !important;text-align:right !important" : "";
+    var rtlPosition = IsRighToLeft ? "margin-right:40px !important" : "";
+    var pricertl = IsRighToLeft ? "left:0;right:auto;text-align:left;" : "";
+}
+
+@model  List<Listing>
+@using DataLayer.Extentions
+
+@helper selected(int current, int selected)
+{
+if (current == selected)
+{
+        @:selected
+}
+}
+
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2000; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        -webkit-animation-name: fadeIn; /* Fade in the background */
+        -webkit-animation-duration: 0.4s;
+        animation-name: fadeIn;
+        animation-duration: 0.4s;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    @@-webkit-keyframes slideIn {
+        from {
+            bottom: -300px;
+            opacity: 0;
+        }
+
+        to {
+            bottom: 0;
+            opacity: 1;
+        }
+    }
+
+    @@keyframes slideIn {
+        from {
+            bottom: -300px;
+            opacity: 0;
+        }
+
+        to {
+            bottom: 0;
+            opacity: 1;
+        }
+    }
+
+    @@-webkit-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<div role="main" class="row row-layout browse-content">
+    <header class="small-12 columns" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="small-12 columns breadcrumbs">
+                <span>
+                    @ViewBag.query
+                </span>
+            </div>
+        </div>
+    </header>
+    <div class="clear"></div>
+
+    @if (Model.Count == 0)
+            {
+        <div class="row">
+            <div class="col-md-12">
+                <p class="alert alert-info" style="text-align:center">@SearchRes.resultEmpty</p>
+            </div>
+        </div>
+    }
+
+    <ul class="item-list masonry">
+        @foreach (var item in Model)
+        {
+            <li itemscope itemtype="http://schema.org/CreativeWork" class="art-item fast-fade ">
+                <div class="list-art-image" itemscope itemtype="http://schema.org/ImageObject">
+                    <div class="list-art-image-wrapper">
+                        <a href="@Url.Action("Art","Auction", new { id=@item.GenerateSlug() })" itemprop="url">
+                            <img src="@item.Artwork.photo.Path">
+                        </a>
+
+                    </div>
+
+                    <div class="list-art-meta" style="height:auto; @rtlstl">
+                        <h4 class="list-art-title left ellipsis" itemprop="name" style="@rtlstl">
+                            <a href="@Url.Action("Art","Auction", new { id=@item.GenerateSlug() })">@item.Title</a>
+                        </h4>
+                        <small style="@rtlstl" class="art-category clear left"></small>
+                        <small style="@rtlstlForSize" class="art-category clear left"><span>@item.Artwork.Height  H</span> x <span> @item.Artwork.Width  W</span> x <span> @item.Artwork.Depth </span> cm</small>
+
+                        <div class="list-author clear left" style="@rtlstl">
+                            <h5 class="artist-name left ellipsis" itemprop="creator" style="padding-right:0px" itemscope itemtype="http://schema.org/Person"></h5>
+
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
+                                <div itemprop="price">
+                                    $@item.StartingPrice
+                                </div>
+                            </div>
+
+                            <h5 class="user-location ellipsis clear" itemprop="contentLocation">
+
+                                <span>@item.StartTimestamp.ToShortDateString()</span><br />
+                                <span>@item.EndTimestamp.ToShortDateString()</span>
+
+                            </h5>
+                        </div>
+
+                        <div class="list-art-price" style="@pricertl">
+
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <!-- internationalization testing -->
+                                <div class="sample-print-price" itemprop="price">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        }
+    </ul>
+    <div class="clearfix"></div>
+
+
+    @{
+        int page = ViewBag.page;
+        int count = ViewBag.count;
+        int pageSize = ViewBag.pageSize;
+        bool haveNext = page * pageSize < count;
+        bool havePrev = page != 1;
+        int minpage = 1;
+        int maxpage = (int)Math.Ceiling((float)count / (float)pageSize);
+    }
+
+    <div class="so-pagination">
+        <div class="pagination">
+            <ul class="pull-right">
+                @if (havePrev)
+                {
+                    <li><a href="/@CultureHelper.GetCurrentCulture()/qsearch/art/@ViewBag.query/@(page-1)"><i class="fa fa-angle-left"></i></a></li>
+                }
+
+                @for (int i = page - 1; i >= minpage && Math.Abs(i - page) < 3; i--)
+                {
+                    <li>
+                        <a href="/@CultureHelper.GetCurrentCulture()/qsearch/art/@ViewBag.query/@i">@i</a>
+                    </li>
+                }
+
+                <li class="active">
+                    <a>@page</a>
+                </li>
+
+                @for (int i = page + 1; i <= maxpage && Math.Abs(i - page) < 3; i++)
+                {
+                    <li>
+                        <a href="/@CultureHelper.GetCurrentCulture()/qsearch/art/@ViewBag.query/@i">@i</a>
+                    </li>
+                }
+
+                @if (haveNext)
+                {
+                    <li><a href="/@CultureHelper.GetCurrentCulture()/qsearch/art/@ViewBag.query/@(page+1)"><i class="fa fa-angle-right"></i></a></li>
+                }
+            </ul>
+            <div class="so-pagination-count pull-right">
+                <small>Showing @(((page - 1) * pageSize) + 1) - @(Math.Min(((page - 1) * pageSize) + pageSize, count)) of @count  </small>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
+</div>
+
+<script src="~/Content/fullview.js"></script>
+
+<script>
+    Saatchi.Loader.load('hslpicker', { js: true });
+    Saatchi.Loader.load('browse', { js: true }, function () {
+        Saatchi.Browse.init();
+    });
+    Saatchi.Loader.load('fullview', { js: true }, function () {
+        Saatchi.Fullview.init();
+        Saatchi.Fullview.SetView.init();
+        Saatchi.Fullview.FullScreen.init();
+    });
+    Saatchi.Loader.load('favorite', { js: true }, function () {
+        Saatchi.Favorite.init();
+    });
+    $('.joyride-tip-guide').delay(5000).fadeOut('slow');
+    var observer;
+    if (observer) {
+        observer.disconnect();
+    }
+</script>
+

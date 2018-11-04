@@ -8,6 +8,7 @@ using Utilities;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator")]
     public class MobileHomePageController : BaseController
     {
         public ActionResult Index()

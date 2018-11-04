@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator")]
     public class PagesController : BaseController
     {
         public ActionResult Index()

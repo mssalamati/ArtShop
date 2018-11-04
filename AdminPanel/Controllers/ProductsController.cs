@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class ProductsController : BaseController
     {
         public ActionResult Index(int page = 1, string search = "")

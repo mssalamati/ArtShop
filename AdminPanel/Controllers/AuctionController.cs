@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class AuctionController : BaseController
     {
         public ActionResult AuctionInfo(int page = 1, string search = "")

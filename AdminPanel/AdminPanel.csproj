@@ -233,6 +233,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\FirstPageSettingsController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageServersController.cs" />
     <Compile Include="Controllers\languagesController.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\ArticleViewModel.cs" />
+    <Compile Include="Models\ViewModel\GalleryViewModel.cs" />
     <Compile Include="Models\ViewModel\PrintMaterialViewModel.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\CountryViewModel.cs" />
@@ -5369,6 +5371,9 @@
     <Content Include="Views\Auction\addAuctionInfo.cshtml" />
     <Content Include="Views\Auction\editAuctionInfo.cshtml" />
     <Content Include="Views\Auction\Bids.cshtml" />
+    <Content Include="Views\Gallery\Add.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

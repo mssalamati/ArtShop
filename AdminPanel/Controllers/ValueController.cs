@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class ValueController : BaseController
     {
         public JsonResult GetCategories()

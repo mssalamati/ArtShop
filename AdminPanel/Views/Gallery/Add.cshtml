@@ -1,0 +1,176 @@
+﻿@model GalleryViewModel
+
+@{
+    ViewBag.Title = "Add Gallery | Artiscovery Management";
+}
+<style>
+    table {
+        direction: ltr;
+    }
+</style>
+<div class="page-title">
+    <div class="title"> گالری جدید</div>
+    <ol class="breadcrumb no-bg pl0">
+        <li>
+            <a href="javascript:;">Artiscovery</a>
+        </li>
+        <li>
+            <a href="/Gallery/index"> Galleries</a>
+        </li>
+        <li>
+            <a href="javascript:;">گالری جدید </a>
+        </li>
+    </ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card bg-white m-b">
+            <div class="card-header">
+                <i class="fa fa-arrow-right"></i> گالری جدید
+            </div>
+            <div class="card-block">
+                @using (Ajax.BeginForm("add", "Gallery", null, new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    OnBegin = "$('#submit_btn').attr('disabled', 'disabled');",
+                    OnComplete = " $('#submit_btn').removeAttr('disabled', 'disabled');",
+                }, new { enctype = "multipart/form-data" }))
+                {
+                <div class="row">
+                    @Html.AntiForgeryToken()
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        @Html.ValidationSummary("", new { @class = "text-danger alert alert-danger" })
+                    }
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input id="EndTimestamp" name="EndTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ پایان">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input id="StartTimestamp" name="StartTimestamp" type="text" class="form-control m-b" data-provide="datepicker" placeholder="تاریخ شروع">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control time-picker" name="EndTime" placeholder="ساعت ‍‍‍‍‍‍‍‍‍‍‍پایان" />
+                                <span class="input-group-addon add-on">
+                                    <i class="fa fa-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control time-picker" name="StartTime" placeholder="ساعت شروع" />
+                                <span class="input-group-addon add-on">
+                                    <i class="fa fa-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    @*<div class="col-md-6">
+            <div class="form-group">
+                <div class="cs-checkbox m-b">
+                    <input type="checkbox" name="Active" id="r1" value="false">
+                    <label for="r1">فعال</label>
+                </div>
+            </div>
+        </div>*@
+                    <div class="col-md-12" style="margin-top:2px">
+                        <div class="form-group">
+                            <div class="col-sm-11">
+                                <input type="text" name="Title" value="@Model.Title" class="form-control" />
+                            </div>
+                            <label style="padding:5px" class="col-sm-1 control-label"> سربرگ </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top:10px">
+                        <div class="form-group" style="margin-top:2px">
+
+                            <div class="col-sm-11">
+                                <select id="catselect" name="id" class="form-control">
+                                    @foreach (var item in ((List<Language>)ViewBag.language))
+                                    {
+                                        <option value="@item.Code">@item.Code</option>
+                                    }
+                                </select>
+                            </div>
+                            <label style="padding:5px" class="col-sm-1 control-label"> زبان </label>
+                        </div>  
+                    </div>
+
+                        <div class="col-md-12" style="margin-top:10px">
+                            <div class="form-group">
+                                <textarea name="Content" id="Content">@Model.Content</textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" id="submit_btn">
+                                <span class="spinner" hidden id="submit_spin" style="padding:5px">
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                </span>&nbsp;  ثبت  &nbsp;
+                            </button>
+
+                        </div>
+
+                    </div>
+                    }
+                </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Content/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Content/admin/ckeditor/config.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('Content', {
+            customConfig: '/config.js',
+            height: 500,
+            filebrowserImageBrowseUrl: '/gallery/uploadPartial',
+            filebrowserImageUploadUrl: '/gallery/uploadnow',
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.time-picker').timepicker({
+                minuteStep: 1,
+                showMeridian: false
+            });
+
+            $("#StartTimestamp").datepicker({ startDate: new Date() });
+            $("#EndTimestamp").datepicker({ startDate: new Date() });
+
+            $('#r1').click(function () {
+                if ($('#r1').val() == 'true') {
+                    $('#r1').val('false');
+                }
+                else {
+                    $('#r1').val('true');
+                }
+            });
+        });
+
+    </script>
+}
+
+
+
+
+

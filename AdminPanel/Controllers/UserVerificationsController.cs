@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Superadmin,Administrator,Manager")]
     public class UserVerificationsController : BaseController
     {
         public ActionResult Index(int page = 1)

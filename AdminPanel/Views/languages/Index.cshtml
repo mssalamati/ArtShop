@@ -22,21 +22,28 @@
     <li class="active">
         <a href="/languages">زبان ها</a>
     </li>
-    <li>
-        <a href="/Countries/Index">کشور ها</a>
-    </li>
-    <li>
-        <a href="/PriceList/Index">محدوده قیمت</a>
-    </li>
+    @if (User.IsInRole("Superadmin") || User.IsInRole("Administrator"))
+    {
+        <li>
+            <a href="/Countries/Index">کشور ها</a>
+        </li>
+
+        <li>
+            <a href="/PriceList/Index">محدوده قیمت</a>
+        </li>
+    }
     <li>
         <a href="/PrintOptions/Index">پرینت</a>
     </li>
-    <li>    
+    <li>
         <a href="/ProductFrames/Indexcolor"> فریم</a>
     </li>
-    <li>
-        <a href="/Setting/Index"> پارامتر ها</a>
-    </li>
+    @if (User.IsInRole("Superadmin") || User.IsInRole("Administrator"))
+    {
+        <li>
+            <a href="/Setting/Index"> پارامتر ها</a>
+        </li>
+    }
 </ul>
 
 

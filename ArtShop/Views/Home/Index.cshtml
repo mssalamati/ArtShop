@@ -30,7 +30,7 @@
         {
             string active = isFirst == true ? "active" : "";
             <div class="item @active">
-                <img src="@item.Slider_Image" style="width:100%;">
+                <img src="@item.Slider_Image" style="width:100%;object-fit:cover;height:460px">
                 <div class="carousel-caption" style="top:0;margin-top:30px">
                     <h1 style="font-size: 50px;color:@item.slider_text_color;@rtlstl">@item.slider_H1</h1>
                     <h2 style="color:@item.slider_text_color;@rtlstl" class="sa-hero-subtitle">@item.slider_H2</h2>

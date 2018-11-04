@@ -11,6 +11,7 @@ namespace AdminPanel.Controllers
 {
     public class ImageServersController : BaseController
     {
+        [Authorize(Roles = "Superadmin")]
         public ActionResult Index()
         {
             var data = db.ImageServers.ToList();

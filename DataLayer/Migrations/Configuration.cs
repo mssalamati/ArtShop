@@ -20,8 +20,75 @@ namespace DataLayer.Migrations
             var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var store = new UserStore<ApplicationUser>(context);
             var manager = new UserManager<ApplicationUser>(store);
-            var user = new ApplicationUser { UserName = "superadmin", Email = "ms.salamati@gmail.com", PhoneNumber = "9374641231", adminDetail = new AdminProfile(), userDetail = new UserProfile() };
-            manager.Create(user, "Art123");
+
+            //add admin role
+            if (!rm.RoleExistsAsync("Superadmin").Result)
+            {
+                IdentityRole role = new IdentityRole("Superadmin");
+                IdentityResult roleResult = rm.CreateAsync(role).Result;
+            }
+
+            if (!rm.RoleExistsAsync("Administrator").Result)
+            {
+                IdentityRole role = new IdentityRole("Administrator");
+                IdentityResult roleResult = rm.CreateAsync(role).Result;
+            }
+
+            if (!rm.RoleExistsAsync("Manager").Result)
+            {
+                IdentityRole role = new IdentityRole("Manager");
+                IdentityResult roleResult = rm.CreateAsync(role).Result;
+            }
+
+            if (manager.FindByNameAsync("superadmin").Result == null)
+            {
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Email = "adb.dehghan@gmail.com",
+                    UserName = "superadmin",
+                    PhoneNumber = "09213175268",
+                    adminDetail = new AdminProfile(),
+                    userDetail = new UserProfile()
+                };
+                IdentityResult result = manager.CreateAsync(user, "Art123").Result;
+                if (result.Succeeded)
+                    manager.AddToRoleAsync(user.Id, "Superadmin").Wait();
+            }
+
+            if (manager.FindByNameAsync("admin").Result == null)
+            {
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Email = "admin@artiscovery.com",
+                    UserName = "admin",
+                    PhoneNumber = "09213175268",
+                    adminDetail = new AdminProfile(),
+                    userDetail = new UserProfile()
+                };
+                IdentityResult result = manager.CreateAsync(user, "Art123456").Result;
+                if (result.Succeeded)
+                    manager.AddToRoleAsync(user.Id, "Administrator").Wait();
+            }
+
+            if (manager.FindByNameAsync("manager").Result == null)
+            {
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Email = "manager@artiscovery.com",
+                    UserName = "manager",
+                    PhoneNumber = "09213175268",
+                    adminDetail = new AdminProfile(),
+                    userDetail = new UserProfile()
+                };
+                IdentityResult result = manager.CreateAsync(user, "Art1234").Result;
+                if (result.Succeeded)
+                    manager.AddToRoleAsync(user.Id, "Manager").Wait();
+            }
+
+            //var user = new ApplicationUser { UserName = "superadmin", Email = "ms.salamati@gmail.com", PhoneNumber = "9374641231", adminDetail = new AdminProfile(), userDetail = new UserProfile() };
+            //manager.Create(user, "Art123");
+
+            //manager.AddToRoleAsync(user.Id, "Administrator").Wait();
 
             context.SiteParams.AddOrUpdate(x => x.Name,
                 new SiteParam() { Name = "Facebook" },
